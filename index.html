@@ -1,323 +1,528 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ChimericLabs LLC — Engineering &amp; Consulting</title>
+    <title>ChimericLabs — Engineering &amp; Consulting</title>
     <meta
       name="description"
-      content="ChimericLabs LLC is an engineering, institution-infrastructure, and consulting firm with a track record across Sharedstake, Sharedtools, and launch-ready systems."
+      content="ChimericLabs helps founders and technical teams write specs, review architecture, and ship production systems in DeFi and beyond."
     />
+    <meta property="og:title" content="ChimericLabs — Engineering &amp; Consulting" />
+    <meta
+      property="og:description"
+      content="From rough idea to shipped system. Engineering and consulting for founders and operators who need to move fast and build right."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "system-ui", "sans-serif"],
+              serif: ['"DM Serif Display"', "Georgia", "serif"],
+              mono: ['"JetBrains Mono"', "monospace"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+      .text-balance {
+        text-wrap: balance;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
   </head>
-  <body>
-    <!-- Fixed header -->
-    <header class="site-header" aria-label="Site navigation">
-      <div class="header-inner">
-        <span class="header-logo">ChimericLabs</span>
-        <nav class="header-nav" aria-label="Primary navigation">
-          <a href="#projects">Work</a>
-          <a href="https://github.com/chimera-defi" target="_blank" rel="noreferrer">GitHub</a>
+
+  <body class="bg-[#080e1d] text-slate-200 font-sans antialiased">
+    <!-- ============================================================
+         Header
+    ============================================================ -->
+    <header
+      class="fixed inset-x-0 top-0 z-50 border-b border-white/[0.07] bg-[#080e1d]/90 backdrop-blur-xl"
+    >
+      <div
+        class="mx-auto flex h-14 max-w-6xl items-center justify-between px-5 sm:px-8"
+      >
+        <a
+          href="/"
+          class="font-mono text-sm font-medium text-cyan-400 tracking-wide"
+          >ChimericLabs</a
+        >
+        <nav class="flex items-center gap-5 sm:gap-7" aria-label="Primary">
+          <a
+            href="#work"
+            class="text-sm text-slate-400 hover:text-slate-200 transition-colors"
+            >Work</a
+          >
+          <a
+            href="#services"
+            class="text-sm text-slate-400 hover:text-slate-200 transition-colors"
+            >Services</a
+          >
+          <a
+            href="https://github.com/chimera-defi"
+            target="_blank"
+            rel="noreferrer"
+            class="hidden sm:block text-sm text-slate-400 hover:text-slate-200 transition-colors"
+            >GitHub</a
+          >
+          <a
+            href="mailto:chimera_defi@protonmail.com"
+            class="rounded-md bg-cyan-400 px-4 py-1.5 text-sm font-semibold text-slate-950 hover:bg-cyan-300 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-400 focus-visible:outline-offset-2"
+            >Contact</a
+          >
         </nav>
       </div>
     </header>
 
     <main>
-      <!-- 01 Hero -->
-      <section class="hero" aria-labelledby="hero-headline">
-        <div class="hero-inner">
-          <div class="hero-eyebrow">
-            <span class="mono text-accent">ChimericLabs LLC</span>
-            <span class="eyebrow-sep" aria-hidden="true"></span>
-            <span class="mono text-muted">Engineering &amp; Consulting</span>
-          </div>
-
-          <h1 id="hero-headline" data-pretext>
-            Engineering, institution infrastructure, and consulting for teams that need to ship.
-          </h1>
-
-          <p class="hero-lede" data-pretext>
-            ChimericLabs LLC is a systems-minded firm for founders, operators, and product teams who need clearer
-            plans, stronger specifications, disciplined execution, and institution-grade infrastructure.
-          </p>
-
-          <div class="hero-actions">
-            <a href="#projects" class="btn-primary">Selected Work</a>
-            <a
-              href="https://github.com/chimera-defi"
-              target="_blank"
-              rel="noreferrer"
-              class="btn-ghost"
-              >GitHub &rarr;</a
-            >
-            <a
-              href="https://github.com/chimera-defi/chimericlabs-llc"
-              target="_blank"
-              rel="noreferrer"
-              class="btn-ghost"
-              >View Source</a
-            >
-          </div>
-        </div>
-
-        <!-- Focus areas strip -->
-        <div class="focus-strip" role="list" aria-label="Focus areas">
-          <div class="focus-item" role="listitem">
-            <span class="focus-num mono">01</span>
-            <strong class="focus-title">Product</strong>
-            <p class="focus-desc">From rough idea to crisp brief</p>
-          </div>
-          <div class="focus-item" role="listitem">
-            <span class="focus-num mono">02</span>
-            <strong class="focus-title">Institution Infra</strong>
-            <p class="focus-desc">Architecture, operations, and reliability foundations</p>
-          </div>
-          <div class="focus-item" role="listitem">
-            <span class="focus-num mono">03</span>
-            <strong class="focus-title">Consulting</strong>
-            <p class="focus-desc">Technical strategy, delivery loops, and ship readiness</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- 02 Approach -->
-      <section class="section approach" aria-labelledby="approach-heading">
-        <header class="section-hd">
-          <span class="mono section-idx">02</span>
-          <h2 id="approach-heading" class="section-label-text">Approach</h2>
-        </header>
-        <div class="approach-grid">
-          <article class="approach-card">
-            <h3>What We Do</h3>
-            <p>
-              Turn rough ideas into structured execution: product framing, PRDs, technical specs,
-              institution-infra planning, and implementation-ready handoff.
-            </p>
-          </article>
-          <article class="approach-card">
-            <h3>How We Work</h3>
-            <p>
-              Pragmatic over performative. Systems-minded over ornamental. Optimized for tradeoffs,
-              constraints, and shipping reality.
-            </p>
-          </article>
-          <article class="approach-card">
-            <h3>Who We Serve</h3>
-            <p>
-              Early-stage teams, solo builders, and institutional operators who want a partner that can
-              pressure-test direction before code starts and support production-grade infrastructure
-              decisions.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <!-- 03 Operating Mode -->
-      <section class="section operating" aria-labelledby="operating-heading">
-        <header class="section-hd">
-          <span class="mono section-idx">03</span>
-          <h2 id="operating-heading" class="section-label-text">Operating Mode</h2>
-        </header>
-        <div class="operating-grid">
-          <div class="operating-copy">
-            <h3 class="serif operating-headline">
-              Built for the messy moment before code and launch.
-            </h3>
-            <p>
-              ChimericLabs LLC is strongest when direction is still unstable: validating an idea,
-              cutting scope, forcing decisions, and turning vague ambition into something a team can
-              actually build and ship.
-            </p>
-          </div>
-          <div class="operating-outputs">
-            <p class="mono outputs-label">Typical Outputs</p>
-            <ul class="outputs-list">
-              <li>Product brief or PRD</li>
-              <li>Technical spec with constraints and risks</li>
-              <li>Execution plan with milestones and tradeoffs</li>
-              <li>Launch and cleanup checklist</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- 04 Projects -->
-      <section class="section projects" id="projects" aria-labelledby="projects-heading">
-        <header class="section-hd">
-          <span class="mono section-idx">04</span>
-          <h2 id="projects-heading" class="section-label-text">Selected Projects</h2>
-        </header>
-        <p class="section-intro">
-          Representative projects from the ChimericLabs orbit, including production properties and
-          ongoing agent systems.
+      <!-- ============================================================
+           Hero
+      ============================================================ -->
+      <section
+        class="mx-auto max-w-6xl px-5 sm:px-8 pt-36 sm:pt-44 pb-24"
+        aria-labelledby="hero-headline"
+      >
+        <p
+          class="mb-7 font-mono text-xs tracking-widest text-cyan-400 uppercase"
+        >
+          Engineering &amp; Consulting
         </p>
+        <h1
+          id="hero-headline"
+          class="max-w-2xl font-serif text-5xl sm:text-6xl lg:text-7xl leading-[1.05] text-slate-50 text-balance"
+        >
+          From rough idea to shipped system.
+        </h1>
+        <p class="mt-8 max-w-lg text-lg text-slate-400 leading-relaxed">
+          ChimericLabs helps founders and technical teams ship faster — writing
+          specs, reviewing architecture, building protocol infrastructure, and
+          solving the problems that block releases.
+        </p>
+        <div class="mt-10 flex flex-wrap gap-4">
+          <a
+            href="mailto:chimera_defi@protonmail.com"
+            class="inline-flex items-center rounded-md bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 hover:bg-cyan-300 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-400 focus-visible:outline-offset-2"
+          >
+            Work with us
+          </a>
+          <a
+            href="#work"
+            class="inline-flex items-center rounded-md border border-white/10 px-6 py-3 text-sm text-slate-300 hover:border-white/20 hover:text-white transition-colors"
+          >
+            See projects
+          </a>
+        </div>
 
-        <div class="projects-grid">
-          <article class="project-card">
-            <div class="project-hd">
-              <span class="mono project-tag">Staking / DeFi</span>
-              <h3 class="serif">Sharedstake.org</h3>
+        <!-- Proof strip -->
+        <div
+          class="mt-20 grid grid-cols-2 sm:grid-cols-4 divide-x divide-y sm:divide-y-0 divide-white/[0.06] border border-white/[0.07] rounded-xl overflow-hidden"
+          aria-label="At a glance"
+        >
+          <div class="bg-slate-900/30 px-6 py-5">
+            <div class="text-2xl font-semibold text-slate-100">4+</div>
+            <div class="mt-1 text-xs text-slate-500 leading-snug">
+              Live systems in production
             </div>
-            <p>
-              Public-facing staking product property, shipped and maintained with protocol-facing
-              engineering and product execution.
-            </p>
-            <div class="project-links">
-              <a href="https://www.sharedstake.org/" target="_blank" rel="noreferrer"
-                >Visit Site &rarr;</a
-              >
-              <a
-                href="https://github.com/chimera-defi/sharedstake-oracle"
-                target="_blank"
-                rel="noreferrer"
-                >Related Repo</a
-              >
+          </div>
+          <div class="bg-slate-900/30 px-6 py-5">
+            <div class="text-2xl font-semibold text-slate-100">DeFi</div>
+            <div class="mt-1 text-xs text-slate-500 leading-snug">
+              Smart contract strategy &amp; design
             </div>
-          </article>
-
-          <article class="project-card">
-            <div class="project-hd">
-              <span class="mono project-tag">Factory / Tooling</span>
-              <h3 class="serif">sharedtools.org</h3>
+          </div>
+          <div class="bg-slate-900/30 px-6 py-5">
+            <div class="text-2xl font-semibold text-slate-100">AI</div>
+            <div class="mt-1 text-xs text-slate-500 leading-snug">
+              LLM agent infrastructure &amp; tooling
             </div>
-            <p>
-              Tooling-focused product surface with smart-contract and UI work across multiple
-              sharedtools repositories.
-            </p>
-            <div class="project-links">
-              <a href="https://www.sharedtools.org/" target="_blank" rel="noreferrer"
-                >Visit Site &rarr;</a
-              >
-              <a
-                href="https://github.com/chimera-defi/sharedtools-index"
-                target="_blank"
-                rel="noreferrer"
-                >Index Repo</a
-              >
+          </div>
+          <div class="bg-slate-900/30 px-6 py-5">
+            <div class="text-2xl font-semibold text-slate-100">Open</div>
+            <div class="mt-1 text-xs text-slate-500 leading-snug">
+              Full transparency, no IP lock-in
             </div>
-          </article>
-
-          <article class="project-card">
-            <div class="project-hd">
-              <span class="mono project-tag">Agent Infrastructure</span>
-              <h3 class="serif">Token Reduce Skill</h3>
-            </div>
-            <p>
-              Practical token-efficiency skillpack and telemetry loop for coding agents working
-              across large repositories.
-            </p>
-            <div class="project-links">
-              <a
-                href="https://github.com/chimera-defi/token-reduce-skill"
-                target="_blank"
-                rel="noreferrer"
-                >View Project &rarr;</a
-              >
-            </div>
-          </article>
-
-          <article class="project-card">
-            <div class="project-hd">
-              <span class="mono project-tag">Product Engineering</span>
-              <h3 class="serif">SpecForge</h3>
-            </div>
-            <p>
-              Spec-first product workflow tooling for teams shaping requirements and execution before
-              implementation.
-            </p>
-            <div class="project-links">
-              <a
-                href="https://github.com/chimera-defi/specforge"
-                target="_blank"
-                rel="noreferrer"
-                >View Project &rarr;</a
-              >
-            </div>
-          </article>
+          </div>
         </div>
       </section>
 
-      <!-- 05 Profile -->
-      <section class="section profile" aria-labelledby="profile-heading">
-        <header class="section-hd">
-          <span class="mono section-idx">05</span>
-          <h2 id="profile-heading" class="section-label-text">Firm Profile</h2>
-        </header>
-        <div class="profile-grid">
-          <div class="profile-caps">
-            <p class="mono outputs-label">Capabilities</p>
-            <ul class="caps-list">
-              <li>Product ideation and validation</li>
-              <li>Spec and PRD generation</li>
-              <li>Institution-grade infrastructure architecture</li>
-              <li>Protocol and platform consulting</li>
-              <li>Engineering cleanup, launches, and repo extraction</li>
+      <!-- ============================================================
+           Selected Work
+      ============================================================ -->
+      <section
+        id="work"
+        class="border-t border-white/[0.07]"
+        aria-labelledby="work-heading"
+      >
+        <div class="mx-auto max-w-6xl px-5 sm:px-8 py-24">
+          <div class="flex items-center gap-3 mb-12">
+            <span
+              class="font-mono text-xs text-cyan-400 tracking-widest uppercase"
+              aria-hidden="true"
+              >01</span
+            >
+            <h2
+              id="work-heading"
+              class="text-xs font-medium uppercase tracking-widest text-slate-500"
+            >
+              Selected Work
+            </h2>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <article
+              class="flex flex-col gap-5 rounded-xl border border-white/[0.07] bg-[#0d1526] p-7 hover:border-white/[0.12] hover:bg-[#111f35] transition-all"
+            >
+              <div>
+                <span
+                  class="font-mono text-xs text-cyan-400 tracking-widest uppercase"
+                  >Staking / DeFi</span
+                >
+                <h3 class="mt-2 font-serif text-xl text-slate-100">
+                  Sharedstake.org
+                </h3>
+              </div>
+              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
+                Liquid staking protocol with a public frontend, oracle system,
+                and multi-contract deployment. Shipped and maintained across
+                multiple upgrade cycles.
+              </p>
+              <div
+                class="flex items-center gap-5 border-t border-white/[0.06] pt-5 text-sm"
+              >
+                <a
+                  href="https://www.sharedstake.org/"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="font-medium text-cyan-400 hover:text-cyan-300 transition-colors"
+                  >Visit Site →</a
+                >
+                <a
+                  href="https://github.com/chimera-defi/sharedstake-oracle"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="text-slate-500 hover:text-slate-300 transition-colors"
+                  >GitHub</a
+                >
+              </div>
+            </article>
+
+            <article
+              class="flex flex-col gap-5 rounded-xl border border-white/[0.07] bg-[#0d1526] p-7 hover:border-white/[0.12] hover:bg-[#111f35] transition-all"
+            >
+              <div>
+                <span
+                  class="font-mono text-xs text-cyan-400 tracking-widest uppercase"
+                  >Factory / Tooling</span
+                >
+                <h3 class="mt-2 font-serif text-xl text-slate-100">
+                  Sharedtools.org
+                </h3>
+              </div>
+              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
+                Smart contract factory and tooling platform. Covers ERC-20
+                launches, multi-sig setup, and protocol primitives across
+                multiple repositories and frontends.
+              </p>
+              <div
+                class="flex items-center gap-5 border-t border-white/[0.06] pt-5 text-sm"
+              >
+                <a
+                  href="https://www.sharedtools.org/"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="font-medium text-cyan-400 hover:text-cyan-300 transition-colors"
+                  >Visit Site →</a
+                >
+                <a
+                  href="https://github.com/chimera-defi/sharedtools-index"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="text-slate-500 hover:text-slate-300 transition-colors"
+                  >GitHub</a
+                >
+              </div>
+            </article>
+
+            <article
+              class="flex flex-col gap-5 rounded-xl border border-white/[0.07] bg-[#0d1526] p-7 hover:border-white/[0.12] hover:bg-[#111f35] transition-all"
+            >
+              <div>
+                <span
+                  class="font-mono text-xs text-cyan-400 tracking-widest uppercase"
+                  >Agent Infrastructure</span
+                >
+                <h3 class="mt-2 font-serif text-xl text-slate-100">
+                  Token Reduce Skill
+                </h3>
+              </div>
+              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
+                Token-efficiency tooling for AI coding agents. BM25 search
+                integration, telemetry loops, and measured compression — up to
+                89% fewer tokens on common dev operations.
+              </p>
+              <div
+                class="flex items-center gap-5 border-t border-white/[0.06] pt-5 text-sm"
+              >
+                <a
+                  href="https://github.com/chimera-defi/token-reduce-skill"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="font-medium text-cyan-400 hover:text-cyan-300 transition-colors"
+                  >View on GitHub →</a
+                >
+              </div>
+            </article>
+
+            <article
+              class="flex flex-col gap-5 rounded-xl border border-white/[0.07] bg-[#0d1526] p-7 hover:border-white/[0.12] hover:bg-[#111f35] transition-all"
+            >
+              <div>
+                <span
+                  class="font-mono text-xs text-cyan-400 tracking-widest uppercase"
+                  >Product Engineering</span
+                >
+                <h3 class="mt-2 font-serif text-xl text-slate-100">
+                  SpecForge
+                </h3>
+              </div>
+              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
+                Spec-first product workflow tooling. Turns rough product ideas
+                into structured PRDs and implementation briefs before a single
+                line of code is written.
+              </p>
+              <div
+                class="flex items-center gap-5 border-t border-white/[0.06] pt-5 text-sm"
+              >
+                <a
+                  href="https://github.com/chimera-defi/specforge"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="font-medium text-cyan-400 hover:text-cyan-300 transition-colors"
+                  >View on GitHub →</a
+                >
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           Services
+      ============================================================ -->
+      <section
+        id="services"
+        class="border-t border-white/[0.07]"
+        aria-labelledby="services-heading"
+      >
+        <div class="mx-auto max-w-6xl px-5 sm:px-8 py-24">
+          <div class="flex items-center gap-3 mb-12">
+            <span
+              class="font-mono text-xs text-cyan-400 tracking-widest uppercase"
+              aria-hidden="true"
+              >02</span
+            >
+            <h2
+              id="services-heading"
+              class="text-xs font-medium uppercase tracking-widest text-slate-500"
+            >
+              What We Do
+            </h2>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-16 lg:gap-20 items-start">
+            <div>
+              <h3
+                class="font-serif text-3xl sm:text-4xl text-slate-100 leading-snug text-balance"
+              >
+                We shape direction before code starts — and own execution
+                when it matters.
+              </h3>
+              <p class="mt-6 text-slate-400 leading-relaxed">
+                Most engagements start with a direction problem, not a code
+                problem. ChimericLabs helps teams find the right scope, write
+                the right spec, and build the right system — then stays involved
+                through shipping.
+              </p>
+              <p class="mt-4 text-slate-400 leading-relaxed">
+                We work directly with founders, solo builders, and technical
+                operators. You talk to the engineer who built it — no handoff,
+                no overhead.
+              </p>
+            </div>
+
+            <ul class="space-y-4" aria-label="Service areas">
+              <li
+                class="rounded-lg border border-white/[0.07] border-l-2 border-l-cyan-400 bg-[#0d1526] px-5 py-4"
+              >
+                <div class="flex items-start gap-3">
+                  <span
+                    class="mt-0.5 font-mono text-xs text-cyan-400 shrink-0"
+                    aria-hidden="true"
+                    >01</span
+                  >
+                  <div>
+                    <div class="text-sm font-medium text-slate-200">
+                      Product Specification
+                    </div>
+                    <div class="mt-1 text-xs text-slate-500 leading-relaxed">
+                      PRDs, scoped specs, and technical requirements from rough
+                      ideas.
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li
+                class="rounded-lg border border-white/[0.07] border-l-2 border-l-cyan-400 bg-[#0d1526] px-5 py-4"
+              >
+                <div class="flex items-start gap-3">
+                  <span
+                    class="mt-0.5 font-mono text-xs text-cyan-400 shrink-0"
+                    aria-hidden="true"
+                    >02</span
+                  >
+                  <div>
+                    <div class="text-sm font-medium text-slate-200">
+                      Architecture &amp; Infrastructure
+                    </div>
+                    <div class="mt-1 text-xs text-slate-500 leading-relaxed">
+                      Protocol design, system architecture, and production
+                      infrastructure planning.
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li
+                class="rounded-lg border border-white/[0.07] border-l-2 border-l-cyan-400 bg-[#0d1526] px-5 py-4"
+              >
+                <div class="flex items-start gap-3">
+                  <span
+                    class="mt-0.5 font-mono text-xs text-cyan-400 shrink-0"
+                    aria-hidden="true"
+                    >03</span
+                  >
+                  <div>
+                    <div class="text-sm font-medium text-slate-200">
+                      Protocol Consulting
+                    </div>
+                    <div class="mt-1 text-xs text-slate-500 leading-relaxed">
+                      DeFi protocol review, smart contract strategy, and
+                      on-chain system design.
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li
+                class="rounded-lg border border-white/[0.07] border-l-2 border-l-cyan-400 bg-[#0d1526] px-5 py-4"
+              >
+                <div class="flex items-start gap-3">
+                  <span
+                    class="mt-0.5 font-mono text-xs text-cyan-400 shrink-0"
+                    aria-hidden="true"
+                    >04</span
+                  >
+                  <div>
+                    <div class="text-sm font-medium text-slate-200">
+                      Engineering Execution
+                    </div>
+                    <div class="mt-1 text-xs text-slate-500 leading-relaxed">
+                      Launches, repo cleanup, agent tooling, and
+                      production-grade implementation.
+                    </div>
+                  </div>
+                </div>
+              </li>
             </ul>
           </div>
-          <div class="profile-statement">
-            <blockquote class="firm-quote serif">
-              "Direct, opinionated, technically rigorous, and useful under ambiguity."
-            </blockquote>
-            <p>
-              ChimericLabs LLC is built to reduce drift between business intent and implementation
-              reality.
-            </p>
-          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           CTA
+      ============================================================ -->
+      <section
+        class="border-t border-white/[0.07]"
+        aria-labelledby="cta-heading"
+      >
+        <div class="mx-auto max-w-6xl px-5 sm:px-8 py-32">
+          <p
+            class="mb-7 font-mono text-xs tracking-widest text-cyan-400 uppercase"
+          >
+            Get in touch
+          </p>
+          <h2
+            id="cta-heading"
+            class="max-w-xl font-serif text-4xl sm:text-5xl text-slate-100 leading-tight text-balance"
+          >
+            Ready to move faster?
+          </h2>
+          <p class="mt-6 max-w-md text-lg text-slate-400 leading-relaxed">
+            Validating an idea, stuck on architecture, or need engineering
+            support to ship — reach out. We respond within 24 hours.
+          </p>
+          <a
+            href="mailto:chimera_defi@protonmail.com"
+            class="mt-10 inline-flex items-center rounded-md bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 hover:bg-cyan-300 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-400 focus-visible:outline-offset-2"
+          >
+            chimera_defi@protonmail.com
+          </a>
         </div>
       </section>
     </main>
 
-    <footer class="site-footer">
-      <div class="footer-inner">
-        <span class="footer-brand mono">ChimericLabs LLC</span>
-        <div class="footer-links">
-          <a href="https://github.com/chimera-defi" target="_blank" rel="noreferrer">GitHub</a>
+    <!-- ============================================================
+         Footer
+    ============================================================ -->
+    <footer class="border-t border-white/[0.07] py-8">
+      <div
+        class="mx-auto max-w-6xl px-5 sm:px-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+      >
+        <span class="font-mono text-xs text-slate-600 tracking-wider"
+          >ChimericLabs LLC</span
+        >
+        <div class="flex flex-wrap gap-6">
+          <a
+            href="https://github.com/chimera-defi"
+            target="_blank"
+            rel="noreferrer"
+            class="text-xs text-slate-600 hover:text-cyan-400 transition-colors"
+            >GitHub</a
+          >
           <a
             href="https://chimera-defi.github.io/chimericlabs-llc/"
             target="_blank"
             rel="noreferrer"
+            class="text-xs text-slate-600 hover:text-cyan-400 transition-colors"
             >Live Site</a
           >
           <a
             href="https://github.com/chimera-defi/chimericlabs-llc"
             target="_blank"
             rel="noreferrer"
+            class="text-xs text-slate-600 hover:text-cyan-400 transition-colors"
             >Source</a
           >
         </div>
       </div>
     </footer>
-
-    <script type="module">
-      import { prepare, layout } from "https://esm.sh/@chenglou/pretext@0.1.11";
-
-      (async function () {
-        await document.fonts.ready;
-        const els = document.querySelectorAll("[data-pretext]");
-        const prepared = new Map();
-
-        for (const el of els) {
-          const font = getComputedStyle(el).font;
-          prepared.set(el, prepare(el.textContent, font));
-        }
-
-        function relayout() {
-          for (const [el, handle] of prepared) {
-            const lh = parseFloat(getComputedStyle(el).lineHeight);
-            const { height } = layout(handle, el.clientWidth, lh || 28);
-            el.style.height = height + "px";
-          }
-        }
-
-        new ResizeObserver(relayout).observe(document.body);
-        relayout();
-      })();
-    </script>
   </body>
 </html>
