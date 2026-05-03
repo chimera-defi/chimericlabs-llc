@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://chimera-defi.github.io/chimericlabs-llc/sitemap.xml
+Sitemap: https://chimericlabs.org/sitemap.xml
