@@ -1,2 +1,9 @@
 .DS_Store
 .gstack/
+
+# Local agent telemetry and delegation artifacts
+.claude/token-reduce-state/
+artifacts/delegation/
+artifacts/devin-delegate/
+artifacts/kimi-delegate/
+artifacts/token-reduction/
