@@ -2,6 +2,10 @@
 
 Minimal static site for ChimericLabs LLC, published with GitHub Pages.
 
+## Live Site
+
+[GitHub Pages](https://chimera-defi.github.io/chimericlabs-llc/)
+
 ## Portfolio References
 
 - https://www.sharedstake.org/
