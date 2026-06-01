@@ -1,5 +1,6 @@
 .DS_Store
 .gstack/
+.worktrees/
 
 # Local agent telemetry and delegation artifacts
 .claude/token-reduce-state/
