@@ -1,5 +1,5 @@
 # PR Response State
-last_run: 2026-06-11T14:18
+last_run: 2026-06-12T14:19
 
 prs:
   - number: 4
@@ -8,7 +8,7 @@ prs:
     attempt_count: 0
     status: merged
     notes: >
-      docs(dream) consolidation PR 2026-06-06. No longer in open PRs —
+      docs(dream) consolidation PR 2026-06-06. No longer in open PRs -
       merged or closed. Archived for history.
 
   - number: 5
@@ -17,5 +17,5 @@ prs:
     attempt_count: 0
     status: merged
     notes: >
-      docs(dream): 2026-06-07 consolidation pass. No longer in open PRs —
+      docs(dream): 2026-06-07 consolidation pass. No longer in open PRs -
       merged or closed. Archived for history.
