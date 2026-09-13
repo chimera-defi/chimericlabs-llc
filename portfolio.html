@@ -117,166 +117,13 @@
       </div>
 
       <!-- ============================================================
-           Category: Staking Infrastructure
-      ============================================================ -->
-      <section class="border-b border-white/[0.07]" aria-labelledby="staking-heading">
-        <div class="mx-auto max-w-6xl px-5 sm:px-8 py-16">
-
-          <div class="flex items-center gap-3 mb-10">
-            <span class="font-mono text-xs text-cyan-400 tracking-widest uppercase" aria-hidden="true">01</span>
-            <h2 id="staking-heading" class="text-xs font-medium uppercase tracking-widest text-slate-500">
-              Staking Infrastructure
-            </h2>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-
-            <article class="flex flex-col gap-4 rounded-lg border border-white/[0.07] bg-[#0d1526] p-6 hover:border-white/[0.12] hover:bg-[#111f35] transition-colors">
-              <div>
-                <span class="font-mono text-xs text-cyan-400 tracking-widest uppercase">Liquid Staking · Ethereum Mainnet</span>
-                <h3 class="mt-2 font-serif text-xl text-slate-100">SharedDeposit (sgETH)</h3>
-              </div>
-              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                Full-stack Ethereum liquid staking protocol. Token (sgETH + wrapped variant WSGEth),
-                minter (SharedDepositMinterV2), rewards receiver, rollover, withdrawal queue — all
-                auditable on-chain. Beacon chain oracle tracks validator indices and calculates virtual
-                price for ETH rewards post-merge. Deployed and maintained through multiple upgrade
-                cycles since 2023.
-              </p>
-              <div class="flex flex-wrap gap-2 pt-1">
-                <span class="font-mono text-xs text-slate-300 border border-white/[0.05] bg-slate-800 rounded px-2 py-0.5">Solidity</span>
-                <span class="font-mono text-xs text-slate-300 border border-white/[0.05] bg-slate-800 rounded px-2 py-0.5">Hardhat</span>
-                <span class="font-mono text-xs text-slate-300 border border-white/[0.05] bg-slate-800 rounded px-2 py-0.5">OpenZeppelin</span>
-                <span class="font-mono text-xs text-slate-300 border border-white/[0.05] bg-slate-800 rounded px-2 py-0.5">Beacon API</span>
-              </div>
-              <div class="flex items-center gap-5 border-t border-white/[0.06] pt-4 text-sm">
-                <a href="https://www.sharedstake.org/" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center font-medium text-cyan-400 hover:text-cyan-300 transition-colors">Visit Site →</a>
-                <a href="https://github.com/chimera-defi/SharedDeposit" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">GitHub</a>
-                <a href="https://docs.sharedstake.finance/" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">Docs</a>
-              </div>
-            </article>
-
-            <article class="flex flex-col gap-4 rounded-lg border border-white/[0.07] bg-[#0d1526] p-6 hover:border-white/[0.12] hover:bg-[#111f35] transition-colors">
-              <div>
-                <span class="font-mono text-xs text-cyan-400 tracking-widest uppercase">Validator Infrastructure</span>
-                <h3 class="mt-2 font-serif text-xl text-slate-100">eth2-quickstart</h3>
-              </div>
-              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                Shell scripts to get an ETH2-compatible RPC node running in minutes instead of days.
-                Follows community best practices for client diversity, supporting multiple execution
-                and consensus client combinations. Covers server setup, checkpoint sync, uncensored
-                RPC node deployment, and firewall configuration — for solo stakers, home operators,
-                and cloud VPS deployments.
-              </p>
-              <div class="flex flex-wrap gap-2 pt-1">
-                <span class="font-mono text-xs text-slate-300 border border-white/[0.05] bg-slate-800 rounded px-2 py-0.5">Shell</span>
-                <span class="font-mono text-xs text-slate-300 border border-white/[0.05] bg-slate-800 rounded px-2 py-0.5">Geth / Reth</span>
-                <span class="font-mono text-xs text-slate-300 border border-white/[0.05] bg-slate-800 rounded px-2 py-0.5">Prysm / Lighthouse</span>
-                <span class="font-mono text-xs text-slate-300 border border-white/[0.05] bg-slate-800 rounded px-2 py-0.5">Beacon API</span>
-              </div>
-              <div class="flex items-center gap-5 border-t border-white/[0.06] pt-4 text-sm">
-                <a href="https://github.com/chimera-defi/eth2-quickstart" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center font-medium text-cyan-400 hover:text-cyan-300 transition-colors">GitHub →</a>
-              </div>
-            </article>
-
-            <article class="flex flex-col gap-4 rounded-lg border border-white/[0.07] bg-[#0d1526] p-6 hover:border-white/[0.12] hover:bg-[#111f35] transition-colors">
-              <div>
-                <span class="font-mono text-xs text-cyan-400 tracking-widest uppercase">Liquid Staking · Stake Exchange</span>
-                <h3 class="mt-2 font-serif text-xl text-slate-100">Sharedstake Oracle</h3>
-              </div>
-              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                Off-chain oracle for SharedDeposit V1 and V2. Reads validator indices from the
-                beacon chain API to calculate and verify the virtual price of sgETH — the
-                accumulating ETH rewards per share. Designed to run as a self-hosted service
-                alongside a staking node.
-              </p>
-              <div class="flex flex-wrap gap-2 pt-1">
-                <span class="font-mono text-xs text-slate-300 border border-white/[0.05] bg-slate-800 rounded px-2 py-0.5">JavaScript</span>
-                <span class="font-mono text-xs text-slate-300 border border-white/[0.05] bg-slate-800 rounded px-2 py-0.5">Beacon Chain API</span>
-                <span class="font-mono text-xs text-slate-300 border border-white/[0.05] bg-slate-800 rounded px-2 py-0.5">Prysm</span>
-              </div>
-              <div class="flex items-center gap-5 border-t border-white/[0.06] pt-4 text-sm">
-                <a href="https://github.com/chimera-defi/sharedstake-oracle" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center font-medium text-cyan-400 hover:text-cyan-300 transition-colors">GitHub →</a>
-              </div>
-            </article>
-
-          </div>
-        </div>
-      </section>
-
-      <!-- ============================================================
-           Category: Protocol Products &amp; Partnerships
-      ============================================================ -->
-      <section class="border-b border-white/[0.07]" aria-labelledby="tooling-heading">
-        <div class="mx-auto max-w-6xl px-5 sm:px-8 py-16">
-
-          <div class="flex items-center gap-3 mb-10">
-            <span class="font-mono text-xs text-cyan-400 tracking-widest uppercase" aria-hidden="true">02</span>
-            <h2 id="tooling-heading" class="text-xs font-medium uppercase tracking-widest text-slate-500">
-              Protocol Products &amp; Partnerships
-            </h2>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-
-            <article class="flex flex-col gap-4 rounded-lg border border-white/[0.07] bg-[#0d1526] p-6 hover:border-white/[0.12] hover:bg-[#111f35] transition-colors">
-              <div>
-                <span class="font-mono text-xs text-cyan-400 tracking-widest uppercase">Smart Contract Factory</span>
-                <h3 class="mt-2 font-serif text-xl text-slate-100">Sharedtools</h3>
-              </div>
-              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                Smart contract factory and tooling platform with a production frontend and
-                dedicated RPC endpoint. Covers ERC-20 token launches, multi-sig setup,
-                and common protocol primitives — used across multiple deployments in the
-                Sharedstake ecosystem.
-              </p>
-              <div class="flex flex-wrap gap-2 pt-1">
-                <span class="font-mono text-xs text-slate-300 border border-white/[0.05] bg-slate-800 rounded px-2 py-0.5">Solidity</span>
-                <span class="font-mono text-xs text-slate-300 border border-white/[0.05] bg-slate-800 rounded px-2 py-0.5">TypeScript</span>
-                <span class="font-mono text-xs text-slate-300 border border-white/[0.05] bg-slate-800 rounded px-2 py-0.5">Ethers.js</span>
-              </div>
-              <div class="flex items-center gap-5 border-t border-white/[0.06] pt-4 text-sm">
-                <a href="https://www.sharedtools.org/" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center font-medium text-cyan-400 hover:text-cyan-300 transition-colors">Visit Site →</a>
-                <a href="https://github.com/chimera-defi/sharedtools-index" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">GitHub</a>
-              </div>
-            </article>
-
-            <article class="flex flex-col gap-4 rounded-lg border border-white/[0.07] bg-[#0d1526] p-6 hover:border-white/[0.12] hover:bg-[#111f35] transition-colors">
-              <div>
-                <span class="font-mono text-xs text-cyan-400 tracking-widest uppercase">Payments · Design &amp; Development Partner</span>
-                <h3 class="mt-2 font-serif text-xl text-slate-100">AutoPay Protocol</h3>
-              </div>
-              <div class="flex flex-wrap gap-2 pt-1">
-                <span class="font-mono text-[10px] text-emerald-300 bg-emerald-500/10 rounded px-2 py-0.5 border border-emerald-500/30">ETHGlobal Finalist · HackMoney 2026</span>
-              </div>
-              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                Non-custodial subscription payment protocol for humans and AI agents. ChimericLabs
-                supports AutoPay as a design and development partner across product UX,
-                frontend implementation, protocol surfaces, and agent-native payment flows.
-              </p>
-              <div class="flex flex-wrap gap-2 pt-1">
-                <span class="font-mono text-xs text-slate-300 border border-white/[0.05] bg-slate-800 rounded px-2 py-0.5">Solidity</span>
-                <span class="font-mono text-xs text-slate-300 border border-white/[0.05] bg-slate-800 rounded px-2 py-0.5">USDC</span>
-                <span class="font-mono text-xs text-slate-300 border border-white/[0.05] bg-slate-800 rounded px-2 py-0.5">Agent SDK</span>
-              </div>
-              <div class="flex items-center gap-5 border-t border-white/[0.06] pt-4 text-sm">
-                <a href="https://autopayprotocol.com/" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center font-medium text-cyan-400 hover:text-cyan-300 transition-colors">Visit Site →</a>
-                <a href="https://github.com/chimera-defi/Auto-Pay-Protocol" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">GitHub</a>
-              </div>
-            </article>
-
-          </div>
-        </div>
-      </section>
-
-      <!-- ============================================================
            Category: AI Developer Tooling
       ============================================================ -->
       <section class="border-b border-white/[0.07]" aria-labelledby="ai-heading">
         <div class="mx-auto max-w-6xl px-5 sm:px-8 py-16">
 
           <div class="flex items-center gap-3 mb-10">
-            <span class="font-mono text-xs text-cyan-400 tracking-widest uppercase" aria-hidden="true">03</span>
+            <span class="font-mono text-xs text-cyan-400 tracking-widest uppercase" aria-hidden="true">01</span>
             <h2 id="ai-heading" class="text-xs font-medium uppercase tracking-widest text-slate-500">
               AI Developer Tooling
             </h2>
@@ -361,6 +208,159 @@
               </div>
               <div class="flex items-center gap-5 border-t border-white/[0.06] pt-4 text-sm">
                 <a href="https://github.com/chimera-defi/specforge" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center font-medium text-cyan-400 hover:text-cyan-300 transition-colors">GitHub →</a>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           Category: Protocol Products &amp; Partnerships
+      ============================================================ -->
+      <section class="border-b border-white/[0.07]" aria-labelledby="tooling-heading">
+        <div class="mx-auto max-w-6xl px-5 sm:px-8 py-16">
+
+          <div class="flex items-center gap-3 mb-10">
+            <span class="font-mono text-xs text-cyan-400 tracking-widest uppercase" aria-hidden="true">02</span>
+            <h2 id="tooling-heading" class="text-xs font-medium uppercase tracking-widest text-slate-500">
+              Protocol Products &amp; Partnerships
+            </h2>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+
+            <article class="flex flex-col gap-4 rounded-lg border border-white/[0.07] bg-[#0d1526] p-6 hover:border-white/[0.12] hover:bg-[#111f35] transition-colors">
+              <div>
+                <span class="font-mono text-xs text-cyan-400 tracking-widest uppercase">Smart Contract Factory</span>
+                <h3 class="mt-2 font-serif text-xl text-slate-100">Sharedtools</h3>
+              </div>
+              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
+                Smart contract factory and tooling platform with a production frontend and
+                dedicated RPC endpoint. Covers ERC-20 token launches, multi-sig setup,
+                and common protocol primitives — used across multiple deployments in the
+                Sharedstake ecosystem.
+              </p>
+              <div class="flex flex-wrap gap-2 pt-1">
+                <span class="font-mono text-xs text-slate-300 border border-white/[0.05] bg-slate-800 rounded px-2 py-0.5">Solidity</span>
+                <span class="font-mono text-xs text-slate-300 border border-white/[0.05] bg-slate-800 rounded px-2 py-0.5">TypeScript</span>
+                <span class="font-mono text-xs text-slate-300 border border-white/[0.05] bg-slate-800 rounded px-2 py-0.5">Ethers.js</span>
+              </div>
+              <div class="flex items-center gap-5 border-t border-white/[0.06] pt-4 text-sm">
+                <a href="https://www.sharedtools.org/" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center font-medium text-cyan-400 hover:text-cyan-300 transition-colors">Visit Site →</a>
+                <a href="https://github.com/chimera-defi/sharedtools-index" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">GitHub</a>
+              </div>
+            </article>
+
+            <article class="flex flex-col gap-4 rounded-lg border border-white/[0.07] bg-[#0d1526] p-6 hover:border-white/[0.12] hover:bg-[#111f35] transition-colors">
+              <div>
+                <span class="font-mono text-xs text-cyan-400 tracking-widest uppercase">Payments · Design &amp; Development Partner</span>
+                <h3 class="mt-2 font-serif text-xl text-slate-100">AutoPay Protocol</h3>
+              </div>
+              <div class="flex flex-wrap gap-2 pt-1">
+                <span class="font-mono text-[10px] text-emerald-300 bg-emerald-500/10 rounded px-2 py-0.5 border border-emerald-500/30">ETHGlobal Finalist · HackMoney 2026</span>
+              </div>
+              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
+                Non-custodial subscription payment protocol for humans and AI agents. ChimericLabs
+                supports AutoPay as a design and development partner across product UX,
+                frontend implementation, protocol surfaces, and agent-native payment flows.
+              </p>
+              <div class="flex flex-wrap gap-2 pt-1">
+                <span class="font-mono text-xs text-slate-300 border border-white/[0.05] bg-slate-800 rounded px-2 py-0.5">Solidity</span>
+                <span class="font-mono text-xs text-slate-300 border border-white/[0.05] bg-slate-800 rounded px-2 py-0.5">USDC</span>
+                <span class="font-mono text-xs text-slate-300 border border-white/[0.05] bg-slate-800 rounded px-2 py-0.5">Agent SDK</span>
+              </div>
+              <div class="flex items-center gap-5 border-t border-white/[0.06] pt-4 text-sm">
+                <a href="https://autopayprotocol.com/" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center font-medium text-cyan-400 hover:text-cyan-300 transition-colors">Visit Site →</a>
+                <a href="https://github.com/chimera-defi/Auto-Pay-Protocol" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">GitHub</a>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           Category: Staking Infrastructure
+      ============================================================ -->
+      <section class="border-b border-white/[0.07]" aria-labelledby="staking-heading">
+        <div class="mx-auto max-w-6xl px-5 sm:px-8 py-16">
+
+          <div class="flex items-center gap-3 mb-10">
+            <span class="font-mono text-xs text-cyan-400 tracking-widest uppercase" aria-hidden="true">03</span>
+            <h2 id="staking-heading" class="text-xs font-medium uppercase tracking-widest text-slate-500">
+              Staking Infrastructure
+            </h2>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+
+            <article class="flex flex-col gap-4 rounded-lg border border-white/[0.07] bg-[#0d1526] p-6 hover:border-white/[0.12] hover:bg-[#111f35] transition-colors">
+              <div>
+                <span class="font-mono text-xs text-cyan-400 tracking-widest uppercase">Liquid Staking · Ethereum Mainnet</span>
+                <h3 class="mt-2 font-serif text-xl text-slate-100">SharedDeposit (sgETH)</h3>
+              </div>
+              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
+                Full-stack Ethereum liquid staking protocol. Token (sgETH + wrapped variant WSGEth),
+                minter (SharedDepositMinterV2), rewards receiver, rollover, withdrawal queue — all
+                auditable on-chain. Beacon chain oracle tracks validator indices and calculates virtual
+                price for ETH rewards post-merge. Deployed and maintained through multiple upgrade
+                cycles since 2023.
+              </p>
+              <div class="flex flex-wrap gap-2 pt-1">
+                <span class="font-mono text-xs text-slate-300 border border-white/[0.05] bg-slate-800 rounded px-2 py-0.5">Solidity</span>
+                <span class="font-mono text-xs text-slate-300 border border-white/[0.05] bg-slate-800 rounded px-2 py-0.5">Hardhat</span>
+                <span class="font-mono text-xs text-slate-300 border border-white/[0.05] bg-slate-800 rounded px-2 py-0.5">OpenZeppelin</span>
+                <span class="font-mono text-xs text-slate-300 border border-white/[0.05] bg-slate-800 rounded px-2 py-0.5">Beacon API</span>
+              </div>
+              <div class="flex items-center gap-5 border-t border-white/[0.06] pt-4 text-sm">
+                <a href="https://www.sharedstake.org/" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center font-medium text-cyan-400 hover:text-cyan-300 transition-colors">Visit Site →</a>
+                <a href="https://github.com/chimera-defi/SharedDeposit" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">GitHub</a>
+                <a href="https://docs.sharedstake.finance/" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">Docs</a>
+              </div>
+            </article>
+
+            <article class="flex flex-col gap-4 rounded-lg border border-white/[0.07] bg-[#0d1526] p-6 hover:border-white/[0.12] hover:bg-[#111f35] transition-colors">
+              <div>
+                <span class="font-mono text-xs text-cyan-400 tracking-widest uppercase">Validator Infrastructure</span>
+                <h3 class="mt-2 font-serif text-xl text-slate-100">eth2-quickstart</h3>
+              </div>
+              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
+                Shell scripts to get an ETH2-compatible RPC node running in minutes instead of days.
+                Follows community best practices for client diversity, supporting multiple execution
+                and consensus client combinations. Covers server setup, checkpoint sync, uncensored
+                RPC node deployment, and firewall configuration — for solo stakers, home operators,
+                and cloud VPS deployments.
+              </p>
+              <div class="flex flex-wrap gap-2 pt-1">
+                <span class="font-mono text-xs text-slate-300 border border-white/[0.05] bg-slate-800 rounded px-2 py-0.5">Shell</span>
+                <span class="font-mono text-xs text-slate-300 border border-white/[0.05] bg-slate-800 rounded px-2 py-0.5">Geth / Reth</span>
+                <span class="font-mono text-xs text-slate-300 border border-white/[0.05] bg-slate-800 rounded px-2 py-0.5">Prysm / Lighthouse</span>
+                <span class="font-mono text-xs text-slate-300 border border-white/[0.05] bg-slate-800 rounded px-2 py-0.5">Beacon API</span>
+              </div>
+              <div class="flex items-center gap-5 border-t border-white/[0.06] pt-4 text-sm">
+                <a href="https://github.com/chimera-defi/eth2-quickstart" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center font-medium text-cyan-400 hover:text-cyan-300 transition-colors">GitHub →</a>
+              </div>
+            </article>
+
+            <article class="flex flex-col gap-4 rounded-lg border border-white/[0.07] bg-[#0d1526] p-6 hover:border-white/[0.12] hover:bg-[#111f35] transition-colors">
+              <div>
+                <span class="font-mono text-xs text-cyan-400 tracking-widest uppercase">Liquid Staking · Stake Exchange</span>
+                <h3 class="mt-2 font-serif text-xl text-slate-100">Sharedstake Oracle</h3>
+              </div>
+              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
+                Off-chain oracle for SharedDeposit V1 and V2. Reads validator indices from the
+                beacon chain API to calculate and verify the virtual price of sgETH — the
+                accumulating ETH rewards per share. Designed to run as a self-hosted service
+                alongside a staking node.
+              </p>
+              <div class="flex flex-wrap gap-2 pt-1">
+                <span class="font-mono text-xs text-slate-300 border border-white/[0.05] bg-slate-800 rounded px-2 py-0.5">JavaScript</span>
+                <span class="font-mono text-xs text-slate-300 border border-white/[0.05] bg-slate-800 rounded px-2 py-0.5">Beacon Chain API</span>
+                <span class="font-mono text-xs text-slate-300 border border-white/[0.05] bg-slate-800 rounded px-2 py-0.5">Prysm</span>
+              </div>
+              <div class="flex items-center gap-5 border-t border-white/[0.06] pt-4 text-sm">
+                <a href="https://github.com/chimera-defi/sharedstake-oracle" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center font-medium text-cyan-400 hover:text-cyan-300 transition-colors">GitHub →</a>
               </div>
             </article>
 
