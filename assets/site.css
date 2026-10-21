@@ -1,0 +1,56 @@
+/*
+ * chimericlabs-llc on the Field Lab v2 style system.
+ * Load order: field-lab/tokens.css -> field-lab/field-lab.css -> this file.
+ * Colours come from tailwind.config (palette re-pointed at the tokens); this
+ * file holds what utilities can't express. The Tailwind CDN injects its CSS
+ * after these links, so selectors here are kept specific enough to win.
+ */
+html { overflow-x: clip; } /* the hero graph paper bleeds to the viewport edges */
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); }
+
+/* Headings: Archivo squeezed to ~70% width, heavy (the old serif slot). */
+body .font-serif { font-family: var(--f-display); font-stretch: 72%; font-weight: 800; letter-spacing: -.02em; }
+body #hero-headline { line-height: .92; font-stretch: 68%; letter-spacing: -.03em; }
+body h3.font-serif { letter-spacing: -.01em; }
+
+/* Brand: Field Lab wordmark, an orange square then the name in display ink. */
+body .site-brand { font-family: var(--f-display); font-stretch: 70%; font-weight: 800; font-size: 18px; letter-spacing: -.01em; color: var(--ink); gap: 8px; }
+body .site-brand::before { content: ""; width: 12px; height: 12px; background: var(--accent); border: 1.5px solid var(--ink); flex: none; }
+@media (max-width: 639px) { body .site-brand { font-size: 16px !important; } }
+@media (max-width: 319px) { body .site-brand { font-size: 0 !important; } }
+
+/* Header: square cells divided by rules, like the Field Lab header. */
+header.fixed { border-bottom-color: var(--ink); }
+
+/* Buttons: fl-btn already supplies the look; keep the site's 44px targets. */
+body .site-btn { min-height: 44px; font-weight: 700; }
+
+/* Hero: graph paper fading out, the animated rig above the headline. */
+.site-hero { position: relative; isolation: isolate; }
+.site-hero::before {
+  content: ""; position: absolute; inset: 0 calc(50% - 50vw); z-index: -1; pointer-events: none;
+  background:
+    linear-gradient(var(--hairline) 1px, transparent 1px) 0 0 / 32px 32px,
+    linear-gradient(90deg, var(--hairline) 1px, transparent 1px) 0 0 / 32px 32px;
+  -webkit-mask-image: linear-gradient(#000 55%, transparent);
+          mask-image: linear-gradient(#000 55%, transparent);
+}
+.hero-rig { display: block; width: 100%; height: auto; margin: 0 0 24px; }
+@media (min-width: 1024px) {
+  /* Desktop: a two-column hero without touching the DOM. The section becomes
+     the grid and the inner grid (a Tailwind .grid, hence the
+     body-prefixed selectors to outrank the CDN styles) "dissolves" (display: contents), so its two
+     children (text column, build map) place directly beside the rig:
+       [ text   | rig       ]
+       [ text   | build map ]
+       [ proof strip ...... ]                                              */
+  body .site-hero { display: grid; grid-template-columns: minmax(0, 1fr) 480px; column-gap: 64px; align-items: center; }
+  body .site-hero-grid { display: contents; }
+  body .site-hero-grid > :first-child { grid-column: 1; grid-row: 1 / span 2; }
+  body .hero-rig { grid-column: 2; grid-row: 1; margin: 0; }
+  body .site-hero-grid > :last-child { grid-column: 2; grid-row: 2; }
+  body .site-hero > :last-child { grid-column: 1 / -1; }
+}
+
+/* Build map cards (hero, desktop): square plates with a hard stamp. */
+.site-hero .fl-graph-paper { background-color: transparent; }
