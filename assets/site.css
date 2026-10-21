@@ -9,46 +9,30 @@ h2.font-serif { font-stretch: 82%; letter-spacing: -.03em; }
 h3.font-serif { font-stretch: 90%; font-weight: 700; letter-spacing: -.02em; }
 
 /* Brand: Field Lab wordmark, an orange square then the name in display ink. */
-body .site-brand { font-family: var(--f-display); font-stretch: 70%; font-weight: 800; font-size: 18px; letter-spacing: -.01em; color: var(--ink); gap: 8px; }
-body .site-brand::before { content: ""; width: 12px; height: 12px; background: var(--accent); border: 1.5px solid var(--ink); flex: none; }
-@media (max-width: 639px) { body .site-brand { font-size: 16px !important; } }
-@media (max-width: 319px) { body .site-brand { font-size: 0 !important; } }
-
-/* Header: square cells divided by rules, like the Field Lab header. */
-header.fixed { border-bottom-color: var(--ink); }
+.site-brand { font-family: var(--f-display); font-stretch: 70%; font-weight: 800; font-size: 18px; letter-spacing: -.01em; color: var(--ink); gap: 8px; }
+.site-brand::before { content: ""; width: 12px; height: 12px; background: var(--accent); border: 1.5px solid var(--ink); flex: none; }
+@media (max-width: 639px) { .site-brand { font-size: 16px; } }
+@media (max-width: 319px) { .site-brand { font-size: 0; } }
 
 /* The header Contact button is ink, so the hero CTA is the one orange action in view. */
-.site-contact.fl-btn--primary { background: var(--ink); color: var(--bg); border-color: var(--ink); }
-.site-contact.fl-btn--primary:hover { background: var(--ink-2); border-color: var(--ink-2); }
+.site-contact { background: var(--ink); color: var(--bg); }
+.site-contact:hover { background: var(--ink-2); border-color: var(--ink-2); }
 
-/* Hero: graph paper fading out, the animated rig above the headline. */
-.site-hero { position: relative; isolation: isolate; }
-.site-hero::before {
-  content: ""; position: absolute; inset: 0 calc(50% - 50vw); z-index: -1; pointer-events: none;
-  background:
-    linear-gradient(var(--hairline) 1px, transparent 1px) 0 0 / 32px 32px,
-    linear-gradient(90deg, var(--hairline) 1px, transparent 1px) 0 0 / 32px 32px;
-  -webkit-mask-image: linear-gradient(#000 55%, transparent);
-          mask-image: linear-gradient(#000 55%, transparent);
-}
+/* Hero: .fl-graph-paper--fade supplies the fading grid; let it bleed to the viewport edges. */
+.site-hero::before { inset: 0 calc(50% - 50vw); }
 .hero-rig { display: block; width: 100%; height: auto; margin: 0 0 24px; }
 @media (min-width: 1024px) {
-  /* Desktop: a two-column hero without touching the DOM. The section becomes
-     the grid and the inner grid (a Tailwind .grid, hence the
-     body-prefixed selectors to outrank the CDN styles) "dissolves" (display: contents), so its two
-     children (text column, build map) place directly beside the rig:
+  /* Desktop: a two-column hero without touching the DOM. The section becomes the grid and
+     the inner grid (lg:contents) dissolves, so its two children place beside the rig:
        [ text   | rig       ]
        [ text   | build map ]
        [ proof strip ...... ]                                              */
-  body .site-hero { display: grid; grid-template-columns: minmax(0, 1fr) 480px; column-gap: 64px; align-items: center; }
-  body .site-hero-grid { display: contents; }
-  body .site-hero-grid > :first-child { grid-column: 1; grid-row: 1 / span 2; }
-  body .hero-rig { grid-column: 2; grid-row: 1; margin: 0; }
-  body .site-hero-grid > :last-child { grid-column: 2; grid-row: 2; }
-  body .site-hero > :last-child { grid-column: 1 / -1; }
+  .site-hero { display: grid; grid-template-columns: minmax(0, 1fr) 480px; column-gap: 64px; align-items: center; }
+  .site-hero-grid > :first-child { grid-column: 1; grid-row: 1 / span 2; }
+  .hero-rig { grid-column: 2; grid-row: 1; margin: 0; }
+  .site-hero-grid > :last-child { grid-column: 2; grid-row: 2; }
+  .site-hero > :last-child { grid-column: 1 / -1; }
 }
-
-.site-hero .fl-graph-paper { background-color: transparent; }
 
 /* Status pills keep their source casing. */
 .fl-pill { text-transform: none; }
@@ -57,8 +41,10 @@ header.fixed { border-bottom-color: var(--ink); }
 .site-band { position: relative; isolation: isolate; }
 .site-band::before {
   content: ""; position: absolute; inset: 0 calc(50% - 50vw); z-index: -2;
-  background: var(--band); border-block: 1px solid var(--ink);
+  background: var(--band);
 }
+.band-ro { font: 400 clamp(24px, 3vw, 38px)/1.1 var(--f-mono); letter-spacing: -.02em; color: var(--band-ink); }
+.band-cap { margin-top: 4px; text-transform: none; color: var(--band-ink-2); }
 .site-band canvas {
   position: absolute; z-index: -1; top: 0; bottom: 0; left: 50%; width: 100vw; height: 100%;
   margin-left: -50vw; pointer-events: none;
@@ -68,7 +54,6 @@ header.fixed { border-bottom-color: var(--ink); }
 
 /* Hero text rises once the intro leaves (--t0 is 1s while it plays). */
 html.js { --t0: 0s; }
-html.intro { --t0: 1s; }
 html.js .rise { animation: rise .8s var(--ease) calc(var(--t0) + var(--rd, 0s)) both; }
 @keyframes rise { from { opacity: 0; transform: translateY(18px); } }
 
@@ -99,5 +84,4 @@ html.intro::before { z-index: 149; }
 
 @media (prefers-reduced-motion: reduce) {
   html.js .rise { animation: none; }
-  html.intro::before, .fl-intro { display: none; }
 }

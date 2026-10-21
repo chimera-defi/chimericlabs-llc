@@ -65,8 +65,9 @@
           if (!matchMedia("(prefers-reduced-motion: reduce)").matches && !sessionStorage.getItem("fl-intro")) {
             sessionStorage.setItem("fl-intro", "1");
             r.classList.add("intro");
+            r.style.setProperty("--t0", "1s");
           }
-        } catch (e) {}
+        } catch {}
       })(document.documentElement);
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -108,7 +109,7 @@
   <body class="bg-bg text-slate-200 font-sans antialiased">
 
     <!-- Header -->
-    <header class="fixed inset-x-0 top-0 z-50 border-b border-line bg-bg/95 backdrop-blur-xl">
+    <header class="fixed inset-x-0 top-0 z-50 border-b border-ink bg-bg/95 backdrop-blur-xl">
       <div class="site-header-inner mx-auto flex h-14 max-w-6xl items-center justify-between px-5 sm:px-8">
         <a href="./" class="site-brand inline-flex min-h-11 min-w-11 items-center">ChimericLabs</a>
         <nav class="site-nav flex items-center gap-5 sm:gap-7" aria-label="Primary">
@@ -123,7 +124,7 @@
           >
           <a
             href="mailto:chimera_defi@protonmail.com"
-            class="site-nav-link site-contact fl-btn fl-btn--primary"
+            class="site-nav-link site-contact fl-btn"
             >Contact</a
           >
         </nav>
@@ -134,14 +135,14 @@
 
       <!-- Hero -->
       <section
-        class="site-hero mx-auto max-w-6xl px-5 sm:px-8 pt-20 sm:pt-24 pb-[calc(var(--section-y)/2)]"
+        class="site-hero fl-graph-paper--fade mx-auto max-w-6xl px-5 sm:px-8 pt-20 sm:pt-24 pb-0"
         aria-labelledby="hero-headline"
       >
         <!-- Field Lab rig: self-drawing apparatus + scan line (assets/field-lab/lab-rig.svg) -->
         <img class="hero-rig" src="assets/field-lab/lab-rig.svg" alt="" width="800" height="600" />
-        <div class="site-hero-grid grid min-w-0 gap-16 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-center">
+        <div class="site-hero-grid grid min-w-0 gap-16 lg:contents">
           <div class="min-w-0">
-            <p style="--rd:0s" class="rise mb-7 fl-label text-accent-ink">
+            <p class="rise mb-7 fl-label text-accent-ink">
               Full-stack Product, AI Tooling &amp; Protocol Engineering
             </p>
             <h1
@@ -205,20 +206,20 @@
         >
           <canvas aria-hidden="true"></canvas>
           <div class="border-band-line px-6 py-2">
-            <div class="font-mono text-[length:clamp(24px,3vw,38px)] leading-[1.1] tracking-[-.02em] text-band-ink">2023</div>
-            <div class="mt-1 fl-label normal-case text-band-ink-2">Live on Ethereum mainnet since</div>
+            <div class="band-ro">2023</div>
+            <div class="fl-label band-cap">Live on Ethereum mainnet since</div>
           </div>
           <div class="border-l border-band-line px-6 py-2">
-            <div class="font-mono text-[length:clamp(24px,3vw,38px)] leading-[1.1] tracking-[-.02em] text-band-ink">4+</div>
-            <div class="mt-1 fl-label normal-case text-band-ink-2">Production systems shipped</div>
+            <div class="band-ro">4+</div>
+            <div class="fl-label band-cap">Production systems shipped</div>
           </div>
           <div class="border-t border-band-line px-6 py-2 sm:border-l sm:border-t-0">
-            <div class="font-mono text-[length:clamp(24px,3vw,38px)] leading-[1.1] tracking-[-.02em] text-band-ink">4</div>
-            <div class="mt-1 fl-label normal-case text-band-ink-2">Hackathon wins and finalist recognitions</div>
+            <div class="band-ro">4</div>
+            <div class="fl-label band-cap">Hackathon wins and finalist recognitions</div>
           </div>
           <div class="border-l border-t border-band-line px-6 py-2 sm:border-t-0">
-            <div class="font-mono text-[length:clamp(24px,3vw,38px)] leading-[1.1] tracking-[-.02em] text-band-ink">OSS</div>
-            <div class="mt-1 fl-label normal-case text-band-ink-2">Public repos and auditable builds</div>
+            <div class="band-ro">OSS</div>
+            <div class="fl-label band-cap">Public repos and auditable builds</div>
           </div>
         </div>
       </section>
