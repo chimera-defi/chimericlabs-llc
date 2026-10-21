@@ -153,3 +153,96 @@ No links, images or sections were removed. One card was added (no link). robots.
 
 - Categories are now newest first: 01 AI & Operations Tooling (the private platform comes first), 02 Protocol Products & Partnerships (AutoPay before Sharedtools), 03 Staking Infrastructure, 04 Hackathons.
 - Hackathon cards are sorted by repo creation date: Cannes 2026, Buenos Aires (Nov 2025), New York 2025, Taipei (Apr 2025), London 2024, Lisbon (2023), Web3Jam (Nov 2021), ETHOnline 2021. The wins row is in the same order.
+
+## Plain-language pass (slop cleanup)
+
+Rewrote choppy "It… It…" blurbs and jargon ("governed markdown canvas", "protocol surfaces", "agent-native", "execution-ready", "Build surface") into plain sentences. Facts, numbers, prizes, links and "We respond within 24 hours" are unchanged; hedges on hackathon projects ("aims to", "designed to") are kept. A Fable reviewer checked the old and new text for lost facts. Full old/new text diff:
+
+```diff
+< DESC: ChimericLabs is a design and development studio. We build products for clients, and we build and run our own: protocols, staking infrastructure and AI agent tooling.
+> DESC: ChimericLabs designs and builds software for clients and runs its own products: an Ethereum staking protocol, AI agent tooling and a private research platform.
+< ChimericLabs is a design and development studio. We build for clients, and we build our own products. Our work covers product design, smart contracts, frontends and AI agent tooling.
+> We work for clients and on our own products. Mainly product design, smart contracts, frontends and AI agent tooling.
+< BUILD SURFACE
+> WHAT WE BUILD
+< Hackathon wins and finalist recognitions
+> Hackathon wins and finalist places
+< Public repos and auditable builds
+> Public repos on GitHub
+< Our liquid staking protocol on Ethereum mainnet. We fund, build and run it. It covers the full stack. The contracts are the sgETH staking token, minter, rewards receiver, withdrawal queue and rollover. A beacon chain oracle runs alongside them. We have deployed and maintained it across multiple upgrade cycles.
+> Our liquid staking protocol on Ethereum mainnet, which we fund, build and run. The contracts cover the sgETH staking token, minter, rewards receiver, withdrawal queue and rollover, with a beacon chain oracle alongside. We have shipped it through several upgrade cycles.
+< Non-custodial crypto subscription payments for humans and AI agents. We are AutoPay’s design and development partner. We work on product UX, protocol surfaces, frontend flows and agent-native payment integration.
+> Non-custodial crypto subscription payments for people and AI agents. As AutoPay’s design and development partner, we work on the product UX, protocol interfaces, frontend and agent payment integration.
+< Cuts context spend for AI coding agents. Token Reduce runs low-cost discovery first and routes lookups across path, snippet and structural tiers. Its hooks stop agents from spending context on broad reads.
+> Cuts the tokens AI coding agents spend reading code. It runs cheap discovery first, routing lookups across file paths, snippets and code structure, and its hooks block broad reads.
+< OUR PRODUCT · SPEC-NATIVE AI
+> OUR PRODUCT · SPEC EDITOR
+< A spec IDE where people and AI agents work on one governed markdown canvas. It runs in the browser, the terminal, over REST and as an autonomous agent. Every surface produces specs and handoffs ready to build from.
+> An editor where people and AI agents write specs together in one shared markdown document, with review on every change. It runs in the browser, in the terminal, over a REST API and as an autonomous agent. The result is a spec a team can build from.
+< We work two ways: we build for clients, and we build our own products.
+> Two kinds of work: client projects and our own products.
+< Client work. We are your design and build partner. We cover product strategy, UX, Solidity contracts, frontends and launch. You work directly with the people who design and write the code. There is no account layer and no handoff.
+> Client work. We take a product from strategy and UX through Solidity contracts, frontends and launch. You talk directly to the people writing the code. No account managers, no handoffs.
+< Our own products. We build and run SharedDeposit, Token Reduce, SpecForge and our other tooling. They are self-funded and bootstrapped. We also run a private quantitative research platform that searches and hill-climbs portfolio strategies.
+> Our own products. We build and run SharedDeposit, Token Reduce, SpecForge and other tools, all self-funded. We also run a private research platform that searches for portfolio strategies and hill-climbs the best ones.
+< Product strategy, UX systems, frontends, APIs and launch. One team designs it and ships it.
+> Product strategy, UX, frontends, APIs and launch, all by one team.
+< Agent workflows, delegation wrappers, context orchestration, MCP surfaces and spec-driven builds.
+> Agent workflows, delegation wrappers, token and context control, MCP integrations and spec-driven builds.
+< Fractional CTO & Consultation
+< Technical strategy, architecture review, hiring support and delivery planning. We stay hands-on.
+> Fractional CTO & Advisory
+> Technical strategy, architecture review, hiring help and delivery planning. We stay hands-on.
+< We design and build protocols, AI products and complex web apps. We also do architecture reviews and fractional CTO work. We respond within 24 hours.
+> Tell us what you’re building, or ask about architecture reviews and fractional CTO work. We respond within 24 hours.
+< QUANT RESEARCH & PORTFOLIO OPS · PRIVATE, CLOSED SOURCE
+> QUANT RESEARCH · CLOSED SOURCE
+< Our in-house quantitative research and portfolio operations platform. It searches strategy space with genetic, Bayesian, simulated-annealing and CMA-ES search. It hill-climbs the best candidates and keeps a Pareto frontier of the trade-offs. It tests every result for overfitting with purged cross-validation, holdouts and bootstrap tests. It builds the daily portfolio state from broker snapshots, generates rebalancing plans and order sheets, and runs audit checks. An Explorer UI shows it all.
+> Our in-house research and portfolio operations system. It searches for portfolio strategies with genetic, Bayesian, simulated-annealing and CMA-ES search, then hill-climbs the best ones. It keeps a Pareto frontier of the trade-offs and tests every result for overfitting with purged cross-validation, holdouts and bootstrap tests. Day to day, it builds portfolio state from broker snapshots, generates rebalancing plans and order sheets, and runs audit checks, all visible in an Explorer UI.
+< CONTEXT ORCHESTRATION
+> AGENT CONTEXT
+< Kit that cuts context spend for AI coding agents. It runs low-cost discovery first and routes lookups across path, snippet and structural tiers. Its hooks block wasteful broad reads. Benchmarks measure the token savings on real workflows.
+> Cuts the tokens AI coding agents spend reading code. Cheap discovery runs first, routing lookups across file paths, snippets and code structure. Hooks block broad reads, and benchmarks measure the savings on real workflows.
+< Wrapper for bounded Kimi subagent tasks. Each task goes out in a structured envelope with acceptance criteria. Timeouts scale with repo size. It falls back to Codex and records telemetry. It detects raw provider calls that bypass the wrapper.
+> Hands bounded tasks to Kimi subagents. Each task carries acceptance criteria and a timeout sized to the repo. If Kimi fails, it falls back to Codex. It logs every run and flags calls that skip the wrapper.
+< REMOTE AGENT OPERATIONS
+> AGENT DELEGATION
+< Structured execution layer for Devin coding and research tasks. It passes workspace context and runs safety checks. Timeouts scale automatically, and the fallback chain stays visible. It records history, so delegated work is auditable.
+> Sends coding and research tasks to Devin with the workspace context it needs and safety checks around it. Timeouts scale with the task, fallbacks are visible, and every run is logged so delegated work can be audited.
+< SPEC-NATIVE WORKSPACE
+> SPEC EDITOR
+< Collaborative spec IDE for the browser, the terminal, a REST API and an autonomous agent mode. People and AI agents share one governed markdown canvas. It adds depth gates, patch review and attributable changes. The output is execution-ready specs and handoffs.
+> A shared spec editor for people and AI agents. It runs in the browser, in the terminal, over a REST API and as an autonomous agent. Changes go through patch review and depth gates, and each one is attributed to its author. The output is a spec and handoff a team can build from.
+< Non-custodial subscription payment protocol for humans and AI agents. We are AutoPay’s design and development partner. We work on product UX, frontend implementation, protocol surfaces and agent-native payment flows.
+> Non-custodial subscription payments that people and AI agents can both use. As AutoPay’s design and development partner, we work on the product UX, the frontend, the protocol and the agent payment flows.
+< Smart contract factory with a production frontend and a dedicated RPC endpoint. It handles ERC-20 token launches, multi-sig setup and common protocol primitives. It is used across multiple deployments in the Sharedstake ecosystem.
+> A smart contract factory with its own frontend and RPC endpoint. It launches ERC-20 tokens, sets up multi-sigs and deploys common protocol building blocks. Several Sharedstake deployments use it.
+< Our Ethereum liquid staking protocol. We fund, build and run it. The contracts are the sgETH token and its wrapped form WSGEth, the minter (SharedDepositMinterV2), rewards receiver, rollover and withdrawal queue. All are auditable on-chain. A beacon chain oracle tracks validator indices and calculates the virtual price of ETH rewards after the merge. We have deployed and maintained it through multiple upgrade cycles since 2023.
+> Our Ethereum liquid staking protocol, which we fund, build and run. The contracts are the sgETH token and its wrapped form WSGEth, the minter (SharedDepositMinterV2), rewards receiver, rollover and withdrawal queue, all verifiable on-chain. A beacon chain oracle tracks validators and calculates the virtual price from post-merge ETH rewards. It has been live and maintained through several upgrades since 2023.
+< Shell scripts that get an ETH2-compatible RPC node running in minutes, not days. They support multiple execution and consensus clients, following community practice for client diversity. They cover server setup, checkpoint sync, uncensored RPC nodes and firewall configuration. They work for solo stakers, home operators and cloud VPS deployments.
+> Shell scripts that set up an Ethereum RPC node in minutes. They support several execution and consensus clients for client diversity, and cover server setup, checkpoint sync, uncensored RPC and firewall config. Solo stakers, home operators and cloud VPS users can all run them.
+< Off-chain oracle for SharedDeposit V1 and V2. It reads validator indices from the beacon chain API. It calculates and verifies the virtual price of sgETH: the ETH rewards accumulated per share. It runs as a self-hosted service next to a staking node.
+> Off-chain oracle for SharedDeposit V1 and V2. It reads validators from the beacon chain API and computes and verifies the virtual price of sgETH, the ETH rewards earned per share. It runs as a self-hosted service beside a staking node.
+< Some of these are hackathon submissions or prototypes. Others became products and run in production.
+> Some are hackathon prototypes. Others became products we still run.
+< Marketplace for spare intelligence and agent capacity. Buyers fund milestones, and human review gates each payout. It integrates Arc escrow, World Agent Kit identity checks and 0G-backed dossier storage.
+> Marketplace for spare intelligence and agent capacity. Buyers fund milestones, and a human reviews each payout. Built on Arc escrow, World Agent Kit identity checks and 0G storage for dossiers.
+< Cross-chain stablecoin backed by USDC. Yield is generated on a hub chain. It is designed for low-fee bridging and minting across destination chains.
+> USDC-backed stablecoin. Yield accrues on a hub chain, and it is designed to mint and bridge cheaply to other chains.
+< Yield-bearing bridge concept. It uses LayerZero vault bridge infrastructure and a Katana hub chain to generate yield. It then routes incentives and liquidity to partner chains.
+> Concept for a bridge that earns yield. It uses LayerZero vault bridges and a Katana hub chain, then sends incentives and liquidity to partner chains.
+< Domain-name tokenization protocol for price discovery and liquidity. DNS records verify ownership and mint an ERC-1155. The token then fractionalizes into Superchain ERC-20 for trading and DeFi.
+> Turns domain names into tradable tokens. A DNS record proves ownership and mints an ERC-1155, which splits into Superchain ERC-20 tokens for trading and DeFi.
+< EigenLayer Actively Validated Service for RPC providers. It incentivizes operators and increases geographic decentralization. It aims to reduce censorship and MEV capture at the RPC layer.
+> EigenLayer Actively Validated Service that rewards RPC operators for geographic spread. The aim is less censorship and MEV capture at the RPC layer.
+< Public-good initiative for uncensored Ethereum RPC endpoints. It aims to reduce RPC centralization risk. It gives users an open alternative to the few large providers.
+> Public-good project for uncensored Ethereum RPC endpoints, as an open alternative to the few large providers.
+< Yield aggregator that uses contingent convertibles (CoCos) and protocol-owned liquidity to stabilize its emissions token price. It layers Curve-style gauges and OHM-style bonds to retain capital without mercenary farming.
+> Yield aggregator that uses contingent convertibles (CoCos) and protocol-owned liquidity to stabilize its emissions token price. Curve-style gauges and OHM-style bonds keep capital in without relying on mercenary farmers.
+< SharedTools launcher for common protocol primitives: vote-escrow, liquidity mining, NFT patterns and factories. Its production UI aims to reduce repeated audit overhead.
+> Launcher for common protocol building blocks: vote-escrow, liquidity mining, NFT patterns and factories. Its production UI aims to cut repeat audit work.
+< All our open-source work on GitHub. Search and filter it to see what shipped, what is active and where the code lives.
+> All our public repos on GitHub. Search, sort and filter them.
+< We work with founders and technical leads. We do design, development, protocol engineering, AI tooling and fractional CTO work.
+> We work with founders and technical leads on design, development, protocols, AI tooling and fractional CTO work.
+```
