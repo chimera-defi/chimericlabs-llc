@@ -1,5 +1,5 @@
 /*
- * chimericlabs-llc on the Field Lab v2 style system.
+ * chimericlabs-llc on the Field Lab v3 style system.
  * Load order: field-lab/tokens.css -> field-lab/field-lab.css -> this file.
  * Colours come from tailwind.config (palette re-pointed at the tokens); this
  * file holds what utilities can't express. The Tailwind CDN injects its CSS
@@ -24,6 +24,10 @@ header.fixed { border-bottom-color: var(--ink); }
 
 /* Buttons: fl-btn already supplies the look; keep the site's 44px targets. */
 body .site-btn { min-height: 44px; font-weight: 700; }
+/* v3: the header Contact cell is ink, not orange, so the hero CTA stays the
+   one accent-filled action in view (as on the Field Lab v3 header). */
+body .site-contact.fl-btn--primary { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+body .site-contact.fl-btn--primary:hover { background: var(--ink-2); border-color: var(--ink-2); }
 
 /* Hero: graph paper fading out, the animated rig above the headline. */
 .site-hero { position: relative; isolation: isolate; }
