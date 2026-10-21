@@ -20,7 +20,7 @@ No links, images or sections were removed. One card was added (no link). robots.
 - **Old:** We design and ship protocol-grade software from idea to production.
   - **New:** We design and build software, from first idea to production.
 - **Old:** ChimericLabs works as a senior design and development partner for founder-led teams: product strategy, interface design, smart contracts, production frontends, AI agent tooling, and fractional CTO support. We are also a design and development partner for AutoPay Protocol.
-  - **New:** ChimericLabs is a design and development studio. We build for clients, and we build our own products. Our work covers product design, smart contracts, frontends and AI agent tooling. We are the design and development partner for AutoPay Protocol.
+  - **New:** ChimericLabs is a design and development studio. We build for clients, and we build our own products. Our work covers product design, smart contracts, frontends and AI agent tooling.
 
 ## index.html · 01 Featured Projects
 
@@ -46,7 +46,7 @@ No links, images or sections were removed. One card was added (no link). robots.
 - **Old:** Engagements range from product strategy and UX systems to Solidity contracts, agent workflows, production frontends, and launch operations. We are comfortable joining as the design/build team, a senior technical advisor, or a fractional CTO.
   - **New:** Client work. We are your design and build partner. We cover product strategy, UX, Solidity contracts, frontends and launch. You work directly with the people who design and write the code. There is no account layer and no handoff.
 - **Old:** You work directly with the people making product and engineering decisions — no account layer, no handoff, no vague strategy deck that never turns into code.
-  - **New:** Our own products. We build and run SharedDeposit, Token Reduce, SpecForge and our other tooling. They are self-funded and bootstrapped. We also run a private portfolio research and operations platform.
+  - **New:** Our own products. We build and run SharedDeposit, Token Reduce, SpecForge and our other tooling. They are self-funded and bootstrapped. We also run a private quantitative research platform that searches and hill-climbs portfolio strategies.
 - **Old:** Product strategy, UX systems, frontend implementation, APIs, and launch-ready polish for teams that need a partner who can design and ship.
   - **New:** Product strategy, UX systems, frontends, APIs and launch. One team designs it and ships it.
 - **Old:** Agent workflows, delegation wrappers, context orchestration, MCP surfaces, and spec-driven build systems for AI-native teams.
@@ -141,10 +141,15 @@ No links, images or sections were removed. One card was added (no link). robots.
 
 ## portfolio.html · 03 AI & Operations Tooling: added card
 
-- **New card** (no link, no tech tags): label "Private · closed source", title "Portfolio Operations Platform".
+- **New card** (no link, no tech tags): label "Quant Research & Portfolio Ops · Private, closed source", title "Portfolio Research Platform". Body: strategy search (genetic, Bayesian, simulated annealing, CMA-ES), hill-climbing, Pareto frontier, overfitting tests (purged cross-validation, holdouts, bootstrap), daily portfolio state, rebalancing and order sheets, audit checks, Explorer UI.
   Text: Our in-house platform for portfolio research and operations. It builds the daily portfolio state from broker snapshots. It generates rebalancing plans and order sheets. It runs audit checks and has an Explorer UI.
 
 ## Notes
 
 - `<title>` and `og:title` on index.html changed together. portfolio.html `<title>` ("Portfolio — ChimericLabs") is unchanged; it carries no positioning.
 - Unchanged on purpose: proof-strip numbers, hackathon prize strip, event/prize badges, every "Role:" line, contact email, "ChimericLabs LLC · Wyoming", "We respond within 24 hours."
+
+## Order (portfolio.html), reverse-chronological
+
+- Categories are now newest first: 01 AI & Operations Tooling (the private platform comes first), 02 Protocol Products & Partnerships (AutoPay before Sharedtools), 03 Staking Infrastructure, 04 Hackathons.
+- Hackathon cards are sorted by repo creation date: Cannes 2026, Buenos Aires (Nov 2025), New York 2025, Taipei (Apr 2025), London 2024, Lisbon (2023), Web3Jam (Nov 2021), ETHOnline 2021. The wins row is in the same order.

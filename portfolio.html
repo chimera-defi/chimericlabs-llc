@@ -131,154 +131,27 @@
       </div>
 
       <!-- ============================================================
-           Category: Staking Infrastructure
-      ============================================================ -->
-      <section class="border-b border-line" aria-labelledby="staking-heading">
-        <div class="mx-auto max-w-6xl px-5 sm:px-8 py-[calc(var(--section-y)/2)]">
-
-          <div class="flex items-center gap-3 mb-10">
-            <span class="fl-label" aria-hidden="true">01</span>
-            <h2 id="staking-heading" class="fl-label">
-              Staking Infrastructure
-            </h2>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-
-            <article class="flex flex-col gap-4 fl-card fl-card--link">
-              <div>
-                <span class="fl-label">Liquid Staking · Ethereum Mainnet</span>
-                <h3 class="mt-2 font-serif text-xl text-slate-100">SharedDeposit (sgETH)</h3>
-              </div>
-              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                Our Ethereum liquid staking protocol. We fund, build and run it. The contracts are the sgETH token and its wrapped form WSGEth, the minter (SharedDepositMinterV2), rewards receiver, rollover and withdrawal queue. All are auditable on-chain. A beacon chain oracle tracks validator indices and calculates the virtual price of ETH rewards after the merge. We have deployed and maintained it through multiple upgrade cycles since 2023.
-              </p>
-              <div class="flex flex-wrap gap-2 pt-1">
-                <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">Solidity</span>
-                <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">Hardhat</span>
-                <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">OpenZeppelin</span>
-                <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">Beacon API</span>
-              </div>
-              <div class="flex items-center gap-5 border-t border-line pt-4 text-sm">
-                <a href="https://www.sharedstake.org/" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Visit Site →</a>
-                <a href="https://github.com/chimera-defi/SharedDeposit" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">GitHub</a>
-                <a href="https://docs.sharedstake.finance/" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">Docs</a>
-              </div>
-            </article>
-
-            <article class="flex flex-col gap-4 fl-card fl-card--link">
-              <div>
-                <span class="fl-label">Validator Infrastructure</span>
-                <h3 class="mt-2 font-serif text-xl text-slate-100">eth2-quickstart</h3>
-              </div>
-              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                Shell scripts that get an ETH2-compatible RPC node running in minutes, not days. They support multiple execution and consensus clients, following community practice for client diversity. They cover server setup, checkpoint sync, uncensored RPC nodes and firewall configuration. They work for solo stakers, home operators and cloud VPS deployments.
-              </p>
-              <div class="flex flex-wrap gap-2 pt-1">
-                <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">Shell</span>
-                <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">Geth / Reth</span>
-                <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">Prysm / Lighthouse</span>
-                <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">Beacon API</span>
-              </div>
-              <div class="flex items-center gap-5 border-t border-line pt-4 text-sm">
-                <a href="https://github.com/chimera-defi/eth2-quickstart" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">GitHub →</a>
-              </div>
-            </article>
-
-            <article class="flex flex-col gap-4 fl-card fl-card--link">
-              <div>
-                <span class="fl-label">Liquid Staking · Stake Exchange</span>
-                <h3 class="mt-2 font-serif text-xl text-slate-100">Sharedstake Oracle</h3>
-              </div>
-              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                Off-chain oracle for SharedDeposit V1 and V2. It reads validator indices from the beacon chain API. It calculates and verifies the virtual price of sgETH: the ETH rewards accumulated per share. It runs as a self-hosted service next to a staking node.
-              </p>
-              <div class="flex flex-wrap gap-2 pt-1">
-                <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">JavaScript</span>
-                <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">Beacon Chain API</span>
-                <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">Prysm</span>
-              </div>
-              <div class="flex items-center gap-5 border-t border-line pt-4 text-sm">
-                <a href="https://github.com/chimera-defi/sharedstake-oracle" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">GitHub →</a>
-              </div>
-            </article>
-
-          </div>
-        </div>
-      </section>
-
-      <!-- ============================================================
-           Category: Protocol Products &amp; Partnerships
-      ============================================================ -->
-      <section class="border-b border-line" aria-labelledby="tooling-heading">
-        <div class="mx-auto max-w-6xl px-5 sm:px-8 py-[calc(var(--section-y)/2)]">
-
-          <div class="flex items-center gap-3 mb-10">
-            <span class="fl-label" aria-hidden="true">02</span>
-            <h2 id="tooling-heading" class="fl-label">
-              Protocol Products &amp; Partnerships
-            </h2>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-
-            <article class="flex flex-col gap-4 fl-card fl-card--link">
-              <div>
-                <span class="fl-label">Smart Contract Factory</span>
-                <h3 class="mt-2 font-serif text-xl text-slate-100">Sharedtools</h3>
-              </div>
-              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                Smart contract factory with a production frontend and a dedicated RPC endpoint. It handles ERC-20 token launches, multi-sig setup and common protocol primitives. It is used across multiple deployments in the Sharedstake ecosystem.
-              </p>
-              <div class="flex flex-wrap gap-2 pt-1">
-                <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">Solidity</span>
-                <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">TypeScript</span>
-                <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">Ethers.js</span>
-              </div>
-              <div class="flex items-center gap-5 border-t border-line pt-4 text-sm">
-                <a href="https://www.sharedtools.org/" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Visit Site →</a>
-                <a href="https://github.com/chimera-defi/sharedtools-index" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">GitHub</a>
-              </div>
-            </article>
-
-            <article class="flex flex-col gap-4 fl-card fl-card--link">
-              <div>
-                <span class="fl-label">Payments · Design &amp; Development Partner</span>
-                <h3 class="mt-2 font-serif text-xl text-slate-100">AutoPay Protocol</h3>
-              </div>
-              <div class="flex flex-wrap gap-2 pt-1">
-                <span class="fl-pill fl-pill--shipped">ETHGlobal Finalist · HackMoney 2026</span>
-              </div>
-              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                Non-custodial subscription payment protocol for humans and AI agents. We are AutoPay’s design and development partner. We work on product UX, frontend implementation, protocol surfaces and agent-native payment flows.
-              </p>
-              <div class="flex flex-wrap gap-2 pt-1">
-                <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">Solidity</span>
-                <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">USDC</span>
-                <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">Agent SDK</span>
-              </div>
-              <div class="flex items-center gap-5 border-t border-line pt-4 text-sm">
-                <a href="https://autopayprotocol.com/" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Visit Site →</a>
-                <a href="https://github.com/chimera-defi/Auto-Pay-Protocol" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">GitHub</a>
-              </div>
-            </article>
-
-          </div>
-        </div>
-      </section>
-
-      <!-- ============================================================
            Category: AI Developer Tooling
       ============================================================ -->
       <section class="border-b border-line" aria-labelledby="ai-heading">
         <div class="mx-auto max-w-6xl px-5 sm:px-8 py-[calc(var(--section-y)/2)]">
 
           <div class="flex items-center gap-3 mb-10">
-            <span class="fl-label" aria-hidden="true">03</span>
+            <span class="fl-label" aria-hidden="true">01</span>
             <h2 id="ai-heading" class="fl-label"> AI &amp; Operations Tooling </h2>
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+
+            <article class="flex flex-col gap-4 fl-card">
+              <div>
+                <span class="fl-label">Quant Research &amp; Portfolio Ops · Private, closed source</span>
+                <h3 class="mt-2 font-serif text-xl text-slate-100">Portfolio Research Platform</h3>
+              </div>
+              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
+                Our in-house quantitative research and portfolio operations platform. It searches strategy space with genetic, Bayesian, simulated-annealing and CMA-ES search. It hill-climbs the best candidates and keeps a Pareto frontier of the trade-offs. It tests every result for overfitting with purged cross-validation, holdouts and bootstrap tests. It builds the daily portfolio state from broker snapshots, generates rebalancing plans and order sheets, and runs audit checks. An Explorer UI shows it all.
+              </p>
+            </article>
 
             <article class="flex flex-col gap-4 fl-card fl-card--link">
               <div>
@@ -352,14 +225,141 @@
               </div>
             </article>
 
-            <article class="flex flex-col gap-4 fl-card">
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           Category: Protocol Products &amp; Partnerships
+      ============================================================ -->
+      <section class="border-b border-line" aria-labelledby="tooling-heading">
+        <div class="mx-auto max-w-6xl px-5 sm:px-8 py-[calc(var(--section-y)/2)]">
+
+          <div class="flex items-center gap-3 mb-10">
+            <span class="fl-label" aria-hidden="true">02</span>
+            <h2 id="tooling-heading" class="fl-label">
+              Protocol Products &amp; Partnerships
+            </h2>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+
+            <article class="flex flex-col gap-4 fl-card fl-card--link">
               <div>
-                <span class="fl-label">Private · closed source</span>
-                <h3 class="mt-2 font-serif text-xl text-slate-100">Portfolio Operations Platform</h3>
+                <span class="fl-label">Payments · Design &amp; Development Partner</span>
+                <h3 class="mt-2 font-serif text-xl text-slate-100">AutoPay Protocol</h3>
+              </div>
+              <div class="flex flex-wrap gap-2 pt-1">
+                <span class="fl-pill fl-pill--shipped">ETHGlobal Finalist · HackMoney 2026</span>
               </div>
               <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                Our in-house platform for portfolio research and operations. It builds the daily portfolio state from broker snapshots. It generates rebalancing plans and order sheets. It runs audit checks and has an Explorer UI.
+                Non-custodial subscription payment protocol for humans and AI agents. We are AutoPay’s design and development partner. We work on product UX, frontend implementation, protocol surfaces and agent-native payment flows.
               </p>
+              <div class="flex flex-wrap gap-2 pt-1">
+                <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">Solidity</span>
+                <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">USDC</span>
+                <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">Agent SDK</span>
+              </div>
+              <div class="flex items-center gap-5 border-t border-line pt-4 text-sm">
+                <a href="https://autopayprotocol.com/" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Visit Site →</a>
+                <a href="https://github.com/chimera-defi/Auto-Pay-Protocol" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">GitHub</a>
+              </div>
+            </article>
+
+            <article class="flex flex-col gap-4 fl-card fl-card--link">
+              <div>
+                <span class="fl-label">Smart Contract Factory</span>
+                <h3 class="mt-2 font-serif text-xl text-slate-100">Sharedtools</h3>
+              </div>
+              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
+                Smart contract factory with a production frontend and a dedicated RPC endpoint. It handles ERC-20 token launches, multi-sig setup and common protocol primitives. It is used across multiple deployments in the Sharedstake ecosystem.
+              </p>
+              <div class="flex flex-wrap gap-2 pt-1">
+                <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">Solidity</span>
+                <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">TypeScript</span>
+                <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">Ethers.js</span>
+              </div>
+              <div class="flex items-center gap-5 border-t border-line pt-4 text-sm">
+                <a href="https://www.sharedtools.org/" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Visit Site →</a>
+                <a href="https://github.com/chimera-defi/sharedtools-index" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">GitHub</a>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           Category: Staking Infrastructure
+      ============================================================ -->
+      <section class="border-b border-line" aria-labelledby="staking-heading">
+        <div class="mx-auto max-w-6xl px-5 sm:px-8 py-[calc(var(--section-y)/2)]">
+
+          <div class="flex items-center gap-3 mb-10">
+            <span class="fl-label" aria-hidden="true">03</span>
+            <h2 id="staking-heading" class="fl-label">
+              Staking Infrastructure
+            </h2>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+
+            <article class="flex flex-col gap-4 fl-card fl-card--link">
+              <div>
+                <span class="fl-label">Liquid Staking · Ethereum Mainnet</span>
+                <h3 class="mt-2 font-serif text-xl text-slate-100">SharedDeposit (sgETH)</h3>
+              </div>
+              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
+                Our Ethereum liquid staking protocol. We fund, build and run it. The contracts are the sgETH token and its wrapped form WSGEth, the minter (SharedDepositMinterV2), rewards receiver, rollover and withdrawal queue. All are auditable on-chain. A beacon chain oracle tracks validator indices and calculates the virtual price of ETH rewards after the merge. We have deployed and maintained it through multiple upgrade cycles since 2023.
+              </p>
+              <div class="flex flex-wrap gap-2 pt-1">
+                <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">Solidity</span>
+                <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">Hardhat</span>
+                <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">OpenZeppelin</span>
+                <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">Beacon API</span>
+              </div>
+              <div class="flex items-center gap-5 border-t border-line pt-4 text-sm">
+                <a href="https://www.sharedstake.org/" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Visit Site →</a>
+                <a href="https://github.com/chimera-defi/SharedDeposit" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">GitHub</a>
+                <a href="https://docs.sharedstake.finance/" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">Docs</a>
+              </div>
+            </article>
+
+            <article class="flex flex-col gap-4 fl-card fl-card--link">
+              <div>
+                <span class="fl-label">Validator Infrastructure</span>
+                <h3 class="mt-2 font-serif text-xl text-slate-100">eth2-quickstart</h3>
+              </div>
+              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
+                Shell scripts that get an ETH2-compatible RPC node running in minutes, not days. They support multiple execution and consensus clients, following community practice for client diversity. They cover server setup, checkpoint sync, uncensored RPC nodes and firewall configuration. They work for solo stakers, home operators and cloud VPS deployments.
+              </p>
+              <div class="flex flex-wrap gap-2 pt-1">
+                <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">Shell</span>
+                <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">Geth / Reth</span>
+                <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">Prysm / Lighthouse</span>
+                <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">Beacon API</span>
+              </div>
+              <div class="flex items-center gap-5 border-t border-line pt-4 text-sm">
+                <a href="https://github.com/chimera-defi/eth2-quickstart" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">GitHub →</a>
+              </div>
+            </article>
+
+            <article class="flex flex-col gap-4 fl-card fl-card--link">
+              <div>
+                <span class="fl-label">Liquid Staking · Stake Exchange</span>
+                <h3 class="mt-2 font-serif text-xl text-slate-100">Sharedstake Oracle</h3>
+              </div>
+              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
+                Off-chain oracle for SharedDeposit V1 and V2. It reads validator indices from the beacon chain API. It calculates and verifies the virtual price of sgETH: the ETH rewards accumulated per share. It runs as a self-hosted service next to a staking node.
+              </p>
+              <div class="flex flex-wrap gap-2 pt-1">
+                <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">JavaScript</span>
+                <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">Beacon Chain API</span>
+                <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">Prysm</span>
+              </div>
+              <div class="flex items-center gap-5 border-t border-line pt-4 text-sm">
+                <a href="https://github.com/chimera-defi/sharedstake-oracle" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">GitHub →</a>
+              </div>
             </article>
 
           </div>
@@ -392,13 +392,13 @@
               <span class="fl-spec-text text-ink-2">ETHGlobal Taipei</span>
               <span class="mt-2 block text-sm font-medium text-slate-100">Densofi · Best Consumer DeFi, 1st Place</span>
             </a>
-            <a href="https://ethglobal.com/showcase/sharedtools-org-ek131" target="_blank" rel="noreferrer" class="fl-card fl-card--link p-4">
-              <span class="fl-spec-text text-ink-2">ETHOnline 2021</span>
-              <span class="mt-2 block text-sm font-medium text-slate-100">Sharedtools · Best use of Alchemy</span>
-            </a>
             <a href="https://ethglobal.com/showcase/openrpc-jej8r" target="_blank" rel="noreferrer" class="fl-card fl-card--link p-4">
               <span class="fl-spec-text text-ink-2">ETHGlobal Lisbon</span>
               <span class="mt-2 block text-sm font-medium text-slate-100">OpenRPC · zkBob Pool Prize</span>
+            </a>
+            <a href="https://ethglobal.com/showcase/sharedtools-org-ek131" target="_blank" rel="noreferrer" class="fl-card fl-card--link p-4">
+              <span class="fl-spec-text text-ink-2">ETHOnline 2021</span>
+              <span class="mt-2 block text-sm font-medium text-slate-100">Sharedtools · Best use of Alchemy</span>
             </a>
           </div>
 
@@ -419,25 +419,6 @@
               <div class="flex items-center gap-4 border-t border-line pt-4 text-sm">
                 <a href="https://ethglobal.com/showcase/intelex-ascu4" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Showcase →</a>
                 <a href="https://github.com/chimera-defi/ethglobal-cannes-2026-intelligence-exchange" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">GitHub</a>
-              </div>
-            </article>
-
-            <article class="flex flex-col gap-4 fl-card fl-card--link">
-              <div>
-                <span class="fl-label">ETHGlobal · Taipei</span>
-                <h3 class="mt-2 font-serif text-xl text-slate-100">Densofi</h3>
-              </div>
-              <div class="flex flex-wrap gap-2">
-                <span class="fl-pill fl-pill--shipped">Winner · Best Consumer DeFi · Flow</span>
-              </div>
-              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                Domain-name tokenization protocol for price discovery and liquidity. DNS records verify ownership and mint an ERC-1155. The token then fractionalizes into Superchain ERC-20 for trading and DeFi.
-              </p>
-              <p class="text-xs text-slate-500"><span class="text-slate-400">Role:</span> Contributor.</p>
-              <div class="flex items-center gap-4 border-t border-line pt-4 text-sm">
-                <a href="https://ethglobal.com/showcase/densofi-td5m6" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Showcase →</a>
-                <a href="https://github.com/0xkieranwilliams/densofi" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">GitHub</a>
-                <a href="https://densofi.vercel.app/" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">Live Demo</a>
               </div>
             </article>
 
@@ -479,21 +460,38 @@
 
             <article class="flex flex-col gap-4 fl-card fl-card--link">
               <div>
-                <span class="fl-label">ETHOnline · 2021</span>
-                <h3 class="mt-2 font-serif text-xl text-slate-100">Sharedtools.org</h3>
+                <span class="fl-label">ETHGlobal · Taipei</span>
+                <h3 class="mt-2 font-serif text-xl text-slate-100">Densofi</h3>
               </div>
               <div class="flex flex-wrap gap-2">
-                <span class="fl-pill">Project</span>
-                <span class="fl-pill fl-pill--shipped">Winner · Best use of Alchemy</span>
+                <span class="fl-pill fl-pill--shipped">Winner · Best Consumer DeFi · Flow</span>
               </div>
               <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                SharedTools launcher for common protocol primitives: vote-escrow, liquidity mining, NFT patterns and factories. Its production UI aims to reduce repeated audit overhead.
+                Domain-name tokenization protocol for price discovery and liquidity. DNS records verify ownership and mint an ERC-1155. The token then fractionalizes into Superchain ERC-20 for trading and DeFi.
+              </p>
+              <p class="text-xs text-slate-500"><span class="text-slate-400">Role:</span> Contributor.</p>
+              <div class="flex items-center gap-4 border-t border-line pt-4 text-sm">
+                <a href="https://ethglobal.com/showcase/densofi-td5m6" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Showcase →</a>
+                <a href="https://github.com/0xkieranwilliams/densofi" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">GitHub</a>
+                <a href="https://densofi.vercel.app/" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">Live Demo</a>
+              </div>
+            </article>
+
+            <article class="flex flex-col gap-4 fl-card fl-card--link">
+              <div>
+                <span class="fl-label">ETHGlobal · London 2024</span>
+                <h3 class="mt-2 font-serif text-xl text-slate-100">RPC Provider AVS</h3>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span class="fl-pill fl-pill--open">Submission</span>
+              </div>
+              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
+                EigenLayer Actively Validated Service for RPC providers. It incentivizes operators and increases geographic decentralization. It aims to reduce censorship and MEV capture at the RPC layer.
               </p>
               <p class="text-xs text-slate-500"><span class="text-slate-400">Role:</span> Builder/maintainer.</p>
               <div class="flex items-center gap-4 border-t border-line pt-4 text-sm">
-                <a href="https://ethglobal.com/showcase/sharedtools-org-ek131" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Showcase →</a>
-                <a href="https://github.com/chimera-defi/sharedtools-index" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">GitHub</a>
-                <a href="https://sharedtools.org" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">Live Site</a>
+                <a href="https://ethglobal.com/showcase/rpc-provider-avs-s6urm" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Showcase →</a>
+                <a href="https://github.com/chimera-defi/AVS4RPC-ethglobal-london-24" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">GitHub</a>
               </div>
             </article>
 
@@ -537,19 +535,21 @@
 
             <article class="flex flex-col gap-4 fl-card fl-card--link">
               <div>
-                <span class="fl-label">ETHGlobal · London 2024</span>
-                <h3 class="mt-2 font-serif text-xl text-slate-100">RPC Provider AVS</h3>
+                <span class="fl-label">ETHOnline · 2021</span>
+                <h3 class="mt-2 font-serif text-xl text-slate-100">Sharedtools.org</h3>
               </div>
               <div class="flex flex-wrap gap-2">
-                <span class="fl-pill fl-pill--open">Submission</span>
+                <span class="fl-pill">Project</span>
+                <span class="fl-pill fl-pill--shipped">Winner · Best use of Alchemy</span>
               </div>
               <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                EigenLayer Actively Validated Service for RPC providers. It incentivizes operators and increases geographic decentralization. It aims to reduce censorship and MEV capture at the RPC layer.
+                SharedTools launcher for common protocol primitives: vote-escrow, liquidity mining, NFT patterns and factories. Its production UI aims to reduce repeated audit overhead.
               </p>
               <p class="text-xs text-slate-500"><span class="text-slate-400">Role:</span> Builder/maintainer.</p>
               <div class="flex items-center gap-4 border-t border-line pt-4 text-sm">
-                <a href="https://ethglobal.com/showcase/rpc-provider-avs-s6urm" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Showcase →</a>
-                <a href="https://github.com/chimera-defi/AVS4RPC-ethglobal-london-24" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">GitHub</a>
+                <a href="https://ethglobal.com/showcase/sharedtools-org-ek131" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Showcase →</a>
+                <a href="https://github.com/chimera-defi/sharedtools-index" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">GitHub</a>
+                <a href="https://sharedtools.org" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">Live Site</a>
               </div>
             </article>
 
