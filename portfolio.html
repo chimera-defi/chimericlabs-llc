@@ -145,21 +145,21 @@
 
             <article class="flex flex-col gap-4 fl-card">
               <div>
-                <span class="fl-label">Quant Research &amp; Portfolio Ops · Private, closed source</span>
+                <span class="fl-label">Quant Research · Closed Source</span>
                 <h3 class="mt-2 font-serif text-xl text-slate-100">Portfolio Research Platform</h3>
               </div>
               <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                Our in-house quantitative research and portfolio operations platform. It searches strategy space with genetic, Bayesian, simulated-annealing and CMA-ES search. It hill-climbs the best candidates and keeps a Pareto frontier of the trade-offs. It tests every result for overfitting with purged cross-validation, holdouts and bootstrap tests. It builds the daily portfolio state from broker snapshots, generates rebalancing plans and order sheets, and runs audit checks. An Explorer UI shows it all.
+                Our in-house research and portfolio operations system. It searches for portfolio strategies with genetic, Bayesian, simulated-annealing and CMA-ES search, then hill-climbs the best ones. It keeps a Pareto frontier of the trade-offs and tests every result for overfitting with purged cross-validation, holdouts and bootstrap tests. Day to day, it builds portfolio state from broker snapshots, generates rebalancing plans and order sheets, and runs audit checks, all visible in an Explorer UI.
               </p>
             </article>
 
             <article class="flex flex-col gap-4 fl-card fl-card--link">
               <div>
-                <span class="fl-label">Context Orchestration</span>
+                <span class="fl-label">Agent Context</span>
                 <h3 class="mt-2 font-serif text-xl text-slate-100">Token Reduce</h3>
               </div>
               <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                Kit that cuts context spend for AI coding agents. It runs low-cost discovery first and routes lookups across path, snippet and structural tiers. Its hooks block wasteful broad reads. Benchmarks measure the token savings on real workflows.
+                Cuts the tokens AI coding agents spend reading code. Cheap discovery runs first, routing lookups across file paths, snippets and code structure. Hooks block broad reads, and benchmarks measure the savings on real workflows.
               </p>
               <div class="flex flex-wrap gap-2 pt-1">
                 <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">Python</span>
@@ -177,7 +177,7 @@
                 <h3 class="mt-2 font-serif text-xl text-slate-100">Kimi Delegate</h3>
               </div>
               <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                Wrapper for bounded Kimi subagent tasks. Each task goes out in a structured envelope with acceptance criteria. Timeouts scale with repo size. It falls back to Codex and records telemetry. It detects raw provider calls that bypass the wrapper.
+                Hands bounded tasks to Kimi subagents. Each task carries acceptance criteria and a timeout sized to the repo. If Kimi fails, it falls back to Codex. It logs every run and flags calls that skip the wrapper.
               </p>
               <div class="flex flex-wrap gap-2 pt-1">
                 <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">Python</span>
@@ -191,11 +191,11 @@
 
             <article class="flex flex-col gap-4 fl-card fl-card--link">
               <div>
-                <span class="fl-label">Remote Agent Operations</span>
+                <span class="fl-label">Agent Delegation</span>
                 <h3 class="mt-2 font-serif text-xl text-slate-100">Devin Delegate</h3>
               </div>
               <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                Structured execution layer for Devin coding and research tasks. It passes workspace context and runs safety checks. Timeouts scale automatically, and the fallback chain stays visible. It records history, so delegated work is auditable.
+                Sends coding and research tasks to Devin with the workspace context it needs and safety checks around it. Timeouts scale with the task, fallbacks are visible, and every run is logged so delegated work can be audited.
               </p>
               <div class="flex flex-wrap gap-2 pt-1">
                 <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">Python</span>
@@ -209,11 +209,11 @@
 
             <article class="flex flex-col gap-4 fl-card fl-card--link">
               <div>
-                <span class="fl-label">Spec-Native Workspace</span>
+                <span class="fl-label">Spec Editor</span>
                 <h3 class="mt-2 font-serif text-xl text-slate-100">SpecForge</h3>
               </div>
               <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                Collaborative spec IDE for the browser, the terminal, a REST API and an autonomous agent mode. People and AI agents share one governed markdown canvas. It adds depth gates, patch review and attributable changes. The output is execution-ready specs and handoffs.
+                A shared spec editor for people and AI agents. It runs in the browser, in the terminal, over a REST API and as an autonomous agent. Changes go through patch review and depth gates, and each one is attributed to its author. The output is a spec and handoff a team can build from.
               </p>
               <div class="flex flex-wrap gap-2 pt-1">
                 <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">TypeScript</span>
@@ -253,7 +253,7 @@
                 <span class="fl-pill fl-pill--shipped">ETHGlobal Finalist · HackMoney 2026</span>
               </div>
               <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                Non-custodial subscription payment protocol for humans and AI agents. We are AutoPay’s design and development partner. We work on product UX, frontend implementation, protocol surfaces and agent-native payment flows.
+                Non-custodial subscription payments that people and AI agents can both use. As AutoPay’s design and development partner, we work on the product UX, the frontend, the protocol and the agent payment flows.
               </p>
               <div class="flex flex-wrap gap-2 pt-1">
                 <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">Solidity</span>
@@ -272,7 +272,7 @@
                 <h3 class="mt-2 font-serif text-xl text-slate-100">Sharedtools</h3>
               </div>
               <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                Smart contract factory with a production frontend and a dedicated RPC endpoint. It handles ERC-20 token launches, multi-sig setup and common protocol primitives. It is used across multiple deployments in the Sharedstake ecosystem.
+                A smart contract factory with its own frontend and RPC endpoint. It launches ERC-20 tokens, sets up multi-sigs and deploys common protocol building blocks. Several Sharedstake deployments use it.
               </p>
               <div class="flex flex-wrap gap-2 pt-1">
                 <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">Solidity</span>
@@ -310,7 +310,7 @@
                 <h3 class="mt-2 font-serif text-xl text-slate-100">SharedDeposit (sgETH)</h3>
               </div>
               <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                Our Ethereum liquid staking protocol. We fund, build and run it. The contracts are the sgETH token and its wrapped form WSGEth, the minter (SharedDepositMinterV2), rewards receiver, rollover and withdrawal queue. All are auditable on-chain. A beacon chain oracle tracks validator indices and calculates the virtual price of ETH rewards after the merge. We have deployed and maintained it through multiple upgrade cycles since 2023.
+                Our Ethereum liquid staking protocol, which we fund, build and run. The contracts are the sgETH token and its wrapped form WSGEth, the minter (SharedDepositMinterV2), rewards receiver, rollover and withdrawal queue, all verifiable on-chain. A beacon chain oracle tracks validators and calculates the virtual price from post-merge ETH rewards. It has been live and maintained through several upgrades since 2023.
               </p>
               <div class="flex flex-wrap gap-2 pt-1">
                 <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">Solidity</span>
@@ -331,7 +331,7 @@
                 <h3 class="mt-2 font-serif text-xl text-slate-100">eth2-quickstart</h3>
               </div>
               <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                Shell scripts that get an ETH2-compatible RPC node running in minutes, not days. They support multiple execution and consensus clients, following community practice for client diversity. They cover server setup, checkpoint sync, uncensored RPC nodes and firewall configuration. They work for solo stakers, home operators and cloud VPS deployments.
+                Shell scripts that set up an Ethereum RPC node in minutes. They support several execution and consensus clients for client diversity, and cover server setup, checkpoint sync, uncensored RPC and firewall config. Solo stakers, home operators and cloud VPS users can all run them.
               </p>
               <div class="flex flex-wrap gap-2 pt-1">
                 <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">Shell</span>
@@ -350,7 +350,7 @@
                 <h3 class="mt-2 font-serif text-xl text-slate-100">Sharedstake Oracle</h3>
               </div>
               <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                Off-chain oracle for SharedDeposit V1 and V2. It reads validator indices from the beacon chain API. It calculates and verifies the virtual price of sgETH: the ETH rewards accumulated per share. It runs as a self-hosted service next to a staking node.
+                Off-chain oracle for SharedDeposit V1 and V2. It reads validators from the beacon chain API and computes and verifies the virtual price of sgETH, the ETH rewards earned per share. It runs as a self-hosted service beside a staking node.
               </p>
               <div class="flex flex-wrap gap-2 pt-1">
                 <span class="font-mono text-xs text-slate-300 border border-line bg-slate-800 px-2 py-0.5">JavaScript</span>
@@ -380,7 +380,7 @@
           </div>
 
           <p class="mb-10 max-w-2xl text-sm text-slate-400 leading-relaxed">
-            Some of these are hackathon submissions or prototypes. Others became products and run in production.
+            Some are hackathon prototypes. Others became products we still run.
           </p>
 
           <div class="mb-10 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4" aria-label="Hackathon wins and recognition">
@@ -413,7 +413,7 @@
                 <span class="fl-pill fl-pill--open">Submission</span>
               </div>
               <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                Marketplace for spare intelligence and agent capacity. Buyers fund milestones, and human review gates each payout. It integrates Arc escrow, World Agent Kit identity checks and 0G-backed dossier storage.
+                Marketplace for spare intelligence and agent capacity. Buyers fund milestones, and a human reviews each payout. Built on Arc escrow, World Agent Kit identity checks and 0G storage for dossiers.
               </p>
               <p class="text-xs text-slate-500"><span class="text-slate-400">Role:</span> Solo builder.</p>
               <div class="flex items-center gap-4 border-t border-line pt-4 text-sm">
@@ -431,7 +431,7 @@
                 <span class="fl-pill fl-pill--open">Submission</span>
               </div>
               <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                Cross-chain stablecoin backed by USDC. Yield is generated on a hub chain. It is designed for low-fee bridging and minting across destination chains.
+                USDC-backed stablecoin. Yield accrues on a hub chain, and it is designed to mint and bridge cheaply to other chains.
               </p>
               <p class="text-xs text-slate-500"><span class="text-slate-400">Role:</span> Builder/maintainer.</p>
               <div class="flex items-center gap-4 border-t border-line pt-4 text-sm">
@@ -450,7 +450,7 @@
                 <span class="fl-pill fl-pill--open">Submission</span>
               </div>
               <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                Yield-bearing bridge concept. It uses LayerZero vault bridge infrastructure and a Katana hub chain to generate yield. It then routes incentives and liquidity to partner chains.
+                Concept for a bridge that earns yield. It uses LayerZero vault bridges and a Katana hub chain, then sends incentives and liquidity to partner chains.
               </p>
               <p class="text-xs text-slate-500"><span class="text-slate-400">Role:</span> Builder/maintainer.</p>
               <div class="flex items-center gap-4 border-t border-line pt-4 text-sm">
@@ -467,7 +467,7 @@
                 <span class="fl-pill fl-pill--shipped">Winner · Best Consumer DeFi · Flow</span>
               </div>
               <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                Domain-name tokenization protocol for price discovery and liquidity. DNS records verify ownership and mint an ERC-1155. The token then fractionalizes into Superchain ERC-20 for trading and DeFi.
+                Turns domain names into tradable tokens. A DNS record proves ownership and mints an ERC-1155, which splits into Superchain ERC-20 tokens for trading and DeFi.
               </p>
               <p class="text-xs text-slate-500"><span class="text-slate-400">Role:</span> Contributor.</p>
               <div class="flex items-center gap-4 border-t border-line pt-4 text-sm">
@@ -486,7 +486,7 @@
                 <span class="fl-pill fl-pill--open">Submission</span>
               </div>
               <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                EigenLayer Actively Validated Service for RPC providers. It incentivizes operators and increases geographic decentralization. It aims to reduce censorship and MEV capture at the RPC layer.
+                EigenLayer Actively Validated Service that rewards RPC operators for geographic spread. The aim is less censorship and MEV capture at the RPC layer.
               </p>
               <p class="text-xs text-slate-500"><span class="text-slate-400">Role:</span> Builder/maintainer.</p>
               <div class="flex items-center gap-4 border-t border-line pt-4 text-sm">
@@ -504,7 +504,7 @@
                 <span class="fl-pill fl-pill--shipped">Winner · zkBob Pool Prize</span>
               </div>
               <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                Public-good initiative for uncensored Ethereum RPC endpoints. It aims to reduce RPC centralization risk. It gives users an open alternative to the few large providers.
+                Public-good project for uncensored Ethereum RPC endpoints, as an open alternative to the few large providers.
               </p>
               <p class="text-xs text-slate-500"><span class="text-slate-400">Role:</span> Builder/maintainer.</p>
               <div class="flex items-center gap-4 border-t border-line pt-4 text-sm">
@@ -523,7 +523,7 @@
                 <span class="fl-pill fl-pill--open">Submission</span>
               </div>
               <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                Yield aggregator that uses contingent convertibles (CoCos) and protocol-owned liquidity to stabilize its emissions token price. It layers Curve-style gauges and OHM-style bonds to retain capital without mercenary farming.
+                Yield aggregator that uses contingent convertibles (CoCos) and protocol-owned liquidity to stabilize its emissions token price. Curve-style gauges and OHM-style bonds keep capital in without relying on mercenary farmers.
               </p>
               <p class="text-xs text-slate-500"><span class="text-slate-400">Role:</span> Builder/maintainer.</p>
               <div class="flex items-center gap-4 border-t border-line pt-4 text-sm">
@@ -543,7 +543,7 @@
                 <span class="fl-pill fl-pill--shipped">Winner · Best use of Alchemy</span>
               </div>
               <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                SharedTools launcher for common protocol primitives: vote-escrow, liquidity mining, NFT patterns and factories. Its production UI aims to reduce repeated audit overhead.
+                Launcher for common protocol building blocks: vote-escrow, liquidity mining, NFT patterns and factories. Its production UI aims to cut repeat audit work.
               </p>
               <p class="text-xs text-slate-500"><span class="text-slate-400">Role:</span> Builder/maintainer.</p>
               <div class="flex items-center gap-4 border-t border-line pt-4 text-sm">
@@ -570,7 +570,7 @@
           </div>
 
           <p class="text-slate-400 leading-relaxed max-w-2xl">
-            All our open-source work on GitHub. Search and filter it to see what shipped, what is active and where the code lives.
+            All our public repos on GitHub. Search, sort and filter them.
           </p>
 
           <div class="mt-8 grid grid-cols-1 lg:grid-cols-4 gap-4">
@@ -626,7 +626,7 @@
             Need a design and development partner?
           </h2>
           <p class="mt-4 text-slate-400 leading-relaxed max-w-md">
-            We work with founders and technical leads. We do design, development, protocol engineering, AI tooling and fractional CTO work.
+            We work with founders and technical leads on design, development, protocols, AI tooling and fractional CTO work.
           </p>
           <a
             href="mailto:chimera_defi@protonmail.com"
