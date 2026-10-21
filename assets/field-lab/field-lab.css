@@ -32,9 +32,9 @@ body {
 /* Display: Archivo squeezed to ~70% width. Add text-transform:uppercase
  * yourself for the full Field Lab headline (the site kept mixed case). */
 .fl-display { font-family: var(--f-display); font-stretch: 70%; font-weight: 800; letter-spacing: -.02em; }
-.fl-h1 { font: var(--t-h1); font-stretch: 70%; letter-spacing: -.02em; }
-.fl-h2 { font: var(--t-h2); font-stretch: 75%; letter-spacing: -.01em; }
-.fl-h3 { font: var(--t-h3); font-stretch: 80%; }
+.fl-h1 { font: var(--t-h1); font-stretch: 68%; letter-spacing: -.03em; }
+.fl-h2 { font: var(--t-h2); font-stretch: 82%; letter-spacing: -.03em; }
+.fl-h3 { font: var(--t-h3); font-stretch: 90%; letter-spacing: -.02em; }
 .fl-mono { font-family: var(--f-mono); }
 .fl-label { font: var(--t-label); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); }
 .fl-spec-text { font: var(--t-spec); letter-spacing: .08em; text-transform: uppercase; }
