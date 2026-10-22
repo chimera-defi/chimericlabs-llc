@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://chimericlabs.org/sitemap.xml
+Sitemap: https://chimericlabs.xyz/sitemap.xml
