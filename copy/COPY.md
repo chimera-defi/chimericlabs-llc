@@ -246,3 +246,12 @@ Rewrote choppy "It… It…" blurbs and jargon ("governed markdown canvas", "pro
 < We work with founders and technical leads. We do design, development, protocol engineering, AI tooling and fractional CTO work.
 > We work with founders and technical leads on design, development, protocols, AI tooling and fractional CTO work.
 ```
+
+## Merged with origin/main (live site changes kept)
+
+- Domain is chimericlabs.xyz (CNAME, canonical, og:url, sitemap, robots).
+- Home stats strip has 3 cells (the "2023 · Live on Ethereum mainnet since" stat is dropped). SharedDeposit is last in Featured Projects.
+- Services 05, Family Office Infrastructure, kept with the same facts in the plain style:
+  - **Old:** Multi-jurisdictional entity and treasury structuring, cross-border advisory coordination, and systematic wealth-preservation portfolios with programmatic allocation and multi-regime risk controls for private capital.
+  - **New:** Entity and treasury structuring across jurisdictions, coordination with cross-border advisers, and wealth-preservation portfolios with rule-based allocation and risk controls that hold up across market regimes.
+- Pages artifact now also excludes `.claude/`, `copy/`, `CLAUDE.md`, `AGENTS.md`, `README.md` and `.gitignore`.
