@@ -1,0 +1,87 @@
+/* chimericlabs-llc on Field Lab v3: tokens.css -> field-lab.css -> this file.
+ * The Tailwind CDN sheet lands after these links, so a utility beats an fl-* class
+ * on the same property; palette names in each page's tailwind.config map to tokens. */
+html { overflow-x: clip; } /* the hero graph paper bleeds to the viewport edges */
+/* Headings: Archivo squeezed per level (the old serif slot). */
+h1.font-serif, h2.font-serif, h3.font-serif { font-family: var(--f-display); font-weight: 800; }
+h1.font-serif { font-stretch: 68%; line-height: .92; letter-spacing: -.03em; }
+h2.font-serif { font-stretch: 82%; letter-spacing: -.03em; }
+h3.font-serif { font-stretch: 90%; font-weight: 700; letter-spacing: -.02em; }
+
+/* Brand: Field Lab wordmark, an orange square then the name in display ink. */
+.site-brand { font-family: var(--f-display); font-stretch: 70%; font-weight: 800; font-size: 18px; letter-spacing: -.01em; color: var(--ink); gap: 8px; }
+.site-brand::before { content: ""; width: 12px; height: 12px; background: var(--accent); border: 1.5px solid var(--ink); flex: none; }
+@media (max-width: 639px) { .site-brand { font-size: 16px; } }
+@media (max-width: 319px) { .site-brand { font-size: 0; } }
+
+/* The header Contact button is ink, so the hero CTA is the one orange action in view. */
+.site-contact { background: var(--ink); color: var(--bg); }
+.site-contact:hover { background: var(--ink-2); border-color: var(--ink-2); }
+
+/* Hero: .fl-graph-paper--fade supplies the fading grid; let it bleed to the viewport edges. */
+.site-hero::before { inset: 0 calc(50% - 50vw); }
+.hero-rig { display: block; width: 100%; height: auto; margin: 0 0 24px; }
+@media (min-width: 1024px) {
+  /* Desktop: a two-column hero without touching the DOM. The section becomes the grid and
+     the inner grid (lg:contents) dissolves, so its two children place beside the rig:
+       [ text   | rig       ]
+       [ text   | build map ]
+       [ proof strip ...... ]                                              */
+  .site-hero { display: grid; grid-template-columns: minmax(0, 1fr) 480px; column-gap: 64px; align-items: center; }
+  .site-hero-grid > :first-child { grid-column: 1; grid-row: 1 / span 2; }
+  .hero-rig { grid-column: 2; grid-row: 1; margin: 0; }
+  .site-hero-grid > :last-child { grid-column: 2; grid-row: 2; }
+  .site-hero > :last-child { grid-column: 1 / -1; }
+}
+
+/* Status pills keep their source casing. */
+.fl-pill { text-transform: none; }
+
+/* Telemetry band: always-dark full-bleed strip behind the stats, with a canvas particle field. */
+.site-band { position: relative; isolation: isolate; }
+.site-band::before {
+  content: ""; position: absolute; inset: 0 calc(50% - 50vw); z-index: -2;
+  background: var(--band);
+}
+.band-ro { font: 400 clamp(24px, 3vw, 38px)/1.1 var(--f-mono); letter-spacing: -.02em; color: var(--band-ink); }
+.band-cap { margin-top: 4px; text-transform: none; color: var(--band-ink-2); }
+.site-band canvas {
+  position: absolute; z-index: -1; top: 0; bottom: 0; left: 50%; width: 100vw; height: 100%;
+  margin-left: -50vw; pointer-events: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent 8%, #000 62%);
+          mask-image: linear-gradient(90deg, transparent 8%, #000 62%);
+}
+
+/* Hero text rises once the intro leaves (--t0 is 1s while it plays). */
+html.js { --t0: 0s; }
+html.js .rise { animation: rise .8s var(--ease) calc(var(--t0) + var(--rd, 0s)) both; }
+@keyframes rise { from { opacity: 0; transform: translateY(18px); } }
+
+/* Intro: always-dark blueprint overlay built by motion.js. Its text is generated content, so none enters the DOM.
+   html.intro::before is the same cover from first paint until the overlay exists. */
+@property --n { syntax: "<integer>"; inherits: false; initial-value: 0; }
+@counter-style fl-pad3 { system: numeric; symbols: "0" "1" "2" "3" "4" "5" "6" "7" "8" "9"; pad: 3 "0"; }
+html.intro::before, .fl-intro { content: ""; position: fixed; inset: 0; background: var(--band); animation: fl-out .4s var(--ease) 1s forwards; }
+html.intro::before { z-index: 149; }
+.fl-intro { z-index: 150; color: var(--band-ink); }
+.fl-intro i { position: absolute; inset: 0; opacity: .32; pointer-events: none; }
+.fl-intro .gv { background: repeating-linear-gradient(90deg, var(--band-ink) 0 1px, transparent 1px 48px); clip-path: inset(0 0 100% 0); animation: fl-wipe .6s var(--ease) .05s forwards; }
+.fl-intro .gh { background: repeating-linear-gradient(0deg, var(--band-ink) 0 1px, transparent 1px 48px); clip-path: inset(0 100% 0 0); animation: fl-wipe .6s var(--ease) .15s forwards; }
+.fl-intro .hint { opacity: 1; inset: var(--gutter) var(--gutter) auto auto; font: 500 12px/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; }
+.fl-intro .hint::before { content: "Press any key"; opacity: .7; }
+.fl-intro::before {
+  content: "ChimericLabs"; position: absolute; left: var(--gutter); bottom: var(--gutter);
+  font: 800 clamp(34px, 8vw, 96px)/.85 var(--f-display); font-stretch: 70%; text-transform: uppercase; letter-spacing: -.02em;
+}
+.fl-intro::after {
+  content: counter(n, fl-pad3); counter-reset: n var(--n); position: absolute; right: var(--gutter); bottom: var(--gutter);
+  font: 500 clamp(24px, 4vw, 44px)/1 var(--f-mono); padding-bottom: 6px; border-bottom: 3px solid var(--accent);
+  animation: fl-count 1s var(--ease) forwards;
+}
+@keyframes fl-wipe { to { clip-path: inset(0); } }
+@keyframes fl-count { to { --n: 100; } }
+@keyframes fl-out { to { clip-path: inset(0 0 100% 0); visibility: hidden; } }
+
+@media (prefers-reduced-motion: reduce) {
+  html.js .rise { animation: none; }
+}
