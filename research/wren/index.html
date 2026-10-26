@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wren — ChimericLabs</title>
+    <meta
+      name="description"
+      content="How we built Wren, a home-made Claude Duet: Claude Code on a personal server, reachable from a phone or ChatGPT, handing work to cheaper models and other agents."
+    />
+    <meta property="og:title" content="Wren: a home-made Claude Duet — ChimericLabs" />
+    <meta property="og:description" content="How we built Wren, a home-made Claude Duet: Claude Code on a personal server, reachable from a phone or ChatGPT, handing work to cheaper models and other agents." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://chimericlabs.xyz/research/wren/" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="canonical" href="https://chimericlabs.xyz/research/wren/" />
+    <meta name="theme-color" content="#080e1d" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23080e1d'/><text x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='16' font-weight='600' fill='%2300c4ff'>CL</text></svg>" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Hanken+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      html { background: var(--bg); }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+      @media (max-width: 639px) {
+        .site-header-inner { padding-left: 1rem !important; padding-right: 1rem !important; }
+        .site-nav { gap: 0.5rem !important; }
+        .site-nav-link { font-size: 0.8125rem !important; }
+        .site-contact { padding-left: 0.75rem !important; padding-right: 0.75rem !important; }
+        .mobile-hide { display: none !important; }
+      }
+      @media (max-width: 319px) {
+        .site-brand::after { content: "CL"; font-size: 0.8125rem; }
+        .site-nav { gap: 0.375rem !important; }
+        .site-contact { padding-left: 0.625rem !important; padding-right: 0.625rem !important; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * { transition-duration: 0.01ms !important; }
+      }
+    </style>
+
+    <!-- Field Lab v3 style system (vendored from the lab-rig repo) -->
+    <link rel="stylesheet" href="../../assets/field-lab/tokens.css" />
+    <link rel="stylesheet" href="../../assets/field-lab/field-lab.css" />
+    <link rel="stylesheet" href="../../assets/site.css" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+      window.tailwind = window.tailwind || {};
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Hanken Grotesk"', '"Helvetica Neue"', "Arial", "sans-serif"],
+              serif: ["Archivo", '"Arial Narrow"', '"Helvetica Neue"', "Arial", "sans-serif"],
+              mono: ['"IBM Plex Mono"', "ui-monospace", "Menlo", "Consolas", "monospace"],
+            },
+          },
+          // Field Lab v3: the old slate palette is re-pointed
+          // at the theme tokens in assets/field-lab/tokens.css, so every existing
+          // utility class follows light/dark automatically.
+          colors: (() => {
+            const t = (name) => `rgb(var(--${name}-rgb) / <alpha-value>)`;
+            const scale = (map) => Object.fromEntries(Object.entries(map).map(([k, v]) => [k, t(v)]));
+            return {
+              transparent: "transparent",
+              current: "currentColor",
+              bg: t("bg"), surface: t("surface"), "surface-2": t("surface-2"),
+              ink: t("ink"), "ink-2": t("ink-2"), line: t("line"), hairline: t("hairline"),
+              accent: t("accent"), "accent-ink": t("accent-ink"), "on-accent": t("on-accent"),
+              slate: scale({ 50: "ink", 100: "ink", 200: "ink", 300: "ink-2", 400: "ink-2", 500: "ink-2",
+                600: "ink-2", 700: "line", 800: "surface-2", 900: "surface", 950: "on-accent" }),
+            };
+          })(),
+          borderRadius: { none: "0", sm: "2px", DEFAULT: "2px", md: "2px", lg: "0", xl: "0", "2xl": "0", full: "999px" },
+        },
+      };
+    </script>
+
+    <style>
+      /* Article layout on Field Lab tokens; the diagram stacks on phones. */
+      .wren a { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+      .wren-list { display: grid; gap: .6rem; padding-left: 1.2rem; list-style: square; color: var(--ink-2); line-height: 1.6; }
+      .wren-list b, .wren-score b { color: var(--ink); }
+      .wren-score { border-top: 1px solid var(--line); }
+      .wren-score > div { display: grid; grid-template-columns: 9rem 1fr; gap: 1rem; padding: .75rem 0; border-bottom: 1px solid var(--line); color: var(--ink-2); line-height: 1.55; }
+      .wren-map { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: .75rem; align-items: center; }
+      .wren-col { display: grid; gap: .5rem; min-width: 0; }
+      .wren-box { background: var(--surface); border: 1px solid var(--line); padding: .6rem .75rem; font-weight: 700; color: var(--ink); overflow-wrap: anywhere; }
+      .wren-box small { display: block; font-weight: 400; color: var(--ink-2); font-size: .8rem; }
+      .wren-core { border: 1.5px solid var(--ink); border-left: 4px solid var(--accent); }
+      .wren-arrow { font-size: 1.5rem; color: var(--ink-2); text-align: center; }
+      @media (max-width: 639px) {
+        .wren-score > div { grid-template-columns: 1fr; gap: .25rem; }
+        .wren-map { grid-template-columns: 1fr; }
+        .wren-arrow { transform: rotate(90deg); }
+      }
+    </style>
+  </head>
+
+  <body class="bg-bg text-slate-200 font-sans antialiased">
+
+    <!-- Header -->
+    <header class="fixed inset-x-0 top-0 z-50 border-b border-ink bg-bg/95 backdrop-blur-xl">
+      <div class="site-header-inner mx-auto flex h-14 max-w-6xl items-center justify-between px-5 sm:px-8">
+        <a href="../../index.html" class="site-brand inline-flex min-h-11 min-w-11 items-center">ChimericLabs</a>
+        <nav class="site-nav flex items-center gap-5 sm:gap-7" aria-label="Primary">
+          <a href="../../portfolio.html" class="site-nav-link inline-flex min-h-11 min-w-11 items-center text-sm text-slate-400 hover:text-slate-200 transition-colors">Portfolio</a>
+          <a href="../../research.html" class="site-nav-link inline-flex min-h-11 min-w-11 items-center text-sm text-slate-200 transition-colors">Research</a>
+          <a href="../../index.html#services" class="site-nav-link inline-flex min-h-11 min-w-11 items-center text-sm text-slate-400 hover:text-slate-200 transition-colors">Services</a>
+          <a
+            href="https://github.com/chimera-defi"
+            target="_blank"
+            rel="noreferrer"
+            class="site-nav-link mobile-hide hidden min-h-11 items-center text-sm text-slate-400 hover:text-slate-200 transition-colors sm:inline-flex"
+            >GitHub</a
+          >
+          <a
+            href="mailto:chimera_defi@protonmail.com"
+            class="site-nav-link site-contact fl-btn"
+            >Contact</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <main class="pt-14">
+      <article class="mx-auto max-w-3xl px-5 sm:px-8 py-[calc(var(--section-y)/2)] wren">
+        <span class="fl-label">Agent Systems · 2026-10</span>
+        <h1 class="mt-3 break-words font-serif text-3xl sm:text-5xl text-slate-50 text-balance">Wren: a home-made Claude Duet</h1>
+        <p class="mt-5 text-lg text-slate-300 leading-relaxed">
+          Anthropic's Claude Duet is a background agent that checks in each morning, does long jobs on its own and asks before it sends or pays. It's waitlist-only for now. We had already built most of the same thing at home, out of Claude Code, a personal server and a handful of open tools. We call it Wren. This is what it's made of, how it compares, and what it taught us.
+        </p>
+
+        <h2 class="mt-12 font-serif text-2xl text-slate-100">How it grew</h2>
+        <ul class="mt-4 wren-list">
+          <li><b>June 2026.</b> Session tooling (crss) lets Claude Code run for days on a server and be reached from a phone.</li>
+          <li><b>August.</b> A shared message bus lets Claude, Codex, ChatGPT and other agents hand each other work.</li>
+          <li><b>October.</b> A benchmark picks the cheapest model for each job, and the orchestrator gets a name, a persona and a memory: Wren.</li>
+          <li><b>26 October.</b> A 07:00 Telegram brief, and a phone approve/deny gate, tested live both ways.</li>
+        </ul>
+
+        <h2 class="mt-12 font-serif text-2xl text-slate-100">How you talk to it</h2>
+        <p class="mt-4 text-slate-300 leading-relaxed">
+          From anywhere. Telegram (typed or voice notes), the Claude app's Remote Control and voice chat, the desktop app, or ChatGPT, which reaches the server through a connector. Every door opens onto the same server and the same memory, so you can run several Wren threads at once.
+        </p>
+
+        <h2 class="mt-12 font-serif text-2xl text-slate-100">What it's made of</h2>
+        <ul class="mt-4 wren-list">
+          <li><b>Claude Code</b> on a home server, signed in to an ordinary Max plan. Opus does the planning and checking.</li>
+          <li><b><a href="https://github.com/chimera-defi/claude-remote-session-skill" target="_blank" rel="noreferrer">crss</a></b>: starts, messages, hands off and repairs long-running sessions. Every agent on the box runs on it.</li>
+          <li><b><a href="https://github.com/chimera-defi/token-reduce-skill" target="_blank" rel="noreferrer">token-reduce</a></b>: reads only the slice of a repo a task needs, so context stays small and cheap.</li>
+          <li><b><a href="../../dispatchbench/">DispatchBench</a></b> and the <a href="https://github.com/chimera-defi/delegate-skill" target="_blank" rel="noreferrer">delegate skills</a>: send each job to the cheapest model that passes. Codex builds, Haiku sweeps and reads, Fable gives a second opinion.</li>
+          <li><b>Shared memory</b>: a <a href="https://github.com/garrytan/gbrain" target="_blank" rel="noreferrer">gbrain</a> knowledge base plus plain git-tracked notes that Claude, Codex and the other agents all read and write.</li>
+          <li><b>The bus</b>: a small mailbox database where agents post tasks and replies to each other.</li>
+          <li><b>Phone bridges</b>: the Hermes agent gateway and <a href="https://github.com/chimera-defi/takopi" target="_blank" rel="noreferrer">takopi</a> for Telegram; Claude Remote Control for the app.</li>
+          <li><b>ChatGPT's apps, through Codex</b>: about 25 connectors for GitHub, research, filings and read-only brokerage data.</li>
+          <li><b>Daily jobs</b>: about 25 scheduled tasks, the 07:00 brief that summarises them, and the approval gate.</li>
+        </ul>
+
+        <h2 class="mt-12 font-serif text-2xl text-slate-100">Against Duet</h2>
+        <p class="mt-4 text-slate-300 leading-relaxed">Thirteen features, checked against Duet's product page on 26 October.</p>
+        <div class="mt-5 wren-score" role="table" aria-label="Wren against Claude Duet">
+          <div role="row"><span role="cell"><b>Ahead (6)</b></span><span role="cell">Shared memory across agents · several models · its own server · drives other agents · parallel threads · brokerage and market data</span></div>
+          <div role="row"><span role="cell"><b>At parity (5)</b></span><span role="cell">Long background jobs · published pages and dashboards · voice · yes/no follow-ups · morning brief</span></div>
+          <div role="row"><span role="cell"><b>Partial (2)</b></span><span role="cell">Asking before it acts (the gate works but isn't in every lane yet) · connectors (about 25, against Duet's 6,000; no Gmail or Calendar yet)</span></div>
+          <div role="row"><span role="cell"><b>Missing (0)</b></span><span role="cell">None</span></div>
+        </div>
+
+        <h2 class="mt-12 font-serif text-2xl text-slate-100">What it costs</h2>
+        <p class="mt-4 text-slate-300 leading-relaxed">
+          Nothing extra, and it isn't cheaper than Duet. Both run on the same plan. Wren also uses Codex and ChatGPT subscriptions we already pay for. Last week's real usage would have cost about $1,390 at API prices, roughly $6,000 a month, mostly from Opus re-reading long context. A light, Duet-sized day would be closer to $110–220 a month. The morning brief costs about three cents a run.
+        </p>
+
+        <h2 class="mt-12 font-serif text-2xl text-slate-100">What we learned</h2>
+        <ul class="mt-4 wren-list">
+          <li><b>Expensive head, cheap hands.</b> The strong model plans and checks; cheaper models do the reading and building.</li>
+          <li><b>A "done" is a claim.</b> Wren re-runs the check before it believes a helper, and so should you.</li>
+          <li><b>Add rules only after a repeat failure.</b> We compared Wren with the Hermes agent and adopted nothing: every Hermes habit that fixed one of our repeat failures was already in Wren.</li>
+          <li><b>Remove scaffolding as models improve.</b> Each new Claude model needs less hand-holding, so hooks and rules get re-tested and dropped once they stop paying.</li>
+          <li><b>Own the box, own the gates.</b> What you get is control, not savings.</li>
+        </ul>
+
+        <h2 class="mt-12 font-serif text-2xl text-slate-100">The whole thing on one page</h2>
+        <div class="mt-5 wren-map" role="img" aria-label="Diagram: four ways in lead to Wren on a home server, which hands work to cheaper models, child sessions and other agents over a shared bus">
+          <div class="wren-col">
+            <span class="fl-label">Ways in</span>
+            <div class="wren-box">Telegram<small>text and voice notes</small></div>
+            <div class="wren-box">Claude app<small>Remote Control, voice</small></div>
+            <div class="wren-box">ChatGPT<small>connector to the server</small></div>
+            <div class="wren-box">Desktop app</div>
+          </div>
+          <div class="wren-arrow" aria-hidden="true">→</div>
+          <div class="wren-col">
+            <span class="fl-label">Wren, on a home server</span>
+            <div class="wren-box wren-core">Claude Code · Opus<small>plans, checks, decides</small></div>
+            <div class="wren-box">Memory<small>gbrain + git notes</small></div>
+            <div class="wren-box">crss + token-reduce<small>sessions, lean reads</small></div>
+            <div class="wren-box">Brief + approval gate<small>07:00 digest, ask before acting</small></div>
+          </div>
+          <div class="wren-arrow" aria-hidden="true">→</div>
+          <div class="wren-col">
+            <span class="fl-label">Hands</span>
+            <div class="wren-box">Codex<small>builds</small></div>
+            <div class="wren-box">Haiku<small>reads and sweeps</small></div>
+            <div class="wren-box">Fable<small>second opinion</small></div>
+            <div class="wren-box">Shared bus<small>ChatGPT, Hermes, hosted agents</small></div>
+          </div>
+        </div>
+        <p class="mt-4 text-sm text-slate-400 leading-relaxed">
+          In short: one strong model on your own server, reachable from your phone or ChatGPT, handing work to cheaper models and other agents, and asking you before anything leaves the building.
+        </p>
+      </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-line py-8">
+      <div
+        class="mx-auto max-w-6xl px-5 sm:px-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+      >
+        <span class="font-mono text-xs text-slate-600 tracking-wider">ChimericLabs LLC · Wyoming</span>
+        <div class="flex flex-wrap gap-6">
+          <a href="../../index.html" class="inline-flex min-h-11 min-w-11 items-center text-xs text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Home</a>
+          <a
+            href="https://github.com/chimera-defi"
+            target="_blank"
+            rel="noreferrer"
+            class="inline-flex min-h-11 min-w-11 items-center text-xs text-ink underline underline-offset-4 decoration-1 hover:decoration-2"
+            >GitHub</a
+          >
+          <a
+            href="https://github.com/chimera-defi/chimericlabs-llc"
+            target="_blank"
+            rel="noreferrer"
+            class="inline-flex min-h-11 min-w-11 items-center text-xs text-ink underline underline-offset-4 decoration-1 hover:decoration-2"
+            >Source</a
+          >
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
