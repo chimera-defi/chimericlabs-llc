@@ -8,6 +8,7 @@ from html import escape, unescape
 from html.parser import HTMLParser
 from pathlib import Path
 import re
+import time
 from urllib.error import URLError
 from urllib.parse import urljoin, urlsplit
 from urllib.request import urlopen
@@ -25,12 +26,17 @@ CSS_URL = re.compile(r'''url\(\s*(["']?)(/[^\s)"']+)\1\s*\)''', re.I)
 
 
 @lru_cache(maxsize=None)
-def fetch(url):
-    try:
-        with urlopen(url, timeout=60) as response:
-            return response.read()
-    except (OSError, URLError, ValueError) as error:
-        raise ValueError(f"Could not fetch {url}: {error}") from error
+def fetch(url, attempts=3):
+    # Retry like the DispatchBench step's curl --retry 3, so a CDN blip
+    # doesn't fail the whole Pages deploy.
+    for attempt in range(1, attempts + 1):
+        try:
+            with urlopen(url, timeout=60) as response:
+                return response.read()
+        except (OSError, URLError, ValueError) as error:
+            if attempt == attempts:
+                raise ValueError(f"Could not fetch {url}: {error}") from error
+            time.sleep(2 * attempt)
 
 
 def source_url(source, path):
