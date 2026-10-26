@@ -5,6 +5,8 @@ on:
     branches:
       - main
   workflow_dispatch:
+  schedule:
+    - cron: '17 6 * * *'
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -31,6 +33,12 @@ jobs:
         run: |
           mkdir -p _site
           rsync -a --exclude='.git' --exclude='.github' --exclude='.claude' --exclude='skills' --exclude='copy' --exclude='CLAUDE.md' --exclude='AGENTS.md' --exclude='README.md' --exclude='.gitignore' --exclude='_site' ./ _site/
+
+      - name: Download DispatchBench report
+        run: |
+          mkdir -p _site/dispatchbench
+          curl -fsSL --retry 3 https://raw.githubusercontent.com/chimera-defi/dispatchbench/main/results/report/page.html -o _site/dispatchbench/index.html
+          grep -Fq '<title>DispatchBench' _site/dispatchbench/index.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
