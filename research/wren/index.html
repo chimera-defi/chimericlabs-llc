@@ -166,7 +166,7 @@
           <li><b>Claude Code</b> on a home server, signed in to an ordinary Max plan. Opus does the planning and checking.</li>
           <li><b><a href="https://github.com/chimera-defi/claude-remote-session-skill" target="_blank" rel="noreferrer">crss</a></b>: starts, messages, hands off and repairs long-running sessions. Every agent on the box runs on it.</li>
           <li><b><a href="https://github.com/chimera-defi/token-reduce-skill" target="_blank" rel="noreferrer">token-reduce</a></b>: reads only the slice of a repo a task needs, so context stays small and cheap.</li>
-          <li><b><a href="../../dispatchbench/">DispatchBench</a></b> and the <a href="https://github.com/chimera-defi/delegate-skill" target="_blank" rel="noreferrer">delegate skills</a>: send each job to the cheapest model that passes. Codex builds, Haiku sweeps and reads, Fable gives a second opinion.</li>
+          <li><b><a href="../../dispatchbench/">DispatchBench</a></b> and the <a href="https://github.com/chimera-defi/delegate-skill" target="_blank" rel="noreferrer">delegate skills</a>: send each job to the cheapest model that passes. Codex builds, Haiku sweeps and reads, Fable gives a second opinion, and Kimi or Grok can be added through the same skills whenever we subscribe.</li>
           <li><b>Shared memory</b>: a <a href="https://github.com/garrytan/gbrain" target="_blank" rel="noreferrer">gbrain</a> knowledge base plus plain git-tracked notes that Claude, Codex and the other agents all read and write.</li>
           <li><b>The bus</b>: a small mailbox database where agents post tasks and replies to each other.</li>
           <li><b>Phone bridges</b>: the Hermes agent gateway and <a href="https://github.com/chimera-defi/takopi" target="_blank" rel="noreferrer">takopi</a> for Telegram; Claude Remote Control for the app.</li>
@@ -185,8 +185,14 @@
 
         <h2 class="mt-12 font-serif text-2xl text-slate-100">What it costs</h2>
         <p class="mt-4 text-slate-300 leading-relaxed">
-          Nothing extra, and it isn't cheaper than Duet. Both run on the same plan. Wren also uses Codex and ChatGPT subscriptions we already pay for. A week of our real usage would have cost about $1,200–1,400 at API prices, roughly $5,000–6,000 a month, mostly from Opus re-reading long context. A light, Duet-sized day would be closer to $110–220 a month. The morning brief costs about three cents a run.
+          Wren runs on the Claude Max plan we already pay for, plus Codex and ChatGPT subscriptions we already had. Duet comes with Pro and Max plans and shares their limits. Here's what the same work would cost at API list prices, so you can judge for yourself.
         </p>
+        <div class="mt-5 wren-score" role="table" aria-label="Wren usage priced at API list prices">
+          <div role="row"><span role="cell"><b>Our heavy week</b></span><span role="cell">$1,200–1,400, or roughly $5,000–6,000 a month. Mostly Opus re-reading long context while it runs many sessions at once.</span></div>
+          <div role="row"><span role="cell"><b>A light, Duet-sized day</b></span><span role="cell">$110–220 a month: a morning brief, a few errands and one or two long jobs.</span></div>
+          <div role="row"><span role="cell"><b>The morning brief</b></span><span role="cell">About three cents a run.</span></div>
+          <div role="row"><span role="cell"><b>List prices</b></span><span role="cell">Per million tokens (input / cached read / output): Opus 5.5 $4 / $0.20 / $20 · Sonnet 5.5 $2 / $0.10 / $10 · Haiku 5.5 $0.10 / $0.01 / $0.50</span></div>
+        </div>
 
         <h2 class="mt-12 font-serif text-2xl text-slate-100">What we learned</h2>
         <ul class="mt-4 wren-list">
@@ -194,7 +200,7 @@
           <li><b>A "done" is a claim.</b> Wren re-runs the check before it believes a helper, and so should you.</li>
           <li><b>Add rules only after a repeat failure.</b> We compared Wren with the Hermes agent and adopted nothing: every Hermes habit that fixed one of our repeat failures was already in Wren.</li>
           <li><b>Remove scaffolding as models improve.</b> Each new Claude model needs less hand-holding, so hooks and rules get re-tested and dropped once they stop paying.</li>
-          <li><b>Own the box, own the gates.</b> What you get is control, not savings.</li>
+          <li><b>Own the box, own the gates.</b> You decide what runs, where, and what needs your yes first.</li>
         </ul>
 
         <h2 class="mt-12 font-serif text-2xl text-slate-100">The whole thing on one page</h2>
