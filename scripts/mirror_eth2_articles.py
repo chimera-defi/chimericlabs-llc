@@ -2,7 +2,6 @@
 """Mirror the four server-rendered eth2-quickstart articles for GitHub Pages."""
 
 import argparse
-import base64
 from functools import lru_cache
 from html import escape, unescape
 from html.parser import HTMLParser
@@ -46,26 +45,38 @@ def source_url(source, path):
     )
 
 
-def inline_css(href, source, origin):
+def shared_css(href, source, origin, assets):
+    """Write the stylesheet and its fonts once under assets/ and return its link tag.
+
+    Fonts are copied to our own origin (the upstream server's cross-origin policy
+    blocks hotlinking them) instead of being embedded, so the four pages share
+    one cached copy rather than each carrying ~1.2 MB of base64.
+    """
+    name = Path(urlsplit(href).path).name
     css = fetch(source_url(source, href)).decode("utf-8")
 
     def replace_url(match):
         path = match[2]
         if path.startswith("//"):
             return match[0]
-        if urlsplit(path).path.lower().endswith(".woff2"):
-            # Embedded fonts avoid the upstream server's cross-origin policy.
-            font = base64.b64encode(fetch(source_url(source, path))).decode("ascii")
-            return f"url(data:font/woff2;base64,{font})"
+        filename = Path(urlsplit(path).path).name
+        if filename.lower().endswith(".woff2"):
+            font = assets / "fonts" / filename
+            font.parent.mkdir(parents=True, exist_ok=True)
+            font.write_bytes(fetch(source_url(source, path)))
+            return f"url(fonts/{filename})"
         return f"url({match[1]}{origin}{path}{match[1]})"
 
-    return "<style>" + CSS_URL.sub(replace_url, css) + "</style>"
+    assets.mkdir(parents=True, exist_ok=True)
+    (assets / name).write_text(CSS_URL.sub(replace_url, css), encoding="utf-8")
+    return f'<link rel="stylesheet" href="../assets/{escape(name, quote=True)}">'
 
 
 class ArticleMirror(HTMLParser):
-    def __init__(self, source, origin, slug):
+    def __init__(self, source, origin, slug, assets):
         super().__init__(convert_charrefs=False)
         self.source = source
+        self.assets = assets
         self.origin = origin
         self.slug = slug
         self.output = []
@@ -109,7 +120,7 @@ class ArticleMirror(HTMLParser):
             if "preload" in relations or "modulepreload" in relations:
                 return
             if "stylesheet" in relations:
-                self.output.append(inline_css(attributes["href"], self.source, self.origin))
+                self.output.append(shared_css(attributes["href"], self.source, self.origin, self.assets))
                 return
         # Preserve raw SVG attribute casing and all article markup.
         self.output.append(URL_ATTRIBUTE.sub(self.rewrite_url, self.get_starttag_text()))
@@ -172,7 +183,7 @@ def mirror(source, origin, out):
             ) else match[0],
             page, flags=re.I | re.S,
         )
-        parser = ArticleMirror(source, origin, slug)
+        parser = ArticleMirror(source, origin, slug, out / "assets")
         parser.feed(page)
         parser.close()
         if not parser.has_main:
