@@ -166,7 +166,7 @@
         </p>
 
         <figure class="mt-8 -mx-5 sm:mx-0">
-          <a href="wren-map.webp" target="_blank" rel="noopener"><img src="wren-map.webp" width="1672" height="941" loading="eager" decoding="async" class="w-full h-auto sm:rounded border border-[color:var(--line,rgba(127,127,127,.25))]" alt="Infographic of Wren. Left: Claude, ChatGPT, Codex, Haiku and Fable, and Kimi or Grok through delegation tools. Centre: Wren, the agent orchestrator and bus, with specialised agents above and core capabilities below: workflow engine, checkpoints, verification and proactive jobs. Right: tools and connectors, and the Telegram, Claude Code, ChatGPT and dashboard interfaces. Bottom: proactive work, multi-agent workflows, persistent memory, human oversight, and the Duet score of 6 ahead, 5 at parity, 2 partial and 0 missing."></a>
+          <a href="wren-map.webp" target="_blank" rel="noopener"><img src="wren-map.webp" width="1672" height="941" loading="eager" decoding="async" class="w-full h-auto sm:rounded border border-[color:var(--line,rgba(127,127,127,.25))]" alt="Infographic of Wren. Left: Claude, ChatGPT, Codex, Haiku and Fable, and Kimi or Grok through delegation tools. Centre: Wren, the agent orchestrator and bus, with specialised agents above and core capabilities below: workflow engine, checkpoints, verification and proactive jobs. Right: tools and connectors, and the Telegram, Claude Code, ChatGPT and dashboard interfaces. Bottom: proactive work, multi-agent workflows, persistent memory, human oversight, and the Duet score of 8 ahead, 5 at parity, 1 partial and 0 missing."></a>
           <figcaption class="mt-2 px-5 sm:px-0 text-sm text-slate-400">Wren at a glance. Drawn by ChatGPT, checked and corrected by Wren. Tap to enlarge.</figcaption>
         </figure>
 
@@ -189,6 +189,7 @@
           <li><b><a href="https://github.com/chimera-defi/claude-remote-session-skill" target="_blank" rel="noreferrer">crss</a></b>: starts, messages, hands off and repairs long-running sessions. Every agent on the box runs on it.</li>
           <li><b><a href="https://github.com/chimera-defi/token-reduce-skill" target="_blank" rel="noreferrer">token-reduce</a></b> and <b><a href="https://github.com/tobi/qmd" target="_blank" rel="noreferrer">QMD</a></b>: read only the slice of a repo or notes folder a task needs. QMD is a local search engine over our markdown, re-indexed every six hours.</li>
           <li><b><a href="../../dispatchbench/">DispatchBench</a></b> and the <a href="https://github.com/chimera-defi/delegate-skill" target="_blank" rel="noreferrer">delegate skills</a>: send each job to the cheapest model that passes. Codex builds, Haiku sweeps and reads, Fable gives a second opinion, and Kimi or Grok can be added through the same skills whenever we subscribe.</li>
+          <li><b>A soul</b>: a short persona file every session loads, plus a cheap reviewer that saves one lesson before each context reset. Wren keeps getting better at its own job.</li>
           <li><b>Shared memory</b>: a <a href="https://github.com/garrytan/gbrain" target="_blank" rel="noreferrer">gbrain</a> knowledge base plus plain git-tracked notes that Claude, Codex and the other agents all read and write.</li>
           <li><b>The bus</b>: a small mailbox database where agents post tasks and replies to each other, including <a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noreferrer">Hermes</a> and <a href="https://github.com/openclaw/openclaw" target="_blank" rel="noreferrer">OpenClaw</a>.</li>
           <li><b>Phone bridges</b>: the <a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noreferrer">Hermes</a> gateway and <a href="https://github.com/chimera-defi/takopi" target="_blank" rel="noreferrer">takopi</a> for Telegram; Claude Remote Control for the app.</li>
@@ -197,11 +198,11 @@
         </ul>
 
         <h2 class="mt-12 font-serif text-2xl text-slate-100">Against Duet</h2>
-        <p class="mt-4 text-slate-300 leading-relaxed">Thirteen features, checked against the <a href="https://claude.com/product/claude-duet" target="_blank" rel="noreferrer">Claude Duet</a> product page on 26 October. Our own assessment, not a benchmark: Duet is more polished and works out of the box.</p>
+        <p class="mt-4 text-slate-300 leading-relaxed">Fourteen features, checked against the <a href="https://claude.com/product/claude-duet" target="_blank" rel="noreferrer">Claude Duet</a> product page on 26 October. Our own assessment, not a benchmark: Duet is more polished and works out of the box.</p>
         <div class="mt-5 wren-tiles" aria-label="Score summary">
-          <div class="wren-tile c-ahead"><b>6</b>Ahead</div>
+          <div class="wren-tile c-ahead"><b>8</b>Ahead</div>
           <div class="wren-tile c-par"><b>5</b>At parity</div>
-          <div class="wren-tile c-part"><b>2</b>Partial</div>
+          <div class="wren-tile c-part"><b>1</b>Partial</div>
           <div class="wren-tile c-miss"><b>0</b>Missing</div>
         </div>
         <div class="mt-5 wren-cmp" role="table" aria-label="Wren against Claude Duet, feature by feature">
@@ -217,8 +218,9 @@
           <div role="row"><b role="cell">Voice</b><span role="cell"><span class="lab">Duet</span>Text or voice in the mobile app.</span><span role="cell"><span class="lab">Wren</span>Dictation into any thread, Telegram voice notes run as tasks, and Claude's own voice chat.</span><span role="cell"><span class="wren-chip c-par">Parity</span></span></div>
           <div role="row"><b role="cell">Yes/no suggestions</b><span role="cell"><span class="lab">Duet</span>Offers follow-ups as yes/no choices.</span><span role="cell"><span class="lab">Wren</span>Every session ends with a recap and one-tap next steps.</span><span role="cell"><span class="wren-chip c-par">Parity</span></span></div>
           <div role="row"><b role="cell">Morning brief</b><span role="cell"><span class="lab">Duet</span>A daily summary and drafted next steps.</span><span role="cell"><span class="lab">Wren</span>Every day at 07:00 a short Telegram brief of the overnight jobs, with two yes/no next steps, for about three cents.</span><span role="cell"><span class="wren-chip c-par">Parity</span></span></div>
-          <div role="row"><b role="cell">Asks before it sends or pays</b><span role="cell"><span class="lab">Duet</span>Asks before sensitive actions.</span><span role="cell"><span class="lab">Wren</span>Anything that moves money already needs a human. Since 26 October a Telegram gate asks before other outward actions; no reply means no. Not in every lane yet.</span><span role="cell"><span class="wren-chip c-part">Partial</span></span></div>
-          <div role="row"><b role="cell">Connectors, inbox, calendar</b><span role="cell"><span class="lab">Duet</span>More than 6,000, including Gmail and Calendar.</span><span role="cell"><span class="lab">Wren</span>About 25 ChatGPT apps through Codex, plus our own server and memory tools. No Gmail or Calendar yet, so inbox triage is the biggest gap.</span><span role="cell"><span class="wren-chip c-part">Partial</span></span></div>
+          <div role="row"><b role="cell">A soul that keeps improving</b><span role="cell"><span class="lab">Duet</span>No personality or self-improvement mentioned on the product page.</span><span role="cell"><span class="lab">Wren</span>A short persona file loads in every session, and a cheap reviewer saves one lesson before each context reset, so Wren gets better week by week. Ideas borrowed openly from <a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noreferrer">Hermes</a> and <a href="https://github.com/openclaw/openclaw" target="_blank" rel="noreferrer">OpenClaw</a>.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
+          <div role="row"><b role="cell">Moves money</b><span role="cell"><span class="lab">Duet</span>Asks before it sends messages or pays.</span><span role="cell"><span class="lab">Wren</span>Wren decides the portfolio and writes the trades onto an instruction sheet; you open it in ChatGPT through the Interactive Brokers connector and accept. It also says what to do with the crypto wallet. Next goal: a small wallet it trades on its own. A Telegram gate asks before other outward actions; no reply means no.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
+          <div role="row"><b role="cell">Connectors, inbox, calendar</b><span role="cell"><span class="lab">Duet</span>More than 6,000, including Gmail and Calendar.</span><span role="cell"><span class="lab">Wren</span>About 25 ChatGPT apps through Codex, plus our own server and memory tools. Inbox, calendar and Slack are left off on purpose; they're a switch away through ChatGPT when we want them.</span><span role="cell"><span class="wren-chip c-part">Partial</span></span></div>
         </div>
 
         <h2 class="mt-12 font-serif text-2xl text-slate-100">What it costs</h2>
@@ -236,7 +238,7 @@
         <ul class="mt-4 wren-list">
           <li><b>Expensive head, cheap hands.</b> The strong model plans and checks; cheaper models do the reading and building.</li>
           <li><b>A "done" is a claim.</b> Wren re-runs the check before it believes a helper, and so should you.</li>
-          <li><b>Add rules only after a repeat failure.</b> We compared Wren with <a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noreferrer">Hermes</a> and <a href="https://github.com/openclaw/openclaw" target="_blank" rel="noreferrer">OpenClaw</a> and adopted nothing new: every habit that fixed one of our repeat failures was already in Wren.</li>
+          <li><b>Borrow openly, then add only what fixes a repeat failure.</b> We borrowed openly from <a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noreferrer">Hermes</a> and <a href="https://github.com/openclaw/openclaw" target="_blank" rel="noreferrer">OpenClaw</a>: the persona, the lesson saved before each reset, the rules for what not to remember. After that, a new habit gets in only when it fixes a failure we keep hitting.</li>
           <li><b>Remove scaffolding as models improve.</b> Each new Claude model needs less hand-holding, so hooks and rules get re-tested and dropped once they stop paying.</li>
           <li><b>Own the box, own the gates.</b> You decide what runs, where, and what needs your yes first.</li>
         </ul>
