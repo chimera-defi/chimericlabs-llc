@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Research — ChimericLabs</title>
+    <meta
+      name="description"
+      content="Research from ChimericLabs: benchmarks and reports on AI coding agents, including DispatchBench."
+    />
+    <meta property="og:title" content="Research — ChimericLabs" />
+    <meta property="og:description" content="Research from ChimericLabs: benchmarks and reports on AI coding agents, including DispatchBench." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://chimericlabs.xyz/research.html" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="canonical" href="https://chimericlabs.xyz/research.html" />
+    <meta name="theme-color" content="#080e1d" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23080e1d'/><text x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='16' font-weight='600' fill='%2300c4ff'>CL</text></svg>" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Hanken+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      html { background: var(--bg); }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+      @media (max-width: 639px) {
+        .site-header-inner { padding-left: 1rem !important; padding-right: 1rem !important; }
+        .site-nav { gap: 0.5rem !important; }
+        .site-nav-link { font-size: 0.8125rem !important; }
+        .site-contact { padding-left: 0.75rem !important; padding-right: 0.75rem !important; }
+        .mobile-hide { display: none !important; }
+      }
+      @media (max-width: 319px) {
+        .site-brand::after { content: "CL"; font-size: 0.8125rem; }
+        .site-nav { gap: 0.375rem !important; }
+        .site-contact { padding-left: 0.625rem !important; padding-right: 0.625rem !important; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * { transition-duration: 0.01ms !important; }
+      }
+    </style>
+
+    <!-- Field Lab v3 style system (vendored from the lab-rig repo) -->
+    <link rel="stylesheet" href="assets/field-lab/tokens.css" />
+    <link rel="stylesheet" href="assets/field-lab/field-lab.css" />
+    <link rel="stylesheet" href="assets/site.css" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+      window.tailwind = window.tailwind || {};
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Hanken Grotesk"', '"Helvetica Neue"', "Arial", "sans-serif"],
+              serif: ["Archivo", '"Arial Narrow"', '"Helvetica Neue"', "Arial", "sans-serif"],
+              mono: ['"IBM Plex Mono"', "ui-monospace", "Menlo", "Consolas", "monospace"],
+            },
+          },
+          // Field Lab v3: the old slate palette is re-pointed
+          // at the theme tokens in assets/field-lab/tokens.css, so every existing
+          // utility class follows light/dark automatically.
+          colors: (() => {
+            const t = (name) => `rgb(var(--${name}-rgb) / <alpha-value>)`;
+            const scale = (map) => Object.fromEntries(Object.entries(map).map(([k, v]) => [k, t(v)]));
+            return {
+              transparent: "transparent",
+              current: "currentColor",
+              bg: t("bg"), surface: t("surface"), "surface-2": t("surface-2"),
+              ink: t("ink"), "ink-2": t("ink-2"), line: t("line"), hairline: t("hairline"),
+              accent: t("accent"), "accent-ink": t("accent-ink"), "on-accent": t("on-accent"),
+              slate: scale({ 50: "ink", 100: "ink", 200: "ink", 300: "ink-2", 400: "ink-2", 500: "ink-2",
+                600: "ink-2", 700: "line", 800: "surface-2", 900: "surface", 950: "on-accent" }),
+            };
+          })(),
+          borderRadius: { none: "0", sm: "2px", DEFAULT: "2px", md: "2px", lg: "0", xl: "0", "2xl": "0", full: "999px" },
+        },
+      };
+    </script>
+  </head>
+
+  <body class="bg-bg text-slate-200 font-sans antialiased">
+
+    <!-- Header -->
+    <header class="fixed inset-x-0 top-0 z-50 border-b border-ink bg-bg/95 backdrop-blur-xl">
+      <div class="site-header-inner mx-auto flex h-14 max-w-6xl items-center justify-between px-5 sm:px-8">
+        <a href="index.html" class="site-brand inline-flex min-h-11 min-w-11 items-center">ChimericLabs</a>
+        <nav class="site-nav flex items-center gap-5 sm:gap-7" aria-label="Primary">
+          <a href="portfolio.html" class="site-nav-link inline-flex min-h-11 min-w-11 items-center text-sm text-slate-400 hover:text-slate-200 transition-colors">Portfolio</a>
+          <a href="research.html" aria-current="page" class="site-nav-link inline-flex min-h-11 min-w-11 items-center text-sm text-slate-200 transition-colors">Research</a>
+          <a href="index.html#services" class="site-nav-link inline-flex min-h-11 min-w-11 items-center text-sm text-slate-400 hover:text-slate-200 transition-colors">Services</a>
+          <a
+            href="https://github.com/chimera-defi"
+            target="_blank"
+            rel="noreferrer"
+            class="site-nav-link mobile-hide hidden min-h-11 items-center text-sm text-slate-400 hover:text-slate-200 transition-colors sm:inline-flex"
+            >GitHub</a
+          >
+          <a
+            href="mailto:chimera_defi@protonmail.com"
+            class="site-nav-link site-contact fl-btn"
+            >Contact</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <main class="pt-14">
+      <section class="border-b border-line" aria-labelledby="research-heading">
+        <div class="mx-auto max-w-6xl px-5 sm:px-8 py-[calc(var(--section-y)/2)]">
+          <h1 id="research-heading" class="break-words font-serif text-3xl sm:text-5xl text-slate-50 text-balance max-w-lg">Research</h1>
+          <p class="mt-5 text-slate-400 leading-relaxed max-w-xl">Benchmarks and reports from our work with AI coding agents.</p>
+
+          <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <article class="flex flex-col gap-4 fl-card fl-card--link">
+              <div>
+                <span class="fl-label">Agent Benchmark · 2026-10</span>
+                <h2 class="mt-2 font-serif text-xl text-slate-100">DispatchBench</h2>
+              </div>
+              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
+                Which model and effort level should do the coding work? DispatchBench runs Claude and Codex configs on fresh problems and repo tasks. It reports pass rate, cost and time per pass, and picks the cheapest config that still passes.
+              </p>
+              <div class="flex flex-wrap items-center gap-x-5 gap-y-1 border-t border-line pt-4 text-sm">
+                <a href="dispatchbench/" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Read the report →</a>
+                <a href="https://github.com/chimera-defi/dispatchbench" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">Source on GitHub</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-line py-8">
+      <div
+        class="mx-auto max-w-6xl px-5 sm:px-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+      >
+        <span class="font-mono text-xs text-slate-600 tracking-wider">ChimericLabs LLC · Wyoming</span>
+        <div class="flex flex-wrap gap-6">
+          <a href="index.html" class="inline-flex min-h-11 min-w-11 items-center text-xs text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Home</a>
+          <a
+            href="https://github.com/chimera-defi"
+            target="_blank"
+            rel="noreferrer"
+            class="inline-flex min-h-11 min-w-11 items-center text-xs text-ink underline underline-offset-4 decoration-1 hover:decoration-2"
+            >GitHub</a
+          >
+          <a
+            href="https://github.com/chimera-defi/chimericlabs-llc"
+            target="_blank"
+            rel="noreferrer"
+            class="inline-flex min-h-11 min-w-11 items-center text-xs text-ink underline underline-offset-4 decoration-1 hover:decoration-2"
+            >Source</a
+          >
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
