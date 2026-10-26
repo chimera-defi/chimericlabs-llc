@@ -12,7 +12,8 @@
     <meta property="og:description" content="How we built Wren, a home-made Claude Duet: Claude Code on a personal server, reachable from a phone or ChatGPT, handing work to cheaper models and other agents." />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://chimericlabs.xyz/research/wren/" />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content="https://chimericlabs.xyz/research/wren/wren-map.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="canonical" href="https://chimericlabs.xyz/research/wren/" />
     <meta name="theme-color" content="#080e1d" />
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23080e1d'/><text x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='16' font-weight='600' fill='%2300c4ff'>CL</text></svg>" />
@@ -141,6 +142,11 @@
         <p class="mt-5 text-lg text-slate-300 leading-relaxed">
           Anthropic's Claude Duet is a background agent that checks in each morning, does long jobs on its own and asks before it sends or pays. It's waitlist-only for now. We had already built most of the same thing at home, out of Claude Code, a personal server and a handful of open tools. We call it Wren. This is what it's made of, how it compares, and what it taught us.
         </p>
+
+        <figure class="mt-8 -mx-5 sm:mx-0">
+          <a href="wren-map.webp" target="_blank" rel="noopener"><img src="wren-map.webp" width="1536" height="492" loading="eager" decoding="async" class="w-full h-auto sm:rounded border border-[color:var(--line,rgba(127,127,127,.25))]" alt="Diagram of Wren: Claude, Codex, ChatGPT, Haiku and Fable on the left feed Wren, the orchestrator and agent bus in the middle; specialised agents sit above, a workflow engine of scheduled jobs, delegation, verification and checkpoints below; tools and connectors and the phone, desktop and ChatGPT interfaces sit on the right."></a>
+          <figcaption class="mt-2 px-5 sm:px-0 text-sm text-slate-400">Wren at a glance. Drawn by ChatGPT, checked and corrected by Wren. Tap to enlarge.</figcaption>
+        </figure>
 
         <h2 class="mt-12 font-serif text-2xl text-slate-100">How it grew</h2>
         <ul class="mt-4 wren-list">
