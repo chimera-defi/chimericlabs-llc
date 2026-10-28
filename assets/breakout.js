@@ -45,7 +45,7 @@ const el = (tag, className, text, attrs = {}) => {
   for (const [name, value] of Object.entries(attrs)) node.setAttribute(name, value);
   return node;
 };
-const tag = (text, extra = "") => el("span", `ds-tag ${extra}`.trim(), text);
+const tag = (text, extra = "tag-neutral") => el("span", `tag ${extra}`, text);
 const button = (text, className, onClick, attrs = {}) => {
   const node = el("button", className, text, { type: "button", ...attrs });
   node.addEventListener("click", onClick);
@@ -78,12 +78,12 @@ const renderTokens = () => keepFocus(() => {
   for (const t of TOKENS) {
     const raised = state.raised[t.id];
     const pct = Math.round((raised / t.goal) * 100);
-    const card = el("article", "ds-card");
-    if (t.id === state.tokenId) card.classList.add("ds-card--selected");
-    if (t.id === state.flash) card.classList.add("ds-card--flash");
+    const card = el("article", "card");
+    if (t.id === state.tokenId) card.classList.add("card-selected");
+    if (t.id === state.flash) card.classList.add("card-flash");
 
     const head = el("div", "ds-row");
-    head.append(el("strong", "", t.artist), tag(`$${t.ticker}`), tag(`${t.share}% of profits`, "ds-tag--accent"));
+    head.append(el("strong", "", t.artist), tag(`$${t.ticker}`), tag(`${t.share}% of profits`, "tag-accent"));
     if (t.id === state.flash) head.append(el("span", "ds-num ds-muted", `+$${state.flashAmount.toLocaleString("en-US")}`));
 
     const meta = el("div", "ds-meta ds-num");
@@ -94,12 +94,12 @@ const renderTokens = () => keepFocus(() => {
     bar.append(fill);
 
     const body = el("div");
-    body.append(head, el("p", "ds-card-body", `${t.album} · releases ${t.release}`), meta, bar);
+    body.append(head, el("p", "card-body", `${t.album} · releases ${t.release}`), meta, bar);
     const listing = el("div", "ds-listing");
     listing.append(el("div", "ds-avatar", t.initials, { "aria-hidden": "true" }), body);
 
     const actions = el("div", "ds-row");
-    actions.append(button("Run the numbers", "ds-btn", () => selectToken(t.id), { "aria-label": `Run the numbers for ${t.artist}`, "data-focus": `tok-${t.id}` }));
+    actions.append(button("Invest", "btn btn-primary", () => selectToken(t.id), { "aria-label": `Invest in ${t.artist} (simulation)`, "data-focus": `tok-${t.id}` }));
     card.append(listing, actions);
     tokenList.append(card);
   }
@@ -136,7 +136,7 @@ const selectToken = (id) => {
 };
 
 for (const [index, label] of ["$100K", "$500K", "$2M"].entries()) {
-  const node = button(label, "ds-btn", () => {
+  const node = button(label, "btn btn-secondary btn-toggle", () => {
     state.scenario = index;
     setPressed(scenarioButtons, node);
     renderInvest();
@@ -252,10 +252,10 @@ const renderStudio = () => keepFocus(() => {
     const key = `${state.studioTab}:${i}`;
     const copy = el("div");
     copy.style.flex = "1 1 220px";
-    copy.append(el("strong", "", title), el("p", "ds-card-body", detail), el("div", "ds-muted ds-mono", `→ ${target}`));
+    copy.append(el("strong", "", title), el("p", "card-body", detail), el("div", "ds-muted", `→ ${target}`));
     const actions = el("div", "ds-row");
-    if (state.applied.has(key)) actions.append(tag("Applied (mock)", "ds-tag--accent"));
-    actions.append(button(state.applied.has(key) ? "Undo" : "Apply", "ds-btn", () => {
+    if (state.applied.has(key)) actions.append(tag("Applied (mock)", "tag-accent"));
+    actions.append(button(state.applied.has(key) ? "Undo" : "Apply", "btn btn-secondary", () => {
       if (state.applied.has(key)) state.applied.delete(key); else state.applied.add(key);
       renderStudio();
     }, { "data-focus": `studio-${key}` }));
@@ -265,7 +265,7 @@ const renderStudio = () => keepFocus(() => {
   }
 });
 for (const name of Object.keys(STUDIO)) {
-  const node = button(name[0].toUpperCase() + name.slice(1), "ds-btn", () => {
+  const node = button(name[0].toUpperCase() + name.slice(1), "btn btn-secondary btn-toggle", () => {
     state.studioTab = name;
     setPressed(studioButtons, node);
     renderStudio();
@@ -285,7 +285,7 @@ const sideButtons = [];
 const renderMarkets = () => keepFocus(() => {
   marketList.replaceChildren();
   for (const m of MARKETS) {
-    const card = el("article", `ds-card${m.id === state.marketId ? " ds-card--selected" : ""}`);
+    const card = el("article", `card${m.id === state.marketId ? " card-selected" : ""}`);
     const head = el("div", "ds-row");
     head.append(el("strong", "", m.artist), tag(m.genre));
     const meta = el("div", "ds-meta ds-num");
@@ -295,13 +295,13 @@ const renderMarkets = () => keepFocus(() => {
     fill.style.setProperty("--w", `${m.yes}%`);
     bar.append(fill);
     const body = el("div");
-    body.append(head, el("p", "ds-card-body", m.question), meta, bar);
+    body.append(head, el("p", "card-body", m.question), meta, bar);
     const listing = el("div", "ds-listing");
     listing.append(el("div", "ds-avatar", m.initials, { "aria-hidden": "true" }), body);
     const actions = el("div", "ds-cols-2");
     actions.append(
-      button(`Yes ${m.yes}¢`, "ds-btn", () => selectMarket(m.id, "yes"), { "data-focus": `yes-${m.id}` }),
-      button(`No ${100 - m.yes}¢`, "ds-btn", () => selectMarket(m.id, "no"), { "data-focus": `no-${m.id}` }),
+      button(`Yes ${m.yes}¢`, "btn btn-primary", () => selectMarket(m.id, "yes"), { "data-focus": `yes-${m.id}` }),
+      button(`No ${100 - m.yes}¢`, "btn btn-secondary", () => selectMarket(m.id, "no"), { "data-focus": `no-${m.id}` }),
     );
     card.append(listing, actions);
     marketList.append(card);

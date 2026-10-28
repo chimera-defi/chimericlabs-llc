@@ -1,0 +1,46 @@
+/* Breakout theme — maroon on Nocturne.
+   Load AFTER nocturne-styles.css. Variables only; no class restyling.
+
+   Method: the accent ramp was generated in OKLCH at Nocturne's own lightness per
+   step (100 → L .971 … 900 → L .290), hue 16° — between wine (#722f37, 15°) and
+   classic maroon (#800020, 18.6°) — with chroma raised per step and clipped to the
+   sRGB gamut. The 500 base sits at L .68 so accent button labels clear ~4.3:1 on
+   cards; a true maroon (#800020) as the line colour reads ~1.5:1 on this ground
+   and disappears. Maroon therefore lives in 700–900, the tag fills, the tinted
+   nodes and the hero glow; the line accent is the same hue, lit.
+
+   Contrast (WCAG) against bg #1d1f27 / surface #2b2d37:
+     100 15.1/12.6 · 200 13.2/11.0 · 300 10.8/9.0 · 400 7.8/6.5 · 500 5.2/4.3
+     600 3.5/2.9 · 700 2.3/1.9 · 800 1.5/1.3 · 900 1.1/1.1
+     accent-100 on accent-800 tag: 9.8 · accent-200 on accent-900 tint: 11.8 */
+:root{
+  --color-bg:#1d1f27;          /* lifted from Nocturne #161826 — "brighter, less purple" */
+  --color-surface:#2b2d37;     /* lifted from #232532 */
+
+  --color-accent:#f65b6f;      /* lines, outlines, button labels, arrows, status dot */
+  --color-accent-100:#fff2f2;  /* text on .tag-accent */
+  --color-accent-200:#ffdfe0;  /* text on 900 tints; link hover */
+  --color-accent-300:#fec2c5;  /* accent at paragraph size: links, payout values, live labels */
+  --color-accent-400:#fe949b;  /* kickers, step numbers, pressed state on dark */
+  --color-accent-500:#f65b6f;
+  --color-accent-600:#cb4457;  /* hover depth via color-mix; never text */
+  --color-accent-700:#a02e40;  /* maroon proper — presence fills at slide scale only */
+  --color-accent-800:#78182a;  /* tag fills, hero glow source */
+  --color-accent-900:#4f121b;  /* tinted fills: avatar tiles, core diagram nodes, card flash */
+
+  /* Nocturne is a mono scheme; accent-2 mirrors accent so both resolve. */
+  --color-accent-2:var(--color-accent);
+  --color-accent-2-100:#fff2f2;--color-accent-2-200:#ffdfe0;--color-accent-2-300:#fec2c5;--color-accent-2-400:#fe949b;--color-accent-2-500:#f65b6f;--color-accent-2-600:#cb4457;--color-accent-2-700:#a02e40;--color-accent-2-800:#78182a;--color-accent-2-900:#4f121b;
+
+  /* Saturated "presence" ground — deck dividers / stat bands, never interface fills. */
+  --color-section:#650c1f;
+  --color-section-glow:#822a36;
+  --color-section-ghost:#9e4b53;
+}
+body{
+  margin:0;
+  background:radial-gradient(1200px 720px at 82% -160px,color-mix(in srgb,var(--color-accent-800) 70%,transparent),transparent 60%),var(--color-bg);
+  text-wrap:pretty;
+}
+a{color:var(--color-accent-300)}
+a:hover{color:var(--color-accent-200)}
