@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Breakout (concept mock) — ChimericLabs</title>
+    <meta name="description" content="Breakout is a ChimericLabs concept mock: a launchpad where artists tokenize a share of album profits. Every number, name and term on the page is an invented placeholder." />
+    <meta property="og:title" content="Breakout (concept mock) — ChimericLabs" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://chimericlabs.xyz/breakout.html" />
+    <link rel="canonical" href="https://chimericlabs.xyz/breakout.html" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Hanken+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+
+    />
+
+    <style>
+      html { background: var(--bg); }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+      @media (max-width: 639px) {
+        .site-header-inner { padding-left: 1rem !important; padding-right: 1rem !important; }
+        .site-nav { gap: 0.5rem !important; }
+        .site-nav-link { font-size: 0.8125rem !important; }
+        .site-contact { padding-left: 0.75rem !important; padding-right: 0.75rem !important; }
+        .mobile-hide { display: none !important; }
+      }
+      @media (max-width: 319px) {
+        .site-brand::after { content: "CL"; font-size: 0.8125rem; }
+        .site-nav { gap: 0.375rem !important; }
+        .site-contact { padding-left: 0.625rem !important; padding-right: 0.625rem !important; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * { transition-duration: 0.01ms !important; }
+      }
+    </style>
+
+    <link rel="stylesheet" href="assets/field-lab/tokens.css" />
+    <link rel="stylesheet" href="assets/field-lab/field-lab.css" />
+    <link rel="stylesheet" href="assets/site.css" />
+    <link rel="stylesheet" href="design-system/styles.css" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+      window.tailwind = window.tailwind || {};
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Hanken Grotesk"', '"Helvetica Neue"', "Arial", "sans-serif"],
+              serif: ["Archivo", '"Arial Narrow"', '"Helvetica Neue"', "Arial", "sans-serif"],
+              mono: ['"IBM Plex Mono"', "ui-monospace", "Menlo", "Consolas", "monospace"],
+            },
+          },
+          // Field Lab v3: the old slate palette is re-pointed
+          // at the theme tokens in assets/field-lab/tokens.css, so every existing
+          // utility class follows light/dark automatically.
+          colors: (() => {
+            const t = (name) => `rgb(var(--${name}-rgb) / <alpha-value>)`;
+            const scale = (map) => Object.fromEntries(Object.entries(map).map(([k, v]) => [k, t(v)]));
+            return {
+              transparent: "transparent",
+              current: "currentColor",
+              bg: t("bg"), surface: t("surface"), "surface-2": t("surface-2"),
+              ink: t("ink"), "ink-2": t("ink-2"), line: t("line"), hairline: t("hairline"),
+              band: t("band"), "band-ink": t("band-ink"), "band-ink-2": t("band-ink-2"), "band-line": t("band-line"),
+              accent: t("accent"), "accent-ink": t("accent-ink"), "on-accent": t("on-accent"),
+              slate: scale({ 50: "ink", 100: "ink", 200: "ink", 300: "ink-2", 400: "ink-2", 500: "ink-2",
+                600: "ink-2", 700: "line", 800: "surface-2", 900: "surface", 950: "on-accent" }),
+            };
+          })(),
+          borderRadius: { none: "0", sm: "2px", DEFAULT: "2px", md: "2px", lg: "0", xl: "0", "2xl": "0", full: "999px" },
+        },
+      };
+    </script>
+  </head>
+
+  <body class="bg-bg text-slate-200 font-sans antialiased">
+
+    <!-- Header -->
+    <header class="fixed inset-x-0 top-0 z-50 border-b border-ink bg-bg/95 backdrop-blur-xl">
+      <div class="site-header-inner mx-auto flex h-14 max-w-6xl items-center justify-between px-5 sm:px-8">
+        <a href="./" class="site-brand inline-flex min-h-11 min-w-11 items-center">ChimericLabs</a>
+        <nav class="site-nav flex items-center gap-5 sm:gap-7" aria-label="Primary">
+          <a href="portfolio.html" class="site-nav-link inline-flex min-h-11 min-w-11 items-center text-sm text-slate-400 hover:text-slate-200 transition-colors">Portfolio</a>
+          <a href="research.html" class="site-nav-link inline-flex min-h-11 min-w-11 items-center text-sm text-slate-400 hover:text-slate-200 transition-colors">Research</a>
+          <a href="#services" class="site-nav-link inline-flex min-h-11 min-w-11 items-center text-sm text-slate-400 hover:text-slate-200 transition-colors">Services</a>
+          <a
+            href="https://github.com/chimera-defi"
+            target="_blank"
+            rel="noreferrer"
+            class="site-nav-link mobile-hide hidden min-h-11 items-center text-sm text-slate-400 hover:text-slate-200 transition-colors sm:inline-flex"
+            >GitHub</a
+          >
+          <a
+            href="mailto:chimera_defi@protonmail.com"
+            class="site-nav-link site-contact fl-btn"
+            >Contact</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="ds-concept ds-wrap">
+        <div class="fl-notice" role="note">
+          <b>CONCEPT</b>
+          <p>Breakout is a ChimericLabs design concept, not a live product. It moves no money, connects no wallet and trades nothing. Every artist, token, price, fee, term, wallet name and chart figure is an invented placeholder.</p>
+        </div>
+      </div>
+
+      <section class="ds-hero">
+        <div class="ds-wrap">
+          <span class="ds-kicker">Concept mock · placeholder data</span>
+          <h1 class="ds-h1"><span>Own a piece</span><span class="ds-accent">of the next record.</span></h1>
+          <p class="ds-lede">Artists launch a token before their album drops. When it earns, a contracted share of the profits pays out to every holder. In this mock you can run the numbers on four invented releases.</p>
+          <div class="ds-row" style="margin-top: 28px">
+            <a href="#invest" class="fl-btn fl-btn--primary">Browse the mock launches</a>
+            <a href="#artists" class="ds-btn ds-btn--ghost">See the artist side</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="invest" class="ds-section" style="padding-top: 28px">
+        <div class="ds-wrap">
+          <span class="ds-kicker">Launchpad</span>
+          <div class="ds-row" style="justify-content: space-between; align-items: flex-end; gap: 32px; margin-bottom: 28px">
+            <h2 class="ds-title">Open raises</h2>
+            <div style="flex: 0 1 380px; min-width: 260px">
+              <div class="ds-row" style="gap: 8px; margin-bottom: 6px">
+                <span class="ds-dot" aria-hidden="true"></span>
+                <span class="fl-label">Simulated activity</span>
+                <button type="button" id="feed-toggle" class="ds-btn ds-btn--ghost" aria-pressed="false" style="margin-left: auto; min-height: 44px">Pause live feed</button>
+              </div>
+              <ul id="feed" class="ds-feed" aria-label="Simulated activity feed (placeholder wallet names)"></ul>
+            </div>
+          </div>
+          <div class="ds-split">
+            <div id="token-list" class="ds-stack"></div>
+            <aside class="ds-card ds-card--raised ds-card--sticky" aria-label="Return calculator">
+              <div>
+                <span class="ds-card-kicker">Calculator · simulation</span>
+                <h3 id="inv-title" class="ds-card-title"></h3>
+                <p id="inv-terms" class="ds-card-body"></p>
+              </div>
+              <div class="ds-field">
+                <label for="inv-amount">Amount (USDC, play money)</label>
+                <input id="inv-amount" class="ds-input ds-num" type="number" min="1" value="1000" />
+              </div>
+              <div class="ds-row">
+                <button type="button" class="ds-btn ds-btn--ghost" data-add-inv="50">+50</button>
+                <button type="button" class="ds-btn ds-btn--ghost" data-add-inv="250">+250</button>
+                <button type="button" class="ds-btn ds-btn--ghost" data-add-inv="1000">+1,000</button>
+              </div>
+              <div>
+                <span class="ds-muted" style="font-size: 13px" id="scenario-label">If the album nets…</span>
+                <div id="inv-scenarios" class="ds-row" role="group" aria-labelledby="scenario-label" style="margin-top: 8px"></div>
+              </div>
+              <dl id="inv-readout" class="ds-kv"></dl>
+              <button type="button" id="inv-cta" class="ds-btn ds-btn--primary ds-btn--block"></button>
+              <p id="inv-done" class="ds-card-body" role="status" hidden>Simulated only. No tokens were minted and no money moved.</p>
+              <p class="ds-muted" style="margin: 0; font-size: 12px; line-height: 18px">Terms, fees and payout periods shown are placeholders for the concept.</p>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <hr class="ds-rule" />
+
+      <section id="artists" class="ds-section">
+        <div class="ds-wrap ds-split ds-split--wide">
+          <div>
+            <span class="ds-kicker">For artists</span>
+            <h2 class="ds-title">Fund the record with the people who’ll play it.</h2>
+            <p class="ds-lede" style="max-width: 46ch">The concept lets an artist launch a token against a release and keep the masters, or list a milestone as a prediction market and earn a small fee on trades. Both flows below are dummy forms.</p>
+          </div>
+          <div class="ds-card">
+            <div class="ds-cols-2" role="group" aria-label="Form mode">
+              <button type="button" class="ds-btn" data-mode="token">Launch a token</button>
+              <button type="button" class="ds-btn" data-mode="market">List a market</button>
+            </div>
+            <div id="listed" hidden>
+              <span class="ds-tag ds-tag--accent">Mock submit</span>
+              <h3 id="listed-title" class="ds-card-title" style="margin-top: 12px"></h3>
+              <p class="ds-card-body" role="status">Nothing was sent anywhere. This form only changes the page.</p>
+              <button type="button" id="listed-reset" class="ds-btn ds-btn--ghost" style="margin-top: 16px">Start another</button>
+            </div>
+            <div id="form-token" class="ds-stack" style="gap: 20px">
+              <div class="ds-cols-2">
+                <div class="ds-field"><label for="f-artist">Artist name</label><input id="f-artist" class="ds-input" placeholder="Invented artist" /></div>
+                <div class="ds-field"><label for="f-ticker">Ticker</label><input id="f-ticker" class="ds-input" placeholder="DEMO" /></div>
+              </div>
+              <div class="ds-cols-2">
+                <div class="ds-field"><label for="f-album">Album / release</label><input id="f-album" class="ds-input" placeholder="Working title" /></div>
+                <div class="ds-field"><label for="f-date">Release date</label><input id="f-date" class="ds-input" type="date" value="2027-03-14" /></div>
+              </div>
+              <div class="ds-cols-2">
+                <div class="ds-field"><label for="goal">Raise goal (USDC)</label><input id="goal" class="ds-input ds-num" type="number" value="100000" /></div>
+                <div class="ds-field"><label for="share">Profit share to holders (%)</label><input id="share" class="ds-input ds-num" type="number" min="1" max="50" value="15" /></div>
+              </div>
+              <p id="consequence" class="ds-card-body" style="margin: 0"></p>
+              <button type="button" class="ds-btn ds-btn--primary" data-submit="token">Submit (mock)</button>
+            </div>
+            <div id="form-market" class="ds-stack" style="gap: 20px" hidden>
+              <div class="ds-field"><label for="m-artist">Artist name</label><input id="m-artist" class="ds-input" placeholder="Invented artist" /></div>
+              <div class="ds-field"><label for="m-milestone">Milestone</label>
+                <select id="m-milestone" class="ds-input">
+                  <option>Monthly listeners pass a target</option>
+                  <option>Chart entry</option>
+                  <option>Headline tour sells out</option>
+                  <option>Signs with a label</option>
+                </select>
+              </div>
+              <div class="ds-cols-2">
+                <div class="ds-field"><label for="m-target">Target</label><input id="m-target" class="ds-input" placeholder="1,000,000" /></div>
+                <div class="ds-field"><label for="m-date">Resolves on</label><input id="m-date" class="ds-input" type="date" value="2027-06-30" /></div>
+              </div>
+              <p class="ds-card-body" style="margin: 0">Resolution source: a placeholder data provider.</p>
+              <button type="button" class="ds-btn ds-btn--primary" data-submit="market">Submit (mock)</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="ds-rule" />
+
+      <section id="studio" class="ds-section">
+        <div class="ds-wrap">
+          <span class="ds-kicker">Studio</span>
+          <h2 class="ds-title">An AI co-producer inside the DAW</h2>
+          <p class="ds-lede" style="margin-bottom: 28px; max-width: 60ch">A plugin concept that reads the session, retrieves from songs the artist likes, and suggests moves across composition, production, mixing and mastering. The suggestions here are scripted, not model output.</p>
+          <div class="ds-card ds-card--raised ds-card--flush">
+            <div class="ds-bar-row">
+              <div class="ds-row"><strong>Breakout Studio</strong><span class="ds-tag">DAW plugin (concept)</span></div>
+              <div class="ds-row ds-muted" style="font-size: 13px"><span class="ds-dot" aria-hidden="true"></span><span>Demo session · 92 BPM · placeholder project</span></div>
+            </div>
+            <div id="studio-tabs" class="ds-bar-row" style="justify-content: flex-start" role="group" aria-label="Studio module"></div>
+            <div class="ds-seams">
+              <div id="studio-list" class="ds-stack" style="flex: 1 1 420px"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="ds-rule" />
+
+      <section id="markets" class="ds-section">
+        <div class="ds-wrap">
+          <span class="ds-kicker">Prediction markets · simulated</span>
+          <h2 class="ds-title">Or call it: who breaks next</h2>
+          <p class="ds-lede" style="margin-bottom: 28px">Yes/No pools on artist milestones, with a small placeholder fee to the artist on each trade. Prices and volume are invented and the buttons below only run arithmetic.</p>
+          <div class="ds-split">
+            <div id="market-list" class="ds-stack"></div>
+            <aside class="ds-card ds-card--raised ds-card--sticky" aria-label="Trade calculator">
+              <div>
+                <span class="ds-card-kicker">Trade · simulation</span>
+                <h3 id="mkt-title" class="ds-card-title"></h3>
+                <p id="mkt-question" class="ds-card-body"></p>
+              </div>
+              <div class="ds-cols-2" role="group" aria-label="Side">
+                <button type="button" id="mkt-yes" class="ds-btn"></button>
+                <button type="button" id="mkt-no" class="ds-btn"></button>
+              </div>
+              <div class="ds-field">
+                <label for="mkt-amount">Amount (USDC, play money)</label>
+                <input id="mkt-amount" class="ds-input ds-num" type="number" min="1" value="50" />
+              </div>
+              <div class="ds-row">
+                <button type="button" class="ds-btn ds-btn--ghost" data-add-mkt="10">+10</button>
+                <button type="button" class="ds-btn ds-btn--ghost" data-add-mkt="50">+50</button>
+                <button type="button" class="ds-btn ds-btn--ghost" data-add-mkt="100">+100</button>
+              </div>
+              <dl id="mkt-readout" class="ds-kv"></dl>
+              <button type="button" id="mkt-cta" class="ds-btn ds-btn--primary ds-btn--block"></button>
+              <p id="mkt-done" class="ds-card-body" role="status" hidden>Simulated only. No order was placed.</p>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <hr class="ds-rule" />
+
+      <section id="how" class="ds-section">
+        <div class="ds-wrap">
+          <span class="ds-kicker">Architecture</span>
+          <h2 class="ds-title" style="margin-bottom: 36px">Launchpad: from token to royalty payout</h2>
+          <div class="ds-diagram">
+            <svg viewBox="0 0 1120 230" role="img" aria-labelledby="dia-t dia-d">
+              <title id="dia-t">Launchpad flow</title>
+              <desc id="dia-d">Artist launches a token, holders buy it, proceeds go to an escrow, royalties flow back and are split pro rata to holders.</desc>
+              <defs>
+                <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="ds-arrow"></path></marker>
+              </defs>
+              <g marker-end="url(#arr)">
+                <path class="ds-edge" d="M240 70H316"></path>
+                <path class="ds-edge" d="M520 70H596"></path>
+                <path class="ds-edge" d="M800 70H876"></path>
+                <path class="ds-edge ds-edge--dash" d="M980 116V170H700V116"></path>
+              </g>
+              <g>
+                <rect class="ds-node" x="40" y="25" width="200" height="90"></rect>
+                <text class="ds-svg-title" x="60" y="63">Artist</text><text class="ds-svg-sub" x="60" y="87">signs a revenue share</text>
+                <rect class="ds-node" x="320" y="25" width="200" height="90"></rect>
+                <text class="ds-svg-title" x="340" y="63">Token sale</text><text class="ds-svg-sub" x="340" y="87">holders fund the raise</text>
+                <rect class="ds-node ds-node--key" x="600" y="25" width="200" height="90"></rect>
+                <text class="ds-svg-title" x="620" y="63">Payout pool</text><text class="ds-svg-sub" x="620" y="87">royalty statements in</text>
+                <rect class="ds-node" x="880" y="25" width="200" height="90"></rect>
+                <text class="ds-svg-title" x="900" y="63">Holders</text><text class="ds-svg-sub" x="900" y="87">pro rata payouts</text>
+              </g>
+            </svg>
+          </div>
+          <ol class="ds-steps">
+            <li><b>Sign</b>Artist and platform agree a share.</li>
+            <li><b>Launch</b>Token goes on sale before release.</li>
+            <li><b>Fund</b>Raise closes at the goal.</li>
+            <li><b>Earn</b>Royalty statements land.</li>
+            <li><b>Pay</b>Holders are paid pro rata.</li>
+          </ol>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-line py-8">
+      <div
+        class="mx-auto max-w-6xl px-5 sm:px-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+      >
+        <span class="font-mono text-xs text-slate-600 tracking-wider">ChimericLabs LLC · Wyoming</span>
+        <div class="flex flex-wrap gap-6">
+          <a href="portfolio.html" class="inline-flex min-h-11 min-w-11 items-center text-xs text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Portfolio</a>
+          <a href="research.html" class="inline-flex min-h-11 min-w-11 items-center text-xs text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Research</a>
+          <a
+            href="https://github.com/chimera-defi"
+            target="_blank"
+            rel="noreferrer"
+            class="inline-flex min-h-11 min-w-11 items-center text-xs text-ink underline underline-offset-4 decoration-1 hover:decoration-2"
+            >GitHub</a
+          >
+          <a
+            href="https://github.com/chimera-defi/chimericlabs-llc"
+            target="_blank"
+            rel="noreferrer"
+            class="inline-flex min-h-11 min-w-11 items-center text-xs text-ink underline underline-offset-4 decoration-1 hover:decoration-2"
+            >Source</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="assets/breakout.js"></script>
+  </body>
+</html>

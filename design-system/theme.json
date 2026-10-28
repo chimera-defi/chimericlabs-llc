@@ -1,0 +1,31 @@
+{
+  "name": "Chimeric Labs",
+  "base": "Nocturne structure on Field Lab v3 tokens",
+  "tokenSource": "assets/field-lab/tokens.css (generated; the only file allowed to hold colour literals)",
+  "palette": {
+    "bg": "--bg",
+    "surface": "--surface",
+    "surface2": "--surface-2",
+    "text": "--ink",
+    "textMuted": "--ink-2",
+    "border": "--line",
+    "decorativeGrid": "--hairline",
+    "accent": "--accent",
+    "accentText": "--accent-ink",
+    "onAccent": "--on-accent",
+    "alwaysDarkBand": "--band"
+  },
+  "themes": ["light (default)", "dark (prefers-color-scheme or data-theme)"],
+  "fonts": {
+    "display": "Archivo (condensed via font-stretch), 700-800",
+    "body": "Hanken Grotesk, 400-700",
+    "mono": "IBM Plex Mono, labels and figures"
+  },
+  "spacing": "--space-1 .. --space-9 (4px base)",
+  "radius": "square plates; --radius-sm 2px for controls; pills only for status",
+  "elevation": "hard offset stamp shadows, never blurred",
+  "layout": { "align": "left", "maxWidth": "1200px", "sidePadding": "clamp(20px, 5vw, 72px)", "sectionY": "clamp(56px, 9vw, 84px)" },
+  "buttons": "outlined; one filled accent action per view (fl-btn--primary)",
+  "accentRule": "accent is a line, dot or glow; never a flood; text uses --accent-ink",
+  "motion": "one easing (--ease); respect prefers-reduced-motion; pause off-screen work"
+}
