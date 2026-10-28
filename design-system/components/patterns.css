@@ -1,0 +1,117 @@
+/*
+ * Fable page patterns: the layouts Nocturne's component classes don't cover (listing + sticky panel,
+ * readout, feed, tool mock, steps, diagram, page shell). Built only from Fable variables, with no
+ * colour literals. Prefixed ds- so they never collide with Nocturne's .btn/.card/.tag/.input.
+ */
+:root {
+  --ds-max: 1200px;
+  --ds-pad: clamp(20px, 5vw, 72px);
+  --ds-section-y: clamp(56px, 9vw, 84px);
+  --ds-muted: var(--color-neutral-300);
+  --ds-ease: cubic-bezier(.2, .7, .2, 1);
+}
+
+/* ---- top bar: slim "back to the site" strip, first element of every page built on the system ---- */
+.ds-topbar { background: var(--color-surface); border-bottom: 1px solid var(--color-neutral-800); }
+.ds-topbar > div { max-width: var(--ds-max); margin: 0 auto; padding-inline: var(--ds-pad); }
+.ds-topbar a { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; font-size: 13px; color: var(--color-neutral-300); text-decoration: none; }
+.ds-topbar a:hover { color: var(--color-accent-300); }
+.ds-topbar a:focus-visible { outline-offset: -2px; }
+
+/* ---- page shell ---- */
+html { scroll-behavior: smooth; overflow-x: clip; }
+.ds-page { min-height: 100vh; -webkit-font-smoothing: antialiased; }
+:where(.ds-page) :where(h1, h2, h3, p, dl, ul, ol) { margin: 0; }
+.ds-page [hidden] { display: none; }
+.ds-header { position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--color-bg) 92%, transparent); backdrop-filter: blur(12px); }
+.ds-header .nav { max-width: var(--ds-max); margin: 0 auto; min-height: 56px; padding-inline: var(--ds-pad); gap: clamp(12px, 3vw, 28px); }
+.ds-header .nav a { display: inline-flex; align-items: center; min-height: 44px; }
+.ds-header .nav a.btn { min-height: 36px; }
+@media (max-width: 520px) { .ds-header .nav a.ds-optional { display: none; } .ds-header .nav { gap: 12px; } }
+.ds-footer { margin-top: var(--space-6); padding: var(--space-6) var(--ds-pad); }
+.ds-footer > div { max-width: var(--ds-max); margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-6); font-size: 13px; color: var(--ds-muted); }
+.ds-footer a { display: inline-flex; align-items: center; min-height: 44px; color: var(--color-text); }
+
+/* ---- layout ---- */
+.ds-wrap { max-width: var(--ds-max); margin: 0 auto; padding-inline: var(--ds-pad); }
+.ds-hero { padding-block: clamp(80px, 11vw, 120px) var(--ds-section-y); }
+.ds-section { padding-block: var(--ds-section-y); }
+.ds-split { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 28px; align-items: start; }
+.ds-split--wide { gap: 28px 72px; }
+.ds-stack { display: flex; flex-direction: column; gap: var(--space-6); }
+.ds-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4); }
+.ds-cols-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+.ds-notice { margin-top: 24px; padding: var(--space-4) var(--space-6); font-size: 14px; border-radius: var(--radius-md); background: var(--color-surface); box-shadow: var(--shadow-sm); }
+.ds-notice b { margin-right: var(--space-3); font-size: 11px; letter-spacing: .08em; padding: 2px 8px; border-radius: var(--radius-sm); background: var(--color-accent-800); color: var(--color-accent-100); }
+
+/* ---- type ---- */
+.ds-kicker { display: block; margin-bottom: 14px; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--color-accent-400); }
+.ds-title { margin: 0 0 8px; font-size: 32px; line-height: 1.12; letter-spacing: -.012em; }
+.ds-h1 { margin: 0 0 0 -.04em; font-size: clamp(40px, 6vw, 80px); line-height: 1.1; letter-spacing: -.015em; }
+.ds-h1 > span { display: block; }
+.ds-h1 .ds-accent { color: var(--color-accent); }
+.ds-lede { margin: 20px 0 0; max-width: 56ch; font-size: 15.5px; line-height: 28px; color: color-mix(in srgb, var(--color-text) 78%, transparent); }
+.ds-muted { color: var(--ds-muted); }
+.ds-num { font-feature-settings: 'tnum' 1; }
+
+/* ---- controls built on Nocturne's .btn ---- */
+/* Accent-500 labels are 4.3:1 on cards; paragraph-size labels use 400 (7.8:1) and keep the 500 outline. */
+.btn-primary { color: var(--color-accent-400); }
+.btn[aria-pressed="true"] { color: var(--color-accent); border-color: var(--color-accent); }
+.btn[aria-pressed="false"].btn-toggle { border-color: var(--color-divider); }
+.btn:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+.ds-btn-link { text-decoration: none; }
+.ds-dot { width: 8px; height: 8px; flex: none; border-radius: 50%; background: var(--color-accent); box-shadow: 0 0 8px var(--color-accent); }
+.card-selected { outline: 1px solid var(--color-accent); outline-offset: -1px; }
+.card-flash { background: color-mix(in srgb, var(--color-accent-900) 70%, var(--color-surface)); }
+.card-sticky { position: sticky; top: 72px; }
+.card-flush { padding: 0; gap: 0; overflow: hidden; }
+select.input { appearance: auto; }
+
+/* ---- listing ---- */
+.ds-avatar { flex: none; width: 44px; height: 44px; display: grid; place-items: center; border-radius: var(--radius-md); background: var(--color-accent-900); color: var(--color-accent-200); font-weight: 500; font-size: 15px; }
+.ds-listing { display: flex; gap: var(--space-6); align-items: flex-start; }
+.ds-listing > :last-child { flex: 1; min-width: 0; }
+.ds-meta { display: flex; flex-wrap: wrap; gap: 4px var(--space-6); margin-top: 10px; font-size: 13px; color: var(--ds-muted); font-feature-settings: 'tnum' 1; }
+.ds-meta > span { white-space: nowrap; }
+.ds-bar { height: 2px; margin-top: 10px; overflow: hidden; border-radius: 2px; background: var(--color-neutral-800); }
+.ds-bar > i { display: block; height: 100%; width: var(--w, 0%); background: var(--color-accent); transition: width .8s var(--ds-ease); }
+.card-flash .ds-bar > i { box-shadow: 0 0 8px var(--color-accent); }
+
+/* ---- readout ---- */
+.ds-kv { display: grid; grid-template-columns: 1fr auto; gap: 8px 16px; margin: 0; font-size: 14px; font-feature-settings: 'tnum' 1; }
+.ds-kv dt { color: var(--ds-muted); }
+.ds-kv dd { margin: 0; text-align: right; }
+.ds-kv .ds-final { color: var(--color-accent-300); font-weight: 500; }
+
+/* ---- feed: the newest row carries an accent edge; text keeps full contrast ---- */
+.ds-feed { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-feature-settings: 'tnum' 1; }
+.ds-feed li { display: flex; justify-content: space-between; gap: var(--space-4); padding-left: var(--space-3); border-left: 2px solid transparent; }
+.ds-feed li:first-child { border-left-color: var(--color-accent); }
+.ds-feed .ds-when { color: var(--ds-muted); }
+
+/* ---- tool mock: gap on a divider ground keeps seams when children wrap ---- */
+.ds-bar-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-6); padding: 14px 20px; border-bottom: 1px solid var(--color-neutral-800); }
+.ds-seams { display: flex; flex-wrap: wrap; gap: 1px; background: var(--color-neutral-800); }
+.ds-seams > * { flex: 1 1 280px; min-width: 0; padding: 20px; background: var(--color-surface); }
+.ds-suggest { display: flex; flex-wrap: wrap; gap: var(--space-6); justify-content: space-between; padding: 14px 16px; border-radius: var(--radius-md); background: var(--color-bg); border: 1px solid var(--color-neutral-800); }
+
+/* ---- steps and diagram ---- */
+.ds-steps { list-style: none; margin: var(--space-8) 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--space-8); counter-reset: step; }
+.ds-steps li { counter-increment: step; font-size: 14px; color: var(--ds-muted); }
+.ds-steps li::before { content: "0" counter(step); display: block; margin-bottom: 6px; font-size: 13px; color: var(--color-accent-400); }
+.ds-steps b { display: block; font-weight: 500; font-size: 15px; color: var(--color-text); }
+.ds-diagram { overflow-x: auto; }
+.ds-diagram svg { display: block; width: 100%; min-width: 760px; height: auto; font-family: var(--font-body); }
+.ds-node { fill: var(--color-surface); stroke: var(--color-neutral-700); }
+.ds-node--key { fill: var(--color-accent-900); stroke: var(--color-accent); }
+.ds-edge { fill: none; stroke: var(--color-accent); stroke-width: 1.25; }
+.ds-edge--dash { stroke-dasharray: 4 4; }
+.ds-arrow { fill: var(--color-accent); }
+.ds-svg-title { fill: var(--color-text); font: 500 16px var(--font-body); }
+.ds-svg-sub { fill: var(--color-neutral-300); font: 12px var(--font-body); }
+.ds-svg-sub--key { fill: var(--color-accent-200); }
+
+@media (prefers-reduced-motion: reduce) { .ds-bar > i { transition: none; } }
+
+.ds-label { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--color-accent-300); }
