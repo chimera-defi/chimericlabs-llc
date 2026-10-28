@@ -14,3 +14,4 @@
 - **Live things:** honour `prefers-reduced-motion`, pause off screen and when the tab is hidden, offer a pause button, keep focus on re-render (restore by a `data-focus` key), do not tear down listeners on `pagehide` (back-forward cache).
 - **Concept or demo pages:** a `.ds-notice` at the top, invented numbers marked as placeholders, no wallet, no real trading, no real people or organisations.
 - **Existing site pages** (`index.html`, `portfolio.html`, `research.html`) still use the Field Lab v3 tokens in `assets/field-lab/`; they have not been moved to Fable.
+- **Top bar:** a slim "← Chimeric Labs" link above the header, from `.ds-topbar` in `components/patterns.css`. Copy this markup as the first child of `<body class="ds-page">` on every Breakout and DispatchBench page: `<div class="ds-topbar"><div><a href="https://chimericlabs.xyz/">← Chimeric Labs</a></div></div>`.
