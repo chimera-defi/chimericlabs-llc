@@ -23,3 +23,9 @@ Light: bg `--bg`, surface `--surface`, ink `--ink`, muted `--ink-2`, line `--lin
 
 ## Components (design-system/styles.css)
 `ds-wrap ds-hero ds-section ds-split ds-stack ds-row ds-cols-2`, `ds-kicker ds-title ds-h1 ds-lede ds-muted ds-num`, `ds-rule`, `ds-btn (--primary --ghost --block)`, `ds-tag (--accent)`, `ds-dot`, `ds-field ds-input`, `ds-card (--selected --flash --raised --sticky --flush)`, `ds-avatar ds-listing ds-meta ds-bar`, `ds-kv`, `ds-feed`, `ds-seams ds-suggest ds-bar-row`, `ds-steps`, `ds-diagram` with `ds-node ds-edge ds-arrow ds-svg-*`. Worked example: `breakout.html` + `assets/breakout.js`.
+
+## Themes (variables only)
+The shared base is the site palette. A section can opt into a named theme file that redefines the same token names: `<html data-ds-theme="breakout">` plus `design-system/themes/breakout.css` (values from `themes/breakout.json`, the Nocturne v2 maroon export: accent #f65b6f at OKLCH hue 16, contrast table in the JSON). Swapping a theme changes variables only; no class is restyled. Theme-only roles: `--ds-tint`, `--ds-tint-ink`, `--ds-tag`, `--ds-tag-ink`, `--ds-glow`. The site's own pages keep the Field Lab palette.
+
+## No Tailwind on new pages
+New pages use `ds-` classes and CSS variables only (no CDN script, no framework). `ds-header` and `ds-footer` replace the Tailwind header and footer. Existing pages keep their Tailwind setup untouched.
