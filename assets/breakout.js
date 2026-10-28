@@ -51,6 +51,12 @@ const button = (text, className, onClick, attrs = {}) => {
   node.addEventListener("click", onClick);
   return node;
 };
+// A re-render replaces nodes, so hand keyboard focus back to the same control.
+const keepFocus = (render) => {
+  const key = document.activeElement?.dataset?.focus;
+  render();
+  if (key) $(`[data-focus="${key}"]`)?.focus();
+};
 const setPressed = (buttons, active) => {
   for (const node of buttons) node.setAttribute("aria-pressed", String(node === active));
 };
@@ -67,7 +73,7 @@ const investCta = $("#inv-cta");
 const investDone = $("#inv-done");
 const scenarioButtons = [];
 
-const renderTokens = () => {
+const renderTokens = () => keepFocus(() => {
   tokenList.replaceChildren();
   for (const t of TOKENS) {
     const raised = state.raised[t.id];
@@ -93,11 +99,11 @@ const renderTokens = () => {
     listing.append(el("div", "ds-avatar", t.initials, { "aria-hidden": "true" }), body);
 
     const actions = el("div", "ds-row");
-    actions.append(button("Run the numbers", "ds-btn", () => selectToken(t.id), { "aria-label": `Run the numbers for ${t.artist}` }));
+    actions.append(button("Run the numbers", "ds-btn", () => selectToken(t.id), { "aria-label": `Run the numbers for ${t.artist}`, "data-focus": `tok-${t.id}` }));
     card.append(listing, actions);
     tokenList.append(card);
   }
-};
+});
 
 const renderInvest = () => {
   const t = TOKENS.find((item) => item.id === state.tokenId);
@@ -240,7 +246,7 @@ $("#listed-reset").addEventListener("click", () => setMode(modeButtons.find((b) 
 const studioTabs = $("#studio-tabs");
 const studioList = $("#studio-list");
 const studioButtons = [];
-const renderStudio = () => {
+const renderStudio = () => keepFocus(() => {
   studioList.replaceChildren();
   for (const [i, [title, detail, target]] of STUDIO[state.studioTab].entries()) {
     const key = `${state.studioTab}:${i}`;
@@ -252,12 +258,12 @@ const renderStudio = () => {
     actions.append(button(state.applied.has(key) ? "Undo" : "Apply", "ds-btn", () => {
       if (state.applied.has(key)) state.applied.delete(key); else state.applied.add(key);
       renderStudio();
-    }));
+    }, { "data-focus": `studio-${key}` }));
     const row = el("div", "ds-suggest");
     row.append(copy, actions);
     studioList.append(row);
   }
-};
+});
 for (const name of Object.keys(STUDIO)) {
   const node = button(name[0].toUpperCase() + name.slice(1), "ds-btn", () => {
     state.studioTab = name;
@@ -276,7 +282,7 @@ const mktAmount = $("#mkt-amount");
 const mktReadout = $("#mkt-readout");
 const mktDone = $("#mkt-done");
 const sideButtons = [];
-const renderMarkets = () => {
+const renderMarkets = () => keepFocus(() => {
   marketList.replaceChildren();
   for (const m of MARKETS) {
     const card = el("article", `ds-card${m.id === state.marketId ? " ds-card--selected" : ""}`);
@@ -294,13 +300,13 @@ const renderMarkets = () => {
     listing.append(el("div", "ds-avatar", m.initials, { "aria-hidden": "true" }), body);
     const actions = el("div", "ds-cols-2");
     actions.append(
-      button(`Yes ${m.yes}¢`, "ds-btn", () => selectMarket(m.id, "yes")),
-      button(`No ${100 - m.yes}¢`, "ds-btn", () => selectMarket(m.id, "no")),
+      button(`Yes ${m.yes}¢`, "ds-btn", () => selectMarket(m.id, "yes"), { "data-focus": `yes-${m.id}` }),
+      button(`No ${100 - m.yes}¢`, "ds-btn", () => selectMarket(m.id, "no"), { "data-focus": `no-${m.id}` }),
     );
     card.append(listing, actions);
     marketList.append(card);
   }
-};
+});
 const renderTrade = () => {
   const m = MARKETS.find((item) => item.id === state.marketId);
   const price = state.side === "yes" ? m.yes : 100 - m.yes;
@@ -339,4 +345,6 @@ $("#mkt-cta").addEventListener("click", () => { mktDone.hidden = false; }, { sig
 renderMarkets();
 renderTrade();
 
-addEventListener("pagehide", () => { controller.abort(); clearInterval(timer); observer.disconnect(); }, { once: true });
+// Keep listeners across the back-forward cache; only the ticker stops while the page is hidden.
+addEventListener("pagehide", () => clearInterval(timer), { signal });
+addEventListener("pageshow", (e) => { if (e.persisted) syncTicker(); }, { signal });

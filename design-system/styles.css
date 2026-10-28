@@ -99,7 +99,9 @@
 
 /* ---- activity feed ---- */
 .ds-feed { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-variant-numeric: tabular-nums; }
-.ds-feed li { display: flex; justify-content: space-between; gap: var(--space-3); opacity: calc(1 - var(--i, 0) * .22); }
+.ds-feed li { display: flex; justify-content: space-between; gap: var(--space-3); padding-left: var(--space-2); border-left: 2px solid transparent; }
+/* Newest row is marked by an accent edge, not by fading text, so every row keeps full contrast. */
+.ds-feed li:first-child { border-left-color: var(--accent); }
 .ds-feed .ds-when { color: var(--ds-muted); }
 
 /* ---- plugin/tool mock: seams survive wrapping (gap on a divider-coloured ground) ---- */
