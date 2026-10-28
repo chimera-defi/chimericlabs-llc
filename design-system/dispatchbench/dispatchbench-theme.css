@@ -1,0 +1,32 @@
+/* DispatchBench on Fable. Link after fable/styles.css (or inline both into the page build).
+   Maps the page's existing hooks onto Fable tokens. Selectors are guesses at the
+   generator's class names — rename to match analysis/page.py output. */
+html{color-scheme:dark}
+body{color:var(--color-text);font-family:var(--font-body);font-size:15px;line-height:22px}
+main,.page{max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,72px)}
+h1{font-size:clamp(40px,6vw,80px);line-height:1.1;letter-spacing:-0.015em;font-weight:500}
+h2{font-size:32px;letter-spacing:-0.012em;font-weight:500;margin-top:84px}
+h3{font-size:24px;letter-spacing:-0.01em;font-weight:500}
+h2 .emoji,h3 .emoji{display:none}            /* Fable has no emoji; drop the 🏆 📊 🎯 prefixes */
+a{color:var(--color-accent-300)}a:hover{color:var(--color-accent-200)}
+nav.toc a{font-size:13px;color:var(--color-neutral-300)}nav.toc a:hover{color:var(--color-accent-300)}
+hr,.rule{border:0;height:1px;background:linear-gradient(to right,transparent,var(--color-divider) 48px calc(100% - 48px),transparent)}
+table{border-collapse:collapse;font-size:13px;font-feature-settings:'tnum' 1}
+th{text-align:left;color:var(--color-neutral-400);font-weight:500;border-bottom:1px solid var(--color-neutral-800)}
+td,th{padding:6px 10px}tbody tr+tr td{border-top:1px solid color-mix(in srgb,var(--color-text) 6%,transparent)}
+.pick,.verdict-pick{color:var(--color-accent-300)}
+.verdict-avoid{color:var(--color-neutral-400)}
+details>summary{cursor:pointer;color:var(--color-neutral-300)}
+.callout,.winner{background:var(--color-surface);border-radius:var(--radius-md);padding:16px;box-shadow:var(--shadow-sm)}
+/* charts */
+.chart{background:var(--color-surface);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm)}
+.chart text{fill:var(--color-neutral-500);font-size:11px}
+.chart .grid{stroke:var(--data-grid)}
+.pt-claude{fill:var(--data-claude)}.pt-codex{fill:var(--data-codex)}.pt-codex56{fill:var(--data-codex-old)}.pt-grok{fill:var(--data-grok)}.pt-pipeline{fill:var(--data-pipeline)}
+.frontier{stroke:var(--data-frontier);stroke-dasharray:5 4;fill:none}
+.frontier-ring{stroke:var(--data-frontier);fill:none}
+.beaten{fill:var(--data-beaten)}
+/* failure grid: ramp-based, not red/amber/green */
+.cell-all{background:var(--color-neutral-800);color:var(--color-text)}
+.cell-most{background:var(--color-accent-900);color:var(--color-accent-200)}
+.cell-half{background:var(--color-accent-700);color:var(--color-accent-100)}
