@@ -183,6 +183,31 @@
           From anywhere. Telegram (typed or voice notes), the Claude app's Remote Control and voice chat, the desktop app, or ChatGPT, which reaches the server through a connector. Every door opens onto the same server and the same memory, so you can run several Wren threads at once.
         </p>
 
+        <figure id="connector-architecture" class="mt-5">
+          <span class="wren-chip c-par">Current</span>
+          <div class="mt-4 wren-map" role="img" aria-label="Current connector architecture: ChatGPT and Claude reach Control and Control2 through the same Agent Host backend and tunnel. Lite uses a separate fallback tunnel and a fixed mailbox. These lead to workflow and checkpoints, coordination, and tasks and data.">
+            <div class="wren-col in">
+              <span class="fl-label">Ways in</span>
+              <div class="wren-box">ChatGPT</div>
+              <div class="wren-box">Claude</div>
+            </div>
+            <div class="wren-arrow" aria-hidden="true">→</div>
+            <div class="wren-col mid">
+              <span class="fl-label">Connectors</span>
+              <div class="wren-box wren-core">Control + Control2<small>Same Agent Host backend and tunnel</small></div>
+              <div class="wren-box">Lite<small>Separate fallback tunnel · fixed mailbox</small></div>
+            </div>
+            <div class="wren-arrow" aria-hidden="true">→</div>
+            <div class="wren-col out">
+              <span class="fl-label">On the server</span>
+              <div class="wren-box">Workflow + checkpoints</div>
+              <div class="wren-box">Coordination</div>
+              <div class="wren-box">Tasks + data</div>
+            </div>
+          </div>
+          <figcaption class="mt-2 text-sm text-slate-400">Control and Control2 share an Agent Host backend and tunnel. Lite provides a separate fallback.</figcaption>
+        </figure>
+
         <h2 class="mt-12 font-serif text-2xl text-slate-100">What it's made of</h2>
         <ul class="mt-4 wren-list">
           <li><b><a href="https://claude.com/claude-code" target="_blank" rel="noreferrer">Claude Code</a></b> on a home server, signed in to a Max plan. Opus does the planning and checking.</li>
@@ -197,6 +222,33 @@
           <li><b>Market data on the server</b>: Databento, Yahoo Finance, FRED, SEC EDGAR, Helius for Solana, and web search.</li>
           <li><b>Daily jobs</b>: about 25 scheduled tasks, the 07:00 brief that summarises them, and the approval gate.</li>
         </ul>
+
+        <figure id="memory-flow" class="mt-5">
+          <span class="wren-chip c-part">Proposed</span>
+          <div class="mt-4 wren-map" role="img" aria-label="Proposed memory flow: a session loads a small startup context containing workflow, safety and the active checkpoint. Skills and personas, searchable ledgers and research, and integrations load on demand. Evidence verification leads to a compact checkpoint and an append-only ledger.">
+            <div class="wren-col in">
+              <span class="fl-label">Startup</span>
+              <div class="wren-box">Session</div>
+              <div class="wren-arrow rotate-90" aria-hidden="true">→</div>
+              <div class="wren-box">Small startup context<small>Workflow · safety · active checkpoint</small></div>
+            </div>
+            <div class="wren-arrow" aria-hidden="true">→</div>
+            <div class="wren-col mid">
+              <span class="fl-label">Load on demand</span>
+              <div class="wren-box">Skills + personas</div>
+              <div class="wren-box">Searchable ledgers + research</div>
+              <div class="wren-box">Integrations</div>
+            </div>
+            <div class="wren-arrow" aria-hidden="true">→</div>
+            <div class="wren-col out">
+              <span class="fl-label">Verify and save</span>
+              <div class="wren-box">Evidence verification</div>
+              <div class="wren-arrow rotate-90" aria-hidden="true">→</div>
+              <div class="wren-box">Compact checkpoint + append-only ledger</div>
+            </div>
+          </div>
+          <figcaption class="mt-2 text-sm text-slate-400">Startup context stays small. Skills, searchable records and integrations load on demand before verification and saving.</figcaption>
+        </figure>
 
         <h2 class="mt-12 font-serif text-2xl text-slate-100">Against Duet</h2>
         <p class="mt-4 text-slate-300 leading-relaxed">Fourteen features, checked against the <a href="https://claude.com/product/claude-duet" target="_blank" rel="noreferrer">Claude Duet</a> product page on 26 October. Our own assessment, not a benchmark: Duet is more polished and works out of the box.</p>
