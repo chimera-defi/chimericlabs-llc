@@ -10,5 +10,6 @@ Read `readme.md`, then `guidelines/nocturne-guide.md`, `guidelines/site-guide.md
 2. Every colour, font, space, radius and shadow is a `var(--*)`. Colours live only in `tokens/*.css`. Charts use `--data-*`; the accent means "best / selected".
 3. No Tailwind, framework or third-party script on pages built with this system.
 4. Before committing in a codebase, run `node design-system/scripts/check-tokens.mjs` from the repo root (it fails on hex, rgb/hsl/oklch literals and named colours outside token files).
+   Also run `node design-system/scripts/check-contrast.mjs` (WCAG AA pairs for the text and borders the classes use).
 5. For mocks and slides, produce static HTML the user can open. For production code, apply the tokens in the codebase's own stylesheet. If invoked without guidance, ask what to build.
 6. Label concept pages as concepts and mark invented numbers as placeholders.
