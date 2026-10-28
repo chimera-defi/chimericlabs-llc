@@ -84,4 +84,5 @@ html.intro::before { z-index: 149; }
 
 @media (prefers-reduced-motion: reduce) {
   html.js .rise { animation: none; }
+  html.intro::before, .fl-intro { display: none; }
 }
