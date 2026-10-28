@@ -1,0 +1,17 @@
+/* Fable — data-visualisation colours. Nocturne/Fable is a mono scheme (one accent),
+   so charts that encode categories need their own hues. These sit at the same
+   OKLCH lightness as accent-400 (~0.78) so they match the ramp in weight, and
+   none shares the accent hue (16°), so the accent still reads as "highlight". */
+:root{
+  --data-claude:#e0a872;   /* hue 65  — Claude (haiku, sonnet) */
+  --data-codex:#7fb0e6;    /* hue 250 — Codex gpt-6 / 6.1 */
+  --data-codex-old:#b9d3f0;/* Codex gpt-5.6 */
+  --data-grok:#8fc7c0;     /* hue 180 — Grok */
+  --data-pipeline:#c7a2ea; /* hue 300 — chained pipelines */
+  --data-haiku:#e0a872; --data-sonnet:#e58a7c; --data-luna:#a9c8ee; --data-sol:#7f9fe8; --data-astra:#c7a2ea;
+  --data-effort-low:#75798c; --data-effort-medium:#b2b6ca; --data-effort-high:#f3f5fe;
+  --data-frontier:var(--color-accent-400);   /* ring + dashed frontier line */
+  --data-focus:var(--color-text);            /* hovered / selected ring */
+  --data-grid:color-mix(in srgb,var(--color-text) 8%,transparent);
+  --data-beaten:color-mix(in srgb,var(--color-text) 7%,transparent);
+}

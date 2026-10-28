@@ -1,14 +1,14 @@
 ---
-name: chimeric-design-system
-description: Build or restyle Chimeric Labs pages (listing plus sticky panel, forms, tool mocks, diagrams) in the site's Field Lab v3 look using design-system/styles.css. Use for new pages in chimericlabs-llc.
+name: fable-design
+description: Use this skill to build well-branded Chimeric Labs interfaces, mocks and pages in the Fable design system (Nocturne dark base, maroon accent, data colours, page patterns). Covers tokens, component classes, layout recipes and the colour-literal check. Use for new site pages, product mocks and benchmark pages, in Claude Design or Claude Code.
+user-invocable: true
 ---
 
-# Chimeric Labs pages
+Read `readme.md`, then `guidelines/nocturne-guide.md`, `guidelines/site-guide.md` and `theme.json`.
 
-1. Read `design-system/GUIDE.md`, then copy the head and header from `breakout.html` (tokens.css, field-lab.css, site.css, design-system/styles.css; no Tailwind).
-2. Colours, spacing and fonts come from tokens only; no hex anywhere but `assets/field-lab/tokens.css`. Run `node scripts/check-tokens.mjs` before committing.
-3. Compose with `ds-*` classes; use `fl-*` for the one primary action, notices and pills. Do not add Tailwind or a framework to new pages. A themed section sets `<html data-ds-theme="name">` and loads `design-system/themes/name.css` (variables only).
-4. Layout recipes: listing + sticky panel (`ds-split`, `ds-card--sticky`), form card, tool mock (`ds-seams`), flow diagram (`ds-diagram`, classes not fills), 5-step list (`ds-steps`).
-5. Concept or demo pages: label them at the top (`fl-notice`) and mark every invented number as a placeholder. No wallets, no live trading, no third-party embeds.
-6. JS: native module, no build step, `const`, arrow functions, `AbortController`; tickers honour reduced motion, pause off screen and have a pause button.
-7. Check light and dark at 1440 and 390 for horizontal scroll and console errors.
+1. Link `styles.css` from every page (it imports tokens/ and components/patterns.css). Use Nocturne's classes (`.btn .tag .card .field .input .seg .nav .table .dialog .hr`) and the `ds-*` page patterns in `components/patterns.css`. Override variables only, never classes.
+2. Every colour, font, space, radius and shadow is a `var(--*)`. Colours live only in `tokens/*.css`. Charts use `--data-*`; the accent means "best / selected".
+3. No Tailwind, framework or third-party script on pages built with this system.
+4. Before committing in a codebase, run `node design-system/scripts/check-tokens.mjs` from the repo root (it fails on hex, rgb/hsl/oklch literals and named colours outside token files).
+5. For mocks and slides, produce static HTML the user can open. For production code, apply the tokens in the codebase's own stylesheet. If invoked without guidance, ask what to build.
+6. Label concept pages as concepts and mark invented numbers as placeholders.
