@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" data-ds-theme="breakout">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -45,65 +45,21 @@
     <link rel="stylesheet" href="assets/field-lab/field-lab.css" />
     <link rel="stylesheet" href="assets/site.css" />
     <link rel="stylesheet" href="design-system/styles.css" />
+    <link rel="stylesheet" href="design-system/themes/breakout.css" />
 
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <script>
-      window.tailwind = window.tailwind || {};
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['"Hanken Grotesk"', '"Helvetica Neue"', "Arial", "sans-serif"],
-              serif: ["Archivo", '"Arial Narrow"', '"Helvetica Neue"', "Arial", "sans-serif"],
-              mono: ['"IBM Plex Mono"', "ui-monospace", "Menlo", "Consolas", "monospace"],
-            },
-          },
-          // Field Lab v3: the old slate palette is re-pointed
-          // at the theme tokens in assets/field-lab/tokens.css, so every existing
-          // utility class follows light/dark automatically.
-          colors: (() => {
-            const t = (name) => `rgb(var(--${name}-rgb) / <alpha-value>)`;
-            const scale = (map) => Object.fromEntries(Object.entries(map).map(([k, v]) => [k, t(v)]));
-            return {
-              transparent: "transparent",
-              current: "currentColor",
-              bg: t("bg"), surface: t("surface"), "surface-2": t("surface-2"),
-              ink: t("ink"), "ink-2": t("ink-2"), line: t("line"), hairline: t("hairline"),
-              band: t("band"), "band-ink": t("band-ink"), "band-ink-2": t("band-ink-2"), "band-line": t("band-line"),
-              accent: t("accent"), "accent-ink": t("accent-ink"), "on-accent": t("on-accent"),
-              slate: scale({ 50: "ink", 100: "ink", 200: "ink", 300: "ink-2", 400: "ink-2", 500: "ink-2",
-                600: "ink-2", 700: "line", 800: "surface-2", 900: "surface", 950: "on-accent" }),
-            };
-          })(),
-          borderRadius: { none: "0", sm: "2px", DEFAULT: "2px", md: "2px", lg: "0", xl: "0", "2xl": "0", full: "999px" },
-        },
-      };
-    </script>
   </head>
 
-  <body class="bg-bg text-slate-200 font-sans antialiased">
+  <body class="ds-page">
 
-    <!-- Header -->
-    <header class="fixed inset-x-0 top-0 z-50 border-b border-ink bg-bg/95 backdrop-blur-xl">
-      <div class="site-header-inner mx-auto flex h-14 max-w-6xl items-center justify-between px-5 sm:px-8">
-        <a href="./" class="site-brand inline-flex min-h-11 min-w-11 items-center">ChimericLabs</a>
-        <nav class="site-nav flex items-center gap-5 sm:gap-7" aria-label="Primary">
-          <a href="portfolio.html" class="site-nav-link inline-flex min-h-11 min-w-11 items-center text-sm text-slate-400 hover:text-slate-200 transition-colors">Portfolio</a>
-          <a href="research.html" class="site-nav-link inline-flex min-h-11 min-w-11 items-center text-sm text-slate-400 hover:text-slate-200 transition-colors">Research</a>
-          <a href="#services" class="site-nav-link inline-flex min-h-11 min-w-11 items-center text-sm text-slate-400 hover:text-slate-200 transition-colors">Services</a>
-          <a
-            href="https://github.com/chimera-defi"
-            target="_blank"
-            rel="noreferrer"
-            class="site-nav-link mobile-hide hidden min-h-11 items-center text-sm text-slate-400 hover:text-slate-200 transition-colors sm:inline-flex"
-            >GitHub</a
-          >
-          <a
-            href="mailto:chimera_defi@protonmail.com"
-            class="site-nav-link site-contact fl-btn"
-            >Contact</a
-          >
+    <header class="ds-header">
+      <div class="ds-wrap">
+        <a href="./" class="site-brand inline-flex" style="display: inline-flex; align-items: center; min-height: 44px; text-decoration: none">ChimericLabs</a>
+        <nav aria-label="Primary">
+          <a href="portfolio.html">Portfolio</a>
+          <a href="research.html">Research</a>
+          <a href="./#services" class="ds-optional">Services</a>
+          <a href="https://github.com/chimera-defi" target="_blank" rel="noreferrer" class="ds-optional">GitHub</a>
+          <a href="mailto:chimera_defi@protonmail.com" class="site-contact fl-btn">Contact</a>
         </nav>
       </div>
     </header>
@@ -327,28 +283,14 @@
       </section>
     </main>
 
-    <footer class="border-t border-line py-8">
-      <div
-        class="mx-auto max-w-6xl px-5 sm:px-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
-      >
-        <span class="font-mono text-xs text-slate-600 tracking-wider">ChimericLabs LLC · Wyoming</span>
-        <div class="flex flex-wrap gap-6">
-          <a href="portfolio.html" class="inline-flex min-h-11 min-w-11 items-center text-xs text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Portfolio</a>
-          <a href="research.html" class="inline-flex min-h-11 min-w-11 items-center text-xs text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Research</a>
-          <a
-            href="https://github.com/chimera-defi"
-            target="_blank"
-            rel="noreferrer"
-            class="inline-flex min-h-11 min-w-11 items-center text-xs text-ink underline underline-offset-4 decoration-1 hover:decoration-2"
-            >GitHub</a
-          >
-          <a
-            href="https://github.com/chimera-defi/chimericlabs-llc"
-            target="_blank"
-            rel="noreferrer"
-            class="inline-flex min-h-11 min-w-11 items-center text-xs text-ink underline underline-offset-4 decoration-1 hover:decoration-2"
-            >Source</a
-          >
+    <footer class="ds-footer">
+      <div class="ds-wrap">
+        <span class="ds-mono ds-muted" style="font-size: 12px">ChimericLabs LLC · Wyoming · Breakout is a concept mock</span>
+        <div class="ds-row">
+          <a href="portfolio.html">Portfolio</a>
+          <a href="research.html">Research</a>
+          <a href="https://github.com/chimera-defi" target="_blank" rel="noreferrer">GitHub</a>
+          <a href="https://github.com/chimera-defi/chimericlabs-llc" target="_blank" rel="noreferrer">Source</a>
         </div>
       </div>
     </footer>

@@ -15,7 +15,11 @@
     "onAccent": "--on-accent",
     "alwaysDarkBand": "--band"
   },
-  "themes": ["light (default)", "dark (prefers-color-scheme or data-theme)"],
+  "themes": [
+    "light (default)",
+    "dark (prefers-color-scheme or data-theme)",
+    "breakout (data-ds-theme, themes/breakout.css, values in themes/breakout.json)"
+  ],
   "fonts": {
     "display": "Archivo (condensed via font-stretch), 700-800",
     "body": "Hanken Grotesk, 400-700",
@@ -24,7 +28,12 @@
   "spacing": "--space-1 .. --space-9 (4px base)",
   "radius": "square plates; --radius-sm 2px for controls; pills only for status",
   "elevation": "hard offset stamp shadows, never blurred",
-  "layout": { "align": "left", "maxWidth": "1200px", "sidePadding": "clamp(20px, 5vw, 72px)", "sectionY": "clamp(56px, 9vw, 84px)" },
+  "layout": {
+    "align": "left",
+    "maxWidth": "1200px",
+    "sidePadding": "clamp(20px, 5vw, 72px)",
+    "sectionY": "clamp(56px, 9vw, 84px)"
+  },
   "buttons": "outlined; one filled accent action per view (fl-btn--primary)",
   "accentRule": "accent is a line, dot or glow; never a flood; text uses --accent-ink",
   "motion": "one easing (--ease); respect prefers-reduced-motion; pause off-screen work"
