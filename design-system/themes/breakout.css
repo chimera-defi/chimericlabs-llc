@@ -1,0 +1,29 @@
+/*
+ * Breakout section theme: the v2 maroon-on-dark theme as a named variable set on the shared
+ * Field Lab token names. Values come from themes/breakout.json (Nocturne v2 export, OKLCH ramp
+ * hue 16). Apply with <html data-ds-theme="breakout">; load after tokens.css and styles.css.
+ * A theme swap is variables only: no class is restyled here. scripts/check-tokens.mjs checks
+ * every hex below against breakout.json.
+ */
+:root[data-ds-theme="breakout"] {
+  --bg: #1d1f27; --bg-rgb: 29 31 39;
+  --surface: #2b2d37; --surface-rgb: 43 45 55;
+  --surface-2: #3f424d; --surface-2-rgb: 63 66 77;      /* Nocturne neutral-800 */
+  --ink: #e9e9ed; --ink-rgb: 233 233 237;
+  --ink-2: #cfd3e5; --ink-2-rgb: 207 211 229;           /* neutral-300, 9.2:1 on surface */
+  --line: #595d6c; --line-rgb: 89 93 108;               /* neutral-700 */
+  --hairline: #3f424d; --hairline-rgb: 63 66 77;
+  --accent: #f65b6f; --accent-rgb: 246 91 111;          /* accent-500 */
+  --accent-ink: #fe949b; --accent-ink-rgb: 254 148 155; /* accent-400, 7.8:1 on bg */
+  --on-accent: var(--bg); --on-accent-rgb: 29 31 39;
+  --focus: var(--ink); --focus-rgb: 233 233 237;
+  --stamp: var(--ink); --stamp-rgb: 233 233 237;
+  color-scheme: dark;
+
+  /* Theme-only roles read by ds- classes. */
+  --ds-tint: #4f121b;        /* accent-900: avatar tiles, flash */
+  --ds-tint-ink: #ffdfe0;    /* accent-200 */
+  --ds-tag: #78182a;         /* accent-800: tag fills */
+  --ds-tag-ink: #fff2f2;     /* accent-100 */
+  --ds-glow: radial-gradient(1200px 720px at 82% -160px, rgb(120 24 42 / .7), transparent 60%);
+}
