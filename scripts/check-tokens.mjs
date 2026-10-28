@@ -4,7 +4,9 @@ import { join } from "node:path";
 
 const roots = [".", "assets", "assets/field-lab", "design-system", "design-system/themes"];
 const files = roots.flatMap((dir) => readdirSync(dir).filter((f) => /\.(html|css|js)$/.test(f)).map((f) => join(dir, f)));
-const literal = /#[0-9a-fA-F]{6}\b|#[0-9a-fA-F]{3}\b(?![\w-])|\brgba?\(\s*\d|\bhsla?\(/g;
+const named = "red|green|blue|black|white|gray|grey|orange|yellow|purple|pink|brown|cyan|magenta|teal|navy|maroon|crimson|tomato|coral|gold|silver|lime|olive|indigo|violet|salmon|khaki|ivory|beige";
+// hex (3/4/6/8 digits), colour functions with literal args, and named colours used as a colour value
+const literal = new RegExp(`(?<![\\w"'=.\\[])#(?:[0-9a-fA-F]{8}|[0-9a-fA-F]{6}|[0-9a-fA-F]{4}|[0-9a-fA-F]{3})(?![\\w-])|\\b(?:rgba?|hsla?|hwb|lab|lch|oklab|oklch|color)\\(\\s*(?!var\\(|from\\b)[\\d.]|(?:color|background(?:-color)?|border(?:-[a-z]+)*|fill|stroke|outline(?:-color)?|box-shadow)\\s*:[^;{}]*\\b(?:${named})\\b`, "g");
 let bad = 0;
 for (const file of files) {
   if (file.endsWith("tokens.css") || file.includes("design-system/themes/")) continue; // token files may hold literals
