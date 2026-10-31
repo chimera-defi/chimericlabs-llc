@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What it looked like</title>
+  <meta name="description" content="Screenshots of Chimeric Labs project sites, kept here because sites go offline." />
+  <meta property="og:title" content="What it looked like" />
+  <meta property="og:description" content="Screenshots of Chimeric Labs project sites, kept here because sites go offline." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://chimericlabs.xyz/research/screenshots/" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="canonical" href="https://chimericlabs.xyz/research/screenshots/" />
+  <link rel="stylesheet" href="../../design-system/styles.css" />
+  <style>
+:root {
+  --data-3: var(--data-grok); --data-4: var(--data-claude);
+  --article-type: calc(var(--space-1) * 5);
+  --article-small: calc(var(--space-1) * 4.65);
+  --article-heading: calc(var(--space-1) * 7.5);
+}
+.article-stack { display: grid; gap: var(--space-8); }
+.article-stack > * { min-width: 0; }
+.article-hero { padding-top: var(--ds-section-y); }
+.article-hero .ds-lede { margin: 0; }
+.article-takeaway { padding: var(--space-8); background: var(--color-surface); border: 1px solid var(--color-divider); border-radius: var(--radius-md); font-size: var(--space-6); }
+.article-list { padding-left: var(--space-8); display: grid; gap: var(--space-3); overflow-wrap: anywhere; }
+.article-list > li { min-width: 0; overflow-wrap: anywhere; }
+.article-toc { padding-block: var(--space-8); border-block: 1px solid var(--color-divider); }
+.article-toc ul { display: flex; flex-wrap: wrap; gap: var(--space-4) var(--space-8); list-style: none; padding: 0; }
+.article-toc a { display: inline-flex; padding-block: var(--space-3); }
+.article-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, calc(var(--space-8) * 15)), 1fr)); gap: var(--space-8); }
+.article-grid h3 { font-size: var(--article-heading); }
+.article-grid .ds-meta { margin-top: 0; }
+.article-tags { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.article-links { display: flex; flex-wrap: wrap; gap: var(--space-6); margin-top: auto; }
+.ds-when { color: var(--color-text); font-variant-numeric: tabular-nums; }
+.article-notice { margin: 0; display: grid; gap: var(--space-4); }
+.article-notice h3 { font-size: var(--space-6); }
+details { padding: var(--space-6); border: 1px solid var(--color-divider); border-radius: var(--radius-md); }
+summary { cursor: pointer; padding-block: var(--space-2); }
+details > :not(summary) { margin-top: var(--space-6); }
+.table { width: 100%; table-layout: fixed; }
+.table th, .table td { white-space: normal; overflow-wrap: anywhere; vertical-align: top; }
+section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
+@media (max-width: 700px) {
+  .article-chart .chart-desktop { display: none; }
+  .article-chart .chart-mobile { display: block; }
+  .ds-header .nav { flex-wrap: wrap; }
+}
+.shot-pair { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 1fr); gap: var(--space-6); align-items: start; }
+.shot { margin: 0; display: grid; gap: var(--space-3); }
+.shot-frame { max-height: calc(var(--space-8) * 18); overflow-y: auto; border: 1px solid var(--color-divider); border-radius: var(--radius-md); background: var(--color-surface); }
+.shot-frame img { display: block; width: 100%; height: auto; }
+.shot figcaption { color: var(--ds-muted); font-size: var(--article-small); }
+.shot-status { margin: 0; }
+@media (max-width: 700px) {
+  .shot-pair { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body class="ds-page">
+  <div class="ds-topbar">
+<div><a href="https://chimericlabs.xyz/">← Chimeric Labs</a>
+</div>
+</div>
+  <header class="ds-header">
+    <nav class="nav" aria-label="Primary">
+      <a href="../../" class="nav-brand">ChimericLabs</a>
+      <a href="../../portfolio.html" class="ds-optional">Portfolio</a>
+      <a href="../../research.html">Research</a>
+      <a href="../../#services" class="ds-optional">Services</a>
+      <a href="https://github.com/chimera-defi" class="btn btn-primary" rel="noreferrer">GitHub</a>
+    </nav>
+  </header>
+  <main>
+    <section class="ds-wrap ds-hero article-hero article-stack" aria-labelledby="page-title">
+      <span class="ds-kicker">Lab notes · 2026-10-31</span>
+      <h1 class="ds-h1" id="page-title">What it looked like</h1>
+      <p class="ds-lede">Websites go offline. These screenshots keep a record of ours.</p>
+      <aside class="article-takeaway">Two of these four sites no longer load. We saved them from the Internet Archive.</aside>
+      <ul class="article-list">
+<li>AutoPay, our partner's payments app, went offline in 2026. Its design is worth learning from.</li>
+<li>SharedStake's live site has an expired certificate. We show the June archive copy.</li>
+<li>Sharedtools and Eth2 Quickstart are still live. We captured them today.</li>
+</ul>
+      <nav class="article-toc" aria-label="Sites on this page"><ul><li><a href="#autopay">AutoPay Protocol</a></li><li><a href="#sharedstake">SharedStake</a></li><li><a href="#sharedtools">Sharedtools</a></li><li><a href="#eth2quickstart">Eth2 Quickstart</a></li></ul></nav>
+    </section>
+    <section class="ds-wrap article-stack" id="autopay" aria-labelledby="autopay-h">
+      <div class="hr"></div>
+      <span class="ds-kicker">Partner project · offline</span>
+      <h2 class="ds-title" id="autopay-h">AutoPay Protocol</h2>
+      <p class="shot-status">Offline. The site returned HTTP 503 on 2026-10-31. These shots come from the Internet Archive copy of 2026-05-16.</p>
+      <div class="shot-pair">
+        <figure class="shot">
+          <div class="shot-frame" tabindex="0" aria-label="AutoPay Protocol desktop screenshot, scrollable"><img src="../../assets/screenshots/autopay-desktop.webp" width="960" height="3600" loading="lazy" alt="AutoPay landing page: headline &quot;The unified payments platform. No one can shut you off.&quot;, a subscription card, a savings calculator and a four-step how-it-works section." /></div>
+          <figcaption>Desktop, 1280 px wide. Some sections fade in on scroll, so a few headings show faint.</figcaption>
+        </figure>
+        <figure class="shot">
+          <div class="shot-frame" tabindex="0" aria-label="AutoPay Protocol phone screenshot, scrollable"><img src="../../assets/screenshots/autopay-phone.webp" width="390" height="4200" loading="lazy" alt="AutoPay landing page on a phone: the same headline, subscription card and sections stacked in one column." /></div>
+          <figcaption>Phone, 390 px wide.</figcaption>
+        </figure>
+      </div>
+      <div class="article-links"><a href="https://web.archive.org/web/20260516045512/https://autopayprotocol.com/" target="_blank" rel="noreferrer">Archive copy →</a><a href="https://ethglobal.com/showcase/autopay-n8ot7" target="_blank" rel="noreferrer">ETHGlobal showcase →</a><a href="https://github.com/chimera-defi/Auto-Pay-Protocol" target="_blank" rel="noreferrer">GitHub →</a></div>
+    </section>
+    <section class="ds-wrap article-stack" id="sharedstake" aria-labelledby="sharedstake-h">
+      <div class="hr"></div>
+      <span class="ds-kicker">Staking · archive copy</span>
+      <h2 class="ds-title" id="sharedstake-h">SharedStake</h2>
+      <p class="shot-status">Not reachable. On 2026-10-31 the live site had an expired certificate. These shots come from the Internet Archive copy of 2026-06-10.</p>
+      <div class="shot-pair">
+        <figure class="shot">
+          <div class="shot-frame" tabindex="0" aria-label="SharedStake desktop screenshot, scrollable"><img src="../../assets/screenshots/sharedstake-desktop.webp" width="960" height="1765" loading="lazy" alt="SharedStake home page: an Ethereum liquid staking headline, Stake V2 and Mint NFT buttons, a maintenance banner and footer links." /></div>
+          <figcaption>Desktop, 1280 px wide. The empty white box was a signup form the archive did not keep.</figcaption>
+        </figure>
+        <figure class="shot">
+          <div class="shot-frame" tabindex="0" aria-label="SharedStake phone screenshot, scrollable"><img src="../../assets/screenshots/sharedstake-phone.webp" width="390" height="2936" loading="lazy" alt="SharedStake home page on a phone, stacked in one column with the maintenance banner on top." /></div>
+          <figcaption>Phone, 390 px wide.</figcaption>
+        </figure>
+      </div>
+      <div class="article-links"><a href="https://web.archive.org/web/20260610053557/https://www.sharedstake.org/" target="_blank" rel="noreferrer">Archive copy →</a><a href="https://github.com/chimera-defi/SharedDeposit" target="_blank" rel="noreferrer">GitHub →</a></div>
+    </section>
+    <section class="ds-wrap article-stack" id="sharedtools" aria-labelledby="sharedtools-h">
+      <div class="hr"></div>
+      <span class="ds-kicker">Contract factory · live</span>
+      <h2 class="ds-title" id="sharedtools-h">Sharedtools</h2>
+      <p class="shot-status">Live. Captured 2026-10-31.</p>
+      <div class="shot-pair">
+        <figure class="shot">
+          <div class="shot-frame" tabindex="0" aria-label="Sharedtools desktop screenshot, scrollable"><img src="../../assets/screenshots/sharedtools-desktop.webp" width="960" height="600" loading="lazy" alt="Sharedtools landing page: the tagline &quot;Helping DeFi projects share code and technology&quot;, a connect-wallet button and a sharedstake.org project tile." /></div>
+          <figcaption>Desktop, 1280 px wide. The landing page is one screen.</figcaption>
+        </figure>
+        <figure class="shot">
+          <div class="shot-frame" tabindex="0" aria-label="Sharedtools phone screenshot, scrollable"><img src="../../assets/screenshots/sharedtools-phone.webp" width="390" height="1688" loading="lazy" alt="Sharedtools landing page on a phone." /></div>
+          <figcaption>Phone, 390 px wide.</figcaption>
+        </figure>
+      </div>
+      <div class="article-links"><a href="https://www.sharedtools.org/" target="_blank" rel="noreferrer">Visit site →</a><a href="https://github.com/chimera-defi/sharedtools-index" target="_blank" rel="noreferrer">GitHub →</a></div>
+    </section>
+    <section class="ds-wrap article-stack" id="eth2quickstart" aria-labelledby="eth2quickstart-h">
+      <div class="hr"></div>
+      <span class="ds-kicker">Node setup · live</span>
+      <h2 class="ds-title" id="eth2quickstart-h">Eth2 Quickstart</h2>
+      <p class="shot-status">Live. Captured 2026-10-31.</p>
+      <div class="shot-pair">
+        <figure class="shot">
+          <div class="shot-frame" tabindex="0" aria-label="Eth2 Quickstart desktop screenshot, scrollable"><img src="../../assets/screenshots/eth2quickstart-desktop.webp" width="960" height="3600" loading="lazy" alt="Eth2 Quickstart home page: &quot;Node Setup In Minutes&quot;, a terminal showing the one-line installer, a four-step workflow and an agent demo panel." /></div>
+          <figcaption>Desktop, 1280 px wide. Cropped to the top of a long page.</figcaption>
+        </figure>
+        <figure class="shot">
+          <div class="shot-frame" tabindex="0" aria-label="Eth2 Quickstart phone screenshot, scrollable"><img src="../../assets/screenshots/eth2quickstart-phone.webp" width="390" height="4200" loading="lazy" alt="Eth2 Quickstart home page on a phone." /></div>
+          <figcaption>Phone, 390 px wide.</figcaption>
+        </figure>
+      </div>
+      <div class="article-links"><a href="https://eth2quickstart.com/" target="_blank" rel="noreferrer">Visit site →</a><a href="https://github.com/chimera-defi/eth2-quickstart" target="_blank" rel="noreferrer">GitHub →</a></div>
+    </section>
+    <section class="ds-wrap article-stack" aria-labelledby="how-h">
+      <div class="hr"></div>
+      <h2 class="ds-title" id="how-h">How these were made</h2>
+      <details>
+<summary>Method and limits</summary>
+<ul class="article-list">
+<li>Headless Chromium, full page, at 1280 and 390 px wide.</li>
+<li>Archive copies load through web.archive.org. Some images, fonts and forms are missing there.</li>
+<li>Long pages are cropped to keep files small.</li>
+<li>No wallets were connected. Nothing on these pages is account data.</li>
+</ul>
+</details>
+    </section>
+  </main>
+  <footer class="ds-footer">
+<div><span>ChimericLabs LLC · Wyoming</span>
+<div class="ds-row"><a href="../../portfolio.html">← Portfolio</a><a href="../building/">What we&#x27;ve been building →</a>
+</div>
+</div></footer>
+</body>
+</html>
