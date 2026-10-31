@@ -21,6 +21,16 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://chimericlabs.xyz/research/building/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://chimericlabs.xyz/research/claudefolio/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://chimericlabs.xyz/dispatchbench/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

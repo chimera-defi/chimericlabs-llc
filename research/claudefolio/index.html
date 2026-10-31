@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How Claudefolio works</title>
+  <meta name="description" content="How Claudefolio turns broker data into a checked order sheet, with AI agents doing the research and a human approving every trade." />
+  <meta property="og:title" content="How Claudefolio works" />
+  <meta property="og:description" content="How Claudefolio turns broker data into a checked order sheet, with AI agents doing the research and a human approving every trade." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://chimericlabs.xyz/research/claudefolio/" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="canonical" href="https://chimericlabs.xyz/research/claudefolio/" />
+  <link rel="stylesheet" href="../../design-system/styles.css" />
+  <style>
+:root {
+  --data-1: var(--data-codex); --data-2: var(--data-pipeline);
+  --data-3: var(--data-grok); --data-4: var(--data-claude);
+  --article-type: calc(var(--space-1) * 5);
+  --article-small: calc(var(--space-1) * 4.65);
+  --article-heading: calc(var(--space-1) * 7.5);
+}
+.article-stack { display: grid; gap: var(--space-8); }
+.article-stack > * { min-width: 0; }
+.article-hero { padding-top: var(--ds-section-y); }
+.article-hero .ds-lede { margin: 0; }
+.article-takeaway { padding: var(--space-8); background: var(--color-surface); border: 1px solid var(--color-divider); border-radius: var(--radius-md); font-size: var(--space-6); }
+.article-list { padding-left: var(--space-8); display: grid; gap: var(--space-3); overflow-wrap: anywhere; }
+.article-list > li { min-width: 0; overflow-wrap: anywhere; }
+.article-toc { padding-block: var(--space-8); border-block: 1px solid var(--color-divider); }
+.article-toc ul { display: flex; flex-wrap: wrap; gap: var(--space-4) var(--space-8); list-style: none; padding: 0; }
+.article-toc a { display: inline-flex; padding-block: var(--space-3); }
+.article-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, calc(var(--space-8) * 15)), 1fr)); gap: var(--space-8); }
+.article-grid h3 { font-size: var(--article-heading); }
+.article-grid .ds-meta { margin-top: 0; }
+.article-tags { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.article-links { display: flex; flex-wrap: wrap; gap: var(--space-6); margin-top: auto; }
+.article-timeline { grid-template-columns: 1fr; gap: var(--space-8); margin-top: 0; }
+.article-timeline li { display: grid; grid-template-columns: calc(var(--space-8) * 5) 1fr; gap: var(--space-8); border-left: 1px solid var(--color-divider); padding-left: var(--space-6); }
+.article-timeline li::before { display: none; }
+.ds-when { color: var(--color-text); font-variant-numeric: tabular-nums; }
+.article-pipeline { grid-template-columns: 1fr; margin-top: 0; gap: var(--space-6); }
+.article-pipeline li { display: grid; grid-template-columns: var(--space-8) 1fr; gap: var(--space-6); }
+.article-pipeline li::before { margin: 0; }
+.article-notice { margin: 0; display: grid; gap: var(--space-4); }
+.article-notice h3 { font-size: var(--space-6); }
+.article-chart { display: grid; gap: var(--space-6); }
+.article-chart h3 { font-size: var(--article-heading); }
+.article-chart figcaption { color: var(--ds-muted); font-size: var(--article-type); margin: 0; }
+.article-chart svg { display: block; width: 100%; height: auto; font-family: var(--font-body); }
+.article-chart text { fill: var(--color-text); font-family: var(--font-body); font-size: var(--article-type); }
+.article-chart .chart-small { font-size: var(--article-small); }
+.article-chart .chart-on-bar { fill: var(--color-bg); }
+.article-chart .chart-grid { stroke: var(--data-grid); stroke-width: 1; }
+.article-chart .data-1 { fill: var(--data-1); }
+.article-chart .data-2 { fill: var(--data-2); }
+.article-chart .data-3 { fill: var(--data-3); }
+.article-chart .data-4 { fill: var(--data-4); }
+.article-chart .data-muted { fill: var(--data-effort-medium); }
+.article-legend { display: flex; flex-wrap: wrap; gap: var(--space-4) var(--space-8); font-size: var(--article-type); }
+.article-legend span { display: inline-flex; align-items: center; gap: var(--space-3); }
+.article-legend i { width: var(--space-4); height: var(--space-4); background: var(--data-1); }
+.article-legend .swatch-muted { background: var(--data-effort-medium); }
+.article-legend .swatch-2 { background: var(--data-2); }
+.article-legend .swatch-3 { background: var(--data-3); }
+.article-legend .swatch-4 { background: var(--data-4); }
+.article-chart .ds-diagram { overflow: visible; }
+.article-chart .ds-diagram svg { min-width: 0; }
+.article-chart .ds-edge { stroke: var(--data-1); }
+.article-chart .ds-arrow { fill: var(--data-1); }
+.article-chart .node-key-sub { fill: var(--color-accent-200); }
+.article-chart .chart-mobile { display: none; }
+.article-chart .node-title { font-weight: var(--font-heading-weight); }
+details { padding: var(--space-6); border: 1px solid var(--color-divider); border-radius: var(--radius-md); }
+summary { cursor: pointer; padding-block: var(--space-2); }
+details > :not(summary) { margin-top: var(--space-6); }
+.table { width: 100%; table-layout: fixed; }
+.table th, .table td { white-space: normal; overflow-wrap: anywhere; vertical-align: top; }
+section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
+@media (max-width: 700px) {
+  .article-chart .chart-desktop { display: none; }
+  .article-chart .chart-mobile { display: block; }
+  .article-timeline li { grid-template-columns: 1fr; gap: var(--space-2); }
+  .article-fleet-table thead { display: none; }
+  .article-fleet-table tr, .article-fleet-table th, .article-fleet-table td { display: block; width: 100%; }
+  .article-fleet-table tr { padding-block: var(--space-4); border-bottom: 1px solid var(--color-divider); }
+  .article-fleet-table td { padding-top: var(--space-2); }
+  .article-fleet-table td::before { content: attr(data-label) ": "; color: var(--ds-muted); }
+  .ds-header .nav { flex-wrap: wrap; }
+}
+</style>
+</head>
+<body class="ds-page">
+  <div class="ds-topbar">
+<div><a href="https://chimericlabs.xyz/">← Chimeric Labs</a>
+</div>
+</div>
+  <header class="ds-header">
+    <nav class="nav" aria-label="Primary">
+      <a href="../../" class="nav-brand">ChimericLabs</a>
+      <a href="../../portfolio.html" class="ds-optional">Portfolio</a>
+      <a href="../../research.html">Research</a>
+      <a href="../../#services" class="ds-optional">Services</a>
+      <a href="https://github.com/chimera-defi" class="btn btn-primary" rel="noreferrer">GitHub</a>
+    </nav>
+  </header>
+  <main>
+    <section class="ds-wrap ds-hero article-hero article-stack" aria-labelledby="page-title">
+      <span class="ds-kicker">Systems · 2026-10-31</span>
+      <h1 class="ds-h1" id="page-title">How Claudefolio works</h1>
+      <p class="ds-lede">An AI-run portfolio research desk. Agents research and check. A human approves every trade.</p>
+      <aside class="article-takeaway">Agents do the reading, maths and arguing. Only the human can approve a trade.</aside>
+      <ul class="article-list">
+<li>Data comes in read-only. Scripts check it is fresh and complete before agents use it.</li>
+<li>Agents write an order sheet. A second agent reviews it, then a script checks the maths.</li>
+<li>Nothing trades without the human&#x27;s explicit &quot;approved&quot;. No agent can say it for them.</li>
+</ul>
+      <figure class="article-chart">
+<div class="ds-diagram">
+<svg class="chart-desktop" viewBox="0 0 1100 196" role="img" aria-label="Broker data through checks, research, review and an order sheet to human approval and a human trade, then readback" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="pipeline-desktop" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto-start-reverse">
+<path d="M0 0 L7 3.5 L0 7 Z" class="ds-arrow" />
+</marker>
+</defs>
+<rect class="ds-node" x="12" y="30" width="136" height="96" rx="8" />
+<text x="80.0" y="71.0" class="node-title" text-anchor="middle" >Broker data</text>
+<text x="80.0" y="95.0" class="chart-small" text-anchor="middle" >read-only</text>
+<path d="M148 78 H162" class="ds-edge" marker-end="url(#pipeline-desktop)" />
+<rect class="ds-node" x="168" y="30" width="136" height="96" rx="8" />
+<text x="236.0" y="71.0" class="node-title" text-anchor="middle" >Checks</text>
+<text x="236.0" y="95.0" class="chart-small" text-anchor="middle" >fresh, complete</text>
+<path d="M304 78 H318" class="ds-edge" marker-end="url(#pipeline-desktop)" />
+<rect class="ds-node" x="324" y="30" width="136" height="96" rx="8" />
+<text x="392.0" y="71.0" class="node-title" text-anchor="middle" >Research</text>
+<text x="392.0" y="95.0" class="chart-small" text-anchor="middle" >agent lanes</text>
+<path d="M460 78 H474" class="ds-edge" marker-end="url(#pipeline-desktop)" />
+<rect class="ds-node" x="480" y="30" width="136" height="96" rx="8" />
+<text x="548.0" y="71.0" class="node-title" text-anchor="middle" >Review</text>
+<text x="548.0" y="95.0" class="chart-small" text-anchor="middle" >second agent</text>
+<path d="M616 78 H630" class="ds-edge" marker-end="url(#pipeline-desktop)" />
+<rect class="ds-node" x="636" y="30" width="136" height="96" rx="8" />
+<text x="704.0" y="71.0" class="node-title" text-anchor="middle" >Order sheet</text>
+<text x="704.0" y="95.0" class="chart-small" text-anchor="middle" >script-checked</text>
+<path d="M772 78 H786" class="ds-edge" marker-end="url(#pipeline-desktop)" />
+<rect class="ds-node ds-node--key" x="792" y="30" width="136" height="96" rx="8" />
+<text x="860.0" y="71.0" class="node-title" text-anchor="middle" >Human approves</text>
+<text x="860.0" y="95.0" class="node-key-sub chart-small" text-anchor="middle" >the human gate</text>
+<path d="M928 78 H942" class="ds-edge" marker-end="url(#pipeline-desktop)" />
+<rect class="ds-node" x="948" y="30" width="136" height="96" rx="8" />
+<text x="1016.0" y="61.5" class="node-title" text-anchor="middle" >Human places</text>
+<text x="1016.0" y="80.5" class="node-title" text-anchor="middle" >trade</text>
+<text x="1016.0" y="104.5" class="chart-small" text-anchor="middle" >in the broker</text>
+<path d="M1016 126 V175 H80 V128" class="ds-edge ds-edge--dash" marker-end="url(#pipeline-desktop)" />
+<text x="550" y="164" class="chart-small" text-anchor="middle" >readback</text>
+</svg>
+<svg class="chart-mobile" viewBox="0 0 350 752" role="img" aria-label="Broker data through checks, research, review and an order sheet to human approval and a human trade, then readback" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="pipeline-mobile" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto-start-reverse">
+<path d="M0 0 L7 3.5 L0 7 Z" class="ds-arrow" />
+</marker>
+</defs>
+<rect class="ds-node" x="62" y="16" width="272" height="78" rx="8" />
+<text x="198.0" y="48.0" class="node-title" text-anchor="middle" >Broker data</text>
+<text x="198.0" y="72.0" class="chart-small" text-anchor="middle" >read-only</text>
+<path d="M198 94 V116" class="ds-edge" marker-end="url(#pipeline-mobile)" />
+<rect class="ds-node" x="62" y="124" width="272" height="78" rx="8" />
+<text x="198.0" y="156.0" class="node-title" text-anchor="middle" >Checks</text>
+<text x="198.0" y="180.0" class="chart-small" text-anchor="middle" >fresh, complete</text>
+<path d="M198 202 V224" class="ds-edge" marker-end="url(#pipeline-mobile)" />
+<rect class="ds-node" x="62" y="232" width="272" height="78" rx="8" />
+<text x="198.0" y="264.0" class="node-title" text-anchor="middle" >Research</text>
+<text x="198.0" y="288.0" class="chart-small" text-anchor="middle" >agent lanes</text>
+<path d="M198 310 V332" class="ds-edge" marker-end="url(#pipeline-mobile)" />
+<rect class="ds-node" x="62" y="340" width="272" height="78" rx="8" />
+<text x="198.0" y="372.0" class="node-title" text-anchor="middle" >Review</text>
+<text x="198.0" y="396.0" class="chart-small" text-anchor="middle" >second agent</text>
+<path d="M198 418 V440" class="ds-edge" marker-end="url(#pipeline-mobile)" />
+<rect class="ds-node" x="62" y="448" width="272" height="78" rx="8" />
+<text x="198.0" y="480.0" class="node-title" text-anchor="middle" >Order sheet</text>
+<text x="198.0" y="504.0" class="chart-small" text-anchor="middle" >script-checked</text>
+<path d="M198 526 V548" class="ds-edge" marker-end="url(#pipeline-mobile)" />
+<rect class="ds-node ds-node--key" x="62" y="556" width="272" height="78" rx="8" />
+<text x="198.0" y="588.0" class="node-title" text-anchor="middle" >Human approves</text>
+<text x="198.0" y="612.0" class="node-key-sub chart-small" text-anchor="middle" >the human gate</text>
+<path d="M198 634 V656" class="ds-edge" marker-end="url(#pipeline-mobile)" />
+<rect class="ds-node" x="62" y="664" width="272" height="78" rx="8" />
+<text x="198.0" y="696.0" class="node-title" text-anchor="middle" >Human places trade</text>
+<text x="198.0" y="720.0" class="chart-small" text-anchor="middle" >in the broker</text>
+<path d="M62 703 H30 V55 H60" class="ds-edge ds-edge--dash" marker-end="url(#pipeline-mobile)" />
+<text x="17" y="380" class="chart-small" text-anchor="middle" transform="rotate(-90 17 380)">readback</text>
+</svg>
+</div>
+<figcaption>The accent box is the one gate. Only a person can pass it.</figcaption>
+<details>
+<summary>Chart data</summary>
+<table class="table">
+<thead>
+<tr>
+<th scope="col">Step</th>
+<th scope="col">Check or owner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Broker data</th>
+<td>read-only</td>
+</tr>
+<tr>
+<th scope="row">Checks</th>
+<td>fresh, complete</td>
+</tr>
+<tr>
+<th scope="row">Research</th>
+<td>agent lanes</td>
+</tr>
+<tr>
+<th scope="row">Review</th>
+<td>second agent</td>
+</tr>
+<tr>
+<th scope="row">Order sheet</th>
+<td>script-checked</td>
+</tr>
+<tr>
+<th scope="row">Human approves</th>
+<td>the human gate</td>
+</tr>
+<tr>
+<th scope="row">Human places trade</th>
+<td>in the broker</td>
+</tr>
+</tbody>
+</table>
+</details>
+</figure>
+      <nav class="article-toc" aria-label="Contents">
+<ul>
+<li><a href="#pipeline">The pipeline, step by step</a>
+</li>
+<li><a href="#agent-host">Agent Host</a>
+</li>
+<li><a href="#fleet">The agent fleet</a>
+</li>
+<li><a href="#timeline">Timeline</a>
+</li>
+</ul></nav>
+    </section>
+    <section class="ds-section ds-wrap article-stack" id="pipeline">
+<h2 class="ds-title">The pipeline, step by step</h2>
+<ol class="ds-steps article-pipeline">
+<li><p>Data in. Read-only broker connections save a snapshot. Stale or partial snapshots are refused.</p>
+</li>
+<li><p>Research. Specialist agent lanes study the portfolio and cite their sources.</p>
+</li>
+<li><p>Review. One Claude orchestrator merges the findings. A second agent argues against them.</p>
+</li>
+<li><p>Order sheet. One owner freezes the sheet. A script checks the maths, limits and duplicates.</p>
+</li>
+<li><p>Human gate. The human reads the sheet and types an explicit approval.</p>
+</li>
+<li><p>Execution. ChatGPT re-quotes prices and drafts the orders. The human submits them in the broker.</p>
+</li>
+<li><p>Readback. The filled orders come back in as fresh data.</p>
+</li>
+</ol>
+<aside class="ds-notice article-notice">
+<h3>Hard rules</h3>
+<ul class="article-list">
+<li>Claude never submits, stages or cancels orders.</li>
+<li>Research runs with trading switched off.</li>
+<li>A score, sheet, message or agent opinion never counts as approval.</li>
+</ul>
+</aside>
+</section>
+<div class="hr">
+</div>
+<section class="ds-section ds-wrap article-stack" id="agent-host">
+<h2 class="ds-title">Agent Host: the MCP server</h2><p class="ds-lede">MCP is a standard way to give an AI model tools. Agent Host is mine.</p><p>It lets ChatGPT and Claude use my server: read code, run long jobs, pass messages.</p><p>Python, talking JSON-RPC, with state in SQLite. Built from 2026-08-22.</p><p>It exposes 40 tools. They fall into seven groups.</p>
+<figure class="article-chart">
+<h3>Agent Host tools by group</h3>
+<div class="article-legend"><span><i aria-hidden="true"></i>Tools</span></div>
+<svg class="chart-desktop" viewBox="0 0 1100 628" role="img" aria-label="Agent Host tools by group, counts" xmlns="http://www.w3.org/2000/svg">
+<text x="0" y="28" class="" text-anchor="start" >Host and sessions</text>
+<text x="0" y="49" class="chart-small" text-anchor="start" >health, telemetry, session control, admin</text>
+<rect x="0" y="68" width="940" height="17" class="data-1" />
+<text x="948" y="82" class="" text-anchor="start" >10</text>
+<text x="0" y="110" class="" text-anchor="start" >Research records</text>
+<text x="0" y="131" class="chart-small" text-anchor="start" >alerts and typed research notes</text>
+<rect x="0" y="150" width="658" height="17" class="data-1" />
+<text x="666" y="164" class="" text-anchor="start" >7</text>
+<text x="0" y="192" class="" text-anchor="start" >Portfolio data</text>
+<text x="0" y="213" class="chart-small" text-anchor="start" >validate, store and read snapshots; refresh the private dashboard</text>
+<rect x="0" y="232" width="564" height="17" class="data-1" />
+<text x="572" y="246" class="" text-anchor="start" >6</text>
+<text x="0" y="274" class="" text-anchor="start" >Tasks</text>
+<text x="0" y="295" class="chart-small" text-anchor="start" >start, check, list, message, stop long agent jobs</text>
+<rect x="0" y="314" width="470" height="17" class="data-1" />
+<text x="478" y="328" class="" text-anchor="start" >5</text>
+<text x="0" y="356" class="" text-anchor="start" >Messages</text>
+<text x="0" y="377" class="chart-small" text-anchor="start" >the coordination bus between agents</text>
+<rect x="0" y="396" width="376" height="17" class="data-1" />
+<text x="384" y="410" class="" text-anchor="start" >4</text>
+<text x="0" y="438" class="" text-anchor="start" >Workspace and memory</text>
+<text x="0" y="459" class="chart-small" text-anchor="start" >search and read code and notes</text>
+<rect x="0" y="478" width="376" height="17" class="data-1" />
+<text x="384" y="492" class="" text-anchor="start" >4</text>
+<text x="0" y="520" class="" text-anchor="start" >Files</text>
+<text x="0" y="541" class="chart-small" text-anchor="start" >move files in and out, resumably</text>
+<rect x="0" y="560" width="376" height="17" class="data-1" />
+<text x="384" y="574" class="" text-anchor="start" >4</text>
+<text x="0" y="584" class="chart-small" text-anchor="start" >0</text>
+<text x="188" y="584" class="chart-small" text-anchor="middle" >2</text>
+<text x="376" y="584" class="chart-small" text-anchor="middle" >4</text>
+<text x="564" y="584" class="chart-small" text-anchor="middle" >6</text>
+<text x="752" y="584" class="chart-small" text-anchor="middle" >8</text>
+<text x="940" y="584" class="chart-small" text-anchor="middle" >10</text>
+<text x="0" y="610" class="" text-anchor="start" >tools (count)</text>
+</svg>
+<svg class="chart-mobile" viewBox="0 0 350 950" role="img" aria-label="Agent Host tools by group, counts" xmlns="http://www.w3.org/2000/svg">
+<text x="0" y="28" class="" text-anchor="start" >Host and sessions</text>
+<text x="0" y="49" class="chart-small" text-anchor="start" >health, telemetry, session control, admin</text>
+<rect x="0" y="85" width="300" height="17" class="data-1" />
+<text x="308" y="99" class="" text-anchor="start" >10</text>
+<text x="0" y="156" class="" text-anchor="start" >Research records</text>
+<text x="0" y="177" class="chart-small" text-anchor="start" >alerts and typed research notes</text>
+<rect x="0" y="213" width="210" height="17" class="data-1" />
+<text x="218" y="227" class="" text-anchor="start" >7</text>
+<text x="0" y="284" class="" text-anchor="start" >Portfolio data</text>
+<text x="0" y="305" class="chart-small" text-anchor="start" >validate, store and read snapshots; refresh</text>
+<text x="0" y="323" class="chart-small" text-anchor="start" >the private dashboard</text>
+<rect x="0" y="341" width="180" height="17" class="data-1" />
+<text x="188" y="355" class="" text-anchor="start" >6</text>
+<text x="0" y="412" class="" text-anchor="start" >Tasks</text>
+<text x="0" y="433" class="chart-small" text-anchor="start" >start, check, list, message, stop long</text>
+<text x="0" y="451" class="chart-small" text-anchor="start" >agent jobs</text>
+<rect x="0" y="469" width="150" height="17" class="data-1" />
+<text x="158" y="483" class="" text-anchor="start" >5</text>
+<text x="0" y="540" class="" text-anchor="start" >Messages</text>
+<text x="0" y="561" class="chart-small" text-anchor="start" >the coordination bus between agents</text>
+<rect x="0" y="597" width="120" height="17" class="data-1" />
+<text x="128" y="611" class="" text-anchor="start" >4</text>
+<text x="0" y="668" class="" text-anchor="start" >Workspace and memory</text>
+<text x="0" y="689" class="chart-small" text-anchor="start" >search and read code and notes</text>
+<rect x="0" y="725" width="120" height="17" class="data-1" />
+<text x="128" y="739" class="" text-anchor="start" >4</text>
+<text x="0" y="796" class="" text-anchor="start" >Files</text>
+<text x="0" y="817" class="chart-small" text-anchor="start" >move files in and out, resumably</text>
+<rect x="0" y="853" width="120" height="17" class="data-1" />
+<text x="128" y="867" class="" text-anchor="start" >4</text>
+<text x="0" y="906" class="chart-small" text-anchor="start" >0</text>
+<text x="60" y="906" class="chart-small" text-anchor="middle" >2</text>
+<text x="120" y="906" class="chart-small" text-anchor="middle" >4</text>
+<text x="180" y="906" class="chart-small" text-anchor="middle" >6</text>
+<text x="240" y="906" class="chart-small" text-anchor="middle" >8</text>
+<text x="300" y="906" class="chart-small" text-anchor="middle" >10</text>
+<text x="0" y="932" class="" text-anchor="start" >tools (count)</text>
+</svg>
+<figcaption>Most tools are plumbing. None of them places a trade.</figcaption>
+<details>
+<summary>Chart data</summary>
+<table class="table">
+<thead>
+<tr>
+<th scope="col">Group</th>
+<th scope="col">Description</th>
+<th scope="col">Tools</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Host and sessions</th>
+<td>health, telemetry, session control, admin</td>
+<td>10</td>
+</tr>
+<tr>
+<th scope="row">Research records</th>
+<td>alerts and typed research notes</td>
+<td>7</td>
+</tr>
+<tr>
+<th scope="row">Portfolio data</th>
+<td>validate, store and read snapshots; refresh the private dashboard</td>
+<td>6</td>
+</tr>
+<tr>
+<th scope="row">Tasks</th>
+<td>start, check, list, message, stop long agent jobs</td>
+<td>5</td>
+</tr>
+<tr>
+<th scope="row">Messages</th>
+<td>the coordination bus between agents</td>
+<td>4</td>
+</tr>
+<tr>
+<th scope="row">Workspace and memory</th>
+<td>search and read code and notes</td>
+<td>4</td>
+</tr>
+<tr>
+<th scope="row">Files</th>
+<td>move files in and out, resumably</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+</details>
+</figure>
+<ol class="ds-steps article-timeline">
+<li><time class="ds-when" datetime="2026-08-22">2026-08-22</time><p>— First version.</p>
+</li>
+<li><time class="ds-when" datetime="2026-08-24">2026-08-24</time><p>— Thin control plane for remote tools.</p>
+</li>
+<li><time class="ds-when" datetime="2026-10-06">2026-10-06</time><p>— Rebuilt around long-running tasks.</p>
+</li>
+<li><time class="ds-when" datetime="2026-10-25">2026-10-25</time><p>— Resumable file transfers.</p>
+</li>
+</ol><p>The coordination bus is an append-only message log. Agents post, read and acknowledge. Messages carry context, never trading consent.</p>
+</section>
+<div class="hr">
+</div>
+<section class="ds-section ds-wrap article-stack" id="fleet">
+<h2 class="ds-title">The agent fleet</h2><p class="ds-lede">Each job goes to the cheapest model that passes our tests.</p>
+<figure class="article-chart">
+<div class="ds-diagram">
+<svg class="chart-desktop" viewBox="0 0 1100 292" role="img" aria-label="Operator to Claude Opus, branching to Codex, Sonnet and Haiku. Opus connects through the coordination bus to ChatGPT." xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="fleet-desktop" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto-start-reverse">
+<path d="M0 0 L7 3.5 L0 7 Z" class="ds-arrow" />
+</marker>
+</defs>
+<rect class="ds-node" x="20" y="14" width="210" height="76" rx="8" />
+<text x="125.0" y="57.0" class="node-title" text-anchor="middle" >Operator</text>
+<path d="M230 52 H291" class="ds-edge" marker-end="url(#fleet-desktop)" />
+<rect class="ds-node" x="300" y="14" width="300" height="76" rx="8" />
+<text x="450.0" y="45.0" class="node-title" text-anchor="middle" >Claude Opus</text>
+<text x="450.0" y="69.0" class="chart-small" text-anchor="middle" >plans, checks, decides</text>
+<path d="M450 90 V138 H180 M450 138 H920" class="ds-edge" />
+<path d="M180 138 V176" class="ds-edge" marker-end="url(#fleet-desktop)" />
+<rect class="ds-node" x="20" y="184" width="320" height="86" rx="8" />
+<text x="180.0" y="220.0" class="node-title" text-anchor="middle" >Codex gpt-6.1-sol</text>
+<text x="180.0" y="244.0" class="chart-small" text-anchor="middle" >builds</text>
+<path d="M550 138 V176" class="ds-edge" marker-end="url(#fleet-desktop)" />
+<rect class="ds-node" x="390" y="184" width="320" height="86" rx="8" />
+<text x="550.0" y="220.0" class="node-title" text-anchor="middle" >Claude Sonnet</text>
+<text x="550.0" y="244.0" class="chart-small" text-anchor="middle" >research lanes</text>
+<path d="M920 138 V176" class="ds-edge" marker-end="url(#fleet-desktop)" />
+<rect class="ds-node" x="760" y="184" width="320" height="86" rx="8" />
+<text x="920.0" y="220.0" class="node-title" text-anchor="middle" >Claude Haiku</text>
+<text x="920.0" y="244.0" class="chart-small" text-anchor="middle" >scans, repairs</text>
+<path d="M608 52 H679" class="ds-edge" marker-end="url(#fleet-desktop)" marker-start="url(#fleet-desktop)" />
+<rect class="ds-node" x="688" y="14" width="180" height="76" rx="8" />
+<text x="778.0" y="57.0" class="node-title" text-anchor="middle" >Coordination bus</text>
+<path d="M877 52 H920" class="ds-edge" marker-end="url(#fleet-desktop)" marker-start="url(#fleet-desktop)" />
+<rect class="ds-node" x="930" y="14" width="150" height="76" rx="8" />
+<text x="1005.0" y="45.0" class="node-title" text-anchor="middle" >ChatGPT</text>
+<text x="1005.0" y="69.0" class="chart-small" text-anchor="middle" >executor</text>
+</svg>
+<svg class="chart-mobile" viewBox="0 0 350 704" role="img" aria-label="Operator to Claude Opus, branching to Codex, Sonnet and Haiku. Opus connects through the coordination bus to ChatGPT." xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="fleet-mobile" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto-start-reverse">
+<path d="M0 0 L7 3.5 L0 7 Z" class="ds-arrow" />
+</marker>
+</defs>
+<rect class="ds-node" x="35" y="12" width="280" height="62" rx="8" />
+<text x="175.0" y="48.0" class="node-title" text-anchor="middle" >Operator</text>
+<path d="M175 74 V96" class="ds-edge" marker-end="url(#fleet-mobile)" />
+<rect class="ds-node" x="35" y="104" width="280" height="82" rx="8" />
+<text x="175.0" y="138.0" class="node-title" text-anchor="middle" >Claude Opus</text>
+<text x="175.0" y="162.0" class="chart-small" text-anchor="middle" >plans, checks, decides</text>
+<path d="M35 145 H16 V459" class="ds-edge" />
+<path d="M16 264 H33" class="ds-edge" marker-end="url(#fleet-mobile)" />
+<rect class="ds-node" x="35" y="224" width="280" height="80" rx="8" />
+<text x="175.0" y="257.0" class="node-title" text-anchor="middle" >Codex gpt-6.1-sol</text>
+<text x="175.0" y="281.0" class="chart-small" text-anchor="middle" >builds</text>
+<path d="M16 360 H33" class="ds-edge" marker-end="url(#fleet-mobile)" />
+<rect class="ds-node" x="35" y="320" width="280" height="80" rx="8" />
+<text x="175.0" y="353.0" class="node-title" text-anchor="middle" >Claude Sonnet</text>
+<text x="175.0" y="377.0" class="chart-small" text-anchor="middle" >research lanes</text>
+<path d="M16 456 H33" class="ds-edge" marker-end="url(#fleet-mobile)" />
+<rect class="ds-node" x="35" y="416" width="280" height="80" rx="8" />
+<text x="175.0" y="449.0" class="node-title" text-anchor="middle" >Claude Haiku</text>
+<text x="175.0" y="473.0" class="chart-small" text-anchor="middle" >scans, repairs</text>
+<path d="M315 145 H337 V545 H317" class="ds-edge" marker-end="url(#fleet-mobile)" marker-start="url(#fleet-mobile)" />
+<rect class="ds-node" x="35" y="510" width="280" height="70" rx="8" />
+<text x="175.0" y="550.0" class="node-title" text-anchor="middle" >Coordination bus</text>
+<path d="M175 584 V608" class="ds-edge" marker-end="url(#fleet-mobile)" marker-start="url(#fleet-mobile)" />
+<rect class="ds-node" x="35" y="616" width="280" height="70" rx="8" />
+<text x="175.0" y="644.0" class="node-title" text-anchor="middle" >ChatGPT</text>
+<text x="175.0" y="668.0" class="chart-small" text-anchor="middle" >executor</text>
+</svg>
+</div>
+<figcaption>Opus decides. Cheaper models do the bulk of the work.</figcaption>
+<details>
+<summary>Chart data</summary>
+<table class="table">
+<thead>
+<tr>
+<th scope="col">From</th>
+<th scope="col">To</th>
+<th scope="col">Job</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Operator</th>
+<td>Claude Opus</td>
+<td>plans, checks, decides</td>
+</tr>
+<tr>
+<th scope="row">Claude Opus</th>
+<td>Codex gpt-6.1-sol</td>
+<td>builds</td>
+</tr>
+<tr>
+<th scope="row">Claude Opus</th>
+<td>Claude Sonnet</td>
+<td>research lanes</td>
+</tr>
+<tr>
+<th scope="row">Claude Opus</th>
+<td>Claude Haiku</td>
+<td>scans, repairs</td>
+</tr>
+<tr>
+<th scope="row">Claude Opus ↔ Coordination bus</th>
+<td>ChatGPT</td>
+<td>executor</td>
+</tr>
+</tbody>
+</table>
+</details>
+</figure>
+<table class="table article-fleet-table">
+<thead>
+<tr>
+<th scope="col">Lane</th>
+<th scope="col">Model</th>
+<th scope="col">Job</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Orchestrator</th>
+<td data-label="Model">Claude Opus 5.5</td>
+<td data-label="Job">Plans, merges findings, verifies, decides</td>
+</tr>
+<tr>
+<th scope="row">Builder</th>
+<td data-label="Model">Codex gpt-6.1-sol, high effort</td>
+<td data-label="Job">Writes most of the code</td>
+</tr>
+<tr>
+<th scope="row">Escalation</th>
+<td data-label="Model">Codex gpt-6-astra</td>
+<td data-label="Job">Harder or urgent builds</td>
+</tr>
+<tr>
+<th scope="row">Research</th>
+<td data-label="Model">Claude Sonnet 5.5</td>
+<td data-label="Job">Specialist portfolio research</td>
+</tr>
+<tr>
+<th scope="row">Scans and repairs</th>
+<td data-label="Model">Claude Haiku 5.5</td>
+<td data-label="Job">Reads, inventories, small fixes</td>
+</tr>
+<tr>
+<th scope="row">Executor</th>
+<td data-label="Model">ChatGPT</td>
+<td data-label="Job">Drafts orders for the human to submit</td>
+</tr>
+</tbody>
+</table><p><a href="../../dispatchbench/">DispatchBench</a> picked these lanes.</p>
+<ul class="article-list">
+<li>Wren writes the articles, including this one.</li>
+<li>Sterling runs the portfolio reviews.</li>
+<li>Kestrel runs a separate crypto research desk.</li>
+</ul>
+</section>
+<div class="hr">
+</div>
+<section class="ds-section ds-wrap article-stack" id="timeline">
+<h2 class="ds-title">Timeline</h2>
+<ol class="ds-steps article-timeline">
+<li><time class="ds-when" datetime="2026-06-08">2026-06-08</time><p>— crss: sessions that survive on a server.</p>
+</li>
+<li><time class="ds-when" datetime="2026-06-12">2026-06-12</time><p>— Claudefolio starts.</p>
+</li>
+<li><time class="ds-when" datetime="2026-08-22">2026-08-22</time><p>— Agent Host first version.</p>
+</li>
+<li><time class="ds-when" datetime="2026-10-06">2026-10-06</time><p>— Agent Host rebuilt around tasks.</p>
+</li>
+<li><time class="ds-when" datetime="2026-10-23">2026-10-23</time><p>— Review workflow lands. Codex sol-high becomes the default builder.</p>
+</li>
+<li><time class="ds-when" datetime="2026-10-27">2026-10-27</time><p>— Order sheets show side-by-side decisions.</p>
+</li>
+<li><time class="ds-when" datetime="2026-10-30">2026-10-30</time><p>— Routing refreshed after new speed tests.</p>
+</li>
+</ol>
+<details>
+<summary>What this page leaves out</summary>
+<ul class="article-list">
+<li>No balances, holdings, trades or results. Those stay private.</li>
+<li>No account details or server addresses.</li>
+<li>Tool names are grouped, not listed, so the page doesn&#x27;t map the server.</li>
+</ul>
+</details>
+<details>
+<summary>Sources</summary>
+<ul class="article-list">
+<li>Claudefolio repo: docs/workflows/claudefolio_review_and_trade.md, docs/approval_ledger.md (private repo).</li>
+<li>Agent Host repo: docs/ARCHITECTURE.md and its MCP tool registry (private repo).</li>
+<li>crss: references/orchestration-flow.md, https://github.com/chimera-defi/claude-remote-session-skill</li>
+<li>Dates from each repo&#x27;s git log.</li>
+</ul>
+</details>
+</section>
+<div class="hr">
+</div>
+  </main>
+  <footer class="ds-footer">
+<div><span>ChimericLabs LLC · Wyoming</span>
+<div class="ds-row"><a href="../building/">← What we&#x27;ve been building</a><a href="../../research.html">Research →</a>
+</div>
+</div></footer>
+</body>
+</html>
