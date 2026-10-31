@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What we&#x27;ve been building</title>
+  <meta name="description" content="Eleven months of side projects at Chimeric Labs: what each one is, when it happened, and the AI tokens behind it." />
+  <meta property="og:title" content="What we&#x27;ve been building" />
+  <meta property="og:description" content="Eleven months of side projects at Chimeric Labs: what each one is, when it happened, and the AI tokens behind it." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://chimericlabs.xyz/research/building/" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="canonical" href="https://chimericlabs.xyz/research/building/" />
+  <link rel="stylesheet" href="../../design-system/styles.css" />
+  <style>
+:root {
+  --data-1: var(--data-codex); --data-2: var(--data-pipeline);
+  --data-3: var(--data-grok); --data-4: var(--data-claude);
+  --article-type: calc(var(--space-1) * 5);
+  --article-small: calc(var(--space-1) * 4.65);
+  --article-heading: calc(var(--space-1) * 7.5);
+}
+.article-stack { display: grid; gap: var(--space-8); }
+.article-stack > * { min-width: 0; }
+.article-hero { padding-top: var(--ds-section-y); }
+.article-hero .ds-lede { margin: 0; }
+.article-takeaway { padding: var(--space-8); background: var(--color-surface); border: 1px solid var(--color-divider); border-radius: var(--radius-md); font-size: var(--space-6); }
+.article-list { padding-left: var(--space-8); display: grid; gap: var(--space-3); overflow-wrap: anywhere; }
+.article-list > li { min-width: 0; overflow-wrap: anywhere; }
+.article-toc { padding-block: var(--space-8); border-block: 1px solid var(--color-divider); }
+.article-toc ul { display: flex; flex-wrap: wrap; gap: var(--space-4) var(--space-8); list-style: none; padding: 0; }
+.article-toc a { display: inline-flex; padding-block: var(--space-3); }
+.article-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, calc(var(--space-8) * 15)), 1fr)); gap: var(--space-8); }
+.article-grid h3 { font-size: var(--article-heading); }
+.article-grid .ds-meta { margin-top: 0; }
+.article-tags { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.article-links { display: flex; flex-wrap: wrap; gap: var(--space-6); margin-top: auto; }
+.article-timeline { grid-template-columns: 1fr; gap: var(--space-8); margin-top: 0; }
+.article-timeline li { display: grid; grid-template-columns: calc(var(--space-8) * 5) 1fr; gap: var(--space-8); border-left: 1px solid var(--color-divider); padding-left: var(--space-6); }
+.article-timeline li::before { display: none; }
+.ds-when { color: var(--color-text); font-variant-numeric: tabular-nums; }
+.article-pipeline { grid-template-columns: 1fr; margin-top: 0; gap: var(--space-6); }
+.article-pipeline li { display: grid; grid-template-columns: var(--space-8) 1fr; gap: var(--space-6); }
+.article-pipeline li::before { margin: 0; }
+.article-notice { margin: 0; display: grid; gap: var(--space-4); }
+.article-notice h3 { font-size: var(--space-6); }
+.article-chart { display: grid; gap: var(--space-6); }
+.article-chart h3 { font-size: var(--article-heading); }
+.article-chart figcaption { color: var(--ds-muted); font-size: var(--article-type); margin: 0; }
+.article-chart svg { display: block; width: 100%; height: auto; font-family: var(--font-body); }
+.article-chart text { fill: var(--color-text); font-family: var(--font-body); font-size: var(--article-type); }
+.article-chart .chart-small { font-size: var(--article-small); }
+.article-chart .chart-on-bar { fill: var(--color-bg); }
+.article-chart .chart-grid { stroke: var(--data-grid); stroke-width: 1; }
+.article-chart .data-1 { fill: var(--data-1); }
+.article-chart .data-2 { fill: var(--data-2); }
+.article-chart .data-3 { fill: var(--data-3); }
+.article-chart .data-4 { fill: var(--data-4); }
+.article-chart .data-muted { fill: var(--data-effort-medium); }
+.article-legend { display: flex; flex-wrap: wrap; gap: var(--space-4) var(--space-8); font-size: var(--article-type); }
+.article-legend span { display: inline-flex; align-items: center; gap: var(--space-3); }
+.article-legend i { width: var(--space-4); height: var(--space-4); background: var(--data-1); }
+.article-legend .swatch-muted { background: var(--data-effort-medium); }
+.article-legend .swatch-2 { background: var(--data-2); }
+.article-legend .swatch-3 { background: var(--data-3); }
+.article-legend .swatch-4 { background: var(--data-4); }
+.article-chart .ds-diagram { overflow: visible; }
+.article-chart .ds-diagram svg { min-width: 0; }
+.article-chart .ds-edge { stroke: var(--data-1); }
+.article-chart .ds-arrow { fill: var(--data-1); }
+.article-chart .node-key-sub { fill: var(--color-accent-200); }
+.article-chart .chart-mobile { display: none; }
+.article-chart .node-title { font-weight: var(--font-heading-weight); }
+details { padding: var(--space-6); border: 1px solid var(--color-divider); border-radius: var(--radius-md); }
+summary { cursor: pointer; padding-block: var(--space-2); }
+details > :not(summary) { margin-top: var(--space-6); }
+.table { width: 100%; table-layout: fixed; }
+.table th, .table td { white-space: normal; overflow-wrap: anywhere; vertical-align: top; }
+section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
+@media (max-width: 700px) {
+  .article-chart .chart-desktop { display: none; }
+  .article-chart .chart-mobile { display: block; }
+  .article-timeline li { grid-template-columns: 1fr; gap: var(--space-2); }
+  .article-fleet-table thead { display: none; }
+  .article-fleet-table tr, .article-fleet-table th, .article-fleet-table td { display: block; width: 100%; }
+  .article-fleet-table tr { padding-block: var(--space-4); border-bottom: 1px solid var(--color-divider); }
+  .article-fleet-table td { padding-top: var(--space-2); }
+  .article-fleet-table td::before { content: attr(data-label) ": "; color: var(--ds-muted); }
+  .ds-header .nav { flex-wrap: wrap; }
+}
+</style>
+</head>
+<body class="ds-page">
+  <div class="ds-topbar">
+<div><a href="https://chimericlabs.xyz/">← Chimeric Labs</a>
+</div>
+</div>
+  <header class="ds-header">
+    <nav class="nav" aria-label="Primary">
+      <a href="../../" class="nav-brand">ChimericLabs</a>
+      <a href="../../portfolio.html" class="ds-optional">Portfolio</a>
+      <a href="../../research.html">Research</a>
+      <a href="../../#services" class="ds-optional">Services</a>
+      <a href="https://github.com/chimera-defi" class="btn btn-primary" rel="noreferrer">GitHub</a>
+    </nav>
+  </header>
+  <main>
+    <section class="ds-wrap ds-hero article-hero article-stack" aria-labelledby="page-title">
+      <span class="ds-kicker">Lab notes · 2026-10-31</span>
+      <h1 class="ds-h1" id="page-title">What we&#x27;ve been building</h1>
+      <p class="ds-lede">A friend asked what I&#x27;ve been up to. This is the answer, with pictures.</p>
+      <aside class="article-takeaway">Since June 2026, a small fleet of AI agents has written most of the code here. I plan, check and decide.</aside>
+      <ul class="article-list">
+<li>7,648 commits across seven projects, most of them since June 2026.</li>
+<li>Claudefolio, a portfolio research platform for AI agents, is the biggest: 5,854 commits.</li>
+<li>Most AI tokens are re-reads of saved context, not new writing.</li>
+</ul>
+      <figure class="article-chart">
+<h3>Commits per month, seven projects</h3>
+<div class="article-legend"><span><i class="swatch-muted" aria-hidden="true"></i>Nov–May</span><span><i class="" aria-hidden="true"></i>June–Oct</span>
+</div>
+<svg class="chart-desktop" viewBox="0 0 1100 395" role="img" aria-label="Commits per month, seven projects" xmlns="http://www.w3.org/2000/svg">
+<text x="64" y="22" class="" text-anchor="start" >commits</text>
+<line x1="64" y1="312.0" x2="1080" y2="312.0" class="chart-grid" />
+<text x="56" y="316.0" class="chart-small" text-anchor="end" >0</text>
+<line x1="64" y1="259.6" x2="1080" y2="259.6" class="chart-grid" />
+<text x="56" y="263.6" class="chart-small" text-anchor="end" >500</text>
+<line x1="64" y1="207.2" x2="1080" y2="207.2" class="chart-grid" />
+<text x="56" y="211.2" class="chart-small" text-anchor="end" >1000</text>
+<line x1="64" y1="154.8" x2="1080" y2="154.8" class="chart-grid" />
+<text x="56" y="158.8" class="chart-small" text-anchor="end" >1500</text>
+<line x1="64" y1="102.4" x2="1080" y2="102.4" class="chart-grid" />
+<text x="56" y="106.4" class="chart-small" text-anchor="end" >2000</text>
+<line x1="64" y1="50.0" x2="1080" y2="50.0" class="chart-grid" />
+<text x="56" y="54.0" class="chart-small" text-anchor="end" >2500</text>
+<rect x="82.63" y="311.48" width="47.41" height="0.52" class="data-muted" />
+<text x="106.33" y="334" class="chart-small" text-anchor="middle" >Nov</text>
+<text x="106.33" y="362" class="chart-small" text-anchor="middle" >2025</text>
+<rect x="167.29" y="307.18" width="47.41" height="4.82" class="data-muted" />
+<text x="191.0" y="334" class="chart-small" text-anchor="middle" >Dec</text>
+<rect x="251.96" y="309.28" width="47.41" height="2.72" class="data-muted" />
+<text x="275.67" y="334" class="chart-small" text-anchor="middle" >Jan</text>
+<text x="275.67" y="362" class="chart-small" text-anchor="middle" >2026</text>
+<rect x="336.63" y="310.85" width="47.41" height="1.15" class="data-muted" />
+<text x="360.33" y="334" class="chart-small" text-anchor="middle" >Feb</text>
+<rect x="421.29" y="311.37" width="47.41" height="0.63" class="data-muted" />
+<text x="445.0" y="334" class="chart-small" text-anchor="middle" >Mar</text>
+<rect x="505.96" y="306.55" width="47.41" height="5.45" class="data-muted" />
+<text x="529.67" y="334" class="chart-small" text-anchor="middle" >Apr</text>
+<rect x="590.63" y="310.74" width="47.41" height="1.26" class="data-muted" />
+<text x="614.33" y="334" class="chart-small" text-anchor="middle" >May</text>
+<rect x="675.29" y="243.57" width="47.41" height="68.43" class="data-1" />
+<text x="699.0" y="334" class="chart-small" text-anchor="middle" >Jun</text>
+<rect x="759.96" y="218.73" width="47.41" height="93.27" class="data-1" />
+<text x="783.67" y="334" class="chart-small" text-anchor="middle" >Jul</text>
+<rect x="844.63" y="168.11" width="47.41" height="143.89" class="data-1" />
+<text x="868.33" y="334" class="chart-small" text-anchor="middle" >Aug</text>
+<rect x="929.29" y="65.93" width="47.41" height="246.07" class="data-1" />
+<text x="953.0" y="334" class="chart-small" text-anchor="middle" >Sep</text>
+<rect x="1013.96" y="78.72" width="47.41" height="233.28" class="data-1" />
+<text x="1037.67" y="334" class="chart-small" text-anchor="middle" >Oct</text>
+<text x="699.0" y="210" class="chart-small" text-anchor="middle" >agents take over</text>
+<line x1="699.0" y1="218" x2="699.0" y2="233.56560000000002" class="ds-edge" />
+</svg>
+<svg class="chart-mobile" viewBox="0 0 350 420" role="img" aria-label="Commits per month, seven projects" xmlns="http://www.w3.org/2000/svg">
+<text x="48" y="22" class="" text-anchor="start" >commits</text>
+<line x1="48" y1="335.0" x2="342" y2="335.0" class="chart-grid" />
+<text x="40" y="339.0" class="chart-small" text-anchor="end" >0</text>
+<line x1="48" y1="282.8" x2="342" y2="282.8" class="chart-grid" />
+<text x="40" y="286.8" class="chart-small" text-anchor="end" >500</text>
+<line x1="48" y1="230.6" x2="342" y2="230.6" class="chart-grid" />
+<text x="40" y="234.6" class="chart-small" text-anchor="end" >1000</text>
+<line x1="48" y1="178.4" x2="342" y2="178.4" class="chart-grid" />
+<text x="40" y="182.4" class="chart-small" text-anchor="end" >1500</text>
+<line x1="48" y1="126.19999999999999" x2="342" y2="126.19999999999999" class="chart-grid" />
+<text x="40" y="130.2" class="chart-small" text-anchor="end" >2000</text>
+<line x1="48" y1="74.0" x2="342" y2="74.0" class="chart-grid" />
+<text x="40" y="78.0" class="chart-small" text-anchor="end" >2500</text>
+<rect x="53.39" y="334.48" width="13.72" height="0.52" class="data-muted" />
+<text x="60.25" y="357" class="chart-small" text-anchor="end" transform="rotate(-55 60.25 357)">Nov</text>
+<text x="60.25" y="403" class="chart-small" text-anchor="middle" >2025</text>
+<rect x="77.89" y="330.2" width="13.72" height="4.8" class="data-muted" />
+<text x="84.75" y="357" class="chart-small" text-anchor="end" transform="rotate(-55 84.75 357)">Dec</text>
+<rect x="102.39" y="332.29" width="13.72" height="2.71" class="data-muted" />
+<text x="109.25" y="357" class="chart-small" text-anchor="end" transform="rotate(-55 109.25 357)">Jan</text>
+<text x="109.25" y="403" class="chart-small" text-anchor="middle" >2026</text>
+<rect x="126.89" y="333.85" width="13.72" height="1.15" class="data-muted" />
+<text x="133.75" y="357" class="chart-small" text-anchor="end" transform="rotate(-55 133.75 357)">Feb</text>
+<rect x="151.39" y="334.37" width="13.72" height="0.63" class="data-muted" />
+<text x="158.25" y="357" class="chart-small" text-anchor="end" transform="rotate(-55 158.25 357)">Mar</text>
+<rect x="175.89" y="329.57" width="13.72" height="5.43" class="data-muted" />
+<text x="182.75" y="357" class="chart-small" text-anchor="end" transform="rotate(-55 182.75 357)">Apr</text>
+<rect x="200.39" y="333.75" width="13.72" height="1.25" class="data-muted" />
+<text x="207.25" y="357" class="chart-small" text-anchor="end" transform="rotate(-55 207.25 357)">May</text>
+<rect x="224.89" y="266.83" width="13.72" height="68.17" class="data-1" />
+<text x="231.75" y="357" class="chart-small" text-anchor="end" transform="rotate(-55 231.75 357)">Jun</text>
+<rect x="249.39" y="242.08" width="13.72" height="92.92" class="data-1" />
+<text x="256.25" y="357" class="chart-small" text-anchor="end" transform="rotate(-55 256.25 357)">Jul</text>
+<rect x="273.89" y="191.66" width="13.72" height="143.34" class="data-1" />
+<text x="280.75" y="357" class="chart-small" text-anchor="end" transform="rotate(-55 280.75 357)">Aug</text>
+<rect x="298.39" y="89.87" width="13.72" height="245.13" class="data-1" />
+<text x="305.25" y="357" class="chart-small" text-anchor="end" transform="rotate(-55 305.25 357)">Sep</text>
+<rect x="322.89" y="102.61" width="13.72" height="232.39" class="data-1" />
+<text x="329.75" y="357" class="chart-small" text-anchor="end" transform="rotate(-55 329.75 357)">Oct</text>
+<text x="231.75" y="52" class="chart-small" text-anchor="end" >agents take over</text>
+<line x1="231.75" y1="60" x2="231.75" y2="256.8268" class="ds-edge" />
+</svg>
+<figcaption>Commits jumped in June 2026, when agents started doing the building.</figcaption>
+</figure>
+<details>
+<summary>Chart data</summary>
+<table class="table">
+<thead>
+<tr>
+<th scope="col">Month</th>
+<th scope="col">Commits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">2025-11</th>
+<td>5</td>
+</tr>
+<tr>
+<th scope="row">2025-12</th>
+<td>46</td>
+</tr>
+<tr>
+<th scope="row">2026-01</th>
+<td>26</td>
+</tr>
+<tr>
+<th scope="row">2026-02</th>
+<td>11</td>
+</tr>
+<tr>
+<th scope="row">2026-03</th>
+<td>6</td>
+</tr>
+<tr>
+<th scope="row">2026-04</th>
+<td>52</td>
+</tr>
+<tr>
+<th scope="row">2026-05</th>
+<td>12</td>
+</tr>
+<tr>
+<th scope="row">2026-06</th>
+<td>653</td>
+</tr>
+<tr>
+<th scope="row">2026-07</th>
+<td>890</td>
+</tr>
+<tr>
+<th scope="row">2026-08</th>
+<td>1373</td>
+</tr>
+<tr>
+<th scope="row">2026-09</th>
+<td>2348</td>
+</tr>
+<tr>
+<th scope="row">2026-10</th>
+<td>2226</td>
+</tr>
+</tbody>
+</table>
+</details>
+      <nav class="article-toc" aria-label="Contents">
+<ul>
+<li><a href="#projects">Projects</a>
+</li>
+<li><a href="#timeline">Timeline</a>
+</li>
+<li><a href="#tokens">The AI tokens behind it</a>
+</li>
+</ul></nav>
+    </section>
+    <section class="ds-section ds-wrap article-stack" id="projects">
+<h2 class="ds-title">Projects</h2>
+<div class="article-grid">
+<article class="card">
+<h3>Claudefolio</h3><p>A portfolio research platform any AI agent can hook into. Data checks, agent reviews and a checked order sheet. A human approves every trade.</p>
+<div class="article-tags"><span class="tag">Python</span><span class="tag">DuckDB</span><span class="tag">MCP</span>
+</div><p class="ds-meta">2026-06-12 → 2026-10-31 · 5,854 commits</p>
+<div class="article-links"><a href="../claudefolio/">How it works →</a>
+</div>
+</article>
+<article class="card">
+<h3>Agent Host</h3><p>The server that lets ChatGPT and Claude run tools and long jobs on my machine.</p>
+<div class="article-tags"><span class="tag">Python</span><span class="tag">MCP</span><span class="tag">SQLite</span>
+</div><p class="ds-meta">2026-08-22 → 2026-10-19 · 755 commits</p>
+<div class="article-links"><a href="../claudefolio/#agent-host">How it works →</a>
+</div>
+</article>
+<article class="card">
+<h3>crss</h3><p>Keeps Claude Code sessions alive on a server, reachable from a phone.</p>
+<div class="article-tags"><span class="tag">Bash</span><span class="tag">Python</span><span class="tag">tmux</span>
+</div><p class="ds-meta">2026-06-08 → 2026-10-30 · 345 commits</p>
+<div class="article-links"><a href="../wren/">Read about Wren →</a><a href="https://github.com/chimera-defi/claude-remote-session-skill">GitHub</a>
+</div>
+</article>
+<article class="card">
+<h3>Wallet Radar</h3><p>Compares 161 crypto wallets, cards and ramps for developers, with scores you can rerun.</p>
+<div class="article-tags"><span class="tag">TypeScript</span><span class="tag">Next.js</span>
+</div><p class="ds-meta">2025-11-24 → 2026-10-17 · 277 commits</p>
+<div class="article-links"><a href="https://walletradar.org">walletradar.org →</a><a href="https://github.com/chimera-defi/walletradar">GitHub</a>
+</div>
+</article>
+<article class="card">
+<h3>DispatchBench</h3><p>Tests which AI model should do each coding job, and at what cost.</p>
+<div class="article-tags"><span class="tag">Python</span><span class="tag">HTML</span>
+</div><p class="ds-meta">2026-10-22 → 2026-10-28 · 257 commits</p>
+<div class="article-links"><a href="../../dispatchbench/">Read the report →</a><a href="https://github.com/chimera-defi/dispatchbench">GitHub</a>
+</div>
+</article>
+<article class="card">
+<h3>Questrade UI adapter</h3><p>Lets AI agents trade on Questrade through a browser, behind the human approval gate. Aims to match our IBKR MCP. Work in progress.</p>
+<div class="article-tags"><span class="tag">Python</span><span class="tag">Playwright</span>
+</div><p class="ds-meta">2026-09-10 → 2026-10-24 · 62 commits</p>
+</article>
+<article class="card">
+<h3>This site</h3><p>Where the lab shows its work.</p>
+<div class="article-tags"><span class="tag">HTML</span><span class="tag">CSS</span>
+</div><p class="ds-meta">2026-03-30 → 2026-10-28 · 98 commits</p>
+<div class="article-links"><a href="../../">Home →</a>
+</div>
+</article>
+</div><p class="ds-meta">Also in the workspace: token-reduce, delegate skills for Devin, Grok and Kimi, GBrain memory, SpecForge, and older staking work. <a href="../../portfolio.html">Full list</a></p>
+</section>
+<div class="hr">
+</div>
+<section class="ds-section ds-wrap article-stack" id="timeline">
+<h2 class="ds-title">Timeline</h2>
+<ol class="ds-steps article-timeline">
+<li><time class="ds-when" datetime="2025-11-24">2025-11-24</time><p>— Wallet Radar&#x27;s first commit.</p>
+</li>
+<li><time class="ds-when" datetime="2026-03-30">2026-03-30</time><p>— This site goes up.</p>
+</li>
+<li><time class="ds-when" datetime="2026-06-08">2026-06-08</time><p>— crss: Claude Code sessions that survive on a server.</p>
+</li>
+<li><time class="ds-when" datetime="2026-06-12">2026-06-12</time><p>— Claudefolio starts.</p>
+</li>
+<li><time class="ds-when" datetime="2026-08-22">2026-08-22</time><p>— Agent Host: ChatGPT gets tools on the server.</p>
+</li>
+<li><time class="ds-when" datetime="2026-10-06">2026-10-06</time><p>— Agent Host simplified to long-running tasks.</p>
+</li>
+<li><time class="ds-when" datetime="2026-10-22">2026-10-22</time><p>— DispatchBench starts. Its results set who builds what.</p>
+</li>
+<li><time class="ds-when" datetime="2026-10-23">2026-10-23</time><p>— Claudefolio review workflow lands.</p>
+</li>
+<li><time class="ds-when" datetime="2026-10-25">2026-10-25</time><p>— Agent Host learns resumable file transfers.</p>
+</li>
+<li><time class="ds-when" datetime="2026-10-27">2026-10-27</time><p>— Order sheets show side-by-side decisions for the human.</p>
+</li>
+<li><time class="ds-when" datetime="2026-10-28">2026-10-28</time><p>— Token-use audit across local session logs.</p>
+</li>
+</ol>
+</section>
+<div class="hr">
+</div>
+<section class="ds-section ds-wrap article-stack" id="tokens">
+<h2 class="ds-title">The AI tokens behind it</h2><p class="ds-lede">I count tokens, the units AI models read and write. Most are cheap re-reads.</p>
+<figure class="article-chart">
+<div class="article-legend"><span><i class="" aria-hidden="true"></i>Re-reads</span><span><i class="swatch-2" aria-hidden="true"></i>Cache writes</span><span><i class="swatch-3" aria-hidden="true"></i>Fresh input</span><span><i class="swatch-4" aria-hidden="true"></i>Output</span>
+</div>
+<svg class="chart-desktop" viewBox="0 0 1100 225" role="img" aria-label="Token usage by tool, share of tokens in percent" xmlns="http://www.w3.org/2000/svg">
+<text x="0" y="68" class="" text-anchor="start" >Claude</text>
+<text x="1100" y="68" class="" text-anchor="end" >20.08 billion tokens</text>
+<rect x="104" y="45" width="753.1088082901555" height="36" class="data-1" />
+<rect x="857.1088082901555" y="45" width="22.150259067357513" height="36" class="data-2" />
+<rect x="879.259067357513" y="45" width="0.07772020725388602" height="36" class="data-3" />
+<rect x="879.3367875647668" y="45" width="4.66321243523316" height="36" class="data-4" />
+<text x="462.8" y="68" class="chart-on-bar" text-anchor="middle" >96.6%</text>
+<text x="0" y="144" class="" text-anchor="start" >Codex</text>
+<text x="1100" y="144" class="" text-anchor="end" >263.59 billion tokens</text>
+<rect x="104" y="121" width="761.5941424181493" height="36" class="data-1" />
+<rect x="865.5941424181493" y="121" width="16.512007284039605" height="36" class="data-3" />
+<rect x="882.1061497021889" y="121" width="1.8938502978109941" height="36" class="data-4" />
+<text x="462.8" y="144" class="chart-on-bar" text-anchor="middle" >97.6%</text>
+<text x="104" y="208" class="" text-anchor="start" >Share of tokens (%)</text>
+<text x="104.0" y="181" class="chart-small" text-anchor="start" >0</text>
+<text x="299.0" y="181" class="chart-small" text-anchor="middle" >25</text>
+<text x="494.0" y="181" class="chart-small" text-anchor="middle" >50</text>
+<text x="689.0" y="181" class="chart-small" text-anchor="middle" >75</text>
+<text x="884.0" y="181" class="chart-small" text-anchor="end" >100</text>
+</svg>
+<svg class="chart-mobile" viewBox="0 0 350 260" role="img" aria-label="Token usage by tool, share of tokens in percent" xmlns="http://www.w3.org/2000/svg">
+<text x="0" y="28" class="" text-anchor="start" >Claude</text>
+<text x="350" y="28" class="chart-small" text-anchor="end" >20.08 billion tokens</text>
+<rect x="0" y="43" width="337.9334396173775" height="36" class="data-1" />
+<rect x="337.9334396173775" y="43" width="9.939218812275806" height="36" class="data-2" />
+<rect x="347.87265842965326" y="43" width="0.034874451972897576" height="36" class="data-3" />
+<rect x="347.90753288162614" y="43" width="2.0924671183738544" height="36" class="data-4" />
+<text x="161.0" y="66" class="chart-on-bar" text-anchor="middle" >96.6%</text>
+<text x="0" y="128" class="" text-anchor="start" >Codex</text>
+<text x="350" y="128" class="chart-small" text-anchor="end" >263.59 billion tokens</text>
+<rect x="0" y="143" width="341.74096134147726" height="36" class="data-1" />
+<rect x="341.74096134147726" y="143" width="7.409234037710079" height="36" class="data-3" />
+<rect x="349.1501953791873" y="143" width="0.8498046208126255" height="36" class="data-4" />
+<text x="161.0" y="166" class="chart-on-bar" text-anchor="middle" >97.6%</text>
+<text x="0" y="244" class="" text-anchor="start" >Share of tokens (%)</text>
+<text x="0.0" y="217" class="chart-small" text-anchor="start" >0</text>
+<text x="87.5" y="217" class="chart-small" text-anchor="middle" >25</text>
+<text x="175.0" y="217" class="chart-small" text-anchor="middle" >50</text>
+<text x="262.5" y="217" class="chart-small" text-anchor="middle" >75</text>
+<text x="350.0" y="217" class="chart-small" text-anchor="end" >100</text>
+</svg>
+<figcaption>Both tools mostly re-read saved context. New writing is under 1% of tokens.</figcaption>
+</figure>
+<details>
+<summary>Chart data</summary>
+<table class="table">
+<thead>
+<tr>
+<th scope="col">Tool</th>
+<th scope="col">Category</th>
+<th scope="col">Tokens</th>
+<th scope="col">Share</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Claude</th>
+<td>Cache reads</td>
+<td>19.38 B</td>
+<td>96.6%</td>
+</tr>
+<tr>
+<th scope="row">Claude</th>
+<td>Cache writes</td>
+<td>0.57 B</td>
+<td>2.8%</td>
+</tr>
+<tr>
+<th scope="row">Claude</th>
+<td>Output</td>
+<td>0.12 B</td>
+<td>0.6%</td>
+</tr>
+<tr>
+<th scope="row">Claude</th>
+<td>Fresh input</td>
+<td>0.002 B</td>
+<td>under 0.1%</td>
+</tr>
+<tr>
+<th scope="row">Claude</th>
+<td>Total</td>
+<td>20.08 billion tokens</td>
+<td>
+</td>
+</tr>
+<tr>
+<th scope="row">Codex</th>
+<td>Cached input</td>
+<td>257.37 B</td>
+<td>97.6%</td>
+</tr>
+<tr>
+<th scope="row">Codex</th>
+<td>Fresh input</td>
+<td>5.58 B</td>
+<td>2.1%</td>
+</tr>
+<tr>
+<th scope="row">Codex</th>
+<td>Output</td>
+<td>0.64 B</td>
+<td>0.2%</td>
+</tr>
+<tr>
+<th scope="row">Codex</th>
+<td>Total</td>
+<td>263.59 billion tokens</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+</details>
+<ul class="article-list">
+<li>A token is about three-quarters of a word.</li>
+<li>Re-reads cost about a twentieth of fresh input at list prices.</li>
+<li>I pay flat monthly plans, so this is usage, not a bill.</li>
+</ul>
+<details>
+<summary>How these numbers were made</summary>
+<ul class="article-list">
+<li>Commits: <code>git log</code> on each project&#x27;s main checkout, counted by author month, duplicates removed. Agent Host uses its newest local branch.</li>
+<li>Claude tokens: 3,473 local session logs, deduplicated per message, audited 2026-10-29.</li>
+<li>Codex tokens: 3,818 session logs with final counters, audited 2026-10-29. A later check flags these totals as disputed, so treat them as rough.</li>
+<li>Not counted: ChatGPT chat usage, which has no token meter we can read, and small Grok, Devin and Kimi runs.</li>
+<li>No invoice-backed dollar total exists yet. That is why the chart shows tokens.</li>
+</ul>
+</details>
+<details>
+<summary>Limits</summary>
+<ul class="article-list">
+<li>Commit counts include merge commits and agent commits. They measure activity, not value.</li>
+<li>Early months are partial: some old session logs are gone.</li>
+<li>One snapshot in time: 2026-10-31.</li>
+</ul>
+</details>
+</section>
+<div class="hr">
+</div>
+  </main>
+  <footer class="ds-footer">
+<div><span>ChimericLabs LLC · Wyoming</span>
+<div class="ds-row"><a href="../../research.html">← Research</a><a href="../claudefolio/">How Claudefolio works →</a>
+</div>
+</div></footer>
+</body>
+</html>
