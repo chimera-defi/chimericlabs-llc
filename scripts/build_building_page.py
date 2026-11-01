@@ -297,8 +297,8 @@ def main():
     spike_pct = round(100.0 * spike / sum(int(r["own_tokens_corrected"]) for r in codex_days))
     tokens = "\n".join([
         '<div class="article-grid">',
-        f'<article class="card"><h3>Claude</h3><p class="token-n">{since_claude:.1f} billion tokens</p><p>{SAME_WINDOW_START} to {data_through}, the window where both tools were fully measured. Raw, cache reads included.</p></article>',
-        f'<article class="card"><h3>Codex</h3><p class="token-n">{since_codex:.1f} billion tokens</p><p>Same window, {SAME_WINDOW_START} to {data_through}. Raw tokens Codex used itself on this server, cached input included.</p></article>',
+        f'<article class="card"><h3>Claude</h3><p class="token-n">{since_claude:.1f} billion tokens</p><p>Observed over the same dates for both tools, {SAME_WINDOW_START} to {data_through} (last day partial). Raw, cache reads included; {ranges["since"][3] / 1e9:.1f} billion tokens from recovered logs are left out.</p></article>',
+        f'<article class="card"><h3>Codex</h3><p class="token-n">{since_codex:.1f} billion tokens</p><p>Same dates, {SAME_WINDOW_START} to {data_through}. Raw tokens Codex used itself on this server, cached input included.</p></article>',
         '</div>',
         f'<p>Same comparison, shorter windows: last 30 days, Claude {d30_claude:.1f} billion and Codex {d30_codex:.1f} billion; last 7 days, Claude {d7_claude:.1f} billion and Codex {d7_codex:.1f} billion.</p>',
         f'<p class="ds-meta">Longer ranges, with different start dates, so not comparable: Claude {claude_total / 1e9:.1f} billion from 2026-07-10, with gaps (earlier logs are gone, so this is a floor). Codex {codex_total / 1e9:.1f} billion from 2026-05-24, {spike_pct}% of it a July–August spike when Claude logs are missing. Estimates, not a bill. The two tools count differently, so the totals are not added together.</p>',

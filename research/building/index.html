@@ -337,8 +337,8 @@ section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
 <section class="ds-section ds-wrap article-stack" id="tokens">
 <h2 class="ds-title">The AI tokens behind it</h2><p class="ds-lede">I count tokens, the units AI models read and write. Most are cheap re-reads.</p>
 <!-- gen:tokens --><div class="article-grid">
-<article class="card"><h3>Claude</h3><p class="token-n">17.7 billion tokens</p><p>2026-09-07 to 2026-11-01, the window where both tools were fully measured. Raw, cache reads included.</p></article>
-<article class="card"><h3>Codex</h3><p class="token-n">6.0 billion tokens</p><p>Same window, 2026-09-07 to 2026-11-01. Raw tokens Codex used itself on this server, cached input included.</p></article>
+<article class="card"><h3>Claude</h3><p class="token-n">17.7 billion tokens</p><p>Observed over the same dates for both tools, 2026-09-07 to 2026-11-01 (last day partial). Raw, cache reads included; 3.1 billion tokens from recovered logs are left out.</p></article>
+<article class="card"><h3>Codex</h3><p class="token-n">6.0 billion tokens</p><p>Same dates, 2026-09-07 to 2026-11-01. Raw tokens Codex used itself on this server, cached input included.</p></article>
 </div>
 <p>Same comparison, shorter windows: last 30 days, Claude 10.5 billion and Codex 4.6 billion; last 7 days, Claude 2.5 billion and Codex 1.7 billion.</p>
 <p class="ds-meta">Longer ranges, with different start dates, so not comparable: Claude 20.8 billion from 2026-07-10, with gaps (earlier logs are gone, so this is a floor). Codex 27.2 billion from 2026-05-24, 66% of it a July–August spike when Claude logs are missing. Estimates, not a bill. The two tools count differently, so the totals are not added together.</p>
