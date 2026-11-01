@@ -337,11 +337,13 @@ section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
 <section class="ds-section ds-wrap article-stack" id="tokens">
 <h2 class="ds-title">The AI tokens behind it</h2><p class="ds-lede">I count tokens, the units AI models read and write. Most are cheap re-reads.</p>
 <!-- gen:tokens --><div class="article-grid">
-<article class="card"><h3>Claude</h3><p class="token-n">20.8 billion tokens</p><p>Measured from 2026-07-10 to 2026-11-01, with gaps, raw, cache reads included. Earlier logs are gone, so this is a floor, not a lifetime total.</p></article>
-<article class="card"><h3>Codex</h3><p class="token-n">27.2 billion tokens</p><p>Raw tokens Codex used itself on this server, cached input included, 2026-05-24 to 2026-11-01.</p></article>
+<article class="card"><h3>Claude</h3><p class="token-n">17.7 billion tokens</p><p>Observed over the same dates for both tools, 2026-09-07 to 2026-11-01 (last day partial). Raw, cache reads included; 3.1 billion tokens from recovered logs are left out.</p></article>
+<article class="card"><h3>Codex</h3><p class="token-n">6.0 billion tokens</p><p>Same dates, 2026-09-07 to 2026-11-01. Raw tokens Codex used itself on this server, cached input included.</p></article>
 </div>
-<p class="ds-meta">Estimates, not a bill. The two tools count differently, so the totals are not added together.</p><!-- /gen:tokens -->
-<!-- When research/token-usage/ is cleared, add: <p><a href="../token-usage/">The full token usage study →</a></p> -->
+<p>Same comparison, shorter windows: last 30 days, Claude 10.5 billion and Codex 4.6 billion; last 7 days, Claude 2.5 billion and Codex 1.7 billion.</p>
+<p class="ds-meta">Longer ranges, with different start dates, so not comparable: Claude 20.8 billion from 2026-07-10, with gaps (earlier logs are gone, so this is a floor). Codex 27.2 billion from 2026-05-24, 66% of it a July–August spike when Claude logs are missing. Estimates, not a bill. The two tools count differently, so the totals are not added together.</p>
+<p><a href="../token-usage/">The full token usage study →</a></p>
+<p><a href="../../dispatchbench/">DispatchBench: how we pick which model builds what →</a></p><!-- /gen:tokens -->
 <ul class="article-list">
 <li>A token is about three-quarters of a word.</li>
 <li>Re-reads cost about a twentieth of fresh input at list prices.</li>
