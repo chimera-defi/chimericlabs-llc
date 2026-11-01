@@ -3,8 +3,7 @@
 
 Reads from --handoff DIR:
   commits_by_project.csv        per-project commit counts and first/last dates
-  headline_counts.json          data_through date and Codex lifetime tokens
-  LIFETIME_TOKENS_DAILY_*.csv   Claude column only (Claude total, audit date); its Codex column is superseded, never use it
+  headline_counts.json          data_through date, Codex own tokens and Claude best measured tokens
 
 Optional --aliases FILE is JSON {directory_name: display_label}. Keep it outside
 the repo. Only rows that are not public and whose directory name is in the alias
@@ -22,7 +21,6 @@ Python 3 standard library only. No JavaScript, no external resources.
 """
 import argparse
 import csv
-import glob
 import html
 import json
 import os
@@ -72,16 +70,11 @@ def read_inputs(handoff, aliases_path):
         rows = list(csv.DictReader(fh))
     with open(os.path.join(handoff, "headline_counts.json"), encoding="utf-8") as fh:
         headline = json.load(fh)
-    daily_paths = sorted(glob.glob(os.path.join(handoff, "LIFETIME_TOKENS_DAILY_*.csv")))
-    if len(daily_paths) != 1:
-        sys.exit(f"expected one LIFETIME_TOKENS_DAILY_*.csv in handoff, found {len(daily_paths)}")
-    with open(daily_paths[0], encoding="utf-8", newline="") as fh:
-        daily = list(csv.DictReader(fh))
     aliases = {}
     if aliases_path:
         with open(aliases_path, encoding="utf-8") as fh:
             aliases = json.load(fh)
-    return rows, headline, daily, aliases
+    return rows, headline, aliases
 
 
 def assign_group(row, aliases):
@@ -215,7 +208,7 @@ def main():
     ap.add_argument("--page", default=DEFAULT_PAGE, help="page to rewrite (default: research/building/index.html)")
     args = ap.parse_args()
 
-    rows, headline, daily, aliases = read_inputs(args.handoff, args.aliases)
+    rows, headline, aliases = read_inputs(args.handoff, args.aliases)
     data_through = headline["data_through"][:10]
     groups = build_groups(rows, aliases)
     total = sum(int(r[COMMITS_COL]) for r in rows)
@@ -230,8 +223,7 @@ def main():
     else:
         biggest_line = f"{html.escape(biggest['label'])} is the biggest: {biggest['n']:,} commits."
 
-    claude_total = sum(int(r["claude_tokens"]) for r in daily)
-    claude_audit = max(r["date"] for r in daily)
+    claude_total = int(headline["claude_tokens_best_measured"])
     codex_total = int(headline["codex_own_tokens_lifetime_on_host"])
 
     hero = "\n".join([
@@ -260,14 +252,14 @@ def main():
 
     tokens = "\n".join([
         '<div class="article-grid">',
-        f'<article class="card"><h3>Claude</h3><p class="token-n">{claude_total / 1e9:.1f} billion tokens</p><p>Raw tokens from local session logs, deduplicated per message. Audited {claude_audit}. Logs before 2026-09-07 were mostly deleted, so this is a floor.</p></article>',
+        f'<article class="card"><h3>Claude</h3><p class="token-n">{claude_total / 1e9:.1f} billion tokens</p><p>Measured from 2026-07-10 to {data_through}, raw, cache reads included. Earlier logs are gone, so this is a floor, not a lifetime total.</p></article>',
         f'<article class="card"><h3>Codex</h3><p class="token-n">{codex_total / 1e9:.1f} billion tokens</p><p>Raw tokens Codex used itself on this server, cached input included, 2026-05-24 to {data_through}.</p></article>',
         '</div>',
         '<p class="ds-meta">Estimates, not a bill. The two tools count differently, so the totals are not added together.</p>',
     ])
     method = "\n".join([
         f"<li>Commits: <code>git log --all</code> on every local repo, counted once per commit even across branches, from 2025-10-01 to {data_through}. Commits by outside authors are left out. Merge commits and pull-request branch commits both count.</li>",
-        f"<li>Claude tokens: local session logs, deduplicated per message, audited {claude_audit}.</li>",
+        f"<li>Claude tokens: local session logs, deduplicated per message, taking the larger of the 2026-10-29 audit and the daily ledger for each day.</li>",
         "<li>Codex tokens: every local session log, counting only each session's own use, not the history it inherited from a parent session.</li>",
         "<li>Not counted: ChatGPT chat usage, which has no token meter we can read, and small Grok, Devin and Kimi runs.</li>",
         "<li>No invoice-backed dollar total exists yet. That is why the page shows tokens.</li>",

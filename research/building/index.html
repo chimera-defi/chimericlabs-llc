@@ -337,7 +337,7 @@ section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
 <section class="ds-section ds-wrap article-stack" id="tokens">
 <h2 class="ds-title">The AI tokens behind it</h2><p class="ds-lede">I count tokens, the units AI models read and write. Most are cheap re-reads.</p>
 <!-- gen:tokens --><div class="article-grid">
-<article class="card"><h3>Claude</h3><p class="token-n">20.1 billion tokens</p><p>Raw tokens from local session logs, deduplicated per message. Audited 2026-10-29. Logs before 2026-09-07 were mostly deleted, so this is a floor.</p></article>
+<article class="card"><h3>Claude</h3><p class="token-n">20.6 billion tokens</p><p>Measured from 2026-07-10 to 2026-11-01, raw, cache reads included. Earlier logs are gone, so this is a floor, not a lifetime total.</p></article>
 <article class="card"><h3>Codex</h3><p class="token-n">27.1 billion tokens</p><p>Raw tokens Codex used itself on this server, cached input included, 2026-05-24 to 2026-11-01.</p></article>
 </div>
 <p class="ds-meta">Estimates, not a bill. The two tools count differently, so the totals are not added together.</p><!-- /gen:tokens -->
@@ -351,7 +351,7 @@ section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
 <summary>How these numbers were made</summary>
 <ul class="article-list"><!-- gen:method -->
 <li>Commits: <code>git log --all</code> on every local repo, counted once per commit even across branches, from 2025-10-01 to 2026-11-01. Commits by outside authors are left out. Merge commits and pull-request branch commits both count.</li>
-<li>Claude tokens: local session logs, deduplicated per message, audited 2026-10-29.</li>
+<li>Claude tokens: local session logs, deduplicated per message, taking the larger of the 2026-10-29 audit and the daily ledger for each day.</li>
 <li>Codex tokens: every local session log, counting only each session's own use, not the history it inherited from a parent session.</li>
 <li>Not counted: ChatGPT chat usage, which has no token meter we can read, and small Grok, Devin and Kimi runs.</li>
 <li>No invoice-backed dollar total exists yet. That is why the page shows tokens.</li>
