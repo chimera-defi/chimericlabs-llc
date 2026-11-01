@@ -6,10 +6,10 @@
     <title>Wren — ChimericLabs</title>
     <meta
       name="description"
-      content="How we built Wren, a home-made Claude Duet: Claude Code on a server, reachable from a phone or ChatGPT, handing work to cheaper models and other agents."
+      content="How we built Wren, our own Claude Duet: Claude Code on a server, reachable from a phone or ChatGPT, handing work to cheaper models and other agents."
     />
-    <meta property="og:title" content="Wren: a home-made Claude Duet — ChimericLabs" />
-    <meta property="og:description" content="How we built Wren, a home-made Claude Duet: Claude Code on a server, reachable from a phone or ChatGPT, handing work to cheaper models and other agents." />
+    <meta property="og:title" content="Wren: our own Claude Duet — ChimericLabs" />
+    <meta property="og:description" content="How we built Wren, our own Claude Duet: Claude Code on a server, reachable from a phone or ChatGPT, handing work to cheaper models and other agents." />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://chimericlabs.xyz/research/wren/" />
     <meta property="og:image" content="https://chimericlabs.xyz/research/wren/wren-map.jpg" />
@@ -175,7 +175,7 @@
     <main class="pt-14">
       <article class="mx-auto max-w-3xl px-5 sm:px-8 py-[calc(var(--section-y)/2)] wren">
         <span class="fl-label">Agent Systems · 2026-10</span>
-        <h1 class="mt-3 break-words font-serif text-3xl sm:text-5xl text-slate-50 text-balance">Wren: a home-made Claude Duet</h1>
+        <h1 class="mt-3 break-words font-serif text-3xl sm:text-5xl text-slate-50 text-balance">Wren: our own Claude Duet</h1>
         <p class="mt-5 text-lg text-slate-300 leading-relaxed">
           Anthropic's waitlisted Claude Duet briefs mornings, runs long jobs and asks before sending or paying. We built most of it already, from Claude Code, a server and open tools: Wren.
         </p>
@@ -243,7 +243,7 @@
           <li><b>June 2026.</b> Session tooling (<a href="https://github.com/chimera-defi/claude-remote-session-skill" target="_blank" rel="noreferrer">crss</a>) lets <a href="https://claude.com/claude-code" target="_blank" rel="noreferrer">Claude Code</a> run for days on a server and be reached from a phone.</li>
           <li><b>August.</b> A shared message bus lets Claude, Codex, ChatGPT and other agents hand each other work.</li>
           <li><b>October.</b> <a href="../../dispatchbench/">DispatchBench</a> routes each job to the cheapest model. The orchestrator gets a persona, a memory and a name: Wren.</li>
-          <li><b>26 October.</b> A 07:00 Telegram brief, and a phone approve/deny gate, tested live both ways.</li>
+          <li><b>26 October.</b> Multi-agent alerts and a phone approve/deny gate, tested live both ways.</li>
         </ul>
 
         <h2 id="made-of" class="mt-12 font-serif text-2xl text-slate-100">What it's made of</h2>
@@ -324,7 +324,7 @@
           </div>
           <div class="mt-5 wren-cmp" id="cmp" role="table" aria-label="Wren against each claim on Claude Duet's page">
             <div class="head" role="row"><span role="columnheader">Claim</span><span role="columnheader">Duet</span><span role="columnheader">Wren</span><span role="columnheader">Status</span></div>
-            <div role="row"><b role="cell">Morning brief</b><span role="cell"><span class="lab">Duet</span>Briefs you every morning, drafts next steps, then goes quiet.</span><span role="cell"><span class="lab">Wren</span>A 07:00 Telegram brief of overnight jobs, ending in two yes/no next steps. About four cents.</span><span role="cell"><span class="wren-chip c-par">Parity</span></span></div>
+            <div role="row"><b role="cell">Morning brief</b><span role="cell"><span class="lab">Duet</span>Briefs you every morning, drafts next steps, then goes quiet.</span><span role="cell"><span class="lab">Wren</span>Short alerts from several agents. ChatGPT reads markets at open and close on a server schedule; Hermes, OpenClaw and Wren alert; briefs sit on the server for Kepler to read out.</span><span role="cell"><span class="wren-chip c-par">Parity</span></span></div>
             <div role="row"><b role="cell">Big tasks, reported back</b><span role="cell"><span class="lab">Duet</span>Sets up meetings or builds dashboards, then reports back.</span><span role="cell"><span class="lab">Wren</span>Child sessions run hours to weeks, resuming from checkpoints, with review and merge. Example: <a href="../eth2/how-we-tested-with-claude/">a six-week Ethereum client benchmark</a>.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
             <div role="row"><b role="cell">Memory and skills carry over</b><span role="cell"><span class="lab">Duet</span>Memory, skills and apps from the Claude app, from the first message.</span><span role="cell"><span class="lab">Wren</span>Skills, notes and checkpoints shared by every agent. See <a href="#memory">Memory, honestly</a>.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
             <div role="row"><b role="cell">One thread</b><span role="cell"><span class="lab">Duet</span>Your history is in one thread.</span><span role="cell"><span class="lab">Wren</span>Several threads share one memory; no single history.</span><span role="cell"><span class="wren-chip c-part">Partial</span></span></div>
@@ -456,7 +456,7 @@
       </ul>
       <h3 class="mt-4 wren-pop-h">Briefs (2)</h3>
       <ul class="wren-sub">
-        <li><code>morning-brief</code>: the 07:00 Telegram summary. Daily.</li>
+        <li><code>morning-brief</code>: a short summary of overnight jobs. Daily.</li>
         <li><code>linnet-digest</code>: Linnet's plain digest of jobs and alert mailboxes. 08:15 and 20:15 CET.</li>
       </ul>
       <h3 class="mt-4 wren-pop-h">Markets, read-only (7)</h3>
