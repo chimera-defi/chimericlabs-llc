@@ -109,15 +109,11 @@
       .wren-cmp > div { display: grid; grid-template-columns: 9.5rem 1fr 1.4fr 5.5rem; gap: 1rem; padding: .8rem 0; border-bottom: 1px solid var(--line); color: var(--ink-2); line-height: 1.5; font-size: .95rem; align-items: start; }
       .wren-cmp .head { font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-2); padding: .5rem 0; }
       .wren-cmp .lab { display: none; }
+      .wren-mem > div { grid-template-columns: 9.5rem 1.4fr 1fr; }
+      .wren-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: .75rem; }
+      .wren-groups > .wren-box { --c: var(--w-violet); padding: 1rem; font-weight: 400; }
       .wren-chip { --c: var(--w-grey); justify-self: start; font-size: .72rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; padding: .15rem .5rem; border-radius: 999px; color: var(--c); background: color-mix(in srgb, var(--c) 14%, transparent); border: 1px solid color-mix(in srgb, var(--c) 50%, transparent); white-space: nowrap; }
       .c-ahead { --c: var(--w-green); } .c-par { --c: var(--w-blue); } .c-part { --c: var(--w-amber); } .c-miss { --c: var(--w-grey); } .c-extra { --c: var(--w-violet); }
-      .wren-cmp > [data-extra], .wren-tile[data-extra], p[data-extra] { display: none; }
-      html[data-wren-view="all"] .wren-cmp > [data-extra] { display: grid; }
-      html[data-wren-view="all"] .wren-tile[data-extra], html[data-wren-view="all"] p[data-extra] { display: block; }
-      .wren-seg { display: flex; flex-wrap: wrap; gap: .5rem; }
-      .wren-seg[hidden] { display: none; }
-      .wren-seg .fl-btn { min-height: 44px; padding: 0 16px; font-size: 15px; }
-      .wren-seg .fl-btn[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); }
       .wren-sub { list-style: square; padding-left: 1.1rem; margin: 0 0 .5rem; display: grid; gap: .3rem; }
       .wren-sub li::marker { color: var(--w-violet); }
       .wren-map { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: .75rem; align-items: center; }
@@ -175,11 +171,11 @@
         </p>
 
         <figure id="wren-glance" class="mt-8">
-          <div class="wren-map" role="img" aria-label="Wren at a glance. Left, models and agents: Claude Opus, Codex, Haiku and Fable, Grok, Devin and ChatGPT. Centre: Wren, the orchestrator and bus, with workflow and checkpoints, verification, scheduled jobs and shared memory. Right, ways in: Telegram, the Claude app, ChatGPT and the desktop app. Against 14 Duet features: 11 ahead, 2 at parity, 1 partial and 0 missing.">
+          <div class="wren-map" role="img" aria-label="Wren at a glance. Left, models and agents: Claude Opus, Codex and Haiku, Grok, Devin and ChatGPT. Centre: Wren, the orchestrator and bus, with workflow and checkpoints, verification, scheduled jobs and shared memory. Right, ways in: Telegram, the Claude app, ChatGPT and the desktop app. Against 16 claims on Duet's page: 4 ahead, 6 at parity, 4 partial and 2 missing.">
             <div class="wren-col in">
               <span class="fl-label">Models and agents</span>
               <div class="wren-box">Claude · Opus<small>plans and checks</small></div>
-              <div class="wren-box">Codex · Haiku · Fable<small>build, sweep, second opinion</small></div>
+              <div class="wren-box">Codex · Haiku<small>build, review, sweep</small></div>
               <div class="wren-box">Grok · Devin · ChatGPT<small>called in per job</small></div>
             </div>
             <div class="wren-arrow" aria-hidden="true">→</div>
@@ -197,26 +193,35 @@
               <div class="wren-box">ChatGPT<small>connector to the server</small></div>
             </div>
           </div>
-          <div class="mt-4 wren-tiles" aria-label="Score against 14 Duet features">
-            <div class="wren-tile c-ahead"><b>11</b>Ahead</div>
-            <div class="wren-tile c-par"><b>2</b>At parity</div>
-            <div class="wren-tile c-part"><b>1</b>Partial</div>
-            <div class="wren-tile c-miss"><b>0</b>Missing</div>
+          <div class="mt-4 wren-tiles" aria-label="Score against 16 Duet claims">
+            <div class="wren-tile c-ahead"><b>4</b>Ahead</div>
+            <div class="wren-tile c-par"><b>6</b>At parity</div>
+            <div class="wren-tile c-part"><b>4</b>Partial</div>
+            <div class="wren-tile c-miss"><b>2</b>Missing</div>
           </div>
-          <figcaption class="mt-2 text-sm text-slate-400">Wren at a glance, with its score against Duet's 14 features. Our own assessment.</figcaption>
+          <figcaption class="mt-2 text-sm text-slate-400">Wren at a glance, scored against the 16 claims on Duet's own page. Our own assessment.</figcaption>
         </figure>
+
+        <h2 class="mt-12 font-serif text-2xl text-slate-100">How it fits together</h2>
+        <ul class="mt-4 wren-list">
+          <li><b>You ask from anywhere.</b> Telegram, the Claude app, the desktop app or ChatGPT.</li>
+          <li><b>Opus plans and checks.</b> It runs in Claude Code on our own server.</li>
+          <li><b>Cheaper models do the work.</b> Codex builds, Haiku reads, other agents help over a shared bus.</li>
+          <li><b>Files keep the state.</b> Checkpoints, notes and lessons live on disk, not in a chat.</li>
+          <li><b>You approve what leaves.</b> Orders always need a human. A phone gate covers selected other actions.</li>
+        </ul>
 
         <h2 class="mt-12 font-serif text-2xl text-slate-100">How it grew</h2>
         <ul class="mt-4 wren-list wren-time">
           <li><b>June 2026.</b> Session tooling (<a href="https://github.com/chimera-defi/claude-remote-session-skill" target="_blank" rel="noreferrer">crss</a>) lets <a href="https://claude.com/claude-code" target="_blank" rel="noreferrer">Claude Code</a> run for days on a server and be reached from a phone.</li>
           <li><b>August.</b> A shared message bus lets Claude, Codex, ChatGPT and other agents hand each other work.</li>
           <li><b>October.</b> <a href="../../dispatchbench/">DispatchBench</a> picks the cheapest model for each job, and the orchestrator gets a name, a persona and a memory: Wren.</li>
-          <li><b>26 October.</b> A phone approve/deny gate, tested live both ways.</li>
+          <li><b>26 October.</b> A 07:00 Telegram brief, and a phone approve/deny gate, tested live both ways.</li>
         </ul>
 
         <h2 class="mt-12 font-serif text-2xl text-slate-100">How you talk to it</h2>
         <p class="mt-4 text-slate-300 leading-relaxed">
-          From anywhere. Telegram (typed or voice notes), the Claude app's Remote Control and voice chat, the desktop app, or ChatGPT, which reaches the server through a connector. Every door opens onto the same server and the same memory, so you can run several Wren threads at once.
+          From anywhere. Telegram (typed or voice notes), the Claude app's Remote Control and voice chat, the desktop app, or ChatGPT, which reaches the server through a connector. Every door opens onto the same server and the same memory, so you can run several Wren threads at once. How it fits: this is the front door; everything else on this page sits behind it.
         </p>
 
         <figure id="connector-architecture" class="mt-5">
@@ -244,19 +249,43 @@
           <figcaption class="mt-2 text-sm text-slate-400">Control and Control2 share an Agent Host backend and tunnel. Lite provides a separate fallback.</figcaption>
         </figure>
 
-        <h2 class="mt-12 font-serif text-2xl text-slate-100">What it's made of</h2>
-        <ul class="mt-4 wren-list">
+        <h2 id="made-of" class="mt-12 font-serif text-2xl text-slate-100">What it's made of</h2>
+        <p class="mt-4 text-slate-300 leading-relaxed">How it fits: these are the parts behind the front door, from the box up.</p>
+        <ul class="mt-3 wren-list">
+          <li><b>The server</b>: a dedicated server, on 24/7, with root access.<ul class="wren-sub mt-2"><li>Intel i7-8700: 6 cores, 12 threads.</li><li>62 GB RAM.</li><li>2.8 TB of fast SSD storage.</li><li>Three 1 TB drives striped together (RAID0), so no spare copy.</li><li>Ubuntu 24.04 Linux.</li><li>About 35 scheduled jobs: 25 system timers, 10 cron entries.</li></ul></li>
           <li><b><a href="https://claude.com/claude-code" target="_blank" rel="noreferrer">Claude Code</a></b> on a server, signed in to a Max plan. Opus does the planning and checking.</li>
           <li><b><a href="https://github.com/chimera-defi/claude-remote-session-skill" target="_blank" rel="noreferrer">crss</a></b>: starts, messages, hands off and repairs long-running sessions. Every agent on the box runs on it.</li>
           <li><b><a href="https://github.com/chimera-defi/token-reduce-skill" target="_blank" rel="noreferrer">token-reduce</a></b> and <b><a href="https://github.com/tobi/qmd" target="_blank" rel="noreferrer">QMD</a></b>: read only the slice of a repo or notes folder a task needs. QMD is a local search engine over our markdown.</li>
-          <li><b><a href="../../dispatchbench/">DispatchBench</a></b> and the <a href="https://github.com/chimera-defi/delegate-skill" target="_blank" rel="noreferrer">delegate skills</a>: send each job to the cheapest model that passes. Codex builds, Haiku sweeps and reads, Fable gives a second opinion, and Grok steps in when Codex is out. More models can be added through the same skills.</li>
-          <li><b>A soul</b>: a short persona file every session loads, plus a cheap reviewer that saves one lesson before each context reset. Wren keeps getting better at its own job.</li>
-          <li><b>Shared memory</b>: a <a href="https://github.com/garrytan/gbrain" target="_blank" rel="noreferrer">gbrain</a> knowledge base plus plain git-tracked notes that Claude, Codex and the other agents all read and write.</li>
+          <li><b><a href="../../dispatchbench/">DispatchBench</a></b> and the <a href="https://github.com/chimera-defi/delegate-skill" target="_blank" rel="noreferrer">delegate skills</a>: each pass goes to the cheapest model that passes it.<ul class="wren-sub mt-2"><li><b>Opus</b> plans the work and checks it.</li><li><b>Codex</b> builds and gives the final review.</li><li><b>Haiku</b> does cheap reads and sweeps.</li><li><b>Devin</b> takes browser and sandbox jobs.</li><li><b>If Codex is out:</b> Haiku takes small builds, and Grok reviews.</li><li><b>Fable</b> gave second opinions until we paused it on 28 October.</li></ul>DispatchBench measures which model passes each kind of job. New models plug in through the same skills.</li>
+          <li><b>A soul</b>: a short persona file every session loads. A cheap reviewer can save one lesson before each context reset.</li>
+          <li><b>Shared memory</b>: plain files on disk, searched by QMD. Details in <a href="#memory">Memory, honestly</a>.</li>
           <li><b>The bus</b>: a small mailbox database where agents post tasks and replies to each other, including <a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noreferrer">Hermes</a> and <a href="https://github.com/openclaw/openclaw" target="_blank" rel="noreferrer">OpenClaw</a>.</li>
           <li><b>Phone bridges</b>: the <a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noreferrer">Hermes</a> gateway and <a href="https://github.com/chimera-defi/takopi" target="_blank" rel="noreferrer">takopi</a> for Telegram; Claude Remote Control for the app.</li>
           <li><b>ChatGPT's apps, through Codex</b>: connectors for brokers, market data, GitHub and site hosting.</li>
-          <li><b>Market data on the server</b>: price, economic and filings feeds, and web search.</li>
+          <li><b>Market data on the server</b>: price feeds (Databento, Yahoo Finance), economic data (FRED), filings (SEC EDGAR) and web search.</li>
           <li><b>Daily jobs</b>: scheduled tasks that raise alerts, a daily brief job, and the approval gate.</li>
+        </ul>
+
+        <h2 id="memory" class="mt-12 font-serif text-2xl text-slate-100">Memory, honestly</h2>
+        <p class="mt-4 text-slate-300 leading-relaxed">How it fits: memory is how a fresh session picks up where the last one stopped. Here's what we actually run, and how each part can fail.</p>
+        <div class="mt-5 wren-cmp wren-mem" role="table" aria-label="Memory layers and failure modes">
+          <div class="head" role="row"><span role="columnheader">Layer</span><span role="columnheader">What it does</span><span role="columnheader">How it fails</span></div>
+          <div role="row"><b role="cell">Boot card</b><span role="cell"><span class="lab">What</span>A persona file under 1 KB loads every session. The rest loads only when a task needs it.</span><span role="cell"><span class="lab">Fails</span>If a rule isn't on the card, a small model may never see it.</span></div>
+          <div role="row"><b role="cell">Curated notes</b><span role="cell"><span class="lab">What</span>Plain markdown files per agent, in private and public folders. A check script screens them before indexing.</span><span role="cell"><span class="lab">Fails</span>One local git repo with no remote, so it is not a backup.</span></div>
+          <div role="row"><b role="cell">Checkpoints</b><span role="cell"><span class="lab">What</span>Each long job keeps one short checkpoint file, plus git commits and receipts. That file is the record, not the chat.</span><span role="cell"><span class="lab">Fails</span>A job that skips its checkpoint loses state on reset.</span></div>
+          <div role="row"><b role="cell">Lesson hook</b><span role="cell"><span class="lab">What</span>Before a context reset, Haiku may save one lesson. In its first week it saved seven.</span><span role="cell"><span class="lab">Fails</span>Most runs skip on purpose; it is a trickle, not a teacher.</span></div>
+          <div role="row"><b role="cell">Search</b><span role="cell"><span class="lab">What</span>QMD indexes our local files and notes, and refreshes every six hours. token-reduce reads only the slice a task needs.</span><span role="cell"><span class="lab">Fails</span>The index lags; new files wait hours before search finds them.</span></div>
+          <div role="row"><b role="cell">Transcripts</b><span role="cell"><span class="lab">What</span>Every session's raw log stays on disk. They are never indexed.</span><span role="cell"><span class="lab">Fails</span>Useful for forensics, too noisy to search.</span></div>
+          <div role="row"><b role="cell">Backups</b><span role="cell"><span class="lab">What</span>Local snapshots before risky changes. Code is pushed to GitHub.</span><span role="cell"><span class="lab">Fails</span>The disks are striped, so one dead drive loses the box. Snapshots sit on the same disks. Notes and transcripts have no off-box copy yet.</span></div>
+        </div>
+        <p class="mt-3 text-sm text-slate-400" id="gbrain-note">We also run <a href="https://github.com/garrytan/gbrain" target="_blank" rel="noreferrer">gbrain</a>, a knowledge-base server. It has been unreliable for us. Its health check fails, and a sync has aborted. It needs a repair job, so nothing depends on it.</p>
+        <p class="mt-3 text-slate-300 leading-relaxed"><b>If you copy this:</b> add an off-box backup before anything else.</p>
+        <h3 class="mt-8 font-serif text-xl text-slate-100">What others do</h3>
+        <ul class="mt-4 wren-list">
+          <li><b><a href="https://github.com/openclaw/openclaw" target="_blank" rel="noreferrer">OpenClaw</a> "dreaming"</b>: a nightly job rewrites the memory file. If the rewrite drops over a quarter of old entries, it falls back to append-only. It backs up first. We want that guard; we skip the nightly model calls.</li>
+          <li><b><a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noreferrer">Hermes</a></b>: pluggable memory providers, and a curator that retires unused skills. We borrowed the lesson-before-reset idea instead.</li>
+          <li><b>ChatGPT</b>: saved memories plus references to past chats. Convenient, but it lives in your OpenAI account, not in files you can diff.</li>
+          <li><b>Papers</b>: <a href="https://arxiv.org/abs/2310.08560" target="_blank" rel="noreferrer">MemGPT</a> pages memory in and out like an operating system. <a href="https://arxiv.org/abs/2303.11366" target="_blank" rel="noreferrer">Reflexion</a> writes lessons after failures. Our boot card and lesson hook are small versions of both.</li>
         </ul>
 
         <figure id="memory-flow" class="mt-5">
@@ -283,42 +312,81 @@
               <div class="wren-box">Compact checkpoint + append-only ledger</div>
             </div>
           </div>
-          <figcaption class="mt-2 text-sm text-slate-400">Startup context stays small. Skills, searchable records and integrations load on demand before verification and saving.</figcaption>
+          <figcaption class="mt-2 text-sm text-slate-400">Proposed next step. Startup context stays small. Skills, searchable records and integrations load on demand before verification and saving.</figcaption>
         </figure>
 
-        <h2 class="mt-12 font-serif text-2xl text-slate-100">Against Duet</h2>
-        <p class="mt-4 text-slate-300 leading-relaxed">Fourteen features, checked against the <a href="https://claude.com/product/claude-duet" target="_blank" rel="noreferrer">Claude Duet</a> product page on 26 October. Our own assessment, not a benchmark: Duet is more polished and works out of the box.</p>
-        <div class="mt-5 wren-seg" id="view-toggle" role="group" aria-label="Which rows to show" hidden>
-          <button type="button" class="fl-btn fl-btn--secondary" data-view="claims" aria-pressed="true">What Duet claims</button>
-          <button type="button" class="fl-btn fl-btn--secondary" data-view="all" aria-pressed="false">Everything we do</button>
-        </div>
-        <p class="mt-3 text-sm text-slate-400" data-extra>Everything view adds three things Duet's page doesn't claim. They count as Extra, not as wins over Duet.</p>
+        <h2 class="mt-12 font-serif text-2xl text-slate-100">What Duet claims</h2>
+        <p class="mt-4 text-slate-300 leading-relaxed">Every claim on the <a href="https://claude.com/product/claude-duet" target="_blank" rel="noreferrer">Claude Duet</a>, re-read on 1 November, and how Wren compares. Only what Duet's page claims is scored here. Our own assessment, not a benchmark: Duet is more polished and works out of the box.</p>
         <div class="mt-5 wren-tiles" id="score-tiles" aria-label="Score summary">
-          <div class="wren-tile c-ahead"><b>11</b>Ahead</div>
-          <div class="wren-tile c-par"><b>2</b>At parity</div>
-          <div class="wren-tile c-part"><b>1</b>Partial</div>
-          <div class="wren-tile c-miss"><b>0</b>Missing</div>
-          <div class="wren-tile c-extra" data-extra><b>3</b>Extra</div>
+            <div class="wren-tile c-ahead"><b>4</b>Ahead</div>
+            <div class="wren-tile c-par"><b>6</b>At parity</div>
+            <div class="wren-tile c-part"><b>4</b>Partial</div>
+            <div class="wren-tile c-miss"><b>2</b>Missing</div>
         </div>
-        <div class="mt-5 wren-cmp" id="cmp" role="table" aria-label="Wren against Claude Duet, feature by feature">
-          <div class="head" role="row"><span role="columnheader">Feature</span><span role="columnheader">Duet</span><span role="columnheader">Wren</span><span role="columnheader">Status</span></div>
-          <div role="row"><b role="cell">Shared memory and skills</b><span role="cell"><span class="lab">Duet</span>Memory, skills and apps carry over from the Claude app.</span><span role="cell"><span class="lab">Wren</span>A <a href="https://github.com/garrytan/gbrain" target="_blank" rel="noreferrer">gbrain</a> knowledge base and git-backed notes that Claude, Codex and the other agents all read and write.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
-          <div role="row"><b role="cell">Cheapest model per job</b><span role="cell"><span class="lab">Duet</span>Powered by Opus 5.5. The page names no other models and no model choice. Background checks count against your plan limits.</span><span role="cell"><span class="lab">Wren</span>Each job goes to the cheapest model that passes. You can set it per job. Opus plans and checks. Codex builds and reviews. Grok steps in when Codex is out. Haiku sweeps. Devin takes browser and sandbox work. <a href="../../dispatchbench/">DispatchBench</a> measures which model fits. More plug in through the <a href="https://github.com/chimera-defi/delegate-skill" target="_blank" rel="noreferrer">delegate skills</a>.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
-          <div role="row"><b role="cell">Its own computer</b><span role="cell"><span class="lab">Duet</span>A cloud computer managed by Anthropic.</span><div role="cell"><span class="lab">Wren</span><ul class="wren-sub"><li><b>The server:</b> a dedicated server, on 24/7, with root access and scheduled jobs.</li><li><b>Kepler:</b> ChatGPT's agent on our bus. It reports its own cloud box: 9 CPUs, 10 GB RAM.</li><li><b>A MacBook:</b> an M1 Max with 64 GB RAM. Wren can drive it with computer use from the Claude desktop app.</li></ul>Duet doesn't publish its specs. Ahead on control; not proven ahead on size.</div><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
-          <div role="row"><b role="cell">Drives other agents</b><span role="cell"><span class="lab">Duet</span>Works on its own.</span><span role="cell"><span class="lab">Wren</span>A shared message bus: Claude sessions, Codex, ChatGPT, <a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noreferrer">Hermes</a>, <a href="https://github.com/openclaw/openclaw" target="_blank" rel="noreferrer">OpenClaw</a> and hosted agents post tasks and replies to each other.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
-          <div role="row"><b role="cell">Threads</b><span role="cell"><span class="lab">Duet</span>One chat history, in the mobile app and on the web.</span><span role="cell"><span class="lab">Wren</span>Several Wren threads at once, all sharing one memory. More work in parallel; the trade-off is no single history to scroll back through.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
-          <div role="row"><b role="cell">Brokers and market data</b><span role="cell"><span class="lab">Duet</span>None named on the product page.</span><span role="cell"><span class="lab">Wren</span>Brokers (Interactive Brokers, Questrade and Alpaca) through ChatGPT's apps, plus market data through ChatGPT. Straight from the server: price, economic and filings feeds, and open web search. Several are paid feeds a Duet user would have to add and pay for themselves. Orders always need a human.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
-          <div role="row"><b role="cell">Big tasks in the background</b><span role="cell"><span class="lab">Duet</span>Takes a request and reports back when it's done.</span><span role="cell"><span class="lab">Wren</span>Child sessions, started by <a href="https://github.com/chimera-defi/claude-remote-session-skill" target="_blank" rel="noreferrer">crss</a>, work for hours or days, with checkpoints, review and merge. Fresh sessions resume from saved state, so one job can run for weeks. crss sessions are tmux sessions: reach them from a local terminal, the Claude app, or ChatGPT through the agent bus. How much work fans out to helper agents, and how fast, is configurable. Example: <a href="../eth2/how-we-tested-with-claude/">a six-week Ethereum client benchmark</a> that ran largely unattended.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
-          <div role="row"><b role="cell">Deliverables</b><span role="cell"><span class="lab">Duet</span>Briefs, docs, sheets, decks and dashboards.</span><span role="cell"><span class="lab">Wren</span>Published pages like this one, plus self-refreshing dashboards. Wren works in a full development environment. It has normal cloud tooling and other agents to call on. It ships code, sites and data tools, not just documents.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
-          <div role="row"><b role="cell">Voice</b><span role="cell"><span class="lab">Duet</span>Text or voice in the mobile app.</span><span role="cell"><span class="lab">Wren</span>Dictation into any thread, Telegram voice notes run as tasks, and Claude's own voice chat.</span><span role="cell"><span class="wren-chip c-par">Parity</span></span></div>
-          <div role="row"><b role="cell">Yes/no suggestions</b><span role="cell"><span class="lab">Duet</span>Offers follow-ups as yes/no choices.</span><span role="cell"><span class="lab">Wren</span>Every session ends with a recap and one-tap next steps.</span><span role="cell"><span class="wren-chip c-par">Parity</span></span></div>
-          <div role="row"><b role="cell">Briefs and alerts</b><span role="cell"><span class="lab">Duet</span>A daily summary and drafted next steps.</span><span role="cell"><span class="lab">Wren</span>Alerts come from several agents, not one digest. ChatGPT does broad market reads on a server schedule: open, close or any time. Hermes, OpenClaw and Wren alert too. Briefs are written to the shared Agent Host server. Next goal: Kepler (ChatGPT's agent) reads them out. A daily brief job runs there.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
-          <div role="row"><b role="cell">A soul that keeps improving</b><span role="cell"><span class="lab">Duet</span>No personality or self-improvement mentioned on the product page.</span><span role="cell"><span class="lab">Wren</span>A short persona file loads in every session, and a cheap reviewer saves one lesson before each context reset, so Wren gets better week by week. Ideas borrowed openly from <a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noreferrer">Hermes</a> and <a href="https://github.com/openclaw/openclaw" target="_blank" rel="noreferrer">OpenClaw</a>.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
-          <div role="row"><b role="cell">Moves money</b><span role="cell"><span class="lab">Duet</span>Asks before it sends messages or pays.</span><span role="cell"><span class="lab">Wren</span>Wren decides the portfolio and writes the trades onto an instruction sheet; you open it in ChatGPT through the Interactive Brokers connector and accept. It also says what to do with the crypto wallet. Next goal: a small wallet it trades on its own. A Telegram gate asks before other outward actions; no reply means no.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
-          <div role="row"><b role="cell">Connectors, inbox, calendar</b><span role="cell"><span class="lab">Duet</span>More than 6,000, including Gmail and Calendar.</span><span role="cell"><span class="lab">Wren</span>ChatGPT's apps through Codex, plus server and memory tools. Inbox, calendar and Slack are left off on purpose; they're a switch away through ChatGPT when we want them.</span><span role="cell"><span class="wren-chip c-part">Partial</span></span></div>
-          <div role="row" data-extra><b role="cell">Its own tools and harnesses</b><span role="cell"><span class="lab">Duet</span>Not something its page claims.</span><span role="cell"><span class="lab">Wren</span><a href="https://github.com/chimera-defi/claude-remote-session-skill" target="_blank" rel="noreferrer">crss</a> runs the sessions, <a href="https://github.com/chimera-defi/token-reduce-skill" target="_blank" rel="noreferrer">token-reduce</a> keeps reads small, and <a href="../../dispatchbench/">DispatchBench</a> routes each job. We built and can change all three.</span><span role="cell"><span class="wren-chip c-extra">Extra</span></span></div>
-          <div role="row" data-extra><b role="cell">Portfolio research with a human gate</b><span role="cell"><span class="lab">Duet</span>Not something its page claims.</span><span role="cell"><span class="lab">Wren</span>A portfolio review that ends in an order sheet. A human accepts every order.</span><span role="cell"><span class="wren-chip c-extra">Extra</span></span></div>
-          <div role="row" data-extra><b role="cell">Benchmarks of its own work</b><span role="cell"><span class="lab">Duet</span>Not something its page claims.</span><span role="cell"><span class="lab">Wren</span><a href="../../dispatchbench/">DispatchBench</a> tests which model fits each job. <a href="../eth2/how-we-tested-with-claude/">A six-week Ethereum client benchmark</a> ran largely unattended.</span><span role="cell"><span class="wren-chip c-extra">Extra</span></span></div>
+        <div class="mt-5 wren-cmp" id="cmp" role="table" aria-label="Wren against each claim on Claude Duet's page">
+          <div class="head" role="row"><span role="columnheader">Duet claims</span><span role="columnheader">Duet</span><span role="columnheader">Wren</span><span role="columnheader">Status</span></div>
+          <div role="row"><b role="cell">Morning brief</b><span role="cell"><span class="lab">Duet</span>Briefs you every morning, drafts next steps, then goes quiet.</span><span role="cell"><span class="lab">Wren</span>Every day at 07:00, a short Telegram brief of the overnight jobs. It ends with two yes/no next steps and costs about four cents.</span><span role="cell"><span class="wren-chip c-par">Parity</span></span></div>
+          <div role="row"><b role="cell">Big tasks, reported back</b><span role="cell"><span class="lab">Duet</span>Sets up a meeting or builds a dashboard, then shares when it's done.</span><span role="cell"><span class="lab">Wren</span>Child sessions, started by <a href="https://github.com/chimera-defi/claude-remote-session-skill" target="_blank" rel="noreferrer">crss</a>, work for hours or days, with checkpoints, review and merge. Fresh sessions resume from saved state, so one job can run for weeks. Example: <a href="../eth2/how-we-tested-with-claude/">a six-week Ethereum client benchmark</a> that ran largely unattended.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
+          <div role="row"><b role="cell">Memory and skills carry over</b><span role="cell"><span class="lab">Duet</span>Memory, skills and apps from the Claude app, from the first message.</span><span role="cell"><span class="lab">Wren</span>Skills, notes and checkpoints that Claude, Codex and the other agents all share. See <a href="#memory">Memory, honestly</a>.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
+          <div role="row"><b role="cell">One thread</b><span role="cell"><span class="lab">Duet</span>Your history is in one thread.</span><span role="cell"><span class="lab">Wren</span>Several Wren threads at once, all sharing one memory. More work in parallel; the trade-off is no single history to scroll back through.</span><span role="cell"><span class="wren-chip c-part">Partial</span></span></div>
+          <div role="row"><b role="cell">Works while you're away</b><span role="cell"><span class="lab">Duet</span>Messages you when it's done or needs a decision; knows what can wait.</span><span role="cell"><span class="lab">Wren</span>About 35 scheduled jobs run around the clock. Alerts come from several agents, not one digest. The brief and the approval gate reach your phone.</span><span role="cell"><span class="wren-chip c-par">Parity</span></span></div>
+          <div role="row"><b role="cell">Its own computer</b><span role="cell"><span class="lab">Duet</span>Works on its own computer in the cloud.</span><div role="cell"><span class="lab">Wren</span><ul class="wren-sub"><li><b>The server:</b> a dedicated server, on 24/7, with root access. Intel i7-8700 and 62 GB RAM. 2.8 TB of SSD storage.</li><li><b>Kepler:</b> ChatGPT's agent on our bus. It reports its own cloud box: 9 CPUs, 10 GB RAM, 31 GB of disk.</li><li><b>A MacBook:</b> an M1 Max with 64 GB RAM. Wren can drive it with computer use from the Claude desktop app.</li></ul>Duet doesn't publish its specs. Ahead on control; not proven ahead on size.</div><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
+          <div role="row"><b role="cell">Model</b><span role="cell"><span class="lab">Duet</span>Powered by Opus 5.5.</span><span role="cell"><span class="lab">Wren</span>Opus 5.5 plans and checks. Cheaper models take each pass they can pass, and you can set it per job. See the routing in <a href="#made-of">What it's made of</a>.</span><span role="cell"><span class="wren-chip c-par">Parity</span></span></div>
+          <div role="row"><b role="cell">Text or voice</b><span role="cell"><span class="lab">Duet</span>Message it by text or voice, with no prompts or setup.</span><span role="cell"><span class="lab">Wren</span>Dictation into any thread, Telegram voice notes run as tasks, and Claude's own voice chat.</span><span role="cell"><span class="wren-chip c-par">Parity</span></span></div>
+          <div role="row"><b role="cell">Docs, sheets, decks, dashboards</b><span role="cell"><span class="lab">Duet</span>Returns a doc, sheet or deck; builds a dashboard that refreshes daily.</span><span role="cell"><span class="lab">Wren</span>Docs, sheets and decks through Claude's file skills. Published pages like this one, plus self-refreshing dashboards. It also ships code, sites and data tools.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
+          <div role="row"><b role="cell">Inbox and calendar</b><span role="cell"><span class="lab">Duet</span>Flags what needs you in your inbox and calendar, and drafts replies.</span><span role="cell"><span class="lab">Wren</span>Left off on purpose, with Slack. They're a switch away through ChatGPT when we want them.</span><span role="cell"><span class="wren-chip c-miss">Missing</span></span></div>
+          <div role="row"><b role="cell">Business admin</b><span role="cell"><span class="lab">Duet</span>Finds unpaid invoices, prepares payroll, gets contracts ready to send.</span><span role="cell"><span class="lab">Wren</span>Not built. Wren runs research, code and portfolio work, not a company's books.</span><span role="cell"><span class="wren-chip c-miss">Missing</span></span></div>
+          <div role="row"><b role="cell">6,000+ connectors</b><span role="cell"><span class="lab">Duet</span>Works with more than 6,000 connectors and plugins.</span><span role="cell"><span class="lab">Wren</span>ChatGPT's apps through Codex: brokers, market data, GitHub and site hosting. Plus server and memory tools.</span><span role="cell"><span class="wren-chip c-part">Partial</span></span></div>
+          <div role="row"><b role="cell">Asks before it sends or pays</b><span role="cell"><span class="lab">Duet</span>Asks you before sending messages or paying.</span><span role="cell"><span class="lab">Wren</span>Orders always need a human: you accept them in ChatGPT. A Telegram gate asks before other outward actions; no reply means no. Not in every lane yet.</span><span role="cell"><span class="wren-chip c-part">Partial</span></span></div>
+          <div role="row"><b role="cell">Private logins and approvals</b><span role="cell"><span class="lab">Duet</span>Approvals, logins and safety checks run on its own cloud computer.</span><span role="cell"><span class="lab">Wren</span>Work runs on our own machines. Credentials stay on the server. Agents are told never to touch them; that is a rule, not a lock.</span><span role="cell"><span class="wren-chip c-part">Partial</span></span></div>
+          <div role="row"><b role="cell">See and steer it</b><span role="cell"><span class="lab">Duet</span>Shows what it has done and is doing; you can steer it.</span><span role="cell"><span class="lab">Wren</span>Every session is a terminal session that keeps running (tmux). Open it from a terminal, the Claude app, or ChatGPT through the agent bus.</span><span role="cell"><span class="wren-chip c-par">Parity</span></span></div>
+          <div role="row"><b role="cell">Phone app</b><span role="cell"><span class="lab">Duet</span>A standalone app for iOS and Android, plus the web.</span><span role="cell"><span class="lab">Wren</span>No app of its own. Telegram, the Claude app and ChatGPT already sit on the phone.</span><span role="cell"><span class="wren-chip c-par">Parity</span></span></div>
+        </div>
+
+        <h2 class="mt-12 font-serif text-2xl text-slate-100">Everything we do</h2>
+        <p class="mt-4 text-slate-300 leading-relaxed">How it fits: the table above is only Duet's list. This is the whole of Wren, including what Duet's page doesn't claim.</p>
+        <div class="mt-5 wren-tiles">
+          <div class="wren-tile c-ahead"><b>10 of 16</b>Duet claims matched or beaten</div>
+          <div class="wren-tile c-extra"><b>15</b>things Duet's page doesn't claim</div>
+          <div class="wren-tile c-miss"><b>2</b>Duet claims we don't do</div>
+        </div>
+        <div class="mt-5 wren-groups">
+          <div class="wren-box">
+            <h3 class="font-serif text-lg">Runs the work</h3>
+            <ul class="mt-3 wren-list text-sm">
+              <li>Several agent families share one bus. Claude sessions, Codex, ChatGPT, <a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noreferrer">Hermes</a>, <a href="https://github.com/openclaw/openclaw" target="_blank" rel="noreferrer">OpenClaw</a> and hosted agents post tasks and replies to each other. <span class="wren-chip c-extra">Extra</span></li>
+              <li>Each pass goes to the cheapest model that passes; <a href="../../dispatchbench/">DispatchBench</a> measures the fit. <span class="wren-chip c-extra">Extra</span></li>
+              <li>Jobs that run for weeks, resumed from checkpoints. <span class="wren-chip c-extra">Extra</span></li>
+              <li>Every session ends with a recap and one-tap next steps. <span class="wren-chip c-extra">Extra</span></li>
+            </ul>
+          </div>
+          <div class="wren-box">
+            <h3 class="font-serif text-lg">Builds its own tools</h3>
+            <ul class="mt-3 wren-list text-sm">
+              <li><a href="https://github.com/chimera-defi/claude-remote-session-skill" target="_blank" rel="noreferrer">crss</a> runs the sessions, <a href="https://github.com/chimera-defi/token-reduce-skill" target="_blank" rel="noreferrer">token-reduce</a> keeps reads small, and <a href="../../dispatchbench/">DispatchBench</a> routes each job. We built and can change all three. <span class="wren-chip c-extra">Extra</span></li>
+              <li>Benchmarks of its own work: <a href="../eth2/how-we-tested-with-claude/">a six-week Ethereum client benchmark</a> ran largely unattended. <span class="wren-chip c-extra">Extra</span></li>
+              <li>A soul: a persona file in every session, plus a lesson a hook may save before a reset. Ideas borrowed openly from Hermes and OpenClaw. <span class="wren-chip c-extra">Extra</span></li>
+            </ul>
+          </div>
+          <div class="wren-box">
+            <h3 class="font-serif text-lg">Markets and money</h3>
+            <ul class="mt-3 wren-list text-sm">
+              <li>Brokers (Interactive Brokers, Questrade and Alpaca) through ChatGPT's apps, plus market data through ChatGPT. <span class="wren-chip c-extra">Extra</span></li>
+              <li>Straight from the server: price, economic and filings feeds, and open web search. Several are paid feeds a Duet user would have to add and pay for themselves. <span class="wren-chip c-extra">Extra</span></li>
+              <li>A portfolio review that ends in an order sheet. You open it in ChatGPT through the Interactive Brokers connector and accept. A human accepts every order. <span class="wren-chip c-extra">Extra</span></li>
+              <li>It also says what to do with the crypto wallet. Next goal: a small wallet it trades on its own. <span class="wren-chip c-extra">Extra</span></li>
+            </ul>
+          </div>
+          <div class="wren-box">
+            <h3 class="font-serif text-lg">Reach and briefs</h3>
+            <ul class="mt-3 wren-list text-sm">
+              <li>Reach it from your phone or the web. <span class="wren-chip c-par">Duet too</span></li>
+              <li>Telegram, the Claude app, the desktop app and ChatGPT all open onto one server. <span class="wren-chip c-extra">Extra</span></li>
+              <li>ChatGPT does broad market reads on a server schedule: open, close or any time. Hermes, OpenClaw and Wren alert too. <span class="wren-chip c-extra">Extra</span></li>
+              <li>Briefs are written to the shared Agent Host server. Next goal: Kepler (ChatGPT's agent) reads them out. <span class="wren-chip c-extra">Extra</span></li>
+              <li>Root on our own server, and computer use on a MacBook. <span class="wren-chip c-extra">Extra</span></li>
+            </ul>
+          </div>
         </div>
 
         <h2 class="mt-12 font-serif text-2xl text-slate-100">What it costs</h2>
@@ -328,7 +396,7 @@
         <div class="mt-5 wren-score" role="table" aria-label="Wren usage priced at API list prices">
           <div role="row"><span role="cell"><b>Our heavy week</b></span><span role="cell">$1,200–1,400, or roughly $5,000–6,000 a month. Mostly Opus re-reading long context while it runs many sessions at once.</span></div>
           <div role="row"><span role="cell"><b>A light, Duet-sized day</b></span><span role="cell">$110–220 a month: a daily brief, a few errands and one or two long jobs.</span></div>
-          <div role="row"><span role="cell"><b>A brief</b></span><span role="cell">About three cents.</span></div>
+          <div role="row"><span role="cell"><b>A brief</b></span><span role="cell">About four cents.</span></div>
           <div role="row"><span role="cell"><b>List prices</b></span><span role="cell">Per million tokens (input / cached read / output): Opus 5.5 $4 / $0.20 / $20 · Sonnet 5.5 $2 / $0.10 / $10 · Haiku 5.5 $0.10 / $0.01 / $0.50</span></div>
         </div>
 
@@ -336,7 +404,7 @@
         <ul class="mt-4 wren-list">
           <li><b>Expensive head, cheap hands.</b> The strong model plans and checks; cheaper models do the reading and building.</li>
           <li><b>A "done" is a claim.</b> Wren re-runs the check before it believes a helper, and so should you.</li>
-          <li><b>Borrow openly, then add only what fixes a repeat failure.</b> We borrowed openly from <a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noreferrer">Hermes</a> and <a href="https://github.com/openclaw/openclaw" target="_blank" rel="noreferrer">OpenClaw</a>: the persona, the lesson saved before each reset, the rules for what not to remember. After that, a new habit gets in only when it fixes a failure we keep hitting.</li>
+          <li><b>Borrow openly, then add only what fixes a repeat failure.</b> We borrowed openly from <a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noreferrer">Hermes</a> and <a href="https://github.com/openclaw/openclaw" target="_blank" rel="noreferrer">OpenClaw</a>: the persona, the lesson a hook may save before a reset, the rules for what not to remember. After that, a new habit gets in only when it fixes a failure we keep hitting.</li>
           <li><b>Remove scaffolding as models improve.</b> Each new Claude model needs less hand-holding, so hooks and rules get re-tested and dropped once they stop paying.</li>
           <li><b>Control the server, control the gates.</b> You decide what runs, where, and what needs your yes first.</li>
         </ul>
@@ -354,21 +422,21 @@
           <div class="wren-col mid">
             <span class="fl-label">Wren, on a server</span>
             <div class="wren-box wren-core">Claude Code · Opus<small>plans, checks, decides</small></div>
-            <div class="wren-box">Memory<small>gbrain + git notes</small></div>
+            <div class="wren-box">Memory<small>files, checkpoints, QMD search</small></div>
             <div class="wren-box">crss + token-reduce + QMD<small>sessions, lean reads</small></div>
             <div class="wren-box">Briefs + approval gate<small>alerts from many agents, ask before acting</small></div>
           </div>
           <div class="wren-arrow" aria-hidden="true">→</div>
           <div class="wren-col out">
             <span class="fl-label">Hands</span>
-            <div class="wren-box">Codex<small>builds</small></div>
-            <div class="wren-box">Haiku · Fable<small>reads, sweeps, second opinion</small></div>
-            <div class="wren-box">Grok<small>when Codex is out</small></div>
+            <div class="wren-box">Codex<small>builds, final review</small></div>
+            <div class="wren-box">Haiku<small>reads, sweeps, small builds</small></div>
+            <div class="wren-box">Grok<small>reviews when Codex is out</small></div>
             <div class="wren-box">Shared bus<small>ChatGPT, Hermes, OpenClaw, hosted agents</small></div>
           </div>
         </div>
         <p class="mt-4 text-sm text-slate-400 leading-relaxed">
-          In short: one strong model on a server you control, reachable from your phone or ChatGPT, handing work to cheaper models and other agents, and asking you before anything leaves the building.
+          In short: one strong model on a server you control, reachable from your phone or ChatGPT, handing work to cheaper models and other agents, and asking you before orders and other key actions go out.
         </p>
       </article>
     </main>
@@ -399,23 +467,5 @@
       </div>
     </footer>
 
-    <script>
-      // Toggle between the 14 rows Duet's page covers and everything we do. Without JS the default view stays.
-      (function () {
-        var root = document.documentElement, box = document.getElementById("view-toggle");
-        if (!box) return;
-        var btns = box.querySelectorAll("button");
-        function show(v, push) {
-          v = v === "all" ? "all" : "claims";
-          if (v === "all") root.setAttribute("data-wren-view", "all"); else root.removeAttribute("data-wren-view");
-          for (var i = 0; i < btns.length; i++) btns[i].setAttribute("aria-pressed", String(btns[i].getAttribute("data-view") === v));
-          if (push) { try { history.replaceState(null, "", v === "all" ? "#view=all" : location.pathname + location.search); } catch (e) {} }
-        }
-        box.hidden = false;
-        for (var i = 0; i < btns.length; i++) btns[i].addEventListener("click", function () { show(this.getAttribute("data-view"), true); });
-        window.addEventListener("hashchange", function () { if (/^#view=/.test(location.hash)) show(location.hash === "#view=all" ? "all" : "claims", false); });
-        show(location.hash === "#view=all" ? "all" : "claims", false);
-      })();
-    </script>
   </body>
 </html>
