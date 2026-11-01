@@ -4,7 +4,7 @@
 Reads from --handoff DIR:
   commits_by_project.csv        per-project commit counts and first/last dates
   headline_counts.json          data_through date and Codex lifetime tokens
-  LIFETIME_TOKENS_DAILY_*.csv   daily Claude and Codex tokens (Claude total, audit date)
+  LIFETIME_TOKENS_DAILY_*.csv   Claude column only (Claude total, audit date); its Codex column is superseded, never use it
 
 Optional --aliases FILE is JSON {directory_name: display_label}. Keep it outside
 the repo. Only rows that are not public and whose directory name is in the alias
