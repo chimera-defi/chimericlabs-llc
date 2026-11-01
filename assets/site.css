@@ -19,7 +19,7 @@ h3.font-serif { font-stretch: 90%; font-weight: 700; letter-spacing: -.02em; }
   .site-nav-link { font-size: .8125rem; }
   .site-contact { padding-inline: var(--space-3); }
 }
-@media (max-width: 319px) {
+@media (max-width: 364px) {
   .site-brand { font-size: 0; }
   .site-brand::after { content: "CL"; font-size: .8125rem; }
   .site-nav { column-gap: .375rem; }
