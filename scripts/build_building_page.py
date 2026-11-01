@@ -232,23 +232,25 @@ def main():
     groups = build_groups(rows, aliases)
     total = sum(int(r[COMMITS_COL]) for r in rows)
     named_keys = [k for k, _, _ in GROUPS]
-    n_projects = len(named_keys) + sum(1 for g in groups.values() if g["aliased"])
 
     # Biggest project: largest group that is not an "Other" catch-all.
     projects = [g for g in groups.values() if g["key"] in named_keys or g["aliased"]]
     biggest = max(projects, key=lambda g: g["n"])
+    biggest_word = "biggest" if biggest["n"] >= groups[OTHER_PRIVATE[0]]["n"] else "biggest named project"
     if biggest["label"] == "Claudefolio":
-        biggest_line = f"Claudefolio, a portfolio research platform for AI agents, is the biggest: {biggest['n']:,} commits."
+        biggest_line = f"Claudefolio, a portfolio research platform for AI agents, is the {biggest_word}: {biggest['n']:,} commits."
     else:
-        biggest_line = f"{html.escape(biggest['label'])} is the biggest: {biggest['n']:,} commits."
+        biggest_line = f"{html.escape(biggest['label'])} is the {biggest_word}: {biggest['n']:,} commits."
 
     claude_total = int(headline["claude_tokens_best_measured"])
     codex_total = int(headline["codex_own_tokens_lifetime_on_host"])
+    measured = headline["claude_measured_tokens"]
+    reread_pct = round(100.0 * measured["cache_read"] / sum(measured.values()))
 
     hero = "\n".join([
-        f"<li>{total:,} commits since October 2025: {n_projects} named projects, plus other public and private work.</li>",
+        f"<li>{total:,} commits since October 2025, across the projects below and other public and private work.</li>",
         f"<li>{biggest_line}</li>",
-        "<li>Most AI tokens are re-reads of saved context, not new writing.</li>",
+        f"<li>Most AI tokens are re-reads of saved context, not new writing: {reread_pct}% of measured Claude tokens.</li>",
     ])
     slices = donut_slices(groups, total)
     donut_figure, donut_css = donut_html(slices, total, data_through)
@@ -271,7 +273,7 @@ def main():
 
     tokens = "\n".join([
         '<div class="article-grid">',
-        f'<article class="card"><h3>Claude</h3><p class="token-n">{claude_total / 1e9:.1f} billion tokens</p><p>Measured from 2026-07-10 to {data_through}, raw, cache reads included. Earlier logs are gone, so this is a floor, not a lifetime total.</p></article>',
+        f'<article class="card"><h3>Claude</h3><p class="token-n">{claude_total / 1e9:.1f} billion tokens</p><p>Measured from 2026-07-10 to {data_through}, with gaps, raw, cache reads included. Earlier logs are gone, so this is a floor, not a lifetime total.</p></article>',
         f'<article class="card"><h3>Codex</h3><p class="token-n">{codex_total / 1e9:.1f} billion tokens</p><p>Raw tokens Codex used itself on this server, cached input included, 2026-05-24 to {data_through}.</p></article>',
         '</div>',
         '<p class="ds-meta">Estimates, not a bill. The two tools count differently, so the totals are not added together.</p>',
