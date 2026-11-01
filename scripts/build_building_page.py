@@ -256,13 +256,10 @@ def main():
 
     claude_total = int(headline["claude_tokens_best_measured"])
     codex_total = int(headline["codex_own_tokens_lifetime_on_host"])
-    measured = headline["claude_measured_tokens"]
-    reread_pct = round(100.0 * measured["cache_read"] / sum(measured.values()))
 
     hero = "\n".join([
         f"<li>{total:,} commits since October 2025, across the projects below and other public and private work.</li>",
         f"<li>{biggest_line}</li>",
-        f"<li>Most AI tokens are re-reads of saved context, not new writing: {reread_pct}% of measured Claude tokens.</li>",
     ])
     slices = donut_slices(groups, total)
     donut_figure, donut_css = donut_html(slices, total, data_through)
