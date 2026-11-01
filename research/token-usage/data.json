@@ -3978,7 +3978,7 @@
     "source-6": "233622d6fd6375d0ec48c4c7cad2dbe49d239fd223701e5c608a22df5d3aca1e",
     "source-7": "4003c1db06c4949db7e0e951401b7d50494097d92920b36d2ca3a8d5c5f1ce97",
     "source-8": "d69d376d8568087c696f980ee24cdc4974bdc4845d46635eefab05082dbc7168",
-    "source-9": "9bc7a8bbf9bf77462f7646877597580e08304db06ac1b4ffcfbc6825eaa12c54",
+    "source-9": "34216db2ee18d0f82d4c22a873be82a7b96bf2d4fc853a57085f4083493671b5",
     "source-10": "f2c8f21e6ce0a5417d00b47a48d622091542bd37cf2d3192b4c6ea04c2280dc6",
     "source-11": "56389e527560450cd5b021611c0b7305b3a75afe7924c987a96483ba60484132",
     "source-12": "f9ffc0ee562dad632406ab53d6752974f0f7ffc94db9db232be203723c7211ac",
@@ -3997,7 +3997,7 @@
     "source-25": "81a9f0bdd24f336b1859a5bd233f3088f45effa2e0710c444b81643dcb581d7b",
     "source-26": "90a248f6607c3950be23e16ca03d43de0fce32bb84f4422cc5264f6877b18e34",
     "source-27": "ef18e7d308d486078577375ca8e40f8f17dedecbbbc9111d41ed97fcb4a1d7b3",
-    "source-28": "08ed121051ec8c8f742d9e077fe099f750fb5dab6e2377b474b93417e218fdb4",
+    "source-28": "6f44b4634da87ca66fd909336d475632a6b6a1dbb8471fb098699e1291c8f63d",
     "source-29": "01cd0ac449d4efff69be43af1c652798f3d27f062a26a3dee490362742a85065",
     "source-30": "8d512c86aa2c771b76d98fbc7979327da0357cbcca55145f865c5e3390bd0fa0",
     "source-31": "ff4d05774873c9cff73d9f789ed8177d615060b8317268363a0256b6809443be",
@@ -5787,7 +5787,7 @@
     }
   },
   "last7": {
-    "data_through": "2026-11-01T01:15:36Z",
+    "data_through": "2026-11-01T08:21:21Z",
     "window": "2026-10-25..2026-10-31 (last 7 complete UTC days)",
     "partial_today": "2026-11-01",
     "claude": {
@@ -14593,22 +14593,22 @@
     "datasets": [
       {
         "Dataset": "Claude tokens daily (raw + weighted)",
-        "Data through": "2026-11-01T01:15:36Z",
+        "Data through": "supporting evidence 2026-11-01T08:21:21Z; supporting evidence 2026-11-01 row still at 01:15Z (labelled partial)",
         "Does NOT cover": "transcripts before 2026-09-07 (deleted, default cleanup; Jun10..Sep6 mostly missing); claude.ai web; other machines"
       },
       {
         "Dataset": "Claude tokens daily, best of audit and ledger",
-        "Data through": "2026-11-01T01:15:36Z (2026-07-10..data_through)",
+        "Data through": "2026-11-01T08:21:21Z (2026-07-10..data_through)",
         "Does NOT cover": "anything before 2026-07-10 (not on disk); Jun-Sep gaps; ledger alone undercounts 2026-09-11..30 by ~3.1B because those transcripts were pruned after the audit, so this file takes the audit value for those days; the audit file's codex_tokens column is superseded and unused"
       },
       {
         "Dataset": "Codex own tokens daily",
-        "Data through": "2026-11-01T01:15:36Z",
+        "Data through": "supporting evidence 2026-11-01T08:21:21Z; supporting evidence and supporting evidence 2026-11-01T01:15Z (not re-run, so 11-01 own tokens there are lower than the corrected file)",
         "Does NOT cover": "Codex weighted figure (no published weights); the two daily files differ ~3% over the last 7 days (day attribution)"
       },
       {
         "Dataset": "Last 7 days",
-        "Data through": "2026-11-01T01:15:36Z",
+        "Data through": "window 2026-10-25..10-31 (complete days, unaffected by later data); partial 11-01 row in supporting evidence at 01:15Z",
         "Does NOT cover": "Claude 7d ties exactly to the ledger; Codex split vs corrected file differ 3.3%"
       },
       {
@@ -14638,7 +14638,7 @@
       },
       {
         "Dataset": "Model share over time",
-        "Data through": "2026-11-01T01:15:36Z",
+        "Data through": "files built 2026-11-01T00:52Z, last week 2026-10-26 (partial week)",
         "Does NOT cover": "Model selection; Claude weeks before 2026-09-07 are fragments"
       },
       {
