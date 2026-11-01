@@ -1,9 +1,9 @@
 /* chimericlabs-llc on Field Lab v3: tokens.css -> field-lab.css -> this file.
  * The Tailwind CDN sheet lands after these links, so a utility beats an fl-* class
  * on the same property; palette names in each page's tailwind.config map to tokens. */
-html { overflow-x: clip; } /* the hero graph paper bleeds to the viewport edges */
+html { overflow-x: clip; scroll-padding-top: 4.5rem; } /* the hero graph paper bleeds to the viewport edges */
 /* Headings: Archivo squeezed per level (the old serif slot). */
-h1.font-serif, h2.font-serif, h3.font-serif { font-family: var(--f-display); font-weight: 800; }
+h1.font-serif, h2.font-serif, h3.font-serif { font-family: var(--f-display); font-weight: 800; word-spacing: .15em; }
 h1.font-serif { font-stretch: 68%; line-height: .92; letter-spacing: -.03em; }
 h2.font-serif { font-stretch: 82%; letter-spacing: -.03em; }
 h3.font-serif { font-stretch: 90%; font-weight: 700; letter-spacing: -.02em; }
@@ -11,8 +11,20 @@ h3.font-serif { font-stretch: 90%; font-weight: 700; letter-spacing: -.02em; }
 /* Brand: Field Lab wordmark, an orange square then the name in display ink. */
 .site-brand { font-family: var(--f-display); font-stretch: 70%; font-weight: 800; font-size: 18px; letter-spacing: -.01em; color: var(--ink); gap: 8px; }
 .site-brand::before { content: ""; width: 12px; height: 12px; background: var(--accent); border: 1.5px solid var(--ink); flex: none; }
-@media (max-width: 639px) { .site-brand { font-size: 16px; } }
-@media (max-width: 319px) { .site-brand { font-size: 0; } }
+@media (max-width: 639px) {
+  .site-brand { font-size: 14px; gap: var(--space-1); }
+  .site-brand::before { width: var(--space-2); height: var(--space-2); }
+  .site-header-inner { padding-inline: var(--space-4); }
+  .site-nav { column-gap: var(--space-2); }
+  .site-nav-link { font-size: .8125rem; }
+  .site-contact { padding-inline: var(--space-3); }
+}
+@media (max-width: 364px) {
+  .site-brand { font-size: 0; }
+  .site-brand::after { content: "CL"; font-size: .8125rem; }
+  .site-nav { column-gap: .375rem; }
+  .site-contact { padding-inline: .625rem; }
+}
 
 /* The header Contact button is ink, so the hero CTA is the one orange action in view. */
 .site-contact { background: var(--ink); color: var(--bg); }
