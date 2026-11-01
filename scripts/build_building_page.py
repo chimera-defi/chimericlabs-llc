@@ -4,6 +4,11 @@
 Reads from --handoff DIR:
   commits_by_project.csv        per-project commit counts and first/last dates
   headline_counts.json          data_through date, Codex own tokens and Claude best measured tokens
+  codex_daily_corrected.csv     Codex own tokens per day, for the July–August share
+
+Reads --ranges FILE (default: data.json next to the handoff directory), the
+token study's range_summaries: per range [Claude main, Claude subagents, Codex,
+recovered Claude]. The page leads with the window where both tools were measured.
 
 Optional --aliases FILE is JSON {directory_name: display_label}. Keep it outside
 the repo. Only rows that are not public and whose directory name is in the alias
@@ -63,6 +68,9 @@ GAP_UNITS = 3  # visible gap between donut slices, in pathLength units (out of 1
 # First-commit corrections, checked against GitHub, for repos whose handoff date is wrong.
 # chimericlabs-llc: the handoff says 2026-04-30; GitHub's first commit is 2026-03-30.
 FIRST_COMMIT_FIXES = {"chimera-defi/chimericlabs-llc": "2026-03-30"}
+
+# First day both Claude and Codex logs are complete (the token study's "since" range).
+SAME_WINDOW_START = "2026-09-07"
 
 
 def slugify(label):
@@ -225,10 +233,14 @@ def main():
     ap.add_argument("--handoff", required=True, help="directory with the three handoff inputs")
     ap.add_argument("--aliases", help="JSON file {directory_name: display_label}, kept outside the repo")
     ap.add_argument("--page", default=DEFAULT_PAGE, help="page to rewrite (default: research/building/index.html)")
+    ap.add_argument("--ranges", help="token study data.json with range_summaries (default: HANDOFF/../data.json)")
     args = ap.parse_args()
 
     rows, headline, aliases = read_inputs(args.handoff, args.aliases)
     data_through = headline["data_through"][:10]
+    ranges_path = args.ranges or os.path.join(args.handoff, os.pardir, "data.json")
+    with open(ranges_path, encoding="utf-8") as fh:
+        ranges = json.load(fh)["range_summaries"]
     groups = build_groups(rows, aliases)
     total = sum(int(r[COMMITS_COL]) for r in rows)
     named_keys = [k for k, _, _ in GROUPS]
@@ -271,12 +283,27 @@ def main():
         else:
             card_meta[key] = meta(g)
 
+    # Same-window figures: Claude = main + subagents (recovered logs excluded); Codex = own tokens.
+    def window(key):
+        r = ranges[key]
+        return (r[0] + r[1]) / 1e9, r[2] / 1e9
+
+    since_claude, since_codex = window("since")
+    d30_claude, d30_codex = window("30")
+    d7_claude, d7_codex = window("7")
+    with open(os.path.join(args.handoff, "codex_daily_corrected.csv"), encoding="utf-8", newline="") as fh:
+        codex_days = list(csv.DictReader(fh))
+    spike = sum(int(r["own_tokens_corrected"]) for r in codex_days if r["date"][:7] in ("2026-07", "2026-08"))
+    spike_pct = round(100.0 * spike / sum(int(r["own_tokens_corrected"]) for r in codex_days))
     tokens = "\n".join([
         '<div class="article-grid">',
-        f'<article class="card"><h3>Claude</h3><p class="token-n">{claude_total / 1e9:.1f} billion tokens</p><p>Measured from 2026-07-10 to {data_through}, with gaps, raw, cache reads included. Earlier logs are gone, so this is a floor, not a lifetime total.</p></article>',
-        f'<article class="card"><h3>Codex</h3><p class="token-n">{codex_total / 1e9:.1f} billion tokens</p><p>Raw tokens Codex used itself on this server, cached input included, 2026-05-24 to {data_through}.</p></article>',
+        f'<article class="card"><h3>Claude</h3><p class="token-n">{since_claude:.1f} billion tokens</p><p>{SAME_WINDOW_START} to {data_through}, the window where both tools were fully measured. Raw, cache reads included.</p></article>',
+        f'<article class="card"><h3>Codex</h3><p class="token-n">{since_codex:.1f} billion tokens</p><p>Same window, {SAME_WINDOW_START} to {data_through}. Raw tokens Codex used itself on this server, cached input included.</p></article>',
         '</div>',
-        '<p class="ds-meta">Estimates, not a bill. The two tools count differently, so the totals are not added together.</p>',
+        f'<p>Same comparison, shorter windows: last 30 days, Claude {d30_claude:.1f} billion and Codex {d30_codex:.1f} billion; last 7 days, Claude {d7_claude:.1f} billion and Codex {d7_codex:.1f} billion.</p>',
+        f'<p class="ds-meta">Longer ranges, with different start dates, so not comparable: Claude {claude_total / 1e9:.1f} billion from 2026-07-10, with gaps (earlier logs are gone, so this is a floor). Codex {codex_total / 1e9:.1f} billion from 2026-05-24, {spike_pct}% of it a July–August spike when Claude logs are missing. Estimates, not a bill. The two tools count differently, so the totals are not added together.</p>',
+        '<p><a href="../token-usage/">The full token usage study →</a></p>',
+        '<p><a href="../../dispatchbench/">DispatchBench: how we pick which model builds what →</a></p>',
     ])
     method = "\n".join([
         f"<li>Commits: <code>git log --all</code> on every local repo, counted once per commit even across branches, from 2025-10-01 to {data_through}. Commits by outside authors are left out. Merge commits and pull-request branch commits both count.</li>",
