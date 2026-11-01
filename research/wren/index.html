@@ -90,6 +90,11 @@
       .wren-trigger:focus-visible, .wren-details > summary:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
       .wren [popover] { box-sizing: border-box; margin: auto; width: calc(100vw - 2rem); max-width: min(24rem, calc(100vw - 2rem)); max-height: calc(100dvh - 2rem); overflow-y: auto; padding: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface); color: var(--ink); line-height: 1.5; }
       .wren-pop-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); margin-bottom: var(--space-4); }
+      .wren-name { text-decoration: underline dotted var(--ink-2); text-underline-offset: 4px; cursor: help; }
+      .wren-name:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+      .wren-name.is-open::after { content: attr(data-tip) / ""; position: fixed; z-index: 100; left: var(--tip-x); top: var(--tip-y); transform: translate(-50%, -100%); box-sizing: border-box; width: min(16rem, calc(100vw - 2rem)); padding: var(--space-3); border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface); color: var(--ink); font: var(--t-small); text-align: left; text-decoration: none; overflow-wrap: anywhere; }
+      .wren-name.tip-below::after { transform: translateX(-50%); }
+      .wren-section { grid-column: 1 / -1; font: var(--t-label); text-transform: uppercase; letter-spacing: .08em; }
       .wren-route { --c: var(--w-violet); display: grid; gap: var(--space-2); }
       .wren-route-arrow { color: var(--ink-2); text-align: center; }
       .wren-details { padding: var(--space-3) 0; border-block: 1px solid var(--line); }
@@ -111,10 +116,8 @@
       .wren-cmp .head { font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-2); padding: .5rem 0; }
       .wren-cmp .lab { display: none; }
       .wren-mem > div { grid-template-columns: 9.5rem 1.4fr 1fr; }
-      .wren-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: .75rem; }
-      .wren-groups > .wren-box { --c: var(--w-violet); padding: 1rem; font-weight: 400; }
       .wren-chip { --c: var(--w-grey); justify-self: start; font-size: .72rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; padding: .15rem .5rem; border-radius: 999px; color: var(--c); background: color-mix(in srgb, var(--c) 14%, transparent); border: 1px solid color-mix(in srgb, var(--c) 50%, transparent); white-space: nowrap; }
-      .c-ahead { --c: var(--w-green); } .c-par { --c: var(--w-blue); } .c-part { --c: var(--w-amber); } .c-miss { --c: var(--w-grey); } .c-extra { --c: var(--w-violet); }
+      .c-ahead { --c: var(--w-green); } .c-par { --c: var(--w-blue); } .c-part { --c: var(--w-amber); } .c-miss { --c: var(--w-grey); }
       .wren-sub { list-style: square; padding-left: 1.1rem; margin: 0 0 .5rem; display: grid; gap: .3rem; }
       .wren-sub li::marker { color: var(--w-violet, var(--ink-2)); }
       .wren-map { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: .75rem; align-items: start; }
@@ -216,47 +219,34 @@
 
         <div class="wren-view" data-panel="all">
           <h3 class="mt-6 font-serif text-xl text-slate-100">Everything we do</h3>
-          <div class="mt-4 wren-tiles" aria-label="Wren's own numbers">
-            <div class="wren-tile c-ahead"><b>9 of 16</b>Duet claims matched or beaten</div>
-            <div class="wren-tile c-extra"><b>14</b>extras Duet doesn't claim</div>
-            <div class="wren-tile c-miss"><b>2</b>Duet claims we don't do</div>
-            <div class="wren-tile c-par"><b>38</b>scheduled jobs <a class="wren-trigger" href="jobs/" aria-label="List the 38 scheduled jobs">?</a></div>
+          <p class="mt-2 text-sm text-slate-400">Our 15 capabilities below; 2 Duet claims we don't do are in the other view.</p>
+          <div class="mt-4 wren-tiles" aria-label="Score across our 15 capabilities">
+            <div class="wren-tile c-ahead"><b>12</b>Ahead</div>
+            <div class="wren-tile c-par"><b>2</b>At parity</div>
+            <div class="wren-tile c-part"><b>1</b>Partial</div>
+            <div class="wren-tile c-miss"><b>0</b>Missing</div>
           </div>
-          <div class="mt-5 wren-groups">
-            <div class="wren-box">
-              <h4 class="font-serif text-lg">Runs the work</h4>
-              <ul class="mt-3 wren-list text-sm">
-                <li>Claude, Codex, ChatGPT, Hermes, OpenClaw and hosted agents share one bus.</li>
-                <li>DispatchBench measures fit, routing each step to the cheapest passing model.</li>
-                <li>Jobs run for weeks, resumed from checkpoints.</li>
-                <li>Sessions end with a recap and one-tap next steps.</li>
-              </ul>
-            </div>
-            <div class="wren-box">
-              <h4 class="font-serif text-lg">Builds its own tools</h4>
-              <ul class="mt-3 wren-list text-sm">
-                <li>We built, and can change, crss, token-reduce and DispatchBench.</li>
-                <li>It benchmarks itself: a largely unattended six-week Ethereum client run.</li>
-                <li>A persona and a lesson hook, borrowed openly from Hermes and OpenClaw.</li>
-              </ul>
-            </div>
-            <div class="wren-box">
-              <h4 class="font-serif text-lg">Markets and money</h4>
-              <ul class="mt-3 wren-list text-sm">
-                <li>Interactive Brokers, Questrade and Alpaca through ChatGPT's apps.</li>
-                <li>Server price, economic and filings feeds; some cost extra for Duet users.</li>
-                <li>A portfolio review ends in an order sheet that a human accepts in ChatGPT's Interactive Brokers app.</li>
-              </ul>
-            </div>
-            <div class="wren-box">
-              <h4 class="font-serif text-lg">Reach</h4>
-              <ul class="mt-3 wren-list text-sm">
-                <li>Four ways in, one server: Telegram, two Claude apps and ChatGPT.</li>
-                <li>ChatGPT reads markets at open, close or any time.</li>
-                <li>Briefs land on the shared Agent Host server. Next: Kepler reads them out.</li>
-                <li>Root on our own server, and computer use on a MacBook.</li>
-              </ul>
-            </div>
+          <div class="mt-5 wren-cmp" role="table" aria-label="Everything Wren does compared with Duet's claims">
+            <div class="head" role="row"><span role="columnheader">Claim</span><span role="columnheader">Duet</span><span role="columnheader">Wren</span><span role="columnheader">Status</span></div>
+            <div role="row"><b role="cell" class="wren-section">Runs the work</b></div>
+            <div role="row"><b role="cell">Shared agent bus</b><span role="cell"><span class="lab">Duet</span>Not claimed</span><span role="cell"><span class="lab">Wren</span>Claude, Codex, ChatGPT, Hermes, OpenClaw and hosted agents share one bus.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
+            <div role="row"><b role="cell">Measured model routing</b><span role="cell"><span class="lab">Duet</span>Not claimed</span><span role="cell"><span class="lab">Wren</span>DispatchBench measures fit, routing each step to the cheapest passing model.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
+            <div role="row"><b role="cell">Long-running jobs</b><span role="cell"><span class="lab">Duet</span>Sets up meetings or builds dashboards, then reports back.</span><span role="cell"><span class="lab">Wren</span>Jobs run for weeks, resumed from checkpoints.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
+            <div role="row"><b role="cell">Recaps and next steps</b><span role="cell"><span class="lab">Duet</span>Reports back; drafts next steps.</span><span role="cell"><span class="lab">Wren</span>Sessions end with a recap and one-tap next steps.</span><span role="cell"><span class="wren-chip c-par">Parity</span></span></div>
+            <div role="row"><b role="cell" class="wren-section">Builds its own tools</b></div>
+            <div role="row"><b role="cell">Changeable tools</b><span role="cell"><span class="lab">Duet</span>Not claimed</span><span role="cell"><span class="lab">Wren</span>We built, and can change, crss, token-reduce and DispatchBench.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
+            <div role="row"><b role="cell">Self-benchmarking</b><span role="cell"><span class="lab">Duet</span>Not claimed</span><span role="cell"><span class="lab">Wren</span>It benchmarks itself: a largely unattended six-week Ethereum client run.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
+            <div role="row"><b role="cell">Persona and lessons</b><span role="cell"><span class="lab">Duet</span>Not claimed</span><span role="cell"><span class="lab">Wren</span>A persona and a lesson hook, borrowed openly from Hermes and OpenClaw.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
+            <div role="row"><b role="cell" class="wren-section">Markets and money</b></div>
+            <div role="row"><b role="cell">Broker access</b><span role="cell"><span class="lab">Duet</span>Not claimed</span><span role="cell"><span class="lab">Wren</span>Interactive Brokers, Questrade and Alpaca through ChatGPT's apps.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
+            <div role="row"><b role="cell">Market data feeds</b><span role="cell"><span class="lab">Duet</span>Not claimed</span><span role="cell"><span class="lab">Wren</span>Server price, economic and filings feeds; some cost extra for Duet users.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
+            <div role="row"><b role="cell">Human-accepted order sheets</b><span role="cell"><span class="lab">Duet</span>Not claimed</span><span role="cell"><span class="lab">Wren</span>A portfolio review ends in an order sheet that a human accepts in ChatGPT's Interactive Brokers app.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
+            <div role="row"><b role="cell" class="wren-section">Reach</b></div>
+            <div role="row"><b role="cell">Phone and desktop access</b><span role="cell"><span class="lab">Duet</span>An iOS and Android app, plus web.</span><span role="cell"><span class="lab">Wren</span>Four ways in, one server: Telegram, two Claude apps and ChatGPT.</span><span role="cell"><span class="wren-chip c-par">Parity</span></span></div>
+            <div role="row"><b role="cell">Market reads</b><span role="cell"><span class="lab">Duet</span>Not claimed</span><span role="cell"><span class="lab">Wren</span>ChatGPT reads markets at open, close or any time.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
+            <div role="row"><b role="cell">Brief delivery</b><span role="cell"><span class="lab">Duet</span>Briefs you every morning, drafts next steps, then goes quiet.</span><span role="cell"><span class="lab">Wren</span>Briefs land on the shared Agent Host server. Next: Kepler reads them out.</span><span role="cell"><span class="wren-chip c-part">Partial</span></span></div>
+            <div role="row"><b role="cell">Server control</b><span role="cell"><span class="lab">Duet</span>Its own cloud computer.</span><span role="cell"><span class="lab">Wren</span>Root on our own server, and computer use on a MacBook.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
+            <div role="row"><b role="cell">Scheduled jobs</b><span role="cell"><span class="lab">Duet</span>Not claimed</span><span role="cell"><span class="lab">Wren</span>38 scheduled jobs (28 timers and 10 cron), mostly quiet upkeep; Linnet posts a digest twice daily. <a href="jobs/">See the full list.</a></span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
           </div>
         </div>
 
@@ -479,6 +469,100 @@
     </footer>
 
     <script type="module">
+      const nameTips = {
+        Kepler: "ChatGPT's agent on our bus (the agent-host reliability lane). Reports server status; will read briefs out.",
+        Hermes: "Open-source self-improving agent from Nous Research. Here it is the Telegram gateway that sends alerts.",
+        OpenClaw: "Open-source assistant that runs on your own computer and answers in chat apps. Here it sends alerts.",
+        Linnet: "Read-only digest of our jobs and alerts, posted twice a day (08:15 and 20:15 CET).",
+        Wren: "Our orchestrator: Claude Opus with a persona, memory and shared notes, on our own server.",
+        Codex: "OpenAI's coding agent. Builds the code and does the final review here.",
+        Haiku: "Claude's small, cheap model. Does reads and sweeps.",
+        Devin: "Cognition's coding agent. Takes browser and sandbox jobs.",
+        Grok: "xAI's model. Reviews when Codex is out.",
+        Fable: "A Claude model, paused as our reviewer since 28 October.",
+        ChatGPT: "OpenAI's chat assistant. Called in per job, reads markets, and is where a human accepts orders.",
+        takopi: "Telegram bridge for Codex, Claude Code and other agent CLIs.",
+        gbrain: "Knowledge-base server for shared memory. Check the page text for its status and keep the tip consistent with it.",
+        crss: "Our skill that starts persistent Claude sessions through tmux and systemd.",
+        DispatchBench: "Our benchmark of which model a coding task should go to; compares 25 model-and-effort configs.",
+      };
+      const namePattern = new RegExp(`\\b(${Object.keys(nameTips).join("|")})\\b`, "g");
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+        acceptNode: (node) => node.parentElement.closest("a, button, h1, h2, h3, h4, summary, figcaption, script, style, header, nav, footer, .wren-name") ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT,
+      });
+      // Snapshot text nodes before replacing them so the walker never revisits a wrapper.
+      const textNodes = [];
+      while (walker.nextNode()) textNodes.push(walker.currentNode);
+      for (const node of textNodes) {
+        const matches = [...node.textContent.matchAll(namePattern)];
+        if (!matches.length) continue;
+        const fragment = document.createDocumentFragment();
+        let offset = 0;
+        for (const match of matches) {
+          fragment.append(node.textContent.slice(offset, match.index));
+          const name = document.createElement("span");
+          name.className = "wren-name";
+          name.tabIndex = 0;
+          name.dataset.tip = nameTips[match[0]];
+          name.textContent = match[0];
+          fragment.append(name);
+          offset = match.index + match[0].length;
+        }
+        fragment.append(node.textContent.slice(offset));
+        node.replaceWith(fragment);
+      }
+      // Keep the spoken description outside main so tooltips never change its visible word count.
+      const description = document.createElement("span");
+      description.id = "wren-name-tip";
+      description.hidden = true;
+      description.setAttribute("role", "tooltip");
+      document.body.append(description);
+      let activeName = null;
+      const closeName = () => {
+        activeName?.classList.remove("is-open", "tip-below");
+        activeName?.removeAttribute("aria-describedby");
+        activeName = null;
+      };
+      const openName = (name) => {
+        closeName();
+        const rect = name.getBoundingClientRect();
+        const halfWidth = Math.min(256, innerWidth - 32) / 2;
+        const below = rect.top < 180;
+        name.style.setProperty("--tip-x", `${Math.max(16 + halfWidth, Math.min(innerWidth - 16 - halfWidth, rect.left + rect.width / 2))}px`);
+        name.style.setProperty("--tip-y", `${below ? rect.bottom : rect.top}px`);
+        name.classList.toggle("tip-below", below);
+        description.textContent = name.dataset.tip;
+        name.setAttribute("aria-describedby", description.id);
+        name.classList.add("is-open");
+        activeName = name;
+      };
+      document.addEventListener("pointerover", (event) => {
+        const name = event.target.closest(".wren-name");
+        if (name && event.pointerType === "mouse") openName(name);
+      });
+      document.addEventListener("pointerout", (event) => {
+        if (event.target.closest(".wren-name") === activeName && !activeName?.contains(event.relatedTarget) && activeName !== document.activeElement) closeName();
+      });
+      document.addEventListener("focusin", (event) => {
+        if (event.target.matches(".wren-name:focus-visible")) openName(event.target);
+      });
+      document.addEventListener("focusout", (event) => { if (event.target === activeName) closeName(); });
+      document.addEventListener("click", (event) => {
+        const name = event.target.closest(".wren-name");
+        if (name && name !== activeName) openName(name);
+        else closeName();
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closeName();
+        if ((event.key === "Enter" || event.key === " ") && event.target.matches(".wren-name")) {
+          event.preventDefault();
+          if (event.target === activeName) closeName();
+          else openName(event.target);
+        }
+      });
+      addEventListener("scroll", closeName, true);
+      addEventListener("resize", closeName);
+
       // Without JS both panels stay visible.
       const box = document.getElementById("view-toggle");
       const buttons = [...box.querySelectorAll("button")];
