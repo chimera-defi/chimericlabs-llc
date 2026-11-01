@@ -60,6 +60,10 @@ COMMITS_COL = "commits_since_2025-10_total"
 SPARE_SLICE_COLOURS = 12  # --data-1 .. --data-12 cycle for named and aliased slices
 GAP_UNITS = 3  # visible gap between donut slices, in pathLength units (out of 1000)
 
+# First-commit corrections, checked against GitHub, for repos whose handoff date is wrong.
+# chimericlabs-llc: the handoff says 2026-04-30; GitHub's first commit is 2026-03-30.
+FIRST_COMMIT_FIXES = {"chimera-defi/chimericlabs-llc": "2026-03-30"}
+
 
 def slugify(label):
     return re.sub(r"[^a-z0-9]+", "-", label.lower()).strip("-")
@@ -100,7 +104,7 @@ def build_groups(rows, aliases):
         key, label, aliased = assign_group(row, aliases)
         g = groups.setdefault(key, {"key": key, "label": label, "n": 0, "first": None, "last": None, "aliased": aliased})
         g["n"] += int(row[COMMITS_COL])
-        first = row["first_commit_all_history"][:10]
+        first = FIRST_COMMIT_FIXES.get(row["github_repo"], row["first_commit_all_history"][:10])
         last = row["last_commit"][:10]
         g["first"] = first if g["first"] is None else min(g["first"], first)
         g["last"] = last if g["last"] is None else max(g["last"], last)
@@ -137,9 +141,20 @@ def donut_slices(groups, total):
     return slices
 
 
+def tenths(slices, total):
+    """Percentages to one decimal that add up to exactly 100.0 (largest remainder)."""
+    raw = [1000.0 * s["n"] / total for s in slices]
+    out = [int(r) for r in raw]
+    order = sorted(range(len(raw)), key=lambda i: (out[i] - raw[i], i))
+    for i in order[:1000 - sum(out)]:
+        out[i] += 1
+    return [t / 10 for t in out]
+
+
 def donut_html(slices, total, data_through):
     circles, legend, css = [], [], []
     cum = 0
+    pcts = tenths(slices, total)
     for i, s in enumerate(slices, start=1):
         start = round(1000 * cum / total)
         cum += s["n"]
@@ -149,13 +164,14 @@ def donut_html(slices, total, data_through):
             f'<circle cx="100" cy="100" r="70" fill="none" stroke-width="36" class="slice slice-{i}" '
             f'pathLength="1000" stroke-dasharray="{length} {1000 - length}" stroke-dashoffset="{-start}"></circle>'
         )
-        pct = 100.0 * s["n"] / total
+        pct = pcts[i - 1]
         legend.append(
             f'<li><i class="swatch slice-bg-{i}" aria-hidden="true"></i><span>{html.escape(s["label"])}</span>'
             f'<span class="donut-n">{s["n"]:,} · {pct:.1f}%</span></li>'
         )
         css.append(f".slice-{i} {{ stroke: {s['colour']}; }} .slice-bg-{i} {{ background: {s['colour']}; }}")
-    top = [f'{html.escape(s["label"])} {100.0 * s["n"] / total:.1f}%' for s in slices[:3]]
+    ranked = sorted(range(len(slices)), key=lambda i: (-slices[i]["n"], i))[:3]
+    top = [f'{html.escape(slices[i]["label"])} {pcts[i]:.1f}%' for i in ranked]
     aria = (f"Commits by project since October 2025, {total:,} in all. Largest: "
             f"{top[0]}, {top[1]}, {top[2]}.")
     figure = "\n".join([
@@ -191,11 +207,14 @@ def fill(text, name, body):
         (f"<!-- gen:{name} -->", f"<!-- /gen:{name} -->"),
         (f"/* gen:{name} */", f"/* /gen:{name} */"),
     ):
-        rx = re.compile(re.escape(open_m) + r".*?" + re.escape(close_m), re.S)
-        found = len(rx.findall(text))
-        if found:
-            hits += found
-            text = rx.sub(lambda m, o=open_m, c=close_m: o + body + c, text)
+        opens, closes = text.count(open_m), text.count(close_m)
+        if opens == closes == 0:
+            continue
+        a, b = text.find(open_m), text.find(close_m)
+        if opens != 1 or closes != 1 or b < a:
+            sys.exit(f"marker gen:{name}: {opens} opening and {closes} closing, expected one pair in order")
+        hits += 1
+        text = text[:a + len(open_m)] + body + text[b:]
     if hits != 1:
         sys.exit(f"marker gen:{name} found {hits} times, expected 1")
     return text
@@ -227,7 +246,7 @@ def main():
     codex_total = int(headline["codex_own_tokens_lifetime_on_host"])
 
     hero = "\n".join([
-        f"<li>{total:,} commits across {n_projects} projects since October 2025.</li>",
+        f"<li>{total:,} commits since October 2025: {n_projects} named projects, plus other public and private work.</li>",
         f"<li>{biggest_line}</li>",
         "<li>Most AI tokens are re-reads of saved context, not new writing.</li>",
     ])
