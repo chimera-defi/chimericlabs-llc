@@ -257,7 +257,7 @@
 
         <figure class="mt-8 -mx-5 sm:mx-0">
           <a href="wren-map.webp" target="_blank" rel="noopener"><img src="wren-map.webp" width="1672" height="941" loading="eager" decoding="async" class="w-full h-auto sm:rounded border border-[color:var(--line,rgba(127,127,127,.25))]" alt="Infographic of Wren. Left: Claude, ChatGPT, Codex, Haiku and Fable, and Kimi or Grok through delegation tools. Centre: Wren, the agent orchestrator and bus, with specialised agents above and core capabilities below: workflow engine, checkpoints, verification and proactive jobs. Right: tools and connectors, and the Telegram, Claude Code, ChatGPT and dashboard interfaces. Bottom: proactive work, multi-agent workflows, persistent memory, human oversight, and the Duet score of 8 ahead, 5 at parity, 1 partial and 0 missing."></a>
-          <figcaption class="mt-2 px-5 sm:px-0 text-sm text-slate-400">Wren at a glance, drawn by ChatGPT on 26 October, checked by Wren. Its old 14-feature score is pictured; current score above. Tap to enlarge.</figcaption>
+          <figcaption class="mt-2 px-5 sm:px-0 text-sm text-slate-400">Wren at a glance, drawn by ChatGPT on 26 October, checked by Wren. Its old 14-feature score is pictured; current score above. Tap to enlarge. Models and schedule are from then too.</figcaption>
         </figure>
 
         <h2 class="mt-12 font-serif text-2xl text-slate-100">How it grew</h2>
@@ -504,6 +504,11 @@
       };
       addEventListener("hashchange", revealHash);
       revealHash();
+      // Repeated anchor clicks do not fire hashchange after a detail is closed.
+      document.addEventListener("click", (event) => {
+        const link = event.target.closest('a[href^="#"]');
+        if (link && link.hash === location.hash) revealHash();
+      });
       // Close the popover so in-page link targets stay visible.
       document.addEventListener("click", (event) => {
         event.target.closest('[popover] a[href^="#"]')?.closest("[popover]").hidePopover();
