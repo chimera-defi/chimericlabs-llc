@@ -3679,39 +3679,39 @@
   "events": [
     [
       "2026-09-22",
-      "Opus appears",
+      "Opus 5.5 appears",
       "model",
-      "A new Claude model becomes available; sessions can use it, so the mix of tokens by model can shift."
+      "Claude Opus 5.5 becomes available; sessions can use it, shifting tokens by model."
     ],
     [
       "2026-09-23",
-      "Fable appears",
+      "Fable 5.1 appears",
       "model",
-      "Another new Claude model becomes available; the mix of tokens by model can shift again."
+      "Claude Fable 5.1 becomes available; sessions can use it, shifting tokens by model."
     ],
     [
       "2026-09-29",
-      "Sonnet appears",
+      "Sonnet 5.5 appears",
       "model",
-      "A third Claude model becomes available; the mix of tokens by model can shift again."
+      "Claude Sonnet 5.5 becomes available; sessions can use it, shifting tokens by model."
     ],
     [
       "2026-10-22",
-      "Codex Luna change begins",
+      "Codex gpt-6-luna phased out",
       "model",
-      "Codex's default model changes; token counts per task can differ between models."
+      "Codex's default moves away from gpt-6-luna; token counts per task can differ between models."
     ],
     [
       "2026-10-23",
-      "Codex Sol change follows",
+      "Codex gpt-6.1-sol takes over",
       "model",
-      "Codex's default model changes again the next day; the two changes overlap."
+      "gpt-6.1-sol becomes the Codex default the next day; the two changes overlap."
     ],
     [
       "2026-10-28",
-      "Fable reads paused; fast mode off",
+      "Fable 5.1 reads paused; fast mode off",
       "policy",
-      "Fable stops being used for reads and fast mode is turned off; the Fable line falls after, but other changes landed too, so no single cause."
+      "Fable 5.1 reads pause; fast mode turns off. Concurrent changes prevent attributing the fall."
     ]
   ],
   "data_starts": [
@@ -3974,41 +3974,42 @@
     "source-2": "255c5a554fd8d7d99e71e5870a2e78116540456dbc01a21170117915991b5fcc",
     "source-3": "3a550a23d40ae492432e764be93154ac7fa9f28db0f8a0d3d1aaac3e0f6c63aa",
     "source-4": "7ce7966d9e950b2f2ad80c8ac1e2494b869dfca932c8bc1ef0c650db23677550",
-    "source-5": "a9920bdb1deb3f6bb0edd1757ec1755a88eccb0fe9af47ae969ca94d880d00a8",
-    "source-6": "233622d6fd6375d0ec48c4c7cad2dbe49d239fd223701e5c608a22df5d3aca1e",
-    "source-7": "4003c1db06c4949db7e0e951401b7d50494097d92920b36d2ca3a8d5c5f1ce97",
-    "source-8": "d69d376d8568087c696f980ee24cdc4974bdc4845d46635eefab05082dbc7168",
-    "source-9": "34216db2ee18d0f82d4c22a873be82a7b96bf2d4fc853a57085f4083493671b5",
-    "source-10": "f2c8f21e6ce0a5417d00b47a48d622091542bd37cf2d3192b4c6ea04c2280dc6",
-    "source-11": "56389e527560450cd5b021611c0b7305b3a75afe7924c987a96483ba60484132",
-    "source-12": "f9ffc0ee562dad632406ab53d6752974f0f7ffc94db9db232be203723c7211ac",
-    "source-13": "94418d8d9aa59acc7ec64903b26ae584d613a4e460718014c4f745b17619b219",
-    "source-14": "96033e967ab4154f25906d7478cba61e4680f9e6d78c9474325ff6d1f0fd6995",
-    "source-15": "01774238f5d2efb0477f1fef387d966d14dfc8914912468cd83ce62e7c7df64b",
-    "source-16": "67af1548064a6ead4a07ede8180fd0fc2f3f743c84cca477935744249298d530",
-    "source-17": "0ac22fbc853051b1dc1194000c23259eb2c4824cb1e58183b47430cbe5ecf9fa",
-    "source-18": "a2994395b11c8fa0f1976c1406e17897e2e2e108d7de61c54ee9a7c0566da38f",
-    "source-19": "caf2e6e5d02d46b773c361e7d8cfcaa14c3a1bb2a25a23c35875a2e1ae48d8da",
-    "source-20": "89b267fade2b6dfe4321a365b92ff0a03ae382d2e8a8d4e15bed6a109a69832f",
-    "source-21": "6c2458c8b23f69788e33a652d8df3f8c6f770645a811f7a270f08515226c196a",
-    "source-22": "06d13dfba2eff709d1366ffd8252539703dd1e13ce2c7139ca971e2d98d0c16f",
-    "source-23": "86012bdf167ac19bf041d0168ebc77d20f42ac8e8685f7ab8a2c83f31e3bb031",
-    "source-24": "55e6f01e7b2c9450b7a9e70f233c7c8471b12f6a2cb5b42d0883de773eaadc7a",
-    "source-25": "81a9f0bdd24f336b1859a5bd233f3088f45effa2e0710c444b81643dcb581d7b",
-    "source-26": "90a248f6607c3950be23e16ca03d43de0fce32bb84f4422cc5264f6877b18e34",
-    "source-27": "ef18e7d308d486078577375ca8e40f8f17dedecbbbc9111d41ed97fcb4a1d7b3",
-    "source-28": "6f44b4634da87ca66fd909336d475632a6b6a1dbb8471fb098699e1291c8f63d",
-    "source-29": "01cd0ac449d4efff69be43af1c652798f3d27f062a26a3dee490362742a85065",
-    "source-30": "8d512c86aa2c771b76d98fbc7979327da0357cbcca55145f865c5e3390bd0fa0",
-    "source-31": "ff4d05774873c9cff73d9f789ed8177d615060b8317268363a0256b6809443be",
-    "source-32": "c27bd36219cfb0685ed5df346ecf56a29c789926fb309746efe121ec03b57088",
-    "source-33": "60431fee38e584c5c0c7b7b153055ee9216e2c6e24498e713b040ada3b5dbb78",
-    "source-34": "e9e5bc9e31b27cea20a39d3b12d5b8dbb5d73fdb8d499f253765281d09e05797",
-    "source-35": "2e8438d750ff716c4923286b08ee6b75ba04f6a9f004da8d7ff30142b2ce39f6",
-    "source-36": "38774aeace09945f275c60258df739a62cdcde67a2120bf716e8f5f920767757",
-    "source-37": "a2922c919ad7f2cae9fd381206298fd0e99396fb4ab6f322222f7955f0d455da",
-    "source-38": "58cc23753bb536accc498103f0e03c641a3cb3818fadf5e6feb329a9d0a968b4",
-    "source-39": "afb099b1fa3917d073bac67cfcd9c8905d73c79806b8098518e2780be4a238b6"
+    "source-5": "9951a41b3ea317c312c13d4319af3296f1bc20bdb05dbfea8eeb0d1a21fd8212",
+    "source-6": "a9920bdb1deb3f6bb0edd1757ec1755a88eccb0fe9af47ae969ca94d880d00a8",
+    "source-7": "233622d6fd6375d0ec48c4c7cad2dbe49d239fd223701e5c608a22df5d3aca1e",
+    "source-8": "4003c1db06c4949db7e0e951401b7d50494097d92920b36d2ca3a8d5c5f1ce97",
+    "source-9": "d69d376d8568087c696f980ee24cdc4974bdc4845d46635eefab05082dbc7168",
+    "source-10": "34216db2ee18d0f82d4c22a873be82a7b96bf2d4fc853a57085f4083493671b5",
+    "source-11": "f2c8f21e6ce0a5417d00b47a48d622091542bd37cf2d3192b4c6ea04c2280dc6",
+    "source-12": "56389e527560450cd5b021611c0b7305b3a75afe7924c987a96483ba60484132",
+    "source-13": "f9ffc0ee562dad632406ab53d6752974f0f7ffc94db9db232be203723c7211ac",
+    "source-14": "d78f79f2e8c4335e9f5b306837cfa526ccaaa671ca806a4b837d78212a0cfe4f",
+    "source-15": "96033e967ab4154f25906d7478cba61e4680f9e6d78c9474325ff6d1f0fd6995",
+    "source-16": "01774238f5d2efb0477f1fef387d966d14dfc8914912468cd83ce62e7c7df64b",
+    "source-17": "67af1548064a6ead4a07ede8180fd0fc2f3f743c84cca477935744249298d530",
+    "source-18": "0ac22fbc853051b1dc1194000c23259eb2c4824cb1e58183b47430cbe5ecf9fa",
+    "source-19": "a2994395b11c8fa0f1976c1406e17897e2e2e108d7de61c54ee9a7c0566da38f",
+    "source-20": "caf2e6e5d02d46b773c361e7d8cfcaa14c3a1bb2a25a23c35875a2e1ae48d8da",
+    "source-21": "89b267fade2b6dfe4321a365b92ff0a03ae382d2e8a8d4e15bed6a109a69832f",
+    "source-22": "6c2458c8b23f69788e33a652d8df3f8c6f770645a811f7a270f08515226c196a",
+    "source-23": "06d13dfba2eff709d1366ffd8252539703dd1e13ce2c7139ca971e2d98d0c16f",
+    "source-24": "86012bdf167ac19bf041d0168ebc77d20f42ac8e8685f7ab8a2c83f31e3bb031",
+    "source-25": "55e6f01e7b2c9450b7a9e70f233c7c8471b12f6a2cb5b42d0883de773eaadc7a",
+    "source-26": "81a9f0bdd24f336b1859a5bd233f3088f45effa2e0710c444b81643dcb581d7b",
+    "source-27": "90a248f6607c3950be23e16ca03d43de0fce32bb84f4422cc5264f6877b18e34",
+    "source-28": "ef18e7d308d486078577375ca8e40f8f17dedecbbbc9111d41ed97fcb4a1d7b3",
+    "source-29": "7d8005242b3fd4c76632088f31e665385915eae49b4472aae77cf30b0e7df711",
+    "source-30": "01cd0ac449d4efff69be43af1c652798f3d27f062a26a3dee490362742a85065",
+    "source-31": "8d512c86aa2c771b76d98fbc7979327da0357cbcca55145f865c5e3390bd0fa0",
+    "source-32": "ff4d05774873c9cff73d9f789ed8177d615060b8317268363a0256b6809443be",
+    "source-33": "c27bd36219cfb0685ed5df346ecf56a29c789926fb309746efe121ec03b57088",
+    "source-34": "60431fee38e584c5c0c7b7b153055ee9216e2c6e24498e713b040ada3b5dbb78",
+    "source-35": "e9e5bc9e31b27cea20a39d3b12d5b8dbb5d73fdb8d499f253765281d09e05797",
+    "source-36": "2e8438d750ff716c4923286b08ee6b75ba04f6a9f004da8d7ff30142b2ce39f6",
+    "source-37": "38774aeace09945f275c60258df739a62cdcde67a2120bf716e8f5f920767757",
+    "source-38": "a2922c919ad7f2cae9fd381206298fd0e99396fb4ab6f322222f7955f0d455da",
+    "source-39": "58cc23753bb536accc498103f0e03c641a3cb3818fadf5e6feb329a9d0a968b4",
+    "source-40": "afb099b1fa3917d073bac67cfcd9c8905d73c79806b8098518e2780be4a238b6"
   },
   "audit_window": "2026-10-24T01:57:08Z..2026-10-31T01:57:08Z",
   "closeout_through": "2026-10-29",
@@ -14660,6 +14661,11 @@
         "Dataset": "Case study, gaps, questions, spike verdict",
         "Data through": "",
         "Does NOT cover": ""
+      },
+      {
+        "Dataset": "Laptop Claude, CodexBar 365-day total, list-price estimate; overlaps host series; not added to headline",
+        "Data through": "2026-11-01 (365-day window; both files stamped as_of 2026-11-01)",
+        "Does NOT cover": "per-day split; Codex tokens (provider row present, no total reported); overlap with host Claude series (Mac sonnet-5 14,403,743 equals host 2026-09-07 subagents raw exactly), so never summed with host totals"
       },
       {
         "Dataset": "Transcript storage size",
