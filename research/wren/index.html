@@ -276,7 +276,7 @@
           <summary>Backups, gbrain and our stance</summary>
           <div class="mt-4 wren-cmp wren-mem" role="table" aria-label="Backups and failure modes">
             <div class="head" role="row"><span role="columnheader">Layer</span><span role="columnheader">What it does</span><span role="columnheader">How it fails</span></div>
-            <div role="row"><b role="cell">Backups</b><span role="cell"><span class="lab">What</span>Code and key work live in private GitHub repos. Local snapshots before risky changes.</span><span role="cell"><span class="lab">Fails</span>Striped disks: one dead drive loses the box. An encrypted off-box copy runs daily (Hetzner Storage Box). Transcripts and Hermes/OpenClaw state: no backup, by choice.</span></div>
+            <div role="row"><b role="cell">Backups</b><span role="cell"><span class="lab">What</span>Code and key work live in private GitHub repos. Local snapshots before risky changes.</span><span role="cell"><span class="lab">Fails</span>Striped disks: one dead drive loses the box. An encrypted off-box copy runs daily (an off-site storage box). Transcripts and Hermes/OpenClaw state: no backup, by choice.</span></div>
           </div>
           <p class="mt-3 text-sm text-slate-400" id="gbrain-note">We also run <a href="https://github.com/garrytan/gbrain" target="_blank" rel="noreferrer">gbrain</a>, a knowledge-base server. Its health check fails and a sync aborted, so nothing depends on it.</p>
           <p class="mt-3 text-slate-300 leading-relaxed"><b>Our stance:</b> after a breach we rebuild from scratch and carefully re-pull private repos. We don't trust possibly compromised backups. The encrypted backup holds curated memory and config. The trade-off: unpushed work outside it is lost.</p>
