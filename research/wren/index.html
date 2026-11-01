@@ -130,7 +130,7 @@
       .wren-arrow { font-size: 1.5rem; color: var(--w-violet); text-align: center; }
       @media (max-width: 639px) {
         .wren-score > div { grid-template-columns: 1fr; gap: .25rem; }
-        .wren-tiles { grid-template-columns: repeat(2, 1fr); }
+        .wren-tiles { grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr)); }
         .wren-cmp > div { grid-template-columns: 1fr; gap: .35rem; }
         .wren-cmp .head { display: none; }
         .wren-cmp .lab { display: inline; font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; margin-right: .4rem; color: var(--ink-2); }
@@ -249,7 +249,7 @@
           <li><b><a href="https://claude.com/claude-code" target="_blank" rel="noreferrer">Claude Code</a></b> on a server, signed in to a Max plan. Opus does the planning and checking.</li>
           <li><b><a href="https://github.com/chimera-defi/claude-remote-session-skill" target="_blank" rel="noreferrer">crss</a></b>: starts, messages, hands off and repairs long-running sessions. Every agent on the box runs on it.</li>
           <li><b><a href="https://github.com/chimera-defi/token-reduce-skill" target="_blank" rel="noreferrer">token-reduce</a></b> and <b><a href="https://github.com/tobi/qmd" target="_blank" rel="noreferrer">QMD</a></b>: read only the slice of a repo or notes folder a task needs. QMD is a local search engine over our markdown.</li>
-          <li><b><a href="../../dispatchbench/">DispatchBench</a></b> and the <a href="https://github.com/chimera-defi/delegate-skill" target="_blank" rel="noreferrer">delegate skills</a>: send each job to the cheapest model that passes. Codex builds, Haiku sweeps and reads, Fable gives a second opinion, and Grok can be added through the same skills whenever we subscribe.</li>
+          <li><b><a href="../../dispatchbench/">DispatchBench</a></b> and the <a href="https://github.com/chimera-defi/delegate-skill" target="_blank" rel="noreferrer">delegate skills</a>: send each job to the cheapest model that passes. Codex builds, Haiku sweeps and reads, Fable gives a second opinion, and Grok steps in when Codex is out. More models can be added through the same skills.</li>
           <li><b>A soul</b>: a short persona file every session loads, plus a cheap reviewer that saves one lesson before each context reset. Wren keeps getting better at its own job.</li>
           <li><b>Shared memory</b>: a <a href="https://github.com/garrytan/gbrain" target="_blank" rel="noreferrer">gbrain</a> knowledge base plus plain git-tracked notes that Claude, Codex and the other agents all read and write.</li>
           <li><b>The bus</b>: a small mailbox database where agents post tasks and replies to each other, including <a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noreferrer">Hermes</a> and <a href="https://github.com/openclaw/openclaw" target="_blank" rel="noreferrer">OpenClaw</a>.</li>
@@ -303,8 +303,8 @@
         <div class="mt-5 wren-cmp" id="cmp" role="table" aria-label="Wren against Claude Duet, feature by feature">
           <div class="head" role="row"><span role="columnheader">Feature</span><span role="columnheader">Duet</span><span role="columnheader">Wren</span><span role="columnheader">Status</span></div>
           <div role="row"><b role="cell">Shared memory and skills</b><span role="cell"><span class="lab">Duet</span>Memory, skills and apps carry over from the Claude app.</span><span role="cell"><span class="lab">Wren</span>A <a href="https://github.com/garrytan/gbrain" target="_blank" rel="noreferrer">gbrain</a> knowledge base and git-backed notes that Claude, Codex and the other agents all read and write.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
-          <div role="row"><b role="cell">Cheapest model per job</b><span role="cell"><span class="lab">Duet</span>Powered by Opus 5.5. The page names no other models and no model choice; background checks count against your plan limits.</span><span role="cell"><span class="lab">Wren</span>Each job goes to the cheapest model that passes, and you can set it per job. Opus plans and checks. Codex builds and reviews, Grok steps in when Codex is out, Haiku sweeps, and Devin takes browser and sandbox work. <a href="../../dispatchbench/">DispatchBench</a> measures which model fits. More plug in through the <a href="https://github.com/chimera-defi/delegate-skill" target="_blank" rel="noreferrer">delegate skills</a>.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
-          <div role="row"><b role="cell">Its own computer</b><span role="cell"><span class="lab">Duet</span>A cloud computer managed by Anthropic.</span><div role="cell"><span class="lab">Wren</span><ul class="wren-sub"><li><b>The server:</b> a dedicated server, on 24/7, with root access and scheduled jobs.</li><li><b>Kepler:</b> ChatGPT's agent on our bus, with its own cloud box (its own report: 9 CPUs, 10 GB RAM).</li><li><b>A MacBook:</b> an M1 Max with 64 GB RAM. Wren can drive it with computer use from the Claude desktop app.</li></ul>Duet doesn't publish its specs. Ahead on control; not proven ahead on size.</div><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
+          <div role="row"><b role="cell">Cheapest model per job</b><span role="cell"><span class="lab">Duet</span>Powered by Opus 5.5. The page names no other models and no model choice. Background checks count against your plan limits.</span><span role="cell"><span class="lab">Wren</span>Each job goes to the cheapest model that passes. You can set it per job. Opus plans and checks. Codex builds and reviews. Grok steps in when Codex is out. Haiku sweeps. Devin takes browser and sandbox work. <a href="../../dispatchbench/">DispatchBench</a> measures which model fits. More plug in through the <a href="https://github.com/chimera-defi/delegate-skill" target="_blank" rel="noreferrer">delegate skills</a>.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
+          <div role="row"><b role="cell">Its own computer</b><span role="cell"><span class="lab">Duet</span>A cloud computer managed by Anthropic.</span><div role="cell"><span class="lab">Wren</span><ul class="wren-sub"><li><b>The server:</b> a dedicated server, on 24/7, with root access and scheduled jobs.</li><li><b>Kepler:</b> ChatGPT's agent on our bus. It reports its own cloud box: 9 CPUs, 10 GB RAM.</li><li><b>A MacBook:</b> an M1 Max with 64 GB RAM. Wren can drive it with computer use from the Claude desktop app.</li></ul>Duet doesn't publish its specs. Ahead on control; not proven ahead on size.</div><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
           <div role="row"><b role="cell">Drives other agents</b><span role="cell"><span class="lab">Duet</span>Works on its own.</span><span role="cell"><span class="lab">Wren</span>A shared message bus: Claude sessions, Codex, ChatGPT, <a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noreferrer">Hermes</a>, <a href="https://github.com/openclaw/openclaw" target="_blank" rel="noreferrer">OpenClaw</a> and hosted agents post tasks and replies to each other.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
           <div role="row"><b role="cell">Threads</b><span role="cell"><span class="lab">Duet</span>One chat history, in the mobile app and on the web.</span><span role="cell"><span class="lab">Wren</span>Several Wren threads at once, all sharing one memory. More work in parallel; the trade-off is no single history to scroll back through.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
           <div role="row"><b role="cell">Brokers and market data</b><span role="cell"><span class="lab">Duet</span>None named on the product page.</span><span role="cell"><span class="lab">Wren</span>Brokers (Interactive Brokers, Questrade and Alpaca) through ChatGPT's apps, plus market data through ChatGPT. Straight from the server: price, economic and filings feeds, and open web search. Several are paid feeds a Duet user would have to add and pay for themselves. Orders always need a human.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
@@ -323,7 +323,7 @@
 
         <h2 class="mt-12 font-serif text-2xl text-slate-100">What it costs</h2>
         <p class="mt-4 text-slate-300 leading-relaxed">
-          Wren runs on the Claude Max plan we already pay for, plus Codex and ChatGPT subscriptions we already had. Duet comes with Pro and Max plans and shares their limits. Here's what the same work would cost at API list prices, so you can judge for yourself.
+          Wren runs on the Claude Max plan we already pay for, plus Codex and ChatGPT subscriptions we already had. Duet comes with Pro, Max and Ultra plans and shares their limits. Here's what the same work would cost at API list prices, so you can judge for yourself.
         </p>
         <div class="mt-5 wren-score" role="table" aria-label="Wren usage priced at API list prices">
           <div role="row"><span role="cell"><b>Our heavy week</b></span><span role="cell">$1,200–1,400, or roughly $5,000–6,000 a month. Mostly Opus re-reading long context while it runs many sessions at once.</span></div>
@@ -363,7 +363,7 @@
             <span class="fl-label">Hands</span>
             <div class="wren-box">Codex<small>builds</small></div>
             <div class="wren-box">Haiku · Fable<small>reads, sweeps, second opinion</small></div>
-            <div class="wren-box">Grok<small>when subscribed</small></div>
+            <div class="wren-box">Grok<small>when Codex is out</small></div>
             <div class="wren-box">Shared bus<small>ChatGPT, Hermes, OpenClaw, hosted agents</small></div>
           </div>
         </div>
@@ -413,7 +413,7 @@
         }
         box.hidden = false;
         for (var i = 0; i < btns.length; i++) btns[i].addEventListener("click", function () { show(this.getAttribute("data-view"), true); });
-        window.addEventListener("hashchange", function () { show(location.hash === "#view=all" ? "all" : "claims", false); });
+        window.addEventListener("hashchange", function () { if (/^#view=/.test(location.hash)) show(location.hash === "#view=all" ? "all" : "claims", false); });
         show(location.hash === "#view=all" ? "all" : "claims", false);
       })();
     </script>
