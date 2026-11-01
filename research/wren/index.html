@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -37,8 +37,8 @@
       .wren-seg .fl-btn { min-height: 44px; padding: 0 16px; font-size: 15px; }
       .wren-seg .fl-btn[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); }
       .wren-view[hidden] { display: none; }
-      @media (prefers-reduced-motion: reduce) {
-        * { transition-duration: 0.01ms !important; }
+      @media (prefers-reduced-motion: no-preference) {
+        html { scroll-behavior: smooth; }
       }
     </style>
 
@@ -50,6 +50,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script>
+      const token = (name) => `rgb(var(--${name}-rgb) / <alpha-value>)`;
+      const scale = (map) => Object.fromEntries(Object.entries(map).map(([key, value]) => [key, token(value)]));
       window.tailwind = window.tailwind || {};
       tailwind.config = {
         theme: {
@@ -63,19 +65,15 @@
           // Field Lab v3: the old slate palette is re-pointed
           // at the theme tokens in assets/field-lab/tokens.css, so every existing
           // utility class follows light/dark automatically.
-          colors: (() => {
-            const t = (name) => `rgb(var(--${name}-rgb) / <alpha-value>)`;
-            const scale = (map) => Object.fromEntries(Object.entries(map).map(([k, v]) => [k, t(v)]));
-            return {
-              transparent: "transparent",
-              current: "currentColor",
-              bg: t("bg"), surface: t("surface"), "surface-2": t("surface-2"),
-              ink: t("ink"), "ink-2": t("ink-2"), line: t("line"), hairline: t("hairline"),
-              accent: t("accent"), "accent-ink": t("accent-ink"), "on-accent": t("on-accent"),
-              slate: scale({ 50: "ink", 100: "ink", 200: "ink", 300: "ink-2", 400: "ink-2", 500: "ink-2",
-                600: "ink-2", 700: "line", 800: "surface-2", 900: "surface", 950: "on-accent" }),
-            };
-          })(),
+          colors: {
+            transparent: "transparent",
+            current: "currentColor",
+            bg: token("bg"), surface: token("surface"), "surface-2": token("surface-2"),
+            ink: token("ink"), "ink-2": token("ink-2"), line: token("line"), hairline: token("hairline"),
+            accent: token("accent"), "accent-ink": token("accent-ink"), "on-accent": token("on-accent"),
+            slate: scale({ 50: "ink", 100: "ink", 200: "ink", 300: "ink-2", 400: "ink-2", 500: "ink-2",
+              600: "ink-2", 700: "line", 800: "surface-2", 900: "surface", 950: "on-accent" }),
+          },
           borderRadius: { none: "0", sm: "2px", DEFAULT: "2px", md: "2px", lg: "0", xl: "0", "2xl": "0", full: "999px" },
         },
       };
@@ -171,7 +169,7 @@
         <span class="fl-label">Agent Systems · 2026-10</span>
         <h1 class="mt-3 break-words font-serif text-3xl sm:text-5xl text-slate-50 text-balance">Wren: our own Claude Duet</h1>
         <p class="mt-5 text-lg text-slate-300 leading-relaxed">
-          Anthropic's waitlisted Claude Duet briefs mornings, runs long jobs and asks before sending or paying. We built most of it already, from Claude Code, a server and open tools: Wren.
+          Anthropic's Claude Duet checks in each morning and runs long jobs on its own. It asks before sending or paying, and is waitlist-only for now. We had already built most of the same thing from Claude Code and open tools. It runs on our own server. We call it Wren.
         </p>
 
         <h2 id="duet" class="mt-12 font-serif text-2xl text-slate-100">Against Duet</h2>
@@ -262,35 +260,17 @@
           <figcaption class="mt-2 px-5 sm:px-0 text-sm text-slate-400">Wren at a glance, drawn by ChatGPT on 26 October, checked by Wren. Its old 14-feature score is pictured; current score above. Tap to enlarge.</figcaption>
         </figure>
 
-        <figure id="wren-glance" class="mt-8">
-          <div class="wren-map" role="img" aria-label="Wren at a glance: models and agents feed an orchestrator on a server, reached by Telegram, the Claude apps and ChatGPT.">
-            <div class="wren-col in">
-              <span class="fl-label">Models and agents</span>
-              <div class="wren-box">Claude · Opus<small>plans and checks</small></div>
-              <div class="wren-box">Codex · Haiku<small>build, review, sweep</small></div>
-              <div class="wren-box">Grok · Devin · ChatGPT<small>called in per job</small></div>
-            </div>
-            <div class="wren-arrow" aria-hidden="true">→</div>
-            <div class="wren-col mid">
-              <span class="fl-label">Wren, on a server</span>
-              <div class="wren-box wren-core">Orchestrator + bus<small>routes each job to the cheapest passing model</small></div>
-              <div class="wren-box">Workflow + checkpoints<small>verification before "done"</small></div>
-              <div class="wren-box">Scheduled jobs + memory<small>alerts, briefs, shared notes</small></div>
-            </div>
-            <div class="wren-arrow" aria-hidden="true">→</div>
-            <div class="wren-col out">
-              <span class="fl-label">Ways in</span>
-              <div class="wren-box">Telegram<small>text and voice</small></div>
-              <div class="wren-box">Claude app + desktop</div>
-              <div class="wren-box">ChatGPT<small>connector to the server</small></div>
-            </div>
-          </div>
-          <figcaption class="mt-2 text-sm text-slate-400"><a href="#duet">Score vs Duet</a> above.</figcaption>
-        </figure>
+        <h2 class="mt-12 font-serif text-2xl text-slate-100">How it grew</h2>
+        <ul class="mt-4 wren-list wren-time">
+          <li><b>June 2026.</b> Session tooling (<a href="https://github.com/chimera-defi/claude-remote-session-skill" target="_blank" rel="noreferrer">crss</a>) lets <a href="https://claude.com/claude-code" target="_blank" rel="noreferrer">Claude Code</a> run for days on a server and be reached from a phone.</li>
+          <li><b>August.</b> A shared message bus lets Claude, Codex, ChatGPT and other agents hand each other work.</li>
+          <li><b>October.</b> <a href="../../dispatchbench/">DispatchBench</a> routes each job to the cheapest model. The orchestrator gets a persona, a memory and a name: Wren.</li>
+          <li><b>26 October.</b> Multi-agent alerts and a phone approve/deny gate, tested live both ways.</li>
+        </ul>
 
-        <h2 class="mt-12 font-serif text-2xl text-slate-100">How it fits together</h2>
+        <h2 class="mt-12 font-serif text-2xl text-slate-100">How you talk to it</h2>
         <ul class="mt-4 wren-list">
-          <li><b>You ask from anywhere.</b> Telegram, the Claude apps or ChatGPT, all on one server and memory, several threads at once.</li>
+          <li><b>You ask from anywhere.</b> Telegram, the Claude apps or ChatGPT all reach one server and memory. You can run several Wren threads at once.</li>
           <li><b>Opus plans and checks; cheaper models do the work.</b> Codex builds, Haiku reads, other agents help over a bus.</li>
           <li><b>Files keep the state.</b> Checkpoints, notes and lessons live on disk.</li>
           <li><b>You approve orders.</b> A phone gate covers selected other actions.</li>
@@ -319,17 +299,10 @@
           </div>
         </figure>
 
-        <h2 class="mt-12 font-serif text-2xl text-slate-100">How it grew</h2>
-        <ul class="mt-4 wren-list wren-time">
-          <li><b>June 2026.</b> Session tooling (<a href="https://github.com/chimera-defi/claude-remote-session-skill" target="_blank" rel="noreferrer">crss</a>) lets <a href="https://claude.com/claude-code" target="_blank" rel="noreferrer">Claude Code</a> run for days on a server and be reached from a phone.</li>
-          <li><b>August.</b> A shared message bus lets Claude, Codex, ChatGPT and other agents hand each other work.</li>
-          <li><b>October.</b> <a href="../../dispatchbench/">DispatchBench</a> routes each job to the cheapest model. The orchestrator gets a persona, a memory and a name: Wren.</li>
-          <li><b>26 October.</b> Multi-agent alerts and a phone approve/deny gate, tested live both ways.</li>
-        </ul>
-
         <h2 id="made-of" class="mt-12 font-serif text-2xl text-slate-100">What it's made of</h2>
         <ul class="mt-4 wren-list">
-          <li><b>The server</b>: a dedicated server, on 24/7, with root access.<ul class="wren-sub mt-2"><li>Intel Core i7-8700: 6 cores, 12 threads, 3.2 GHz base, 4.6 GHz max.</li><li>62 GB RAM.</li><li>2.8 TB usable: three 1 TB Samsung NVMe SSDs striped (RAID0), so no spare copy.</li><li>Ubuntu 24.04 Linux.</li><li>38 scheduled jobs: 28 timers, 10 cron entries. <a class="wren-trigger" href="jobs/" aria-label="List the 38 scheduled jobs">?</a></li></ul></li>
+          <li><b><a href="https://claude.com/claude-code" target="_blank" rel="noreferrer">Claude Code</a></b> on our server, signed in to the Max plan. Opus plans and checks.</li>
+          <li><b>The server</b>: a dedicated server, on 24/7, with root access.<ul class="wren-sub mt-2"><li>Intel Core i7-8700: 6 cores, 12 threads, 3.2 GHz base, 4.6 GHz max.</li><li>62 GB RAM.</li><li>2.8 TB usable: three 1 TB Samsung NVMe SSDs striped (RAID0), so no spare copy.</li><li>Ubuntu 24.04 Linux.</li><li id="jobs">38 scheduled jobs: 28 timers, 10 cron entries. <a class="wren-trigger" href="jobs/" aria-label="List the 38 scheduled jobs">?</a></li></ul></li>
           <li><b><a href="https://github.com/chimera-defi/claude-remote-session-skill" target="_blank" rel="noreferrer">crss</a></b>: starts, messages, hands off and repairs long-running sessions for every agent on the box.</li>
           <li><b><a href="https://github.com/chimera-defi/token-reduce-skill" target="_blank" rel="noreferrer">token-reduce</a></b> and <b><a href="https://github.com/tobi/qmd" target="_blank" rel="noreferrer">QMD</a></b>: read only the slice a task needs. QMD is a local search engine over our markdown.</li>
           <li><b><a href="../../dispatchbench/">DispatchBench</a></b> and the <a href="https://github.com/chimera-defi/delegate-skill" target="_blank" rel="noreferrer">delegate skills</a>: the cheapest passing model takes each step. New models plug in; see <button type="button" class="wren-trigger" popovertarget="wren-routing">routing</button>.</li>
@@ -339,59 +312,61 @@
           <li><b>Market data on the server</b>: Databento and Yahoo Finance prices, FRED economic data, SEC EDGAR filings, and web search.</li>
         </ul>
 
-        <h2 id="memory" class="mt-12 font-serif text-2xl text-slate-100">Memory, honestly</h2>
-                <div class="mt-5 wren-cmp wren-mem" role="table" aria-label="Memory layers and failure modes">
-          <div class="head" role="row"><span role="columnheader">Layer</span><span role="columnheader">What it does</span><span role="columnheader">How it fails</span></div>
-          <div role="row"><b role="cell">Boot card</b><span role="cell"><span class="lab">What</span>A persona ("soul") file under 1 KB loads every session. The rest loads on demand.</span><span role="cell"><span class="lab">Fails</span>If a rule isn't on the card, a small model may never see it.</span></div>
-          <div role="row"><b role="cell">Curated notes</b><span role="cell"><span class="lab">What</span>Markdown files per agent, private and public. A script screens them before indexing.</span><span role="cell"><span class="lab">Fails</span>No git remote, by design. The daily encrypted backup is the off-box copy.</span></div>
-          <div role="row"><b role="cell">Checkpoints</b><span role="cell"><span class="lab">What</span>Each long job keeps a short checkpoint file, plus git commits and receipts, not the chat.</span><span role="cell"><span class="lab">Fails</span>A job that skips its checkpoint loses state on reset.</span></div>
-          <div role="row"><b role="cell">Lesson hook</b><span role="cell"><span class="lab">What</span>Before a context reset, Haiku may save one lesson. In its first week it saved seven.</span><span role="cell"><span class="lab">Fails</span>Most runs skip on purpose; a trickle, not a teacher.</span></div>
-          <div role="row"><b role="cell">Search</b><span role="cell"><span class="lab">What</span>QMD indexes our files and notes, refreshed every six hours.</span><span role="cell"><span class="lab">Fails</span>The index lags; new files wait hours.</span></div>
-          <div role="row"><b role="cell">Transcripts</b><span role="cell"><span class="lab">What</span>Every session's raw log stays on disk, never indexed.</span><span role="cell"><span class="lab">Fails</span>Good for forensics, too noisy to search.</span></div>
-        </div>
-        <details class="mt-4 wren-details">
-          <summary>Backups, gbrain and our stance</summary>
-          <div class="mt-4 wren-cmp wren-mem" role="table" aria-label="Backups and failure modes">
+        <details id="memory" class="mt-6 wren-details">
+          <summary>Memory, honestly</summary>
+          <div class="mt-5 wren-cmp wren-mem" role="table" aria-label="Memory layers and failure modes">
             <div class="head" role="row"><span role="columnheader">Layer</span><span role="columnheader">What it does</span><span role="columnheader">How it fails</span></div>
-            <div role="row"><b role="cell">Backups</b><span role="cell"><span class="lab">What</span>Code and key work live in private GitHub repos. Local snapshots before risky changes.</span><span role="cell"><span class="lab">Fails</span>Striped disks: one dead drive loses the box. An encrypted off-box copy runs daily (an off-site storage box). Transcripts and Hermes/OpenClaw state: no backup, by choice.</span></div>
+            <div role="row"><b role="cell">Boot card</b><span role="cell"><span class="lab">What</span>A persona ("soul") file under 1 KB loads every session. The rest loads on demand.</span><span role="cell"><span class="lab">Fails</span>If a rule isn't on the card, a small model may never see it.</span></div>
+            <div role="row"><b role="cell">Curated notes</b><span role="cell"><span class="lab">What</span>Markdown files per agent, private and public. A script screens them before indexing.</span><span role="cell"><span class="lab">Fails</span>No git remote, by design. The daily encrypted backup is the off-box copy.</span></div>
+            <div role="row"><b role="cell">Checkpoints</b><span role="cell"><span class="lab">What</span>Each long job keeps a short checkpoint file, plus git commits and receipts, not the chat.</span><span role="cell"><span class="lab">Fails</span>A job that skips its checkpoint loses state on reset.</span></div>
+            <div role="row"><b role="cell">Lesson hook</b><span role="cell"><span class="lab">What</span>Before a context reset, Haiku may save one lesson. In its first week it saved seven.</span><span role="cell"><span class="lab">Fails</span>Most runs skip on purpose; a trickle, not a teacher.</span></div>
+            <div role="row"><b role="cell">Search</b><span role="cell"><span class="lab">What</span>QMD indexes our files and notes, refreshed every six hours.</span><span role="cell"><span class="lab">Fails</span>The index lags; new files wait hours.</span></div>
+            <div role="row"><b role="cell">Transcripts</b><span role="cell"><span class="lab">What</span>Every session's raw log stays on disk, never indexed.</span><span role="cell"><span class="lab">Fails</span>Good for forensics, too noisy to search.</span></div>
           </div>
-          <p class="mt-3 text-sm text-slate-400" id="gbrain-note">We also run <a href="https://github.com/garrytan/gbrain" target="_blank" rel="noreferrer">gbrain</a>, a knowledge-base server. Its health check fails and a sync aborted, so nothing depends on it.</p>
-          <p class="mt-3 text-slate-300 leading-relaxed"><b>Our stance:</b> after a breach we rebuild from scratch and carefully re-pull private repos. We don't trust possibly compromised backups. The encrypted backup holds curated memory and config. The trade-off: unpushed work outside it is lost.</p>
-        </details>
+          <details class="mt-4 wren-details">
+            <summary>Backups, gbrain and our stance</summary>
+            <div class="mt-4 wren-cmp wren-mem" role="table" aria-label="Backups and failure modes">
+              <div class="head" role="row"><span role="columnheader">Layer</span><span role="columnheader">What it does</span><span role="columnheader">How it fails</span></div>
+              <div role="row"><b role="cell">Backups</b><span role="cell"><span class="lab">What</span>Code and key work live in private GitHub repos. Local snapshots before risky changes.</span><span role="cell"><span class="lab">Fails</span>Striped disks: one dead drive loses the box. An encrypted off-box copy runs daily (an off-site storage box). Transcripts and Hermes/OpenClaw state: no backup, by choice.</span></div>
+            </div>
+            <p class="mt-3 text-sm text-slate-400" id="gbrain-note">We also run <a href="https://github.com/garrytan/gbrain" target="_blank" rel="noreferrer">gbrain</a>, a knowledge-base server. Its health check fails and a sync aborted, so nothing depends on it.</p>
+            <p class="mt-3 text-slate-300 leading-relaxed"><b>Our stance:</b> after a breach we rebuild from scratch and carefully re-pull private repos. We don't trust possibly compromised backups. The encrypted backup holds curated memory and config. The trade-off: unpushed work outside it is lost.</p>
+          </details>
 
-        <figure id="memory-flow" class="mt-6">
-          <div class="wren-map" role="img" aria-label="Memory flow: small startup context, load the rest on demand, re-run checks, save a checkpoint.">
-            <div class="wren-col in">
-              <span class="fl-label">Startup</span>
-              <div class="wren-box">Session</div>
-              <div class="wren-arrow rotate-90" aria-hidden="true">→</div>
-              <div class="wren-box">Small startup context<small>Workflow · safety · active checkpoint</small></div>
+          <figure id="memory-flow" class="mt-6">
+            <div class="wren-map" role="img" aria-label="Memory flow: small startup context, load the rest on demand, re-run checks, save a checkpoint.">
+              <div class="wren-col in">
+                <span class="fl-label">Startup</span>
+                <div class="wren-box">Session</div>
+                <div class="wren-arrow rotate-90" aria-hidden="true">→</div>
+                <div class="wren-box">Small startup context<small>Workflow · safety · active checkpoint</small></div>
+              </div>
+              <div class="wren-arrow" aria-hidden="true">→</div>
+              <div class="wren-col mid">
+                <span class="fl-label">Load on demand</span>
+                <div class="wren-box">Skills + personas</div>
+                <div class="wren-box">Searchable notes + research</div>
+                <div class="wren-box">Integrations</div>
+              </div>
+              <div class="wren-arrow" aria-hidden="true">→</div>
+              <div class="wren-col out">
+                <span class="fl-label">Verify and save</span>
+                <div class="wren-box">Re-run the checks</div>
+                <div class="wren-arrow rotate-90" aria-hidden="true">→</div>
+                <div class="wren-box">Compact checkpoint + git and receipts</div>
+              </div>
             </div>
-            <div class="wren-arrow" aria-hidden="true">→</div>
-            <div class="wren-col mid">
-              <span class="fl-label">Load on demand</span>
-              <div class="wren-box">Skills + personas</div>
-              <div class="wren-box">Searchable notes + research</div>
-              <div class="wren-box">Integrations</div>
-            </div>
-            <div class="wren-arrow" aria-hidden="true">→</div>
-            <div class="wren-col out">
-              <span class="fl-label">Verify and save</span>
-              <div class="wren-box">Re-run the checks</div>
-              <div class="wren-arrow rotate-90" aria-hidden="true">→</div>
-              <div class="wren-box">Compact checkpoint + git and receipts</div>
-            </div>
-          </div>
-        </figure>
+          </figure>
 
-        <details class="mt-8 wren-details">
-          <summary>What others do</summary>
-          <ul class="mt-4 wren-list">
-            <li><b><a href="https://github.com/openclaw/openclaw" target="_blank" rel="noreferrer">OpenClaw</a> "dreaming"</b>: a nightly rewrite of the memory file, backed up first. It appends instead if it would drop over a quarter.</li>
-            <li><b><a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noreferrer">Hermes</a></b>: pluggable memory providers, and a curator that retires unused skills.</li>
-            <li><b>ChatGPT</b>: saved memories and references to past chats, in your OpenAI account, not in files you can diff.</li>
-            <li><b>Papers</b>: <a href="https://arxiv.org/abs/2310.08560" target="_blank" rel="noreferrer">MemGPT</a> pages memory like an operating system. <a href="https://arxiv.org/abs/2303.11366" target="_blank" rel="noreferrer">Reflexion</a> writes lessons after failures.</li>
-          </ul>
+          <details class="mt-8 wren-details">
+            <summary>What others do</summary>
+            <ul class="mt-4 wren-list">
+              <li><b><a href="https://github.com/openclaw/openclaw" target="_blank" rel="noreferrer">OpenClaw</a> "dreaming"</b>: a nightly rewrite of the memory file, backed up first. It appends instead if it would drop over a quarter.</li>
+              <li><b><a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noreferrer">Hermes</a></b>: pluggable memory providers, and a curator that retires unused skills.</li>
+              <li><b>ChatGPT</b>: saved memories and references to past chats, in your OpenAI account, not in files you can diff.</li>
+              <li><b>Papers</b>: <a href="https://arxiv.org/abs/2310.08560" target="_blank" rel="noreferrer">MemGPT</a> pages memory like an operating system. <a href="https://arxiv.org/abs/2303.11366" target="_blank" rel="noreferrer">Reflexion</a> writes lessons after failures.</li>
+            </ul>
+          </details>
         </details>
 
         <h2 class="mt-12 font-serif text-2xl text-slate-100">What it costs</h2>
@@ -407,12 +382,43 @@
 
         <h2 class="mt-12 font-serif text-2xl text-slate-100">What we learned</h2>
         <ul class="mt-4 wren-list">
-          <li><b>Expensive head, cheap hands.</b></li>
-          <li><b>A "done" is a claim.</b> Wren re-runs the check before believing a helper.</li>
+          <li><b>Expensive head, cheap hands.</b> The strong model plans and checks; cheaper models do the reading and building.</li>
+          <li><b>A "done" is a claim.</b> Wren re-runs the check before it believes a helper, and so should you.</li>
           <li><b>Borrow openly, then add only what fixes a repeat failure.</b> From Hermes and OpenClaw: persona, lesson hook, what not to remember.</li>
           <li><b>Remove scaffolding as models improve.</b> Re-test each hook and rule per model; drop what stops paying.</li>
-          <li><b>Control the server, control the gates.</b></li>
+          <li><b>Control the server, control the gates.</b> You decide what runs, where, and what needs your yes first.</li>
         </ul>
+
+        <h2 class="mt-12 font-serif text-2xl text-slate-100">The whole thing on one page</h2>
+        <figure id="wren-glance" class="mt-8">
+          <div class="wren-map" role="img" aria-label="Wren at a glance: models and agents feed an orchestrator on a server, reached by Telegram, the Claude apps and ChatGPT.">
+            <div class="wren-col in">
+              <span class="fl-label">Models and agents</span>
+              <div class="wren-box">Claude · Opus<small>plans and checks</small></div>
+              <div class="wren-box">Codex · Haiku<small>build, review, sweep</small></div>
+              <div class="wren-box">Grok · Devin · ChatGPT<small>called in per job</small></div>
+            </div>
+            <div class="wren-arrow" aria-hidden="true">→</div>
+            <div class="wren-col mid">
+              <span class="fl-label">Wren, on a server</span>
+              <div class="wren-box wren-core">Orchestrator + bus<small>routes each job to the cheapest passing model</small></div>
+              <div class="wren-box">Workflow + checkpoints<small>verification before "done"</small></div>
+              <div class="wren-box">Scheduled jobs + memory<small>alerts, briefs, shared notes</small></div>
+            </div>
+            <div class="wren-arrow" aria-hidden="true">→</div>
+            <div class="wren-col out">
+              <span class="fl-label">Ways in</span>
+              <div class="wren-box">Telegram<small>text and voice</small></div>
+              <div class="wren-box">Claude app + desktop</div>
+              <div class="wren-box">ChatGPT<small>connector to the server</small></div>
+            </div>
+          </div>
+          <figcaption class="mt-2 text-sm text-slate-400"><a href="#duet">Score vs Duet</a> above.</figcaption>
+        </figure>
+
+        <p class="mt-4 text-sm text-slate-400 leading-relaxed">
+          In short: one strong model on our server, reachable from your phone or ChatGPT. It hands work to cheaper models and other agents; you approve every order.
+        </p>
 
         <div id="wren-routing" popover role="dialog" aria-labelledby="wren-routing-title">
           <div class="wren-pop-head">
@@ -489,6 +495,15 @@
       // Back to an empty hash resets the view; section anchors don't.
       addEventListener("hashchange", () => { if (!location.hash || location.hash.startsWith("#view=")) show(fromHash(), false); });
       show(fromHash(), false);
+      // Reveal folded detail so incoming links reach their content.
+      const revealHash = () => {
+        const target = document.querySelector(":target");
+        if (!target) return;
+        for (let detail = target.closest("details"); detail; detail = detail.parentElement.closest("details")) detail.open = true;
+        target.scrollIntoView();
+      };
+      addEventListener("hashchange", revealHash);
+      revealHash();
       // Close the popover so in-page link targets stay visible.
       document.addEventListener("click", (event) => {
         event.target.closest('[popover] a[href^="#"]')?.closest("[popover]").hidePopover();
