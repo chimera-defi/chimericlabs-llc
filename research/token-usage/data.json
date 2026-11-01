@@ -3543,6 +3543,15 @@
     ],
     [
       "2026-11-01",
+      "claude_transcripts:unattributed",
+      5448,
+      1476282,
+      8337048,
+      234340945,
+      2022
+    ],
+    [
+      "2026-11-01",
       "codex_corrected",
       1185949,
       374377,
@@ -3627,7 +3636,7 @@
       "cache_read": null,
       "output": null,
       "unassigned": null,
-      "total": 20587950826
+      "total": 20832110549
     },
     "codex": {
       "fresh_input": null,
@@ -3639,11 +3648,11 @@
     }
   },
   "claude_ledger_composition": {
-    "fresh_input": 1057449,
-    "cache_write": 532596326,
-    "cache_read": 16801314888,
-    "output": 111879016,
-    "total": 17446847679,
+    "fresh_input": 1062897,
+    "cache_write": 540933374,
+    "cache_read": 17035655833,
+    "output": 113355298,
+    "total": 17691007402,
     "unassigned": 0
   },
   "claude_audit_composition": {
@@ -3964,16 +3973,16 @@
     "source-1": "fbe74cca7d3eafe7d17d42d3b75a2b9d6e16032f6985c071f4bd83c12574bbc4",
     "source-2": "255c5a554fd8d7d99e71e5870a2e78116540456dbc01a21170117915991b5fcc",
     "source-3": "3a550a23d40ae492432e764be93154ac7fa9f28db0f8a0d3d1aaac3e0f6c63aa",
-    "source-4": "a56f0f726d8f60b547d9fc59e471f3e51a873e1bc89090eacc9e57a29accee45",
+    "source-4": "7ce7966d9e950b2f2ad80c8ac1e2494b869dfca932c8bc1ef0c650db23677550",
     "source-5": "a9920bdb1deb3f6bb0edd1757ec1755a88eccb0fe9af47ae969ca94d880d00a8",
-    "source-6": "9762853398fe88b840c8fce61f9c731f41775e428f444152bcd4bba0f520da0e",
-    "source-7": "3a6b2064b975a42656c51b7a3ddd85f40d497ef8db63933fec779f824eadd3a1",
+    "source-6": "233622d6fd6375d0ec48c4c7cad2dbe49d239fd223701e5c608a22df5d3aca1e",
+    "source-7": "4003c1db06c4949db7e0e951401b7d50494097d92920b36d2ca3a8d5c5f1ce97",
     "source-8": "d69d376d8568087c696f980ee24cdc4974bdc4845d46635eefab05082dbc7168",
     "source-9": "9bc7a8bbf9bf77462f7646877597580e08304db06ac1b4ffcfbc6825eaa12c54",
     "source-10": "f2c8f21e6ce0a5417d00b47a48d622091542bd37cf2d3192b4c6ea04c2280dc6",
     "source-11": "56389e527560450cd5b021611c0b7305b3a75afe7924c987a96483ba60484132",
     "source-12": "f9ffc0ee562dad632406ab53d6752974f0f7ffc94db9db232be203723c7211ac",
-    "source-13": "5232522b4bcd6ca10c5b310ec4ee4315f2b2f31a621e24fb3421045c9dc4494c",
+    "source-13": "94418d8d9aa59acc7ec64903b26ae584d613a4e460718014c4f745b17619b219",
     "source-14": "96033e967ab4154f25906d7478cba61e4680f9e6d78c9474325ff6d1f0fd6995",
     "source-15": "01774238f5d2efb0477f1fef387d966d14dfc8914912468cd83ce62e7c7df64b",
     "source-16": "67af1548064a6ead4a07ede8180fd0fc2f3f743c84cca477935744249298d530",
@@ -3988,7 +3997,7 @@
     "source-25": "81a9f0bdd24f336b1859a5bd233f3088f45effa2e0710c444b81643dcb581d7b",
     "source-26": "90a248f6607c3950be23e16ca03d43de0fce32bb84f4422cc5264f6877b18e34",
     "source-27": "ef18e7d308d486078577375ca8e40f8f17dedecbbbc9111d41ed97fcb4a1d7b3",
-    "source-28": "e9f7d0ce651bd4b3da82fe5bc303bdc50e23d247ab5c5dd5b43a060de9fbe5cb",
+    "source-28": "08ed121051ec8c8f742d9e077fe099f750fb5dab6e2377b474b93417e218fdb4",
     "source-29": "01cd0ac449d4efff69be43af1c652798f3d27f062a26a3dee490362742a85065",
     "source-30": "8d512c86aa2c771b76d98fbc7979327da0357cbcca55145f865c5e3390bd0fa0",
     "source-31": "ff4d05774873c9cff73d9f789ed8177d615060b8317268363a0256b6809443be",
@@ -4916,19 +4925,19 @@
   "who_total": 17446847679,
   "range_summaries": {
     "all": [
-      9022496516,
+      9266656239,
       8424351163,
       27202105833,
       3850351962
     ],
     "90": [
-      9022423351,
+      9266583074,
       8424351163,
       14622456119,
       3141103147
     ],
     "30": [
-      7464605337,
+      7708765060,
       2817291497,
       4586852984,
       0
@@ -4940,7 +4949,7 @@
       0
     ],
     "since": [
-      9005835718,
+      9249995441,
       8424351163,
       6007508740,
       3141103147
@@ -9724,6 +9733,15 @@
       318670,
       3969788,
       92
+    ],
+    [
+      "2026-11-01",
+      "claude_transcripts:unattributed",
+      5448,
+      1476282,
+      8337048,
+      234340945,
+      2022
     ]
   ],
   "composition_as_first_measured": {
@@ -9733,7 +9751,7 @@
       "cache_read": null,
       "output": null,
       "unassigned": null,
-      "total": 20587950826
+      "total": 20832110549
     },
     "codex": {
       "fresh_input": 5583035694,
@@ -9746,19 +9764,19 @@
   },
   "ranges_as_first_measured": {
     "all": [
-      9022496516,
+      9266656239,
       8424351163,
       263994077611,
       3850351962
     ],
     "90": [
-      9022423351,
+      9266583074,
       8424351163,
       127920426155,
       3141103147
     ],
     "30": [
-      7464605337,
+      7708765060,
       2817291497,
       5167347525,
       0
@@ -9770,13 +9788,13 @@
       0
     ],
     "since": [
-      9005835718,
+      9249995441,
       8424351163,
       6929426675,
       3141103147
     ],
     "exclude": [
-      9022496516,
+      9266656239,
       8424351163,
       12119357910,
       3850351962
