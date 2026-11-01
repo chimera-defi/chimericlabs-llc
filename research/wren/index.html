@@ -172,6 +172,11 @@
           Anthropic's Claude Duet checks in each morning and runs long jobs on its own. It asks before sending or paying, and is waitlist-only for now. We had already built most of the same thing from Claude Code and open tools. It runs on our own server. We call it Wren.
         </p>
 
+        <figure class="mt-8 -mx-5 sm:mx-0">
+          <a href="wren-map.webp" target="_blank" rel="noopener"><img src="wren-map.webp" width="1672" height="941" loading="eager" decoding="async" class="w-full h-auto sm:rounded border border-[color:var(--line,rgba(127,127,127,.25))]" alt="Infographic titled 'Wren: our own Claude Duet'. Left: Claude Opus 5.5 plans and checks; Codex builds and does final review; Haiku does cheap reads and sweeps; Devin takes browser and sandbox jobs; Grok reviews when Codex is out; ChatGPT is called in per job; Fable has been paused since 28 October. Centre: Wren on a dedicated 24/7 Intel i7-8700 server with 62 GB RAM; an orchestrator and shared message bus; workflow and checkpoints that verify before done; 38 scheduled jobs (28 timers and 10 cron); shared notes, memory and lessons on disk; Linnet's read-only jobs and alerts digest, twice daily. Right: ways in through Telegram text and voice, Claude app and desktop, and ChatGPT via a server connector; tools include brokers and market data through ChatGPT apps, with orders always accepted by a human in ChatGPT, GitHub and site hosting. Bottom: routing sequence of Opus plans, cheapest passing model builds, check, and escalate if it fails. Against Claude Duet's page on 1 November: 16 claims, 4 ahead, 5 at parity, 5 partial and 2 missing."></a>
+          <figcaption class="mt-2 px-5 sm:px-0 text-sm text-slate-400">Wren at a glance, drawn by ChatGPT on 1 November, checked by Wren. Tap to enlarge.</figcaption>
+        </figure>
+
         <h2 id="duet" class="mt-12 font-serif text-2xl text-slate-100">Against Duet</h2>
         <p class="mt-4 text-slate-300 leading-relaxed">Our score against the <a href="https://claude.com/product/claude-duet" target="_blank" rel="noreferrer">Claude Duet</a> page, re-read 1 November; not a benchmark. Duet is more polished and works out of the box.</p>
         <div class="mt-5 wren-seg" id="view-toggle" role="group" aria-label="Which view to show" hidden>
@@ -254,11 +259,6 @@
             </div>
           </div>
         </div>
-
-        <figure class="mt-8 -mx-5 sm:mx-0">
-          <a href="wren-map.webp" target="_blank" rel="noopener"><img src="wren-map.webp" width="1672" height="941" loading="eager" decoding="async" class="w-full h-auto sm:rounded border border-[color:var(--line,rgba(127,127,127,.25))]" alt="Infographic titled 'Wren: our own Claude Duet'. Left: Claude Opus 5.5 plans and checks; Codex builds and does final review; Haiku does cheap reads and sweeps; Devin takes browser and sandbox jobs; Grok reviews when Codex is out; ChatGPT is called in per job; Fable has been paused since 28 October. Centre: Wren on a dedicated 24/7 Intel i7-8700 server with 62 GB RAM; an orchestrator and shared message bus; workflow and checkpoints that verify before done; 38 scheduled jobs (28 timers and 10 cron); shared notes, memory and lessons on disk; Linnet's read-only jobs and alerts digest, twice daily. Right: ways in through Telegram text and voice, Claude app and desktop, and ChatGPT via a server connector; tools include brokers and market data through ChatGPT apps, with orders always accepted by a human in ChatGPT, GitHub and site hosting. Bottom: routing sequence of Opus plans, cheapest passing model builds, check, and escalate if it fails. Against Claude Duet's page on 1 November: 16 claims, 4 ahead, 5 at parity, 5 partial and 2 missing."></a>
-          <figcaption class="mt-2 px-5 sm:px-0 text-sm text-slate-400">Wren at a glance, drawn by ChatGPT on 1 November, checked by Wren. Tap to enlarge.</figcaption>
-        </figure>
 
         <h2 class="mt-12 font-serif text-2xl text-slate-100">How it grew</h2>
         <ul class="mt-4 wren-list wren-time">
