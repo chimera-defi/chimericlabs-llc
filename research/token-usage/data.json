@@ -3512,7 +3512,7 @@
       0,
       358155776,
       null,
-      385208302
+      279252988
     ],
     [
       "2026-11-01",
@@ -3543,13 +3543,22 @@
     ],
     [
       "2026-11-01",
+      "claude_transcripts:unattributed",
+      5448,
+      1476282,
+      8337048,
+      234340945,
+      2022
+    ],
+    [
+      "2026-11-01",
       "codex_corrected",
       1185949,
       374377,
       0,
       53090560,
       null,
-      50135055
+      305841429
     ]
   ],
   "isolated_observations": [
@@ -3622,12 +3631,12 @@
   ],
   "composition": {
     "claude": {
-      "fresh_input": 1904199,
-      "cache_write": 570313263,
-      "cache_read": 19382940999,
-      "output": 119995386,
-      "total": 20075153847,
-      "unassigned": 0
+      "fresh_input": null,
+      "cache_write": null,
+      "cache_read": null,
+      "output": null,
+      "unassigned": null,
+      "total": 20832110549
     },
     "codex": {
       "fresh_input": null,
@@ -3635,12 +3644,34 @@
       "cache_read": null,
       "output": null,
       "unassigned": null,
-      "total": 27052354773
+      "total": 27202105833
     }
+  },
+  "claude_ledger_composition": {
+    "fresh_input": 1062897,
+    "cache_write": 540933374,
+    "cache_read": 17035655833,
+    "output": 113355298,
+    "total": 17691007402,
+    "unassigned": 0
+  },
+  "claude_audit_composition": {
+    "fresh_input": 1904199,
+    "cache_write": 570313263,
+    "cache_read": 19382940999,
+    "output": 119995386,
+    "total": 20075153847,
+    "unassigned": 0
+  },
+  "claude_measured": {
+    "from": "2026-07-10",
+    "through": "2026-11-01",
+    "note": "raw (fresh+cache write+cache read+output), per day max of the 2026-10-29 audit and the ledger, 2026-07-10..data_through; excludes anything before 2026-07-10 (not on disk) and the 2026-06..09 gaps; NOT lifetime. Ledger alone undercounts 2026-09-11..30 by ~3.1B because transcripts for those days were pruned after the audit.",
+    "early_recovery": 709248815
   },
   "codex_correction": {
     "old_total": 263589031928,
-    "raw_final_cumulative": 260275794933,
+    "raw_final_cumulative": 260426678868,
     "handoff_final_counters": 261320000000,
     "inherited_tokens": 233200000000,
     "forked_sessions": 747
@@ -3942,50 +3973,51 @@
     "source-1": "fbe74cca7d3eafe7d17d42d3b75a2b9d6e16032f6985c071f4bd83c12574bbc4",
     "source-2": "255c5a554fd8d7d99e71e5870a2e78116540456dbc01a21170117915991b5fcc",
     "source-3": "3a550a23d40ae492432e764be93154ac7fa9f28db0f8a0d3d1aaac3e0f6c63aa",
-    "source-4": "f8091d13dd60a293d8f1d8167fcc7759d4d88b8924b270d855c7992e1f84c14c",
-    "source-5": "9762853398fe88b840c8fce61f9c731f41775e428f444152bcd4bba0f520da0e",
-    "source-6": "3a6b2064b975a42656c51b7a3ddd85f40d497ef8db63933fec779f824eadd3a1",
-    "source-7": "d69d376d8568087c696f980ee24cdc4974bdc4845d46635eefab05082dbc7168",
-    "source-8": "9bc7a8bbf9bf77462f7646877597580e08304db06ac1b4ffcfbc6825eaa12c54",
-    "source-9": "dfb0b2b6cc89cb89591d3564c3f62f363577ede82650f31771da1791a9982147",
-    "source-10": "bdf0250b9dd7b5b62b73b5692d5e93de817610b6587c193099b5af59be6b6870",
-    "source-11": "3c0cebc92796e57ef953095a206d307c2c3dc6c251314df3f595831c1e959160",
-    "source-12": "5232522b4bcd6ca10c5b310ec4ee4315f2b2f31a621e24fb3421045c9dc4494c",
-    "source-13": "96033e967ab4154f25906d7478cba61e4680f9e6d78c9474325ff6d1f0fd6995",
-    "source-14": "01774238f5d2efb0477f1fef387d966d14dfc8914912468cd83ce62e7c7df64b",
-    "source-15": "67af1548064a6ead4a07ede8180fd0fc2f3f743c84cca477935744249298d530",
-    "source-16": "0ac22fbc853051b1dc1194000c23259eb2c4824cb1e58183b47430cbe5ecf9fa",
-    "source-17": "a2994395b11c8fa0f1976c1406e17897e2e2e108d7de61c54ee9a7c0566da38f",
-    "source-18": "caf2e6e5d02d46b773c361e7d8cfcaa14c3a1bb2a25a23c35875a2e1ae48d8da",
-    "source-19": "89b267fade2b6dfe4321a365b92ff0a03ae382d2e8a8d4e15bed6a109a69832f",
-    "source-20": "6c2458c8b23f69788e33a652d8df3f8c6f770645a811f7a270f08515226c196a",
-    "source-21": "06d13dfba2eff709d1366ffd8252539703dd1e13ce2c7139ca971e2d98d0c16f",
-    "source-22": "5946ee668f2c1caf6a8f215ee37e29935801f9138dc68938521c9e48eea746b7",
-    "source-23": "55e6f01e7b2c9450b7a9e70f233c7c8471b12f6a2cb5b42d0883de773eaadc7a",
-    "source-24": "871e564525bdb1ce19f5eba2584a6666206ec5e48e63e03a247e58bef64a7428",
-    "source-25": "4e46817319da73f498d42dd1224efad080a96afa988492f0cb8b5bc7caac37c3",
-    "source-26": "ef18e7d308d486078577375ca8e40f8f17dedecbbbc9111d41ed97fcb4a1d7b3",
-    "source-27": "ea43d2f96f235dbe184b849cf9818b64861c9d1b24bf6961e5c10fae849af2c8",
-    "source-28": "68f6c5c89374eb6bd450dfd1dbf6ac8ad447dbda6ac59ab8f3fecae95f88477c",
-    "source-29": "0c92cdfbefa0074f7eef25defa7e45ab808dd1689f6ffc6830909bd01d013425",
-    "source-30": "0966664a7725c7b10d7f1209f3a0d26fff37a6175f98f6ac8fac1e0d1829f85c",
-    "source-31": "d21b26e20c645815c0043dabb629178d9dfc47e0fd1cbfc450e710473ccb7c4a",
-    "source-32": "60431fee38e584c5c0c7b7b153055ee9216e2c6e24498e713b040ada3b5dbb78",
-    "source-33": "e9e5bc9e31b27cea20a39d3b12d5b8dbb5d73fdb8d499f253765281d09e05797",
-    "source-34": "2e8438d750ff716c4923286b08ee6b75ba04f6a9f004da8d7ff30142b2ce39f6",
-    "source-35": "38774aeace09945f275c60258df739a62cdcde67a2120bf716e8f5f920767757",
-    "source-36": "a2922c919ad7f2cae9fd381206298fd0e99396fb4ab6f322222f7955f0d455da",
-    "source-37": "58cc23753bb536accc498103f0e03c641a3cb3818fadf5e6feb329a9d0a968b4",
-    "source-38": "afb099b1fa3917d073bac67cfcd9c8905d73c79806b8098518e2780be4a238b6"
+    "source-4": "7ce7966d9e950b2f2ad80c8ac1e2494b869dfca932c8bc1ef0c650db23677550",
+    "source-5": "a9920bdb1deb3f6bb0edd1757ec1755a88eccb0fe9af47ae969ca94d880d00a8",
+    "source-6": "233622d6fd6375d0ec48c4c7cad2dbe49d239fd223701e5c608a22df5d3aca1e",
+    "source-7": "4003c1db06c4949db7e0e951401b7d50494097d92920b36d2ca3a8d5c5f1ce97",
+    "source-8": "d69d376d8568087c696f980ee24cdc4974bdc4845d46635eefab05082dbc7168",
+    "source-9": "9bc7a8bbf9bf77462f7646877597580e08304db06ac1b4ffcfbc6825eaa12c54",
+    "source-10": "f2c8f21e6ce0a5417d00b47a48d622091542bd37cf2d3192b4c6ea04c2280dc6",
+    "source-11": "56389e527560450cd5b021611c0b7305b3a75afe7924c987a96483ba60484132",
+    "source-12": "f9ffc0ee562dad632406ab53d6752974f0f7ffc94db9db232be203723c7211ac",
+    "source-13": "94418d8d9aa59acc7ec64903b26ae584d613a4e460718014c4f745b17619b219",
+    "source-14": "96033e967ab4154f25906d7478cba61e4680f9e6d78c9474325ff6d1f0fd6995",
+    "source-15": "01774238f5d2efb0477f1fef387d966d14dfc8914912468cd83ce62e7c7df64b",
+    "source-16": "67af1548064a6ead4a07ede8180fd0fc2f3f743c84cca477935744249298d530",
+    "source-17": "0ac22fbc853051b1dc1194000c23259eb2c4824cb1e58183b47430cbe5ecf9fa",
+    "source-18": "a2994395b11c8fa0f1976c1406e17897e2e2e108d7de61c54ee9a7c0566da38f",
+    "source-19": "caf2e6e5d02d46b773c361e7d8cfcaa14c3a1bb2a25a23c35875a2e1ae48d8da",
+    "source-20": "89b267fade2b6dfe4321a365b92ff0a03ae382d2e8a8d4e15bed6a109a69832f",
+    "source-21": "6c2458c8b23f69788e33a652d8df3f8c6f770645a811f7a270f08515226c196a",
+    "source-22": "06d13dfba2eff709d1366ffd8252539703dd1e13ce2c7139ca971e2d98d0c16f",
+    "source-23": "86012bdf167ac19bf041d0168ebc77d20f42ac8e8685f7ab8a2c83f31e3bb031",
+    "source-24": "55e6f01e7b2c9450b7a9e70f233c7c8471b12f6a2cb5b42d0883de773eaadc7a",
+    "source-25": "81a9f0bdd24f336b1859a5bd233f3088f45effa2e0710c444b81643dcb581d7b",
+    "source-26": "90a248f6607c3950be23e16ca03d43de0fce32bb84f4422cc5264f6877b18e34",
+    "source-27": "ef18e7d308d486078577375ca8e40f8f17dedecbbbc9111d41ed97fcb4a1d7b3",
+    "source-28": "08ed121051ec8c8f742d9e077fe099f750fb5dab6e2377b474b93417e218fdb4",
+    "source-29": "01cd0ac449d4efff69be43af1c652798f3d27f062a26a3dee490362742a85065",
+    "source-30": "8d512c86aa2c771b76d98fbc7979327da0357cbcca55145f865c5e3390bd0fa0",
+    "source-31": "ff4d05774873c9cff73d9f789ed8177d615060b8317268363a0256b6809443be",
+    "source-32": "c27bd36219cfb0685ed5df346ecf56a29c789926fb309746efe121ec03b57088",
+    "source-33": "60431fee38e584c5c0c7b7b153055ee9216e2c6e24498e713b040ada3b5dbb78",
+    "source-34": "e9e5bc9e31b27cea20a39d3b12d5b8dbb5d73fdb8d499f253765281d09e05797",
+    "source-35": "2e8438d750ff716c4923286b08ee6b75ba04f6a9f004da8d7ff30142b2ce39f6",
+    "source-36": "38774aeace09945f275c60258df739a62cdcde67a2120bf716e8f5f920767757",
+    "source-37": "a2922c919ad7f2cae9fd381206298fd0e99396fb4ab6f322222f7955f0d455da",
+    "source-38": "58cc23753bb536accc498103f0e03c641a3cb3818fadf5e6feb329a9d0a968b4",
+    "source-39": "afb099b1fa3917d073bac67cfcd9c8905d73c79806b8098518e2780be4a238b6"
   },
   "audit_window": "2026-10-24T01:57:08Z..2026-10-31T01:57:08Z",
   "closeout_through": "2026-10-29",
   "range_labels": {
-    "all": "All time",
+    "all": "Full range",
     "90": "Last 90 days",
     "30": "Last 30 days",
     "7": "Last 7 days",
-    "since": "Since Sep 7: both providers present",
+    "since": "Since Sep 7",
     "exclude": "Exclude Jul-Aug Codex spike"
   },
   "who": {
@@ -4893,21 +4925,21 @@
   "who_total": 17446847679,
   "range_summaries": {
     "all": [
-      9022496516,
+      9266656239,
       8424351163,
-      27052354773,
+      27202105833,
       3850351962
     ],
     "90": [
-      9022423351,
+      9266583074,
       8424351163,
-      14472705059,
+      14622456119,
       3141103147
     ],
     "30": [
-      7464605337,
+      7708765060,
       2817291497,
-      4437101924,
+      4586852984,
       0
     ],
     "7": [
@@ -4917,9 +4949,9 @@
       0
     ],
     "since": [
-      9005835718,
+      9249995441,
       8424351163,
-      5857757680,
+      6007508740,
       3141103147
     ]
   },
@@ -5725,16 +5757,24 @@
         ],
         [
           "2026-10",
-          1239,
-          2724,
+          1243,
+          2749,
           547,
-          1914,
-          849
+          1965,
+          854
+        ],
+        [
+          "2026-11",
+          1,
+          9,
+          0,
+          20,
+          4
         ]
       ]
     }
   ],
-  "data_through": "2026-11-01 01:15:36 UTC",
+  "data_through": "2026-11-01 08:21:21 UTC",
   "partial_today": "2026-11-01",
   "recent_coverage": {
     "Claude": {
@@ -9693,16 +9733,25 @@
       318670,
       3969788,
       92
+    ],
+    [
+      "2026-11-01",
+      "claude_transcripts:unattributed",
+      5448,
+      1476282,
+      8337048,
+      234340945,
+      2022
     ]
   ],
   "composition_as_first_measured": {
     "claude": {
-      "fresh_input": 1904199,
-      "cache_write": 570313263,
-      "cache_read": 19382940999,
-      "output": 119995386,
-      "total": 20075153847,
-      "unassigned": 0
+      "fresh_input": null,
+      "cache_write": null,
+      "cache_read": null,
+      "output": null,
+      "unassigned": null,
+      "total": 20832110549
     },
     "codex": {
       "fresh_input": 5583035694,
@@ -9715,19 +9764,19 @@
   },
   "ranges_as_first_measured": {
     "all": [
-      9022496516,
+      9266656239,
       8424351163,
       263994077611,
       3850351962
     ],
     "90": [
-      9022423351,
+      9266583074,
       8424351163,
       127920426155,
       3141103147
     ],
     "30": [
-      7464605337,
+      7708765060,
       2817291497,
       5167347525,
       0
@@ -9739,13 +9788,13 @@
       0
     ],
     "since": [
-      9005835718,
+      9249995441,
       8424351163,
       6929426675,
       3141103147
     ],
     "exclude": [
-      9022496516,
+      9266656239,
       8424351163,
       12119357910,
       3850351962
@@ -10334,931 +10383,1086 @@
         "week_start": "2021-05-03",
         "actor": "human",
         "added": 0,
-        "removed": 8
+        "removed": 8,
+        "lines_touched": 8
       },
       {
         "week_start": "2021-05-10",
         "actor": "human",
         "added": 2154,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 2154
       },
       {
         "week_start": "2021-05-24",
         "actor": "human",
         "added": 0,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 0
       },
       {
         "week_start": "2021-06-07",
         "actor": "human",
         "added": 0,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 0
       },
       {
         "week_start": "2021-08-02",
         "actor": "human",
         "added": 644,
-        "removed": 15
+        "removed": 15,
+        "lines_touched": 659
       },
       {
         "week_start": "2021-08-09",
         "actor": "human",
         "added": 2197,
-        "removed": 1118
+        "removed": 1118,
+        "lines_touched": 3315
       },
       {
         "week_start": "2021-08-16",
         "actor": "human",
         "added": 3187,
-        "removed": 1346
+        "removed": 1346,
+        "lines_touched": 4533
       },
       {
         "week_start": "2021-08-23",
         "actor": "human",
         "added": 22911,
-        "removed": 1375
+        "removed": 1375,
+        "lines_touched": 24286
       },
       {
         "week_start": "2021-08-30",
         "actor": "human",
         "added": 572,
-        "removed": 228
+        "removed": 228,
+        "lines_touched": 800
       },
       {
         "week_start": "2021-09-27",
         "actor": "human",
         "added": 5,
-        "removed": 5
+        "removed": 5,
+        "lines_touched": 10
       },
       {
         "week_start": "2021-10-11",
         "actor": "human",
         "added": 61,
-        "removed": 1
+        "removed": 1,
+        "lines_touched": 62
       },
       {
         "week_start": "2021-11-08",
         "actor": "human",
         "added": 177,
-        "removed": 2
+        "removed": 2,
+        "lines_touched": 179
       },
       {
         "week_start": "2021-11-15",
         "actor": "human",
         "added": 48,
-        "removed": 49
+        "removed": 49,
+        "lines_touched": 97
       },
       {
         "week_start": "2022-08-22",
         "actor": "human",
         "added": 312,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 312
       },
       {
         "week_start": "2022-08-29",
         "actor": "human",
         "added": 16,
-        "removed": 39
+        "removed": 39,
+        "lines_touched": 55
       },
       {
         "week_start": "2022-09-05",
         "actor": "human",
         "added": 228,
-        "removed": 59
+        "removed": 59,
+        "lines_touched": 287
       },
       {
         "week_start": "2022-12-26",
         "actor": "human",
         "added": 108,
-        "removed": 4
+        "removed": 4,
+        "lines_touched": 112
       },
       {
         "week_start": "2023-02-20",
         "actor": "human",
         "added": 530,
-        "removed": 291
+        "removed": 291,
+        "lines_touched": 821
       },
       {
         "week_start": "2023-03-06",
         "actor": "human",
         "added": 17,
-        "removed": 6
+        "removed": 6,
+        "lines_touched": 23
       },
       {
         "week_start": "2023-05-22",
         "actor": "human",
         "added": 1733,
-        "removed": 845
+        "removed": 845,
+        "lines_touched": 2578
       },
       {
         "week_start": "2023-05-29",
         "actor": "human",
         "added": 2220,
-        "removed": 24
+        "removed": 24,
+        "lines_touched": 2244
       },
       {
         "week_start": "2023-06-05",
         "actor": "human",
         "added": 9216,
-        "removed": 1047
+        "removed": 1047,
+        "lines_touched": 10263
       },
       {
         "week_start": "2023-06-12",
         "actor": "human",
         "added": 320,
-        "removed": 15
+        "removed": 15,
+        "lines_touched": 335
       },
       {
         "week_start": "2023-06-19",
         "actor": "human",
         "added": 114,
-        "removed": 136
+        "removed": 136,
+        "lines_touched": 250
       },
       {
         "week_start": "2023-06-26",
         "actor": "human",
         "added": 589,
-        "removed": 292
+        "removed": 292,
+        "lines_touched": 881
       },
       {
         "week_start": "2023-07-03",
         "actor": "human",
         "added": 2017,
-        "removed": 1465
+        "removed": 1465,
+        "lines_touched": 3482
       },
       {
         "week_start": "2023-07-17",
         "actor": "human",
         "added": 2132,
-        "removed": 1266
+        "removed": 1266,
+        "lines_touched": 3398
       },
       {
         "week_start": "2023-07-24",
         "actor": "human",
         "added": 29,
-        "removed": 19
+        "removed": 19,
+        "lines_touched": 48
       },
       {
         "week_start": "2023-09-18",
         "actor": "human",
         "added": 1,
-        "removed": 1
+        "removed": 1,
+        "lines_touched": 2
       },
       {
         "week_start": "2023-10-16",
         "actor": "human",
         "added": 2,
-        "removed": 2
+        "removed": 2,
+        "lines_touched": 4
       },
       {
         "week_start": "2023-11-06",
         "actor": "human",
         "added": 1840,
-        "removed": 1491
+        "removed": 1491,
+        "lines_touched": 3331
       },
       {
         "week_start": "2023-12-11",
         "actor": "human",
         "added": 104,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 104
       },
       {
         "week_start": "2024-05-27",
         "actor": "human",
         "added": 0,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 0
       },
       {
         "week_start": "2024-06-10",
         "actor": "human",
         "added": 534,
-        "removed": 3327
+        "removed": 3327,
+        "lines_touched": 3861
       },
       {
         "week_start": "2024-06-17",
         "actor": "human",
         "added": 2017,
-        "removed": 1423
+        "removed": 1423,
+        "lines_touched": 3440
       },
       {
         "week_start": "2024-06-24",
         "actor": "human",
         "added": 299,
-        "removed": 131
+        "removed": 131,
+        "lines_touched": 430
       },
       {
         "week_start": "2024-07-01",
         "actor": "human",
         "added": 633,
-        "removed": 92
+        "removed": 92,
+        "lines_touched": 725
       },
       {
         "week_start": "2024-08-12",
         "actor": "human",
         "added": 55,
-        "removed": 6
+        "removed": 6,
+        "lines_touched": 61
       },
       {
         "week_start": "2024-08-19",
         "actor": "human",
         "added": 41,
-        "removed": 12
+        "removed": 12,
+        "lines_touched": 53
       },
       {
         "week_start": "2024-09-02",
         "actor": "human",
         "added": 2,
-        "removed": 2
+        "removed": 2,
+        "lines_touched": 4
       },
       {
         "week_start": "2024-09-30",
         "actor": "human",
         "added": 1,
-        "removed": 1
+        "removed": 1,
+        "lines_touched": 2
       },
       {
         "week_start": "2025-04-14",
         "actor": "human",
         "added": 52,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 52
       },
       {
         "week_start": "2025-11-24",
         "actor": "human",
         "added": 1760,
-        "removed": 106
+        "removed": 106,
+        "lines_touched": 1866
       },
       {
         "week_start": "2025-12-01",
         "actor": "human",
         "added": 6087,
-        "removed": 496
+        "removed": 496,
+        "lines_touched": 6583
       },
       {
         "week_start": "2025-12-08",
         "actor": "human",
         "added": 1293,
-        "removed": 1279
+        "removed": 1279,
+        "lines_touched": 2572
       },
       {
         "week_start": "2025-12-15",
         "actor": "human",
         "added": 8346,
-        "removed": 3397
+        "removed": 3397,
+        "lines_touched": 11743
       },
       {
         "week_start": "2025-12-22",
         "actor": "human",
         "added": 6612,
-        "removed": 3195
+        "removed": 3195,
+        "lines_touched": 9807
       },
       {
         "week_start": "2025-12-29",
         "actor": "human",
         "added": 8363,
-        "removed": 585
+        "removed": 585,
+        "lines_touched": 8948
       },
       {
         "week_start": "2026-01-05",
         "actor": "human",
         "added": 8513,
-        "removed": 775
+        "removed": 775,
+        "lines_touched": 9288
       },
       {
         "week_start": "2026-01-12",
         "actor": "human",
         "added": 4028,
-        "removed": 758
+        "removed": 758,
+        "lines_touched": 4786
       },
       {
         "week_start": "2026-01-19",
         "actor": "claude",
         "added": 385,
-        "removed": 383
+        "removed": 383,
+        "lines_touched": 768
       },
       {
         "week_start": "2026-01-19",
         "actor": "codex",
         "added": 552,
-        "removed": 42
+        "removed": 42,
+        "lines_touched": 594
       },
       {
         "week_start": "2026-01-19",
         "actor": "human",
         "added": 3300,
-        "removed": 2530
+        "removed": 2530,
+        "lines_touched": 5830
       },
       {
         "week_start": "2026-01-26",
         "actor": "codex",
         "added": 7,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 7
       },
       {
         "week_start": "2026-01-26",
         "actor": "human",
         "added": 5079,
-        "removed": 2488
+        "removed": 2488,
+        "lines_touched": 7567
       },
       {
         "week_start": "2026-02-02",
         "actor": "codex",
         "added": 0,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 0
       },
       {
         "week_start": "2026-02-02",
         "actor": "human",
         "added": 2279,
-        "removed": 340
+        "removed": 340,
+        "lines_touched": 2619
       },
       {
         "week_start": "2026-02-09",
         "actor": "codex",
         "added": 0,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 0
       },
       {
         "week_start": "2026-02-09",
         "actor": "human",
         "added": 6261,
-        "removed": 1697
+        "removed": 1697,
+        "lines_touched": 7958
       },
       {
         "week_start": "2026-02-16",
         "actor": "codex",
         "added": 0,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 0
       },
       {
         "week_start": "2026-02-16",
         "actor": "human",
         "added": 506,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 506
       },
       {
         "week_start": "2026-03-02",
         "actor": "codex",
         "added": 0,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 0
       },
       {
         "week_start": "2026-03-02",
         "actor": "human",
         "added": 1889,
-        "removed": 689
+        "removed": 689,
+        "lines_touched": 2578
       },
       {
         "week_start": "2026-03-09",
         "actor": "claude",
         "added": 0,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 0
       },
       {
         "week_start": "2026-03-09",
         "actor": "codex",
         "added": 2292,
-        "removed": 8
+        "removed": 8,
+        "lines_touched": 2300
       },
       {
         "week_start": "2026-03-09",
         "actor": "human",
         "added": 469,
-        "removed": 27
+        "removed": 27,
+        "lines_touched": 496
       },
       {
         "week_start": "2026-03-16",
         "actor": "codex",
         "added": 2145,
-        "removed": 644
+        "removed": 644,
+        "lines_touched": 2789
       },
       {
         "week_start": "2026-03-16",
         "actor": "human",
         "added": 1876,
-        "removed": 332
+        "removed": 332,
+        "lines_touched": 2208
       },
       {
         "week_start": "2026-03-23",
         "actor": "claude",
         "added": 1951,
-        "removed": 236
+        "removed": 236,
+        "lines_touched": 2187
       },
       {
         "week_start": "2026-03-23",
         "actor": "codex",
         "added": 639,
-        "removed": 27
+        "removed": 27,
+        "lines_touched": 666
       },
       {
         "week_start": "2026-03-23",
         "actor": "human",
         "added": 4890,
-        "removed": 671
+        "removed": 671,
+        "lines_touched": 5561
       },
       {
         "week_start": "2026-03-30",
         "actor": "claude",
         "added": 0,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 0
       },
       {
         "week_start": "2026-03-30",
         "actor": "codex",
         "added": 14012,
-        "removed": 1818
+        "removed": 1818,
+        "lines_touched": 15830
       },
       {
         "week_start": "2026-03-30",
         "actor": "human",
         "added": 7788,
-        "removed": 2106
+        "removed": 2106,
+        "lines_touched": 9894
       },
       {
         "week_start": "2026-04-06",
         "actor": "codex",
         "added": 17440,
-        "removed": 3925
+        "removed": 3925,
+        "lines_touched": 21365
       },
       {
         "week_start": "2026-04-06",
         "actor": "human",
         "added": 143,
-        "removed": 286
+        "removed": 286,
+        "lines_touched": 429
       },
       {
         "week_start": "2026-04-13",
         "actor": "codex",
         "added": 6369,
-        "removed": 997
+        "removed": 997,
+        "lines_touched": 7366
       },
       {
         "week_start": "2026-04-13",
         "actor": "human",
         "added": 1773,
-        "removed": 1078
+        "removed": 1078,
+        "lines_touched": 2851
       },
       {
         "week_start": "2026-04-20",
         "actor": "codex",
         "added": 3190,
-        "removed": 491
+        "removed": 491,
+        "lines_touched": 3681
       },
       {
         "week_start": "2026-04-20",
         "actor": "human",
         "added": 801,
-        "removed": 100
+        "removed": 100,
+        "lines_touched": 901
       },
       {
         "week_start": "2026-04-27",
         "actor": "codex",
         "added": 165,
-        "removed": 291
+        "removed": 291,
+        "lines_touched": 456
       },
       {
         "week_start": "2026-04-27",
         "actor": "human",
         "added": 540,
-        "removed": 16
+        "removed": 16,
+        "lines_touched": 556
       },
       {
         "week_start": "2026-05-04",
         "actor": "codex",
         "added": 2684,
-        "removed": 87
+        "removed": 87,
+        "lines_touched": 2771
       },
       {
         "week_start": "2026-05-11",
         "actor": "codex",
         "added": 1212,
-        "removed": 278
+        "removed": 278,
+        "lines_touched": 1490
       },
       {
         "week_start": "2026-05-18",
         "actor": "claude",
         "added": 9,
-        "removed": 6
+        "removed": 6,
+        "lines_touched": 15
       },
       {
         "week_start": "2026-05-18",
         "actor": "codex",
         "added": 5355,
-        "removed": 653
+        "removed": 653,
+        "lines_touched": 6008
       },
       {
         "week_start": "2026-05-18",
         "actor": "human",
         "added": 4812,
-        "removed": 577
+        "removed": 577,
+        "lines_touched": 5389
       },
       {
         "week_start": "2026-05-25",
         "actor": "claude",
         "added": 4271,
-        "removed": 3457
+        "removed": 3457,
+        "lines_touched": 7728
       },
       {
         "week_start": "2026-05-25",
         "actor": "codex",
         "added": 17527,
-        "removed": 401
+        "removed": 401,
+        "lines_touched": 17928
       },
       {
         "week_start": "2026-05-25",
         "actor": "human",
         "added": 19775,
-        "removed": 3303
+        "removed": 3303,
+        "lines_touched": 23078
       },
       {
         "week_start": "2026-06-01",
         "actor": "claude",
         "added": 750,
-        "removed": 13
+        "removed": 13,
+        "lines_touched": 763
       },
       {
         "week_start": "2026-06-01",
         "actor": "codex",
         "added": 2126,
-        "removed": 163
+        "removed": 163,
+        "lines_touched": 2289
       },
       {
         "week_start": "2026-06-01",
         "actor": "human",
         "added": 3776,
-        "removed": 1171
+        "removed": 1171,
+        "lines_touched": 4947
       },
       {
         "week_start": "2026-06-08",
         "actor": "claude",
         "added": 3032,
-        "removed": 1272
+        "removed": 1272,
+        "lines_touched": 4304
       },
       {
         "week_start": "2026-06-08",
         "actor": "codex",
         "added": 1174,
-        "removed": 17
+        "removed": 17,
+        "lines_touched": 1191
       },
       {
         "week_start": "2026-06-08",
         "actor": "human",
         "added": 262,
-        "removed": 43
+        "removed": 43,
+        "lines_touched": 305
       },
       {
         "week_start": "2026-06-15",
         "actor": "claude",
         "added": 5166,
-        "removed": 285
+        "removed": 285,
+        "lines_touched": 5451
       },
       {
         "week_start": "2026-06-15",
         "actor": "codex",
         "added": 31362,
-        "removed": 1744
+        "removed": 1744,
+        "lines_touched": 33106
       },
       {
         "week_start": "2026-06-15",
         "actor": "human",
         "added": 1021,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 1021
       },
       {
         "week_start": "2026-06-22",
         "actor": "claude",
         "added": 648,
-        "removed": 114
+        "removed": 114,
+        "lines_touched": 762
       },
       {
         "week_start": "2026-06-22",
         "actor": "codex",
         "added": 8296,
-        "removed": 45
+        "removed": 45,
+        "lines_touched": 8341
       },
       {
         "week_start": "2026-06-22",
         "actor": "human",
         "added": 0,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 0
       },
       {
         "week_start": "2026-06-29",
         "actor": "claude",
         "added": 8688,
-        "removed": 4790
+        "removed": 4790,
+        "lines_touched": 13478
       },
       {
         "week_start": "2026-06-29",
         "actor": "codex",
         "added": 14484,
-        "removed": 883
+        "removed": 883,
+        "lines_touched": 15367
       },
       {
         "week_start": "2026-06-29",
         "actor": "human",
         "added": 332,
-        "removed": 6
+        "removed": 6,
+        "lines_touched": 338
       },
       {
         "week_start": "2026-07-06",
         "actor": "claude",
         "added": 828,
-        "removed": 46
+        "removed": 46,
+        "lines_touched": 874
       },
       {
         "week_start": "2026-07-06",
         "actor": "codex",
         "added": 21614,
-        "removed": 921
+        "removed": 921,
+        "lines_touched": 22535
       },
       {
         "week_start": "2026-07-13",
         "actor": "claude",
         "added": 1063,
-        "removed": 102
+        "removed": 102,
+        "lines_touched": 1165
       },
       {
         "week_start": "2026-07-13",
         "actor": "codex",
         "added": 52699,
-        "removed": 3642
+        "removed": 3642,
+        "lines_touched": 56341
       },
       {
         "week_start": "2026-07-13",
         "actor": "human",
         "added": 165,
-        "removed": 60
+        "removed": 60,
+        "lines_touched": 225
       },
       {
         "week_start": "2026-07-20",
         "actor": "claude",
         "added": 5760,
-        "removed": 383
+        "removed": 383,
+        "lines_touched": 6143
       },
       {
         "week_start": "2026-07-20",
         "actor": "codex",
         "added": 74600,
-        "removed": 2809
+        "removed": 2809,
+        "lines_touched": 77409
       },
       {
         "week_start": "2026-07-20",
         "actor": "human",
         "added": 94,
-        "removed": 2
+        "removed": 2,
+        "lines_touched": 96
       },
       {
         "week_start": "2026-07-27",
         "actor": "claude",
         "added": 2318,
-        "removed": 290
+        "removed": 290,
+        "lines_touched": 2608
       },
       {
         "week_start": "2026-07-27",
         "actor": "codex",
         "added": 60876,
-        "removed": 2637
+        "removed": 2637,
+        "lines_touched": 63513
       },
       {
         "week_start": "2026-07-27",
         "actor": "human",
         "added": 192,
-        "removed": 9
+        "removed": 9,
+        "lines_touched": 201
       },
       {
         "week_start": "2026-08-03",
         "actor": "claude",
         "added": 1224,
-        "removed": 408
+        "removed": 408,
+        "lines_touched": 1632
       },
       {
         "week_start": "2026-08-03",
         "actor": "codex",
         "added": 23112,
-        "removed": 1079
+        "removed": 1079,
+        "lines_touched": 24191
       },
       {
         "week_start": "2026-08-03",
         "actor": "human",
         "added": 837,
-        "removed": 147
+        "removed": 147,
+        "lines_touched": 984
       },
       {
         "week_start": "2026-08-10",
         "actor": "claude",
         "added": 1089,
-        "removed": 84
+        "removed": 84,
+        "lines_touched": 1173
       },
       {
         "week_start": "2026-08-10",
         "actor": "codex",
         "added": 42349,
-        "removed": 2542
+        "removed": 2542,
+        "lines_touched": 44891
       },
       {
         "week_start": "2026-08-10",
         "actor": "human",
         "added": 8,
-        "removed": 8
+        "removed": 8,
+        "lines_touched": 16
       },
       {
         "week_start": "2026-08-17",
         "actor": "claude",
         "added": 1823,
-        "removed": 144
+        "removed": 144,
+        "lines_touched": 1967
       },
       {
         "week_start": "2026-08-17",
         "actor": "codex",
         "added": 13657,
-        "removed": 778
+        "removed": 778,
+        "lines_touched": 14435
       },
       {
         "week_start": "2026-08-17",
         "actor": "human",
         "added": 20,
-        "removed": 18
+        "removed": 18,
+        "lines_touched": 38
       },
       {
         "week_start": "2026-08-24",
         "actor": "claude",
         "added": 3213,
-        "removed": 727
+        "removed": 727,
+        "lines_touched": 3940
       },
       {
         "week_start": "2026-08-24",
         "actor": "codex",
         "added": 72305,
-        "removed": 3161
+        "removed": 3161,
+        "lines_touched": 75466
       },
       {
         "week_start": "2026-08-24",
         "actor": "human",
         "added": 1959,
-        "removed": 107
+        "removed": 107,
+        "lines_touched": 2066
       },
       {
         "week_start": "2026-08-31",
         "actor": "claude",
         "added": 5735,
-        "removed": 779
+        "removed": 779,
+        "lines_touched": 6514
       },
       {
         "week_start": "2026-08-31",
         "actor": "codex",
         "added": 132254,
-        "removed": 5258
+        "removed": 5258,
+        "lines_touched": 137512
       },
       {
         "week_start": "2026-08-31",
         "actor": "human",
         "added": 3044,
-        "removed": 486
+        "removed": 486,
+        "lines_touched": 3530
       },
       {
         "week_start": "2026-09-07",
         "actor": "claude",
         "added": 10699,
-        "removed": 2053
+        "removed": 2053,
+        "lines_touched": 12752
       },
       {
         "week_start": "2026-09-07",
         "actor": "codex",
         "added": 57474,
-        "removed": 8509
+        "removed": 8509,
+        "lines_touched": 65983
       },
       {
         "week_start": "2026-09-07",
         "actor": "human",
         "added": 1157,
-        "removed": 228
+        "removed": 228,
+        "lines_touched": 1385
       },
       {
         "week_start": "2026-09-14",
         "actor": "claude",
         "added": 1067,
-        "removed": 170
+        "removed": 170,
+        "lines_touched": 1237
       },
       {
         "week_start": "2026-09-14",
         "actor": "codex",
         "added": 85824,
-        "removed": 17356
+        "removed": 17356,
+        "lines_touched": 103180
       },
       {
         "week_start": "2026-09-14",
         "actor": "human",
         "added": 1287,
-        "removed": 648
+        "removed": 648,
+        "lines_touched": 1935
       },
       {
         "week_start": "2026-09-21",
         "actor": "claude",
         "added": 14167,
-        "removed": 706
+        "removed": 706,
+        "lines_touched": 14873
       },
       {
         "week_start": "2026-09-21",
         "actor": "codex",
         "added": 53731,
-        "removed": 6721
+        "removed": 6721,
+        "lines_touched": 60452
       },
       {
         "week_start": "2026-09-21",
         "actor": "human",
         "added": 3958,
-        "removed": 348
+        "removed": 348,
+        "lines_touched": 4306
       },
       {
         "week_start": "2026-09-28",
         "actor": "claude",
         "added": 19752,
-        "removed": 8682
+        "removed": 8682,
+        "lines_touched": 28434
       },
       {
         "week_start": "2026-09-28",
         "actor": "codex",
         "added": 36689,
-        "removed": 2296
+        "removed": 2296,
+        "lines_touched": 38985
       },
       {
         "week_start": "2026-09-28",
         "actor": "human",
         "added": 539,
-        "removed": 4
+        "removed": 4,
+        "lines_touched": 543
       },
       {
         "week_start": "2026-10-05",
         "actor": "claude",
         "added": 25323,
-        "removed": 16196
+        "removed": 16196,
+        "lines_touched": 41519
       },
       {
         "week_start": "2026-10-05",
         "actor": "codex",
         "added": 24381,
-        "removed": 1166
+        "removed": 1166,
+        "lines_touched": 25547
       },
       {
         "week_start": "2026-10-05",
         "actor": "human",
         "added": 5416,
-        "removed": 376
+        "removed": 376,
+        "lines_touched": 5792
       },
       {
         "week_start": "2026-10-12",
         "actor": "claude",
         "added": 14942,
-        "removed": 1364
+        "removed": 1364,
+        "lines_touched": 16306
       },
       {
         "week_start": "2026-10-12",
         "actor": "codex",
         "added": 13389,
-        "removed": 715
+        "removed": 715,
+        "lines_touched": 14104
       },
       {
         "week_start": "2026-10-12",
         "actor": "human",
         "added": 26,
-        "removed": 2
+        "removed": 2,
+        "lines_touched": 28
       },
       {
         "week_start": "2026-10-19",
         "actor": "claude",
         "added": 44397,
-        "removed": 9464
+        "removed": 9464,
+        "lines_touched": 53861
       },
       {
         "week_start": "2026-10-19",
         "actor": "codex",
         "added": 2524,
-        "removed": 359
+        "removed": 359,
+        "lines_touched": 2883
       },
       {
         "week_start": "2026-10-19",
         "actor": "human",
         "added": 2145,
-        "removed": 475
+        "removed": 475,
+        "lines_touched": 2620
       },
       {
         "week_start": "2026-10-26",
         "actor": "claude",
         "added": 13331,
-        "removed": 2756
+        "removed": 2756,
+        "lines_touched": 16087
       },
       {
         "week_start": "2026-10-26",
         "actor": "codex",
         "added": 418,
-        "removed": 1132
+        "removed": 1132,
+        "lines_touched": 1550
       },
       {
         "week_start": "2026-10-26",
         "actor": "human",
         "added": 12536,
-        "removed": 369
+        "removed": 369,
+        "lines_touched": 12905
       }
     ],
     "hypothesis": [
@@ -11286,2659 +11490,3102 @@
         "date": "2021-05-04",
         "actor": "human",
         "added": 0,
-        "removed": 8
+        "removed": 8,
+        "lines_touched": 8
       },
       {
         "date": "2021-05-10",
         "actor": "human",
         "added": 2115,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 2115
       },
       {
         "date": "2021-05-11",
         "actor": "human",
         "added": 39,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 39
       },
       {
         "date": "2021-08-07",
         "actor": "human",
         "added": 644,
-        "removed": 15
+        "removed": 15,
+        "lines_touched": 659
       },
       {
         "date": "2021-08-14",
         "actor": "human",
         "added": 950,
-        "removed": 362
+        "removed": 362,
+        "lines_touched": 1312
       },
       {
         "date": "2021-08-15",
         "actor": "human",
         "added": 1247,
-        "removed": 756
+        "removed": 756,
+        "lines_touched": 2003
       },
       {
         "date": "2021-08-17",
         "actor": "human",
         "added": 450,
-        "removed": 301
+        "removed": 301,
+        "lines_touched": 751
       },
       {
         "date": "2021-08-19",
         "actor": "human",
         "added": 790,
-        "removed": 277
+        "removed": 277,
+        "lines_touched": 1067
       },
       {
         "date": "2021-08-20",
         "actor": "human",
         "added": 1430,
-        "removed": 393
+        "removed": 393,
+        "lines_touched": 1823
       },
       {
         "date": "2021-08-21",
         "actor": "human",
         "added": 517,
-        "removed": 375
+        "removed": 375,
+        "lines_touched": 892
       },
       {
         "date": "2021-08-23",
         "actor": "human",
         "added": 22115,
-        "removed": 680
+        "removed": 680,
+        "lines_touched": 22795
       },
       {
         "date": "2021-08-28",
         "actor": "human",
         "added": 475,
-        "removed": 553
+        "removed": 553,
+        "lines_touched": 1028
       },
       {
         "date": "2021-08-29",
         "actor": "human",
         "added": 321,
-        "removed": 142
+        "removed": 142,
+        "lines_touched": 463
       },
       {
         "date": "2021-08-31",
         "actor": "human",
         "added": 572,
-        "removed": 228
+        "removed": 228,
+        "lines_touched": 800
       },
       {
         "date": "2021-10-01",
         "actor": "human",
         "added": 5,
-        "removed": 5
+        "removed": 5,
+        "lines_touched": 10
       },
       {
         "date": "2021-10-12",
         "actor": "human",
         "added": 60,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 60
       },
       {
         "date": "2021-10-15",
         "actor": "human",
         "added": 1,
-        "removed": 1
+        "removed": 1,
+        "lines_touched": 2
       },
       {
         "date": "2021-11-08",
         "actor": "human",
         "added": 2,
-        "removed": 2
+        "removed": 2,
+        "lines_touched": 4
       },
       {
         "date": "2021-11-09",
         "actor": "human",
         "added": 175,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 175
       },
       {
         "date": "2021-11-20",
         "actor": "human",
         "added": 48,
-        "removed": 49
+        "removed": 49,
+        "lines_touched": 97
       },
       {
         "date": "2022-08-23",
         "actor": "human",
         "added": 312,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 312
       },
       {
         "date": "2022-09-04",
         "actor": "human",
         "added": 16,
-        "removed": 39
+        "removed": 39,
+        "lines_touched": 55
       },
       {
         "date": "2022-09-06",
         "actor": "human",
         "added": 228,
-        "removed": 59
+        "removed": 59,
+        "lines_touched": 287
       },
       {
         "date": "2022-12-27",
         "actor": "human",
         "added": 108,
-        "removed": 4
+        "removed": 4,
+        "lines_touched": 112
       },
       {
         "date": "2023-02-20",
         "actor": "human",
         "added": 151,
-        "removed": 100
+        "removed": 100,
+        "lines_touched": 251
       },
       {
         "date": "2023-02-21",
         "actor": "human",
         "added": 1,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 1
       },
       {
         "date": "2023-02-23",
         "actor": "human",
         "added": 118,
-        "removed": 2
+        "removed": 2,
+        "lines_touched": 120
       },
       {
         "date": "2023-02-24",
         "actor": "human",
         "added": 157,
-        "removed": 97
+        "removed": 97,
+        "lines_touched": 254
       },
       {
         "date": "2023-02-25",
         "actor": "human",
         "added": 103,
-        "removed": 92
+        "removed": 92,
+        "lines_touched": 195
       },
       {
         "date": "2023-03-07",
         "actor": "human",
         "added": 17,
-        "removed": 6
+        "removed": 6,
+        "lines_touched": 23
       },
       {
         "date": "2023-05-24",
         "actor": "human",
         "added": 1717,
-        "removed": 835
+        "removed": 835,
+        "lines_touched": 2552
       },
       {
         "date": "2023-05-25",
         "actor": "human",
         "added": 13,
-        "removed": 10
+        "removed": 10,
+        "lines_touched": 23
       },
       {
         "date": "2023-05-28",
         "actor": "human",
         "added": 3,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 3
       },
       {
         "date": "2023-05-29",
         "actor": "human",
         "added": 2220,
-        "removed": 24
+        "removed": 24,
+        "lines_touched": 2244
       },
       {
         "date": "2023-06-06",
         "actor": "human",
         "added": 481,
-        "removed": 1
+        "removed": 1,
+        "lines_touched": 482
       },
       {
         "date": "2023-06-07",
         "actor": "human",
         "added": 3,
-        "removed": 5
+        "removed": 5,
+        "lines_touched": 8
       },
       {
         "date": "2023-06-08",
         "actor": "human",
         "added": 8732,
-        "removed": 1041
+        "removed": 1041,
+        "lines_touched": 9773
       },
       {
         "date": "2023-06-14",
         "actor": "human",
         "added": 320,
-        "removed": 15
+        "removed": 15,
+        "lines_touched": 335
       },
       {
         "date": "2023-06-19",
         "actor": "human",
         "added": 114,
-        "removed": 136
+        "removed": 136,
+        "lines_touched": 250
       },
       {
         "date": "2023-06-30",
         "actor": "human",
         "added": 326,
-        "removed": 98
+        "removed": 98,
+        "lines_touched": 424
       },
       {
         "date": "2023-07-01",
         "actor": "human",
         "added": 37,
-        "removed": 15
+        "removed": 15,
+        "lines_touched": 52
       },
       {
         "date": "2023-07-02",
         "actor": "human",
         "added": 226,
-        "removed": 179
+        "removed": 179,
+        "lines_touched": 405
       },
       {
         "date": "2023-07-03",
         "actor": "human",
         "added": 1026,
-        "removed": 905
+        "removed": 905,
+        "lines_touched": 1931
       },
       {
         "date": "2023-07-04",
         "actor": "human",
         "added": 98,
-        "removed": 66
+        "removed": 66,
+        "lines_touched": 164
       },
       {
         "date": "2023-07-05",
         "actor": "human",
         "added": 3,
-        "removed": 1
+        "removed": 1,
+        "lines_touched": 4
       },
       {
         "date": "2023-07-06",
         "actor": "human",
         "added": 75,
-        "removed": 13
+        "removed": 13,
+        "lines_touched": 88
       },
       {
         "date": "2023-07-07",
         "actor": "human",
         "added": 526,
-        "removed": 215
+        "removed": 215,
+        "lines_touched": 741
       },
       {
         "date": "2023-07-08",
         "actor": "human",
         "added": 289,
-        "removed": 265
+        "removed": 265,
+        "lines_touched": 554
       },
       {
         "date": "2023-07-19",
         "actor": "human",
         "added": 2132,
-        "removed": 1266
+        "removed": 1266,
+        "lines_touched": 3398
       },
       {
         "date": "2023-07-28",
         "actor": "human",
         "added": 29,
-        "removed": 19
+        "removed": 19,
+        "lines_touched": 48
       },
       {
         "date": "2023-09-23",
         "actor": "human",
         "added": 1,
-        "removed": 1
+        "removed": 1,
+        "lines_touched": 2
       },
       {
         "date": "2023-10-18",
         "actor": "human",
         "added": 2,
-        "removed": 2
+        "removed": 2,
+        "lines_touched": 4
       },
       {
         "date": "2023-11-09",
         "actor": "human",
         "added": 1840,
-        "removed": 1491
+        "removed": 1491,
+        "lines_touched": 3331
       },
       {
         "date": "2023-12-16",
         "actor": "human",
         "added": 104,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 104
       },
       {
         "date": "2024-06-12",
         "actor": "human",
         "added": 534,
-        "removed": 3327
+        "removed": 3327,
+        "lines_touched": 3861
       },
       {
         "date": "2024-06-19",
         "actor": "human",
         "added": 1956,
-        "removed": 1403
+        "removed": 1403,
+        "lines_touched": 3359
       },
       {
         "date": "2024-06-21",
         "actor": "human",
         "added": 61,
-        "removed": 20
+        "removed": 20,
+        "lines_touched": 81
       },
       {
         "date": "2024-06-25",
         "actor": "human",
         "added": 204,
-        "removed": 85
+        "removed": 85,
+        "lines_touched": 289
       },
       {
         "date": "2024-06-27",
         "actor": "human",
         "added": 36,
-        "removed": 22
+        "removed": 22,
+        "lines_touched": 58
       },
       {
         "date": "2024-06-28",
         "actor": "human",
         "added": 59,
-        "removed": 24
+        "removed": 24,
+        "lines_touched": 83
       },
       {
         "date": "2024-07-02",
         "actor": "human",
         "added": 633,
-        "removed": 92
+        "removed": 92,
+        "lines_touched": 725
       },
       {
         "date": "2024-08-15",
         "actor": "human",
         "added": 55,
-        "removed": 6
+        "removed": 6,
+        "lines_touched": 61
       },
       {
         "date": "2024-08-21",
         "actor": "human",
         "added": 41,
-        "removed": 12
+        "removed": 12,
+        "lines_touched": 53
       },
       {
         "date": "2024-09-04",
         "actor": "human",
         "added": 2,
-        "removed": 2
+        "removed": 2,
+        "lines_touched": 4
       },
       {
         "date": "2024-10-04",
         "actor": "human",
         "added": 1,
-        "removed": 1
+        "removed": 1,
+        "lines_touched": 2
       },
       {
         "date": "2025-04-18",
         "actor": "human",
         "added": 52,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 52
       },
       {
         "date": "2025-11-25",
         "actor": "human",
         "added": 1215,
-        "removed": 60
+        "removed": 60,
+        "lines_touched": 1275
       },
       {
         "date": "2025-11-26",
         "actor": "human",
         "added": 545,
-        "removed": 46
+        "removed": 46,
+        "lines_touched": 591
       },
       {
         "date": "2025-12-01",
         "actor": "human",
         "added": 252,
-        "removed": 418
+        "removed": 418,
+        "lines_touched": 670
       },
       {
         "date": "2025-12-03",
         "actor": "human",
         "added": 2584,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 2584
       },
       {
         "date": "2025-12-05",
         "actor": "human",
         "added": 140,
-        "removed": 78
+        "removed": 78,
+        "lines_touched": 218
       },
       {
         "date": "2025-12-06",
         "actor": "human",
         "added": 3111,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 3111
       },
       {
         "date": "2025-12-09",
         "actor": "human",
         "added": 1293,
-        "removed": 1279
+        "removed": 1279,
+        "lines_touched": 2572
       },
       {
         "date": "2025-12-17",
         "actor": "human",
         "added": 30,
-        "removed": 3313
+        "removed": 3313,
+        "lines_touched": 3343
       },
       {
         "date": "2025-12-18",
         "actor": "human",
         "added": 10,
-        "removed": 36
+        "removed": 36,
+        "lines_touched": 46
       },
       {
         "date": "2025-12-19",
         "actor": "human",
         "added": 660,
-        "removed": 46
+        "removed": 46,
+        "lines_touched": 706
       },
       {
         "date": "2025-12-21",
         "actor": "human",
         "added": 7646,
-        "removed": 2
+        "removed": 2,
+        "lines_touched": 7648
       },
       {
         "date": "2025-12-22",
         "actor": "human",
         "added": 324,
-        "removed": 14
+        "removed": 14,
+        "lines_touched": 338
       },
       {
         "date": "2025-12-24",
         "actor": "human",
         "added": 2742,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 2742
       },
       {
         "date": "2025-12-25",
         "actor": "human",
         "added": 1802,
-        "removed": 2626
+        "removed": 2626,
+        "lines_touched": 4428
       },
       {
         "date": "2025-12-27",
         "actor": "human",
         "added": 1393,
-        "removed": 431
+        "removed": 431,
+        "lines_touched": 1824
       },
       {
         "date": "2025-12-28",
         "actor": "human",
         "added": 351,
-        "removed": 124
+        "removed": 124,
+        "lines_touched": 475
       },
       {
         "date": "2025-12-30",
         "actor": "human",
         "added": 360,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 360
       },
       {
         "date": "2025-12-31",
         "actor": "human",
         "added": 1448,
-        "removed": 41
+        "removed": 41,
+        "lines_touched": 1489
       },
       {
         "date": "2026-01-03",
         "actor": "human",
         "added": 110,
-        "removed": 110
+        "removed": 110,
+        "lines_touched": 220
       },
       {
         "date": "2026-01-04",
         "actor": "human",
         "added": 6445,
-        "removed": 434
+        "removed": 434,
+        "lines_touched": 6879
       },
       {
         "date": "2026-01-05",
         "actor": "human",
         "added": 116,
-        "removed": 36
+        "removed": 36,
+        "lines_touched": 152
       },
       {
         "date": "2026-01-07",
         "actor": "human",
         "added": 2170,
-        "removed": 182
+        "removed": 182,
+        "lines_touched": 2352
       },
       {
         "date": "2026-01-08",
         "actor": "human",
         "added": 537,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 537
       },
       {
         "date": "2026-01-09",
         "actor": "human",
         "added": 1068,
-        "removed": 142
+        "removed": 142,
+        "lines_touched": 1210
       },
       {
         "date": "2026-01-10",
         "actor": "human",
         "added": 4028,
-        "removed": 233
+        "removed": 233,
+        "lines_touched": 4261
       },
       {
         "date": "2026-01-11",
         "actor": "human",
         "added": 594,
-        "removed": 182
+        "removed": 182,
+        "lines_touched": 776
       },
       {
         "date": "2026-01-13",
         "actor": "human",
         "added": 2024,
-        "removed": 334
+        "removed": 334,
+        "lines_touched": 2358
       },
       {
         "date": "2026-01-14",
         "actor": "human",
         "added": 400,
-        "removed": 45
+        "removed": 45,
+        "lines_touched": 445
       },
       {
         "date": "2026-01-15",
         "actor": "human",
         "added": 114,
-        "removed": 155
+        "removed": 155,
+        "lines_touched": 269
       },
       {
         "date": "2026-01-16",
         "actor": "human",
         "added": 1490,
-        "removed": 224
+        "removed": 224,
+        "lines_touched": 1714
       },
       {
         "date": "2026-01-19",
         "actor": "human",
         "added": 2284,
-        "removed": 230
+        "removed": 230,
+        "lines_touched": 2514
       },
       {
         "date": "2026-01-20",
         "actor": "human",
         "added": 0,
-        "removed": 2266
+        "removed": 2266,
+        "lines_touched": 2266
       },
       {
         "date": "2026-01-21",
         "actor": "claude",
         "added": 385,
-        "removed": 383
+        "removed": 383,
+        "lines_touched": 768
       },
       {
         "date": "2026-01-22",
         "actor": "human",
         "added": 954,
-        "removed": 34
+        "removed": 34,
+        "lines_touched": 988
       },
       {
         "date": "2026-01-24",
         "actor": "codex",
         "added": 552,
-        "removed": 42
+        "removed": 42,
+        "lines_touched": 594
       },
       {
         "date": "2026-01-24",
         "actor": "human",
         "added": 62,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 62
       },
       {
         "date": "2026-01-26",
         "actor": "codex",
         "added": 7,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 7
       },
       {
         "date": "2026-01-26",
         "actor": "human",
         "added": 661,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 661
       },
       {
         "date": "2026-01-27",
         "actor": "human",
         "added": 989,
-        "removed": 668
+        "removed": 668,
+        "lines_touched": 1657
       },
       {
         "date": "2026-01-29",
         "actor": "human",
         "added": 4,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 4
       },
       {
         "date": "2026-01-30",
         "actor": "human",
         "added": 3425,
-        "removed": 1820
+        "removed": 1820,
+        "lines_touched": 5245
       },
       {
         "date": "2026-02-03",
         "actor": "human",
         "added": 1376,
-        "removed": 228
+        "removed": 228,
+        "lines_touched": 1604
       },
       {
         "date": "2026-02-06",
         "actor": "human",
         "added": 768,
-        "removed": 88
+        "removed": 88,
+        "lines_touched": 856
       },
       {
         "date": "2026-02-08",
         "actor": "human",
         "added": 135,
-        "removed": 24
+        "removed": 24,
+        "lines_touched": 159
       },
       {
         "date": "2026-02-10",
         "actor": "human",
         "added": 219,
-        "removed": 118
+        "removed": 118,
+        "lines_touched": 337
       },
       {
         "date": "2026-02-11",
         "actor": "human",
         "added": 2150,
-        "removed": 204
+        "removed": 204,
+        "lines_touched": 2354
       },
       {
         "date": "2026-02-12",
         "actor": "human",
         "added": 136,
-        "removed": 283
+        "removed": 283,
+        "lines_touched": 419
       },
       {
         "date": "2026-02-13",
         "actor": "human",
         "added": 363,
-        "removed": 60
+        "removed": 60,
+        "lines_touched": 423
       },
       {
         "date": "2026-02-14",
         "actor": "human",
         "added": 1834,
-        "removed": 422
+        "removed": 422,
+        "lines_touched": 2256
       },
       {
         "date": "2026-02-15",
         "actor": "human",
         "added": 1559,
-        "removed": 610
+        "removed": 610,
+        "lines_touched": 2169
       },
       {
         "date": "2026-02-22",
         "actor": "human",
         "added": 506,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 506
       },
       {
         "date": "2026-03-02",
         "actor": "human",
         "added": 32,
-        "removed": 4
+        "removed": 4,
+        "lines_touched": 36
       },
       {
         "date": "2026-03-03",
         "actor": "human",
         "added": 470,
-        "removed": 240
+        "removed": 240,
+        "lines_touched": 710
       },
       {
         "date": "2026-03-04",
         "actor": "human",
         "added": 124,
-        "removed": 32
+        "removed": 32,
+        "lines_touched": 156
       },
       {
         "date": "2026-03-05",
         "actor": "human",
         "added": 926,
-        "removed": 197
+        "removed": 197,
+        "lines_touched": 1123
       },
       {
         "date": "2026-03-06",
         "actor": "human",
         "added": 337,
-        "removed": 216
+        "removed": 216,
+        "lines_touched": 553
       },
       {
         "date": "2026-03-10",
         "actor": "codex",
         "added": 36,
-        "removed": 2
+        "removed": 2,
+        "lines_touched": 38
       },
       {
         "date": "2026-03-10",
         "actor": "human",
         "added": 106,
-        "removed": 1
+        "removed": 1,
+        "lines_touched": 107
       },
       {
         "date": "2026-03-11",
         "actor": "human",
         "added": 148,
-        "removed": 26
+        "removed": 26,
+        "lines_touched": 174
       },
       {
         "date": "2026-03-13",
         "actor": "codex",
         "added": 2256,
-        "removed": 6
+        "removed": 6,
+        "lines_touched": 2262
       },
       {
         "date": "2026-03-13",
         "actor": "human",
         "added": 215,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 215
       },
       {
         "date": "2026-03-18",
         "actor": "codex",
         "added": 1239,
-        "removed": 604
+        "removed": 604,
+        "lines_touched": 1843
       },
       {
         "date": "2026-03-19",
         "actor": "codex",
         "added": 146,
-        "removed": 16
+        "removed": 16,
+        "lines_touched": 162
       },
       {
         "date": "2026-03-20",
         "actor": "codex",
         "added": 760,
-        "removed": 24
+        "removed": 24,
+        "lines_touched": 784
       },
       {
         "date": "2026-03-22",
         "actor": "human",
         "added": 1876,
-        "removed": 332
+        "removed": 332,
+        "lines_touched": 2208
       },
       {
         "date": "2026-03-23",
         "actor": "claude",
         "added": 1265,
-        "removed": 57
+        "removed": 57,
+        "lines_touched": 1322
       },
       {
         "date": "2026-03-24",
         "actor": "claude",
         "added": 686,
-        "removed": 179
+        "removed": 179,
+        "lines_touched": 865
       },
       {
         "date": "2026-03-24",
         "actor": "human",
         "added": 2454,
-        "removed": 33
+        "removed": 33,
+        "lines_touched": 2487
       },
       {
         "date": "2026-03-26",
         "actor": "human",
         "added": 1334,
-        "removed": 308
+        "removed": 308,
+        "lines_touched": 1642
       },
       {
         "date": "2026-03-27",
         "actor": "codex",
         "added": 639,
-        "removed": 27
+        "removed": 27,
+        "lines_touched": 666
       },
       {
         "date": "2026-03-27",
         "actor": "human",
         "added": 744,
-        "removed": 246
+        "removed": 246,
+        "lines_touched": 990
       },
       {
         "date": "2026-03-28",
         "actor": "human",
         "added": 216,
-        "removed": 44
+        "removed": 44,
+        "lines_touched": 260
       },
       {
         "date": "2026-03-29",
         "actor": "human",
         "added": 142,
-        "removed": 40
+        "removed": 40,
+        "lines_touched": 182
       },
       {
         "date": "2026-03-31",
         "actor": "codex",
         "added": 238,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 238
       },
       {
         "date": "2026-04-01",
         "actor": "codex",
         "added": 107,
-        "removed": 2
+        "removed": 2,
+        "lines_touched": 109
       },
       {
         "date": "2026-04-02",
         "actor": "human",
         "added": 53,
-        "removed": 1
+        "removed": 1,
+        "lines_touched": 54
       },
       {
         "date": "2026-04-03",
         "actor": "codex",
         "added": 465,
-        "removed": 42
+        "removed": 42,
+        "lines_touched": 507
       },
       {
         "date": "2026-04-04",
         "actor": "codex",
         "added": 13202,
-        "removed": 1774
+        "removed": 1774,
+        "lines_touched": 14976
       },
       {
         "date": "2026-04-04",
         "actor": "human",
         "added": 7202,
-        "removed": 2085
+        "removed": 2085,
+        "lines_touched": 9287
       },
       {
         "date": "2026-04-05",
         "actor": "human",
         "added": 533,
-        "removed": 20
+        "removed": 20,
+        "lines_touched": 553
       },
       {
         "date": "2026-04-06",
         "actor": "human",
         "added": 4,
-        "removed": 171
+        "removed": 171,
+        "lines_touched": 175
       },
       {
         "date": "2026-04-08",
         "actor": "codex",
         "added": 9468,
-        "removed": 1080
+        "removed": 1080,
+        "lines_touched": 10548
       },
       {
         "date": "2026-04-09",
         "actor": "codex",
         "added": 5595,
-        "removed": 1329
+        "removed": 1329,
+        "lines_touched": 6924
       },
       {
         "date": "2026-04-10",
         "actor": "codex",
         "added": 1203,
-        "removed": 6
+        "removed": 6,
+        "lines_touched": 1209
       },
       {
         "date": "2026-04-11",
         "actor": "codex",
         "added": 1174,
-        "removed": 1510
+        "removed": 1510,
+        "lines_touched": 2684
       },
       {
         "date": "2026-04-11",
         "actor": "human",
         "added": 139,
-        "removed": 115
+        "removed": 115,
+        "lines_touched": 254
       },
       {
         "date": "2026-04-13",
         "actor": "codex",
         "added": 1905,
-        "removed": 244
+        "removed": 244,
+        "lines_touched": 2149
       },
       {
         "date": "2026-04-13",
         "actor": "human",
         "added": 625,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 625
       },
       {
         "date": "2026-04-14",
         "actor": "codex",
         "added": 190,
-        "removed": 134
+        "removed": 134,
+        "lines_touched": 324
       },
       {
         "date": "2026-04-17",
         "actor": "codex",
         "added": 464,
-        "removed": 2
+        "removed": 2,
+        "lines_touched": 466
       },
       {
         "date": "2026-04-18",
         "actor": "codex",
         "added": 2744,
-        "removed": 293
+        "removed": 293,
+        "lines_touched": 3037
       },
       {
         "date": "2026-04-19",
         "actor": "codex",
         "added": 1066,
-        "removed": 324
+        "removed": 324,
+        "lines_touched": 1390
       },
       {
         "date": "2026-04-19",
         "actor": "human",
         "added": 1148,
-        "removed": 1078
+        "removed": 1078,
+        "lines_touched": 2226
       },
       {
         "date": "2026-04-20",
         "actor": "codex",
         "added": 444,
-        "removed": 6
+        "removed": 6,
+        "lines_touched": 450
       },
       {
         "date": "2026-04-21",
         "actor": "codex",
         "added": 544,
-        "removed": 183
+        "removed": 183,
+        "lines_touched": 727
       },
       {
         "date": "2026-04-22",
         "actor": "human",
         "added": 707,
-        "removed": 68
+        "removed": 68,
+        "lines_touched": 775
       },
       {
         "date": "2026-04-23",
         "actor": "codex",
         "added": 334,
-        "removed": 76
+        "removed": 76,
+        "lines_touched": 410
       },
       {
         "date": "2026-04-24",
         "actor": "human",
         "added": 94,
-        "removed": 32
+        "removed": 32,
+        "lines_touched": 126
       },
       {
         "date": "2026-04-26",
         "actor": "codex",
         "added": 1868,
-        "removed": 226
+        "removed": 226,
+        "lines_touched": 2094
       },
       {
         "date": "2026-04-29",
         "actor": "codex",
         "added": 165,
-        "removed": 291
+        "removed": 291,
+        "lines_touched": 456
       },
       {
         "date": "2026-05-01",
         "actor": "human",
         "added": 540,
-        "removed": 16
+        "removed": 16,
+        "lines_touched": 556
       },
       {
         "date": "2026-05-06",
         "actor": "codex",
         "added": 474,
-        "removed": 46
+        "removed": 46,
+        "lines_touched": 520
       },
       {
         "date": "2026-05-08",
         "actor": "codex",
         "added": 2210,
-        "removed": 41
+        "removed": 41,
+        "lines_touched": 2251
       },
       {
         "date": "2026-05-11",
         "actor": "codex",
         "added": 57,
-        "removed": 4
+        "removed": 4,
+        "lines_touched": 61
       },
       {
         "date": "2026-05-12",
         "actor": "codex",
         "added": 586,
-        "removed": 1
+        "removed": 1,
+        "lines_touched": 587
       },
       {
         "date": "2026-05-13",
         "actor": "codex",
         "added": 145,
-        "removed": 3
+        "removed": 3,
+        "lines_touched": 148
       },
       {
         "date": "2026-05-15",
         "actor": "codex",
         "added": 309,
-        "removed": 240
+        "removed": 240,
+        "lines_touched": 549
       },
       {
         "date": "2026-05-16",
         "actor": "codex",
         "added": 115,
-        "removed": 30
+        "removed": 30,
+        "lines_touched": 145
       },
       {
         "date": "2026-05-18",
         "actor": "codex",
         "added": 899,
-        "removed": 120
+        "removed": 120,
+        "lines_touched": 1019
       },
       {
         "date": "2026-05-20",
         "actor": "codex",
         "added": 643,
-        "removed": 117
+        "removed": 117,
+        "lines_touched": 760
       },
       {
         "date": "2026-05-22",
         "actor": "codex",
         "added": 3504,
-        "removed": 78
+        "removed": 78,
+        "lines_touched": 3582
       },
       {
         "date": "2026-05-23",
         "actor": "codex",
         "added": 309,
-        "removed": 338
+        "removed": 338,
+        "lines_touched": 647
       },
       {
         "date": "2026-05-23",
         "actor": "human",
         "added": 4812,
-        "removed": 577
+        "removed": 577,
+        "lines_touched": 5389
       },
       {
         "date": "2026-05-24",
         "actor": "claude",
         "added": 9,
-        "removed": 6
+        "removed": 6,
+        "lines_touched": 15
       },
       {
         "date": "2026-05-25",
         "actor": "claude",
         "added": 2556,
-        "removed": 2065
+        "removed": 2065,
+        "lines_touched": 4621
       },
       {
         "date": "2026-05-25",
         "actor": "codex",
         "added": 6200,
-        "removed": 378
+        "removed": 378,
+        "lines_touched": 6578
       },
       {
         "date": "2026-05-26",
         "actor": "human",
         "added": 13,
-        "removed": 8
+        "removed": 8,
+        "lines_touched": 21
       },
       {
         "date": "2026-05-27",
         "actor": "human",
         "added": 3233,
-        "removed": 1222
+        "removed": 1222,
+        "lines_touched": 4455
       },
       {
         "date": "2026-05-28",
         "actor": "human",
         "added": 8175,
-        "removed": 1274
+        "removed": 1274,
+        "lines_touched": 9449
       },
       {
         "date": "2026-05-29",
         "actor": "claude",
         "added": 427,
-        "removed": 8
+        "removed": 8,
+        "lines_touched": 435
       },
       {
         "date": "2026-05-29",
         "actor": "codex",
         "added": 11327,
-        "removed": 23
+        "removed": 23,
+        "lines_touched": 11350
       },
       {
         "date": "2026-05-29",
         "actor": "human",
         "added": 1871,
-        "removed": 253
+        "removed": 253,
+        "lines_touched": 2124
       },
       {
         "date": "2026-05-30",
         "actor": "claude",
         "added": 508,
-        "removed": 1250
+        "removed": 1250,
+        "lines_touched": 1758
       },
       {
         "date": "2026-05-30",
         "actor": "human",
         "added": 5633,
-        "removed": 538
+        "removed": 538,
+        "lines_touched": 6171
       },
       {
         "date": "2026-05-31",
         "actor": "claude",
         "added": 780,
-        "removed": 134
+        "removed": 134,
+        "lines_touched": 914
       },
       {
         "date": "2026-05-31",
         "actor": "human",
         "added": 850,
-        "removed": 8
+        "removed": 8,
+        "lines_touched": 858
       },
       {
         "date": "2026-06-01",
         "actor": "human",
         "added": 1996,
-        "removed": 1062
+        "removed": 1062,
+        "lines_touched": 3058
       },
       {
         "date": "2026-06-02",
         "actor": "codex",
         "added": 518,
-        "removed": 33
+        "removed": 33,
+        "lines_touched": 551
       },
       {
         "date": "2026-06-02",
         "actor": "human",
         "added": 270,
-        "removed": 26
+        "removed": 26,
+        "lines_touched": 296
       },
       {
         "date": "2026-06-03",
         "actor": "claude",
         "added": 657,
-        "removed": 2
+        "removed": 2,
+        "lines_touched": 659
       },
       {
         "date": "2026-06-03",
         "actor": "human",
         "added": 82,
-        "removed": 11
+        "removed": 11,
+        "lines_touched": 93
       },
       {
         "date": "2026-06-04",
         "actor": "human",
         "added": 39,
-        "removed": 37
+        "removed": 37,
+        "lines_touched": 76
       },
       {
         "date": "2026-06-05",
         "actor": "claude",
         "added": 93,
-        "removed": 11
+        "removed": 11,
+        "lines_touched": 104
       },
       {
         "date": "2026-06-05",
         "actor": "codex",
         "added": 1608,
-        "removed": 130
+        "removed": 130,
+        "lines_touched": 1738
       },
       {
         "date": "2026-06-05",
         "actor": "human",
         "added": 1389,
-        "removed": 35
+        "removed": 35,
+        "lines_touched": 1424
       },
       {
         "date": "2026-06-08",
         "actor": "claude",
         "added": 789,
-        "removed": 1201
+        "removed": 1201,
+        "lines_touched": 1990
       },
       {
         "date": "2026-06-09",
         "actor": "claude",
         "added": 1604,
-        "removed": 58
+        "removed": 58,
+        "lines_touched": 1662
       },
       {
         "date": "2026-06-09",
         "actor": "human",
         "added": 18,
-        "removed": 26
+        "removed": 26,
+        "lines_touched": 44
       },
       {
         "date": "2026-06-11",
         "actor": "claude",
         "added": 388,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 388
       },
       {
         "date": "2026-06-12",
         "actor": "claude",
         "added": 5,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 5
       },
       {
         "date": "2026-06-14",
         "actor": "claude",
         "added": 246,
-        "removed": 13
+        "removed": 13,
+        "lines_touched": 259
       },
       {
         "date": "2026-06-14",
         "actor": "codex",
         "added": 1174,
-        "removed": 17
+        "removed": 17,
+        "lines_touched": 1191
       },
       {
         "date": "2026-06-14",
         "actor": "human",
         "added": 244,
-        "removed": 17
+        "removed": 17,
+        "lines_touched": 261
       },
       {
         "date": "2026-06-15",
         "actor": "codex",
         "added": 4596,
-        "removed": 146
+        "removed": 146,
+        "lines_touched": 4742
       },
       {
         "date": "2026-06-16",
         "actor": "claude",
         "added": 448,
-        "removed": 99
+        "removed": 99,
+        "lines_touched": 547
       },
       {
         "date": "2026-06-16",
         "actor": "codex",
         "added": 8185,
-        "removed": 104
+        "removed": 104,
+        "lines_touched": 8289
       },
       {
         "date": "2026-06-17",
         "actor": "codex",
         "added": 6842,
-        "removed": 375
+        "removed": 375,
+        "lines_touched": 7217
       },
       {
         "date": "2026-06-18",
         "actor": "claude",
         "added": 41,
-        "removed": 41
+        "removed": 41,
+        "lines_touched": 82
       },
       {
         "date": "2026-06-18",
         "actor": "codex",
         "added": 3857,
-        "removed": 177
+        "removed": 177,
+        "lines_touched": 4034
       },
       {
         "date": "2026-06-18",
         "actor": "human",
         "added": 1021,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 1021
       },
       {
         "date": "2026-06-19",
         "actor": "codex",
         "added": 1716,
-        "removed": 151
+        "removed": 151,
+        "lines_touched": 1867
       },
       {
         "date": "2026-06-20",
         "actor": "claude",
         "added": 138,
-        "removed": 10
+        "removed": 10,
+        "lines_touched": 148
       },
       {
         "date": "2026-06-20",
         "actor": "codex",
         "added": 3390,
-        "removed": 754
+        "removed": 754,
+        "lines_touched": 4144
       },
       {
         "date": "2026-06-21",
         "actor": "claude",
         "added": 4539,
-        "removed": 135
+        "removed": 135,
+        "lines_touched": 4674
       },
       {
         "date": "2026-06-21",
         "actor": "codex",
         "added": 2776,
-        "removed": 37
+        "removed": 37,
+        "lines_touched": 2813
       },
       {
         "date": "2026-06-23",
         "actor": "codex",
         "added": 7374,
-        "removed": 40
+        "removed": 40,
+        "lines_touched": 7414
       },
       {
         "date": "2026-06-26",
         "actor": "claude",
         "added": 107,
-        "removed": 114
+        "removed": 114,
+        "lines_touched": 221
       },
       {
         "date": "2026-06-27",
         "actor": "claude",
         "added": 541,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 541
       },
       {
         "date": "2026-06-27",
         "actor": "codex",
         "added": 922,
-        "removed": 5
+        "removed": 5,
+        "lines_touched": 927
       },
       {
         "date": "2026-06-29",
         "actor": "codex",
         "added": 1953,
-        "removed": 2
+        "removed": 2,
+        "lines_touched": 1955
       },
       {
         "date": "2026-06-30",
         "actor": "claude",
         "added": 28,
-        "removed": 10
+        "removed": 10,
+        "lines_touched": 38
       },
       {
         "date": "2026-06-30",
         "actor": "codex",
         "added": 3491,
-        "removed": 300
+        "removed": 300,
+        "lines_touched": 3791
       },
       {
         "date": "2026-07-01",
         "actor": "claude",
         "added": 8542,
-        "removed": 4778
+        "removed": 4778,
+        "lines_touched": 13320
       },
       {
         "date": "2026-07-01",
         "actor": "codex",
         "added": 4177,
-        "removed": 479
+        "removed": 479,
+        "lines_touched": 4656
       },
       {
         "date": "2026-07-01",
         "actor": "human",
         "added": 332,
-        "removed": 6
+        "removed": 6,
+        "lines_touched": 338
       },
       {
         "date": "2026-07-02",
         "actor": "claude",
         "added": 118,
-        "removed": 2
+        "removed": 2,
+        "lines_touched": 120
       },
       {
         "date": "2026-07-02",
         "actor": "codex",
         "added": 1124,
-        "removed": 15
+        "removed": 15,
+        "lines_touched": 1139
       },
       {
         "date": "2026-07-03",
         "actor": "codex",
         "added": 2214,
-        "removed": 27
+        "removed": 27,
+        "lines_touched": 2241
       },
       {
         "date": "2026-07-04",
         "actor": "codex",
         "added": 902,
-        "removed": 22
+        "removed": 22,
+        "lines_touched": 924
       },
       {
         "date": "2026-07-05",
         "actor": "codex",
         "added": 623,
-        "removed": 38
+        "removed": 38,
+        "lines_touched": 661
       },
       {
         "date": "2026-07-06",
         "actor": "claude",
         "added": 33,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 33
       },
       {
         "date": "2026-07-07",
         "actor": "codex",
         "added": 134,
-        "removed": 9
+        "removed": 9,
+        "lines_touched": 143
       },
       {
         "date": "2026-07-08",
         "actor": "codex",
         "added": 990,
-        "removed": 56
+        "removed": 56,
+        "lines_touched": 1046
       },
       {
         "date": "2026-07-09",
         "actor": "codex",
         "added": 6335,
-        "removed": 463
+        "removed": 463,
+        "lines_touched": 6798
       },
       {
         "date": "2026-07-10",
         "actor": "claude",
         "added": 0,
-        "removed": 6
+        "removed": 6,
+        "lines_touched": 6
       },
       {
         "date": "2026-07-10",
         "actor": "codex",
         "added": 2908,
-        "removed": 67
+        "removed": 67,
+        "lines_touched": 2975
       },
       {
         "date": "2026-07-11",
         "actor": "claude",
         "added": 186,
-        "removed": 14
+        "removed": 14,
+        "lines_touched": 200
       },
       {
         "date": "2026-07-11",
         "actor": "codex",
         "added": 10220,
-        "removed": 321
+        "removed": 321,
+        "lines_touched": 10541
       },
       {
         "date": "2026-07-12",
         "actor": "claude",
         "added": 609,
-        "removed": 26
+        "removed": 26,
+        "lines_touched": 635
       },
       {
         "date": "2026-07-12",
         "actor": "codex",
         "added": 1027,
-        "removed": 5
+        "removed": 5,
+        "lines_touched": 1032
       },
       {
         "date": "2026-07-14",
         "actor": "claude",
         "added": 42,
-        "removed": 8
+        "removed": 8,
+        "lines_touched": 50
       },
       {
         "date": "2026-07-14",
         "actor": "codex",
         "added": 1259,
-        "removed": 7
+        "removed": 7,
+        "lines_touched": 1266
       },
       {
         "date": "2026-07-15",
         "actor": "claude",
         "added": 465,
-        "removed": 26
+        "removed": 26,
+        "lines_touched": 491
       },
       {
         "date": "2026-07-15",
         "actor": "codex",
         "added": 3687,
-        "removed": 349
+        "removed": 349,
+        "lines_touched": 4036
       },
       {
         "date": "2026-07-16",
         "actor": "claude",
         "added": 102,
-        "removed": 68
+        "removed": 68,
+        "lines_touched": 170
       },
       {
         "date": "2026-07-16",
         "actor": "codex",
         "added": 7555,
-        "removed": 411
+        "removed": 411,
+        "lines_touched": 7966
       },
       {
         "date": "2026-07-16",
         "actor": "human",
         "added": 90,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 90
       },
       {
         "date": "2026-07-17",
         "actor": "codex",
         "added": 8794,
-        "removed": 477
+        "removed": 477,
+        "lines_touched": 9271
       },
       {
         "date": "2026-07-19",
         "actor": "claude",
         "added": 454,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 454
       },
       {
         "date": "2026-07-19",
         "actor": "codex",
         "added": 31404,
-        "removed": 2398
+        "removed": 2398,
+        "lines_touched": 33802
       },
       {
         "date": "2026-07-19",
         "actor": "human",
         "added": 75,
-        "removed": 60
+        "removed": 60,
+        "lines_touched": 135
       },
       {
         "date": "2026-07-21",
         "actor": "claude",
         "added": 0,
-        "removed": 1
+        "removed": 1,
+        "lines_touched": 1
       },
       {
         "date": "2026-07-23",
         "actor": "human",
         "added": 92,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 92
       },
       {
         "date": "2026-07-24",
         "actor": "human",
         "added": 2,
-        "removed": 2
+        "removed": 2,
+        "lines_touched": 4
       },
       {
         "date": "2026-07-25",
         "actor": "claude",
         "added": 4772,
-        "removed": 97
+        "removed": 97,
+        "lines_touched": 4869
       },
       {
         "date": "2026-07-25",
         "actor": "codex",
         "added": 8217,
-        "removed": 92
+        "removed": 92,
+        "lines_touched": 8309
       },
       {
         "date": "2026-07-26",
         "actor": "claude",
         "added": 988,
-        "removed": 285
+        "removed": 285,
+        "lines_touched": 1273
       },
       {
         "date": "2026-07-26",
         "actor": "codex",
         "added": 66383,
-        "removed": 2717
+        "removed": 2717,
+        "lines_touched": 69100
       },
       {
         "date": "2026-07-27",
         "actor": "codex",
         "added": 1250,
-        "removed": 33
+        "removed": 33,
+        "lines_touched": 1283
       },
       {
         "date": "2026-07-28",
         "actor": "claude",
         "added": 56,
-        "removed": 1
+        "removed": 1,
+        "lines_touched": 57
       },
       {
         "date": "2026-07-28",
         "actor": "codex",
         "added": 41721,
-        "removed": 1268
+        "removed": 1268,
+        "lines_touched": 42989
       },
       {
         "date": "2026-07-29",
         "actor": "claude",
         "added": 1983,
-        "removed": 256
+        "removed": 256,
+        "lines_touched": 2239
       },
       {
         "date": "2026-07-29",
         "actor": "codex",
         "added": 11230,
-        "removed": 422
+        "removed": 422,
+        "lines_touched": 11652
       },
       {
         "date": "2026-07-30",
         "actor": "claude",
         "added": 121,
-        "removed": 8
+        "removed": 8,
+        "lines_touched": 129
       },
       {
         "date": "2026-07-30",
         "actor": "codex",
         "added": 6668,
-        "removed": 910
+        "removed": 910,
+        "lines_touched": 7578
       },
       {
         "date": "2026-07-30",
         "actor": "human",
         "added": 177,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 177
       },
       {
         "date": "2026-07-31",
         "actor": "claude",
         "added": 120,
-        "removed": 22
+        "removed": 22,
+        "lines_touched": 142
       },
       {
         "date": "2026-08-01",
         "actor": "claude",
         "added": 27,
-        "removed": 2
+        "removed": 2,
+        "lines_touched": 29
       },
       {
         "date": "2026-08-01",
         "actor": "codex",
         "added": 7,
-        "removed": 4
+        "removed": 4,
+        "lines_touched": 11
       },
       {
         "date": "2026-08-01",
         "actor": "human",
         "added": 15,
-        "removed": 9
+        "removed": 9,
+        "lines_touched": 24
       },
       {
         "date": "2026-08-02",
         "actor": "claude",
         "added": 11,
-        "removed": 1
+        "removed": 1,
+        "lines_touched": 12
       },
       {
         "date": "2026-08-03",
         "actor": "codex",
         "added": 237,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 237
       },
       {
         "date": "2026-08-04",
         "actor": "human",
         "added": 658,
-        "removed": 147
+        "removed": 147,
+        "lines_touched": 805
       },
       {
         "date": "2026-08-05",
         "actor": "codex",
         "added": 89,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 89
       },
       {
         "date": "2026-08-06",
         "actor": "claude",
         "added": 284,
-        "removed": 12
+        "removed": 12,
+        "lines_touched": 296
       },
       {
         "date": "2026-08-07",
         "actor": "codex",
         "added": 2263,
-        "removed": 25
+        "removed": 25,
+        "lines_touched": 2288
       },
       {
         "date": "2026-08-08",
         "actor": "claude",
         "added": 376,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 376
       },
       {
         "date": "2026-08-08",
         "actor": "codex",
         "added": 3481,
-        "removed": 84
+        "removed": 84,
+        "lines_touched": 3565
       },
       {
         "date": "2026-08-08",
         "actor": "human",
         "added": 179,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 179
       },
       {
         "date": "2026-08-09",
         "actor": "claude",
         "added": 564,
-        "removed": 396
+        "removed": 396,
+        "lines_touched": 960
       },
       {
         "date": "2026-08-09",
         "actor": "codex",
         "added": 17042,
-        "removed": 970
+        "removed": 970,
+        "lines_touched": 18012
       },
       {
         "date": "2026-08-10",
         "actor": "claude",
         "added": 180,
-        "removed": 50
+        "removed": 50,
+        "lines_touched": 230
       },
       {
         "date": "2026-08-11",
         "actor": "claude",
         "added": 131,
-        "removed": 2
+        "removed": 2,
+        "lines_touched": 133
       },
       {
         "date": "2026-08-11",
         "actor": "codex",
         "added": 12775,
-        "removed": 1302
+        "removed": 1302,
+        "lines_touched": 14077
       },
       {
         "date": "2026-08-12",
         "actor": "claude",
         "added": 506,
-        "removed": 5
+        "removed": 5,
+        "lines_touched": 511
       },
       {
         "date": "2026-08-12",
         "actor": "codex",
         "added": 20619,
-        "removed": 1008
+        "removed": 1008,
+        "lines_touched": 21627
       },
       {
         "date": "2026-08-13",
         "actor": "claude",
         "added": 35,
-        "removed": 11
+        "removed": 11,
+        "lines_touched": 46
       },
       {
         "date": "2026-08-14",
         "actor": "claude",
         "added": 72,
-        "removed": 3
+        "removed": 3,
+        "lines_touched": 75
       },
       {
         "date": "2026-08-14",
         "actor": "human",
         "added": 8,
-        "removed": 8
+        "removed": 8,
+        "lines_touched": 16
       },
       {
         "date": "2026-08-15",
         "actor": "claude",
         "added": 141,
-        "removed": 10
+        "removed": 10,
+        "lines_touched": 151
       },
       {
         "date": "2026-08-15",
         "actor": "codex",
         "added": 6785,
-        "removed": 223
+        "removed": 223,
+        "lines_touched": 7008
       },
       {
         "date": "2026-08-16",
         "actor": "claude",
         "added": 24,
-        "removed": 3
+        "removed": 3,
+        "lines_touched": 27
       },
       {
         "date": "2026-08-16",
         "actor": "codex",
         "added": 2170,
-        "removed": 9
+        "removed": 9,
+        "lines_touched": 2179
       },
       {
         "date": "2026-08-17",
         "actor": "claude",
         "added": 545,
-        "removed": 98
+        "removed": 98,
+        "lines_touched": 643
       },
       {
         "date": "2026-08-17",
         "actor": "codex",
         "added": 2096,
-        "removed": 53
+        "removed": 53,
+        "lines_touched": 2149
       },
       {
         "date": "2026-08-17",
         "actor": "human",
         "added": 20,
-        "removed": 18
+        "removed": 18,
+        "lines_touched": 38
       },
       {
         "date": "2026-08-18",
         "actor": "claude",
         "added": 103,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 103
       },
       {
         "date": "2026-08-18",
         "actor": "codex",
         "added": 4713,
-        "removed": 79
+        "removed": 79,
+        "lines_touched": 4792
       },
       {
         "date": "2026-08-19",
         "actor": "claude",
         "added": 933,
-        "removed": 18
+        "removed": 18,
+        "lines_touched": 951
       },
       {
         "date": "2026-08-20",
         "actor": "claude",
         "added": 166,
-        "removed": 5
+        "removed": 5,
+        "lines_touched": 171
       },
       {
         "date": "2026-08-20",
         "actor": "codex",
         "added": 1816,
-        "removed": 70
+        "removed": 70,
+        "lines_touched": 1886
       },
       {
         "date": "2026-08-21",
         "actor": "claude",
         "added": 52,
-        "removed": 19
+        "removed": 19,
+        "lines_touched": 71
       },
       {
         "date": "2026-08-21",
         "actor": "codex",
         "added": 1475,
-        "removed": 20
+        "removed": 20,
+        "lines_touched": 1495
       },
       {
         "date": "2026-08-22",
         "actor": "codex",
         "added": 2334,
-        "removed": 390
+        "removed": 390,
+        "lines_touched": 2724
       },
       {
         "date": "2026-08-23",
         "actor": "claude",
         "added": 24,
-        "removed": 4
+        "removed": 4,
+        "lines_touched": 28
       },
       {
         "date": "2026-08-23",
         "actor": "codex",
         "added": 1223,
-        "removed": 166
+        "removed": 166,
+        "lines_touched": 1389
       },
       {
         "date": "2026-08-24",
         "actor": "claude",
         "added": 41,
-        "removed": 353
+        "removed": 353,
+        "lines_touched": 394
       },
       {
         "date": "2026-08-24",
         "actor": "codex",
         "added": 5034,
-        "removed": 651
+        "removed": 651,
+        "lines_touched": 5685
       },
       {
         "date": "2026-08-25",
         "actor": "codex",
         "added": 4731,
-        "removed": 182
+        "removed": 182,
+        "lines_touched": 4913
       },
       {
         "date": "2026-08-25",
         "actor": "human",
         "added": 244,
-        "removed": 33
+        "removed": 33,
+        "lines_touched": 277
       },
       {
         "date": "2026-08-26",
         "actor": "claude",
         "added": 942,
-        "removed": 163
+        "removed": 163,
+        "lines_touched": 1105
       },
       {
         "date": "2026-08-26",
         "actor": "codex",
         "added": 1039,
-        "removed": 183
+        "removed": 183,
+        "lines_touched": 1222
       },
       {
         "date": "2026-08-27",
         "actor": "claude",
         "added": 63,
-        "removed": 22
+        "removed": 22,
+        "lines_touched": 85
       },
       {
         "date": "2026-08-27",
         "actor": "codex",
         "added": 5331,
-        "removed": 430
+        "removed": 430,
+        "lines_touched": 5761
       },
       {
         "date": "2026-08-27",
         "actor": "human",
         "added": 784,
-        "removed": 9
+        "removed": 9,
+        "lines_touched": 793
       },
       {
         "date": "2026-08-28",
         "actor": "codex",
         "added": 2690,
-        "removed": 2
+        "removed": 2,
+        "lines_touched": 2692
       },
       {
         "date": "2026-08-29",
         "actor": "claude",
         "added": 2167,
-        "removed": 189
+        "removed": 189,
+        "lines_touched": 2356
       },
       {
         "date": "2026-08-29",
         "actor": "codex",
         "added": 12742,
-        "removed": 1423
+        "removed": 1423,
+        "lines_touched": 14165
       },
       {
         "date": "2026-08-29",
         "actor": "human",
         "added": 32,
-        "removed": 58
+        "removed": 58,
+        "lines_touched": 90
       },
       {
         "date": "2026-08-30",
         "actor": "codex",
         "added": 40738,
-        "removed": 290
+        "removed": 290,
+        "lines_touched": 41028
       },
       {
         "date": "2026-08-30",
         "actor": "human",
         "added": 899,
-        "removed": 7
+        "removed": 7,
+        "lines_touched": 906
       },
       {
         "date": "2026-08-31",
         "actor": "codex",
         "added": 77280,
-        "removed": 118
+        "removed": 118,
+        "lines_touched": 77398
       },
       {
         "date": "2026-09-01",
         "actor": "codex",
         "added": 32343,
-        "removed": 1013
+        "removed": 1013,
+        "lines_touched": 33356
       },
       {
         "date": "2026-09-02",
         "actor": "claude",
         "added": 1017,
-        "removed": 59
+        "removed": 59,
+        "lines_touched": 1076
       },
       {
         "date": "2026-09-02",
         "actor": "codex",
         "added": 566,
-        "removed": 24
+        "removed": 24,
+        "lines_touched": 590
       },
       {
         "date": "2026-09-03",
         "actor": "claude",
         "added": 2415,
-        "removed": 617
+        "removed": 617,
+        "lines_touched": 3032
       },
       {
         "date": "2026-09-03",
         "actor": "human",
         "added": 2574,
-        "removed": 313
+        "removed": 313,
+        "lines_touched": 2887
       },
       {
         "date": "2026-09-04",
         "actor": "claude",
         "added": 826,
-        "removed": 53
+        "removed": 53,
+        "lines_touched": 879
       },
       {
         "date": "2026-09-04",
         "actor": "codex",
         "added": 13387,
-        "removed": 2745
+        "removed": 2745,
+        "lines_touched": 16132
       },
       {
         "date": "2026-09-05",
         "actor": "claude",
         "added": 1477,
-        "removed": 50
+        "removed": 50,
+        "lines_touched": 1527
       },
       {
         "date": "2026-09-05",
         "actor": "codex",
         "added": 8300,
-        "removed": 1332
+        "removed": 1332,
+        "lines_touched": 9632
       },
       {
         "date": "2026-09-05",
         "actor": "human",
         "added": 470,
-        "removed": 173
+        "removed": 173,
+        "lines_touched": 643
       },
       {
         "date": "2026-09-06",
         "actor": "codex",
         "added": 378,
-        "removed": 26
+        "removed": 26,
+        "lines_touched": 404
       },
       {
         "date": "2026-09-07",
         "actor": "codex",
         "added": 1491,
-        "removed": 97
+        "removed": 97,
+        "lines_touched": 1588
       },
       {
         "date": "2026-09-08",
         "actor": "codex",
         "added": 9296,
-        "removed": 1244
+        "removed": 1244,
+        "lines_touched": 10540
       },
       {
         "date": "2026-09-09",
         "actor": "codex",
         "added": 10074,
-        "removed": 363
+        "removed": 363,
+        "lines_touched": 10437
       },
       {
         "date": "2026-09-10",
         "actor": "claude",
         "added": 39,
-        "removed": 32
+        "removed": 32,
+        "lines_touched": 71
       },
       {
         "date": "2026-09-10",
         "actor": "codex",
         "added": 7159,
-        "removed": 2225
+        "removed": 2225,
+        "lines_touched": 9384
       },
       {
         "date": "2026-09-11",
         "actor": "claude",
         "added": 4519,
-        "removed": 867
+        "removed": 867,
+        "lines_touched": 5386
       },
       {
         "date": "2026-09-11",
         "actor": "codex",
         "added": 9860,
-        "removed": 3645
+        "removed": 3645,
+        "lines_touched": 13505
       },
       {
         "date": "2026-09-12",
         "actor": "claude",
         "added": 6000,
-        "removed": 1022
+        "removed": 1022,
+        "lines_touched": 7022
       },
       {
         "date": "2026-09-12",
         "actor": "codex",
         "added": 14812,
-        "removed": 791
+        "removed": 791,
+        "lines_touched": 15603
       },
       {
         "date": "2026-09-12",
         "actor": "human",
         "added": 1157,
-        "removed": 228
+        "removed": 228,
+        "lines_touched": 1385
       },
       {
         "date": "2026-09-13",
         "actor": "claude",
         "added": 141,
-        "removed": 132
+        "removed": 132,
+        "lines_touched": 273
       },
       {
         "date": "2026-09-13",
         "actor": "codex",
         "added": 4782,
-        "removed": 144
+        "removed": 144,
+        "lines_touched": 4926
       },
       {
         "date": "2026-09-14",
         "actor": "claude",
         "added": 81,
-        "removed": 2
+        "removed": 2,
+        "lines_touched": 83
       },
       {
         "date": "2026-09-15",
         "actor": "codex",
         "added": 43800,
-        "removed": 15368
+        "removed": 15368,
+        "lines_touched": 59168
       },
       {
         "date": "2026-09-15",
         "actor": "human",
         "added": 430,
-        "removed": 24
+        "removed": 24,
+        "lines_touched": 454
       },
       {
         "date": "2026-09-16",
         "actor": "claude",
         "added": 789,
-        "removed": 2
+        "removed": 2,
+        "lines_touched": 791
       },
       {
         "date": "2026-09-16",
         "actor": "codex",
         "added": 4690,
-        "removed": 134
+        "removed": 134,
+        "lines_touched": 4824
       },
       {
         "date": "2026-09-16",
         "actor": "human",
         "added": 857,
-        "removed": 624
+        "removed": 624,
+        "lines_touched": 1481
       },
       {
         "date": "2026-09-17",
         "actor": "claude",
         "added": 197,
-        "removed": 166
+        "removed": 166,
+        "lines_touched": 363
       },
       {
         "date": "2026-09-17",
         "actor": "codex",
         "added": 6335,
-        "removed": 1073
+        "removed": 1073,
+        "lines_touched": 7408
       },
       {
         "date": "2026-09-18",
         "actor": "codex",
         "added": 6182,
-        "removed": 121
+        "removed": 121,
+        "lines_touched": 6303
       },
       {
         "date": "2026-09-19",
         "actor": "codex",
         "added": 16566,
-        "removed": 619
+        "removed": 619,
+        "lines_touched": 17185
       },
       {
         "date": "2026-09-20",
         "actor": "codex",
         "added": 8251,
-        "removed": 41
+        "removed": 41,
+        "lines_touched": 8292
       },
       {
         "date": "2026-09-21",
         "actor": "claude",
         "added": 161,
-        "removed": 15
+        "removed": 15,
+        "lines_touched": 176
       },
       {
         "date": "2026-09-21",
         "actor": "codex",
         "added": 7693,
-        "removed": 203
+        "removed": 203,
+        "lines_touched": 7896
       },
       {
         "date": "2026-09-22",
         "actor": "claude",
         "added": 291,
-        "removed": 24
+        "removed": 24,
+        "lines_touched": 315
       },
       {
         "date": "2026-09-22",
         "actor": "codex",
         "added": 9031,
-        "removed": 220
+        "removed": 220,
+        "lines_touched": 9251
       },
       {
         "date": "2026-09-23",
         "actor": "claude",
         "added": 1614,
-        "removed": 64
+        "removed": 64,
+        "lines_touched": 1678
       },
       {
         "date": "2026-09-23",
         "actor": "codex",
         "added": 4475,
-        "removed": 176
+        "removed": 176,
+        "lines_touched": 4651
       },
       {
         "date": "2026-09-24",
         "actor": "claude",
         "added": 5469,
-        "removed": 437
+        "removed": 437,
+        "lines_touched": 5906
       },
       {
         "date": "2026-09-24",
         "actor": "codex",
         "added": 2844,
-        "removed": 146
+        "removed": 146,
+        "lines_touched": 2990
       },
       {
         "date": "2026-09-24",
         "actor": "human",
         "added": 357,
-        "removed": 54
+        "removed": 54,
+        "lines_touched": 411
       },
       {
         "date": "2026-09-25",
         "actor": "claude",
         "added": 416,
-        "removed": 8
+        "removed": 8,
+        "lines_touched": 424
       },
       {
         "date": "2026-09-25",
         "actor": "human",
         "added": 3601,
-        "removed": 294
+        "removed": 294,
+        "lines_touched": 3895
       },
       {
         "date": "2026-09-26",
         "actor": "claude",
         "added": 4316,
-        "removed": 136
+        "removed": 136,
+        "lines_touched": 4452
       },
       {
         "date": "2026-09-26",
         "actor": "codex",
         "added": 10715,
-        "removed": 741
+        "removed": 741,
+        "lines_touched": 11456
       },
       {
         "date": "2026-09-27",
         "actor": "claude",
         "added": 1900,
-        "removed": 22
+        "removed": 22,
+        "lines_touched": 1922
       },
       {
         "date": "2026-09-27",
         "actor": "codex",
         "added": 18973,
-        "removed": 5235
+        "removed": 5235,
+        "lines_touched": 24208
       },
       {
         "date": "2026-09-28",
         "actor": "claude",
         "added": 11563,
-        "removed": 4461
+        "removed": 4461,
+        "lines_touched": 16024
       },
       {
         "date": "2026-09-28",
         "actor": "codex",
         "added": 4360,
-        "removed": 48
+        "removed": 48,
+        "lines_touched": 4408
       },
       {
         "date": "2026-09-28",
         "actor": "human",
         "added": 309,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 309
       },
       {
         "date": "2026-09-29",
         "actor": "claude",
         "added": 471,
-        "removed": 52
+        "removed": 52,
+        "lines_touched": 523
       },
       {
         "date": "2026-09-29",
         "actor": "codex",
         "added": 419,
-        "removed": 53
+        "removed": 53,
+        "lines_touched": 472
       },
       {
         "date": "2026-09-30",
         "actor": "claude",
         "added": 1867,
-        "removed": 797
+        "removed": 797,
+        "lines_touched": 2664
       },
       {
         "date": "2026-09-30",
         "actor": "codex",
         "added": 7153,
-        "removed": 282
+        "removed": 282,
+        "lines_touched": 7435
       },
       {
         "date": "2026-09-30",
         "actor": "human",
         "added": 230,
-        "removed": 4
+        "removed": 4,
+        "lines_touched": 234
       },
       {
         "date": "2026-10-01",
         "actor": "claude",
         "added": 2425,
-        "removed": 2408
+        "removed": 2408,
+        "lines_touched": 4833
       },
       {
         "date": "2026-10-01",
         "actor": "codex",
         "added": 3271,
-        "removed": 215
+        "removed": 215,
+        "lines_touched": 3486
       },
       {
         "date": "2026-10-02",
         "actor": "claude",
         "added": 568,
-        "removed": 67
+        "removed": 67,
+        "lines_touched": 635
       },
       {
         "date": "2026-10-02",
         "actor": "codex",
         "added": 2939,
-        "removed": 195
+        "removed": 195,
+        "lines_touched": 3134
       },
       {
         "date": "2026-10-03",
         "actor": "claude",
         "added": 513,
-        "removed": 77
+        "removed": 77,
+        "lines_touched": 590
       },
       {
         "date": "2026-10-03",
         "actor": "codex",
         "added": 1246,
-        "removed": 21
+        "removed": 21,
+        "lines_touched": 1267
       },
       {
         "date": "2026-10-04",
         "actor": "claude",
         "added": 2345,
-        "removed": 820
+        "removed": 820,
+        "lines_touched": 3165
       },
       {
         "date": "2026-10-04",
         "actor": "codex",
         "added": 17301,
-        "removed": 1482
+        "removed": 1482,
+        "lines_touched": 18783
       },
       {
         "date": "2026-10-05",
         "actor": "claude",
         "added": 542,
-        "removed": 131
+        "removed": 131,
+        "lines_touched": 673
       },
       {
         "date": "2026-10-05",
         "actor": "codex",
         "added": 2659,
-        "removed": 416
+        "removed": 416,
+        "lines_touched": 3075
       },
       {
         "date": "2026-10-06",
         "actor": "claude",
         "added": 2158,
-        "removed": 969
+        "removed": 969,
+        "lines_touched": 3127
       },
       {
         "date": "2026-10-06",
         "actor": "codex",
         "added": 2952,
-        "removed": 130
+        "removed": 130,
+        "lines_touched": 3082
       },
       {
         "date": "2026-10-06",
         "actor": "human",
         "added": 3217,
-        "removed": 170
+        "removed": 170,
+        "lines_touched": 3387
       },
       {
         "date": "2026-10-07",
         "actor": "claude",
         "added": 541,
-        "removed": 18
+        "removed": 18,
+        "lines_touched": 559
       },
       {
         "date": "2026-10-07",
         "actor": "codex",
         "added": 401,
-        "removed": 26
+        "removed": 26,
+        "lines_touched": 427
       },
       {
         "date": "2026-10-08",
         "actor": "claude",
         "added": 426,
-        "removed": 198
+        "removed": 198,
+        "lines_touched": 624
       },
       {
         "date": "2026-10-08",
         "actor": "codex",
         "added": 10351,
-        "removed": 217
+        "removed": 217,
+        "lines_touched": 10568
       },
       {
         "date": "2026-10-09",
         "actor": "claude",
         "added": 18487,
-        "removed": 13644
+        "removed": 13644,
+        "lines_touched": 32131
       },
       {
         "date": "2026-10-09",
         "actor": "codex",
         "added": 8018,
-        "removed": 377
+        "removed": 377,
+        "lines_touched": 8395
       },
       {
         "date": "2026-10-09",
         "actor": "human",
         "added": 3,
-        "removed": 3
+        "removed": 3,
+        "lines_touched": 6
       },
       {
         "date": "2026-10-10",
         "actor": "claude",
         "added": 1340,
-        "removed": 949
+        "removed": 949,
+        "lines_touched": 2289
       },
       {
         "date": "2026-10-10",
         "actor": "human",
         "added": 2196,
-        "removed": 203
+        "removed": 203,
+        "lines_touched": 2399
       },
       {
         "date": "2026-10-11",
         "actor": "claude",
         "added": 1829,
-        "removed": 287
+        "removed": 287,
+        "lines_touched": 2116
       },
       {
         "date": "2026-10-12",
         "actor": "claude",
         "added": 8,
-        "removed": 4
+        "removed": 4,
+        "lines_touched": 12
       },
       {
         "date": "2026-10-12",
         "actor": "codex",
         "added": 3268,
-        "removed": 404
+        "removed": 404,
+        "lines_touched": 3672
       },
       {
         "date": "2026-10-14",
         "actor": "claude",
         "added": 142,
-        "removed": 2
+        "removed": 2,
+        "lines_touched": 144
       },
       {
         "date": "2026-10-14",
         "actor": "codex",
         "added": 3959,
-        "removed": 41
+        "removed": 41,
+        "lines_touched": 4000
       },
       {
         "date": "2026-10-15",
         "actor": "claude",
         "added": 160,
-        "removed": 15
+        "removed": 15,
+        "lines_touched": 175
       },
       {
         "date": "2026-10-15",
         "actor": "codex",
         "added": 5742,
-        "removed": 265
+        "removed": 265,
+        "lines_touched": 6007
       },
       {
         "date": "2026-10-15",
         "actor": "human",
         "added": 26,
-        "removed": 2
+        "removed": 2,
+        "lines_touched": 28
       },
       {
         "date": "2026-10-16",
         "actor": "claude",
         "added": 1467,
-        "removed": 573
+        "removed": 573,
+        "lines_touched": 2040
       },
       {
         "date": "2026-10-17",
         "actor": "claude",
         "added": 10703,
-        "removed": 735
+        "removed": 735,
+        "lines_touched": 11438
       },
       {
         "date": "2026-10-17",
         "actor": "codex",
         "added": 420,
-        "removed": 5
+        "removed": 5,
+        "lines_touched": 425
       },
       {
         "date": "2026-10-18",
         "actor": "claude",
         "added": 2462,
-        "removed": 35
+        "removed": 35,
+        "lines_touched": 2497
       },
       {
         "date": "2026-10-19",
         "actor": "claude",
         "added": 151,
-        "removed": 14
+        "removed": 14,
+        "lines_touched": 165
       },
       {
         "date": "2026-10-19",
         "actor": "human",
         "added": 24,
-        "removed": 2
+        "removed": 2,
+        "lines_touched": 26
       },
       {
         "date": "2026-10-21",
         "actor": "claude",
         "added": 4896,
-        "removed": 1323
+        "removed": 1323,
+        "lines_touched": 6219
       },
       {
         "date": "2026-10-21",
         "actor": "human",
         "added": 1291,
-        "removed": 6
+        "removed": 6,
+        "lines_touched": 1297
       },
       {
         "date": "2026-10-22",
         "actor": "claude",
         "added": 3105,
-        "removed": 746
+        "removed": 746,
+        "lines_touched": 3851
       },
       {
         "date": "2026-10-22",
         "actor": "codex",
         "added": 373,
-        "removed": 13
+        "removed": 13,
+        "lines_touched": 386
       },
       {
         "date": "2026-10-23",
         "actor": "claude",
         "added": 2230,
-        "removed": 377
+        "removed": 377,
+        "lines_touched": 2607
       },
       {
         "date": "2026-10-23",
         "actor": "codex",
         "added": 182,
-        "removed": 5
+        "removed": 5,
+        "lines_touched": 187
       },
       {
         "date": "2026-10-23",
         "actor": "human",
         "added": 323,
-        "removed": 28
+        "removed": 28,
+        "lines_touched": 351
       },
       {
         "date": "2026-10-24",
         "actor": "claude",
         "added": 11956,
-        "removed": 3553
+        "removed": 3553,
+        "lines_touched": 15509
       },
       {
         "date": "2026-10-24",
         "actor": "codex",
         "added": 233,
-        "removed": 47
+        "removed": 47,
+        "lines_touched": 280
       },
       {
         "date": "2026-10-25",
         "actor": "claude",
         "added": 22059,
-        "removed": 3451
+        "removed": 3451,
+        "lines_touched": 25510
       },
       {
         "date": "2026-10-25",
         "actor": "codex",
         "added": 1736,
-        "removed": 294
+        "removed": 294,
+        "lines_touched": 2030
       },
       {
         "date": "2026-10-25",
         "actor": "human",
         "added": 507,
-        "removed": 439
+        "removed": 439,
+        "lines_touched": 946
       },
       {
         "date": "2026-10-26",
         "actor": "claude",
         "added": 2066,
-        "removed": 940
+        "removed": 940,
+        "lines_touched": 3006
       },
       {
         "date": "2026-10-26",
         "actor": "codex",
         "added": 172,
-        "removed": 1123
+        "removed": 1123,
+        "lines_touched": 1295
       },
       {
         "date": "2026-10-26",
         "actor": "human",
         "added": 9589,
-        "removed": 124
+        "removed": 124,
+        "lines_touched": 9713
       },
       {
         "date": "2026-10-27",
         "actor": "human",
         "added": 1091,
-        "removed": 138
+        "removed": 138,
+        "lines_touched": 1229
       },
       {
         "date": "2026-10-28",
         "actor": "claude",
         "added": 7428,
-        "removed": 1782
+        "removed": 1782,
+        "lines_touched": 9210
       },
       {
         "date": "2026-10-28",
         "actor": "codex",
         "added": 246,
-        "removed": 9
+        "removed": 9,
+        "lines_touched": 255
       },
       {
         "date": "2026-10-28",
         "actor": "human",
         "added": 1322,
-        "removed": 107
+        "removed": 107,
+        "lines_touched": 1429
       },
       {
         "date": "2026-10-30",
         "actor": "claude",
         "added": 3466,
-        "removed": 31
+        "removed": 31,
+        "lines_touched": 3497
       },
       {
         "date": "2026-10-30",
         "actor": "human",
         "added": 534,
-        "removed": 0
+        "removed": 0,
+        "lines_touched": 534
       },
       {
         "date": "2026-10-31",
         "actor": "claude",
         "added": 371,
-        "removed": 3
+        "removed": 3,
+        "lines_touched": 374
       }
     ]
   },
@@ -15855,12 +16502,12 @@
   "cursor_last_commit": "2026-03-26",
   "mcp": {
     "summary": {
-      "calls_completed": 159366,
-      "request_failed": 1854,
+      "calls_completed": 160858,
+      "request_failed": 1862,
       "transport_failed": 9407,
       "tools": 57,
       "first": "2026-08-24",
-      "last": "2026-10-31"
+      "last": "2026-11-01"
     },
     "coverage": [
       [
@@ -15905,7 +16552,7 @@
     },
     "codex": {
       "commits": 1575,
-      "raw": 4496273998
+      "raw": 4390318684
     }
   },
   "earliest_evidence": [
@@ -15951,8 +16598,8 @@
     "months": "June to October",
     "sessions": 43,
     "own_tokens": 347244558,
-    "lifetime": 27052354773,
-    "share": 1.2836019670515801,
+    "lifetime": 27202105833,
+    "share": 1.2765355746051956,
     "commits": 667,
     "note": "Node-operations campaign, June to October: 43 Codex sessions, about 0.35B own tokens (about 1% of the Codex measured total); 667 commits in that period.",
     "public": true
