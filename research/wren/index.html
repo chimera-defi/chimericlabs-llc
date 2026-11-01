@@ -496,6 +496,10 @@
       // Back to an empty hash resets the view; section anchors don't.
       addEventListener("hashchange", () => { if (!location.hash || location.hash.startsWith("#view=")) show(fromHash(), false); });
       show(fromHash(), false);
+      // Close the popover so in-page link targets stay visible.
+      document.addEventListener("click", (event) => {
+        event.target.closest('[popover] a[href^="#"]')?.closest("[popover]").hidePopover();
+      });
     </script>
   </body>
 </html>
