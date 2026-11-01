@@ -236,7 +236,9 @@ section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
 </details>
       <nav class="article-toc" aria-label="Contents">
 <ul>
-<li><a href="#pipeline">The pipeline, step by step</a>
+<li><a href="#picking">How portfolios are picked</a>
+</li>
+<li><a href="#pipeline">From order sheet to trade</a>
 </li>
 <li><a href="#agent-host">Agent Host</a>
 </li>
@@ -246,8 +248,205 @@ section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
 </li>
 </ul></nav>
     </section>
+    <section class="ds-section ds-wrap article-stack" id="picking">
+<h2 class="ds-title">How portfolios are picked</h2>
+<p class="ds-lede">An optimizer turns research ideas into candidate portfolios. Most candidates fail. A human picks from the few that pass.</p>
+<ol class="ds-steps article-pipeline">
+<li><p>Research. Agents read papers and data, then write portfolio ideas.</p>
+</li>
+<li><p>Seeds. Each idea becomes a seed portfolio, tagged with its source.</p>
+</li>
+<li><p>Search. The optimizer tries many weight mixes around the seeds.</p>
+</li>
+<li><p>Score. Each mix is scored on past monthly returns and drawdowns.</p>
+</li>
+<li><p>Stress tests. Gates check for overfitting and for weak periods.</p>
+</li>
+<li><p>Verdict. Each mix is marked approved, watch or reject.</p>
+</li>
+<li><p>Shortlist. Approved mixes go to a registry and a browsable explorer.</p>
+</li>
+<li><p>Order sheet. The human picks a target. Agents draft the trades to reach it.</p>
+</li>
+</ol>
+<figure class="article-chart">
+<h3>The optimizer, one run</h3>
+<div class="ds-diagram">
+<svg class="chart-desktop" viewBox="0 0 1100 304" role="img" aria-label="Optimizer run: inputs, search, score, gates, verdict, outputs, with a seed loop back to inputs" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="optimizer-desktop" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto-start-reverse">
+<path d="M0 0 L7 3.5 L0 7 Z" class="ds-arrow" />
+</marker>
+</defs>
+<rect class="ds-node" x="12" y="24" width="150" height="100" rx="8" />
+<text x="87" y="65" class="node-title chart-small" text-anchor="middle">Inputs</text>
+<text x="87" y="89" class="chart-small" text-anchor="middle">seeds, returns, limits</text>
+<path d="M162 74 H188" class="ds-edge" marker-end="url(#optimizer-desktop)" />
+<rect class="ds-node" x="196" y="24" width="150" height="100" rx="8" />
+<text x="271" y="65" class="node-title chart-small" text-anchor="middle">Search</text>
+<text x="271" y="89" class="chart-small" text-anchor="middle">up to six methods</text>
+<path d="M346 74 H372" class="ds-edge" marker-end="url(#optimizer-desktop)" />
+<rect class="ds-node" x="380" y="24" width="150" height="100" rx="8" />
+<text x="455" y="65" class="node-title chart-small" text-anchor="middle">Score</text>
+<text x="455" y="89" class="chart-small" text-anchor="middle">return, risk, costs</text>
+<path d="M530 74 H556" class="ds-edge" marker-end="url(#optimizer-desktop)" />
+<rect class="ds-node" x="564" y="24" width="150" height="100" rx="8" />
+<text x="639" y="65" class="node-title chart-small" text-anchor="middle">Gates</text>
+<text x="639" y="89" class="chart-small" text-anchor="middle">overfitting tests</text>
+<path d="M714 74 H740" class="ds-edge" marker-end="url(#optimizer-desktop)" />
+<rect class="ds-node ds-node--key" x="748" y="24" width="150" height="100" rx="8" />
+<text x="823" y="65" class="node-title chart-small" text-anchor="middle">Verdict</text>
+<text x="823" y="89" class="node-key-sub chart-small" text-anchor="middle">approve, watch, reject</text>
+<path d="M898 74 H924" class="ds-edge" marker-end="url(#optimizer-desktop)" />
+<rect class="ds-node" x="932" y="24" width="150" height="100" rx="8" />
+<text x="1007" y="65" class="node-title chart-small" text-anchor="middle">Outputs</text>
+<text x="1007" y="89" class="chart-small" text-anchor="middle">shortlist, registry</text>
+<rect class="ds-node ds-edge--dash" x="266" y="168" width="194" height="78" rx="8" />
+<text x="363" y="200" class="node-title chart-small" text-anchor="middle">Advisory checks</text>
+<text x="363" y="224" class="chart-small" text-anchor="middle">inform, never decide</text>
+<path d="M460 207 H823 V126" class="ds-edge ds-edge--dash" marker-end="url(#optimizer-desktop)" />
+<path d="M1007 124 V282 H87 V126" class="ds-edge ds-edge--dash" marker-end="url(#optimizer-desktop)" />
+<text x="550" y="271" class="chart-small" text-anchor="middle">seed loop</text>
+</svg>
+<svg class="chart-mobile" viewBox="0 0 350 752" role="img" aria-label="Optimizer run: inputs, search, score, gates, verdict, outputs, with a seed loop back to inputs" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="optimizer-mobile" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto-start-reverse">
+<path d="M0 0 L7 3.5 L0 7 Z" class="ds-arrow" />
+</marker>
+</defs>
+<rect class="ds-node" x="62" y="16" width="272" height="78" rx="8" />
+<text x="198" y="48" class="node-title chart-small" text-anchor="middle">Inputs</text>
+<text x="198" y="72" class="chart-small" text-anchor="middle">seeds, returns, limits</text>
+<path d="M198 94 V116" class="ds-edge" marker-end="url(#optimizer-mobile)" />
+<rect class="ds-node" x="62" y="124" width="272" height="78" rx="8" />
+<text x="198" y="156" class="node-title chart-small" text-anchor="middle">Search</text>
+<text x="198" y="180" class="chart-small" text-anchor="middle">up to six methods</text>
+<path d="M198 202 V224" class="ds-edge" marker-end="url(#optimizer-mobile)" />
+<rect class="ds-node" x="62" y="232" width="272" height="78" rx="8" />
+<text x="198" y="264" class="node-title chart-small" text-anchor="middle">Score</text>
+<text x="198" y="288" class="chart-small" text-anchor="middle">return, risk, costs</text>
+<path d="M198 310 V324 H344 V432 H198 V440" class="ds-edge" marker-end="url(#optimizer-mobile)" />
+<rect class="ds-node ds-edge--dash" x="86" y="340" width="224" height="78" rx="8" />
+<text x="198" y="372" class="node-title chart-small" text-anchor="middle">Advisory checks</text>
+<text x="198" y="396" class="chart-small" text-anchor="middle">inform, never decide</text>
+<path d="M86 379 H48 V595 H60" class="ds-edge ds-edge--dash" marker-end="url(#optimizer-mobile)" />
+<rect class="ds-node" x="62" y="448" width="272" height="78" rx="8" />
+<text x="198" y="480" class="node-title chart-small" text-anchor="middle">Gates</text>
+<text x="198" y="504" class="chart-small" text-anchor="middle">overfitting tests</text>
+<path d="M198 526 V548" class="ds-edge" marker-end="url(#optimizer-mobile)" />
+<rect class="ds-node ds-node--key" x="62" y="556" width="272" height="78" rx="8" />
+<text x="198" y="588" class="node-title chart-small" text-anchor="middle">Verdict</text>
+<text x="198" y="612" class="node-key-sub chart-small" text-anchor="middle">approve, watch, reject</text>
+<path d="M198 634 V656" class="ds-edge" marker-end="url(#optimizer-mobile)" />
+<rect class="ds-node" x="62" y="664" width="272" height="78" rx="8" />
+<text x="198" y="696" class="node-title chart-small" text-anchor="middle">Outputs</text>
+<text x="198" y="720" class="chart-small" text-anchor="middle">shortlist, registry</text>
+<path d="M62 703 H30 V55 H60" class="ds-edge ds-edge--dash" marker-end="url(#optimizer-mobile)" />
+<text x="17" y="380" class="chart-small" text-anchor="middle" transform="rotate(-90 17 380)">seed loop</text>
+</svg>
+</div>
+<figcaption>Only the verdict box decides. Advisory checks can inform it but never override a gate.</figcaption>
+</figure>
+<details>
+<summary>Chart data</summary>
+<table class="table">
+<thead>
+<tr>
+<th scope="col">Step</th>
+<th scope="col">What happens</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Inputs</th>
+<td>Seed portfolios, monthly returns and per-theme limits.</td>
+</tr>
+<tr>
+<th scope="row">Search</th>
+<td>Up to six search methods propose weight mixes. Duplicates are removed.</td>
+</tr>
+<tr>
+<th scope="row">Score</th>
+<td>Return, drawdown, risk-adjusted return and trading costs.</td>
+</tr>
+<tr>
+<th scope="row">Gates</th>
+<td>Probability of backtest overfitting, deflated Sharpe ratio and market-regime checks.</td>
+</tr>
+<tr>
+<th scope="row">Verdict</th>
+<td>Approve, watch or reject. Approval also needs to beat the current target after costs.</td>
+</tr>
+<tr>
+<th scope="row">Outputs</th>
+<td>A shortlist, a run record and an explorer page.</td>
+</tr>
+<tr>
+<th scope="row">Seed loop</th>
+<td>The best results seed the next run. It stops on overfitting, a plateau or a stable answer.</td>
+</tr>
+<tr>
+<th scope="row">Advisory checks</th>
+<td>Extra statistics and diagnostics. They inform the verdict and never gate it.</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3>The search methods</h3>
+<p>Each method explores the space of possible weights differently. Using several makes it harder to miss a good mix.</p>
+<table class="table">
+<thead>
+<tr>
+<th scope="col">Method</th>
+<th scope="col">In plain words</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Random</th>
+<td>Draws many random mixes within the limits. It is the baseline.</td>
+</tr>
+<tr>
+<th scope="row">Genetic</th>
+<td>Breeds good mixes together and mutates them, over several generations.</td>
+</tr>
+<tr>
+<th scope="row">Hill climbing</th>
+<td>Starts from a seed and shifts small amounts while the score improves.</td>
+</tr>
+<tr>
+<th scope="row">Elite sampling</th>
+<td>Scores a batch, then samples new mixes near the best fifth.</td>
+</tr>
+<tr>
+<th scope="row">Simulated annealing</th>
+<td>Like hill climbing, but early on it sometimes accepts a worse step. That helps it escape local peaks.</td>
+</tr>
+<tr>
+<th scope="row">CMA-ES</th>
+<td>Samples a cloud of mixes, moves it towards the best, then narrows it.</td>
+</tr>
+<tr>
+<th scope="row">Seeded mutation</th>
+<td>Makes small tweaks around each seed idea.</td>
+</tr>
+</tbody>
+</table>
+<p>An optional multi-goal step, NSGA-II, keeps mixes that trade risk against return in different ways.</p>
+<details>
+<summary>Why so many tests?</summary>
+<ul class="article-list">
+<li>Searching many mixes finds some that look good by luck.</li>
+<li>Overfitting tests estimate how likely that is, and discount the score.</li>
+<li>Watch means promising but unproven. It needs more evidence before approval.</li>
+<li>Some runs also add Black-Litterman views as a diagnostic. It never gates.</li>
+</ul>
+</details>
+</section>
+<div class="hr">
+</div>
     <section class="ds-section ds-wrap article-stack" id="pipeline">
-<h2 class="ds-title">The pipeline, step by step</h2>
+<h2 class="ds-title">From order sheet to trade</h2>
 <ol class="ds-steps article-pipeline">
 <li><p>Data in. Read-only broker connections save a snapshot. Stale or partial snapshots are refused.</p>
 </li>
