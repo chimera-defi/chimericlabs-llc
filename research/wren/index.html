@@ -92,8 +92,8 @@
       .wren-pop-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); margin-bottom: var(--space-4); }
       .wren-name { text-decoration: underline dotted var(--ink-2); text-underline-offset: 4px; cursor: help; }
       .wren-name:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
-      .wren-name-tip { position: fixed; z-index: 100; left: var(--tip-x); top: var(--tip-y); transform: translate(-50%, -100%); box-sizing: border-box; width: min(16rem, calc(100vw - 32px)); padding: var(--space-3); border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface); color: var(--ink); font: var(--t-small); text-align: left; text-decoration: none; overflow-wrap: anywhere; }
-      .wren-name.tip-below > .wren-name-tip { transform: translateX(-50%); }
+      .wren-name-tip { position: fixed; z-index: 100; left: var(--tip-x); top: var(--tip-y); transform: translateX(-50%); box-sizing: border-box; width: min(16rem, calc(100vw - 32px)); padding: var(--space-3); border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface); color: var(--ink); font: var(--t-small); text-align: left; text-decoration: none; overflow-wrap: anywhere; }
+      .wren-name.tip-above > .wren-name-tip { transform: translate(-50%, -100%); }
       .wren-section { grid-column: 1 / -1; font: var(--t-label); text-transform: uppercase; letter-spacing: .08em; }
       .wren-route { --c: var(--w-violet); display: grid; gap: var(--space-2); }
       .wren-route-arrow { color: var(--ink-2); text-align: center; }
@@ -192,13 +192,13 @@
           <p class="mt-2 text-sm text-slate-400">The 16 claims on Duet's page.</p>
           <div class="mt-4 wren-tiles" aria-label="Score against 16 Duet claims">
             <div class="wren-tile c-ahead"><b>4</b>Ahead</div>
-            <div class="wren-tile c-par"><b>5</b>At parity</div>
-            <div class="wren-tile c-part"><b>5</b>Partial</div>
+            <div class="wren-tile c-par"><b>6</b>At parity</div>
+            <div class="wren-tile c-part"><b>4</b>Partial</div>
             <div class="wren-tile c-miss"><b>2</b>Missing</div>
           </div>
           <div class="mt-5 wren-cmp" id="cmp" role="table" aria-label="Wren against each claim on Claude Duet's page">
             <div class="head" role="row"><span role="columnheader">Claim</span><span role="columnheader">Duet</span><span role="columnheader">Wren</span><span role="columnheader">Status</span></div>
-            <div role="row"><b role="cell">Morning brief</b><span role="cell"><span class="lab">Duet</span>Briefs you every morning, drafts next steps, then goes quiet.</span><span role="cell"><span class="lab">Wren</span>Short alerts from several agents. ChatGPT reads markets at open and close on a server schedule; Hermes, OpenClaw and Wren alert; briefs sit on the server for Kepler to read out.</span><span role="cell"><span class="wren-chip c-part">Partial</span></span></div>
+            <div role="row"><b role="cell">Morning brief</b><span role="cell"><span class="lab">Duet</span>Briefs you every morning, drafts next steps, then goes quiet.</span><span role="cell"><span class="lab">Wren</span>Every day at 07:00, Wren sends a short Telegram brief via Hermes on what ran overnight and what failed, with exactly two yes/no next steps. Delivered on Telegram daily; next: Kepler reads it out. ChatGPT reads markets at open and close on a server schedule; Hermes, OpenClaw and Wren alert.</span><span role="cell"><span class="wren-chip c-par">Parity</span></span></div>
             <div role="row"><b role="cell">Big tasks, reported back</b><span role="cell"><span class="lab">Duet</span>Sets up meetings or builds dashboards, then reports back.</span><span role="cell"><span class="lab">Wren</span>Child sessions run hours to weeks, resuming from checkpoints, with review and merge. Example: <a href="../eth2/how-we-tested-with-claude/">a six-week Ethereum client benchmark</a>.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
             <div role="row"><b role="cell">Memory and skills carry over</b><span role="cell"><span class="lab">Duet</span>Memory, skills and apps from the Claude app, from the first message.</span><span role="cell"><span class="lab">Wren</span>Skills, notes and checkpoints shared by every agent. See <a href="#memory">Memory, honestly</a>.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
             <div role="row"><b role="cell">One thread</b><span role="cell"><span class="lab">Duet</span>Your history is in one thread.</span><span role="cell"><span class="lab">Wren</span>Several threads share one memory; no single history.</span><span role="cell"><span class="wren-chip c-part">Partial</span></span></div>
@@ -222,8 +222,8 @@
           <p class="mt-2 text-sm text-slate-400">Our 15 capabilities below match or beat Duet in several areas and include tools Duet doesn't claim; 2 Duet claims we don't do are in the other view.</p>
           <div class="mt-4 wren-tiles" aria-label="Score across our 15 capabilities">
             <div class="wren-tile c-ahead"><b>12</b>Ahead</div>
-            <div class="wren-tile c-par"><b>2</b>At parity</div>
-            <div class="wren-tile c-part"><b>1</b>Partial</div>
+            <div class="wren-tile c-par"><b>3</b>At parity</div>
+            <div class="wren-tile c-part"><b>0</b>Partial</div>
             <div class="wren-tile c-miss"><b>0</b>Missing</div>
           </div>
           <div class="mt-5 wren-cmp" role="table" aria-label="Everything Wren does compared with Duet's claims">
@@ -244,7 +244,7 @@
             <div role="row"><b role="cell" class="wren-section">Reach</b></div>
             <div role="row"><b role="cell">Phone and desktop access</b><span role="cell"><span class="lab">Duet</span>An iOS and Android app, plus web.</span><span role="cell"><span class="lab">Wren</span>Four ways in, one server: Telegram, two Claude apps and ChatGPT.</span><span role="cell"><span class="wren-chip c-par">Parity</span></span></div>
             <div role="row"><b role="cell">Market reads</b><span role="cell"><span class="lab">Duet</span>Not claimed</span><span role="cell"><span class="lab">Wren</span>ChatGPT reads markets at open, close or any time.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
-            <div role="row"><b role="cell">Brief delivery</b><span role="cell"><span class="lab">Duet</span>Briefs you every morning, drafts next steps, then goes quiet.</span><span role="cell"><span class="lab">Wren</span>Briefs land on the shared Agent Host server. Next: Kepler reads them out.</span><span role="cell"><span class="wren-chip c-part">Partial</span></span></div>
+            <div role="row"><b role="cell">Brief delivery</b><span role="cell"><span class="lab">Duet</span>Briefs you every morning, drafts next steps, then goes quiet.</span><span role="cell"><span class="lab">Wren</span>Every day at 07:00, Wren sends a short Telegram brief via Hermes on what ran overnight and what failed, with exactly two yes/no next steps. Delivered on Telegram daily; next: Kepler reads it out.</span><span role="cell"><span class="wren-chip c-par">Parity</span></span></div>
             <div role="row"><b role="cell">Server control</b><span role="cell"><span class="lab">Duet</span>Its own cloud computer.</span><span role="cell"><span class="lab">Wren</span>Root on our own server, and computer use on a MacBook.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
             <div role="row"><b role="cell">Scheduled jobs</b><span role="cell"><span class="lab">Duet</span>Not claimed</span><span role="cell"><span class="lab">Wren</span>Scheduled jobs (systemd timers and cron), mostly quiet upkeep. Linnet posts a digest twice daily. <a href="jobs/">See the full list.</a></span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
           </div>
@@ -311,7 +311,7 @@
             <div role="row"><b role="cell">Checkpoints</b><span role="cell"><span class="lab">What</span>Each long job keeps a short checkpoint file, plus git commits and receipts, not the chat.</span><span role="cell"><span class="lab">Fails</span>A job that skips its checkpoint loses state on reset.</span></div>
             <div role="row"><b role="cell">Lesson hook</b><span role="cell"><span class="lab">What</span>Before a context reset, Haiku may save one lesson. In its first week it saved seven.</span><span role="cell"><span class="lab">Fails</span>Most runs skip on purpose; a trickle, not a teacher.</span></div>
             <div role="row"><b role="cell">Search</b><span role="cell"><span class="lab">What</span>QMD indexes our files and notes, refreshed every six hours.</span><span role="cell"><span class="lab">Fails</span>The index lags; new files wait hours.</span></div>
-            <div role="row"><b role="cell">Transcripts</b><span role="cell"><span class="lab">What</span>Every session's raw log stays on disk, never indexed.</span><span role="cell"><span class="lab">Fails</span>Good for forensics, too noisy to search.</span></div>
+            <div role="row"><b role="cell">Transcripts</b><span role="cell"><span class="lab">What</span>Every session's raw log stays on disk for 365 days, searchable by text, not indexed into memory.</span><span role="cell"><span class="lab">Fails</span>Good for forensics; too noisy to index as memory.</span></div>
           </div>
           <details class="mt-4 wren-details">
             <summary>Backups, gbrain and our stance</summary>
@@ -520,7 +520,7 @@
       document.body.append(description);
       let activeName = null;
       const closeName = () => {
-        activeName?.classList.remove("is-open", "tip-below");
+        activeName?.classList.remove("is-open", "tip-above");
         activeName?.removeAttribute("aria-describedby");
         description.hidden = true;
         document.body.append(description);
@@ -531,10 +531,10 @@
         const rect = activeName.getBoundingClientRect();
         const tip = description.getBoundingClientRect();
         const halfWidth = tip.width / 2;
-        const below = rect.top < tip.height + 16;
-        activeName.style.setProperty("--tip-x", `${Math.max(16 + halfWidth, Math.min(innerWidth - 16 - halfWidth, rect.left + rect.width / 2))}px`);
+        const below = rect.bottom + tip.height <= innerHeight - 16;
+        activeName.style.setProperty("--tip-x", `${Math.max(16 + halfWidth, Math.min(document.documentElement.clientWidth - 16 - halfWidth, rect.left + rect.width / 2))}px`);
         activeName.style.setProperty("--tip-y", `${below ? rect.bottom : rect.top}px`);
-        activeName.classList.toggle("tip-below", below);
+        activeName.classList.toggle("tip-above", !below);
       };
       const openName = (name) => {
         if (name === activeName) return;
