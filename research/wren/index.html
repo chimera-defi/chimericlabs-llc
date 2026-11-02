@@ -92,8 +92,8 @@
       .wren-pop-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); margin-bottom: var(--space-4); }
       .wren-name { text-decoration: underline dotted var(--ink-2); text-underline-offset: 4px; cursor: help; }
       .wren-name:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
-      .wren-name.is-open::after { content: attr(data-tip) / ""; position: fixed; z-index: 100; left: var(--tip-x); top: var(--tip-y); transform: translate(-50%, -100%); box-sizing: border-box; width: min(16rem, calc(100vw - 2rem)); padding: var(--space-3); border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface); color: var(--ink); font: var(--t-small); text-align: left; text-decoration: none; overflow-wrap: anywhere; }
-      .wren-name.tip-below::after { transform: translateX(-50%); }
+      .wren-name-tip { position: fixed; z-index: 100; left: var(--tip-x); top: var(--tip-y); transform: translate(-50%, -100%); box-sizing: border-box; width: min(16rem, calc(100vw - 32px)); padding: var(--space-3); border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface); color: var(--ink); font: var(--t-small); text-align: left; text-decoration: none; overflow-wrap: anywhere; }
+      .wren-name.tip-below > .wren-name-tip { transform: translateX(-50%); }
       .wren-section { grid-column: 1 / -1; font: var(--t-label); text-transform: uppercase; letter-spacing: .08em; }
       .wren-route { --c: var(--w-violet); display: grid; gap: var(--space-2); }
       .wren-route-arrow { color: var(--ink-2); text-align: center; }
@@ -202,7 +202,7 @@
             <div role="row"><b role="cell">Big tasks, reported back</b><span role="cell"><span class="lab">Duet</span>Sets up meetings or builds dashboards, then reports back.</span><span role="cell"><span class="lab">Wren</span>Child sessions run hours to weeks, resuming from checkpoints, with review and merge. Example: <a href="../eth2/how-we-tested-with-claude/">a six-week Ethereum client benchmark</a>.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
             <div role="row"><b role="cell">Memory and skills carry over</b><span role="cell"><span class="lab">Duet</span>Memory, skills and apps from the Claude app, from the first message.</span><span role="cell"><span class="lab">Wren</span>Skills, notes and checkpoints shared by every agent. See <a href="#memory">Memory, honestly</a>.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
             <div role="row"><b role="cell">One thread</b><span role="cell"><span class="lab">Duet</span>Your history is in one thread.</span><span role="cell"><span class="lab">Wren</span>Several threads share one memory; no single history.</span><span role="cell"><span class="wren-chip c-part">Partial</span></span></div>
-            <div role="row"><b role="cell">Works while you're away</b><span role="cell"><span class="lab">Duet</span>Messages you when it's done or needs a decision; knows what can wait.</span><span role="cell"><span class="lab">Wren</span>38 scheduled jobs <a class="wren-trigger" href="jobs/" aria-label="List the 38 scheduled jobs">?</a>, mostly quiet upkeep. ChatGPT reads markets on a server schedule; Hermes, OpenClaw and Wren alert too. Linnet, a read-only digest of jobs and alerts, posts twice daily.</span><span role="cell"><span class="wren-chip c-par">Parity</span></span></div>
+            <div role="row"><b role="cell">Works while you're away</b><span role="cell"><span class="lab">Duet</span>Messages you when it's done or needs a decision; knows what can wait.</span><span role="cell"><span class="lab">Wren</span>Scheduled jobs (systemd timers and cron), mostly quiet upkeep <a class="wren-trigger" href="jobs/" aria-label="List the scheduled jobs">?</a>. ChatGPT reads markets on a server schedule; Hermes, OpenClaw and Wren alert too. Linnet, a read-only digest of jobs and alerts, posts twice daily.</span><span role="cell"><span class="wren-chip c-par">Parity</span></span></div>
             <div role="row"><b role="cell">Its own computer</b><span role="cell"><span class="lab">Duet</span>Its own cloud computer.</span><div role="cell"><span class="lab">Wren</span>Ahead on control; size unproven. <button type="button" class="wren-trigger" popovertarget="wren-specs">specs</button></div><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
             <div role="row"><b role="cell">Model</b><span role="cell"><span class="lab">Duet</span>Powered by Opus 5.5.</span><span role="cell"><span class="lab">Wren</span>Opus 5.5, with cheaper models on steps they pass. Settable per job; see <button type="button" class="wren-trigger" popovertarget="wren-routing">routing</button>.</span><span role="cell"><span class="wren-chip c-par">Parity</span></span></div>
             <div role="row"><b role="cell">Text or voice</b><span role="cell"><span class="lab">Duet</span>Text or voice, with no setup.</span><span role="cell"><span class="lab">Wren</span>Dictation, Telegram voice notes and Claude's voice chat.</span><span role="cell"><span class="wren-chip c-par">Parity</span></span></div>
@@ -219,7 +219,7 @@
 
         <div class="wren-view" data-panel="all">
           <h3 class="mt-6 font-serif text-xl text-slate-100">Everything we do</h3>
-          <p class="mt-2 text-sm text-slate-400">Our 15 capabilities below; 2 Duet claims we don't do are in the other view.</p>
+          <p class="mt-2 text-sm text-slate-400">Our 15 capabilities below match or beat Duet in several areas and include tools Duet doesn't claim; 2 Duet claims we don't do are in the other view.</p>
           <div class="mt-4 wren-tiles" aria-label="Score across our 15 capabilities">
             <div class="wren-tile c-ahead"><b>12</b>Ahead</div>
             <div class="wren-tile c-par"><b>2</b>At parity</div>
@@ -246,7 +246,7 @@
             <div role="row"><b role="cell">Market reads</b><span role="cell"><span class="lab">Duet</span>Not claimed</span><span role="cell"><span class="lab">Wren</span>ChatGPT reads markets at open, close or any time.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
             <div role="row"><b role="cell">Brief delivery</b><span role="cell"><span class="lab">Duet</span>Briefs you every morning, drafts next steps, then goes quiet.</span><span role="cell"><span class="lab">Wren</span>Briefs land on the shared Agent Host server. Next: Kepler reads them out.</span><span role="cell"><span class="wren-chip c-part">Partial</span></span></div>
             <div role="row"><b role="cell">Server control</b><span role="cell"><span class="lab">Duet</span>Its own cloud computer.</span><span role="cell"><span class="lab">Wren</span>Root on our own server, and computer use on a MacBook.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
-            <div role="row"><b role="cell">Scheduled jobs</b><span role="cell"><span class="lab">Duet</span>Not claimed</span><span role="cell"><span class="lab">Wren</span>38 scheduled jobs (28 timers and 10 cron), mostly quiet upkeep; Linnet posts a digest twice daily. <a href="jobs/">See the full list.</a></span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
+            <div role="row"><b role="cell">Scheduled jobs</b><span role="cell"><span class="lab">Duet</span>Not claimed</span><span role="cell"><span class="lab">Wren</span>Scheduled jobs (systemd timers and cron), mostly quiet upkeep. Linnet posts a digest twice daily. <a href="jobs/">See the full list.</a></span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
           </div>
         </div>
 
@@ -292,7 +292,7 @@
         <h2 id="made-of" class="mt-12 font-serif text-2xl text-slate-100">What it's made of</h2>
         <ul class="mt-4 wren-list">
           <li><b><a href="https://claude.com/claude-code" target="_blank" rel="noreferrer">Claude Code</a></b> on our server, signed in to the Max plan. Opus plans and checks.</li>
-          <li><b>The server</b>: a dedicated server, on 24/7, with root access.<ul class="wren-sub mt-2"><li>Intel Core i7-8700: 6 cores, 12 threads, 3.2 GHz base, 4.6 GHz max.</li><li>62 GB RAM.</li><li>2.8 TB usable: three 1 TB Samsung NVMe SSDs striped (RAID0), so no spare copy.</li><li>Ubuntu 24.04 Linux.</li><li id="jobs">38 scheduled jobs: 28 timers, 10 cron entries. <a class="wren-trigger" href="jobs/" aria-label="List the 38 scheduled jobs">?</a></li></ul></li>
+          <li><b>The server</b>: a dedicated server, on 24/7, with root access.<ul class="wren-sub mt-2"><li>Intel Core i7-8700: 6 cores, 12 threads, 3.2 GHz base, 4.6 GHz max.</li><li>62 GB RAM.</li><li>2.8 TB usable: three 1 TB Samsung NVMe SSDs striped (RAID0), so no spare copy.</li><li>Ubuntu 24.04 Linux.</li><li id="jobs">Scheduled jobs (systemd timers and cron), mostly quiet upkeep. <a class="wren-trigger" href="jobs/" aria-label="List the scheduled jobs">?</a></li></ul></li>
           <li><b><a href="https://github.com/chimera-defi/claude-remote-session-skill" target="_blank" rel="noreferrer">crss</a></b>: starts, messages, hands off and repairs long-running sessions for every agent on the box.</li>
           <li><b><a href="https://github.com/chimera-defi/token-reduce-skill" target="_blank" rel="noreferrer">token-reduce</a></b> and <b><a href="https://github.com/tobi/qmd" target="_blank" rel="noreferrer">QMD</a></b>: read only the slice a task needs. QMD is a local search engine over our markdown.</li>
           <li><b><a href="../../dispatchbench/">DispatchBench</a></b> and the <a href="https://github.com/chimera-defi/delegate-skill" target="_blank" rel="noreferrer">delegate skills</a>: the cheapest passing model takes each step. New models plug in; see <button type="button" class="wren-trigger" popovertarget="wren-routing">routing</button>.</li>
@@ -385,15 +385,15 @@
             <div class="wren-col in">
               <span class="fl-label">Models and agents</span>
               <div class="wren-box">Claude · Opus<small>plans and checks</small></div>
-              <div class="wren-box">Codex · Haiku<small>build, review, sweep</small></div>
-              <div class="wren-box">Grok · Devin · ChatGPT<small>called in per job</small></div>
+              <div class="wren-box">Codex · Haiku<small>Codex gpt-6.1-sol builds and reviews; Haiku reads and sweeps</small></div>
+              <div class="wren-box">Grok · Devin · ChatGPT<small>Grok does small mechanical jobs; Devin and ChatGPT are called in per job</small></div>
             </div>
             <div class="wren-arrow" aria-hidden="true">→</div>
             <div class="wren-col mid">
               <span class="fl-label">Wren, on a server</span>
               <div class="wren-box wren-core">Orchestrator + bus<small>routes each job to the cheapest passing model</small></div>
               <div class="wren-box">Workflow + checkpoints<small>verification before "done"</small></div>
-              <div class="wren-box">Scheduled jobs + memory<small>alerts, briefs, shared notes</small></div>
+              <div class="wren-box">Scheduled jobs + memory<small>systemd timers and cron, mostly quiet upkeep; alerts, briefs, shared notes</small></div>
             </div>
             <div class="wren-arrow" aria-hidden="true">→</div>
             <div class="wren-col out">
@@ -418,15 +418,15 @@
           <div class="wren-route" role="group" aria-label="Model routing flow">
             <div class="wren-box">Opus plans<small>and checks</small></div>
             <div class="wren-route-arrow" aria-hidden="true">↓</div>
-            <div class="wren-box">Cheapest passing model builds<small>Codex builds; Haiku does cheap reads and sweeps; Devin takes browser and sandbox jobs.</small></div>
+            <div class="wren-box">Cheapest passing model builds<small>Codex builds; Haiku does cheap reads and sweeps; Grok does small mechanical jobs; Devin takes browser and sandbox jobs.</small></div>
             <div class="wren-route-arrow" aria-hidden="true">↓</div>
             <div class="wren-box">Check: re-run the test</div>
             <div class="wren-route-arrow" aria-hidden="true">↓</div>
             <div class="wren-box">Fails: escalate to the next model</div>
           </div>
-          <p class="mt-3">Final review stays with Codex.</p>
+          <p class="mt-3">Reviews stay with Codex gpt-6.1-sol only.</p>
           <ul class="mt-3 wren-sub">
-            <li>If Codex is out: Haiku takes small builds, Grok reviews.</li>
+            <li>If Codex is out: Haiku takes small builds. Reviews stay with Codex.</li>
             <li>Fable gave second opinions until we paused it on 28 October.</li>
           </ul>
           <p class="mt-3 text-sm"><a href="#made-of">What it's made of</a></p>
@@ -475,10 +475,10 @@
         OpenClaw: "Open-source assistant that runs on your own computer and answers in chat apps. Here it sends alerts.",
         Linnet: "Read-only digest of our jobs and alerts, posted twice a day (08:15 and 20:15 CET).",
         Wren: "Our orchestrator: Claude Opus with a persona, memory and shared notes, on our own server.",
-        Codex: "OpenAI's coding agent. Builds the code and does the final review here.",
+        Codex: "OpenAI's coding agent. Builds the code; reviews here are gpt-6.1-sol only.",
         Haiku: "Claude's small, cheap model. Does reads and sweeps.",
         Devin: "Cognition's coding agent. Takes browser and sandbox jobs.",
-        Grok: "xAI's model. Reviews when Codex is out.",
+        Grok: "xAI's model. Does small mechanical jobs; reviews are Codex only.",
         Fable: "A Claude model, paused as our reviewer since 28 October.",
         ChatGPT: "OpenAI's chat assistant. Called in per job, reads markets, and is where a human accepts orders.",
         takopi: "Telegram bridge for Codex, Claude Code and other agent CLIs.",
@@ -511,9 +511,10 @@
         fragment.append(node.textContent.slice(offset));
         node.replaceWith(fragment);
       }
-      // Keep the spoken description outside main so tooltips never change its visible word count.
+      // Keep the bubble inside its name so it also renders in the popover's top layer.
       const description = document.createElement("span");
       description.id = "wren-name-tip";
+      description.className = "wren-name-tip";
       description.hidden = true;
       description.setAttribute("role", "tooltip");
       document.body.append(description);
@@ -521,20 +522,30 @@
       const closeName = () => {
         activeName?.classList.remove("is-open", "tip-below");
         activeName?.removeAttribute("aria-describedby");
+        description.hidden = true;
+        document.body.append(description);
         activeName = null;
       };
+      const positionName = () => {
+        if (!activeName) return;
+        const rect = activeName.getBoundingClientRect();
+        const tip = description.getBoundingClientRect();
+        const halfWidth = tip.width / 2;
+        const below = rect.top < tip.height + 16;
+        activeName.style.setProperty("--tip-x", `${Math.max(16 + halfWidth, Math.min(innerWidth - 16 - halfWidth, rect.left + rect.width / 2))}px`);
+        activeName.style.setProperty("--tip-y", `${below ? rect.bottom : rect.top}px`);
+        activeName.classList.toggle("tip-below", below);
+      };
       const openName = (name) => {
+        if (name === activeName) return;
         closeName();
-        const rect = name.getBoundingClientRect();
-        const halfWidth = Math.min(256, innerWidth - 32) / 2;
-        const below = rect.top < 180;
-        name.style.setProperty("--tip-x", `${Math.max(16 + halfWidth, Math.min(innerWidth - 16 - halfWidth, rect.left + rect.width / 2))}px`);
-        name.style.setProperty("--tip-y", `${below ? rect.bottom : rect.top}px`);
-        name.classList.toggle("tip-below", below);
         description.textContent = name.dataset.tip;
+        name.append(description);
+        description.hidden = false;
         name.setAttribute("aria-describedby", description.id);
         name.classList.add("is-open");
         activeName = name;
+        positionName();
       };
       document.addEventListener("pointerover", (event) => {
         const name = event.target.closest(".wren-name");
@@ -553,14 +564,21 @@
         else closeName();
       });
       document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") closeName();
+        if (event.key === "Escape" && activeName) {
+          event.preventDefault();
+          event.stopPropagation();
+          closeName();
+        }
         if ((event.key === "Enter" || event.key === " ") && event.target.matches(".wren-name")) {
           event.preventDefault();
           if (event.target === activeName) closeName();
           else openName(event.target);
         }
       });
-      addEventListener("scroll", closeName, true);
+      addEventListener("scroll", () => {
+        if (activeName === document.activeElement) positionName();
+        else closeName();
+      }, true);
       addEventListener("resize", closeName);
 
       // Without JS both panels stay visible.
