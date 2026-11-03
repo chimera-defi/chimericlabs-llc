@@ -42,4 +42,4 @@ To change page copy, edit `build_v5.py` and the matching `check_v5.py` assertion
 
 ## Share link
 
-The Tokens Over Time chart has a **Share view** button. It copies this page's URL with `#hero?...`, which restores the chart state: range, granularity, metric, cumulative, event markers, measurement, lanes and overlay. Defaults are left out, and an unknown value falls back to the default. The link holds no personal data.
+The Tokens Over Time chart has a **Share** button. It copies this page's URL with `#hero?...`, which restores the chart state: range, granularity, metric, cumulative, event markers, measurement, lanes and overlay. Defaults are left out, and an unknown value falls back to the default. The link holds no personal data.
