@@ -43,6 +43,6 @@ if DATA:
     for s in series:
         got = sum(r[2] + r[4] for r in s['rows'])
         if raw.get(s['name']) != got: bad.append(f"{s['name']}: daily {got} != data.json {raw.get(s['name'])}")
+if bad: sys.exit('MISMATCH ' + '; '.join(bad))
 OUT.write_text(json.dumps(out, separators=(',', ':')) + '\n')
 for s in series: print(f"{s['name']}: {len(s['rows'])} days {s['rows'][0][0]}..{s['rows'][-1][0]}")
-if bad: sys.exit('MISMATCH ' + '; '.join(bad))
