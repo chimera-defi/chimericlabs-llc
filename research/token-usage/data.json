@@ -16324,5 +16324,281 @@
     "note": "Node-operations campaign, June to October: 43 Codex sessions, about 0.35B own tokens (about 1% of the Codex measured total); 667 commits in that period.",
     "public": true
   },
-  "public": true
+  "public": true,
+  "traffic": {
+    "schema": 1,
+    "built": "2026-11-03",
+    "coverage": {
+      "transcripts": {
+        "files": 3416,
+        "first": "2026-09-23",
+        "last": "2026-11-03",
+        "fable_first": "2026-09-24",
+        "fable_last": "2026-11-01",
+        "gaps": [
+          "Advisor-tool calls are not separate transcripts, so Fable-as-advisor is not counted.",
+          "Only transcripts mirrored from this host; laptop Claude not included.",
+          "Parents of subagents are matched by file layout; unmatched parents are shown as such."
+        ]
+      },
+      "bus": {
+        "first": "2026-08-25",
+        "last": "2026-11-03",
+        "messages": 12521
+      },
+      "mcp": {
+        "first": "2026-08-24",
+        "last": "2026-11-03"
+      }
+    },
+    "invocations_by_model": {
+      "sonnet-5-5": {
+        "runs": 1041,
+        "messages": 77063,
+        "subagent_runs": 682,
+        "main_sessions": 359
+      },
+      "opus-5-5": {
+        "runs": 446,
+        "messages": 111312,
+        "subagent_runs": 187,
+        "main_sessions": 259
+      },
+      "fable": {
+        "runs": 490,
+        "messages": 16339,
+        "subagent_runs": 476,
+        "main_sessions": 14
+      }
+    },
+    "fable_invokers": [
+      [
+        "Claude opus-5-5 session, via Agent tool",
+        329
+      ],
+      [
+        "Claude sonnet-5-5 session, via Agent tool",
+        146
+      ],
+      [
+        "Claude desktop session started on Fable",
+        10
+      ],
+      [
+        "Claude headless claude -p started on Fable",
+        4
+      ],
+      [
+        "Claude fable session, via Agent tool",
+        1
+      ]
+    ],
+    "fable_paths": [
+      [
+        "Agent tool (subagent)",
+        476
+      ],
+      [
+        "desktop session",
+        10
+      ],
+      [
+        "headless claude -p",
+        4
+      ]
+    ],
+    "fable_subagent_types": [
+      [
+        "reviewer subagent",
+        388
+      ],
+      [
+        "model override on general-purpose",
+        86
+      ],
+      [
+        "model override on workflow-subagent",
+        2
+      ]
+    ],
+    "weekly_runs": [
+      [
+        "2026-09-21",
+        2,
+        5,
+        0
+      ],
+      [
+        "2026-09-28",
+        86,
+        77,
+        88
+      ],
+      [
+        "2026-10-05",
+        52,
+        141,
+        342
+      ],
+      [
+        "2026-10-12",
+        109,
+        62,
+        230
+      ],
+      [
+        "2026-10-19",
+        202,
+        76,
+        237
+      ],
+      [
+        "2026-10-26",
+        39,
+        72,
+        129
+      ],
+      [
+        "2026-11-02",
+        0,
+        13,
+        15
+      ]
+    ],
+    "bus": {
+      "sent": [
+        [
+          "ChatGPT",
+          3185
+        ],
+        [
+          "Claude sessions",
+          2306
+        ],
+        [
+          "Agent Host",
+          2213
+        ],
+        [
+          "Codex",
+          1303
+        ],
+        [
+          "Scheduled jobs",
+          1221
+        ],
+        [
+          "Other",
+          854
+        ],
+        [
+          "Another consumer",
+          617
+        ],
+        [
+          "Claude launchers",
+          517
+        ],
+        [
+          "Bus followers",
+          149
+        ],
+        [
+          "ChatGPT/Codex research roles",
+          97
+        ],
+        [
+          "Wren",
+          59
+        ]
+      ],
+      "received": [
+        [
+          "ChatGPT",
+          5170
+        ],
+        [
+          "Claude sessions",
+          2815
+        ],
+        [
+          "Claude launchers",
+          1812
+        ],
+        [
+          "Other",
+          752
+        ],
+        [
+          "ChatGPT/Codex research roles",
+          625
+        ],
+        [
+          "Codex",
+          596
+        ],
+        [
+          "Agent Host",
+          428
+        ],
+        [
+          "Another consumer",
+          282
+        ],
+        [
+          "Wren",
+          33
+        ],
+        [
+          "Bus followers",
+          8
+        ]
+      ]
+    },
+    "bus_to_fable_named": {
+      "messages": 791,
+      "recipients": 8,
+      "by_sender": [
+        [
+          "ChatGPT",
+          401
+        ],
+        [
+          "Claude sessions",
+          159
+        ],
+        [
+          "Bus followers",
+          117
+        ],
+        [
+          "Codex",
+          103
+        ],
+        [
+          "Claude launchers",
+          7
+        ],
+        [
+          "Other",
+          4
+        ]
+      ],
+      "first": "2026-09-16",
+      "last": "2026-10-22",
+      "real_model_of_those_sessions_messages": [
+        [
+          "sonnet-5-5",
+          612
+        ]
+      ]
+    },
+    "other_paths": {
+      "bus_posts_naming_fable_model": 1,
+      "mcp_coordination_post_calls": 4991,
+      "launch_commands_naming_fable": {
+        "claude": 6
+      }
+    }
+  }
 }
