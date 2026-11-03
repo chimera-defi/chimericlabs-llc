@@ -56,6 +56,8 @@ open(data_path, "w").write(text + "\n")
 snippet = open(snippet_path).read().replace(", Codex or Kepler", " or Codex").replace("Kepler", "Another consumer")
 open(snippet_path, "w").write(snippet)
 PY
+# the leak scan ran on the built pages before this merge, so check the repo files it wrote
+if grep -qiE 'kepler|crypto' "$REPO/research/token-usage/data.json" "$REPO/research/token-usage/section10-snippet.html"; then echo "LEAK: paused-consumer or crypto name in traffic output"; exit 1; fi
 # reconcile the daily non-additive series with the totals the build just wrote, then publish them
 python3 -I "$REPO/scripts/token-usage/nonadditive_daily.py" "$PAGE/handoff" "$REPO/research/token-usage/nonadditive_daily.json" "$REPO/research/token-usage/data.json"
 ( cd "$REPO" && node scripts/check-tokens.mjs )
