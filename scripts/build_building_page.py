@@ -5,6 +5,7 @@ Reads from --handoff DIR:
   commits_by_project.csv        per-project commit counts and first/last dates
   headline_counts.json          data_through date, Codex own tokens and Claude best measured tokens
   codex_daily_corrected.csv     Codex own tokens per day, for the July–August share
+  commits_scoped.csv            one row per commit, for the commits-per-month chart
 
 Reads --ranges FILE (default: data.json next to the handoff directory), the
 token study's range_summaries: per range [Claude main, Claude subagents, Codex,
@@ -71,6 +72,16 @@ FIRST_COMMIT_FIXES = {"chimera-defi/chimericlabs-llc": "2026-03-30"}
 
 # First day both Claude and Codex logs are complete (the token study's "since" range).
 SAME_WINDOW_START = "2026-09-07"
+
+# Before-AI baseline, pulled 2026-11-03 from GitHub's GraphQL API, once per calendar year:
+#   user(login: "chimera-defi") { contributionsCollection(from: "YYYY-01-01T00:00:00Z",
+#     to: "YYYY-12-31T23:59:59Z") { totalCommitContributions restrictedContributionsCount } }
+# totalCommitContributions 2021: 289, 2022: 9, 2023: 204, 2024: 112. This account only;
+# earlier employer work is not in it. Same field, 2026-01-01 to 2026-10-31: 5,433.
+# (restrictedContributionsCount is left out: it is not commits only.)
+BEFORE_AI = {"from": "2021", "to": "2024", "commits": 289 + 9 + 204 + 112, "months": 48,
+             "github_2026": 5433, "github_2026_span": "January to October 2026", "github_2026_months": 10,
+             "pulled": "2026-11-03"}
 
 
 def slugify(label):
@@ -203,6 +214,63 @@ def donut_html(slices, total, data_through):
     return figure, "\n".join(css)
 
 
+def monthly_commits(handoff, data_through):
+    """Operator and agent commits per calendar month, from 2025-10 to the last full month."""
+    counts = {}
+    with open(os.path.join(handoff, "commits_scoped.csv"), encoding="utf-8", newline="") as fh:
+        for r in csv.DictReader(fh):
+            if r["scope"] == "third_party" or not ("2025-10-01" <= r["date_utc"][:10] <= data_through):
+                continue
+            counts[r["date_utc"][:7]] = counts.get(r["date_utc"][:7], 0) + 1
+    return sorted((m, n) for m, n in counts.items() if m < data_through[:7])
+
+
+def monthly_html(months):
+    """Bar chart of commits per month with a dashed before-AI reference line."""
+    names = "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split()
+    month_name = lambda m: f"{names[int(m[5:]) - 1]} {m[:4]}"
+    if len(months) < 2:
+        sys.exit("monthly chart needs at least two full months of commits")
+    base = BEFORE_AI["commits"] / BEFORE_AI["months"]
+    left, right, top, bottom, w, h = 52, 56, 12, 28, 420, 220
+    top_n = -(-max(n for _, n in months) // 1000) * 1000
+    slot = (w - left - right) / len(months)
+    y = lambda v: top + (h - top - bottom) * (1 - v / top_n)
+    parts = []
+    for t in range(0, top_n + 1, 1000):
+        parts.append(f'<line class="bars-grid" x1="{left}" x2="{w - right}" y1="{y(t):.1f}" y2="{y(t):.1f}"></line>')
+        parts.append(f'<text x="{left - 6}" y="{y(t) + 4:.1f}" text-anchor="end" class="chart-small">{t:,}</text>')
+    for i, (m, n) in enumerate(months):
+        x = left + i * slot + slot * 0.15
+        label = f"{names[int(m[5:]) - 1]} {m[:4]}: {n:,} commits"
+        parts.append(f'<rect class="bars-bar" x="{x:.1f}" y="{y(n):.1f}" width="{slot * 0.7:.1f}" height="{y(0) - y(n):.1f}"><title>{label}</title></rect>')
+        if i % 3 == 0:
+            parts.append(f'<text x="{x + slot * 0.35:.1f}" y="{h - 8}" text-anchor="middle" class="chart-small">{names[int(m[5:]) - 1]} ’{m[2:4]}</text>')
+    parts.append(f'<line class="bars-base" x1="{left}" x2="{w - right}" y1="{y(base):.1f}" y2="{y(base):.1f}"></line>')
+    parts.append(f'<text x="{w - right + 4}" y="{y(base) - 4:.1f}" class="chart-small">≈{base:.0f}/mo</text>')
+    first, last = months[0], months[-1]
+    recent = sum(n for _, n in months[-2:]) / 2
+    aria = (f"Commits per month, {names[int(first[0][5:]) - 1]} {first[0][:4]} to {names[int(last[0][5:]) - 1]} {last[0][:4]}, "
+            f"rising from {first[1]:,} to {last[1]:,}. A dashed line at about {base:.0f} a month marks the "
+            f"{BEFORE_AI['from']}–{BEFORE_AI['to']} average before AI agents.")
+    return "\n".join([
+        '<figure class="article-chart article-bars">',
+        '<h3>Commits per month, against the before-AI baseline</h3>',
+        f'<svg viewBox="0 0 {w} {h}" role="img" aria-label="{aria}" xmlns="http://www.w3.org/2000/svg">',
+        *parts,
+        '</svg>',
+        '<p class="article-legend"><span><i class="swatch-bars" aria-hidden="true"></i>Commits that month</span>'
+        f'<span><i class="swatch-base" aria-hidden="true"></i>Before AI agents ({BEFORE_AI["from"]}–{BEFORE_AI["to"]}, this GitHub account): about {base:.0f} commits a month</span></p>',
+        f'<figcaption>{month_name(months[-2][0])} and {month_name(months[-1][0])} averaged about {recent:,.0f} commits a month; the dashed line sits almost on the axis at this scale. '
+        f'The baseline is GitHub’s commit count for this account, {BEFORE_AI["commits"]} commits over {BEFORE_AI["months"]} months, pulled {BEFORE_AI["pulled"]}. '
+        f'It counts only this account; earlier employer work isn’t included. '
+        f'The bars are a different count, every branch of every local repo, agent commits included, so the two are not directly comparable. '
+        f'On GitHub’s count alone, {BEFORE_AI["github_2026_span"]} is {BEFORE_AI["github_2026"]:,} commits, about {BEFORE_AI["github_2026"] / BEFORE_AI["github_2026_months"]:,.0f} a month. '
+        f'The current month is partial and not shown.</figcaption>',
+        '</figure>',
+    ])
+
+
 def skill_counts(rows):
     by_repo = {r["github_repo"]: int(r[COMMITS_COL]) for r in rows if r["visibility"] == "public"}
     return [by_repo.get(repo, 0) for _, repo in SKILL_MEMBERS]
@@ -263,6 +331,7 @@ def main():
     ])
     slices = donut_slices(groups, total)
     donut_figure, donut_css = donut_html(slices, total, data_through)
+    monthly_figure = monthly_html(monthly_commits(args.handoff, data_through))
 
     def meta(g):
         return f'<p class="ds-meta">{g["first"]} → {g["last"]} · {g["n"]:,} commits since Oct 2025</p>'
@@ -317,6 +386,7 @@ def main():
     text = fill(text, "hero-bullets", "\n" + hero + "\n")
     text = fill(text, "donut", donut_figure)
     text = fill(text, "donut-css", "\n" + donut_css + "\n")
+    text = fill(text, "monthly", monthly_figure)
     for key, line in card_meta.items():
         text = fill(text, f"card-meta-{key}", line)
     text = fill(text, "tokens", tokens)
