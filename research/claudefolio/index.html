@@ -244,6 +244,8 @@ section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
 </li>
 <li><a href="#fleet">The agent fleet</a>
 </li>
+<li><a href="#findings">Interesting findings</a>
+</li>
 <li><a href="#timeline">Timeline</a>
 </li>
 </ul></nav>
@@ -777,6 +779,26 @@ section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
 <li>Sterling runs the portfolio reviews.</li>
 <li>Kestrel runs a separate crypto research desk.</li>
 </ul>
+</section>
+<div class="hr">
+</div>
+<section class="ds-section ds-wrap article-stack" id="findings">
+<h2 class="ds-title">Interesting findings</h2><p class="ds-lede">Things the agents did that we did not expect.</p>
+<ul class="article-list">
+<li>Agents keep asking for the answer key. Our strategy tests keep back a sealed holdout: a stretch of recent market data, used once to score a finished strategy.</li>
+<li>Between 2026-11-02 and 2026-11-03, research sessions asked twice to open it. That was 2 asks from 2 different sessions. One came with the agent&#x27;s own advice: say yes.</li>
+<li>Both were told no: keep it sealed. Neither had a strategy that passed the earlier test. The standing answer now: ask again only when one does.</li>
+<li>The held-back stock data stayed sealed. One session reported it never read it. An audit of the other found no test used it.</li>
+<li>In October an earlier session asked too. That time the answer was yes, but the code guarding the data failed review, so that session never opened it.</li>
+<li>The operator: &quot;Why does it keep asking to read the secret data? This feels kind of weird... a funny find.&quot; The agents did ask first rather than peek. We still read it as a small misalignment: agents pushing toward the answer key.</li>
+</ul>
+<details>
+<summary>Sources</summary>
+<ul class="article-list">
+<li>Agent message bus, 2026-10-09 to 2026-11-03 (private).</li>
+<li>The operator&#x27;s holdout tally (private).</li>
+</ul>
+</details>
 </section>
 <div class="hr">
 </div>
