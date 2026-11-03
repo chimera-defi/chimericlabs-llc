@@ -12,24 +12,69 @@ const MARKETS = [
   { id: "gm", artist: "Glass Mile", initials: "GM", genre: "Indie rock", question: "Sells out a 2,000-cap headline show by spring?", yes: 61, volume: "$97K", date: "Apr 1, 2027" },
   { id: "ns", artist: "Nia Sol", initials: "NS", genre: "R&B", question: "Signs with a major label in 2027?", yes: 47, volume: "$231K", date: "Dec 31, 2027" },
 ];
+const CTX = [
+  { id: "songs", label: "Song vectors", meta: "48K tracks" },
+  { id: "taste", label: "Artist taste", meta: "312 liked songs" },
+  { id: "session", label: "This session", meta: "24 stems · 9 MIDI" },
+  { id: "brand", label: "Brand assets", meta: "3 shoots · 2 campaigns" },
+];
+// Each module: label, retrieved references [title, source, context id, match] and suggestions [title, detail, target].
 const STUDIO = {
-  composition: [
-    ["Lift the last chorus a minor third", "Most of your closest references modulate up for the final chorus. Try the last 8 bars.", "MIDI · Keys"],
-    ["Shorten the intro to 8 bars", "Matched references reach the first vocal by 0:14; yours enters at 0:31.", "Arrangement · Intro"],
-  ],
-  production: [
-    ["Layer a tape-saturated pad under the verse", "Warm-pad cluster in your references; saturate lightly.", "Track · Pad 2 (new)"],
-    ["Swap the clap for a rim and snap stack", "Your most-saved songs use drier, shorter backbeats.", "Drum rack · C1"],
-  ],
-  mixing: [
-    ["Cut 280 Hz on the pad bus by 3 dB", "The pads mask the lead vocal here; reference mixes leave this band clear.", "EQ · Pad bus"],
-    ["Sidechain bass to kick", "Low end is hotter than your reference average and smears the kick.", "Compressor · Bass"],
-  ],
-  mastering: [
-    ["Target a louder integrated level", "The current bounce sits well under your reference masters.", "Master · Limiter"],
-    ["Gentle high shelf for air", "Adds the top end your reference masters share without harshening sibilance.", "Master · EQ"],
-  ],
+  composition: {
+    label: "Composition",
+    refs: [
+      ["Halcyon Drift, Mara Ione", "Liked song", "taste", "0.91"],
+      ["Low Tide Choir, The Pale Rooms", "Song vectors · chord + form", "songs", "0.87"],
+      ["“Saltwater” moodboard", "Photo shoot · cold blues, open coast", "brand", "0.74"],
+    ],
+    sugs: [
+      ["Lift the last chorus a minor third", "7 of your 12 closest references modulate up for the final chorus. Try A♭ → B for the last 8 bars.", "MIDI · Lead vox guide, Keys"],
+      ["Borrow the iv chord in bar 12", "A D♭m in the bridge gives the bittersweet turn your liked songs lean on.", "MIDI · Keys"],
+      ["Shorten the intro to 8 bars", "Matched references reach the first vocal by 0:14; yours enters at 0:31.", "Arrangement · Intro"],
+    ],
+  },
+  production: {
+    label: "Production",
+    refs: [
+      ["Pad + vox stems (current)", "This session", "session", "—"],
+      ["Glasswork, Ondine Park", "Song vectors · timbre", "songs", "0.89"],
+      ["“Saltwater” moodboard", "Photo shoot · sparse, reverb-heavy", "brand", "0.71"],
+    ],
+    sugs: [
+      ["Layer a tape-saturated pad under the verse", "Soft-synth pad into a saturator at 30% dry/wet. Matches the warm-pad cluster in your references.", "Track · Pad 2 (new)"],
+      ["Swap the clap for a rim and snap stack", "Your most-saved songs use drier, shorter backbeats at around 90 BPM.", "Drum rack · C1"],
+      ["Add a reversed vocal swell into the chorus", "Two bars, from the “undertow” ad-lib. Fits the coastal, airy brand world.", "Audio · Vox FX"],
+    ],
+  },
+  mixing: {
+    label: "Mixing",
+    refs: [
+      ["Halcyon Drift, Mara Ione", "Reference mix · spectral match", "taste", "0.88"],
+      ["Full session (current)", "This session · masking analysis", "session", "—"],
+      ["Northern Static, Vell", "Song vectors · stereo image", "songs", "0.82"],
+    ],
+    sugs: [
+      ["Cut 280 Hz on the pad bus by 3 dB", "The pads mask the lead vocal here; reference mixes leave this band clear.", "EQ · Pad bus"],
+      ["Sidechain bass to kick, 4:1, 40 ms release", "Low end is 2.1 dB hotter than your reference average and smears the kick.", "Compressor · Bass"],
+      ["Widen backing vocals to 140%", "References carry backing vocals wide and the lead dead centre.", "Utility · BV bus"],
+    ],
+  },
+  mastering: {
+    label: "Mastering",
+    refs: [
+      ["Reference set average", "Artist taste · −8.7 LUFS, −1 dBTP", "taste", "0.93"],
+      ["Velvet Hours masters", "Song vectors · same genre cluster", "songs", "0.84"],
+      ["Spring campaign brief", "Brand assets · short-video-first rollout", "brand", "0.69"],
+    ],
+    sugs: [
+      ["Target −9 LUFS integrated", "The current bounce sits at −12.4 LUFS. Set the limiter ceiling to −1 dBTP and add 3.4 dB of gain.", "Master · Limiter"],
+      ["Gentle 1.5 dB high shelf at 10 kHz", "Adds the air your reference masters share without harshening the sibilance.", "Master · EQ"],
+      ["Export a 15 s vertical-video cut", "The campaign brief puts short video first. Suggested loop: 1:02–1:17, the chorus hook.", "Export · Clip"],
+    ],
+  },
 };
+// Resolution source per milestone option, in the same order as the select (placeholder providers).
+const SOURCES = ["a streaming-stats data provider", "a public chart archive", "a ticketing partner's sell-through report", "a public label announcement, checked by the oracle"];
 const WALLETS = ["0x3f…a2", "0x9c…71", "mara-demo.eth", "0x14…de", "vinyl-demo.eth", "0xb0…5e"];
 const SCENARIOS = [100000, 500000, 2000000];
 const TICK_MS = 2200;
@@ -61,7 +106,7 @@ const setPressed = (buttons, active) => {
   for (const node of buttons) node.setAttribute("aria-pressed", String(node === active));
 };
 
-const state = { tokenId: "lv", scenario: 1, raised: Object.fromEntries(TOKENS.map((t) => [t.id, t.raised])), flash: null, feed: [], marketId: "lv", side: "yes", studioTab: "composition", applied: new Set() };
+const state = { tokenId: "lv", scenario: 1, raised: Object.fromEntries(TOKENS.map((t) => [t.id, t.raised])), flash: null, feed: [], marketId: "lv", side: "yes", studioTab: "composition", applied: new Set(), ctx: new Set(CTX.map((c) => c.id)), previewing: null, extra: {}, holdings: {}, positions: {} };
 const controller = new AbortController();
 const { signal } = controller;
 
@@ -107,7 +152,9 @@ const renderTokens = () => keepFocus(() => {
 
 const renderInvest = () => {
   const t = TOKENS.find((item) => item.id === state.tokenId);
-  const amount = Math.max(0, Number(investAmount.value) || 0);
+  // Quote only what the raise can still take, so the readout matches the simulated fill.
+  const requested = Math.max(0, Number(investAmount.value) || 0);
+  const amount = Math.min(requested, t.goal - state.raised[t.id]);
   const supply = t.goal / t.price;
   const tokens = amount / t.price;
   const fraction = tokens / supply;
@@ -125,7 +172,11 @@ const renderInvest = () => {
     const dd = el("dd", label === "Your payout" ? "ds-final" : "", value);
     investReadout.append(el("dt", "", label), dd);
   }
-  investCta.textContent = `Simulate · $${amount.toLocaleString("en-US")}`;
+  const funded = state.raised[t.id] >= t.goal;
+  investCta.disabled = funded;
+  investCta.textContent = funded ? "Raise closed · fully funded" : `Simulate · $${amount.toLocaleString("en-US")}${amount < requested ? " (rest of the raise)" : ""}`;
+  const held = state.holdings[t.id];
+  $("#inv-holding").textContent = held ? `${held.toLocaleString("en-US", { maximumFractionDigits: 1 })} $${t.ticker}` : "None";
 };
 
 const selectToken = (id) => {
@@ -154,7 +205,17 @@ for (const node of document.querySelectorAll("[data-add-inv]")) {
   }, { signal });
 }
 investAmount.addEventListener("input", () => { investDone.hidden = true; renderInvest(); }, { signal });
-investCta.addEventListener("click", () => { investDone.hidden = false; }, { signal });
+investCta.addEventListener("click", () => {
+  const t = TOKENS.find((item) => item.id === state.tokenId);
+  // Fill at most what is left of the raise, and count it toward the raise.
+  const amount = Math.min(Math.max(0, Number(investAmount.value) || 0), t.goal - state.raised[t.id]);
+  if (amount <= 0) return;
+  state.raised[t.id] += amount;
+  state.holdings[t.id] = (state.holdings[t.id] || 0) + amount / t.price;
+  investDone.hidden = false;
+  renderTokens();
+  renderInvest();
+}, { signal });
 
 // ---- Live feed ----
 const feedList = $("#feed");
@@ -178,6 +239,7 @@ const tick = () => {
   state.feed = [{ who: WALLETS[Math.floor(Math.random() * WALLETS.length)], ticker: t.ticker, amount, at: Date.now() }, ...state.feed].slice(0, 4);
   renderTokens();
   renderFeed();
+  if (t.id === state.tokenId) renderInvest();
   setTimeout(() => { state.flash = null; renderTokens(); }, 900);
 };
 
@@ -237,36 +299,97 @@ for (const node of document.querySelectorAll("[data-submit]")) {
     forms.token.hidden = true;
     forms.market.hidden = true;
     listed.hidden = false;
-    $("#listed-title").textContent = node.dataset.submit === "token" ? "Token launch queued for review" : "Market queued for listing";
+    const token = node.dataset.submit === "token";
+    $("#listed-title").textContent = token ? "Token launch queued for review" : "Market queued for listing";
+    $("#listed-body").textContent = token
+      ? "In the concept, the revenue-share agreement is drafted with the artist and the trustee; once signed, the token goes live on the launchpad."
+      : "In the concept, the data source is verified first, then the Yes/No pool is deployed.";
   }, { signal });
 }
 $("#listed-reset").addEventListener("click", () => setMode(modeButtons.find((b) => b.getAttribute("aria-pressed") === "true")?.dataset.mode ?? "token"), { signal });
 
+const milestone = $("#m-milestone");
+const renderSource = () => { $("#m-source").textContent = SOURCES[milestone.selectedIndex] ?? SOURCES[0]; };
+milestone.addEventListener("change", renderSource, { signal });
+renderSource();
+
 // ---- Studio mock ----
 const studioTabs = $("#studio-tabs");
 const studioList = $("#studio-list");
+const studioCtx = $("#studio-ctx");
+const studioRefs = $("#studio-refs");
+const studioPrompt = $("#studio-prompt");
 const studioButtons = [];
 const renderStudio = () => keepFocus(() => {
+  const mod = STUDIO[state.studioTab];
+  const refs = mod.refs.filter(([, , ctx]) => state.ctx.has(ctx));
+  $("#refs-label").textContent = `Retrieved for ${mod.label}`;
+  $("#sugs-label").textContent = `Suggestions · ${mod.label}`;
+  studioPrompt.placeholder = `Ask the ${mod.label.toLowerCase()} agent…`;
+
+  studioCtx.replaceChildren();
+  for (const c of CTX) {
+    const on = state.ctx.has(c.id);
+    const node = button("", `btn ${on ? "btn-secondary" : "btn-ghost"} bk-ctx`, () => {
+      if (on) state.ctx.delete(c.id); else state.ctx.add(c.id);
+      renderStudio();
+    }, { "aria-pressed": String(on), "data-focus": `ctx-${c.id}` });
+    node.append(el("span", "", c.label), el("span", "ds-muted", c.meta));
+    studioCtx.append(node);
+  }
+
+  studioRefs.replaceChildren();
+  for (const [title, src, , match] of refs) {
+    const row = el("div", "bk-ref");
+    const copy = el("div", "", title);
+    copy.append(el("small", "", src));
+    row.append(copy, el("span", "bk-match", match, { "aria-label": match === "—" ? "no match score" : `match ${match}` }));
+    studioRefs.append(row);
+  }
+  $("#studio-norefs").hidden = refs.length > 0;
+
   studioList.replaceChildren();
-  for (const [i, [title, detail, target]] of STUDIO[state.studioTab].entries()) {
+  for (const [i, [title, detail, target]] of [...mod.sugs, ...(state.extra[state.studioTab] || [])].entries()) {
     const key = `${state.studioTab}:${i}`;
+    const applied = state.applied.has(key);
+    const previewing = state.previewing === key;
     const copy = el("div");
     copy.style.flex = "1 1 220px";
-    copy.append(el("strong", "", title), el("p", "card-body", detail), el("div", "ds-muted", `→ ${target}`));
+    // With every source off, the evidence-based copy no longer holds, so show the generic fallback.
+    copy.append(el("strong", "", title), el("p", "card-body", refs.length ? detail : "Generic scripted suggestion: no references retrieved."), el("div", "ds-muted", `→ ${target}`));
+    if (previewing) copy.append(el("p", "ds-muted", "Previewing (mock): nothing plays, the change is only shown here."));
     const actions = el("div", "ds-row");
-    if (state.applied.has(key)) actions.append(tag("Applied (mock)", "tag-accent"));
-    actions.append(button(state.applied.has(key) ? "Undo" : "Apply", "btn btn-secondary", () => {
-      if (state.applied.has(key)) state.applied.delete(key); else state.applied.add(key);
-      renderStudio();
-    }, { "data-focus": `studio-${key}` }));
+    if (applied) actions.append(tag("Applied (mock)", "tag-accent"));
+    actions.append(
+      button(applied ? "Undo" : "Apply", `btn ${applied ? "btn-secondary" : "btn-primary"}`, () => {
+        if (applied) state.applied.delete(key); else state.applied.add(key);
+        renderStudio();
+      }, { "data-focus": `studio-${key}` }),
+      button(previewing ? "Stop" : "Preview", "btn btn-ghost", () => {
+        state.previewing = previewing ? null : key;
+        renderStudio();
+      }, { "aria-pressed": String(previewing), "data-focus": `preview-${key}` }),
+    );
     const row = el("div", "ds-suggest");
     row.append(copy, actions);
     studioList.append(row);
   }
 });
+$("#studio-ask").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const q = studioPrompt.value.trim();
+  if (!q) return;
+  const n = STUDIO[state.studioTab].refs.filter(([, , ctx]) => state.ctx.has(ctx)).length;
+  const item = [q[0].toUpperCase() + q.slice(1), `Scripted draft from ${n} retrieved reference${n === 1 ? "" : "s"}. Review before applying.`, "Pending · new clip"];
+  state.extra[state.studioTab] = [...(state.extra[state.studioTab] || []), item];
+  studioPrompt.value = "";
+  renderStudio();
+  $("#studio-status").textContent = `Added a scripted suggestion: ${item[0]}.`;
+}, { signal });
 for (const name of Object.keys(STUDIO)) {
-  const node = button(name[0].toUpperCase() + name.slice(1), "btn btn-secondary btn-toggle", () => {
+  const node = button(STUDIO[name].label, "btn btn-secondary btn-toggle", () => {
     state.studioTab = name;
+    state.previewing = null;
     setPressed(studioButtons, node);
     renderStudio();
   });
@@ -326,6 +449,9 @@ const renderTrade = () => {
   mktReadout.replaceChildren();
   for (const [label, value] of rows) mktReadout.append(el("dt", "", label), el("dd", label.startsWith("Payout") ? "ds-final" : "", value));
   $("#mkt-cta").textContent = `Simulate ${state.side === "yes" ? "Yes" : "No"} · $${amount.toLocaleString("en-US")}`;
+  const pos = state.positions[m.id];
+  $("#mkt-position").textContent = pos ? `${pos.yes.toFixed(1)} Yes · ${pos.no.toFixed(1)} No` : "None";
+  $("#mkt-sell").disabled = !pos;
 };
 const selectMarket = (id, side) => {
   state.marketId = id;
@@ -341,7 +467,22 @@ for (const node of document.querySelectorAll("[data-add-mkt]")) {
   node.addEventListener("click", () => { mktAmount.value = (Number(mktAmount.value) || 0) + Number(node.dataset.addMkt); renderTrade(); }, { signal });
 }
 mktAmount.addEventListener("input", () => { mktDone.hidden = true; renderTrade(); }, { signal });
-$("#mkt-cta").addEventListener("click", () => { mktDone.hidden = false; }, { signal });
+$("#mkt-cta").addEventListener("click", () => {
+  const m = MARKETS.find((item) => item.id === state.marketId);
+  const price = state.side === "yes" ? m.yes : 100 - m.yes;
+  const amount = Math.max(0, Number(mktAmount.value) || 0);
+  if (!amount || !price) return;
+  const pos = state.positions[m.id] || { yes: 0, no: 0 };
+  pos[state.side] += amount / (price / 100);
+  state.positions[m.id] = pos;
+  mktDone.hidden = false;
+  renderTrade();
+}, { signal });
+$("#mkt-sell").addEventListener("click", () => {
+  delete state.positions[state.marketId];
+  mktDone.hidden = true;
+  renderTrade();
+}, { signal });
 renderMarkets();
 renderTrade();
 
