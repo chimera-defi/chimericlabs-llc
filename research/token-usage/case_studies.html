@@ -1,0 +1,105 @@
+<section class="chart-card" id="case-study">
+<h2>Case studies</h2>
+<article class="case">
+<h3>A change to session instructions</h3>
+<p class="story">A 67-line change to 2 files cost about 4.6M Codex tokens, and about 98% of that was the model re-reading text it had already seen.</p>
+<p>The change added written guidance to the instructions Codex gets when it starts a job in a session-tooling repo. Codex wrote and tested it, then Claude reviewed it, amended it, merged it and deployed it.
+
+One thing went wrong. Codex&#x27;s sandbox had a read-only filesystem, so Codex could not save its change to the repo&#x27;s history (a &quot;commit&quot;), and Claude had to redo the commit, which took 3 extra tool calls.</p>
+<p>For every token Codex wrote, it read 229.</p>
+<details><summary>Sources and caveat</summary>
+<p>We can&#x27;t separate out Claude&#x27;s share, because the same Claude session handled 3 tasks. ChatGPT&#x27;s share is not measured.
+
+Details: across all 3 tasks the Claude session used about 7.2M tokens, mostly re-reading. That is the most this change could have cost Claude, not an estimate of its actual share. Counts are raw, duplicates removed.</p>
+<ul>
+<li>Codex rollout counters and Claude session transcripts for the change</li>
+</ul></details>
+</article>
+<article class="case">
+<h3>Compaction cuts context to a tenth</h3>
+<p class="story">Compaction cut a long session&#x27;s carried text to a median 9% of its size, and one session did it 140 times in 53 hours.</p>
+<p>When a session&#x27;s text gets too long, Claude Code summarizes it into a shorter one (compaction) so the work can go on.</p>
+<p>Across 897 compactions still on disk, 173,231,700 tokens became 16,447,091, freeing 156,784,609. The busiest session compacted 140 times, about once every 23 minutes.</p>
+<p>Median size after compaction: 9.3% of before.</p>
+<p>Compaction frees space but does not stop the text growing back.</p>
+<details><summary>Sources and caveat</summary>
+<p>Claude deletes transcripts after about 30 days, so this counts only transcripts still on disk and shrinks with each refresh unless retention is raised. Duplicate records from resumed sessions are removed.</p>
+<ul>
+<li>Claude session transcripts (compaction records)</li>
+</ul></details>
+</article>
+<article class="case">
+<h3>Priority tier: faster, same tokens</h3>
+<p class="story">Moving Codex 6.1 terra (low effort) to the priority speed tier cut the median task time 42%, from 10.34 to 5.97 seconds.</p>
+<p>DispatchBench is our benchmark of small coding problems. The same model and effort ran the 60-run main ladder once on the standard tier and once on the priority tier.</p>
+<p>Both runs passed 60 of 60.</p>
+<p>Mean output was 537 tokens on standard and 523 on priority.</p>
+<p>The faster tier changed the time, not the work: same passes, same output size.</p>
+<details><summary>Sources and caveat</summary>
+<p>Small problems only. The priority tier is billed at a different rate, which this page does not cover. The two runs were made on different days.</p>
+<ul>
+<li>DispatchBench results/2026-10-28-terra-function.jsonl</li>
+<li>DispatchBench results/2026-11-02-terra-priority-function.jsonl</li>
+</ul></details>
+</article>
+<article class="case">
+<h3>Same passes, different token mix</h3>
+<p class="story">Claude Haiku and Codex 6.1 sol, both at high effort, passed all 60 problems; sol read 3.5x more input tokens per call.</p>
+<p>Two models ran the same 60 DispatchBench problems.</p>
+<p>Haiku took a median 14.74 seconds per problem, sol 27.43. Per call, Haiku read 4,418 input tokens and wrote 4,123; sol read 15,380 and wrote 1,081.</p>
+<p>Haiku wrote 3.8x as many output tokens; sol read 3.5x as many input tokens.</p>
+<p>Output size alone does not show token use: the model that wrote more also read far less.</p>
+<details><summary>Sources and caveat</summary>
+<p>The Haiku high-effort arm was exploratory, not pre-registered. Different vendors count tokens differently.</p>
+<ul>
+<li>DispatchBench results/2026-10-22b-function.jsonl</li>
+</ul></details>
+</article>
+<article class="case">
+<h3>A cheap model plus a targeted repair</h3>
+<p class="story">A small Codex model (luna, low effort) passed 21 of 35 hard runs alone and 34 of 35 when Claude Haiku repaired only the answers that failed the problem&#x27;s own examples.</p>
+<p>Seven harder problems, five runs each. Luna is fast but misses some; Haiku (low effort) was added as the repairer.</p>
+<p>Haiku reviewing every answer passed 35 of 35 but the median time rose from 8.5 to 27.4 seconds. Repairing only on failure passed 34 of 35 at a median 7.9 seconds.</p>
+<p>Passed 21 of 35 alone, 34 of 35 with repair on failure; median time 8.5 to 7.9 seconds.</p>
+<p>Run the cheap check first and call the second model only when the check fails.</p>
+<details><summary>Sources and caveat</summary>
+<p>The seven problems are the ones luna missed most, so the gap is larger than on the whole ladder (luna passed 46 of 60 there). The median barely moves because the repair ran only on the failing runs.</p>
+<ul>
+<li>DispatchBench results/2026-10-22b-function.jsonl</li>
+<li>DispatchBench results/appendix/luna_rescue.jsonl</li>
+</ul></details>
+</article>
+<article class="case">
+<h3>A gap that was noise</h3>
+<p class="story">Two effort levels of Codex 6.1 terra differed by 2 of 60 problems at first; after 15 repeats the gap was 2 of 180, and all 4 misses were on 1 problem.</p>
+<p>We compared two effort levels of Codex 6.1 terra on 12 problems: 5 repeats first, then 10 more.</p>
+<p>In the first 5 repeats low passed 60 of 60 and high 58. In the next 10 repeats both passed 119 of 120.</p>
+<p>Pooled over 15 repeats: low 179 of 180, high 177 of 180; 4 misses on 1 problem.</p>
+<p>One small run can overstate a gap. Repeat it before choosing on a miss.</p>
+<details><summary>Sources and caveat</summary>
+<p>The benchmark report&#x27;s confidence interval for the pooled difference includes zero.</p>
+<ul>
+<li>DispatchBench results/2026-10-28-terra-function.jsonl</li>
+<li>DispatchBench results/2026-11-02-terra-noise-function.jsonl</li>
+</ul></details>
+</article>
+<article class="case">
+<h3>A delegate that missed half</h3>
+<p class="story">Devin&#x27;s delegate tool passed 6 of 12 benchmark problems; Claude Haiku (low effort) passed 57 of 60.</p>
+<p>Devin is one of the tools the host can hand coding tasks to. We ran it once through the 12-problem ladder with its stock setup.</p>
+<p>Devin took a median 10.49 seconds and Haiku 9.96.</p>
+<p>50% passed against 95%.</p>
+<p>The time was the same; the passes were not. Check a lane before routing work to it.</p>
+<details><summary>Sources and caveat</summary>
+<p>Only 12 Devin runs, one per problem, exploratory and not pre-registered.</p>
+<ul>
+<li>DispatchBench results/2026-10-28-devin-function.jsonl</li>
+<li>DispatchBench results/2026-10-22b-function.jsonl</li>
+</ul></details>
+</article>
+<h3>Quick facts</h3>
+<ul>
+<li>Haiku&#x27;s share of Claude raw tokens by week: 1.4% (2026-10-05), 0.1% (2026-10-12), 3.5% (2026-10-19), 10.3% (2026-10-26). Opus raw tokens fell 34% between the last two complete weeks (1,956,373,270 to 1,300,734,433). Which model a session used is not logged, so the cause is not established.</li>
+<li>In 2026-10-27..2026-11-02 (last 7 complete UTC days), Claude read 130 cached tokens for each token it wrote; Codex read 153.</li>
+</ul>
+</section>

@@ -21,6 +21,8 @@ Stages:
 5. `build_v5.py` (private and `--public`), `check_v5.py`, `public_leak_scan.py`.
 6. Copy the public page and data here.
 
+Stage 4 also runs `case_studies.py`. It recomputes the section 9 case studies from DispatchBench rows, local Claude transcripts and the handoff files, and writes `case_studies.json` (numbers and text) and `case_studies.html` (the snippet, rendered from the json). It stops if a recomputed number differs from the benchmark report. DispatchBench lives at `DISPATCHBENCH` (default `~/workspace/dispatchbench/results`).
+
 The cutoff is the current UTC day. The build stops with "Stale daily input" if any daily source ends before it.
 
 ## Where the generator lives
