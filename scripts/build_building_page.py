@@ -249,7 +249,6 @@ def monthly_html(months):
     parts.append(f'<line class="bars-base" x1="{left}" x2="{w - right}" y1="{y(base):.1f}" y2="{y(base):.1f}"></line>')
     parts.append(f'<text x="{w - right + 4}" y="{y(base) - 4:.1f}" class="chart-small">≈{base:.0f}/mo</text>')
     first, last = months[0], months[-1]
-    recent = sum(n for _, n in months[-2:]) / 2
     aria = (f"Commits per month, {names[int(first[0][5:]) - 1]} {first[0][:4]} to {names[int(last[0][5:]) - 1]} {last[0][:4]}, "
             f"rising from {first[1]:,} to {last[1]:,}. A dashed line at about {base:.0f} a month marks the "
             f"{BEFORE_AI['from']}–{BEFORE_AI['to']} average before AI agents.")
@@ -261,12 +260,6 @@ def monthly_html(months):
         '</svg>',
         '<p class="article-legend"><span><i class="swatch-bars" aria-hidden="true"></i>Commits that month</span>'
         f'<span><i class="swatch-base" aria-hidden="true"></i>Before AI agents ({BEFORE_AI["from"]}–{BEFORE_AI["to"]}, this GitHub account): about {base:.0f} commits a month</span></p>',
-        f'<figcaption>{month_name(months[-2][0])} and {month_name(months[-1][0])} averaged about {recent:,.0f} commits a month; the dashed line sits almost on the axis at this scale. '
-        f'The baseline is GitHub’s commit count for this account, {BEFORE_AI["commits"]} commits over {BEFORE_AI["months"]} months, pulled {BEFORE_AI["pulled"]}. '
-        f'It counts only this account; earlier employer work isn’t included. '
-        f'The bars are a different count, every branch of every local repo, agent commits included, so the two are not directly comparable. '
-        f'On GitHub’s count alone, {BEFORE_AI["github_2026_span"]} is {BEFORE_AI["github_2026"]:,} commits, about {BEFORE_AI["github_2026"] / BEFORE_AI["github_2026_months"]:,.0f} a month. '
-        f'The current month is partial and not shown.</figcaption>',
         '</figure>',
     ])
 
@@ -359,15 +352,12 @@ def main():
     d7_claude, d7_codex = window("7")
     with open(os.path.join(args.handoff, "codex_daily_corrected.csv"), encoding="utf-8", newline="") as fh:
         codex_days = list(csv.DictReader(fh))
-    spike = sum(int(r["own_tokens_corrected"]) for r in codex_days if r["date"][:7] in ("2026-07", "2026-08"))
-    spike_pct = round(100.0 * spike / sum(int(r["own_tokens_corrected"]) for r in codex_days))
     tokens = "\n".join([
         '<div class="article-grid">',
         f'<article class="card"><h3>Claude</h3><p class="token-n">{since_claude:.1f} billion tokens</p><p>Observed over the same dates for both tools, {SAME_WINDOW_START} to {data_through} (last day partial). Raw, cache reads included; {ranges["since"][3] / 1e9:.1f} billion tokens from recovered logs are left out.</p></article>',
         f'<article class="card"><h3>Codex</h3><p class="token-n">{since_codex:.1f} billion tokens</p><p>Same dates, {SAME_WINDOW_START} to {data_through}. Raw tokens Codex used itself on this server, cached input included.</p></article>',
         '</div>',
         f'<p>Same comparison, shorter windows: last 30 days, Claude {d30_claude:.1f} billion and Codex {d30_codex:.1f} billion; last 7 days, Claude {d7_claude:.1f} billion and Codex {d7_codex:.1f} billion.</p>',
-        f'<p class="ds-meta">Longer ranges, with different start dates, so not comparable: Claude {claude_total / 1e9:.1f} billion from 2026-07-10, with gaps (earlier logs are gone, so this is a floor). Codex {codex_total / 1e9:.1f} billion from 2026-05-24, {spike_pct}% of it a July–August spike when Claude logs are missing. Estimates, not a bill. The two tools count differently, so the totals are not added together.</p>',
         '<p><a href="../token-usage/">The full token usage study →</a></p>',
         '<p><a href="../../dispatchbench/">DispatchBench: how we pick which model builds what →</a></p>',
     ])
