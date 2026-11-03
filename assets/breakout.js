@@ -152,7 +152,9 @@ const renderTokens = () => keepFocus(() => {
 
 const renderInvest = () => {
   const t = TOKENS.find((item) => item.id === state.tokenId);
-  const amount = Math.max(0, Number(investAmount.value) || 0);
+  // Quote only what the raise can still take, so the readout matches the simulated fill.
+  const requested = Math.max(0, Number(investAmount.value) || 0);
+  const amount = Math.min(requested, t.goal - state.raised[t.id]);
   const supply = t.goal / t.price;
   const tokens = amount / t.price;
   const fraction = tokens / supply;
@@ -172,7 +174,7 @@ const renderInvest = () => {
   }
   const funded = state.raised[t.id] >= t.goal;
   investCta.disabled = funded;
-  investCta.textContent = funded ? "Raise closed · fully funded" : `Simulate · $${amount.toLocaleString("en-US")}`;
+  investCta.textContent = funded ? "Raise closed · fully funded" : `Simulate · $${amount.toLocaleString("en-US")}${amount < requested ? " (rest of the raise)" : ""}`;
   const held = state.holdings[t.id];
   $("#inv-holding").textContent = held ? `${held.toLocaleString("en-US", { maximumFractionDigits: 1 })} $${t.ticker}` : "None";
 };
