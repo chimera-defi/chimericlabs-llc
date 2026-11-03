@@ -208,19 +208,21 @@ def snippet(b, mcp):
     fb = fm.get("fable", {}); ob = fm.get("opus-5-5", {})
     real = dict(tf["real_model_of_those_sessions_messages"])
     real_txt = ", ".join("%s (%s)" % (format(v, ","), {"sonnet-5-5": "Sonnet 5.5", "opus-5-5": "Opus 5.5"}.get(k, k)) for k, v in real.items()) or "no matching transcript"
-    find = ('<p id="traffic-finding">Fable ran in %d Claude transcripts (%s messages); Opus 5.5 ran in %d (%s messages). %d of the Fable runs (%d%%) were subagents spawned by a Claude session, '
-            'and %d%% of those came from sessions whose main model is Opus 5.5. The logs show no Fable run started directly by ChatGPT, Codex or Kepler; they message Claude sessions over the bus, and what those sessions then spawn is the visible start. '
-            '%s bus messages went to sessions with “fable” in the name; those sessions’ transcripts hold %s assistant messages%s.</p>'
-            % (fb.get("runs", 0), format(fb.get("messages", 0), ","), ob.get("runs", 0), format(ob.get("messages", 0), ","), fb.get("subagent_runs", 0),
+    # Short sentences: the page rules allow 15 words and two numbers each. Message totals live in the coverage note.
+    find = ('<p id="traffic-finding">Fable ran in %d Claude transcripts. Opus 5.5 ran in %d. %d of the Fable runs (%d%%) were subagents spawned by Claude sessions. '
+            '%d%% of those came from sessions whose main model is Opus 5.5. The logs show no Fable run started directly by ChatGPT, Codex or Kepler. '
+            'They message Claude sessions over the bus. What those sessions spawn is the visible start. '
+            '%s bus messages went to sessions with “fable” in the name. Those transcripts hold %s assistant messages%s.</p>'
+            % (fb.get("runs", 0), ob.get("runs", 0), fb.get("subagent_runs", 0),
                round(100 * fb.get("subagent_runs", 0) / max(fb.get("runs", 1), 1)), round(100 * dict(b["fable_invokers"]).get("Claude opus-5-5 session, via Agent tool", 0) / max(fb.get("subagent_runs", 1), 1)), format(tf["messages"], ","), real_txt, ", none from Fable" if not real.get("fable") else ""))
-    cov = ('<p id="traffic-coverage"><small>Coverage: Claude transcripts %s..%s (Fable seen %s..%s); bus messages %s..%s; MCP calls %s..%s. '
+    cov = ('<p id="traffic-coverage"><small>Coverage: Claude transcripts %s..%s (Fable seen %s..%s); bus messages %s..%s; MCP calls %s..%s. Assistant messages: Fable %s, Opus 5.5 %s. '
            'Not counted: Fable as advisor (no separate transcript), laptop Claude. A bus name containing “fable” does not mean the session ran Fable.</small></p>'
-           % (cv["transcripts"]["first"], cv["transcripts"]["last"], cv["transcripts"]["fable_first"], cv["transcripts"]["fable_last"], cv["bus"]["first"], cv["bus"]["last"], cv["mcp"]["first"], cv["mcp"]["last"]))
+           % (cv["transcripts"]["first"], cv["transcripts"]["last"], cv["transcripts"]["fable_first"], cv["transcripts"]["fable_last"], cv["bus"]["first"], cv["bus"]["last"], cv["mcp"]["first"], cv["mcp"]["last"], format(fb.get("messages", 0), ","), format(ob.get("messages", 0), ",")))
     grid = '<div class="tr-grid">%s%s%s%s</div>' % (
-        donut("tr-sent", "Bus messages sent, by sender", b["bus"]["sent"], "%s messages, %s..%s." % (format(cv["bus"]["messages"], ","), cv["bus"]["first"], cv["bus"]["last"])),
+        donut("tr-sent", "Bus messages sent, by sender", b["bus"]["sent"], "%s messages in the window." % format(cv["bus"]["messages"], ",")),
         donut("tr-received", "Bus messages received, by recipient", b["bus"]["received"], "Same messages, by recipient group."),
         donut("tr-fable-who", "Fable runs, by who started them", inv, "Parent = the Claude session that spawned the run, by its main model."),
-        donut("tr-fable-how", "Fable runs, by path", paths, "No Fable run traced to a bus post, Agent Host MCP call or session-send; %d shell commands in Claude logs name Fable as the model." % b["other_paths"]["launch_commands_naming_fable"].get("claude", 0)))
+        donut("tr-fable-how", "Fable runs, by path", paths, "No Fable run traced to a bus post, MCP call or session-send. %d shell commands name Fable as the model." % b["other_paths"]["launch_commands_naming_fable"].get("claude", 0)))
     return ('<!-- section 10 snippet; built by scripts/token-usage/fable_callers.py; replace the existing <section id=\"mcp\"> element with this one -->\n'
             + css + '<section class="chart-card" id="mcp">' + head + find + grid + cov + '</section>')
 
