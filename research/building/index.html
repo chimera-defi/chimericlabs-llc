@@ -89,6 +89,13 @@ section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
 .donut-legend .swatch { width: var(--space-4); height: var(--space-4); border-radius: var(--radius-sm); }
 .donut-n { font-variant-numeric: tabular-nums; color: var(--ds-muted); }
 @media (min-width: 760px) { .donut-wrap { grid-template-columns: auto 1fr; justify-items: stretch; align-items: center; } }
+.article-bars svg { max-width: calc(var(--space-8) * 24); }
+.bars-bar { fill: var(--data-1); }
+.bars-grid { stroke: var(--color-divider); stroke-width: 1; }
+.bars-base { stroke: var(--ds-muted); stroke-width: 2; stroke-dasharray: 6 4; }
+.article-bars text { fill: var(--ds-muted); }
+.article-legend .swatch-bars { background: var(--data-1); }
+.article-legend .swatch-base { width: var(--space-6); height: 0; border-top: 2px dashed var(--ds-muted); background: none; }
 .token-n { font-size: var(--article-heading); font-weight: var(--font-heading-weight); font-variant-numeric: tabular-nums; margin: 0; }
 /* gen:donut-css */
 .slice-1 { stroke: var(--data-1); } .slice-bg-1 { background: var(--data-1); }
@@ -179,6 +186,43 @@ section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
 </div>
 <figcaption>Data through 2026-11-03. Private repos are not named; their commits are in “Other private work”.</figcaption>
 </figure><!-- /gen:donut -->
+      <!-- gen:monthly --><figure class="article-chart article-bars">
+<h3>Commits per month, against the before-AI baseline</h3>
+<svg viewBox="0 0 420 220" role="img" aria-label="Commits per month, Oct 2025 to Oct 2026, rising from 378 to 3,591. A dashed line at about 13 a month marks the 2021–2024 average before AI agents." xmlns="http://www.w3.org/2000/svg">
+<line class="bars-grid" x1="52" x2="364" y1="192.0" y2="192.0"></line>
+<text x="46" y="196.0" text-anchor="end" class="chart-small">0</text>
+<line class="bars-grid" x1="52" x2="364" y1="147.0" y2="147.0"></line>
+<text x="46" y="151.0" text-anchor="end" class="chart-small">1,000</text>
+<line class="bars-grid" x1="52" x2="364" y1="102.0" y2="102.0"></line>
+<text x="46" y="106.0" text-anchor="end" class="chart-small">2,000</text>
+<line class="bars-grid" x1="52" x2="364" y1="57.0" y2="57.0"></line>
+<text x="46" y="61.0" text-anchor="end" class="chart-small">3,000</text>
+<line class="bars-grid" x1="52" x2="364" y1="12.0" y2="12.0"></line>
+<text x="46" y="16.0" text-anchor="end" class="chart-small">4,000</text>
+<rect class="bars-bar" x="55.6" y="175.0" width="16.8" height="17.0"><title>Oct 2025: 378 commits</title></rect>
+<text x="64.0" y="212" text-anchor="middle" class="chart-small">Oct ’25</text>
+<rect class="bars-bar" x="79.6" y="183.8" width="16.8" height="8.2"><title>Nov 2025: 183 commits</title></rect>
+<rect class="bars-bar" x="103.6" y="163.5" width="16.8" height="28.5"><title>Dec 2025: 633 commits</title></rect>
+<rect class="bars-bar" x="127.6" y="171.7" width="16.8" height="20.3"><title>Jan 2026: 452 commits</title></rect>
+<text x="136.0" y="212" text-anchor="middle" class="chart-small">Jan ’26</text>
+<rect class="bars-bar" x="151.6" y="156.5" width="16.8" height="35.5"><title>Feb 2026: 788 commits</title></rect>
+<rect class="bars-bar" x="175.6" y="170.7" width="16.8" height="21.3"><title>Mar 2026: 473 commits</title></rect>
+<rect class="bars-bar" x="199.6" y="174.1" width="16.8" height="17.9"><title>Apr 2026: 397 commits</title></rect>
+<text x="208.0" y="212" text-anchor="middle" class="chart-small">Apr ’26</text>
+<rect class="bars-bar" x="223.6" y="160.1" width="16.8" height="31.9"><title>May 2026: 709 commits</title></rect>
+<rect class="bars-bar" x="247.6" y="115.3" width="16.8" height="76.7"><title>Jun 2026: 1,705 commits</title></rect>
+<rect class="bars-bar" x="271.6" y="127.3" width="16.8" height="64.7"><title>Jul 2026: 1,437 commits</title></rect>
+<text x="280.0" y="212" text-anchor="middle" class="chart-small">Jul ’26</text>
+<rect class="bars-bar" x="295.6" y="95.6" width="16.8" height="96.4"><title>Aug 2026: 2,142 commits</title></rect>
+<rect class="bars-bar" x="319.6" y="32.0" width="16.8" height="160.0"><title>Sep 2026: 3,555 commits</title></rect>
+<rect class="bars-bar" x="343.6" y="30.4" width="16.8" height="161.6"><title>Oct 2026: 3,591 commits</title></rect>
+<text x="352.0" y="212" text-anchor="middle" class="chart-small">Oct ’26</text>
+<line class="bars-base" x1="52" x2="364" y1="191.4" y2="191.4"></line>
+<text x="368" y="187.4" class="chart-small">≈13/mo</text>
+</svg>
+<p class="article-legend"><span><i class="swatch-bars" aria-hidden="true"></i>Commits that month</span><span><i class="swatch-base" aria-hidden="true"></i>Before AI agents (2021–2024, this GitHub account): about 13 commits a month</span></p>
+<figcaption>Sep 2026 and Oct 2026 averaged about 3,573 commits a month; the dashed line sits almost on the axis at this scale. The baseline is GitHub’s commit count for this account, 614 commits over 48 months, pulled 2026-11-03. It counts only this account; earlier employer work isn’t included. The bars are a different count, every branch of every local repo, agent commits included, so the two are not directly comparable. On GitHub’s count alone, January to October 2026 is 5,433 commits, about 543 a month. The current month is partial and not shown.</figcaption>
+</figure><!-- /gen:monthly -->
       <nav class="article-toc" aria-label="Contents">
 <ul>
 <li><a href="#projects">Projects</a>
