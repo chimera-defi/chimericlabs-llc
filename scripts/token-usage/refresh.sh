@@ -35,6 +35,8 @@ cp "$PAGE/public/index.html" "$REPO/research/token-usage/index.html"
 cp "$PAGE/public/data.json" "$REPO/research/token-usage/data.json"
 echo "== 6b traffic: who talks to Fable and how (bus + transcripts) -> data.json[traffic], section-10 snippet"
 python3 -I "$REPO/scripts/token-usage/fable_callers.py" "$PAGE/handoff/fable_callers.json" --merge "$REPO/research/token-usage/data.json" --snippet "$REPO/research/token-usage/section10-snippet.html"
+# reconcile the daily non-additive series with the totals the build just wrote, then publish them
+python3 -I "$REPO/scripts/token-usage/nonadditive_daily.py" "$PAGE/handoff" "$REPO/research/token-usage/nonadditive_daily.json" "$REPO/research/token-usage/data.json"
 ( cd "$REPO" && node scripts/check-tokens.mjs )
 echo "== 6b/6 consolidated daily table: one sweep, one row per UTC day, then validate"
 if [ "$QUICK" = 0 ] || [ ! -f "$ACQ/commits/commits_unified.csv" ]; then
