@@ -9,3 +9,4 @@ artifacts/delegation/
 artifacts/devin-delegate/
 artifacts/kimi-delegate/
 artifacts/token-reduction/
+__pycache__/
