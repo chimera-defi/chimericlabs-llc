@@ -12,7 +12,9 @@ Rules (the doc is docs/commit-and-token-series.md):
 - date_utc is the author date converted to UTC. Every series on the page uses the same day.
 - landed = non-merge commit reachable from main/master (local or origin). Merge commits are kept, flagged is_merge.
 - Lines are counted per file category (rules below). Binary files count as 0 lines. Renames are not followed,
-  so a moved file is an add plus a delete.
+  so a moved file is an add plus a delete. Merge commits carry 0 lines (git log --numstat prints no diff for them);
+  the lines of a merged branch are counted on its own commits.
+- If a commit is in several clones of one project, it is landed when it is on main in any of them.
 usage: commit_sweep.py OUT_CSV [--roots DIR ...]   Python 3 standard library only, no network.
 """
 import argparse
@@ -93,6 +95,14 @@ def git(d, *args):
     return subprocess.run(["git", "-C", d, *args], capture_output=True, text=True, errors="replace", timeout=1500)
 
 
+def git_ok(d, *args):
+    """Like git(), but a failure stops the sweep: a broken ref must not turn into silently missing history."""
+    p = git(d, *args)
+    if p.returncode != 0:
+        raise RuntimeError(f"git {' '.join(args[:3])} failed in {d}: {p.stderr.strip()[:200]}")
+    return p.stdout
+
+
 def find_checkouts(roots):
     found = set()
     for r in roots:
@@ -123,7 +133,7 @@ def sweep_store(common, d):
             main |= set(git(d, "rev-list", "--no-merges", ref).stdout.split())
     rs, us = "\x1e", "\x1f"
     fmt = rs + us.join(["%H", "%P", "%an", "%ae", "%aI", "%s", "%B"]) + us + "END"
-    out = git(d, "log", "--branches", "--remotes", "--tags", *sorted(set(tips)), "--no-renames", "--numstat", "--format=" + fmt).stdout
+    out = git_ok(d, "log", "--branches", "--remotes", "--tags", *sorted(set(tips)), "--no-renames", "--numstat", "--format=" + fmt)
     for rec in out.split(rs)[1:]:
         head, _, stat = rec.partition(us + "END")
         f = head.split(us)
@@ -157,15 +167,23 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("out")
     ap.add_argument("--roots", nargs="*", default=ROOTS)
+    ap.add_argument("--strict", action="store_true", help="exit 1 if any repo could not be read (default: warn, skip it, exit 0)")
     args = ap.parse_args()
     stores = find_checkouts(args.roots)
     print(f"object stores: {len(stores)}", file=sys.stderr)
-    seen, rows = set(), []
+    seen, rows, skipped = {}, [], []
     for common, d in stores.items():
-        for row, full in sweep_store(common, d):
-            if full in seen:  # same commit in two clones of one project
+        try:
+            swept = list(sweep_store(common, d))
+        except RuntimeError as e:
+            skipped.append(str(e))
+            print(f"WARNING skipped unreadable repo: {e}", file=sys.stderr)
+            continue
+        for row, full in swept:
+            if full in seen:  # same commit in two clones of one project: keep one row, OR the landed flag
+                seen[full][9] = max(seen[full][9], row[9])
                 continue
-            seen.add(full)
+            seen[full] = row
             rows.append(row)
         print(f"{os.path.basename(os.path.dirname(common)) or common}: {len(rows)}", file=sys.stderr, flush=True)
     rows.sort(key=lambda r: (r[2], r[0]))
@@ -175,7 +193,9 @@ def main():
         w = csv.writer(fh, lineterminator="\n")
         w.writerow(header)
         w.writerows(rows)
-    print(f"wrote {len(rows)} commits to {args.out}")
+    print(f"wrote {len(rows)} commits to {args.out}; skipped {len(skipped)} unreadable repos")
+    if skipped and args.strict:
+        sys.exit(1)
 
 
 if __name__ == "__main__":
