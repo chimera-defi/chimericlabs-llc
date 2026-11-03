@@ -70,6 +70,8 @@
 .article-chart .ds-arrow { fill: var(--data-1); }
 .article-chart .node-key-sub { fill: var(--color-accent-200); }
 .article-chart .chart-mobile { display: none; }
+.who-lane { fill: none; stroke: var(--color-divider); }
+.article-chart .who-lane-label { fill: var(--ds-muted); }
 .article-chart .node-title { font-weight: var(--font-heading-weight); }
 details { padding: var(--space-6); border: 1px solid var(--color-divider); border-radius: var(--radius-md); }
 summary { cursor: pointer; padding-block: var(--space-2); }
@@ -465,6 +467,102 @@ section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
 <li><p>Readback. The filled orders come back in as fresh data.</p>
 </li>
 </ol>
+<figure class="article-chart">
+<h3>Who does each step</h3>
+<div class="ds-diagram">
+<svg class="chart-desktop" viewBox="0 0 1100 352" role="img" aria-label="Who does each step: scripts take a read-only snapshot, agents research, review and write the order sheet, scripts check it, the human approves, ChatGPT drafts the orders, the human submits them in the broker, and the fills come back as fresh data." xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="who-desktop" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto-start-reverse">
+<path d="M0 0 L7 3.5 L0 7 Z" class="ds-arrow" />
+</marker>
+</defs>
+<rect class="who-lane" x="0" y="0" width="1100" height="112" rx="8" />
+<text x="10" y="22" class="chart-small who-lane-label" text-anchor="start" >Scripts and data</text>
+<rect class="who-lane" x="0" y="120" width="1100" height="112" rx="8" />
+<text x="10" y="142" class="chart-small who-lane-label" text-anchor="start" >Agents</text>
+<rect class="who-lane" x="0" y="240" width="1100" height="112" rx="8" />
+<text x="10" y="262" class="chart-small who-lane-label" text-anchor="start" >Human</text>
+<rect class="ds-node" x="11.0" y="32" width="115.5" height="70" rx="8" />
+<text x="68.8" y="63.0" class="node-title" text-anchor="middle" >Snapshot</text>
+<text x="68.8" y="87.0" class="chart-small" text-anchor="middle" >read-only</text>
+<rect class="ds-node" x="148.5" y="152" width="115.5" height="70" rx="8" />
+<text x="206.2" y="183.0" class="node-title" text-anchor="middle" >Research</text>
+<text x="206.2" y="207.0" class="chart-small" text-anchor="middle" >and review</text>
+<rect class="ds-node" x="286.0" y="152" width="115.5" height="70" rx="8" />
+<text x="343.8" y="183.0" class="node-title" text-anchor="middle" >Order sheet</text>
+<text x="343.8" y="207.0" class="chart-small" text-anchor="middle" >one owner</text>
+<rect class="ds-node" x="423.5" y="32" width="115.5" height="70" rx="8" />
+<text x="481.2" y="63.0" class="node-title" text-anchor="middle" >Check</text>
+<text x="481.2" y="87.0" class="chart-small" text-anchor="middle" >maths, limits</text>
+<rect class="ds-node ds-node--key" x="561.0" y="272" width="115.5" height="70" rx="8" />
+<text x="618.8" y="303.0" class="node-title" text-anchor="middle" >Approve</text>
+<text x="618.8" y="327.0" class="node-key-sub chart-small" text-anchor="middle" >explicit</text>
+<rect class="ds-node" x="698.5" y="152" width="115.5" height="70" rx="8" />
+<text x="756.2" y="183.0" class="node-title" text-anchor="middle" >Draft</text>
+<text x="756.2" y="207.0" class="chart-small" text-anchor="middle" >ChatGPT</text>
+<rect class="ds-node" x="836.0" y="272" width="115.5" height="70" rx="8" />
+<text x="893.8" y="303.0" class="node-title" text-anchor="middle" >Submit</text>
+<text x="893.8" y="327.0" class="chart-small" text-anchor="middle" >in the broker</text>
+<rect class="ds-node" x="973.5" y="32" width="115.5" height="70" rx="8" />
+<text x="1031.2" y="63.0" class="node-title" text-anchor="middle" >Readback</text>
+<text x="1031.2" y="87.0" class="chart-small" text-anchor="middle" >fresh data</text>
+<path d="M126.5 67.0 H137.5 V187.0 H140.5" class="ds-edge" fill="none" marker-end="url(#who-desktop)" />
+<path d="M264.0 187.0 H278.0" class="ds-edge" fill="none" marker-end="url(#who-desktop)" />
+<path d="M401.5 187.0 H412.5 V67.0 H415.5" class="ds-edge" fill="none" marker-end="url(#who-desktop)" />
+<path d="M539.0 67.0 H550.0 V307.0 H553.0" class="ds-edge" fill="none" marker-end="url(#who-desktop)" />
+<path d="M676.5 307.0 H687.5 V187.0 H690.5" class="ds-edge" fill="none" marker-end="url(#who-desktop)" />
+<path d="M814.0 187.0 H825.0 V307.0 H828.0" class="ds-edge" fill="none" marker-end="url(#who-desktop)" />
+<path d="M951.5 307.0 H962.5 V67.0 H965.5" class="ds-edge" fill="none" marker-end="url(#who-desktop)" />
+</svg>
+<svg class="chart-mobile" viewBox="0 0 350 736" role="img" aria-label="Who does each step: scripts take a read-only snapshot, agents research, review and write the order sheet, scripts check it, the human approves, ChatGPT drafts the orders, the human submits them in the broker, and the fills come back as fresh data." xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="who-mobile" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto-start-reverse">
+<path d="M0 0 L7 3.5 L0 7 Z" class="ds-arrow" />
+</marker>
+</defs>
+<text x="0" y="45.0" class="chart-small who-lane-label" text-anchor="start" >Scripts</text>
+<rect class="ds-node" x="96" y="4" width="250" height="70" rx="8" />
+<text x="221.0" y="35.0" class="node-title" text-anchor="middle" >Snapshot</text>
+<text x="221.0" y="59.0" class="chart-small" text-anchor="middle" >read-only</text>
+<path d="M221 74 V92" class="ds-edge" fill="none" marker-end="url(#who-mobile)" />
+<text x="0" y="137.0" class="chart-small who-lane-label" text-anchor="start" >Agents</text>
+<rect class="ds-node" x="96" y="96" width="250" height="70" rx="8" />
+<text x="221.0" y="127.0" class="node-title" text-anchor="middle" >Research</text>
+<text x="221.0" y="151.0" class="chart-small" text-anchor="middle" >and review</text>
+<path d="M221 166 V184" class="ds-edge" fill="none" marker-end="url(#who-mobile)" />
+<text x="0" y="229.0" class="chart-small who-lane-label" text-anchor="start" >Agents</text>
+<rect class="ds-node" x="96" y="188" width="250" height="70" rx="8" />
+<text x="221.0" y="219.0" class="node-title" text-anchor="middle" >Order sheet</text>
+<text x="221.0" y="243.0" class="chart-small" text-anchor="middle" >one owner</text>
+<path d="M221 258 V276" class="ds-edge" fill="none" marker-end="url(#who-mobile)" />
+<text x="0" y="321.0" class="chart-small who-lane-label" text-anchor="start" >Scripts</text>
+<rect class="ds-node" x="96" y="280" width="250" height="70" rx="8" />
+<text x="221.0" y="311.0" class="node-title" text-anchor="middle" >Check</text>
+<text x="221.0" y="335.0" class="chart-small" text-anchor="middle" >maths, limits</text>
+<path d="M221 350 V368" class="ds-edge" fill="none" marker-end="url(#who-mobile)" />
+<text x="0" y="413.0" class="chart-small who-lane-label" text-anchor="start" >Human</text>
+<rect class="ds-node ds-node--key" x="96" y="372" width="250" height="70" rx="8" />
+<text x="221.0" y="403.0" class="node-title" text-anchor="middle" >Approve</text>
+<text x="221.0" y="427.0" class="node-key-sub chart-small" text-anchor="middle" >explicit</text>
+<path d="M221 442 V460" class="ds-edge" fill="none" marker-end="url(#who-mobile)" />
+<text x="0" y="505.0" class="chart-small who-lane-label" text-anchor="start" >Agents</text>
+<rect class="ds-node" x="96" y="464" width="250" height="70" rx="8" />
+<text x="221.0" y="495.0" class="node-title" text-anchor="middle" >Draft</text>
+<text x="221.0" y="519.0" class="chart-small" text-anchor="middle" >ChatGPT</text>
+<path d="M221 534 V552" class="ds-edge" fill="none" marker-end="url(#who-mobile)" />
+<text x="0" y="597.0" class="chart-small who-lane-label" text-anchor="start" >Human</text>
+<rect class="ds-node" x="96" y="556" width="250" height="70" rx="8" />
+<text x="221.0" y="587.0" class="node-title" text-anchor="middle" >Submit</text>
+<text x="221.0" y="611.0" class="chart-small" text-anchor="middle" >in the broker</text>
+<path d="M221 626 V644" class="ds-edge" fill="none" marker-end="url(#who-mobile)" />
+<text x="0" y="689.0" class="chart-small who-lane-label" text-anchor="start" >Scripts</text>
+<rect class="ds-node" x="96" y="648" width="250" height="70" rx="8" />
+<text x="221.0" y="679.0" class="node-title" text-anchor="middle" >Readback</text>
+<text x="221.0" y="703.0" class="chart-small" text-anchor="middle" >fresh data</text>
+</svg>
+</div>
+<figcaption>The same steps, by who does them. Only the human approves or submits.</figcaption>
+</figure>
 <aside class="ds-notice article-notice">
 <h3>Hard rules</h3>
 <ul class="article-list">
@@ -477,7 +575,82 @@ section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
 <div class="hr">
 </div>
 <section class="ds-section ds-wrap article-stack" id="agent-host">
-<h2 class="ds-title">Agent Host: the MCP server</h2><p class="ds-lede">MCP is a standard way to give an AI model tools. Agent Host is mine.</p><p>It lets ChatGPT and Claude use my server: read code, run long jobs, pass messages.</p><p>Python, talking JSON-RPC, with state in SQLite. First version 2026-08-22; latest change 2026-10-25 (see the timeline below).</p><p>Its tools fall into seven groups.</p>
+<h2 class="ds-title">Agent Host: the MCP server</h2><p class="ds-lede">MCP is a standard way to give an AI model tools. Agent Host is mine.</p><p>It lets ChatGPT and Claude use my server: read code, run long jobs, pass messages.</p><p>Python, talking JSON-RPC, with state in SQLite. First version 2026-08-22; latest change 2026-10-25 (see the timeline below).</p><figure class="article-chart">
+<h3>How agents reach the server</h3>
+<div class="ds-diagram">
+<svg class="chart-desktop" viewBox="0 0 1100 300" role="img" aria-label="ChatGPT and Claude connect over MCP to Agent Host, a Python JSON-RPC server with state in SQLite. Its tools fall into seven groups: Host and sessions, Research records, Portfolio data, Tasks, Messages, Workspace and memory, Files. None of them places a trade." xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="host-desktop" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto-start-reverse">
+<path d="M0 0 L7 3.5 L0 7 Z" class="ds-arrow" />
+</marker>
+</defs>
+<rect class="ds-node" x="0" y="40" width="190" height="80" rx="8" />
+<text x="95.0" y="86.0" class="node-title" text-anchor="middle" >ChatGPT</text>
+<rect class="ds-node" x="0" y="180" width="190" height="80" rx="8" />
+<text x="95.0" y="226.0" class="node-title" text-anchor="middle" >Claude</text>
+<rect class="ds-node" x="290" y="70" width="260" height="160" rx="8" />
+<text x="420.0" y="146.0" class="node-title" text-anchor="middle" >Agent Host</text>
+<text x="420.0" y="170.0" class="chart-small" text-anchor="middle" >Python · SQLite</text>
+<text x="420.0" y="196.0" class="chart-small" text-anchor="middle" >JSON-RPC</text>
+<path d="M190 80 H230 V130 H282" class="ds-edge" fill="none" marker-end="url(#host-desktop)" />
+<path d="M190 220 H230 V170 H282" class="ds-edge" fill="none" marker-end="url(#host-desktop)" />
+<text x="236" y="152" class="chart-small" text-anchor="start" >MCP</text>
+<rect class="ds-node" x="640" y="14" width="225" height="58" rx="8" />
+<text x="752.5" y="49.0" class="chart-small" text-anchor="middle" >Host and sessions</text>
+<rect class="ds-node" x="875" y="14" width="225" height="58" rx="8" />
+<text x="987.5" y="49.0" class="chart-small" text-anchor="middle" >Research records</text>
+<rect class="ds-node" x="640" y="84" width="225" height="58" rx="8" />
+<text x="752.5" y="119.0" class="chart-small" text-anchor="middle" >Portfolio data</text>
+<rect class="ds-node" x="875" y="84" width="225" height="58" rx="8" />
+<text x="987.5" y="119.0" class="chart-small" text-anchor="middle" >Tasks</text>
+<rect class="ds-node" x="640" y="154" width="225" height="58" rx="8" />
+<text x="752.5" y="189.0" class="chart-small" text-anchor="middle" >Messages</text>
+<rect class="ds-node" x="875" y="154" width="225" height="58" rx="8" />
+<text x="987.5" y="189.0" class="chart-small" text-anchor="middle" >Workspace and memory</text>
+<rect class="ds-node" x="640" y="224" width="225" height="58" rx="8" />
+<text x="752.5" y="259.0" class="chart-small" text-anchor="middle" >Files</text>
+<rect class="ds-node ds-node--key" x="875" y="224" width="225" height="58" rx="8" />
+<text x="987.5" y="259.0" class="chart-small" text-anchor="middle" >No trading tools</text>
+<path d="M550 150 H632" class="ds-edge" fill="none" marker-end="url(#host-desktop)" />
+</svg>
+<svg class="chart-mobile" viewBox="0 0 350 748" role="img" aria-label="ChatGPT and Claude connect over MCP to Agent Host, a Python JSON-RPC server with state in SQLite. Its tools fall into seven groups: Host and sessions, Research records, Portfolio data, Tasks, Messages, Workspace and memory, Files. None of them places a trade." xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="host-mobile" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto-start-reverse">
+<path d="M0 0 L7 3.5 L0 7 Z" class="ds-arrow" />
+</marker>
+</defs>
+<rect class="ds-node" x="0" y="4" width="160" height="64" rx="8" />
+<text x="80.0" y="42.0" class="node-title" text-anchor="middle" >ChatGPT</text>
+<rect class="ds-node" x="190" y="4" width="160" height="64" rx="8" />
+<text x="270.0" y="42.0" class="node-title" text-anchor="middle" >Claude</text>
+<path d="M80 68 V112" class="ds-edge" fill="none" marker-end="url(#host-mobile)" />
+<path d="M270 68 V112" class="ds-edge" fill="none" marker-end="url(#host-mobile)" />
+<text x="175.0" y="98.0" class="chart-small" text-anchor="middle" >MCP</text>
+<rect class="ds-node" x="0" y="120" width="350" height="120" rx="8" />
+<text x="175.0" y="176.0" class="node-title" text-anchor="middle" >Agent Host</text>
+<text x="175.0" y="200.0" class="chart-small" text-anchor="middle" >Python · JSON-RPC · SQLite</text>
+<path d="M175 240 V290" class="ds-edge" fill="none" marker-end="url(#host-mobile)" />
+<rect class="ds-node" x="0" y="300" width="350" height="46" rx="8" />
+<text x="175.0" y="329.0" class="chart-small" text-anchor="middle" >Host and sessions</text>
+<rect class="ds-node" x="0" y="356" width="350" height="46" rx="8" />
+<text x="175.0" y="385.0" class="chart-small" text-anchor="middle" >Research records</text>
+<rect class="ds-node" x="0" y="412" width="350" height="46" rx="8" />
+<text x="175.0" y="441.0" class="chart-small" text-anchor="middle" >Portfolio data</text>
+<rect class="ds-node" x="0" y="468" width="350" height="46" rx="8" />
+<text x="175.0" y="497.0" class="chart-small" text-anchor="middle" >Tasks</text>
+<rect class="ds-node" x="0" y="524" width="350" height="46" rx="8" />
+<text x="175.0" y="553.0" class="chart-small" text-anchor="middle" >Messages</text>
+<rect class="ds-node" x="0" y="580" width="350" height="46" rx="8" />
+<text x="175.0" y="609.0" class="chart-small" text-anchor="middle" >Workspace and memory</text>
+<rect class="ds-node" x="0" y="636" width="350" height="46" rx="8" />
+<text x="175.0" y="665.0" class="chart-small" text-anchor="middle" >Files</text>
+<rect class="ds-node ds-node--key" x="0" y="692" width="350" height="46" rx="8" />
+<text x="175.0" y="721.0" class="chart-small" text-anchor="middle" >No trading tools</text>
+</svg>
+</div>
+<figcaption>ChatGPT and Claude connect over MCP. The tools fall into seven groups; none of them places a trade.</figcaption>
+</figure>
+<p>Its tools fall into seven groups.</p>
 <figure class="article-chart">
 <h3>Agent Host tools by group</h3>
 <div class="article-legend"><span><i aria-hidden="true"></i>Tools</span></div>
