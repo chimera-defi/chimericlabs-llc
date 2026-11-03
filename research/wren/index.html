@@ -177,11 +177,11 @@
 
         <figure class="mt-8 -mx-5 sm:mx-0">
           <a href="wren-map.webp" target="_blank" rel="noopener"><img src="wren-map.webp" width="1672" height="941" loading="eager" decoding="async" class="w-full h-auto sm:rounded border border-[color:var(--line,rgba(127,127,127,.25))]" alt="Infographic titled 'Wren: our own Claude Duet'. Left: Claude Opus 5.5 plans and checks; Codex builds and does final review; Haiku does cheap reads and sweeps; Devin takes browser and sandbox jobs; Grok does small mechanical jobs; ChatGPT is called in per job; Fable has been paused since 28 October. Centre: Wren on a dedicated 24/7 Intel i7-8700 server with 62 GB RAM; an orchestrator and shared message bus; workflow and checkpoints that verify before done; scheduled jobs (timers and cron); shared notes, memory and lessons on disk; Linnet's read-only jobs and alerts digest, twice daily. Right: ways in through Telegram text and voice, Claude app and desktop, and ChatGPT via a server connector; tools include brokers and market data through ChatGPT apps, with orders always accepted by a human in ChatGPT, GitHub and site hosting. Bottom: routing sequence of Opus plans, cheapest passing model builds, check, and escalate if it fails. Against Claude Duet's page on 1 November: 16 claims, 4 ahead, 5 at parity, 5 partial and 2 missing."></a>
-          <figcaption class="mt-2 px-5 sm:px-0 text-sm text-slate-400">Wren at a glance, drawn by ChatGPT on 1 November, checked by Wren. Tap to enlarge.</figcaption>
+          <figcaption class="mt-2 px-5 sm:px-0 text-sm text-slate-400">Wren at a glance, drawn by ChatGPT on 1 November 2026, checked by Wren. Tap to enlarge.</figcaption>
         </figure>
 
         <h2 id="duet" class="mt-12 font-serif text-2xl text-slate-100">Against Duet</h2>
-        <p class="mt-4 text-slate-300 leading-relaxed">Our score against the <a href="https://claude.com/product/claude-duet" target="_blank" rel="noreferrer">Claude Duet</a> page, re-read 1 November; not a benchmark. Duet is more polished and works out of the box.</p>
+        <p class="mt-4 text-slate-300 leading-relaxed">Our score against the <a href="https://claude.com/product/claude-duet" target="_blank" rel="noreferrer">Claude Duet</a> page, re-read 1 November 2026; not a benchmark. Duet is more polished and works out of the box.</p>
         <div class="mt-5 wren-seg" id="view-toggle" role="group" aria-label="Which view to show" hidden>
           <button type="button" class="fl-btn fl-btn--secondary" data-view="claims" aria-pressed="true">What Duet claims</button>
           <button type="button" class="fl-btn fl-btn--secondary" data-view="all" aria-pressed="false">Everything we do</button>
@@ -202,7 +202,7 @@
             <div role="row"><b role="cell">Big tasks, reported back</b><span role="cell"><span class="lab">Duet</span>Sets up meetings or builds dashboards, then reports back.</span><span role="cell"><span class="lab">Wren</span>Child sessions run hours to weeks, resuming from checkpoints, with review and merge. Example: <a href="../eth2/how-we-tested-with-claude/">a six-week Ethereum client benchmark</a>.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
             <div role="row"><b role="cell">Memory and skills carry over</b><span role="cell"><span class="lab">Duet</span>Memory, skills and apps from the Claude app, from the first message.</span><span role="cell"><span class="lab">Wren</span>Skills, notes and checkpoints shared by every agent. See <a href="#memory">Memory, honestly</a>.</span><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
             <div role="row"><b role="cell">One thread</b><span role="cell"><span class="lab">Duet</span>Your history is in one thread.</span><span role="cell"><span class="lab">Wren</span>Several threads share one memory; no single history.</span><span role="cell"><span class="wren-chip c-part">Partial</span></span></div>
-            <div role="row"><b role="cell">Works while you're away</b><span role="cell"><span class="lab">Duet</span>Messages you when it's done or needs a decision; knows what can wait.</span><span role="cell"><span class="lab">Wren</span>Scheduled jobs (systemd timers and cron), mostly quiet upkeep <a class="wren-trigger" href="jobs/" aria-label="List the scheduled jobs">?</a>. ChatGPT reads markets on a server schedule; Hermes, OpenClaw and Wren alert too. Linnet, a read-only digest of jobs and alerts, posts twice daily.</span><span role="cell"><span class="wren-chip c-par">Parity</span></span></div>
+            <div role="row"><b role="cell">Works while you're away</b><span role="cell"><span class="lab">Duet</span>Messages you when it's done or needs a decision; knows what can wait.</span><span role="cell"><span class="lab">Wren</span>Scheduled jobs (systemd timers and cron), mostly quiet upkeep. <a class="wren-trigger" href="jobs/">See the full list</a>. ChatGPT reads markets on a server schedule; Hermes, OpenClaw and Wren alert too. Linnet, a read-only digest of jobs and alerts, posts twice daily.</span><span role="cell"><span class="wren-chip c-par">Parity</span></span></div>
             <div role="row"><b role="cell">Its own computer</b><span role="cell"><span class="lab">Duet</span>Its own cloud computer.</span><div role="cell"><span class="lab">Wren</span>Ahead on control; size unproven. <button type="button" class="wren-trigger" popovertarget="wren-specs">specs</button></div><span role="cell"><span class="wren-chip c-ahead">Ahead</span></span></div>
             <div role="row"><b role="cell">Model</b><span role="cell"><span class="lab">Duet</span>Powered by Opus 5.5.</span><span role="cell"><span class="lab">Wren</span>Opus 5.5, with cheaper models on steps they pass. Settable per job; see <button type="button" class="wren-trigger" popovertarget="wren-routing">routing</button>.</span><span role="cell"><span class="wren-chip c-par">Parity</span></span></div>
             <div role="row"><b role="cell">Text or voice</b><span role="cell"><span class="lab">Duet</span>Text or voice, with no setup.</span><span role="cell"><span class="lab">Wren</span>Dictation, Telegram voice notes and Claude's voice chat.</span><span role="cell"><span class="wren-chip c-par">Parity</span></span></div>
@@ -292,7 +292,7 @@
         <h2 id="made-of" class="mt-12 font-serif text-2xl text-slate-100">What it's made of</h2>
         <ul class="mt-4 wren-list">
           <li><b><a href="https://claude.com/claude-code" target="_blank" rel="noreferrer">Claude Code</a></b> on our server, signed in to the Max plan. Opus plans and checks.</li>
-          <li><b>The server</b>: a dedicated server, on 24/7, with root access.<ul class="wren-sub mt-2"><li>Intel Core i7-8700: 6 cores, 12 threads, 3.2 GHz base, 4.6 GHz max.</li><li>62 GB RAM.</li><li>2.8 TB usable: three 1 TB Samsung NVMe SSDs striped (RAID0), so no spare copy.</li><li>Ubuntu 24.04 Linux.</li><li id="jobs">Scheduled jobs (systemd timers and cron), mostly quiet upkeep. <a class="wren-trigger" href="jobs/" aria-label="List the scheduled jobs">?</a></li></ul></li>
+          <li><b>The server</b>: a dedicated server, on 24/7, with root access.<ul class="wren-sub mt-2"><li>Intel Core i7-8700: 6 cores, 12 threads, 3.2 GHz base, 4.6 GHz max.</li><li>62 GB RAM.</li><li>2.8 TB usable: three 1 TB Samsung NVMe SSDs striped (RAID0), so no spare copy.</li><li>Ubuntu 24.04 Linux.</li><li id="jobs">Scheduled jobs (systemd timers and cron), mostly quiet upkeep. <a class="wren-trigger" href="jobs/">See the full list</a></li></ul></li>
           <li><b><a href="https://github.com/chimera-defi/claude-remote-session-skill" target="_blank" rel="noreferrer">crss</a></b>: starts, messages, hands off and repairs long-running sessions for every agent on the box.</li>
           <li><b><a href="https://github.com/chimera-defi/token-reduce-skill" target="_blank" rel="noreferrer">token-reduce</a></b> and <b><a href="https://github.com/tobi/qmd" target="_blank" rel="noreferrer">QMD</a></b>: read only the slice a task needs. QMD is a local search engine over our markdown.</li>
           <li><b><a href="../../dispatchbench/">DispatchBench</a></b> and the <a href="https://github.com/chimera-defi/delegate-skill" target="_blank" rel="noreferrer">delegate skills</a>: the cheapest passing model takes each step. New models plug in; see <button type="button" class="wren-trigger" popovertarget="wren-routing">routing</button>.</li>
@@ -385,7 +385,7 @@
             <div class="wren-col in">
               <span class="fl-label">Models and agents</span>
               <div class="wren-box">Claude · Opus<small>plans and checks</small></div>
-              <div class="wren-box">Codex · Haiku<small>Codex gpt-6.1-sol builds and reviews; Haiku reads and sweeps</small></div>
+              <div class="wren-box">Codex · Haiku<small>Codex builds (gpt-6.1-terra) and reviews (gpt-6.1-sol); Haiku reads and sweeps</small></div>
               <div class="wren-box">Grok · Devin · ChatGPT<small>Grok does small mechanical jobs; Devin and ChatGPT are called in per job</small></div>
             </div>
             <div class="wren-arrow" aria-hidden="true">→</div>
@@ -427,7 +427,7 @@
           <p class="mt-3">Reviews stay with Codex gpt-6.1-sol only.</p>
           <ul class="mt-3 wren-sub">
             <li>If Codex is out: Haiku takes small builds. Reviews stay with Codex.</li>
-            <li>Fable gave second opinions until we paused it on 28 October.</li>
+            <li>Fable gave second opinions until we paused it on 28 October 2026.</li>
           </ul>
           <p class="mt-3 text-sm"><a href="#made-of">What it's made of</a></p>
         </div>
@@ -479,7 +479,7 @@
         Haiku: "Claude's small, cheap model. Does reads and sweeps.",
         Devin: "Cognition's coding agent. Takes browser and sandbox jobs.",
         Grok: "xAI's model. Does small mechanical jobs; reviews are Codex only.",
-        Fable: "A Claude model, paused as our reviewer since 28 October.",
+        Fable: "A Claude model, paused as our reviewer since 28 October 2026.",
         ChatGPT: "OpenAI's chat assistant. Called in per job, reads markets, and is where a human accepts orders.",
         takopi: "Telegram bridge for Codex, Claude Code and other agent CLIs.",
         gbrain: "Open-source knowledge-base server we also run. Its health check fails, so nothing depends on it.",
