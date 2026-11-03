@@ -184,12 +184,13 @@
                 <div class="ds-stack" style="gap: 12px">
                   <span class="card-kicker" id="refs-label"></span>
                   <div id="studio-refs" class="ds-stack" style="gap: 12px"></div>
-                  <p id="studio-norefs" class="ds-muted" style="margin: 0; font-size: 13px" hidden>All sources off: suggestions fall back to the base model.</p>
+                  <p id="studio-norefs" class="ds-muted" style="margin: 0; font-size: 13px" hidden>All sources off: the mock falls back to generic scripted suggestions.</p>
                 </div>
               </div>
               <div class="ds-stack" style="flex: 2 1 420px; gap: 16px">
                 <span class="card-kicker" id="sugs-label"></span>
                 <div id="studio-list" class="ds-stack"></div>
+                <p id="studio-status" class="ds-muted" style="margin: 0; font-size: 13px" role="status"></p>
                 <form id="studio-ask" class="ds-row" style="margin-top: auto; padding-top: 16px; flex-wrap: nowrap">
                   <input id="studio-prompt" class="input" aria-label="Ask the agent" style="flex: 1; min-width: 0" autocomplete="off" />
                   <button type="submit" class="btn btn-primary">Ask</button>
@@ -362,7 +363,7 @@
           <div class="bk-legend"><span><i></i>value or data flow</span><span><i class="bk-dash"></i>return, async or external</span><span><i class="bk-key"></i>core system</span></div>
           <ol class="ds-steps">
             <li><b>Launch</b>The artist sets a raise goal and the share of album profits that goes to holders, then signs the agreement.</li>
-            <li><b>Raise</b>Fans buy tokens in USDC before release. The raise closes at the goal, and the artist receives it minus a 5% launch fee (placeholder).</li>
+            <li><b>Raise</b>Fans buy tokens in USDC before release. The raise closes at the goal and is released to the artist minus a 5% launch fee (placeholder). Holders are paid later, from the payout vault, not from the raise.</li>
             <li><b>Release</b>The album ships through the artist’s distributor as normal. Masters stay with the artist.</li>
             <li><b>Collect</b>Royalty statements go to the trustee, who verifies them and funds the payout vault.</li>
             <li><b>Pay out</b>Each period, the vault splits the holders’ share pro rata across every token, in USDC.</li>
