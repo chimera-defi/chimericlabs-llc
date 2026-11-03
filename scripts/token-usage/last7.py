@@ -36,6 +36,7 @@ for r in csv.DictReader((H/'codex_daily_split.csv').open()):
 # Own-token totals come from the corrected series the daily table and the main chart use; the event-date split only supplies fresh and output.
 corrected = {r['date']: int(r['own_tokens_corrected']) for r in csv.DictReader((H/'codex_daily_corrected.csv').open())}
 for d, x in codex.items():
+    if d not in corrected: raise SystemExit(f'codex_daily_corrected.csv has no row for {d}')
     if d in corrected: x['cached_input'] = max(0, corrected[d] - x['fresh_input'] - x['output'])
 for d in days:
     if d not in claude or d not in codex:
