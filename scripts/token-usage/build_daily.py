@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """Build the consolidated daily table: one row per UTC date, every series on the token-usage page.
 
-usage: build_daily.py COMMITS_CSV DATA_JSON OUT_CSV
+usage: build_daily.py COMMITS_CSV DATA_JSON OUT_CSV [MONTHLY_CSV]
   COMMITS_CSV  output of commit_sweep.py
   DATA_JSON    research/token-usage/data.json (token rows, coverage, data_through)
-  OUT_CSV      research/token-usage/daily.csv
+  OUT_CSV      research/token-usage/daily.csv: every day from HISTORY_START (commits) to the data_through day
+  MONTHLY_CSV  default: monthly.csv next to OUT_CSV; each month is the exact sum of its daily rows
+Tokens only exist from coverage.token_start; earlier days say `before_start` in the status columns.
 
 data.json must be built from this table. validate_daily.py fails when it is not.
 Definitions are in docs/commit-and-token-series.md. Python 3 standard library only.
@@ -12,9 +14,11 @@ Definitions are in docs/commit-and-token-series.md. Python 3 standard library on
 import csv
 import datetime
 import json
+import os
 import sys
 
 BULK_FILES = 100
+HISTORY_START = "2025-10-01"  # first day of the commit series; the page quotes commits since this date
 ACTORS = ("claude", "codex", "claude_codex", "other", "human")
 COLUMNS = (
     ["date", "day_status"]
@@ -111,19 +115,39 @@ def load_tokens(data, out):
             codex_days.add(d)
         else:
             out[d]["tokens_other"] += t
+    start = data["coverage"]["token_start"]
     for d, o in out.items():
+        if d < start:
+            o["claude_token_status"] = o["codex_token_status"] = "before_start"
+            o["tokens_total"] = 0
+            continue
         o["tokens_total"] = o["tokens_claude"] + o["tokens_codex"] + o["tokens_other"]
         o["claude_token_status"] = "unmeasured" if d not in claude_days else "recovered" if recovered_only[d] else "measured"
         o["codex_token_status"] = "measured" if d in codex_days else "unmeasured"
 
 
+MONTHLY_COLUMNS = ["month"] + [c for c in COLUMNS if c not in ("date", "day_status") and not c.endswith("_status")] + ["days"]
+
+
+def monthly(rows):
+    """Sum daily rows (dicts of strings) into months. A month's `days` shows how many rows it has (partial months)."""
+    out = {}
+    for r in rows:
+        m = out.setdefault(r["date"][:7], dict.fromkeys(MONTHLY_COLUMNS[1:], 0))
+        for c in MONTHLY_COLUMNS[1:-1]:
+            m[c] += int(r[c])
+        m["days"] += 1
+    return out
+
+
 def main():
-    if len(sys.argv) != 4:
+    if len(sys.argv) not in (4, 5):
         sys.exit(__doc__)
-    commits_csv, data_json, out_csv = sys.argv[1:]
+    commits_csv, data_json, out_csv = sys.argv[1:4]
+    monthly_csv = sys.argv[4] if len(sys.argv) == 5 else os.path.join(os.path.dirname(os.path.abspath(out_csv)), "monthly.csv")
     with open(data_json, encoding="utf-8") as fh:
         data = json.load(fh)
-    start = data["coverage"]["token_start"]
+    start = HISTORY_START
     last = data["partial_today"]  # the data_through day; still filling
     table = load_commits(commits_csv, start, last)
     load_tokens(data, table)
@@ -132,7 +156,14 @@ def main():
         w.writerow(COLUMNS)
         for d, o in table.items():
             w.writerow([d, "partial" if d == last else "complete"] + [o[c] for c in COLUMNS[2:]])
-    print(f"wrote {len(table)} days {start}..{last} to {out_csv}")
+    with open(out_csv, encoding="utf-8", newline="") as fh:
+        months = monthly(list(csv.DictReader(fh)))
+    with open(monthly_csv, "w", encoding="utf-8", newline="") as fh:
+        w = csv.writer(fh, lineterminator="\n")
+        w.writerow(MONTHLY_COLUMNS)
+        for k, m in months.items():
+            w.writerow([k] + [m[c] for c in MONTHLY_COLUMNS[1:]])
+    print(f"wrote {len(table)} days {start}..{last} to {out_csv} and {len(months)} months to {monthly_csv}")
 
 
 if __name__ == "__main__":
