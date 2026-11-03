@@ -477,7 +477,7 @@ section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
 </marker>
 </defs>
 <rect class="who-lane" x="0" y="0" width="1100" height="112" rx="8" />
-<text x="10" y="22" class="chart-small who-lane-label" text-anchor="start" >Scripts and data</text>
+<text x="10" y="22" class="chart-small who-lane-label" text-anchor="start" >Data and checks</text>
 <rect class="who-lane" x="0" y="120" width="1100" height="112" rx="8" />
 <text x="10" y="142" class="chart-small who-lane-label" text-anchor="start" >Agents</text>
 <rect class="who-lane" x="0" y="240" width="1100" height="112" rx="8" />
@@ -520,7 +520,7 @@ section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
 <path d="M0 0 L7 3.5 L0 7 Z" class="ds-arrow" />
 </marker>
 </defs>
-<text x="0" y="45.0" class="chart-small who-lane-label" text-anchor="start" >Scripts</text>
+<text x="0" y="45.0" class="chart-small who-lane-label" text-anchor="start" >Data</text>
 <rect class="ds-node" x="96" y="4" width="250" height="70" rx="8" />
 <text x="221.0" y="35.0" class="node-title" text-anchor="middle" >Snapshot</text>
 <text x="221.0" y="59.0" class="chart-small" text-anchor="middle" >read-only</text>
@@ -535,7 +535,7 @@ section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
 <text x="221.0" y="219.0" class="node-title" text-anchor="middle" >Order sheet</text>
 <text x="221.0" y="243.0" class="chart-small" text-anchor="middle" >one owner</text>
 <path d="M221 258 V276" class="ds-edge" fill="none" marker-end="url(#who-mobile)" />
-<text x="0" y="321.0" class="chart-small who-lane-label" text-anchor="start" >Scripts</text>
+<text x="0" y="321.0" class="chart-small who-lane-label" text-anchor="start" >Script</text>
 <rect class="ds-node" x="96" y="280" width="250" height="70" rx="8" />
 <text x="221.0" y="311.0" class="node-title" text-anchor="middle" >Check</text>
 <text x="221.0" y="335.0" class="chart-small" text-anchor="middle" >maths, limits</text>
@@ -555,7 +555,7 @@ section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
 <text x="221.0" y="587.0" class="node-title" text-anchor="middle" >Submit</text>
 <text x="221.0" y="611.0" class="chart-small" text-anchor="middle" >in the broker</text>
 <path d="M221 626 V644" class="ds-edge" fill="none" marker-end="url(#who-mobile)" />
-<text x="0" y="689.0" class="chart-small who-lane-label" text-anchor="start" >Scripts</text>
+<text x="0" y="689.0" class="chart-small who-lane-label" text-anchor="start" >Data</text>
 <rect class="ds-node" x="96" y="648" width="250" height="70" rx="8" />
 <text x="221.0" y="679.0" class="node-title" text-anchor="middle" >Readback</text>
 <text x="221.0" y="703.0" class="chart-small" text-anchor="middle" >fresh data</text>
@@ -595,25 +595,26 @@ section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
 <path d="M190 80 H230 V130 H282" class="ds-edge" fill="none" marker-end="url(#host-desktop)" />
 <path d="M190 220 H230 V170 H282" class="ds-edge" fill="none" marker-end="url(#host-desktop)" />
 <text x="236" y="152" class="chart-small" text-anchor="start" >MCP</text>
-<rect class="ds-node" x="640" y="14" width="225" height="58" rx="8" />
-<text x="752.5" y="49.0" class="chart-small" text-anchor="middle" >Host and sessions</text>
-<rect class="ds-node" x="875" y="14" width="225" height="58" rx="8" />
-<text x="987.5" y="49.0" class="chart-small" text-anchor="middle" >Research records</text>
-<rect class="ds-node" x="640" y="84" width="225" height="58" rx="8" />
-<text x="752.5" y="119.0" class="chart-small" text-anchor="middle" >Portfolio data</text>
-<rect class="ds-node" x="875" y="84" width="225" height="58" rx="8" />
-<text x="987.5" y="119.0" class="chart-small" text-anchor="middle" >Tasks</text>
-<rect class="ds-node" x="640" y="154" width="225" height="58" rx="8" />
-<text x="752.5" y="189.0" class="chart-small" text-anchor="middle" >Messages</text>
-<rect class="ds-node" x="875" y="154" width="225" height="58" rx="8" />
-<text x="987.5" y="189.0" class="chart-small" text-anchor="middle" >Workspace and memory</text>
-<rect class="ds-node" x="640" y="224" width="225" height="58" rx="8" />
-<text x="752.5" y="259.0" class="chart-small" text-anchor="middle" >Files</text>
-<rect class="ds-node ds-node--key" x="875" y="224" width="225" height="58" rx="8" />
-<text x="987.5" y="259.0" class="chart-small" text-anchor="middle" >No trading tools</text>
-<path d="M550 150 H632" class="ds-edge" fill="none" marker-end="url(#host-desktop)" />
+<rect class="who-lane" x="630" y="4" width="470" height="288" rx="8" />
+<rect class="ds-node" x="642" y="14" width="222" height="58" rx="8" />
+<text x="753.0" y="49.0" class="chart-small" text-anchor="middle" >Host and sessions</text>
+<rect class="ds-node" x="874" y="14" width="222" height="58" rx="8" />
+<text x="985.0" y="49.0" class="chart-small" text-anchor="middle" >Research records</text>
+<rect class="ds-node" x="642" y="84" width="222" height="58" rx="8" />
+<text x="753.0" y="119.0" class="chart-small" text-anchor="middle" >Portfolio data</text>
+<rect class="ds-node" x="874" y="84" width="222" height="58" rx="8" />
+<text x="985.0" y="119.0" class="chart-small" text-anchor="middle" >Tasks</text>
+<rect class="ds-node" x="642" y="154" width="222" height="58" rx="8" />
+<text x="753.0" y="189.0" class="chart-small" text-anchor="middle" >Messages</text>
+<rect class="ds-node" x="874" y="154" width="222" height="58" rx="8" />
+<text x="985.0" y="189.0" class="chart-small" text-anchor="middle" >Workspace and memory</text>
+<rect class="ds-node" x="642" y="224" width="222" height="58" rx="8" />
+<text x="753.0" y="259.0" class="chart-small" text-anchor="middle" >Files</text>
+<rect class="ds-node ds-node--key" x="874" y="224" width="222" height="58" rx="8" />
+<text x="985.0" y="259.0" class="chart-small" text-anchor="middle" >No trading tools</text>
+<path d="M550 150 H622" class="ds-edge" fill="none" marker-end="url(#host-desktop)" />
 </svg>
-<svg class="chart-mobile" viewBox="0 0 350 748" role="img" aria-label="ChatGPT and Claude connect over MCP to Agent Host, a Python JSON-RPC server with state in SQLite. Its tools fall into seven groups: Host and sessions, Research records, Portfolio data, Tasks, Messages, Workspace and memory, Files. None of them places a trade." xmlns="http://www.w3.org/2000/svg">
+<svg class="chart-mobile" viewBox="0 0 350 764" role="img" aria-label="ChatGPT and Claude connect over MCP to Agent Host, a Python JSON-RPC server with state in SQLite. Its tools fall into seven groups: Host and sessions, Research records, Portfolio data, Tasks, Messages, Workspace and memory, Files. None of them places a trade." xmlns="http://www.w3.org/2000/svg">
 <defs>
 <marker id="host-mobile" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto-start-reverse">
 <path d="M0 0 L7 3.5 L0 7 Z" class="ds-arrow" />
@@ -629,23 +630,24 @@ section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
 <rect class="ds-node" x="0" y="120" width="350" height="120" rx="8" />
 <text x="175.0" y="176.0" class="node-title" text-anchor="middle" >Agent Host</text>
 <text x="175.0" y="200.0" class="chart-small" text-anchor="middle" >Python · JSON-RPC · SQLite</text>
+<rect class="who-lane" x="0" y="298" width="350" height="462" rx="8" />
 <path d="M175 240 V290" class="ds-edge" fill="none" marker-end="url(#host-mobile)" />
-<rect class="ds-node" x="0" y="300" width="350" height="46" rx="8" />
-<text x="175.0" y="329.0" class="chart-small" text-anchor="middle" >Host and sessions</text>
-<rect class="ds-node" x="0" y="356" width="350" height="46" rx="8" />
-<text x="175.0" y="385.0" class="chart-small" text-anchor="middle" >Research records</text>
-<rect class="ds-node" x="0" y="412" width="350" height="46" rx="8" />
-<text x="175.0" y="441.0" class="chart-small" text-anchor="middle" >Portfolio data</text>
-<rect class="ds-node" x="0" y="468" width="350" height="46" rx="8" />
-<text x="175.0" y="497.0" class="chart-small" text-anchor="middle" >Tasks</text>
-<rect class="ds-node" x="0" y="524" width="350" height="46" rx="8" />
-<text x="175.0" y="553.0" class="chart-small" text-anchor="middle" >Messages</text>
-<rect class="ds-node" x="0" y="580" width="350" height="46" rx="8" />
-<text x="175.0" y="609.0" class="chart-small" text-anchor="middle" >Workspace and memory</text>
-<rect class="ds-node" x="0" y="636" width="350" height="46" rx="8" />
-<text x="175.0" y="665.0" class="chart-small" text-anchor="middle" >Files</text>
-<rect class="ds-node ds-node--key" x="0" y="692" width="350" height="46" rx="8" />
-<text x="175.0" y="721.0" class="chart-small" text-anchor="middle" >No trading tools</text>
+<rect class="ds-node" x="10" y="308" width="330" height="46" rx="8" />
+<text x="175.0" y="337.0" class="chart-small" text-anchor="middle" >Host and sessions</text>
+<rect class="ds-node" x="10" y="364" width="330" height="46" rx="8" />
+<text x="175.0" y="393.0" class="chart-small" text-anchor="middle" >Research records</text>
+<rect class="ds-node" x="10" y="420" width="330" height="46" rx="8" />
+<text x="175.0" y="449.0" class="chart-small" text-anchor="middle" >Portfolio data</text>
+<rect class="ds-node" x="10" y="476" width="330" height="46" rx="8" />
+<text x="175.0" y="505.0" class="chart-small" text-anchor="middle" >Tasks</text>
+<rect class="ds-node" x="10" y="532" width="330" height="46" rx="8" />
+<text x="175.0" y="561.0" class="chart-small" text-anchor="middle" >Messages</text>
+<rect class="ds-node" x="10" y="588" width="330" height="46" rx="8" />
+<text x="175.0" y="617.0" class="chart-small" text-anchor="middle" >Workspace and memory</text>
+<rect class="ds-node" x="10" y="644" width="330" height="46" rx="8" />
+<text x="175.0" y="673.0" class="chart-small" text-anchor="middle" >Files</text>
+<rect class="ds-node ds-node--key" x="10" y="700" width="330" height="46" rx="8" />
+<text x="175.0" y="729.0" class="chart-small" text-anchor="middle" >No trading tools</text>
 </svg>
 </div>
 <figcaption>ChatGPT and Claude connect over MCP. The tools fall into seven groups; none of them places a trade.</figcaption>
