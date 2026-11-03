@@ -33,4 +33,10 @@ echo "== 6/6 copy into repo and run the repo's own check"
 cp "$PAGE/public/index.html" "$REPO/research/token-usage/index.html"
 cp "$PAGE/public/data.json" "$REPO/research/token-usage/data.json"
 ( cd "$REPO" && node scripts/check-tokens.mjs )
+echo "== 6b/6 consolidated daily table: one sweep, one row per UTC day, then validate"
+if [ "$QUICK" = 0 ] || [ ! -f "$ACQ/commits/commits_unified.csv" ]; then
+  python3 -I "$REPO/scripts/token-usage/commit_sweep.py" "$ACQ/commits/commits_unified.csv"
+fi
+python3 -I "$REPO/scripts/token-usage/build_daily.py" "$ACQ/commits/commits_unified.csv" "$REPO/research/token-usage/data.json" "$REPO/research/token-usage/daily.csv"
+python3 -I "$REPO/scripts/token-usage/validate_daily.py" "$REPO/research/token-usage/daily.csv" "$REPO/research/token-usage/data.json" --legacy
 echo "DONE: data through $(cat "$ACQ/data_through.txt"). Review 'git diff --stat' and open a PR; do not push to main."
