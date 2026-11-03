@@ -130,7 +130,7 @@ def sweep_store(common, d):
     main = set()
     for ref in ("refs/heads/main", "refs/heads/master", "refs/remotes/origin/main", "refs/remotes/origin/master"):
         if git(d, "rev-parse", "--verify", "-q", ref).returncode == 0:
-            main |= set(git(d, "rev-list", "--no-merges", ref).stdout.split())
+            main |= set(git_ok(d, "rev-list", "--no-merges", ref).split())
     rs, us = "\x1e", "\x1f"
     fmt = rs + us.join(["%H", "%P", "%an", "%ae", "%aI", "%s", "%B"]) + us + "END"
     out = git_ok(d, "log", "--branches", "--remotes", "--tags", *sorted(set(tips)), "--no-renames", "--numstat", "--format=" + fmt)
@@ -175,7 +175,7 @@ def main():
     for common, d in stores.items():
         try:
             swept = list(sweep_store(common, d))
-        except RuntimeError as e:
+        except (RuntimeError, subprocess.TimeoutExpired) as e:
             skipped.append(str(e))
             print(f"WARNING skipped unreadable repo: {e}", file=sys.stderr)
             continue
