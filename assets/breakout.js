@@ -205,10 +205,13 @@ for (const node of document.querySelectorAll("[data-add-inv]")) {
 investAmount.addEventListener("input", () => { investDone.hidden = true; renderInvest(); }, { signal });
 investCta.addEventListener("click", () => {
   const t = TOKENS.find((item) => item.id === state.tokenId);
-  const amount = Math.max(0, Number(investAmount.value) || 0);
-  if (!amount || state.raised[t.id] >= t.goal) return;
+  // Fill at most what is left of the raise, and count it toward the raise.
+  const amount = Math.min(Math.max(0, Number(investAmount.value) || 0), t.goal - state.raised[t.id]);
+  if (amount <= 0) return;
+  state.raised[t.id] += amount;
   state.holdings[t.id] = (state.holdings[t.id] || 0) + amount / t.price;
   investDone.hidden = false;
+  renderTokens();
   renderInvest();
 }, { signal });
 
@@ -350,7 +353,9 @@ const renderStudio = () => keepFocus(() => {
     const previewing = state.previewing === key;
     const copy = el("div");
     copy.style.flex = "1 1 220px";
-    copy.append(el("strong", "", title), el("p", "card-body", detail), el("div", "ds-muted", `→ ${target}`));
+    // With every source off, the evidence-based copy no longer holds, so show the generic fallback.
+    copy.append(el("strong", "", title), el("p", "card-body", refs.length ? detail : "Generic scripted suggestion: no references retrieved."), el("div", "ds-muted", `→ ${target}`));
+    if (previewing) copy.append(el("p", "ds-muted", "Previewing (mock): nothing plays, the change is only shown here."));
     const actions = el("div", "ds-row");
     if (applied) actions.append(tag("Applied (mock)", "tag-accent"));
     actions.append(
@@ -377,6 +382,7 @@ $("#studio-ask").addEventListener("submit", (e) => {
   state.extra[state.studioTab] = [...(state.extra[state.studioTab] || []), item];
   studioPrompt.value = "";
   renderStudio();
+  $("#studio-status").textContent = `Added a scripted suggestion: ${item[0]}.`;
 }, { signal });
 for (const name of Object.keys(STUDIO)) {
   const node = button(STUDIO[name].label, "btn btn-secondary btn-toggle", () => {
