@@ -13,7 +13,7 @@ Method:
    the transcript of such a session is checked for its real model (`named_fable_sessions`).
  - Launch paths other than the Agent tool (CLI flag, session-send, bus post, Agent Host MCP call) are counted from command text in
    Claude and Codex logs only where a command or bus summary names Fable as the model; zero is reported as zero with the window."""
-import os, sys, json, glob, re, sqlite3, collections, datetime
+import html, os, sys, json, glob, re, sqlite3, collections, datetime
 
 TR = os.environ.get("CLAUDE_TRANSCRIPTS", "/home/agents/agent-memory/agents/claude/private/live/claude-projects")
 DB = os.environ.get("BUS_DB", "/home/agents/agent-host-chat-control/state/state.sqlite")
@@ -31,7 +31,7 @@ def fam(model):
 
 
 def scan_file(f):
-    counts = collections.Counter(); ep = None; first = last = None
+    counts = collections.Counter(); ep = None; win = {}
     for l in open(f, errors="ignore"):
         if '"assistant"' not in l: continue
         try: d = json.loads(l)
@@ -42,15 +42,16 @@ def scan_file(f):
         if not k: continue
         counts[k] += 1; ep = d.get("entrypoint") or ep
         ts = (d.get("timestamp") or "")[:10]
-        first = min(first, ts) if first else ts; last = max(last, ts) if last else ts
-    return counts, ep, first, last
+        if ts:
+            a, z = win.get(k, (ts, ts)); win[k] = (min(a, ts), max(z, ts))
+    return counts, ep, win
 
 
 def transcripts():
     runs = []; main_model = {}
     files = glob.glob(TR + "/**/*.jsonl", recursive=True)
     for f in files:
-        counts, ep, first, last = scan_file(f)
+        counts, ep, win = scan_file(f)
         if not counts: continue
         sub = "/subagents/" in f
         meta = {}
@@ -59,37 +60,34 @@ def transcripts():
             try: meta = json.load(open(mf))
             except Exception: pass
         main_model[f] = counts.most_common(1)[0][0]
-        runs.append(dict(f=f, sub=sub, counts=counts, ep=ep, first=first, last=last, agentType=meta.get("agentType") or "", proj=f[len(TR) + 1:].split("/")[0]))
+        runs.append(dict(f=f, sub=sub, counts=counts, ep=ep, win=win, agentType=meta.get("agentType") or ""))
     return runs, main_model, len(files)
 
 
 def summarize(runs, main_model):
     by_model = collections.defaultdict(lambda: dict(runs=0, messages=0, subagent_runs=0, main_sessions=0))
-    inv = collections.Counter(); path = collections.Counter(); sub_type = collections.Counter(); weekly = collections.defaultdict(lambda: collections.Counter())
-    parent_of = collections.Counter(); inv_opus = collections.Counter()
+    inv = collections.Counter(); path = collections.Counter(); sub_type = collections.Counter(); weekly = collections.defaultdict(collections.Counter)
     for r in runs:
-        k = r["counts"].most_common(1)[0][0]
-        b = by_model[k]; b["runs"] += 1; b["messages"] += r["counts"][k]; b["subagent_runs" if r["sub"] else "main_sessions"] += 1
-        if r["first"]:
-            wk = (datetime.date.fromisoformat(r["first"]) - datetime.timedelta(days=datetime.date.fromisoformat(r["first"]).weekday())).isoformat()
+        for k, n in r["counts"].items():
+            b = by_model[k]; b["runs"] += 1; b["messages"] += n; b["subagent_runs" if r["sub"] else "main_sessions"] += 1
+            a0 = r["win"][k][0]
+            wk = (datetime.date.fromisoformat(a0) - datetime.timedelta(days=datetime.date.fromisoformat(a0).weekday())).isoformat()
             weekly[wk][k] += 1
+        if "fable" not in r["counts"]: continue
         if r["sub"]:
-            pf = r["f"].split("/subagents/")[0] + ".jsonl"
-            pm = main_model.get(pf)
-            parent_of[(k, pm or "parent not mirrored")] += 1
-            if k == "fable":
-                inv["Claude %s session, via Agent tool" % (pm or "parent unknown")] += 1
-                path["Agent tool (subagent)"] += 1
-                sub_type[SUBTYPE.get(r["agentType"], "model override on %s" % (r["agentType"] or "untyped"))] += 1
-        elif k == "fable":
-            label = ENTRY.get(r["ep"], r["ep"] or "unknown entrypoint")
+            pm = main_model.get(r["f"].split("/subagents/")[0] + ".jsonl")
+            inv["Claude %s session, via Agent tool" % (pm or "parent not mirrored")] += 1
+            path["Agent tool (subagent)"] += 1
+            sub_type[SUBTYPE.get(r["agentType"], "model override on %s" % (r["agentType"] if r["agentType"] in ("general-purpose", "workflow-subagent") else "other agent type"))] += 1
+        else:
+            label = ENTRY.get(r["ep"], "other entrypoint")
             inv["Claude %s started on Fable" % label] += 1
             path[label] += 1
-    return by_model, inv, path, sub_type, weekly, parent_of
+    return by_model, inv, path, sub_type, weekly
 
 
-def window(runs):
-    d = [r["first"] for r in runs if r["first"]]; e = [r["last"] for r in runs if r["last"]]
+def window(runs, k=None):
+    d = [r["win"][m][0] for r in runs for m in r["win"] if k in (None, m)]; e = [r["win"][m][1] for r in runs for m in r["win"] if k in (None, m)]
     return (min(d), max(e)) if d else (None, None)
 
 
@@ -115,11 +113,12 @@ def bus():
     named = c.execute("select count(*) from coordination_messages where lower(summary) like '%--model fable%' or lower(summary) like '%model: fable%' or lower(summary) like '%model fable%'").fetchone()[0]
     kep = collections.Counter(klass(r) for (r,) in c.execute("select recipient from coordination_messages where sender like '%kepler%'"))
     kep_in = collections.Counter(klass(s) for (s,) in c.execute("select sender from coordination_messages where recipient like '%kepler%'"))
+    kep_f = c.execute("select count(*) from coordination_messages where sender like '%kepler%' and lower(recipient) like '%fable%'").fetchone()[0]
     mcp = c.execute("select min(substr(created_at,1,10)), max(substr(created_at,1,10)) from usage_events").fetchone()
     mcp_posts = c.execute("select count(*) from usage_events where tool='coordination_post' and event_type='request_completed'").fetchone()[0]
     return dict(range=rng[:2], messages=rng[2], sent=sent, received=recv, to_fable_named=sum(to_fable.values()), to_fable_named_recipients=len(to_fable),
                 to_fable_named_by_sender=to_fable_sender, to_fable_named_range=fable_rng, summaries_naming_fable_model=named,
-                kepler_sent_to=kep, kepler_received_from=kep_in, mcp_range=mcp, mcp_coordination_post_calls=mcp_posts), set(to_fable)
+                kepler_sent_to=kep, kepler_received_from=kep_in, kepler_to_fable_named=kep_f, mcp_range=mcp, mcp_coordination_post_calls=mcp_posts), set(to_fable)
 
 
 def named_fable_models(names):
@@ -129,29 +128,41 @@ def named_fable_models(names):
         tail = n.replace("claude-", "", 1)
         for d in glob.glob(TR + "/*%s*" % tail):
             for f in glob.glob(d + "/*.jsonl"):
-                counts, _, _, _ = scan_file(f)
+                counts, _, _ = scan_file(f)
                 for k, v in counts.items(): out[k] += v
     return out
 
 
-CMD = re.compile(r"(claude|new-session|session-send|codex)[^\"\\\n]{0,160}?(--model[ =]|-m )(claude-)?fable", re.I)
+CMD = re.compile(r"(\bclaude|new-session|session-send)[^\"\\\n]{0,400}?(--model[ =]|-m )[\"\']?(claude-)?fable", re.I)
+
+
+def commands(d):
+    """Shell command strings from one log line: Claude tool_use Bash input, Codex function_call arguments."""
+    out = []
+    m = d.get("message")
+    if d.get("type") == "assistant" and isinstance(m, dict) and isinstance(m.get("content"), list):
+        for blk in m["content"]:
+            if isinstance(blk, dict) and blk.get("type") == "tool_use" and isinstance(blk.get("input"), dict): out.append(str(blk["input"].get("command") or ""))
+    p = d.get("payload")
+    if isinstance(p, dict) and p.get("type") == "function_call":
+        try: a = json.loads(p.get("arguments") or "{}")
+        except Exception: a = {}
+        c = a.get("cmd") or a.get("command") or ""
+        out.append(" ".join(c) if isinstance(c, list) else str(c))
+    return out
 
 
 def launch_commands():
-    """Command text naming Fable as the model, by log source."""
-    res = collections.Counter(); span = {}
+    """Shell commands that start Claude with Fable as the model, by log source."""
+    res = collections.Counter()
     for src, root in (("claude", TR), ("codex", CX)):
         for f in glob.glob(root + "/**/*.jsonl", recursive=True):
             for l in open(f, errors="ignore"):
-                if "fable" not in l or "--model" not in l and " -m " not in l: continue
-                if not CMD.search(l): continue
+                if "fable" not in l: continue
                 try: d = json.loads(l)
                 except Exception: continue
-                # only real tool calls (Bash / exec), not prose
-                if src == "claude" and not (d.get("type") == "assistant" and '"tool_use"' in l): continue
-                if src == "codex" and "function_call" not in l and "exec_command" not in l: continue
-                res[src] += 1
-    return res
+                res[src] += sum(1 for c in commands(d) if CMD.search(c))
+    return {k: v for k, v in res.items() if v}
 
 
 def donut(id_, title, rows, note):
@@ -164,10 +175,10 @@ def donut(id_, title, rows, note):
         L = C * n / tot
         arcs.append('<circle r="%d" cx="60" cy="60" fill="none" stroke="var(--data-model-%d)" stroke-width="22" stroke-dasharray="%.2f %.2f" stroke-dashoffset="%.2f" transform="rotate(-90 60 60)"/>' % (R, i % 8, L, C - L, -acc))
         acc += L
-        tr.append('<tr><td><i style="background:var(--data-model-%d)"></i>%s</td><td class="numeric">%s</td><td class="numeric">%.1f%%</td></tr>' % (i % 8, lab, format(n, ","), 100 * n / tot))
+        tr.append('<tr><td><i style="background:var(--data-model-%d)"></i>%s</td><td class="numeric">%s</td><td class="numeric">%.1f%%</td></tr>' % (i % 8, html.escape(lab), format(n, ","), 100 * n / tot))
     return ('<figure class="tr-donut" id="%s"><svg viewBox="0 0 120 120" role="img" aria-label="%s: %s"><title>%s</title>%s</svg>'
             '<figcaption><b>%s</b><table><thead><tr><th>Group</th><th>Count</th><th>Share</th></tr></thead><tbody>%s</tbody></table><small>%s</small></figcaption></figure>'
-            % (id_, title, ", ".join("%s %d" % (l, n) for l, n in keep), title, "".join(arcs), title, "".join(tr), note))
+            % (id_, title, html.escape(", ".join("%s %d" % (l, n) for l, n in keep), quote=True), title, "".join(arcs), title, "".join(tr), note))
 
 
 def snippet(b, mcp):
@@ -181,10 +192,13 @@ def snippet(b, mcp):
     head = (f'<p id="mcp-headline"><span class="numeric" data-exact="{n}" data-kind="count" title="{n:,}">{n / 1000:.1f}K</span> completed calls, {mcp["tools"]} tools, '
             f'{mcp["first"]}..{mcp["last"]}, three MCPs. {mcp["request_failed"]:,} failed; {mcp["transport_failed"]:,} never reached the tool (connection or timeout). Activity, not tokens.</p>')
     fb = fm.get("fable", {}); ob = fm.get("opus-5-5", {})
-    find = ('<p id="traffic-finding">Fable runs on the Claude side were %d transcripts (%s messages), %d of them subagents started by another Claude session; Opus 5.5 ran %d transcripts (%s messages). '
-            'Claude sessions started %d of %d Fable runs through the Agent tool. We found no Fable run started by ChatGPT, Codex or Kepler; '
-            'bus messages to sessions named “fable” (%d) went to sessions that ran Sonnet 5.5.</p>'
-            % (fb.get("runs", 0), format(fb.get("messages", 0), ","), fb.get("subagent_runs", 0), ob.get("runs", 0), format(ob.get("messages", 0), ","), fb.get("subagent_runs", 0), fb.get("runs", 0), tf["messages"]))
+    real = dict(tf["real_model_of_those_sessions_messages"])
+    real_txt = ", ".join("%s (%s)" % (format(v, ","), {"sonnet-5-5": "Sonnet 5.5", "opus-5-5": "Opus 5.5"}.get(k, k)) for k, v in real.items()) or "no matching transcript"
+    find = ('<p id="traffic-finding">Fable ran in %d Claude transcripts (%s messages); Opus 5.5 ran in %d (%s messages). %d of the Fable runs (%d%%) were subagents spawned by a Claude session, '
+            'and %d%% of those were spawned by an Opus 5.5 session. The logs show no Fable run started directly by ChatGPT, Codex or Kepler; they message Claude sessions over the bus, and what those sessions then spawn is the visible start. '
+            '%s bus messages went to sessions with “fable” in the name; those sessions’ transcripts hold %s assistant messages, none from Fable.</p>'
+            % (fb.get("runs", 0), format(fb.get("messages", 0), ","), ob.get("runs", 0), format(ob.get("messages", 0), ","), fb.get("subagent_runs", 0),
+               round(100 * fb.get("subagent_runs", 0) / max(fb.get("runs", 1), 1)), round(100 * dict(b["fable_invokers"]).get("Claude opus-5-5 session, via Agent tool", 0) / max(fb.get("subagent_runs", 1), 1)), format(tf["messages"], ","), real_txt))
     cov = ('<p id="traffic-coverage"><small>Coverage: Claude transcripts %s..%s (Fable seen %s..%s); bus messages %s..%s; MCP calls %s..%s. '
            'Not counted: Fable as advisor (no separate transcript), laptop Claude. A bus name containing “fable” does not mean the session ran Fable.</small></p>'
            % (cv["transcripts"]["first"], cv["transcripts"]["last"], cv["transcripts"]["fable_first"], cv["transcripts"]["fable_last"], cv["bus"]["first"], cv["bus"]["last"], cv["mcp"]["first"], cv["mcp"]["last"]))
@@ -192,18 +206,17 @@ def snippet(b, mcp):
         donut("tr-sent", "Bus messages sent, by sender", b["bus"]["sent"], "%s messages, %s..%s." % (format(cv["bus"]["messages"], ","), cv["bus"]["first"], cv["bus"]["last"])),
         donut("tr-received", "Bus messages received, by recipient", b["bus"]["received"], "Same messages, by recipient group."),
         donut("tr-fable-who", "Fable runs, by who started them", inv, "Parent = the Claude session that spawned the run."),
-        donut("tr-fable-how", "Fable runs, by path", paths, "Bus post, Agent Host MCP call, session-send: no Fable run traced to them."))
-    return ('<!-- section 10 snippet; built by scripts/token-usage/fable_callers.py; paste inside #mcp section-card -->\n'
+        donut("tr-fable-how", "Fable runs, by path", paths, "No Fable run traced to a bus post, Agent Host MCP call or session-send; %d shell commands in Claude logs name Fable as the model." % b["other_paths"]["launch_commands_naming_fable"].get("claude", 0)))
+    return ('<!-- section 10 snippet; built by scripts/token-usage/fable_callers.py; replace the existing <section id=\"mcp\"> element with this one -->\n'
             + css + '<section class="chart-card" id="mcp">' + head + find + grid + cov + '</section>')
 
 
 def main():
     out = sys.argv[1]; merge = sys.argv[sys.argv.index("--merge") + 1] if "--merge" in sys.argv else None
     runs, main_model, nfiles = transcripts()
-    by_model, inv, path, sub_type, weekly, parent_of = summarize(runs, main_model)
+    by_model, inv, path, sub_type, weekly = summarize(runs, main_model)
     w0, w1 = window(runs)
-    fable_runs = [r for r in runs if r["counts"].most_common(1)[0][0] == "fable"]
-    f0, f1 = window(fable_runs)
+    f0, f1 = window(runs, "fable")
     b, names = bus()
     named = named_fable_models(names)
     launch = launch_commands()
@@ -224,7 +237,7 @@ def main():
                                 first=b["to_fable_named_range"][0], last=b["to_fable_named_range"][1],
                                 real_model_of_those_sessions_messages=ser(named)),
         kepler=dict(sent_to=ser(b["kepler_sent_to"]), received_from=ser(b["kepler_received_from"]),
-                    fable_invocations_found=0 if not b["kepler_sent_to"].get("Fable") else b["kepler_sent_to"]["Fable"]),
+                    messages_to_fable_named=b["kepler_to_fable_named"]),
         other_paths=dict(bus_posts_naming_fable_model=b["summaries_naming_fable_model"], mcp_coordination_post_calls=b["mcp_coordination_post_calls"],
                          launch_commands_naming_fable=dict(launch)),
     )
