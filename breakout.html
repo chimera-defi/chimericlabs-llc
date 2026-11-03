@@ -11,6 +11,18 @@
     <link rel="canonical" href="https://chimericlabs.xyz/breakout.html" />
 
     <link rel="stylesheet" href="design-system/styles.css" />
+    <style>
+      .bk-legend { display: flex; flex-wrap: wrap; gap: var(--space-6); margin-top: 14px; font-size: 12px; color: var(--color-neutral-300); }
+      .bk-legend span { display: inline-flex; align-items: center; gap: 8px; }
+      .bk-legend i { width: 28px; border-top: 1.25px solid var(--color-accent); }
+      .bk-legend i.bk-dash { border-top-style: dashed; }
+      .bk-legend i.bk-key { width: 16px; height: 11px; border-radius: 3px; background: var(--color-accent-900); border: 1px solid var(--color-accent); }
+      .bk-ref { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--space-4); font-size: 14px; }
+      .bk-ref small { display: block; margin-top: 2px; font-size: 12px; color: var(--ds-muted); }
+      .bk-ref .bk-match { font-size: 12px; color: var(--color-accent-300); font-feature-settings: 'tnum' 1; white-space: nowrap; }
+      .bk-ctx { justify-content: space-between; width: 100%; text-align: left; }
+      .bk-h3 { font-family: var(--font-heading); font-weight: 500; font-size: 24px; letter-spacing: -0.01em; margin: 72px 0 28px; }
+    </style>
   </head>
 
   <body class="ds-page">
@@ -83,6 +95,8 @@
               <dl id="inv-readout" class="ds-kv"></dl>
               <button type="button" id="inv-cta" class="btn btn-primary btn-block"></button>
               <p id="inv-done" class="card-body" role="status" hidden>Simulated only. No tokens were minted and no money moved.</p>
+              <dl class="ds-kv"><dt>Your holdings (simulated)</dt><dd id="inv-holding">None</dd></dl>
+              <p class="ds-muted" style="margin: 0; font-size: 13px; line-height: 20px">In the concept there is no shorting and no betting against the artist. Payouts only come from profits under the signed revenue-share agreement.</p>
               <p class="ds-muted" style="margin: 0; font-size: 12px; line-height: 18px">Terms, fees and payout periods shown are placeholders for the concept.</p>
             </aside>
           </div>
@@ -106,6 +120,7 @@
             <div id="listed" hidden>
               <span class="tag tag-accent">Mock submit</span>
               <h3 id="listed-title" class="card-title" style="margin-top: 12px"></h3>
+              <p id="listed-body" class="card-body"></p>
               <p class="card-body" role="status">Nothing was sent anywhere. This form only changes the page.</p>
               <button type="button" id="listed-reset" class="btn btn-ghost" style="margin-top: 16px">Start another</button>
             </div>
@@ -139,7 +154,8 @@
                 <div class="field"><label for="m-target">Target</label><input id="m-target" class="input" placeholder="1,000,000" /></div>
                 <div class="field"><label for="m-date">Resolves on</label><input id="m-date" class="input" type="date" value="2027-06-30" /></div>
               </div>
-              <p class="card-body" style="margin: 0">Resolution source: a placeholder data provider.</p>
+              <div class="field"><label for="m-seed">Seed liquidity (USDC, play money)</label><input id="m-seed" class="input ds-num" type="number" min="0" value="5000" /></div>
+              <p class="card-body" style="margin: 0">Resolution source: <span id="m-source"></span> (placeholder).</p>
               <button type="button" class="btn btn-primary" data-submit="market">Submit (mock)</button>
             </div>
           </div>
@@ -152,17 +168,104 @@
         <div class="ds-wrap">
           <span class="ds-kicker">Studio</span>
           <h2 class="ds-title">An AI co-producer inside the DAW</h2>
-          <p class="ds-lede" style="margin-bottom: 28px; max-width: 60ch">A plugin concept that reads the session, retrieves from songs the artist likes, and suggests moves across composition, production, mixing and mastering. The suggestions here are scripted, not model output.</p>
+          <p class="ds-lede" style="margin-bottom: 28px; max-width: 60ch">A device concept that reads the session, retrieves from songs the artist likes and from their own brand world, and suggests moves across composition, production, mixing and mastering. The references, matches and suggestions here are scripted placeholders, not model output.</p>
           <div class="card elev-md card-flush">
             <div class="ds-bar-row">
-              <div class="ds-row"><strong>Breakout Studio</strong><span class="tag tag-neutral">DAW plugin (concept)</span></div>
-              <div class="ds-row ds-muted" style="font-size: 13px"><span class="ds-dot" aria-hidden="true"></span><span>Demo session · 92 BPM · placeholder project</span></div>
+              <div class="ds-row"><strong>Breakout Studio</strong><span class="tag tag-neutral">DAW device (concept)</span></div>
+              <div class="ds-row ds-muted" style="font-size: 13px"><span class="ds-dot" aria-hidden="true"></span><span>Demo session · Lune Vega, Saltwater Hymns / 04 “Undertow” · 92 BPM · A♭ maj · placeholder project</span></div>
             </div>
             <div id="studio-tabs" class="ds-bar-row" style="justify-content: flex-start" role="group" aria-label="Studio module"></div>
             <div class="ds-seams">
-              <div id="studio-list" class="ds-stack" style="flex: 1 1 420px"></div>
+              <div class="ds-stack" style="gap: 24px">
+                <div class="ds-stack" style="gap: 10px">
+                  <span class="card-kicker" id="ctx-label">Context sources</span>
+                  <div id="studio-ctx" class="ds-stack" style="gap: 10px" role="group" aria-labelledby="ctx-label"></div>
+                </div>
+                <div class="ds-stack" style="gap: 12px">
+                  <span class="card-kicker" id="refs-label"></span>
+                  <div id="studio-refs" class="ds-stack" style="gap: 12px"></div>
+                  <p id="studio-norefs" class="ds-muted" style="margin: 0; font-size: 13px" hidden>All sources off: the mock falls back to generic scripted suggestions.</p>
+                </div>
+              </div>
+              <div class="ds-stack" style="flex: 2 1 420px; gap: 16px">
+                <span class="card-kicker" id="sugs-label"></span>
+                <div id="studio-list" class="ds-stack"></div>
+                <p id="studio-status" class="ds-muted" style="margin: 0; font-size: 13px" role="status"></p>
+                <form id="studio-ask" class="ds-row" style="margin-top: auto; padding-top: 16px; flex-wrap: nowrap">
+                  <input id="studio-prompt" class="input" aria-label="Ask the agent" style="flex: 1; min-width: 0" autocomplete="off" />
+                  <button type="submit" class="btn btn-primary">Ask</button>
+                </form>
+              </div>
             </div>
           </div>
+
+          <h3 class="bk-h3">Studio architecture</h3>
+          <div class="ds-diagram">
+            <svg viewBox="0 0 1120 560" role="img" aria-labelledby="sdia-t sdia-d">
+              <title id="sdia-t">Studio architecture</title>
+              <desc id="sdia-d">The DAW device streams the session to a studio endpoint, which routes to an orchestrator. The orchestrator sends work to composition, production, mixing and mastering agents and queries a retrieval layer over song vectors, artist taste and brand assets. An ingest scraper indexes likes, playlists, uploads, stems and MIDI. Suggestions and diffs return to the device.</desc>
+              <defs>
+                <marker id="ar3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="ds-arrow"></path></marker>
+              </defs>
+              <g>
+                <path class="ds-edge" d="M840 62V258"></path>
+                <path class="ds-edge" d="M800 70H840"></path>
+              </g>
+              <g marker-end="url(#ar3)">
+                <path class="ds-edge" d="M240 70H316"></path>
+                <path class="ds-edge ds-edge--dash" d="M320 104H244"></path>
+                <path class="ds-edge" d="M520 70H596"></path>
+                <path class="ds-edge ds-edge--dash" d="M600 104H524"></path>
+                <path class="ds-edge" d="M840 62H876"></path>
+                <path class="ds-edge" d="M840 128H876"></path>
+                <path class="ds-edge" d="M840 194H876"></path>
+                <path class="ds-edge" d="M840 258H876"></path>
+                <path class="ds-edge" d="M700 130V246"></path>
+                <path class="ds-edge" d="M700 335V416"></path>
+                <path class="ds-edge" d="M660 335V376H420V416"></path>
+                <path class="ds-edge" d="M740 335V376H980V416"></path>
+                <path class="ds-edge" d="M240 465H316"></path>
+                <path class="ds-edge ds-edge--dash" d="M140 130V420"></path>
+              </g>
+              <g>
+                <text class="ds-svg-sub" x="278" y="60" text-anchor="middle">session</text>
+                <text class="ds-svg-sub" x="282" y="124" text-anchor="middle">suggestions</text>
+                <text class="ds-svg-sub" x="558" y="60" text-anchor="middle">route</text>
+                <text class="ds-svg-sub" x="562" y="124" text-anchor="middle">diffs</text>
+                <text class="ds-svg-sub" x="710" y="196">RAG query</text>
+                <text class="ds-svg-sub" x="150" y="290">stems + MIDI</text>
+                <text class="ds-svg-sub" x="150" y="306">indexed</text>
+                <text class="ds-svg-sub" x="278" y="455" text-anchor="middle">embed</text>
+              </g>
+              <g>
+                <rect class="ds-node" x="40" y="40" width="200" height="90" rx="8"></rect>
+                <text class="ds-svg-title" x="60" y="78">DAW device</text><text class="ds-svg-sub" x="60" y="102">plugin · host API</text>
+                <rect class="ds-node" x="320" y="40" width="200" height="90" rx="8"></rect>
+                <text class="ds-svg-title" x="340" y="78">Studio endpoint</text><text class="ds-svg-sub" x="340" y="102">auth · websocket stream</text>
+                <rect class="ds-node ds-node--key" x="600" y="40" width="200" height="90" rx="8"></rect>
+                <text class="ds-svg-title" x="620" y="78">Orchestrator</text><text class="ds-svg-sub ds-svg-sub--key" x="620" y="102">LLM · routes to agents</text>
+                <rect class="ds-node" x="880" y="40" width="200" height="44" rx="8"></rect>
+                <text class="ds-svg-title" x="900" y="67" style="font-size: 14px">Composition</text>
+                <rect class="ds-node" x="880" y="106" width="200" height="44" rx="8"></rect>
+                <text class="ds-svg-title" x="900" y="133" style="font-size: 14px">Production</text>
+                <rect class="ds-node" x="880" y="172" width="200" height="44" rx="8"></rect>
+                <text class="ds-svg-title" x="900" y="199" style="font-size: 14px">Mixing</text>
+                <rect class="ds-node" x="880" y="236" width="200" height="44" rx="8"></rect>
+                <text class="ds-svg-title" x="900" y="263" style="font-size: 14px">Mastering</text>
+                <rect class="ds-node" x="600" y="245" width="200" height="90" rx="8"></rect>
+                <text class="ds-svg-title" x="620" y="283">Retrieval layer</text><text class="ds-svg-sub" x="620" y="307">hybrid search · rerank</text>
+                <rect class="ds-node ds-edge--dash" x="40" y="420" width="200" height="90" rx="8"></rect>
+                <text class="ds-svg-title" x="60" y="458">Ingest + scraper</text><text class="ds-svg-sub" x="60" y="482">likes · playlists · uploads</text>
+                <rect class="ds-node" x="320" y="420" width="200" height="90" rx="8"></rect>
+                <text class="ds-svg-title" x="340" y="458">Song vectors</text><text class="ds-svg-sub" x="340" y="482">audio · stems · lyrics</text>
+                <rect class="ds-node" x="600" y="420" width="200" height="90" rx="8"></rect>
+                <text class="ds-svg-title" x="620" y="458">Artist taste</text><text class="ds-svg-sub" x="620" y="482">liked songs · references</text>
+                <rect class="ds-node" x="880" y="420" width="200" height="90" rx="8"></rect>
+                <text class="ds-svg-title" x="900" y="458">Brand assets</text><text class="ds-svg-sub" x="900" y="482">marketing · photo shoots</text>
+              </g>
+            </svg>
+          </div>
+          <div class="bk-legend"><span><i></i>value or data flow</span><span><i class="bk-dash"></i>return, async or external</span><span><i class="bk-key"></i>core system</span></div>
         </div>
       </section>
 
@@ -172,7 +275,7 @@
         <div class="ds-wrap">
           <span class="ds-kicker">Prediction markets · simulated</span>
           <h2 class="ds-title">Or call it: who breaks next</h2>
-          <p class="ds-lede" style="margin-bottom: 28px">Yes/No pools on artist milestones, with a small placeholder fee to the artist on each trade. Prices and volume are invented and the buttons below only run arithmetic.</p>
+          <p class="ds-lede" style="margin-bottom: 28px">Yes/No pools on artist milestones. In the concept, 1% of trading volume goes to the artist either way (a placeholder fee). Prices and volume are invented and the buttons below only run arithmetic.</p>
           <div class="ds-split">
             <div id="market-list" class="ds-stack"></div>
             <aside class="card elev-md card-sticky" aria-label="Trade calculator">
@@ -197,6 +300,8 @@
               <dl id="mkt-readout" class="ds-kv"></dl>
               <button type="button" id="mkt-cta" class="btn btn-primary btn-block"></button>
               <p id="mkt-done" class="card-body" role="status" hidden>Simulated only. No order was placed.</p>
+              <dl class="ds-kv"><dt>Your position (simulated)</dt><dd id="mkt-position">None</dd></dl>
+              <button type="button" id="mkt-sell" class="btn btn-secondary btn-block">Clear position</button>
             </aside>
           </div>
         </div>
@@ -209,36 +314,116 @@
           <span class="ds-kicker">Architecture</span>
           <h2 class="ds-title" style="margin-bottom: 36px">Launchpad: from token to royalty payout</h2>
           <div class="ds-diagram">
-            <svg viewBox="0 0 1120 230" role="img" aria-labelledby="dia-t dia-d">
+            <svg viewBox="0 0 1120 360" role="img" aria-labelledby="dia-t dia-d">
               <title id="dia-t">Launchpad flow</title>
-              <desc id="dia-d">Artist launches a token, holders buy it, proceeds go to an escrow, royalties flow back and are split pro rata to holders.</desc>
+              <desc id="dia-d">The artist signs a deal with the Breakout launchpad, which mints tokens for holders who pay in USDC; the raise goes to the artist. The album is released and earns revenue through the distributor, whose royalty statements go to a payout vault. A trustee or auditor verifies them, and the vault pays holders pro rata in USDC.</desc>
               <defs>
                 <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="ds-arrow"></path></marker>
               </defs>
               <g marker-end="url(#arr)">
                 <path class="ds-edge" d="M240 70H316"></path>
+                <path class="ds-edge ds-edge--dash" d="M320 104H244"></path>
                 <path class="ds-edge" d="M520 70H596"></path>
-                <path class="ds-edge" d="M800 70H876"></path>
-                <path class="ds-edge ds-edge--dash" d="M980 116V170H700V116"></path>
+                <path class="ds-edge ds-edge--dash" d="M600 104H524"></path>
+                <path class="ds-edge" d="M140 130V246"></path>
+                <path class="ds-edge" d="M240 290H316"></path>
+                <path class="ds-edge" d="M520 290H596"></path>
+                <path class="ds-edge" d="M880 290H804"></path>
+                <path class="ds-edge" d="M700 245V134"></path>
               </g>
               <g>
-                <rect class="ds-node" x="40" y="25" width="200" height="90"></rect>
-                <text class="ds-svg-title" x="60" y="63">Artist</text><text class="ds-svg-sub" x="60" y="87">signs a revenue share</text>
-                <rect class="ds-node" x="320" y="25" width="200" height="90"></rect>
-                <text class="ds-svg-title" x="340" y="63">Token sale</text><text class="ds-svg-sub" x="340" y="87">holders fund the raise</text>
-                <rect class="ds-node ds-node--key" x="600" y="25" width="200" height="90"></rect>
-                <text class="ds-svg-title" x="620" y="63">Payout pool</text><text class="ds-svg-sub" x="620" y="87">royalty statements in</text>
-                <rect class="ds-node" x="880" y="25" width="200" height="90"></rect>
-                <text class="ds-svg-title" x="900" y="63">Holders</text><text class="ds-svg-sub" x="900" y="87">pro rata payouts</text>
+                <text class="ds-svg-sub" x="278" y="60" text-anchor="middle">signs deal</text>
+                <text class="ds-svg-sub" x="250" y="124">raise</text>
+                <text class="ds-svg-sub" x="530" y="60">tokens</text>
+                <text class="ds-svg-sub" x="530" y="124">USDC</text>
+                <text class="ds-svg-sub" x="150" y="196">records + releases</text>
+                <text class="ds-svg-sub" x="278" y="279" text-anchor="middle">revenue</text>
+                <text class="ds-svg-sub" x="530" y="279">royalties</text>
+                <text class="ds-svg-sub" x="810" y="279">verifies</text>
+                <text class="ds-svg-sub" x="710" y="196">pro rata USDC</text>
+              </g>
+              <g>
+                <rect class="ds-node" x="40" y="40" width="200" height="90" rx="8"></rect>
+                <text class="ds-svg-title" x="60" y="78">Artist</text><text class="ds-svg-sub" x="60" y="102">keeps masters + control</text>
+                <rect class="ds-node ds-node--key" x="320" y="40" width="200" height="90" rx="8"></rect>
+                <text class="ds-svg-title" x="340" y="78">Breakout launchpad</text><text class="ds-svg-sub ds-svg-sub--key" x="340" y="102">token mint + legal agreement</text>
+                <rect class="ds-node" x="600" y="40" width="200" height="90" rx="8"></rect>
+                <text class="ds-svg-title" x="620" y="78">Token holders</text><text class="ds-svg-sub" x="620" y="102">fans + backers</text>
+                <rect class="ds-node" x="40" y="245" width="200" height="90" rx="8"></rect>
+                <text class="ds-svg-title" x="60" y="283">Album release</text><text class="ds-svg-sub" x="60" y="307">streaming · vinyl · sync</text>
+                <rect class="ds-node" x="320" y="245" width="200" height="90" rx="8"></rect>
+                <text class="ds-svg-title" x="340" y="283">Distributor</text><text class="ds-svg-sub" x="340" y="307">royalty statements</text>
+                <rect class="ds-node ds-node--key" x="600" y="245" width="200" height="90" rx="8"></rect>
+                <text class="ds-svg-title" x="620" y="283">Payout vault</text><text class="ds-svg-sub ds-svg-sub--key" x="620" y="307">holds the holders’ % split</text>
+                <rect class="ds-node ds-edge--dash" x="880" y="245" width="200" height="90" rx="8"></rect>
+                <text class="ds-svg-title" x="900" y="283">Trustee / auditor</text><text class="ds-svg-sub" x="900" y="307">enforces the agreement</text>
               </g>
             </svg>
           </div>
+          <div class="bk-legend"><span><i></i>value or data flow</span><span><i class="bk-dash"></i>return, async or external</span><span><i class="bk-key"></i>core system</span></div>
           <ol class="ds-steps">
-            <li><b>Sign</b>Artist and platform agree a share.</li>
-            <li><b>Launch</b>Token goes on sale before release.</li>
-            <li><b>Fund</b>Raise closes at the goal.</li>
-            <li><b>Earn</b>Royalty statements land.</li>
-            <li><b>Pay</b>Holders are paid pro rata.</li>
+            <li><b>Launch</b>The artist sets a raise goal and the share of album profits that goes to holders, then signs the agreement.</li>
+            <li><b>Raise</b>Fans buy tokens in USDC before release. Until the goal is met the money sits in escrow. The raise then closes and is released to the artist minus a 5% launch fee (placeholder). Holders are paid later, from the payout vault, not from the raise.</li>
+            <li><b>Release</b>The album ships through the artist’s distributor as normal. Masters stay with the artist.</li>
+            <li><b>Collect</b>Royalty statements go to the trustee, who verifies them and funds the payout vault.</li>
+            <li><b>Pay out</b>Each period, the vault splits the holders’ share pro rata across every token, in USDC.</li>
+          </ol>
+
+          <h2 class="ds-title" style="margin: 96px 0 36px">Prediction: how a market resolves</h2>
+          <div class="ds-diagram">
+            <svg viewBox="0 0 1120 560" role="img" aria-labelledby="pdia-t pdia-d">
+              <title id="pdia-t">Prediction market flow</title>
+              <desc id="pdia-d">The artist lists a milestone in the Breakout registry, which deploys a Yes/No pool on a prediction market and streams 1% of trading volume to the artist treasury. Fans buy Yes or No shares in USDC. At expiry an oracle takes the answer from the named data sources and settlement pays winning shares $1.00 and losing shares $0.</desc>
+              <defs>
+                <marker id="ar4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="ds-arrow"></path></marker>
+              </defs>
+              <g marker-end="url(#ar4)">
+                <path class="ds-edge" d="M240 85H316"></path>
+                <path class="ds-edge" d="M520 85H876"></path>
+                <path class="ds-edge" d="M420 130V246"></path>
+                <path class="ds-edge" d="M240 290H316"></path>
+                <path class="ds-edge" d="M520 290H596"></path>
+                <path class="ds-edge" d="M800 290H876"></path>
+                <path class="ds-edge" d="M700 446V340"></path>
+                <path class="ds-edge ds-edge--dash" d="M980 335V420H140V340"></path>
+              </g>
+              <g>
+                <text class="ds-svg-sub" x="278" y="74" text-anchor="middle">milestone</text>
+                <text class="ds-svg-sub" x="698" y="74" text-anchor="middle">1% of trading volume</text>
+                <text class="ds-svg-sub" x="430" y="196">deploys Yes/No pool</text>
+                <text class="ds-svg-sub" x="250" y="279">USDC</text>
+                <text class="ds-svg-sub" x="530" y="279">at expiry</text>
+                <text class="ds-svg-sub" x="810" y="279">outcome</text>
+                <text class="ds-svg-sub" x="710" y="400">answer</text>
+                <text class="ds-svg-sub" x="160" y="440">winning shares redeem for $1.00 · losing shares $0</text>
+              </g>
+              <g>
+                <rect class="ds-node" x="40" y="40" width="200" height="90" rx="8"></rect>
+                <text class="ds-svg-title" x="60" y="78">Artist</text><text class="ds-svg-sub" x="60" y="102">wallet + verified profile</text>
+                <rect class="ds-node" x="320" y="40" width="200" height="90" rx="8"></rect>
+                <text class="ds-svg-title" x="340" y="78">Breakout registry</text><text class="ds-svg-sub" x="340" y="102">listing + fee-split contract</text>
+                <rect class="ds-node" x="880" y="40" width="200" height="90" rx="8"></rect>
+                <text class="ds-svg-title" x="900" y="78">Artist treasury</text><text class="ds-svg-sub" x="900" y="102">streams USDC to artist</text>
+                <rect class="ds-node" x="40" y="245" width="200" height="90" rx="8"></rect>
+                <text class="ds-svg-title" x="60" y="283">Fans / bettors</text><text class="ds-svg-sub" x="60" y="307">buy Yes or No shares</text>
+                <rect class="ds-node ds-node--key" x="320" y="245" width="200" height="90" rx="8"></rect>
+                <text class="ds-svg-title" x="340" y="283">Prediction market</text><text class="ds-svg-sub ds-svg-sub--key" x="340" y="307">order book + outcome shares</text>
+                <rect class="ds-node" x="600" y="245" width="200" height="90" rx="8"></rect>
+                <text class="ds-svg-title" x="620" y="283">Oracle</text><text class="ds-svg-sub" x="620" y="307">propose · 2h dispute window</text>
+                <rect class="ds-node" x="880" y="245" width="200" height="90" rx="8"></rect>
+                <text class="ds-svg-title" x="900" y="283">Settlement</text><text class="ds-svg-sub" x="900" y="307">reports payouts</text>
+                <rect class="ds-node ds-edge--dash" x="600" y="450" width="200" height="90" rx="8"></rect>
+                <text class="ds-svg-title" x="620" y="488">Data sources</text><text class="ds-svg-sub" x="620" y="512">streaming · charts · ticketing</text>
+              </g>
+            </svg>
+          </div>
+          <div class="bk-legend"><span><i></i>value or data flow</span><span><i class="bk-dash"></i>return, async or external</span><span><i class="bk-key"></i>core system</span></div>
+          <ol class="ds-steps">
+            <li><b>List</b>The artist sets a verifiable milestone, a resolution date and seed liquidity in the registry.</li>
+            <li><b>Deploy</b>The registry creates a binary market. Yes and No prices always sum to $1.</li>
+            <li><b>Trade</b>Fans buy shares on the order book. 1% of volume streams to the artist treasury (placeholder fee).</li>
+            <li><b>Resolve</b>At expiry an oracle proposer posts the outcome from the named data source, and a dispute window follows.</li>
+            <li><b>Redeem</b>Winning shares pay $1.00 USDC each. The artist keeps every fee, win or lose.</li>
           </ol>
         </div>
       </section>
@@ -246,7 +431,7 @@
 
     <footer class="ds-footer">
       <div>
-        <span>ChimericLabs LLC · Wyoming · Breakout is a concept mock</span>
+        <span>ChimericLabs LLC · Wyoming · Breakout is a concept mock, not financial advice</span>
         <div class="ds-row">
           <a href="portfolio.html">Portfolio</a>
           <a href="research.html">Research</a>
