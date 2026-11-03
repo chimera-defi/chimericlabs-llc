@@ -35,7 +35,8 @@ for sub in SUBDIRS:
         if dst.name == 'claude_daily_dim.csv': data = merge_dim(dst.read_bytes(), data)
         if dst.read_bytes() != data:
             dst.write_bytes(data); changed.append(dst.name)
-extra = [(ACQ/'analysis'/'codex_daily_split.csv', H/'codex_daily_split.csv')]
+extra = [(ACQ/'analysis'/'codex_daily_split.csv', H/'codex_daily_split.csv'),
+          (ACQ/'analysis'/'codex_files.csv', H/'codex_session_files.csv')]
 extra += [(src, H/'other_sources'/src.name) for src in sorted((ACQ/'other_sources').glob('*.csv'))]
 for src, dst in extra:
     if src.exists() and dst.exists() and dst.read_bytes() != src.read_bytes():
