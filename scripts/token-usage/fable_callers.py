@@ -93,7 +93,7 @@ def window(runs, k=None):
 
 def klass(name):
     n = name.lower()
-    for key, label in (("chatgpt", "ChatGPT"), ("kepler", "Kepler"), ("codex", "Codex"), ("wren", "Wren"), ("bus-follower", "Bus followers"), ("workflow-checkpoint", "Scheduled jobs"),
+    for key, label in (("chatgpt", "ChatGPT"), ("kepler", "Kepler"), ("codex", "Codex"), ("wren", "Orchestrator agent"), ("bus-follower", "Bus followers"), ("workflow-checkpoint", "Scheduled jobs"),
                        ("ack-hygiene", "Scheduled jobs"), ("crypto-hype-watch", "Scheduled jobs"), ("bus-stall-watcher", "Scheduled jobs"), ("bus-router", "Bus followers"),
                        ("launcher", "Claude launchers"), ("claude", "Claude sessions"), ("agent-host", "Agent Host"), ("sharpe", "ChatGPT/Codex research roles")):
         if key in n: return label

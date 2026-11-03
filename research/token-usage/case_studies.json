@@ -1,6 +1,6 @@
 {
   "schema": "token-usage-case-studies-v1",
-  "data_through": "2026-11-03T05:16:06Z",
+  "data_through": "2026-11-03T08:17:54Z",
   "studies": [
     {
       "id": "change",
@@ -21,23 +21,23 @@
       "title": "Compaction cuts context to a tenth",
       "story": "Compaction cut a long session's carried text to a median 9% of its size, and one session did it 140 times in 53 hours.",
       "setup": "When a session's text gets too long, Claude Code summarizes it into a shorter one (compaction) so the work can go on.",
-      "happened": "Across 894 compactions still on disk, 172,642,056 tokens became 16,377,942, freeing 156,264,114. The busiest session compacted 140 times, about once every 23 minutes.",
-      "number": "Median size after compaction: 9.2% of before.",
+      "happened": "Across 905 compactions still on disk, 174,809,957 tokens became 16,622,079, freeing 158,187,878. The busiest session compacted 140 times, about once every 23 minutes.",
+      "number": "Median size after compaction: 9.3% of before.",
       "lesson": "Compaction frees space but does not stop the text growing back.",
       "sources": [
         "Claude session transcripts (compaction records)"
       ],
       "caveat": "Claude deletes transcripts after about 30 days, so this counts only transcripts still on disk and shrinks with each refresh unless retention is raised. Duplicate records from resumed sessions are removed.",
       "numbers": {
-        "boundaries": 894,
+        "boundaries": 905,
         "triggers": {
-          "auto": 808,
+          "auto": 819,
           "manual": 86
         },
-        "pre_tokens": 172642056,
-        "post_tokens": 16377942,
-        "freed_tokens": 156264114,
-        "median_post_pre_pct": 9.25,
+        "pre_tokens": 174809957,
+        "post_tokens": 16622079,
+        "freed_tokens": 158187878,
+        "median_post_pre_pct": 9.31,
         "busiest_count": 140,
         "first_timestamp": "2026-10-02T15:10:05.604Z",
         "last_timestamp": "2026-10-04T20:03:55.633Z",

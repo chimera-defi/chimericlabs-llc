@@ -28,15 +28,23 @@ python3 -I "$REPO/scripts/token-usage/sync_handoff.py" "$ACQ" "$PAGE/handoff"
 ( cd "$ACQ" && python3 -I headline_refresh.py "$PAGE/handoff" )
 python3 -I "$REPO/scripts/token-usage/last7.py" "$PAGE/handoff"
 python3 -I "$REPO/scripts/token-usage/case_studies.py" "$PAGE/handoff"   # section 9 snippet + data, from the same cutoff
+cp "$REPO/research/token-usage/case_studies.html" "$PAGE/handoff/case_studies.html"   # the script writes into the repo; the build reads handoff/
+echo "== 4b consolidated daily table: one commit sweep, then rows for every UTC day (tokens from the last published data.json until the first build below refreshes them)"
+if [ "$QUICK" = 0 ] || [ ! -f "$ACQ/commits/commits_unified.csv" ]; then
+  python3 -I "$REPO/scripts/token-usage/commit_sweep.py" "$ACQ/commits/commits_unified.csv"
+fi
+python3 -I "$REPO/scripts/token-usage/build_daily.py" "$ACQ/commits/commits_unified.csv" "$REPO/research/token-usage/data.json" "$PAGE/handoff/daily.csv"
 echo "== 5/6 build twice (traffic needs the first build's MCP totals), verify, leak scan"
 ( cd "$PAGE" && python3 -I build_v5.py && python3 -I build_v5.py --public )
+# tokens in the daily table must come from this build's data.json, so build the table again and rebuild
+python3 -I "$REPO/scripts/token-usage/build_daily.py" "$ACQ/commits/commits_unified.csv" "$PAGE/public/data.json" "$PAGE/handoff/daily.csv"
 # section 10: who talks to Fable and how (bus + transcripts); the second build reads these two handoff files
 python3 -I "$REPO/scripts/token-usage/fable_callers.py" "$PAGE/handoff/fable_callers.json" --mcp-data "$PAGE/data.json" --snippet "$PAGE/handoff/section10-snippet.html"
 ( cd "$PAGE" && python3 -I build_v5.py && python3 -I build_v5.py --public && python3 -I check_v5.py && python3 -I public_leak_scan.py )
 echo "== 6/6 copy into repo and run the repo's own check"
 cp "$PAGE/public/index.html" "$REPO/research/token-usage/index.html"
 cp "$PAGE/public/data.json" "$REPO/research/token-usage/data.json"
-echo "== 6b traffic block into data.json (Kepler masked: its pause means the name never ships), snippet copy"
+echo "== 6b traffic block into data.json (paused consumer masked: its name never ships), snippet copy"
 python3 -I "$REPO/scripts/token-usage/fable_callers.py" "$PAGE/handoff/fable_callers.json" --merge "$REPO/research/token-usage/data.json" --snippet "$REPO/research/token-usage/section10-snippet.html"
 python3 -I - "$REPO/research/token-usage/data.json" "$REPO/research/token-usage/section10-snippet.html" <<'PY'
 import json, sys
@@ -51,10 +59,7 @@ PY
 # reconcile the daily non-additive series with the totals the build just wrote, then publish them
 python3 -I "$REPO/scripts/token-usage/nonadditive_daily.py" "$PAGE/handoff" "$REPO/research/token-usage/nonadditive_daily.json" "$REPO/research/token-usage/data.json"
 ( cd "$REPO" && node scripts/check-tokens.mjs )
-echo "== 6b/6 consolidated daily table: one sweep, one row per UTC day, then validate"
-if [ "$QUICK" = 0 ] || [ ! -f "$ACQ/commits/commits_unified.csv" ]; then
-  python3 -I "$REPO/scripts/token-usage/commit_sweep.py" "$ACQ/commits/commits_unified.csv"
-fi
-python3 -I "$REPO/scripts/token-usage/build_daily.py" "$ACQ/commits/commits_unified.csv" "$REPO/research/token-usage/data.json" "$REPO/research/token-usage/daily.csv"
-python3 -I "$REPO/scripts/token-usage/validate_daily.py" "$REPO/research/token-usage/daily.csv" "$REPO/research/token-usage/data.json" --legacy
+echo "== 6c/6 daily table into the repo, then validate it against data.json (one commit definition)"
+cp "$PAGE/handoff/daily.csv" "$PAGE/handoff/monthly.csv" "$REPO/research/token-usage/"
+python3 -I "$REPO/scripts/token-usage/validate_daily.py" "$REPO/research/token-usage/daily.csv" "$REPO/research/token-usage/data.json"
 echo "DONE: data through $(cat "$ACQ/data_through.txt"). Review 'git diff --stat' and open a PR; do not push to main."
