@@ -1,6 +1,6 @@
 #!/usr/bin/env python3 -I
 """Rebuild handoff/last7.json and last7_daily.csv: the last 7 complete UTC days before data_through.
-Claude comes from claude_daily_dim.csv, Codex from codex_daily_split.csv. Aggregates only.
+Claude comes from claude_daily_dim.csv, Codex totals from codex_daily_corrected.csv, fresh/output split from codex_daily_split.csv. Aggregates only.
 usage: last7.py HANDOFF_DIR [OUT_DIR]   (OUT_DIR defaults to HANDOFF_DIR)"""
 import csv, json, sys
 from collections import defaultdict
@@ -33,6 +33,11 @@ codex = defaultdict(lambda: dict(fresh_input=0, cached_input=0, output=0))
 for r in csv.DictReader((H/'codex_daily_split.csv').open()):
     c = codex[r['date']]
     c['fresh_input'] += int(r['fresh_input']); c['cached_input'] += int(r['cached_input']); c['output'] += int(r['output'])
+# Own-token totals come from the corrected series the daily table and the main chart use; the event-date split only supplies fresh and output.
+corrected = {r['date']: int(r['own_tokens_corrected']) for r in csv.DictReader((H/'codex_daily_corrected.csv').open())}
+for d, x in codex.items():
+    if d not in corrected: raise SystemExit(f'codex_daily_corrected.csv has no row for {d}')
+    if d in corrected: x['cached_input'] = max(0, corrected[d] - x['fresh_input'] - x['output'])
 for d in days:
     if d not in claude or d not in codex:
         sys.exit(f'last7: no Claude or Codex data for complete day {d}; refresh the inputs first')
@@ -59,7 +64,7 @@ doc = {
                'source': 'data_refresh/claude_daily_dim.csv'},
     'codex': {'fresh_input': s(7), 'cached_input': s(9), 'output': s(8), 'total_own': s(10),
               'weighted': 'NOT_ESTABLISHED (no published Codex cache weights)',
-              'source': 'analysis/codex_daily_split.csv (own tokens, fork-safe, event-date attribution)'},
+              'source': 'codex_daily_corrected.csv totals (as the daily table); fresh and output from codex_daily_split.csv, cache is the remainder'},
 }
 (OUT/'last7.json').write_text(json.dumps(doc, indent=1))
 print('last7', doc['window'], 'claude weighted', doc['claude']['weighted'], 'codex own', doc['codex']['total_own'])
