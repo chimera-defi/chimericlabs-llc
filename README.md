@@ -49,3 +49,8 @@ python3 -m http.server 8000
 ## Deploy
 
 Pushes to `main` deploy through GitHub Actions via `.github/workflows/pages.yml`.
+
+## Refreshing pages built from the server
+
+- Scheduled jobs on `/research/wren/jobs/`: run `python3 scripts/check_wren_jobs.py` on the server. It lists jobs missing from the page or gone from the host, and exits 1 on a difference. Fix the page by hand, then rerun.
+- `/research/building/`: `python3 scripts/commits_by_project.py SCOPED_CSV PREVIOUS_CSV handoff/commits_by_project.csv`, then `python3 scripts/build_building_page.py --handoff handoff --aliases ALIASES.json`. Token figures come from the token-usage refresh (`scripts/token-usage/refresh.sh`, in `research/token-usage/README.md`).
