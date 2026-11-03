@@ -46,6 +46,14 @@ class Sweep(unittest.TestCase):
             self.assertEqual(feat[2], "2026-10-02")  # 23:30 at -05:00 is 04:30 UTC the next day
             self.assertEqual(feat[9], 0)  # not on main
 
+    def test_broken_ref_fails_loudly(self):
+        with tempfile.TemporaryDirectory() as t:
+            git(t, "init", "-q", "-b", "main")
+            git(t, "commit", "-q", "--allow-empty", "-m", "a")
+            open(os.path.join(t, ".git/refs/heads/broken"), "w").write("0" * 40 + "\n")
+            with self.assertRaises(RuntimeError):
+                list(commit_sweep.sweep_store(os.path.join(t, ".git"), t))
+
     def test_categories(self):
         c = commit_sweep.category
         self.assertEqual(c("package-lock.json"), "noise")
@@ -85,6 +93,7 @@ class Daily(unittest.TestCase):
         rows = [
             commit_row("a", "2026-10-01", 10, 2, tools="claude|codex"),
             commit_row("b", "2026-10-01", 10, 2, tools="claude|codex"),  # same change after a rebase: counted once
+            dict(commit_row("b2", "2026-10-01", 10, 2), subject="other change, same size"),  # different message: kept
             commit_row("c", "2026-10-01", 5, 0, on_main=0),            # branch copy of a squash: all_refs only
             commit_row("d", "2026-10-02", 100000, 0, files=500),        # bulk import: no code lines
             commit_row("e", "2026-10-02", 1, 1, merge=True),
@@ -100,7 +109,7 @@ class Daily(unittest.TestCase):
 
     def test_counts(self):
         r = self.rows
-        self.assertEqual((r["2026-10-01"]["commits_landed"], r["2026-10-01"]["commits_all_refs"], r["2026-10-01"]["commits_landed_claude_codex"]), ("1", "3", "1"))
+        self.assertEqual((r["2026-10-01"]["commits_landed"], r["2026-10-01"]["commits_all_refs"], r["2026-10-01"]["commits_landed_claude_codex"]), ("2", "4", "1"))
         self.assertEqual((r["2026-10-02"]["commits_landed"], r["2026-10-02"]["commits_merge"], r["2026-10-02"]["code_touched"], r["2026-10-02"]["all_added_raw"]), ("1", "1", "0", "100001"))
         self.assertEqual(r["2026-10-03"]["day_status"], "partial")
         self.assertEqual((r["2026-10-01"]["tokens_claude"], r["2026-10-02"]["tokens_codex"], r["2026-10-02"]["claude_token_status"]), ("10", "50", "unmeasured"))
@@ -109,8 +118,14 @@ class Daily(unittest.TestCase):
         self.assertEqual(validate_daily.validate(self.o, self.j, legacy=True)[0], [])
         self.assertTrue(any('no "daily"' in e for e in validate_daily.validate(self.o, self.j)[0]))
         d = json.load(open(self.j)); d["daily"] = list(csv.DictReader(open(self.o)))
+        d["loc"]["daily"] = [{"date": r["date"], "actor": "human", "added": int(r["code_added"]), "removed": int(r["code_removed"])} for r in d["daily"]]
+        json.dump(d, open(self.j, "w"))
+        d["commits"] = [dict(x, total=int(r["commits_landed"])) for x, r in zip(d["commits"], csv.DictReader(open(self.o)))]
         json.dump(d, open(self.j, "w"))
         self.assertEqual(validate_daily.validate(self.o, self.j)[0], [])
+        d["commits"][0]["total"] = 99999
+        json.dump(d, open(self.j, "w"))
+        self.assertTrue(any("page total 99999" in e for e in validate_daily.validate(self.o, self.j)[0]))
 
     def test_validate_catches_disagreement(self):
         d = json.load(open(self.j)); d["commits"] = d["commits"][:-1]; d["rows"][0][2] = 999

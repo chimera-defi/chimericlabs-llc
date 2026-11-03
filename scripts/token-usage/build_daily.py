@@ -56,7 +56,9 @@ def load_commits(path, start, end):
     """Rows for the window. landed = non-merge on main, with copies of the same change collapsed.
 
     A rebase, cherry-pick or amend gives the same change a new SHA, so SHA dedupe alone keeps every copy.
-    Copies share project, author, UTC date, files changed and lines added/removed; only the first is kept.
+    Copies share project, author, UTC date, subject, files changed and lines added/removed; only the first is kept.
+    This is a fingerprint, not a patch comparison: two different changes with the same message, size and day would
+    merge into one (rare; the sweep keeps no patch ids because hashing every diff costs minutes).
     """
     out = {d: dict.fromkeys(COLUMNS[2:], 0) for d in days(start, end)}
     seen = set()
@@ -78,7 +80,7 @@ def load_commits(path, start, end):
             if r["on_main"] != "1":
                 continue
             if added + removed:
-                fp = (r["project"], r["author"], d, r["files"], added, removed)
+                fp = (r["project"], r["author"], d, r["subject"], r["files"], added, removed)
                 if fp in seen:
                     continue
                 seen.add(fp)

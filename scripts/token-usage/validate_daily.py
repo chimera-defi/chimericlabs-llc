@@ -7,9 +7,9 @@ Checks (each failure is printed, exit 1 if any):
   2. Definitions: landed commits = sum of the actor columns; touched = added + removed; token total = sum of providers;
      landed <= all_refs; merge <= all_refs; the partial day is the last row and only the last.
   3. data.json["daily"] (the table the page is built from) equals DAILY_CSV, row for row.
-  4. Every per-day series in data.json (token rows, commits, loc.daily) lies inside the table's date range, and the
+  4. Every per-day series (strict mode also compares commit totals and code lines per day, and token statuses with the rows) in data.json (token rows, commits, loc.daily) lies inside the table's date range, and the
      table's token columns equal the token rows. A date with no token row must be marked unmeasured, not 0.
-  --legacy  demote check 3 to a warning, for data.json files from before the page was switched to the table.
+  --legacy  demote check 3 and the value comparisons of check 4 to warnings or skip them, for data.json files from before the page was switched to the table.
 Python 3 standard library only.
 """
 import csv
@@ -100,6 +100,35 @@ def validate(daily_csv, data_json, legacy=False):
             gap = sorted(set(dates) - set(ds))
             msg = f"{name} covers {len(set(ds))} of {len(dates)} days; missing {gap[:5]}{'...' if len(gap) > 5 else ''}"
             (errors if name == "commits" else warnings).append(msg)
+    if not legacy:
+        # page series must carry the table's definitions, not just its dates
+        if not data.get("commits"):
+            errors.append("data.json has no commits series")
+        by = {r["date"]: r for r in rows}
+        for x in data.get("commits", []):
+            if x["date"] in by and x.get("total") != int(by[x["date"]]["commits_landed"]):
+                errors.append(f"commits {x['date']}: page total {x.get('total')} != table commits_landed {by[x['date']]['commits_landed']}")
+        loc = {}
+        for x in data.get("loc", {}).get("daily", []):
+            a = loc.setdefault(x["date"], [0, 0])
+            a[0] += x["added"]; a[1] += x["removed"]
+        for r in rows:
+            got = loc.get(r["date"], [0, 0])
+            if got != [int(r["code_added"]), int(r["code_removed"])]:
+                errors.append(f"loc.daily {r['date']}: page {got} != table code lines {[int(r['code_added']), int(r['code_removed'])]}")
+    claude_rows, codex_rows = {}, set()
+    for row in data["rows"]:
+        if row[1].startswith("claude"):
+            claude_rows[row[0]] = claude_rows.get(row[0], True) and row[1] == "claude_recovered_quarantine"
+        elif row[1].startswith("codex"):
+            codex_rows.add(row[0])
+    for r in rows:
+        d = r["date"]
+        want_claude = "unmeasured" if d not in claude_rows else "recovered" if claude_rows[d] else "measured"
+        if r["claude_token_status"] != want_claude:
+            errors.append(f"{d}: claude_token_status {r['claude_token_status']} but token rows say {want_claude}")
+        if r["codex_token_status"] != ("measured" if d in codex_rows else "unmeasured"):
+            errors.append(f"{d}: codex_token_status {r['codex_token_status']} disagrees with token rows")
     for r in rows:
         want = tok.get(r["date"], [0, 0, 0])
         got = [int(r["tokens_claude"]), int(r["tokens_codex"]), int(r["tokens_other"])]
