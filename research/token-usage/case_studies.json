@@ -3,7 +3,7 @@
   "data_through": "2026-11-03T05:16:06Z",
   "studies": [
     {
-      "id": "pr218",
+      "id": "change",
       "title": "A change to session instructions",
       "story": "A 67-line change to 2 files cost about 4.6M Codex tokens, and about 98% of that was the model re-reading text it had already seen.",
       "setup": "",
@@ -21,23 +21,23 @@
       "title": "Compaction cuts context to a tenth",
       "story": "Compaction cut a long session's carried text to a median 9% of its size, and one session did it 140 times in 53 hours.",
       "setup": "When a session's text gets too long, Claude Code summarizes it into a shorter one (compaction) so the work can go on.",
-      "happened": "Across 897 compactions still on disk, 173,231,700 tokens became 16,447,091, freeing 156,784,609. The busiest session compacted 140 times, about once every 23 minutes.",
-      "number": "Median size after compaction: 9.3% of before.",
+      "happened": "Across 894 compactions still on disk, 172,642,056 tokens became 16,377,942, freeing 156,264,114. The busiest session compacted 140 times, about once every 23 minutes.",
+      "number": "Median size after compaction: 9.2% of before.",
       "lesson": "Compaction frees space but does not stop the text growing back.",
       "sources": [
         "Claude session transcripts (compaction records)"
       ],
       "caveat": "Claude deletes transcripts after about 30 days, so this counts only transcripts still on disk and shrinks with each refresh unless retention is raised. Duplicate records from resumed sessions are removed.",
       "numbers": {
-        "boundaries": 897,
+        "boundaries": 894,
         "triggers": {
-          "auto": 811,
+          "auto": 808,
           "manual": 86
         },
-        "pre_tokens": 173231700,
-        "post_tokens": 16447091,
-        "freed_tokens": 156784609,
-        "median_post_pre_pct": 9.28,
+        "pre_tokens": 172642056,
+        "post_tokens": 16377942,
+        "freed_tokens": 156264114,
+        "median_post_pre_pct": 9.25,
         "busiest_count": 140,
         "first_timestamp": "2026-10-02T15:10:05.604Z",
         "last_timestamp": "2026-10-04T20:03:55.633Z",
@@ -110,7 +110,7 @@
       "title": "A cheap model plus a targeted repair",
       "story": "A small Codex model (luna, low effort) passed 21 of 35 hard runs alone and 34 of 35 when Claude Haiku repaired only the answers that failed the problem's own examples.",
       "setup": "Seven harder problems, five runs each. Luna is fast but misses some; Haiku (low effort) was added as the repairer.",
-      "happened": "Haiku reviewing every answer passed 35 of 35 but the median time rose from 8.5 to 27.4 seconds. Repairing only on failure passed 34 of 35 at a median 7.9 seconds.",
+      "happened": "Haiku reviewing every answer passed 34 of 35, but the median time rose from 8.5 to 23.1 seconds. Repairing only on failure passed 34 of 35 at a median 7.9 seconds.",
       "number": "Passed 21 of 35 alone, 34 of 35 with repair on failure; median time 8.5 to 7.9 seconds.",
       "lesson": "Run the cheap check first and call the second model only when the check fails.",
       "sources": [
@@ -126,8 +126,8 @@
         },
         "review_all": {
           "n": 35,
-          "passed": 35,
-          "median_wall_s": 27.44
+          "passed": 34,
+          "median_wall_s": 23.1
         },
         "on_fail": {
           "n": 35,
@@ -148,7 +148,7 @@
     },
     {
       "id": "noise",
-      "title": "A gap that was noise",
+      "title": "A gap that shrank with repeats",
       "story": "Two effort levels of Codex 6.1 terra differed by 2 of 60 problems at first; after 15 repeats the gap was 2 of 180, and all 4 misses were on 1 problem.",
       "setup": "We compared two effort levels of Codex 6.1 terra on 12 problems: 5 repeats first, then 10 more.",
       "happened": "In the first 5 repeats low passed 60 of 60 and high 58. In the next 10 repeats both passed 119 of 120.",
@@ -158,7 +158,7 @@
         "DispatchBench results/2026-10-28-terra-function.jsonl",
         "DispatchBench results/2026-11-02-terra-noise-function.jsonl"
       ],
-      "caveat": "The benchmark report's confidence interval for the pooled difference includes zero.",
+      "caveat": "Pooled, the 2-of-180 gap is within what repeat-to-repeat variation can produce; the benchmark report's confidence interval for it includes zero.",
       "numbers": {
         "groups": {
           "initial_terra61-low": {
@@ -195,22 +195,18 @@
         "misses": [
           {
             "config": "terra61-high",
-            "problem": "p04_taller_within",
             "repeat": 1
           },
           {
             "config": "terra61-high",
-            "problem": "p04_taller_within",
             "repeat": 3
           },
           {
             "config": "terra61-high",
-            "problem": "p04_taller_within",
             "repeat": 8
           },
           {
             "config": "terra61-low",
-            "problem": "p04_taller_within",
             "repeat": 10
           }
         ],

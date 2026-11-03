@@ -19,8 +19,8 @@ Details: across all 3 tasks the Claude session used about 7.2M tokens, mostly re
 <h3>Compaction cuts context to a tenth</h3>
 <p class="story">Compaction cut a long session&#x27;s carried text to a median 9% of its size, and one session did it 140 times in 53 hours.</p>
 <p>When a session&#x27;s text gets too long, Claude Code summarizes it into a shorter one (compaction) so the work can go on.</p>
-<p>Across 897 compactions still on disk, 173,231,700 tokens became 16,447,091, freeing 156,784,609. The busiest session compacted 140 times, about once every 23 minutes.</p>
-<p>Median size after compaction: 9.3% of before.</p>
+<p>Across 894 compactions still on disk, 172,642,056 tokens became 16,377,942, freeing 156,264,114. The busiest session compacted 140 times, about once every 23 minutes.</p>
+<p>Median size after compaction: 9.2% of before.</p>
 <p>Compaction frees space but does not stop the text growing back.</p>
 <details><summary>Sources and caveat</summary>
 <p>Claude deletes transcripts after about 30 days, so this counts only transcripts still on disk and shrinks with each refresh unless retention is raised. Duplicate records from resumed sessions are removed.</p>
@@ -59,7 +59,7 @@ Details: across all 3 tasks the Claude session used about 7.2M tokens, mostly re
 <h3>A cheap model plus a targeted repair</h3>
 <p class="story">A small Codex model (luna, low effort) passed 21 of 35 hard runs alone and 34 of 35 when Claude Haiku repaired only the answers that failed the problem&#x27;s own examples.</p>
 <p>Seven harder problems, five runs each. Luna is fast but misses some; Haiku (low effort) was added as the repairer.</p>
-<p>Haiku reviewing every answer passed 35 of 35 but the median time rose from 8.5 to 27.4 seconds. Repairing only on failure passed 34 of 35 at a median 7.9 seconds.</p>
+<p>Haiku reviewing every answer passed 34 of 35, but the median time rose from 8.5 to 23.1 seconds. Repairing only on failure passed 34 of 35 at a median 7.9 seconds.</p>
 <p>Passed 21 of 35 alone, 34 of 35 with repair on failure; median time 8.5 to 7.9 seconds.</p>
 <p>Run the cheap check first and call the second model only when the check fails.</p>
 <details><summary>Sources and caveat</summary>
@@ -70,14 +70,14 @@ Details: across all 3 tasks the Claude session used about 7.2M tokens, mostly re
 </ul></details>
 </article>
 <article class="case">
-<h3>A gap that was noise</h3>
+<h3>A gap that shrank with repeats</h3>
 <p class="story">Two effort levels of Codex 6.1 terra differed by 2 of 60 problems at first; after 15 repeats the gap was 2 of 180, and all 4 misses were on 1 problem.</p>
 <p>We compared two effort levels of Codex 6.1 terra on 12 problems: 5 repeats first, then 10 more.</p>
 <p>In the first 5 repeats low passed 60 of 60 and high 58. In the next 10 repeats both passed 119 of 120.</p>
 <p>Pooled over 15 repeats: low 179 of 180, high 177 of 180; 4 misses on 1 problem.</p>
 <p>One small run can overstate a gap. Repeat it before choosing on a miss.</p>
 <details><summary>Sources and caveat</summary>
-<p>The benchmark report&#x27;s confidence interval for the pooled difference includes zero.</p>
+<p>Pooled, the 2-of-180 gap is within what repeat-to-repeat variation can produce; the benchmark report&#x27;s confidence interval for it includes zero.</p>
 <ul>
 <li>DispatchBench results/2026-10-28-terra-function.jsonl</li>
 <li>DispatchBench results/2026-11-02-terra-noise-function.jsonl</li>
