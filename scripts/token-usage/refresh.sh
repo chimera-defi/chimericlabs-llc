@@ -27,6 +27,7 @@ echo "== 4/6 Codex daily split, then copy datasets into handoff/ and rebuild the
 python3 -I "$REPO/scripts/token-usage/sync_handoff.py" "$ACQ" "$PAGE/handoff"
 ( cd "$ACQ" && python3 -I headline_refresh.py "$PAGE/handoff" )
 python3 -I "$REPO/scripts/token-usage/last7.py" "$PAGE/handoff"
+python3 -I "$REPO/scripts/token-usage/case_studies.py" "$PAGE/handoff"   # section 9 snippet + data, from the same cutoff
 echo "== 5/6 build (private + public), verify, leak scan"
 ( cd "$PAGE" && python3 -I build_v5.py && python3 -I build_v5.py --public && python3 -I check_v5.py && python3 -I public_leak_scan.py )
 echo "== 6/6 copy into repo and run the repo's own check"

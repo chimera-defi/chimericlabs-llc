@@ -22,6 +22,8 @@ Stages:
 6. Copy the public page and data here.
 7. `fable_callers.py`: reads the bus database and Claude/Codex logs read-only, adds `traffic` (bus senders and recipients, who started each Fable run and by what path, Opus 5.5 comparison, coverage dates) to `data.json` and rewrites `section10-snippet.html`. Aggregates only; no session names or prompts. Runs in about 40 s.
 
+Stage 4 also runs `case_studies.py`. It recomputes the section 9 case studies from DispatchBench rows, local Claude transcripts and the handoff files, and writes `case_studies.json` (numbers and text) and `case_studies.html` (the snippet, rendered from the json). It stops if a recomputed number differs from the benchmark report. DispatchBench lives at `DISPATCHBENCH` (default `~/workspace/dispatchbench/results`).
+
 The cutoff is the current UTC day. The build stops with "Stale daily input" if any daily source ends before it.
 
 ## Where the generator lives
