@@ -50,13 +50,16 @@ def page_jobs(path):
     names = re.findall(r"<code>([\w.-]+)</code>", html)
     groups = re.findall(r"<h2[^>]*>([^<(]+)\((\d+)\)</h2>(.*?)(?=<h2|</article>)", html, re.S)
     bad = [f"{g.strip()}: heading says {n}, lists {len(re.findall('<code>', body))}" for g, n, body in groups if "Crypto" not in g and int(n) != len(re.findall("<code>", body))]
-    return set(names), bad
+    crypto_n = next((int(n) for g, n, _ in groups if "Crypto" in g), None)
+    return set(names), bad, crypto_n
 
 
 def main():
     host = host_jobs()
     crypto = {j for j in host if "crypto" in j}
-    page, bad_groups = page_jobs(PAGE)
+    page, bad_groups, crypto_n = page_jobs(PAGE)
+    if crypto_n != len(crypto):
+        bad_groups.append(f"Crypto: heading says {crypto_n}, host has {len(crypto)}")
     missing = sorted(host - crypto - page)
     extra = sorted(page - host)
     print(f"host: {len(host)} jobs ({len(crypto)} crypto, not named on the page); page names {len(page)}")
