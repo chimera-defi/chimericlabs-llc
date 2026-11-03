@@ -32,5 +32,7 @@ echo "== 5/6 build (private + public), verify, leak scan"
 echo "== 6/6 copy into repo and run the repo's own check"
 cp "$PAGE/public/index.html" "$REPO/research/token-usage/index.html"
 cp "$PAGE/public/data.json" "$REPO/research/token-usage/data.json"
+# reconcile the daily non-additive series with the totals the build just wrote, then publish them
+python3 -I "$REPO/scripts/token-usage/nonadditive_daily.py" "$PAGE/handoff" "$REPO/research/token-usage/nonadditive_daily.json" "$REPO/research/token-usage/data.json"
 ( cd "$REPO" && node scripts/check-tokens.mjs )
 echo "DONE: data through $(cat "$ACQ/data_through.txt"). Review 'git diff --stat' and open a PR; do not push to main."
