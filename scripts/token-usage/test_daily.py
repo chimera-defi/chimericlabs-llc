@@ -82,14 +82,14 @@ def write_commits(path, rows):
 
 
 def data_json(path, days, rows, last):
-    json.dump({"coverage": {"token_start": days[0]}, "partial_today": last, "data_through": last + " 05:00:00 UTC", "rows": rows, "commits": [{"date": d} for d in days], "loc": {"daily": []}}, open(path, "w"))
+    json.dump({"coverage": {"token_start": days[1]}, "partial_today": last, "data_through": last + " 05:00:00 UTC", "rows": rows, "commits": [{"date": d} for d in days], "loc": {"daily": []}}, open(path, "w"))
 
 
 class Daily(unittest.TestCase):
     def setUp(self):
         self.t = tempfile.mkdtemp()
         self.c, self.j, self.o = (os.path.join(self.t, n) for n in ("c.csv", "d.json", "o.csv"))
-        self.days = ["2026-10-01", "2026-10-02", "2026-10-03"]
+        self.days = ["2026-09-30", "2026-10-01", "2026-10-02", "2026-10-03"]
         rows = [
             commit_row("a", "2026-10-01", 10, 2, tools="claude|codex"),
             commit_row("b", "2026-10-01", 10, 2, tools="claude|codex"),  # same change after a rebase: counted once
@@ -99,10 +99,15 @@ class Daily(unittest.TestCase):
             commit_row("e", "2026-10-02", 1, 1, merge=True),
             commit_row("f", "2026-10-02", 3, 0, scope="third_party"),
             commit_row("g", "2026-10-03", 4, 4, tools="codex"),
+            commit_row("h", "2026-09-30", 6, 0),                       # before the tokens begin: still a commit
         ]
         write_commits(self.c, rows)
         tok = [["2026-10-01", "claude_transcripts:cli", 1, 2, 3, 4, 1], ["2026-10-02", "codex_corrected", None, None, None, None, None, 50], ["2026-10-03", "codex_corrected", None, None, None, None, None, 7]]
         data_json(self.j, self.days, tok, "2026-10-03")
+        self.old_start = build_daily.HISTORY_START
+        build_daily.HISTORY_START = validate_daily.HISTORY_START = "2026-09-30"  # one day before the tokens begin
+        self.addCleanup(lambda: setattr(build_daily, "HISTORY_START", self.old_start) or setattr(validate_daily, "HISTORY_START", self.old_start))
+        self.m = os.path.join(self.t, "monthly.csv")
         build_daily.sys.argv = ["x", self.c, self.j, self.o]
         build_daily.main()
         self.rows = {r["date"]: r for r in csv.DictReader(open(self.o))}
@@ -112,6 +117,7 @@ class Daily(unittest.TestCase):
         self.assertEqual((r["2026-10-01"]["commits_landed"], r["2026-10-01"]["commits_all_refs"], r["2026-10-01"]["commits_landed_claude_codex"]), ("2", "4", "1"))
         self.assertEqual((r["2026-10-02"]["commits_landed"], r["2026-10-02"]["commits_merge"], r["2026-10-02"]["code_touched"], r["2026-10-02"]["all_added_raw"]), ("1", "1", "0", "100001"))
         self.assertEqual(r["2026-10-03"]["day_status"], "partial")
+        self.assertEqual((r["2026-09-30"]["commits_landed"], r["2026-09-30"]["claude_token_status"], r["2026-09-30"]["tokens_total"]), ("1", "before_start", "0"))
         self.assertEqual((r["2026-10-01"]["tokens_claude"], r["2026-10-02"]["tokens_codex"], r["2026-10-02"]["claude_token_status"]), ("10", "50", "unmeasured"))
 
     def test_validate(self):
@@ -127,11 +133,21 @@ class Daily(unittest.TestCase):
         json.dump(d, open(self.j, "w"))
         self.assertTrue(any("page total 99999" in e for e in validate_daily.validate(self.o, self.j)[0]))
 
+    def test_monthly_is_exact_sum(self):
+        m = {r["month"]: r for r in csv.DictReader(open(self.m))}
+        self.assertEqual(sorted(m), ["2026-09", "2026-10"])
+        self.assertEqual((m["2026-10"]["commits_landed"], m["2026-10"]["days"], m["2026-09"]["days"]), ("4", "3", "1"))
+        self.assertEqual(validate_daily.validate(self.o, self.j, legacy=True, monthly_csv=self.m)[0], [])
+        rows = list(csv.reader(open(self.m)))
+        rows[1][1] = "999"
+        csv.writer(open(self.m, "w", newline="")).writerows(rows)
+        self.assertTrue(any("monthly 2026-09" in e for e in validate_daily.validate(self.o, self.j, legacy=True, monthly_csv=self.m)[0]))
+
     def test_validate_catches_disagreement(self):
         d = json.load(open(self.j)); d["commits"] = d["commits"][:-1]; d["rows"][0][2] = 999
         json.dump(d, open(self.j, "w"))
         errs = validate_daily.validate(self.o, self.j, legacy=True)[0]
-        self.assertTrue(any("commits covers 2 of 3" in e for e in errs), errs)
+        self.assertTrue(any("commits covers 3 of 4" in e for e in validate_daily.validate(self.o, self.j)[0]), errs)
         self.assertTrue(any("table tokens" in e for e in errs), errs)
         rows = list(csv.reader(open(self.o)))
         del rows[2]

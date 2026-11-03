@@ -43,7 +43,7 @@ Where tokens and commits still do not line up, by cause:
 
 ## Consolidated daily table
 
-`research/token-usage/daily.csv`: one row per UTC day from 2026-05-24 to the data_through day. `data.json` must carry the same rows under `"daily"`, and the page's commit, line and token series must read from it.
+`research/token-usage/daily.csv`: one row per UTC day from 2025-10-01 (the start of the commit history the page quotes) to the data_through day, 399 rows. `monthly.csv` has one row per month, each the exact sum of its daily rows (`days` shows partial months). `data.json` must carry the same rows under `"daily"`, and the page's commit, line and token series must read from it.
 
 | Column | Meaning |
 |---|---|
@@ -56,11 +56,25 @@ Where tokens and commits still do not line up, by cause:
 | `code_added`, `code_removed`, `code_touched` | landed commits, `src` + `test` files only, bulk commits (over 100 files) left out. touched = added + removed; this is churn, not size |
 | `all_added_raw`, `all_removed_raw` | every category, every commit on any branch (not collapsed). Merge commits carry 0 lines. Reference only |
 | `tokens_claude`, `tokens_codex`, `tokens_other`, `tokens_total` | raw tokens incl. cache. Codex uses the corrected total |
-| `claude_token_status`, `codex_token_status` | `measured`, `recovered` (Claude: pruned days, audit totals only), `unmeasured` (no row; token columns are 0, not "zero use") |
+| `claude_token_status`, `codex_token_status` | `measured`, `recovered` (Claude: pruned days, audit totals only), `unmeasured` (no row; token columns are 0, not "zero use"), `before_start` (before 2026-05-24, when token records begin; 0 means no data) |
 
 Line categories (`commit_sweep.py`): noise = `node_modules vendor third_party dist build out .next coverage __snapshots__ .terraform broadcast artifacts cache deployments generated .venv site-packages` directories, `*.lock *.min.js *.min.css *.map *.snap *.tfstate *.pb.go *_pb2.py *.csv *.tsv *.jsonl *.ndjson *.parquet *.svg *.ipynb *.log *.sqlite *.db *.wasm *.abi`, the usual lockfiles, and any `.json` that is not a tool config. Then test, doc, src (code extensions), cfg, other. Binary files are 0 lines. Renames are not followed.
 
-`scripts/token-usage/validate_daily.py` fails when: dates are not contiguous from `token_start` to the data_through day, a definition does not add up, `data.json["daily"]` is missing or differs from the table, the page's commit series covers different days, or a token row disagrees with the table. Token rows covering fewer days than the table is a warning (gaps are real and flagged `unmeasured`). `--legacy` demotes the "not built from the table" failure while the page is being switched.
+`scripts/token-usage/validate_daily.py` fails when: dates are not contiguous from 2025-10-01 to the data_through day, a definition does not add up, `data.json["daily"]` is missing or differs from the table, the page's commit series covers different days, or a token row disagrees with the table, or `monthly.csv` is not the sum of the daily rows. Token rows covering fewer days than the table is a warning (gaps are real and flagged `unmeasured`). `--legacy` demotes the "not built from the table" failure while the page is being switched.
+
+## Why the page showed three totals, and May 715 against 568
+
+| Figure | What it is | Verdict |
+|---|---|---|
+| `commit_log.total` 19,979 | monthly commit_log from 2025-10: an older sweep (scope and dedupe not the daily rule) up to May, then the daily per-actor sums from June | retire |
+| `project_total` 15,691 | 1 Nov sweep, all refs, summed by project; includes the 684 backup-ref commits | retire |
+| `commit_totals` sum 16,415 | the daily series from 2026-05-24, summed per actor, so a Claude+Codex commit counts twice (+3,074) | retire |
+
+From June on `commit_log.months` and the daily `commits` agree (June 1,999) because they are the same per-actor sums. Before that they are different sweeps: May is 715 in `commit_log` (a month that starts 1 May) and 568 in the daily series (starts 24 May), so 147 are May 1 to 23 and not a disagreement of the definition. On the new rules all non-third-party commits on any ref in May are 703 and landed ones are 457; October 2025 is 378 on both sweeps.
+
+"Other: 242" in the week of 2026-05-25 is not an import. It is Devin: 212 commits (plus 5 Devin+other-agent) in one repo on 28 to 30 May (64 on the 28th, 94 on the 29th plus 33 on branches), and 20 commits from another agent in a UI repo on the 30th and 31st. That is 237 in the new sweep; the old one gave 242. May's whole "other" month count is this one burst.
+
+**Headline: landed commits** (non-merge, on main, copies collapsed): 9,180 since 2025-10-01 and 8,285 since 2026-05-24. The wider figure, every commit on any branch, third-party out, is 16,011 (2025-10-01 on) and 13,234 (2026-05-24 on). Pick one and label it; do not add actors.
 
 ## What this says about the workflow
 
