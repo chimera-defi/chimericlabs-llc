@@ -1,0 +1,303 @@
+{
+  "schema": "token-usage-case-studies-v1",
+  "data_through": "2026-11-03T05:16:06Z",
+  "studies": [
+    {
+      "id": "pr218",
+      "title": "A change to session instructions",
+      "story": "A 67-line change to 2 files cost about 4.6M Codex tokens, and about 98% of that was the model re-reading text it had already seen.",
+      "setup": "",
+      "happened": "The change added written guidance to the instructions Codex gets when it starts a job in a session-tooling repo. Codex wrote and tested it, then Claude reviewed it, amended it, merged it and deployed it.\n\nOne thing went wrong. Codex's sandbox had a read-only filesystem, so Codex could not save its change to the repo's history (a \"commit\"), and Claude had to redo the commit, which took 3 extra tool calls.",
+      "number": "For every token Codex wrote, it read 229.",
+      "lesson": "",
+      "sources": [
+        "Codex rollout counters and Claude session transcripts for the change"
+      ],
+      "caveat": "We can't separate out Claude's share, because the same Claude session handled 3 tasks. ChatGPT's share is not measured.\n\nDetails: across all 3 tasks the Claude session used about 7.2M tokens, mostly re-reading. That is the most this change could have cost Claude, not an estimate of its actual share. Counts are raw, duplicates removed.",
+      "numbers": {}
+    },
+    {
+      "id": "compaction",
+      "title": "Compaction cuts context to a tenth",
+      "story": "Compaction cut a long session's carried text to a median 9% of its size, and one session did it 140 times in 53 hours.",
+      "setup": "When a session's text gets too long, Claude Code summarizes it into a shorter one (compaction) so the work can go on.",
+      "happened": "Across 897 compactions still on disk, 173,231,700 tokens became 16,447,091, freeing 156,784,609. The busiest session compacted 140 times, about once every 23 minutes.",
+      "number": "Median size after compaction: 9.3% of before.",
+      "lesson": "Compaction frees space but does not stop the text growing back.",
+      "sources": [
+        "Claude session transcripts (compaction records)"
+      ],
+      "caveat": "Claude deletes transcripts after about 30 days, so this counts only transcripts still on disk and shrinks with each refresh unless retention is raised. Duplicate records from resumed sessions are removed.",
+      "numbers": {
+        "boundaries": 897,
+        "triggers": {
+          "auto": 811,
+          "manual": 86
+        },
+        "pre_tokens": 173231700,
+        "post_tokens": 16447091,
+        "freed_tokens": 156784609,
+        "median_post_pre_pct": 9.28,
+        "busiest_count": 140,
+        "first_timestamp": "2026-10-02T15:10:05.604Z",
+        "last_timestamp": "2026-10-04T20:03:55.633Z",
+        "span_hours": 52.9,
+        "average_minutes_between": 22.83
+      }
+    },
+    {
+      "id": "priority",
+      "title": "Priority tier: faster, same tokens",
+      "story": "Moving Codex 6.1 terra (low effort) to the priority speed tier cut the median task time 42%, from 10.34 to 5.97 seconds.",
+      "setup": "DispatchBench is our benchmark of small coding problems. The same model and effort ran the 60-run main ladder once on the standard tier and once on the priority tier.",
+      "happened": "Both runs passed 60 of 60.",
+      "number": "Mean output was 537 tokens on standard and 523 on priority.",
+      "lesson": "The faster tier changed the time, not the work: same passes, same output size.",
+      "sources": [
+        "DispatchBench results/2026-10-28-terra-function.jsonl",
+        "DispatchBench results/2026-11-02-terra-priority-function.jsonl"
+      ],
+      "caveat": "Small problems only. The priority tier is billed at a different rate, which this page does not cover. The two runs were made on different days.",
+      "numbers": {
+        "standard": {
+          "n": 60,
+          "passed": 60,
+          "median_wall_s": 10.34,
+          "mean_out_tok": 537
+        },
+        "priority": {
+          "n": 60,
+          "passed": 60,
+          "median_wall_s": 5.97,
+          "mean_out_tok": 523
+        },
+        "median_change_pct": -42.25
+      }
+    },
+    {
+      "id": "haiku",
+      "title": "Same passes, different token mix",
+      "story": "Claude Haiku and Codex 6.1 sol, both at high effort, passed all 60 problems; sol read 3.5x more input tokens per call.",
+      "setup": "Two models ran the same 60 DispatchBench problems.",
+      "happened": "Haiku took a median 14.74 seconds per problem, sol 27.43. Per call, Haiku read 4,418 input tokens and wrote 4,123; sol read 15,380 and wrote 1,081.",
+      "number": "Haiku wrote 3.8x as many output tokens; sol read 3.5x as many input tokens.",
+      "lesson": "Output size alone does not show token use: the model that wrote more also read far less.",
+      "sources": [
+        "DispatchBench results/2026-10-22b-function.jsonl"
+      ],
+      "caveat": "The Haiku high-effort arm was exploratory, not pre-registered. Different vendors count tokens differently.",
+      "numbers": {
+        "haiku": {
+          "n": 60,
+          "passed": 60,
+          "median_wall_s": 14.74,
+          "mean_in_tok": 4418,
+          "mean_out_tok": 4123
+        },
+        "sol": {
+          "n": 60,
+          "passed": 60,
+          "median_wall_s": 27.43,
+          "mean_in_tok": 15380,
+          "mean_out_tok": 1081
+        },
+        "input_ratio": 3.48,
+        "output_ratio": 3.81
+      }
+    },
+    {
+      "id": "repair",
+      "title": "A cheap model plus a targeted repair",
+      "story": "A small Codex model (luna, low effort) passed 21 of 35 hard runs alone and 34 of 35 when Claude Haiku repaired only the answers that failed the problem's own examples.",
+      "setup": "Seven harder problems, five runs each. Luna is fast but misses some; Haiku (low effort) was added as the repairer.",
+      "happened": "Haiku reviewing every answer passed 35 of 35 but the median time rose from 8.5 to 27.4 seconds. Repairing only on failure passed 34 of 35 at a median 7.9 seconds.",
+      "number": "Passed 21 of 35 alone, 34 of 35 with repair on failure; median time 8.5 to 7.9 seconds.",
+      "lesson": "Run the cheap check first and call the second model only when the check fails.",
+      "sources": [
+        "DispatchBench results/2026-10-22b-function.jsonl",
+        "DispatchBench results/appendix/luna_rescue.jsonl"
+      ],
+      "caveat": "The seven problems are the ones luna missed most, so the gap is larger than on the whole ladder (luna passed 46 of 60 there). The median barely moves because the repair ran only on the failing runs.",
+      "numbers": {
+        "baseline": {
+          "n": 35,
+          "passed": 21,
+          "median_wall_s": 8.53
+        },
+        "review_all": {
+          "n": 35,
+          "passed": 35,
+          "median_wall_s": 27.44
+        },
+        "on_fail": {
+          "n": 35,
+          "passed": 34,
+          "median_wall_s": 7.88
+        },
+        "main_luna": {
+          "n": 60,
+          "passed": 46,
+          "median_wall_s": 7.22
+        },
+        "main_sol": {
+          "n": 60,
+          "passed": 58,
+          "median_wall_s": 22.59
+        }
+      }
+    },
+    {
+      "id": "noise",
+      "title": "A gap that was noise",
+      "story": "Two effort levels of Codex 6.1 terra differed by 2 of 60 problems at first; after 15 repeats the gap was 2 of 180, and all 4 misses were on 1 problem.",
+      "setup": "We compared two effort levels of Codex 6.1 terra on 12 problems: 5 repeats first, then 10 more.",
+      "happened": "In the first 5 repeats low passed 60 of 60 and high 58. In the next 10 repeats both passed 119 of 120.",
+      "number": "Pooled over 15 repeats: low 179 of 180, high 177 of 180; 4 misses on 1 problem.",
+      "lesson": "One small run can overstate a gap. Repeat it before choosing on a miss.",
+      "sources": [
+        "DispatchBench results/2026-10-28-terra-function.jsonl",
+        "DispatchBench results/2026-11-02-terra-noise-function.jsonl"
+      ],
+      "caveat": "The benchmark report's confidence interval for the pooled difference includes zero.",
+      "numbers": {
+        "groups": {
+          "initial_terra61-low": {
+            "n": 60,
+            "passed": 60,
+            "median_wall_s": 10.34
+          },
+          "initial_terra61-high": {
+            "n": 60,
+            "passed": 58,
+            "median_wall_s": 11.93
+          },
+          "additional_terra61-low": {
+            "n": 120,
+            "passed": 119,
+            "median_wall_s": 6.84
+          },
+          "additional_terra61-high": {
+            "n": 120,
+            "passed": 119,
+            "median_wall_s": 8.37
+          }
+        },
+        "pooled": {
+          "terra61-low": {
+            "n": 180,
+            "passed": 179
+          },
+          "terra61-high": {
+            "n": 180,
+            "passed": 177
+          }
+        },
+        "misses": [
+          {
+            "config": "terra61-high",
+            "problem": "p04_taller_within",
+            "repeat": 1
+          },
+          {
+            "config": "terra61-high",
+            "problem": "p04_taller_within",
+            "repeat": 3
+          },
+          {
+            "config": "terra61-high",
+            "problem": "p04_taller_within",
+            "repeat": 8
+          },
+          {
+            "config": "terra61-low",
+            "problem": "p04_taller_within",
+            "repeat": 10
+          }
+        ],
+        "distinct_miss_problems": 1
+      }
+    },
+    {
+      "id": "devin",
+      "title": "A delegate that missed half",
+      "story": "Devin's delegate tool passed 6 of 12 benchmark problems; Claude Haiku (low effort) passed 57 of 60.",
+      "setup": "Devin is one of the tools the host can hand coding tasks to. We ran it once through the 12-problem ladder with its stock setup.",
+      "happened": "Devin took a median 10.49 seconds and Haiku 9.96.",
+      "number": "50% passed against 95%.",
+      "lesson": "The time was the same; the passes were not. Check a lane before routing work to it.",
+      "sources": [
+        "DispatchBench results/2026-10-28-devin-function.jsonl",
+        "DispatchBench results/2026-10-22b-function.jsonl"
+      ],
+      "caveat": "Only 12 Devin runs, one per problem, exploratory and not pre-registered.",
+      "numbers": {
+        "devin": {
+          "n": 12,
+          "passed": 6,
+          "median_wall_s": 10.49
+        },
+        "haiku": {
+          "n": 60,
+          "passed": 57,
+          "median_wall_s": 9.96
+        }
+      }
+    }
+  ],
+  "facts": [
+    {
+      "id": "haiku_share",
+      "text": "Haiku's share of Claude raw tokens by week: 1.4% (2026-10-05), 0.1% (2026-10-12), 3.5% (2026-10-19), 10.3% (2026-10-26). Opus raw tokens fell 34% between the last two complete weeks (1,956,373,270 to 1,300,734,433). Which model a session used is not logged, so the cause is not established.",
+      "numbers": {
+        "weeks": [
+          {
+            "week_start": "2026-10-05",
+            "haiku_pct": 1.4
+          },
+          {
+            "week_start": "2026-10-12",
+            "haiku_pct": 0.14
+          },
+          {
+            "week_start": "2026-10-19",
+            "haiku_pct": 3.46
+          },
+          {
+            "week_start": "2026-10-26",
+            "haiku_pct": 10.28
+          }
+        ],
+        "opus_previous": 1956373270,
+        "opus_latest": 1300734433,
+        "opus_change": -655638837
+      },
+      "sources": [
+        "Handoff claude_model_weekly.csv"
+      ]
+    },
+    {
+      "id": "ratio",
+      "text": "In 2026-10-27..2026-11-02 (last 7 complete UTC days), Claude read 130 cached tokens for each token it wrote; Codex read 153.",
+      "numbers": {
+        "claude_ratio": 129.9,
+        "codex_ratio": 153.1,
+        "window": "2026-10-27..2026-11-02 (last 7 complete UTC days)"
+      },
+      "sources": [
+        "Handoff last7.json"
+      ]
+    }
+  ],
+  "sources": [
+    "Codex rollout counters and Claude session transcripts for the change",
+    "Claude session transcripts (compaction records)",
+    "DispatchBench results/2026-10-28-terra-function.jsonl",
+    "DispatchBench results/2026-11-02-terra-priority-function.jsonl",
+    "DispatchBench results/2026-10-22b-function.jsonl",
+    "DispatchBench results/appendix/luna_rescue.jsonl",
+    "DispatchBench results/2026-11-02-terra-noise-function.jsonl",
+    "DispatchBench results/2026-10-28-devin-function.jsonl",
+    "Handoff claude_model_weekly.csv",
+    "Handoff last7.json"
+  ]
+}
