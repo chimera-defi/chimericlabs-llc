@@ -32,5 +32,7 @@ echo "== 5/6 build (private + public), verify, leak scan"
 echo "== 6/6 copy into repo and run the repo's own check"
 cp "$PAGE/public/index.html" "$REPO/research/token-usage/index.html"
 cp "$PAGE/public/data.json" "$REPO/research/token-usage/data.json"
+echo "== 6b traffic: who talks to Fable and how (bus + transcripts) -> data.json[traffic], section-10 snippet"
+python3 -I "$REPO/scripts/token-usage/fable_callers.py" "$PAGE/handoff/fable_callers.json" --merge "$REPO/research/token-usage/data.json" --snippet "$REPO/research/token-usage/section10-snippet.html"
 ( cd "$REPO" && node scripts/check-tokens.mjs )
 echo "DONE: data through $(cat "$ACQ/data_through.txt"). Review 'git diff --stat' and open a PR; do not push to main."
