@@ -106,7 +106,7 @@ section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
   </header>
   <main>
     <section class="ds-wrap ds-hero article-hero article-stack" aria-labelledby="page-title">
-      <span class="ds-kicker">Systems · 2026-10-31</span>
+      <span class="ds-kicker">Systems · 2026-11-03</span>
       <h1 class="ds-h1" id="page-title">How Claudefolio works</h1>
       <p class="ds-lede">A portfolio research platform any AI agent can hook into. Agents research and check. A human approves every trade.</p>
       <aside class="article-takeaway">Agents do the reading, maths and arguing. Only the human can approve a trade.</aside>
@@ -477,7 +477,7 @@ section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
 <div class="hr">
 </div>
 <section class="ds-section ds-wrap article-stack" id="agent-host">
-<h2 class="ds-title">Agent Host: the MCP server</h2><p class="ds-lede">MCP is a standard way to give an AI model tools. Agent Host is mine.</p><p>It lets ChatGPT and Claude use my server: read code, run long jobs, pass messages.</p><p>Python, talking JSON-RPC, with state in SQLite. Built from 2026-08-22.</p><p>It exposes 40 tools. They fall into seven groups.</p>
+<h2 class="ds-title">Agent Host: the MCP server</h2><p class="ds-lede">MCP is a standard way to give an AI model tools. Agent Host is mine.</p><p>It lets ChatGPT and Claude use my server: read code, run long jobs, pass messages.</p><p>Python, talking JSON-RPC, with state in SQLite. First version 2026-08-22; latest change 2026-10-25 (see the timeline below).</p><p>Its tools fall into seven groups.</p>
 <figure class="article-chart">
 <h3>Agent Host tools by group</h3>
 <div class="article-legend"><span><i aria-hidden="true"></i>Tools</span></div>
@@ -640,7 +640,7 @@ section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
 <path d="M450 90 V138 H180 M450 138 H920" class="ds-edge" />
 <path d="M180 138 V176" class="ds-edge" marker-end="url(#fleet-desktop)" />
 <rect class="ds-node" x="20" y="184" width="320" height="86" rx="8" />
-<text x="180.0" y="220.0" class="node-title" text-anchor="middle" >Codex gpt-6.1-sol</text>
+<text x="180.0" y="220.0" class="node-title" text-anchor="middle" >Codex gpt-6.1-terra</text>
 <text x="180.0" y="244.0" class="chart-small" text-anchor="middle" >builds</text>
 <path d="M550 138 V176" class="ds-edge" marker-end="url(#fleet-desktop)" />
 <rect class="ds-node" x="390" y="184" width="320" height="86" rx="8" />
@@ -673,7 +673,7 @@ section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
 <path d="M35 145 H16 V459" class="ds-edge" />
 <path d="M16 264 H33" class="ds-edge" marker-end="url(#fleet-mobile)" />
 <rect class="ds-node" x="35" y="224" width="280" height="80" rx="8" />
-<text x="175.0" y="257.0" class="node-title" text-anchor="middle" >Codex gpt-6.1-sol</text>
+<text x="175.0" y="257.0" class="node-title" text-anchor="middle" >Codex gpt-6.1-terra</text>
 <text x="175.0" y="281.0" class="chart-small" text-anchor="middle" >builds</text>
 <path d="M16 360 H33" class="ds-edge" marker-end="url(#fleet-mobile)" />
 <rect class="ds-node" x="35" y="320" width="280" height="80" rx="8" />
@@ -712,7 +712,7 @@ section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
 </tr>
 <tr>
 <th scope="row">Claude Opus</th>
-<td>Codex gpt-6.1-sol</td>
+<td>Codex gpt-6.1-terra</td>
 <td>builds</td>
 </tr>
 <tr>
@@ -749,13 +749,13 @@ section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
 </tr>
 <tr>
 <th scope="row">Builder</th>
-<td data-label="Model">Codex gpt-6.1-sol, high effort</td>
+<td data-label="Model">Codex gpt-6.1-terra, low effort</td>
 <td data-label="Job">Writes most of the code</td>
 </tr>
 <tr>
 <th scope="row">Escalation</th>
-<td data-label="Model">Codex gpt-6-astra</td>
-<td data-label="Job">Harder or urgent builds</td>
+<td data-label="Model">Codex gpt-6.1-sol (high effort), then gpt-6-astra</td>
+<td data-label="Job">Harder builds, and retries after a failed check</td>
 </tr>
 <tr>
 <th scope="row">Research</th>
@@ -818,6 +818,8 @@ section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
 <li><time class="ds-when" datetime="2026-10-27">2026-10-27</time><p>— Order sheets show side-by-side decisions.</p>
 </li>
 <li><time class="ds-when" datetime="2026-10-30">2026-10-30</time><p>— Routing refreshed after new speed tests.</p>
+</li>
+<li><time class="ds-when" datetime="2026-11-02">2026-11-02</time><p>— Codex gpt-6.1-terra at low effort becomes the default builder; sol-high is kept for harder work.</p>
 </li>
 </ol>
 <details>

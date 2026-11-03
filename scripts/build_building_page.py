@@ -303,7 +303,7 @@ def main():
         '<p><a href="../../dispatchbench/">DispatchBench: how we pick which model builds what →</a></p>',
     ])
     method = "\n".join([
-        f"<li>Commits: <code>git log --all</code> on every local repo, counted once per commit even across branches, from 2025-10-01 to {data_through}. Commits by outside authors are left out. Merge commits and pull-request branch commits both count.</li>",
+        f"<li>Commits: <code>git log --all</code> on every local repo, counted once per commit even across branches, from 2025-10-01 to {data_through}. Commits by outside authors are left out. Merge commits and pull-request branch commits both count. Totals can step up between refreshes when a sweep picks up more branches.</li>",
         f"<li>Claude tokens: local session logs, deduplicated per message, taking the larger of the 2026-10-29 audit and the daily ledger for each day.</li>",
         "<li>Codex tokens: every local session log, counting only each session's own use, not the history it inherited from a parent session.</li>",
         "<li>Not counted: ChatGPT chat usage, which has no token meter we can read, and small Grok, Devin and Kimi runs.</li>",
