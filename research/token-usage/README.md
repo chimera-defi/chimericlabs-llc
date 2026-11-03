@@ -37,6 +37,8 @@ The cutoff is the current UTC day. The build stops with "Stale daily input" if a
 - `dashboard-v5-*/build_v5.py`: generates the page.
 - `dashboard-v5-*/check_v5.py`: copy, word-budget and data checks.
 
+The public page carries the sibling-page shell (top bar, nav, kicker, footer, meta, canonical), defined in `site_shell.py`. The leak scan exempts those exact strings only. The all-branch commit count in the cross-reference to the building page is the sum of `commits_since_2025-10_total` in `handoff/commits_by_project.csv`.
+
 To change page copy, edit `build_v5.py` and the matching `check_v5.py` assertion, then refresh.
 
 ## Things to know
