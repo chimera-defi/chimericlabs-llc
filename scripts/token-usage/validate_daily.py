@@ -7,7 +7,7 @@ Checks (each failure is printed, exit 1 if any):
   2. Definitions: landed commits = sum of the actor columns; touched = added + removed; token total = sum of providers;
      landed <= all_refs; merge <= all_refs; the partial day is the last row and only the last.
   3. data.json["daily"] (the table the page is built from) equals DAILY_CSV, row for row.
-  4. Every per-day series (strict mode also compares commit totals and code lines per day, and token statuses with the rows) in data.json (token rows, commits, loc.daily) lies inside the table's date range, and the
+  4. Every per-day series (strict mode also compares commit totals and code lines per day; token statuses are always compared with the rows) in data.json (token rows, commits, loc.daily) lies inside the table's date range, and the
      table's token columns equal the token rows. A date with no token row must be marked unmeasured, not 0.
   --legacy  demote check 3 and the value comparisons of check 4 to warnings or skip them, for data.json files from before the page was switched to the table.
 Python 3 standard library only.
