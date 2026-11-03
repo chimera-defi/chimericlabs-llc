@@ -7,7 +7,7 @@ they walked the repos separately and gave 27,671, 28,776 and 28,780 commits.
 Rules (the doc is docs/commit-and-token-series.md):
 - Refs: --branches --remotes --tags plus the HEAD of every worktree. Never --all. --all also reads per-worktree
   refs (refs/rewritten/*, refs/bisect/*), which only the checkout you ask can see, so the count depended on which
-  worktree the sweep happened to open. In Etc-mono-repo that was 687 commits (646 pre-rewrite backup refs).
+  worktree the sweep happened to open. In one monorepo that was 687 commits (646 pre-rewrite backup refs).
 - One row per SHA across all clones and worktrees of a repo (object store).
 - date_utc is the author date converted to UTC. Every series on the page uses the same day.
 - landed = non-merge commit reachable from main/master (local or origin). Merge commits are kept, flagged is_merge.
