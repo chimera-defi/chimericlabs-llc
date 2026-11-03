@@ -77,9 +77,11 @@ SAME_WINDOW_START = "2026-09-07"
 #   user(login: "chimera-defi") { contributionsCollection(from: "YYYY-01-01T00:00:00Z",
 #     to: "YYYY-12-31T23:59:59Z") { totalCommitContributions restrictedContributionsCount } }
 # totalCommitContributions 2021: 289, 2022: 9, 2023: 204, 2024: 112. This account only;
-# earlier employer work is not in it. Same query, 2026 to 2026-11-03: 5,607 public + 1,014 private.
+# earlier employer work is not in it. Same field, 2026-01-01 to 2026-10-31: 5,433.
+# (restrictedContributionsCount is left out: it is not commits only.)
 BEFORE_AI = {"from": "2021", "to": "2024", "commits": 289 + 9 + 204 + 112, "months": 48,
-             "github_2026": 5607 + 1014, "github_2026_months": 10, "pulled": "2026-11-03"}
+             "github_2026": 5433, "github_2026_span": "January to October 2026", "github_2026_months": 10,
+             "pulled": "2026-11-03"}
 
 
 def slugify(label):
@@ -226,6 +228,9 @@ def monthly_commits(handoff, data_through):
 def monthly_html(months):
     """Bar chart of commits per month with a dashed before-AI reference line."""
     names = "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split()
+    month_name = lambda m: f"{names[int(m[5:]) - 1]} {m[:4]}"
+    if len(months) < 2:
+        sys.exit("monthly chart needs at least two full months of commits")
     base = BEFORE_AI["commits"] / BEFORE_AI["months"]
     left, right, top, bottom, w, h = 52, 56, 12, 28, 420, 220
     top_n = -(-max(n for _, n in months) // 1000) * 1000
@@ -256,11 +261,11 @@ def monthly_html(months):
         '</svg>',
         '<p class="article-legend"><span><i class="swatch-bars" aria-hidden="true"></i>Commits that month</span>'
         f'<span><i class="swatch-base" aria-hidden="true"></i>Before AI agents ({BEFORE_AI["from"]}–{BEFORE_AI["to"]}, this GitHub account): about {base:.0f} commits a month</span></p>',
-        f'<figcaption>Sep and Oct 2026 averaged about {recent:,.0f} commits a month; the dashed line sits almost on the axis at this scale. '
+        f'<figcaption>{month_name(months[-2][0])} and {month_name(months[-1][0])} averaged about {recent:,.0f} commits a month; the dashed line sits almost on the axis at this scale. '
         f'The baseline is GitHub’s commit count for this account, {BEFORE_AI["commits"]} commits over {BEFORE_AI["months"]} months, pulled {BEFORE_AI["pulled"]}. '
         f'It counts only this account; earlier employer work isn’t included. '
-        f'The bars count every branch of every local repo, so they run higher than GitHub’s count. '
-        f'On GitHub’s own count, 2026 to date is {BEFORE_AI["github_2026"]:,} commits, about {BEFORE_AI["github_2026"] / BEFORE_AI["github_2026_months"]:,.0f} a month. '
+        f'The bars are a different count, every branch of every local repo, agent commits included, so the two are not directly comparable. '
+        f'On GitHub’s count alone, {BEFORE_AI["github_2026_span"]} is {BEFORE_AI["github_2026"]:,} commits, about {BEFORE_AI["github_2026"] / BEFORE_AI["github_2026_months"]:,.0f} a month. '
         f'The current month is partial and not shown.</figcaption>',
         '</figure>',
     ])
