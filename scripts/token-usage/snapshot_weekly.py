@@ -4,7 +4,7 @@
 Reads `claude -p /usage` (the CLI's own local slash command: no model call, no token handled here).
 usage: snapshot_weekly.py [--csv PATH] [--sync-from PATH]
   --csv PATH        file to append to (default research/token-usage/weekly_limit.csv in this repo)
-  --sync-from PATH  also copy rows for dates missing from --csv out of PATH (the timer's state file)
+  --sync-from PATH  also copy rows out of PATH (the timer's state file); they replace same-date rows in --csv
 Product split (Claude Code / Chats / Cowork / Other) is only on the web Settings > Usage page; the CLI does
 not print it, so those columns stay empty until something supplies them.
 """
@@ -47,15 +47,17 @@ def main():
     rows = {r["date"]: r for r in load(a.csv)}
     if a.sync_from:
         for r in load(a.sync_from):
-            rows.setdefault(r["date"], r)
+            rows[r["date"]] = r   # the timer's late-day reading beats an earlier refresh reading
     today = now.date().isoformat()
     if today not in rows:
         rows[today] = {"date": today, **read_usage(now)}
     a.csv.parent.mkdir(parents=True, exist_ok=True)
-    with open(a.csv, "w", newline="") as f:
+    tmp = a.csv.with_suffix(".tmp")
+    with open(tmp, "w", newline="") as f:
         w = csv.DictWriter(f, COLS, restval="")
         w.writeheader()
         w.writerows(rows[d] for d in sorted(rows))
+    tmp.replace(a.csv)
     print(f"{a.csv}: {len(rows)} rows, today {rows[today]}")
 
 
