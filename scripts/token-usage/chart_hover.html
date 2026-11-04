@@ -1,0 +1,77 @@
+<style id="chart-hover-css">
+#chart-tip{position:fixed;z-index:50;left:0;top:0;max-width:min(calc(100vw - 2 * var(--space-4)),280px);padding:var(--space-2) var(--space-3);background:var(--color-surface);color:var(--color-text);border:1px solid var(--line);border-radius:var(--radius-md);box-shadow:var(--shadow-md);font-size:13px;line-height:1.35;pointer-events:none;visibility:hidden;font-variant-numeric:tabular-nums}
+#chart-tip.on{visibility:visible}
+#chart-tip b{display:block;font-weight:600}
+.tr-donut .slice{cursor:pointer;outline:none}
+.tr-donut .slice:focus-visible{stroke:var(--data-focus)}
+.tr-donut[data-active] .slice:not(.on){opacity:.3}
+.tr-donut[data-active] .donut-legend li:not(.on){opacity:.55}
+.tr-donut .donut-legend li.on{background:var(--color-surface);outline:1px solid var(--line)}
+.tr-donut .donut-legend li:focus-visible{outline:2px solid var(--data-focus)}
+.tr-donut .tr-total{pointer-events:none;fill:var(--color-text);font-size:12px;font-weight:600;text-anchor:middle;font-variant-numeric:tabular-nums}
+svg[data-hover-svg]:focus-visible{outline:2px solid var(--data-focus);outline-offset:2px}
+.hover-on{stroke:var(--ink);stroke-width:2}
+.motion-ok .tr-donut .slice{transition:opacity .15s var(--ds-ease),stroke-width .15s var(--ds-ease)}.motion-ok .tr-donut .donut-legend li{transition:opacity .15s var(--ds-ease)}
+</style>
+<script id="chart-hover-js">
+(function(){
+function init(){
+if(typeof document.createElement!=='function'||!document.body||typeof window.matchMedia!=='function')return;
+if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('motion-ok');
+var tip=document.createElement('div');tip.id='chart-tip';tip.setAttribute('role','tooltip');tip.setAttribute('aria-live','polite');document.body.appendChild(tip);
+function show(html,x,y){tip.innerHTML=html;tip.classList.add('on');var w=tip.offsetWidth,h=tip.offsetHeight,m=8;
+ var left=Math.min(Math.max(x+14,m),window.innerWidth-w-m),top=y-h-12<m?y+18:y-h-12;
+ tip.style.left=left+'px';tip.style.top=Math.min(top,window.innerHeight-h-m)+'px'}
+function hide(){tip.classList.remove('on')}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function anchor(el){var r=el.getBoundingClientRect();return[r.left+r.width/2,r.top+r.height/2]}
+/* donuts */
+function setActive(fig,i,x,y){
+ var on=i!==null&&i!=='';
+ fig.querySelectorAll('[data-i]').forEach(function(e){e.classList.toggle('on',on&&e.getAttribute('data-i')===String(i))});
+ var tot=fig.querySelector('.tr-total');
+ if(!on){fig.removeAttribute('data-active');if(tot)tot.textContent=tot.getAttribute('data-total');hide();return}
+ fig.setAttribute('data-active',i);
+ var s=fig.querySelector('.slice[data-i="'+i+'"]');
+ if(tot)tot.textContent=s.getAttribute('data-share');
+ if(x==null){var a=anchor(s);x=a[0];y=a[1]}
+ show('<b>'+esc(s.getAttribute('data-label'))+'</b>'+esc(s.getAttribute('data-n'))+' · '+esc(s.getAttribute('data-share')),x,y)}
+document.querySelectorAll('.tr-donut').forEach(function(fig){
+ fig.addEventListener('pointerover',function(e){var t=e.target.closest('[data-i]');if(t&&fig.contains(t))setActive(fig,t.getAttribute('data-i'),e.clientX,e.clientY)});
+ fig.addEventListener('pointermove',function(e){var t=e.target.closest('[data-i]');if(t&&e.pointerType!=='touch')setActive(fig,t.getAttribute('data-i'),e.clientX,e.clientY)});
+ fig.addEventListener('pointerout',function(e){if(e.pointerType==='touch')return;var t=e.relatedTarget&&e.relatedTarget.closest&&e.relatedTarget.closest('[data-i]');if(!t||!fig.contains(t))setActive(fig,null)});
+ fig.addEventListener('click',function(e){var t=e.target.closest('[data-i]');if(t)setActive(fig,t.getAttribute('data-i'),e.clientX||null,e.clientY||null)});
+ fig.addEventListener('focusin',function(e){var t=e.target.closest('[data-i]');if(t)setActive(fig,t.getAttribute('data-i'))});
+ fig.addEventListener('focusout',function(e){if(!e.relatedTarget||!fig.contains(e.relatedTarget))setActive(fig,null)});
+ fig.addEventListener('keydown',function(e){
+  var items=[].slice.call(fig.querySelectorAll('.slice')),k=items.indexOf(document.activeElement);
+  if(k<0)return;
+  if(e.key==='ArrowRight'||e.key==='ArrowDown'){items[(k+1)%items.length].focus();e.preventDefault()}
+  else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){items[(k+items.length-1)%items.length].focus();e.preventDefault()}
+  else if(e.key==='Escape'){setActive(fig,null)}})});
+/* time charts: any svg element inside a chart card carrying a <title> */
+var cur=null;
+function tipText(el){var t=el.querySelector(':scope > title');if(t){el.setAttribute('data-tip',t.textContent);el.setAttribute('aria-label',t.textContent);t.remove()}return el.getAttribute('data-tip')}
+function target(n){var el=n.closest&&n.closest('#hero svg *');if(!el)return null;while(el&&el.tagName!=='svg'){if(el.hasAttribute('data-tip')||el.querySelector(':scope > title'))return el;el=el.parentNode}return null}
+function mark(el){if(cur)cur.classList.remove('hover-on');cur=el;if(el)el.classList.add('hover-on')}
+function tipHtml(s){var i=s.indexOf(': ');return i>0&&i<24?'<b>'+esc(s.slice(0,i))+'</b>'+esc(s.slice(i+2)):esc(s)}
+document.addEventListener('pointerover',function(e){var el=target(e.target);if(!el){return}var s=tipText(el);if(s){mark(el);show(tipHtml(s),e.clientX,e.clientY)}});
+document.addEventListener('pointermove',function(e){if(cur&&e.pointerType!=='touch')show(tip.innerHTML,e.clientX,e.clientY)});
+document.addEventListener('pointerout',function(e){if(e.pointerType==='touch')return;if(cur&&!(e.relatedTarget&&cur.contains(e.relatedTarget))){mark(null);hide()}});
+document.addEventListener('pointerdown',function(e){if(e.pointerType!=='touch')return;if(!e.target.closest('.tr-donut')&&!target(e.target)){mark(null);hide();document.querySelectorAll('.tr-donut[data-active]').forEach(function(f){setActive(f,null)})}});
+document.addEventListener('click',function(e){if(e.pointerType==='touch'){var el=target(e.target);if(el){var s=tipText(el);if(s){mark(el);show(tipHtml(s),e.clientX,e.clientY)}}}});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){mark(null);hide();document.querySelectorAll('.tr-donut[data-active]').forEach(function(f){setActive(f,null)})}});
+/* keyboard: focus a chart, arrow keys step through its points */
+function wire(svg){if(svg.hasAttribute('data-hover-svg'))return;svg.setAttribute('data-hover-svg','');svg.setAttribute('tabindex','0');
+ svg.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){mark(null);hide();return}
+  if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft')return;
+  var pts=[].slice.call(svg.querySelectorAll('[data-date]')).filter(function(n){return n.hasAttribute('data-tip')||n.querySelector(':scope > title')});
+  if(!pts.length)return;var k=pts.indexOf(cur);k=e.key==='ArrowRight'?Math.min(k+1,pts.length-1):Math.max(k<0?0:k-1,0);
+  var el=pts[k],s=tipText(el);mark(el);var a=anchor(el);show(tipHtml(s),a[0],a[1]);e.preventDefault()});
+ svg.addEventListener('blur',function(){mark(null);hide()})}
+function wireAll(){document.querySelectorAll('#hero svg').forEach(function(s){if(s.querySelector('[data-date]'))wire(s)})}
+wireAll();new MutationObserver(wireAll).observe(document.getElementById('hero')||document.body,{childList:true,subtree:true})}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init()
+})();
+</script>
