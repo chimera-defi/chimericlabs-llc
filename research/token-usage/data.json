@@ -3701,11 +3701,11 @@
     [
       "2026-11-04",
       "claude_transcripts:claude-desktop",
-      1744,
-      413727,
-      3421167,
-      108188589,
-      765
+      1834,
+      429187,
+      3462521,
+      114399679,
+      805
     ],
     [
       "2026-11-04",
@@ -3719,20 +3719,20 @@
     [
       "2026-11-04",
       "claude_transcripts:cli",
-      2008,
-      724525,
-      3609868,
-      97640327,
-      934
+      2264,
+      788493,
+      3801392,
+      108799230,
+      1054
     ],
     [
       "2026-11-04",
       "claude_transcripts:sdk-cli",
-      8540,
-      13571593,
-      29461201,
-      356834053,
-      4041
+      8852,
+      14239070,
+      30735141,
+      371897097,
+      4194
     ],
     [
       "2026-11-04",
@@ -3755,12 +3755,12 @@
     [
       "2026-11-04",
       "codex_corrected",
-      3215473,
-      403367,
+      3661911,
+      447565,
       0,
-      55651328,
+      60305152,
       null,
-      57965206
+      62897979
     ]
   ],
   "isolated_observations": [
@@ -3838,7 +3838,7 @@
       "cache_read": null,
       "output": null,
       "unassigned": null,
-      "total": 22814035229
+      "total": 22848722647
     },
     "codex": {
       "fresh_input": null,
@@ -3846,15 +3846,15 @@
       "cache_read": null,
       "output": null,
       "unassigned": null,
-      "total": 27995951104
+      "total": 28000883877
     }
   },
   "claude_ledger_composition": {
-    "fresh_input": 1099285,
-    "cache_write": 627440051,
-    "cache_read": 18905752474,
-    "output": 138640272,
-    "total": 19672932082,
+    "fresh_input": 1099943,
+    "cache_write": 628946869,
+    "cache_read": 18938185511,
+    "output": 139387177,
+    "total": 19707619500,
     "unassigned": 0
   },
   "claude_audit_composition": {
@@ -3873,7 +3873,7 @@
   },
   "codex_correction": {
     "old_total": 263589031928,
-    "raw_final_cumulative": 261230241156,
+    "raw_final_cumulative": 261235385616,
     "handoff_final_counters": 261320000000,
     "inherited_tokens": 233200000000,
     "forked_sessions": 747
@@ -4149,7 +4149,7 @@
     [
       "2026-11-04",
       "0",
-      "141886727.475"
+      "148316258.900"
     ]
   ],
   "fable_window": {
@@ -4188,17 +4188,17 @@
   },
   "sources": {
     "source-1": "fbe74cca7d3eafe7d17d42d3b75a2b9d6e16032f6985c071f4bd83c12574bbc4",
-    "source-2": "d95fda4746830e4a0d59d61ce306dd7cb609d72e3d81260a79c10299f46df044",
+    "source-2": "dc729301862105d0256c2426a562bf54df7b424399e7856575e1b11f3c69d040",
     "source-3": "3a550a23d40ae492432e764be93154ac7fa9f28db0f8a0d3d1aaac3e0f6c63aa",
-    "source-4": "625af6009eaca505dad45a252a62b8b5f5fa499ff2f1d5ca4a7208cae32da62d",
+    "source-4": "11c5bac9648355bfd9ff1a94bdb78ba026763a12cbe5fc116137ba685d8fe670",
     "source-5": "9951a41b3ea317c312c13d4319af3296f1bc20bdb05dbfea8eeb0d1a21fd8212",
-    "source-6": "1ad1e4a7d979e3ece2fe6a4621f5038e71dee157d2e90de2f868a79de6a87f0d",
-    "source-7": "1e9a0d12d2aa46f3cbc6d839490be167fa29a51cec9cf761baa2dcb3bbe51385",
-    "source-8": "4e7d2f90c13683aebd4aeb3116078a345f6fab951ad0a15e375bb8a02d553c72",
-    "source-9": "6db804cf44110198514fbe13c10f43d68fb4c1431e920875155abad9d1daf6ad",
-    "source-10": "bed7093d14a09078fd6234e3b90a4dfd0e18e2f78ebe70ebc622d1e43be3a351",
-    "source-11": "3fc108cfb8c2efdb9fb3d663fd0ce9f66202cd36371b5ea59807a655bf6a3924",
-    "source-12": "1de4d7034f128cf73d55d1f5aaf68adda56a3e2e03236e50a7fc5cc8dbe111d4",
+    "source-6": "b1c61af998cd9df8ec3524ee26e8d33e3b80c829d7a87533838b151ee1176fbb",
+    "source-7": "1a5e3698e8aafe4379faca3c858a33f3bdfb5aa942a9ffbf950b9856f9456e1d",
+    "source-8": "a2bad9d963a5ee1d06a047fdc4aa89bfdc77040b6aa8f88bcccfc2479a8d346b",
+    "source-9": "0bb9c914dad93038865875ae7753ee32e068b232eb983a92c9516c6394cda7f3",
+    "source-10": "9d5acfad65a807e8667b487fc8cc4fef43ac30a57a18e1ff7cd352a48080cbb5",
+    "source-11": "069d8bf19b932b0c470b37c70e001f69f18a3847065fc285bceb565c8f377631",
+    "source-12": "ad194f1002bc9628cf94b57b7ed59492d2d3e1c0b6e914529f7049e266e2e99b",
     "source-13": "f9ffc0ee562dad632406ab53d6752974f0f7ffc94db9db232be203723c7211ac",
     "source-14": "d78f79f2e8c4335e9f5b306837cfa526ccaaa671ca806a4b837d78212a0cfe4f",
     "source-15": "96033e967ab4154f25906d7478cba61e4680f9e6d78c9474325ff6d1f0fd6995",
@@ -4210,15 +4210,15 @@
     "source-21": "364f74048e6fdff20fae50014a00c59f7b32fb868f1698b6414caaec4108aac1",
     "source-22": "1739c4da5e856c0a889281589f95765d66f7cb34f578a8cfda37212b4e94c57f",
     "source-23": "154801b5778e4b642c7207843fa1d12cad2d731295a84a774beeb457bfc298e5",
-    "source-24": "5e9f9b5331455b62ded75ddbbdfed448748baa015d79385a806bbe23ab54f131",
+    "source-24": "a0635d8921733b75bd4d6823492ce76908b73161ea0c9519b419a06eab280e6f",
     "source-25": "55e6f01e7b2c9450b7a9e70f233c7c8471b12f6a2cb5b42d0883de773eaadc7a",
-    "source-26": "7d0fe3d593ef822073d6a85c9e026ae6ccc47f96f2f6978ac8678fcc7935dee3",
-    "source-27": "c2ee263c6f0ec2b1ee178f089777361406b9945a6e4b46999fb0fed4ed4a00f5",
+    "source-26": "28c8783858d33d2b67adfc37c75ac3c70045265f03fe11f25ee61b073fb090fe",
+    "source-27": "cccddcb1445da0fff1f2b4d70dd6d5981b74996200649debea52fd23d0347917",
     "source-28": "a8c21fda504d89f04c60866c122592dd9cbd082eea3251c5eab5ecda4802433a",
     "source-29": "01cd0ac449d4efff69be43af1c652798f3d27f062a26a3dee490362742a85065",
-    "source-30": "db0457d1654a92d145f348cdb7b1dbb0208011ab0fa3ad0fd3ecd5be62eac47a",
-    "source-31": "61e943516322391b4eebcc927b78d1da00b62e2ec0030e3f0fe53a6d01b0ee93",
-    "source-32": "10242df54b65f15b7eef7202d0acec6a3910338112e279185683a474aea48553",
+    "source-30": "ab5179c0eeb8bde37365495d1ef7cc4d10363dcac1f42b66d31ecbaf15315098",
+    "source-31": "7b1fc6c069a1a3e0abbabc7d6c25bee3914709714e3be61e9acc30ade09a3ac4",
+    "source-32": "67f5b425ece7703847b581bf1db054d94ac13c2770b12a09a4b792ba2008133f",
     "source-33": "3f7a46daeab143b8107717e80b616b353d1b8847ebbcd22980efd0807c08e88c",
     "source-34": "2e8438d750ff716c4923286b08ee6b75ba04f6a9f004da8d7ff30142b2ce39f6",
     "source-35": "38774aeace09945f275c60258df739a62cdcde67a2120bf716e8f5f920767757",
@@ -4240,15 +4240,15 @@
     "entrypoint": [
       [
         "cli",
-        14024402358
+        14035817009
       ],
       [
         "desktop",
-        4150934796
+        4157202790
       ],
       [
         "sdk-cli",
-        1497508424
+        1514513197
       ],
       [
         "unknown",
@@ -4258,7 +4258,7 @@
     "actor": [
       [
         "Main",
-        10993377150
+        11028064568
       ],
       [
         "Subagent",
@@ -4268,7 +4268,7 @@
     "model": [
       [
         "opus-5-5",
-        8019885692
+        8031644930
       ],
       [
         "sonnet-5",
@@ -4276,11 +4276,11 @@
       ],
       [
         "sonnet-5-5",
-        4824701459
+        4830624866
       ],
       [
         "haiku-5-5",
-        968245234
+        985250007
       ],
       [
         "fable-5-1",
@@ -4309,12 +4309,12 @@
     ],
     "project": [
       [
-        "Other projects (209)",
-        8678824442
+        "Other projects (211)",
+        8709369375
       ],
       [
         "Session tooling",
-        3989954481
+        3994096966
       ],
       [
         "Orchestrator",
@@ -4346,24 +4346,24 @@
       ]
     ]
   },
-  "who_total": 19672932082,
+  "who_total": 19707619500,
   "range_summaries": {
     "all": [
-      10993377150,
+      11028064568,
       8679554932,
-      27995951104,
+      28000883877,
       3850351962
     ],
     "90": [
-      10993303985,
+      11027991403,
       8679554932,
-      15108594588,
+      15113527361,
       3141103147
     ],
     "30": [
-      8097844047,
+      8132531465,
       2187206118,
-      4778040265,
+      4782973038,
       0
     ],
     "7": [
@@ -4373,9 +4373,9 @@
       0
     ],
     "since": [
-      10976716352,
+      11011403770,
       8679554932,
-      6801354011,
+      6806286784,
       3141103147
     ]
   },
@@ -4570,28 +4570,28 @@
         [
           "2026-11",
           "claude-desktop",
-          9035,
-          5526616,
-          36414581,
-          1209424541,
-          96.6
+          9075,
+          5542166,
+          36455935,
+          1215635631,
+          96.7
         ],
         [
           "2026-11",
           "cli",
-          4366,
-          3893274,
-          19589392,
-          455889516,
-          95.1
+          4486,
+          3957498,
+          19780916,
+          467048419,
+          95.2
         ],
         [
           "2026-11",
           "sdk-cli",
-          5573,
-          17607596,
-          40052188,
-          470681769,
+          5726,
+          18275385,
+          41326128,
+          485744813,
           89.1
         ]
       ]
@@ -4722,11 +4722,11 @@
         ],
         [
           "2026-11-02",
-          12997,
-          23187182,
-          74334555,
-          1386362136,
-          12,
+          13310,
+          23934745,
+          75841373,
+          1418795173,
+          11,
           22,
           42,
           36
@@ -5222,13 +5222,13 @@
           57,
           59,
           4,
-          213,
-          231
+          215,
+          242
         ]
       ]
     }
   ],
-  "data_through": "2026-11-04 05:44:29 UTC",
+  "data_through": "2026-11-04 06:06:40 UTC",
   "partial_today": "2026-11-04",
   "recent_coverage": {
     "Claude": {
@@ -5241,7 +5241,7 @@
     }
   },
   "last7": {
-    "data_through": "2026-11-04T05:44:29Z",
+    "data_through": "2026-11-04T06:06:40Z",
     "window": "2026-10-28..2026-11-03 (last 7 complete UTC days)",
     "partial_today": "2026-11-04",
     "claude": {
@@ -9327,11 +9327,11 @@
     [
       "2026-11-04",
       "claude_transcripts:claude-desktop",
-      1744,
-      413727,
-      3421167,
-      108188589,
-      765
+      1834,
+      429187,
+      3462521,
+      114399679,
+      805
     ],
     [
       "2026-11-04",
@@ -9345,20 +9345,20 @@
     [
       "2026-11-04",
       "claude_transcripts:cli",
-      2008,
-      724525,
-      3609868,
-      97640327,
-      934
+      2264,
+      788493,
+      3801392,
+      108799230,
+      1054
     ],
     [
       "2026-11-04",
       "claude_transcripts:sdk-cli",
-      8540,
-      13571593,
-      29461201,
-      356834053,
-      4041
+      8852,
+      14239070,
+      30735141,
+      371897097,
+      4194
     ],
     [
       "2026-11-04",
@@ -9386,7 +9386,7 @@
       "cache_read": null,
       "output": null,
       "unassigned": null,
-      "total": 22814035229
+      "total": 22848722647
     },
     "codex": {
       "fresh_input": 5583035694,
@@ -9399,19 +9399,19 @@
   },
   "ranges_as_first_measured": {
     "all": [
-      10993377150,
+      11028064568,
       8679554932,
       263994077611,
       3850351962
     ],
     "90": [
-      10993303985,
+      11027991403,
       8679554932,
       123870486744,
       3141103147
     ],
     "30": [
-      8097844047,
+      8132531465,
       2187206118,
       4546599008,
       0
@@ -9423,13 +9423,13 @@
       0
     ],
     "since": [
-      10976716352,
+      11011403770,
       8679554932,
       6929426675,
       3141103147
     ],
     "exclude": [
-      10993377150,
+      11028064568,
       8679554932,
       12119357910,
       3850351962
@@ -22588,10 +22588,10 @@
       "code_touched": "0",
       "all_added_raw": "0",
       "all_removed_raw": "0",
-      "tokens_claude": "637795807",
-      "tokens_codex": "57965206",
+      "tokens_claude": "672483225",
+      "tokens_codex": "62897979",
       "tokens_other": "0",
-      "tokens_total": "695761013",
+      "tokens_total": "735381204",
       "claude_token_status": "measured",
       "codex_token_status": "measured"
     }
@@ -26354,8 +26354,8 @@
   },
   "mcp": {
     "summary": {
-      "calls_completed": 166597,
-      "request_failed": 1885,
+      "calls_completed": 166598,
+      "request_failed": 1886,
       "transport_failed": 9407,
       "tools": 58,
       "first": "2026-08-24",
@@ -26441,8 +26441,8 @@
     "months": "June to October",
     "sessions": 43,
     "own_tokens": 347244558,
-    "lifetime": 27995951104,
-    "share": 1.24033849291295,
+    "lifetime": 28000883877,
+    "share": 1.2401199888023091,
     "commits": 667,
     "note": "Node-operations campaign, June to October: 43 Codex sessions, about 0.35B own tokens (about 1% of the Codex measured total); 667 commits in that period.",
     "public": true
@@ -26467,7 +26467,7 @@
       "bus": {
         "first": "2026-08-25",
         "last": "2026-11-04",
-        "messages": 12724
+        "messages": 12727
       },
       "mcp": {
         "first": "2026-08-24",
@@ -26477,13 +26477,13 @@
     "invocations_by_model": {
       "sonnet-5-5": {
         "runs": 1067,
-        "messages": 79726,
+        "messages": 79801,
         "subagent_runs": 689,
         "main_sessions": 378
       },
       "opus-5-5": {
         "runs": 453,
-        "messages": 114486,
+        "messages": 114540,
         "subagent_runs": 187,
         "main_sessions": 266
       },
@@ -26612,7 +26612,7 @@
         ],
         [
           "Other",
-          971
+          974
         ],
         [
           "Another consumer",
@@ -26646,11 +26646,11 @@
         ],
         [
           "Claude launchers",
-          1880
+          1881
         ],
         [
           "Other",
-          822
+          824
         ],
         [
           "ChatGPT/Codex research roles",

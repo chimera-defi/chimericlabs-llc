@@ -1,6 +1,6 @@
 {
   "schema": "token-usage-case-studies-v1",
-  "data_through": "2026-11-04T05:44:29Z",
+  "data_through": "2026-11-04T06:06:40Z",
   "studies": [
     {
       "id": "change",
@@ -21,23 +21,23 @@
       "title": "Compaction cuts context to a tenth",
       "story": "Compaction cut a long session's carried text to a median 9% of its size, and one session did it 140 times in 53 hours.",
       "setup": "When a session's text gets too long, Claude Code summarizes it into a shorter one (compaction) so the work can go on.",
-      "happened": "Across 1,007 compactions still on disk, 195,706,454 tokens became 18,276,714, freeing 177,429,740. The busiest session compacted 140 times, about once every 23 minutes.",
-      "number": "Median size after compaction: 9.0% of before.",
+      "happened": "Across 1,013 compactions still on disk, 196,942,172 tokens became 18,359,011, freeing 178,583,161. The busiest session compacted 140 times, about once every 23 minutes.",
+      "number": "Median size after compaction: 8.9% of before.",
       "lesson": "Compaction frees space but does not stop the text growing back.",
       "sources": [
         "Claude session transcripts (compaction records)"
       ],
       "caveat": "Claude deletes transcripts after about 30 days, so this counts only transcripts still on disk and shrinks with each refresh unless retention is raised. Duplicate records from resumed sessions are removed.",
       "numbers": {
-        "boundaries": 1007,
+        "boundaries": 1013,
         "triggers": {
-          "auto": 921,
+          "auto": 927,
           "manual": 86
         },
-        "pre_tokens": 195706454,
-        "post_tokens": 18276714,
-        "freed_tokens": 177429740,
-        "median_post_pre_pct": 8.96,
+        "pre_tokens": 196942172,
+        "post_tokens": 18359011,
+        "freed_tokens": 178583161,
+        "median_post_pre_pct": 8.94,
         "busiest_count": 140,
         "first_timestamp": "2026-10-02T15:10:05.604Z",
         "last_timestamp": "2026-10-04T20:03:55.633Z",
