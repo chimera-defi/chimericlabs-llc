@@ -1,5 +1,5 @@
 <style id="chart-hover-css">
-#chart-tip{position:fixed;z-index:50;left:0;top:0;max-width:min(calc(100vw - 2 * var(--space-4)),280px);padding:var(--space-2) var(--space-3);background:var(--color-surface);color:var(--color-text);border:1px solid var(--line);border-radius:var(--radius-md);box-shadow:var(--shadow-md);font-size:13px;line-height:1.35;pointer-events:none;visibility:hidden;font-variant-numeric:tabular-nums}
+#chart-tip{position:fixed;z-index:50;left:0;top:0;max-width:min(calc(100vw - 2 * var(--space-4)),280px);padding:var(--space-2) var(--space-3);background:var(--color-surface);color:var(--color-text);border:1px solid var(--line);border-radius:var(--radius-md);box-shadow:var(--shadow-md);font-size:13px;line-height:1.35;visibility:hidden;font-variant-numeric:tabular-nums}
 #chart-tip.on{visibility:visible}
 #chart-tip b{display:block;font-weight:600}
 .tr-donut .slice{cursor:pointer;outline:none}
@@ -19,10 +19,13 @@ function init(){
 if(typeof document.createElement!=='function'||!document.body||typeof window.matchMedia!=='function')return;
 if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('motion-ok');
 var tip=document.createElement('div');tip.id='chart-tip';tip.setAttribute('role','tooltip');tip.setAttribute('aria-live','polite');document.body.appendChild(tip);
-function show(html,x,y){tip.innerHTML=html;tip.classList.add('on');var w=tip.offsetWidth,h=tip.offsetHeight,m=8;
+var hideT=0,overTip=false;
+function show(html,x,y){clearTimeout(hideT);tip.innerHTML=html;tip.classList.add('on');var w=tip.offsetWidth,h=tip.offsetHeight,m=8;
  var left=Math.min(Math.max(x+14,m),window.innerWidth-w-m),top=y-h-12<m?y+18:y-h-12;
  tip.style.left=left+'px';tip.style.top=Math.min(top,window.innerHeight-h-m)+'px'}
-function hide(){tip.classList.remove('on')}
+function hide(now){clearTimeout(hideT);if(now===true){overTip=false;tip.classList.remove('on');return}hideT=setTimeout(function(){if(!overTip)tip.classList.remove('on')},250)}
+tip.addEventListener('pointerenter',function(e){if(e.pointerType==='touch')return;overTip=true;clearTimeout(hideT)});
+tip.addEventListener('pointerleave',function(){overTip=false;mark(null);hide()});
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function anchor(el){var r=el.getBoundingClientRect();return[r.left+r.width/2,r.top+r.height/2]}
 /* donuts */
@@ -56,20 +59,20 @@ function target(n){var el=n.closest&&n.closest('#hero svg *');if(!el)return null
 function mark(el){if(cur)cur.classList.remove('hover-on');cur=el;if(el)el.classList.add('hover-on')}
 function tipHtml(s){var i=s.indexOf(': ');return i>0&&i<24?'<b>'+esc(s.slice(0,i))+'</b>'+esc(s.slice(i+2)):esc(s)}
 document.addEventListener('pointerover',function(e){var el=target(e.target);if(!el){return}var s=tipText(el);if(s){mark(el);show(tipHtml(s),e.clientX,e.clientY)}});
-document.addEventListener('pointermove',function(e){if(cur&&e.pointerType!=='touch')show(tip.innerHTML,e.clientX,e.clientY)});
+document.addEventListener('pointermove',function(e){if(cur&&e.pointerType!=='touch'&&!tip.contains(e.target))show(tip.innerHTML,e.clientX,e.clientY)});
 document.addEventListener('pointerout',function(e){if(e.pointerType==='touch')return;if(cur&&!(e.relatedTarget&&cur.contains(e.relatedTarget))){mark(null);hide()}});
-document.addEventListener('pointerdown',function(e){if(e.pointerType!=='touch')return;if(!e.target.closest('.tr-donut')&&!target(e.target)){mark(null);hide();document.querySelectorAll('.tr-donut[data-active]').forEach(function(f){setActive(f,null)})}});
+document.addEventListener('pointerdown',function(e){if(e.pointerType!=='touch')return;if(!e.target.closest('.tr-donut')&&!target(e.target)){mark(null);hide(true);document.querySelectorAll('.tr-donut[data-active]').forEach(function(f){setActive(f,null)})}});
 document.addEventListener('click',function(e){if(e.pointerType==='touch'){var el=target(e.target);if(el){var s=tipText(el);if(s){mark(el);show(tipHtml(s),e.clientX,e.clientY)}}}});
-document.addEventListener('keydown',function(e){if(e.key==='Escape'){mark(null);hide();document.querySelectorAll('.tr-donut[data-active]').forEach(function(f){setActive(f,null)})}});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){mark(null);hide(true);document.querySelectorAll('.tr-donut[data-active]').forEach(function(f){setActive(f,null)})}});
 /* keyboard: focus a chart, arrow keys step through its points */
 function wire(svg){if(svg.hasAttribute('data-hover-svg'))return;svg.setAttribute('data-hover-svg','');svg.setAttribute('tabindex','0');
  svg.addEventListener('keydown',function(e){
-  if(e.key==='Escape'){mark(null);hide();return}
+  if(e.key==='Escape'){mark(null);hide(true);return}
   if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft')return;
   var pts=[].slice.call(svg.querySelectorAll('[data-date]')).filter(function(n){return n.hasAttribute('data-tip')||n.querySelector(':scope > title')});
   if(!pts.length)return;var k=pts.indexOf(cur);k=e.key==='ArrowRight'?Math.min(k+1,pts.length-1):Math.max(k<0?0:k-1,0);
   var el=pts[k],s=tipText(el);mark(el);var a=anchor(el);show(tipHtml(s),a[0],a[1]);e.preventDefault()});
- svg.addEventListener('blur',function(){mark(null);hide()})}
+ svg.addEventListener('blur',function(){mark(null);hide(true)})}
 function wireAll(){document.querySelectorAll('#hero svg').forEach(function(s){if(s.querySelector('[data-date]'))wire(s)})}
 wireAll();new MutationObserver(wireAll).observe(document.getElementById('hero')||document.body,{childList:true,subtree:true})}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init()
