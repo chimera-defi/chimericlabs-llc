@@ -15,9 +15,10 @@ svg[data-hover-svg]:focus-visible{outline:2px solid var(--data-focus);outline-of
 </style>
 <script id="chart-hover-js">
 (function(){
+function init(){
 if(typeof document.createElement!=='function'||!document.body||typeof window.matchMedia!=='function')return;
 if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('motion-ok');
-var tip=document.createElement('div');tip.id='chart-tip';tip.setAttribute('role','tooltip');document.body.appendChild(tip);
+var tip=document.createElement('div');tip.id='chart-tip';tip.setAttribute('role','tooltip');tip.setAttribute('aria-live','polite');document.body.appendChild(tip);
 function show(html,x,y){tip.innerHTML=html;tip.classList.add('on');var w=tip.offsetWidth,h=tip.offsetHeight,m=8;
  var left=Math.min(Math.max(x+14,m),window.innerWidth-w-m),top=y-h-12<m?y+18:y-h-12;
  tip.style.left=left+'px';tip.style.top=Math.min(top,window.innerHeight-h-m)+'px'}
@@ -39,8 +40,7 @@ document.querySelectorAll('.tr-donut').forEach(function(fig){
  fig.addEventListener('pointerover',function(e){var t=e.target.closest('[data-i]');if(t&&fig.contains(t))setActive(fig,t.getAttribute('data-i'),e.clientX,e.clientY)});
  fig.addEventListener('pointermove',function(e){var t=e.target.closest('[data-i]');if(t&&e.pointerType!=='touch')setActive(fig,t.getAttribute('data-i'),e.clientX,e.clientY)});
  fig.addEventListener('pointerout',function(e){if(e.pointerType==='touch')return;var t=e.relatedTarget&&e.relatedTarget.closest&&e.relatedTarget.closest('[data-i]');if(!t||!fig.contains(t))setActive(fig,null)});
- fig.addEventListener('click',function(e){var t=e.target.closest('[data-i]');if(!t)return;var i=t.getAttribute('data-i');
-  if(e.pointerType==='touch'||e.detail===0||fig.getAttribute('data-active')!==i)setActive(fig,fig.getAttribute('data-active')===i&&e.pointerType==='touch'?null:i,e.clientX||null,e.clientY||null)});
+ fig.addEventListener('click',function(e){var t=e.target.closest('[data-i]');if(t)setActive(fig,t.getAttribute('data-i'),e.clientX||null,e.clientY||null)});
  fig.addEventListener('focusin',function(e){var t=e.target.closest('[data-i]');if(t)setActive(fig,t.getAttribute('data-i'))});
  fig.addEventListener('focusout',function(e){if(!e.relatedTarget||!fig.contains(e.relatedTarget))setActive(fig,null)});
  fig.addEventListener('keydown',function(e){
@@ -60,6 +60,7 @@ document.addEventListener('pointermove',function(e){if(cur&&e.pointerType!=='tou
 document.addEventListener('pointerout',function(e){if(e.pointerType==='touch')return;if(cur&&!(e.relatedTarget&&cur.contains(e.relatedTarget))){mark(null);hide()}});
 document.addEventListener('pointerdown',function(e){if(e.pointerType!=='touch')return;if(!e.target.closest('.tr-donut')&&!target(e.target)){mark(null);hide();document.querySelectorAll('.tr-donut[data-active]').forEach(function(f){setActive(f,null)})}});
 document.addEventListener('click',function(e){if(e.pointerType==='touch'){var el=target(e.target);if(el){var s=tipText(el);if(s){mark(el);show(tipHtml(s),e.clientX,e.clientY)}}}});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){mark(null);hide();document.querySelectorAll('.tr-donut[data-active]').forEach(function(f){setActive(f,null)})}});
 /* keyboard: focus a chart, arrow keys step through its points */
 function wire(svg){if(svg.hasAttribute('data-hover-svg'))return;svg.setAttribute('data-hover-svg','');svg.setAttribute('tabindex','0');
  svg.addEventListener('keydown',function(e){
@@ -70,6 +71,7 @@ function wire(svg){if(svg.hasAttribute('data-hover-svg'))return;svg.setAttribute
   var el=pts[k],s=tipText(el);mark(el);var a=anchor(el);show(tipHtml(s),a[0],a[1]);e.preventDefault()});
  svg.addEventListener('blur',function(){mark(null);hide()})}
 function wireAll(){document.querySelectorAll('#hero svg').forEach(function(s){if(s.querySelector('[data-date]'))wire(s)})}
-wireAll();new MutationObserver(wireAll).observe(document.getElementById('hero')||document.body,{childList:true,subtree:true});
+wireAll();new MutationObserver(wireAll).observe(document.getElementById('hero')||document.body,{childList:true,subtree:true})}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init()
 })();
 </script>
