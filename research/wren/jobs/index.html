@@ -102,8 +102,8 @@
       <article class="ds-wrap ds-hero wren">
         <a href="../" class="ds-kicker">← Wren</a>
         <h1 class="ds-h1">Scheduled jobs</h1>
-      <p>Listed on 3 November 2026. This is what ours runs (systemd timers and cron; Ubuntu's own housekeeping timers left out). Most jobs are quiet upkeep. Few of them message a person.</p>
-      <h2 class="ds-kicker">Agent coordination (8)</h2>
+      <p>Listed on 4 November 2026. This is what ours runs (systemd timers and cron; Ubuntu's own housekeeping timers left out). Most jobs are quiet upkeep. Few of them message a person.</p>
+      <h2 class="ds-kicker">Agent coordination (10)</h2>
       <ul class="wren-sub">
         <li><code>bus-router</code>: routes new bus messages to the right agent. Every 15 min.</li>
         <li><code>bus-router-consumer</code>: picks up escalations. Every 30 min.</li>
@@ -113,6 +113,8 @@
         <li><code>agent-host-async-tick</code>: refreshes task status and logs new bus messages. Every 10 min.</li>
         <li><code>ack-hygiene</code>: tidies unanswered bus acknowledgements. Daily.</li>
         <li><code>chatgpt-waste-report</code>: reports wasted ChatGPT bus traffic. Daily.</li>
+        <li><code>agent-host-mailbox-watch</code>: checks agent mailboxes for new messages, reading metadata only. Every minute.</li>
+        <li><code>bus-request-watchdog</code>: starts a responder for review requests nobody has answered. Every minute.</li>
       </ul>
       <h2 class="ds-kicker">Sessions and sign-ins (7)</h2>
       <ul class="wren-sub">
@@ -133,7 +135,7 @@
         <li><code>launchpadlib-cache-clean</code>: clears an old package cache. Daily.</li>
         <li><code>env-refresh</code>: checks for new model releases and reports setup health. Daily.</li>
       </ul>
-      <h2 class="ds-kicker">Memory and backup (6)</h2>
+      <h2 class="ds-kicker">Memory and backup (7)</h2>
       <ul class="wren-sub">
         <li><code>qmd-refresh</code>: re-indexes notes for search. Every 6 h.</li>
         <li><code>gbrain-heal</code>: syncs and repairs the gbrain knowledge base. Every 3 h.</li>
@@ -141,15 +143,18 @@
         <li><code>whitepaper-resync</code>: folds new research into our white paper. Weekly.</li>
         <li><code>crss-backup</code>: restic encrypts curated memory and crss config to an off-site storage box. Live since 1 November; daily around 04:20. Keeps 7 daily, 4 weekly and 6 monthly. Excludes secrets, transcripts and Hermes/OpenClaw state.</li>
         <li><code>memory-snapshot</code>: commits every local memory repo, skipping secret-looking files. Daily at 23:50.</li>
+        <li><code>token-usage-weekly-snapshot</code>: records how much of the weekly Claude limit is used, for the token page. Daily at 23:50 UTC.</li>
       </ul>
       <h2 class="ds-kicker">Briefs (2)</h2>
       <ul class="wren-sub">
         <li><code>morning-brief</code>: a short summary of overnight jobs. Daily.</li>
         <li><code>linnet-digest</code>: Linnet's plain digest of jobs and alert mailboxes. 08:15 and 20:15 CET.</li>
       </ul>
-      <h2 class="ds-kicker">Markets, read-only (8)</h2>
+      <h2 class="ds-kicker">Markets, read-only (10)</h2>
       <ul class="wren-sub">
         <li><code>claudefolio-gatecheck</code>: checks the Claudefolio gate before the US open. Weekdays.</li>
+        <li><code>cf2-morning</code>: Claudefolio morning dry run, no orders. Weekdays at 08:30 New York.</li>
+        <li><code>qt-fills-watcher</code>: polls for Questrade snapshot triggers, research only. Every 10 min on weekday evenings.</li>
         <li><code>equity-triggers</code>: after-close Interactive Brokers trigger check and book returns. Weekdays.</li>
         <li><code>qt-rotation-request</code>: asks for a Questrade snapshot. Mondays.</li>
         <li><code>qt-rotation-collect</code>: collects that snapshot. Mondays, several tries.</li>
