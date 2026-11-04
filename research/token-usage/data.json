@@ -3701,38 +3701,38 @@
     [
       "2026-11-04",
       "claude_transcripts:claude-desktop",
-      1170,
-      290024,
-      2536740,
-      70872228,
-      516
+      1744,
+      413727,
+      3421167,
+      108188589,
+      765
     ],
     [
       "2026-11-04",
       "claude_transcripts:claude-desktop:sidechain",
-      192,
-      179949,
-      1201156,
-      10098078,
-      96
+      276,
+      202315,
+      1453718,
+      13583935,
+      136
     ],
     [
       "2026-11-04",
       "claude_transcripts:cli",
-      1766,
-      658846,
-      3267661,
-      87749741,
-      824
+      2008,
+      724525,
+      3609868,
+      97640327,
+      934
     ],
     [
       "2026-11-04",
       "claude_transcripts:sdk-cli",
-      7282,
-      11713098,
-      25542634,
-      299708359,
-      3412
+      8540,
+      13571593,
+      29461201,
+      356834053,
+      4041
     ],
     [
       "2026-11-04",
@@ -3755,12 +3755,12 @@
     [
       "2026-11-04",
       "codex_corrected",
-      2341063,
-      305335,
+      3215473,
+      403367,
       0,
-      42115968,
+      55651328,
       null,
-      43180155
+      57965206
     ]
   ],
   "isolated_observations": [
@@ -3838,7 +3838,7 @@
       "cache_read": null,
       "output": null,
       "unassigned": null,
-      "total": 22698746567
+      "total": 22814035229
     },
     "codex": {
       "fresh_input": null,
@@ -3846,15 +3846,15 @@
       "cache_read": null,
       "output": null,
       "unassigned": null,
-      "total": 27981166053
+      "total": 27995951104
     }
   },
   "claude_ledger_composition": {
-    "fresh_input": 1097127,
-    "cache_write": 622042288,
-    "cache_read": 18797933976,
-    "output": 136570029,
-    "total": 19557643420,
+    "fresh_input": 1099285,
+    "cache_write": 627440051,
+    "cache_read": 18905752474,
+    "output": 138640272,
+    "total": 19672932082,
     "unassigned": 0
   },
   "claude_audit_composition": {
@@ -3873,7 +3873,7 @@
   },
   "codex_correction": {
     "old_total": 263589031928,
-    "raw_final_cumulative": 261215111204,
+    "raw_final_cumulative": 261230241156,
     "handoff_final_counters": 261320000000,
     "inherited_tokens": 233200000000,
     "forked_sessions": 747
@@ -4149,7 +4149,7 @@
     [
       "2026-11-04",
       "0",
-      "122090688.275"
+      "141886727.475"
     ]
   ],
   "fable_window": {
@@ -4188,17 +4188,17 @@
   },
   "sources": {
     "source-1": "fbe74cca7d3eafe7d17d42d3b75a2b9d6e16032f6985c071f4bd83c12574bbc4",
-    "source-2": "fd800312b48036c34961aa705285b3bbc78bac5eba37480727926a688d62f212",
+    "source-2": "d95fda4746830e4a0d59d61ce306dd7cb609d72e3d81260a79c10299f46df044",
     "source-3": "3a550a23d40ae492432e764be93154ac7fa9f28db0f8a0d3d1aaac3e0f6c63aa",
-    "source-4": "aa24384f378f0bc604eef3754b16669da0801a86b3d6750df336ede510d8bae8",
+    "source-4": "625af6009eaca505dad45a252a62b8b5f5fa499ff2f1d5ca4a7208cae32da62d",
     "source-5": "9951a41b3ea317c312c13d4319af3296f1bc20bdb05dbfea8eeb0d1a21fd8212",
-    "source-6": "a34b40ae2989dab71f79019b82c257f5f6193a71c1d111de8cb557e3dc666328",
-    "source-7": "d917f580bc6b1d77ffd2f3076b7a39b8102e57a1a9ee62f9e2a84df98a815054",
-    "source-8": "d78f191a02c6c6156324bb1cf9f9d2e40294ae7cfbc30a4173ac5c4c3b4e1db1",
-    "source-9": "2ba0d4a09839039268ce5404ebf269a5c8f77df842b5aad2026b5df1fd0d038f",
-    "source-10": "326a479036c703b84134aa22d8301fa284b405b8d507c82f18fbb861c1863621",
-    "source-11": "b9f71f28343928d66eb1494d50101ecd7da5a123124f59fd9740ac2aa69b0692",
-    "source-12": "21c79be97e04144559d4ffdd43155e5da50bbbafe06edc9fb27cd339d50e8da0",
+    "source-6": "1ad1e4a7d979e3ece2fe6a4621f5038e71dee157d2e90de2f868a79de6a87f0d",
+    "source-7": "1e9a0d12d2aa46f3cbc6d839490be167fa29a51cec9cf761baa2dcb3bbe51385",
+    "source-8": "4e7d2f90c13683aebd4aeb3116078a345f6fab951ad0a15e375bb8a02d553c72",
+    "source-9": "6db804cf44110198514fbe13c10f43d68fb4c1431e920875155abad9d1daf6ad",
+    "source-10": "bed7093d14a09078fd6234e3b90a4dfd0e18e2f78ebe70ebc622d1e43be3a351",
+    "source-11": "3fc108cfb8c2efdb9fb3d663fd0ce9f66202cd36371b5ea59807a655bf6a3924",
+    "source-12": "1de4d7034f128cf73d55d1f5aaf68adda56a3e2e03236e50a7fc5cc8dbe111d4",
     "source-13": "f9ffc0ee562dad632406ab53d6752974f0f7ffc94db9db232be203723c7211ac",
     "source-14": "d78f79f2e8c4335e9f5b306837cfa526ccaaa671ca806a4b837d78212a0cfe4f",
     "source-15": "96033e967ab4154f25906d7478cba61e4680f9e6d78c9474325ff6d1f0fd6995",
@@ -4209,17 +4209,17 @@
     "source-20": "caf2e6e5d02d46b773c361e7d8cfcaa14c3a1bb2a25a23c35875a2e1ae48d8da",
     "source-21": "364f74048e6fdff20fae50014a00c59f7b32fb868f1698b6414caaec4108aac1",
     "source-22": "1739c4da5e856c0a889281589f95765d66f7cb34f578a8cfda37212b4e94c57f",
-    "source-23": "06d13dfba2eff709d1366ffd8252539703dd1e13ce2c7139ca971e2d98d0c16f",
-    "source-24": "22cac4b98ff2013f92f78034240b45f510481bbcce9bfa9ee0b064b3b4776c06",
+    "source-23": "154801b5778e4b642c7207843fa1d12cad2d731295a84a774beeb457bfc298e5",
+    "source-24": "5e9f9b5331455b62ded75ddbbdfed448748baa015d79385a806bbe23ab54f131",
     "source-25": "55e6f01e7b2c9450b7a9e70f233c7c8471b12f6a2cb5b42d0883de773eaadc7a",
-    "source-26": "5f524365f2af6d7c75f70c99f534d212613beca12d7d43aa0b9e543e5d9fdff1",
-    "source-27": "b846adb384c5fbafe4651255289c20088d58f4d92ba4ae3f95db8f669e9ff56c",
+    "source-26": "7d0fe3d593ef822073d6a85c9e026ae6ccc47f96f2f6978ac8678fcc7935dee3",
+    "source-27": "c2ee263c6f0ec2b1ee178f089777361406b9945a6e4b46999fb0fed4ed4a00f5",
     "source-28": "a8c21fda504d89f04c60866c122592dd9cbd082eea3251c5eab5ecda4802433a",
     "source-29": "01cd0ac449d4efff69be43af1c652798f3d27f062a26a3dee490362742a85065",
-    "source-30": "dfd84950e539fb4076cd3432ace5f4d01f1baf8415c34d20fae63c8161e497c3",
-    "source-31": "11cfedb942aa6a8b6a2f030c5f0002713ec0786bf9d320cc91587439b5a07fd6",
-    "source-32": "6d8d2d7701f67807aa2c2efd5f2db4639c4095432623e6d383ce936dae26425b",
-    "source-33": "60431fee38e584c5c0c7b7b153055ee9216e2c6e24498e713b040ada3b5dbb78",
+    "source-30": "db0457d1654a92d145f348cdb7b1dbb0208011ab0fa3ad0fd3ecd5be62eac47a",
+    "source-31": "61e943516322391b4eebcc927b78d1da00b62e2ec0030e3f0fe53a6d01b0ee93",
+    "source-32": "10242df54b65f15b7eef7202d0acec6a3910338112e279185683a474aea48553",
+    "source-33": "3f7a46daeab143b8107717e80b616b353d1b8847ebbcd22980efd0807c08e88c",
     "source-34": "2e8438d750ff716c4923286b08ee6b75ba04f6a9f004da8d7ff30142b2ce39f6",
     "source-35": "38774aeace09945f275c60258df739a62cdcde67a2120bf716e8f5f920767757",
     "source-36": "0f0524733f5b98d6cd2aeffb9c6776f84fd5ec25fb5d99b493e28ab96ae3e78c",
@@ -4240,15 +4240,15 @@
     "entrypoint": [
       [
         "cli",
-        14014103644
+        14024402358
       ],
       [
         "desktop",
-        4108848862
+        4150934796
       ],
       [
         "sdk-cli",
-        1434604410
+        1497508424
       ],
       [
         "unknown",
@@ -4258,17 +4258,17 @@
     "actor": [
       [
         "Main",
-        10881849357
+        10993377150
       ],
       [
         "Subagent",
-        8675794063
+        8679554932
       ]
     ],
     "model": [
       [
         "opus-5-5",
-        7987912296
+        8019885692
       ],
       [
         "sonnet-5",
@@ -4276,11 +4276,11 @@
       ],
       [
         "sonnet-5-5",
-        4803752023
+        4824701459
       ],
       [
         "haiku-5-5",
-        905879404
+        968245234
       ],
       [
         "fable-5-1",
@@ -4310,11 +4310,11 @@
     "project": [
       [
         "Other projects (209)",
-        8600460055
+        8678824442
       ],
       [
         "Session tooling",
-        3953030206
+        3989954481
       ],
       [
         "Orchestrator",
@@ -4346,24 +4346,24 @@
       ]
     ]
   },
-  "who_total": 19557643420,
+  "who_total": 19672932082,
   "range_summaries": {
     "all": [
-      10881849357,
-      8675794063,
-      27981166053,
+      10993377150,
+      8679554932,
+      27995951104,
       3850351962
     ],
     "90": [
-      10881776192,
-      8675794063,
-      15093809537,
+      10993303985,
+      8679554932,
+      15108594588,
       3141103147
     ],
     "30": [
-      7986316254,
-      2183445249,
-      4763255214,
+      8097844047,
+      2187206118,
+      4778040265,
       0
     ],
     "7": [
@@ -4373,9 +4373,9 @@
       0
     ],
     "since": [
-      10865188559,
-      8675794063,
-      6786568960,
+      10976716352,
+      8679554932,
+      6801354011,
       3141103147
     ]
   },
@@ -4478,7 +4478,7 @@
     {
       "name": "Task runs",
       "tag": "SUBSET",
-      "raw": 1816625146,
+      "raw": 1817163330,
       "source": "server_task_runs_daily.csv"
     }
   ],
@@ -4570,29 +4570,29 @@
         [
           "2026-11",
           "claude-desktop",
-          8746,
-          5379889,
-          35277592,
-          1168622323,
+          9035,
+          5526616,
+          36414581,
+          1209424541,
           96.6
         ],
         [
           "2026-11",
           "cli",
-          4256,
-          3827353,
-          19247185,
-          445998930,
+          4366,
+          3893274,
+          19589392,
+          455889516,
           95.1
         ],
         [
           "2026-11",
           "sdk-cli",
-          4944,
-          15747843,
-          36133621,
-          413556075,
-          88.9
+          5573,
+          17607596,
+          40052188,
+          470681769,
+          89.1
         ]
       ]
     },
@@ -4722,14 +4722,14 @@
         ],
         [
           "2026-11-02",
-          11969,
-          21114781,
-          68936792,
-          1278543638,
+          12997,
+          23187182,
+          74334555,
+          1386362136,
           12,
-          23,
-          43,
-          34
+          22,
+          42,
+          36
         ]
       ]
     },
@@ -5169,6 +5169,16 @@
           37034752,
           281793,
           0.0
+        ],
+        [
+          "2026-11-02",
+          "claude",
+          1,
+          0,
+          24,
+          529939,
+          8221,
+          0.33
         ]
       ]
     },
@@ -5209,16 +5219,16 @@
         ],
         [
           "2026-11",
-          55,
+          57,
           59,
           4,
-          210,
-          220
+          213,
+          231
         ]
       ]
     }
   ],
-  "data_through": "2026-11-04 04:38:53 UTC",
+  "data_through": "2026-11-04 05:44:29 UTC",
   "partial_today": "2026-11-04",
   "recent_coverage": {
     "Claude": {
@@ -5231,7 +5241,7 @@
     }
   },
   "last7": {
-    "data_through": "2026-11-04T04:38:53Z",
+    "data_through": "2026-11-04T05:44:29Z",
     "window": "2026-10-28..2026-11-03 (last 7 complete UTC days)",
     "partial_today": "2026-11-04",
     "claude": {
@@ -9317,38 +9327,38 @@
     [
       "2026-11-04",
       "claude_transcripts:claude-desktop",
-      1170,
-      290024,
-      2536740,
-      70872228,
-      516
+      1744,
+      413727,
+      3421167,
+      108188589,
+      765
     ],
     [
       "2026-11-04",
       "claude_transcripts:claude-desktop:sidechain",
-      192,
-      179949,
-      1201156,
-      10098078,
-      96
+      276,
+      202315,
+      1453718,
+      13583935,
+      136
     ],
     [
       "2026-11-04",
       "claude_transcripts:cli",
-      1766,
-      658846,
-      3267661,
-      87749741,
-      824
+      2008,
+      724525,
+      3609868,
+      97640327,
+      934
     ],
     [
       "2026-11-04",
       "claude_transcripts:sdk-cli",
-      7282,
-      11713098,
-      25542634,
-      299708359,
-      3412
+      8540,
+      13571593,
+      29461201,
+      356834053,
+      4041
     ],
     [
       "2026-11-04",
@@ -9376,7 +9386,7 @@
       "cache_read": null,
       "output": null,
       "unassigned": null,
-      "total": 22698746567
+      "total": 22814035229
     },
     "codex": {
       "fresh_input": 5583035694,
@@ -9389,20 +9399,20 @@
   },
   "ranges_as_first_measured": {
     "all": [
-      10881849357,
-      8675794063,
+      10993377150,
+      8679554932,
       263994077611,
       3850351962
     ],
     "90": [
-      10881776192,
-      8675794063,
+      10993303985,
+      8679554932,
       123870486744,
       3141103147
     ],
     "30": [
-      7986316254,
-      2183445249,
+      8097844047,
+      2187206118,
       4546599008,
       0
     ],
@@ -9413,14 +9423,14 @@
       0
     ],
     "since": [
-      10865188559,
-      8675794063,
+      10976716352,
+      8679554932,
       6929426675,
       3141103147
     ],
     "exclude": [
-      10881849357,
-      8675794063,
+      10993377150,
+      8679554932,
       12119357910,
       3850351962
     ]
@@ -22578,10 +22588,10 @@
       "code_touched": "0",
       "all_added_raw": "0",
       "all_removed_raw": "0",
-      "tokens_claude": "522507145",
-      "tokens_codex": "43180155",
+      "tokens_claude": "637795807",
+      "tokens_codex": "57965206",
       "tokens_other": "0",
-      "tokens_total": "565687300",
+      "tokens_total": "695761013",
       "claude_token_status": "measured",
       "codex_token_status": "measured"
     }
@@ -26344,7 +26354,7 @@
   },
   "mcp": {
     "summary": {
-      "calls_completed": 166526,
+      "calls_completed": 166597,
       "request_failed": 1885,
       "transport_failed": 9407,
       "tools": 58,
@@ -26431,8 +26441,8 @@
     "months": "June to October",
     "sessions": 43,
     "own_tokens": 347244558,
-    "lifetime": 27981166053,
-    "share": 1.2409938790337516,
+    "lifetime": 27995951104,
+    "share": 1.24033849291295,
     "commits": 667,
     "note": "Node-operations campaign, June to October: 43 Codex sessions, about 0.35B own tokens (about 1% of the Codex measured total); 667 commits in that period.",
     "public": true
@@ -26443,7 +26453,7 @@
     "built": "2026-11-04",
     "coverage": {
       "transcripts": {
-        "files": 3671,
+        "files": 3694,
         "first": "2026-09-23",
         "last": "2026-11-04",
         "fable_first": "2026-09-24",
@@ -26457,7 +26467,7 @@
       "bus": {
         "first": "2026-08-25",
         "last": "2026-11-04",
-        "messages": 12699
+        "messages": 12724
       },
       "mcp": {
         "first": "2026-08-24",
@@ -26466,16 +26476,16 @@
     },
     "invocations_by_model": {
       "sonnet-5-5": {
-        "runs": 1062,
-        "messages": 79430,
-        "subagent_runs": 686,
-        "main_sessions": 376
+        "runs": 1067,
+        "messages": 79726,
+        "subagent_runs": 689,
+        "main_sessions": 378
       },
       "opus-5-5": {
-        "runs": 452,
-        "messages": 113923,
+        "runs": 453,
+        "messages": 114486,
         "subagent_runs": 187,
-        "main_sessions": 265
+        "main_sessions": 266
       },
       "fable": {
         "runs": 490,
@@ -26574,15 +26584,15 @@
       [
         "2026-11-02",
         0,
-        19,
-        36
+        20,
+        41
       ]
     ],
     "bus": {
       "sent": [
         [
           "ChatGPT",
-          3203
+          3205
         ],
         [
           "Claude sessions",
@@ -26590,7 +26600,7 @@
         ],
         [
           "Agent Host",
-          2213
+          2214
         ],
         [
           "Codex",
@@ -26598,11 +26608,11 @@
         ],
         [
           "Scheduled jobs",
-          1275
+          1277
         ],
         [
           "Other",
-          951
+          971
         ],
         [
           "Another consumer",
@@ -26628,19 +26638,19 @@
       "received": [
         [
           "ChatGPT",
-          5207
+          5211
         ],
         [
           "Claude sessions",
-          2838
+          2839
         ],
         [
           "Claude launchers",
-          1871
+          1880
         ],
         [
           "Other",
-          811
+          822
         ],
         [
           "ChatGPT/Codex research roles",
@@ -26708,7 +26718,7 @@
     },
     "other_paths": {
       "bus_posts_naming_fable_model": 1,
-      "mcp_coordination_post_calls": 5007,
+      "mcp_coordination_post_calls": 5009,
       "launch_commands_naming_fable": {
         "claude": 6
       }
