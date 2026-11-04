@@ -11,10 +11,12 @@
 .tr-donut .tr-total{pointer-events:none;fill:var(--color-text);font-size:12px;font-weight:600;text-anchor:middle;font-variant-numeric:tabular-nums}
 svg[data-hover-svg]:focus-visible{outline:2px solid var(--data-focus);outline-offset:2px}
 .hover-on{stroke:var(--ink);stroke-width:2}
-@media (prefers-reduced-motion:no-preference){.tr-donut .slice{transition:opacity .15s var(--ds-ease),stroke-width .15s var(--ds-ease)}.tr-donut .donut-legend li{transition:opacity .15s var(--ds-ease)}}
+.motion-ok .tr-donut .slice{transition:opacity .15s var(--ds-ease),stroke-width .15s var(--ds-ease)}.motion-ok .tr-donut .donut-legend li{transition:opacity .15s var(--ds-ease)}
 </style>
 <script id="chart-hover-js">
 (function(){
+if(typeof document.createElement!=='function'||!document.body||typeof window.matchMedia!=='function')return;
+if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('motion-ok');
 var tip=document.createElement('div');tip.id='chart-tip';tip.setAttribute('role','tooltip');document.body.appendChild(tip);
 function show(html,x,y){tip.innerHTML=html;tip.classList.add('on');var w=tip.offsetWidth,h=tip.offsetHeight,m=8;
  var left=Math.min(Math.max(x+14,m),window.innerWidth-w-m),top=y-h-12<m?y+18:y-h-12;
