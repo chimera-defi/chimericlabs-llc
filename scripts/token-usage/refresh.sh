@@ -64,4 +64,6 @@ python3 -I "$REPO/scripts/token-usage/nonadditive_daily.py" "$PAGE/handoff" "$RE
 echo "== 6c/6 daily table into the repo, then validate it against data.json (one commit definition)"
 cp "$PAGE/handoff/daily.csv" "$PAGE/handoff/monthly.csv" "$REPO/research/token-usage/"
 python3 -I "$REPO/scripts/token-usage/validate_daily.py" "$REPO/research/token-usage/daily.csv" "$REPO/research/token-usage/data.json"
+echo "== 6d weekly limit: merge the daily timer's state CSV into the repo and take today's reading if the timer has not"
+python3 -I "$REPO/scripts/token-usage/snapshot_weekly.py" --csv "$REPO/research/token-usage/weekly_limit.csv" --sync-from "${WEEKLY_LIMIT_STATE:-$HOME/.local/state/chimericlabs-llc/weekly_limit.csv}"
 echo "DONE: data through $(cat "$ACQ/data_through.txt"). Review 'git diff --stat' and open a PR; do not push to main."

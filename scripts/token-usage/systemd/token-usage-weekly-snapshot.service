@@ -1,0 +1,9 @@
+[Unit]
+Description=Snapshot the claude.ai weekly usage limit (claude -p /usage) into the state CSV
+
+[Service]
+Type=oneshot
+Environment=PATH=%h/.local/bin:%h/.npm-global/bin:/usr/local/bin:/usr/bin:/bin
+# Installed copy of scripts/token-usage/snapshot_weekly.py (see install note in the timer); refresh.sh merges the state CSV into the repo
+ExecStart=/usr/bin/python3 -I %h/.local/share/chimericlabs-llc/snapshot_weekly.py --csv %h/.local/state/chimericlabs-llc/weekly_limit.csv
+TimeoutStartSec=180
