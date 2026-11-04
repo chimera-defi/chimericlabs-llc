@@ -1,0 +1,12 @@
+[Unit]
+Description=Daily claude.ai weekly-limit snapshot
+
+[Timer]
+# Install: cp snapshot_weekly.py ~/.local/share/chimericlabs-llc/ ; cp systemd/token-usage-weekly-snapshot.* ~/.config/systemd/user/ ;
+#          systemctl --user daemon-reload ; systemctl --user enable --now token-usage-weekly-snapshot.timer
+# Late in the UTC day so the row reflects most of it; Persistent catches a missed day after downtime.
+OnCalendar=*-*-* 23:50:00 UTC
+Persistent=true
+
+[Install]
+WantedBy=timers.target
