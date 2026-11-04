@@ -180,19 +180,25 @@ def launch_commands():
 
 
 def donut(id_, title, rows, note):
-    """Inline SVG donut + table fallback. rows: [[label, n], ...]; slices below 2% fold into Other."""
+    """Inline SVG donut with legend, hover and focus (scripts/token-usage/chart_hover.html). rows: [[label, n], ...]; slices below 2% fold into Other, which sits last."""
     tot = sum(n for _, n in rows) or 1
-    keep = [r for r in rows if r[1] / tot >= 0.02 or len(rows) <= 7]; rest = tot - sum(n for _, n in keep)
+    keep = sorted([r for r in rows if r[1] / tot >= 0.02 or len(rows) <= 7], key=lambda r: -r[1]); rest = tot - sum(n for _, n in keep)
     if rest: keep.append(["Other (small)", rest])
-    R, C, acc, arcs, tr = 40, 2 * 3.14159265 * 40, 0.0, [], []
+    GAP, acc, arcs, lis = 3, 0.0, [], []
     for i, (lab, n) in enumerate(keep):
-        L = C * n / tot
-        arcs.append('<circle r="%d" cx="60" cy="60" fill="none" stroke="var(--data-model-%d)" stroke-width="22" stroke-dasharray="%.2f %.2f" stroke-dashoffset="%.2f" transform="rotate(-90 60 60)"/>' % (R, i % 8, L, C - L, -acc))
+        L = 1000.0 * n / tot; col = 7 if lab == "Other (small)" else i % 7
+        share = "%.1f%%" % (100 * n / tot); name = html.escape(lab, quote=True)
+        arcs.append('<circle cx="60" cy="60" r="40" fill="none" stroke="var(--data-model-%d)" stroke-width="22" class="slice" data-i="%d" data-label="%s" data-n="%s" data-share="%s" tabindex="0" role="img" aria-label="%s: %s, %s" pathLength="1000" stroke-dasharray="%d %d" stroke-dashoffset="%d"/>'
+                    % (col, i, name, format(n, ","), share, name, format(n, ","), share, max(round(L - GAP), 1), 1000 - max(round(L - GAP), 1), -round(acc)))
         acc += L
-        tr.append('<tr><td><i style="background:var(--data-model-%d)"></i>%s</td><td class="numeric">%s</td><td class="numeric">%.1f%%</td></tr>' % (i % 8, html.escape(lab), format(n, ","), 100 * n / tot))
-    return ('<figure class="tr-donut" id="%s"><svg viewBox="0 0 120 120" role="img" aria-label="%s: %s"><title>%s</title>%s</svg>'
-            '<figcaption><b>%s</b><table><thead><tr><th>Group</th><th>Count</th><th>Share</th></tr></thead><tbody>%s</tbody></table><small>%s</small></figcaption></figure>'
-            % (id_, title, html.escape(", ".join("%s %d" % (l, n) for l, n in keep), quote=True), title, "".join(arcs), title, "".join(tr), note))
+        lis.append('<li data-i="%d"><i class="swatch" style="background:var(--data-model-%d)" aria-hidden="true"></i><span>%s</span><span class="donut-n">%s · %s</span></li>' % (i, col, html.escape(lab), format(n, ","), share))
+    top = ", ".join("%s %s" % (l, "%.1f%%" % (100 * n / tot)) for l, n in keep[:3])
+    return ('<figure class="tr-donut" id="%s"><figcaption><b>%s</b></figcaption><svg viewBox="0 0 120 120" role="group" aria-label="%s, %s in all. Largest: %s."><g transform="rotate(-90 60 60)">%s</g>'
+            '<text x="60" y="66" class="tr-total" data-total="%s">%s</text></svg><ol class="donut-legend">%s</ol><small>%s</small></figure>'
+            % (id_, title, title, format(tot, ","), html.escape(top, quote=True), "".join(arcs), format(tot, ","), format(tot, ","), "".join(lis), note))
+
+
+CHART_HOVER = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "chart_hover.html")).read()
 
 
 def snippet(b, mcp):
@@ -200,8 +206,7 @@ def snippet(b, mcp):
     inv = [[l.replace("Claude ", "", 1).replace(" session, via Agent tool", " session, Agent tool").replace(" started on Fable", ", started on Fable"), n] for l, n in b["fable_invokers"]]
     paths = b["fable_paths"]; tf = b["bus_to_fable_named"]
     css = ("<style>.tr-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px;margin:10px 0}.tr-donut{margin:0;min-width:0}"
-           ".tr-donut svg{width:min(100%,180px);display:block;margin:0 auto 8px}.tr-donut table{width:100%;font-size:13px;border-collapse:collapse}.tr-donut th,.tr-donut td{padding:2px 4px;text-align:left}"
-           ".tr-donut td.numeric,.tr-donut th:nth-child(n+2){text-align:right}.tr-donut i{display:inline-block;width:10px;height:10px;margin-right:6px;border-radius:2px}.tr-donut small{display:block;margin-top:6px}</style>")
+           ".tr-donut svg{width:min(100%,180px);display:block;margin:0 auto 8px}.tr-donut .donut-legend{list-style:none;margin:0;padding:0;display:grid;gap:var(--space-1);font-size:13px}.tr-donut .donut-legend li{display:grid;grid-template-columns:var(--space-4) 1fr auto;gap:var(--space-3);align-items:center;padding:var(--space-1) var(--space-2);border-radius:var(--radius-sm);cursor:pointer}.tr-donut .swatch{width:var(--space-4);height:var(--space-4);border-radius:var(--radius-sm)}.tr-donut .donut-n{font-variant-numeric:tabular-nums;color:var(--ds-muted)}.tr-donut figcaption{margin-bottom:var(--space-2)}.tr-donut small{display:block;margin-top:6px}</style>")
     n = mcp["calls_completed"]
     head = (f'<p id="mcp-headline"><span class="numeric" data-exact="{n}" data-kind="count" title="{n:,}">{n / 1000:.1f}K</span> completed calls, {mcp["tools"]} tools, '
             f'{mcp["first"]}..{mcp["last"]}, three MCPs. {mcp["request_failed"]:,} failed; {mcp["transport_failed"]:,} never reached the tool (connection or timeout). Activity, not tokens.</p>')
@@ -224,7 +229,7 @@ def snippet(b, mcp):
         donut("tr-fable-who", "Fable runs, by who started them", inv, "Parent = the Claude session that spawned the run, by its main model."),
         donut("tr-fable-how", "Fable runs, by path", paths, "No Fable run traced to a bus post, MCP call or session-send. %d shell commands name Fable as the model." % b["other_paths"]["launch_commands_naming_fable"].get("claude", 0)))
     return ('<!-- section 10 snippet; built by scripts/token-usage/fable_callers.py; replace the existing <section id=\"mcp\"> element with this one -->\n'
-            + css + '<section class="chart-card" id="mcp">' + head + find + grid + cov + '</section>')
+            + css + CHART_HOVER + '<section class="chart-card" id="mcp">' + head + find + grid + cov + '</section>')
 
 
 def main():
