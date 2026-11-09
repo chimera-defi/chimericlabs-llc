@@ -1,6 +1,6 @@
 {
   "schema": "token-usage-case-studies-v1",
-  "data_through": "2026-11-04T10:54:55Z",
+  "data_through": "2026-11-09T22:41:36Z",
   "studies": [
     {
       "id": "change",
@@ -21,23 +21,23 @@
       "title": "Compaction cuts context to a tenth",
       "story": "Compaction cut a long session's carried text to a median 9% of its size, and one session did it 140 times in 53 hours.",
       "setup": "When a session's text gets too long, Claude Code summarizes it into a shorter one (compaction) so the work can go on.",
-      "happened": "Across 1,015 compactions still on disk, 197,342,557 tokens became 18,415,045, freeing 178,927,512. The busiest session compacted 140 times, about once every 23 minutes.",
-      "number": "Median size after compaction: 8.9% of before.",
+      "happened": "Across 1,177 compactions still on disk, 229,252,856 tokens became 22,061,427, freeing 207,191,429. The busiest session compacted 140 times, about once every 23 minutes.",
+      "number": "Median size after compaction: 9.3% of before.",
       "lesson": "Compaction frees space but does not stop the text growing back.",
       "sources": [
         "Claude session transcripts (compaction records)"
       ],
       "caveat": "Claude deletes transcripts after about 30 days, so this counts only transcripts still on disk and shrinks with each refresh unless retention is raised. Duplicate records from resumed sessions are removed.",
       "numbers": {
-        "boundaries": 1015,
+        "boundaries": 1177,
         "triggers": {
-          "auto": 929,
-          "manual": 86
+          "auto": 1088,
+          "manual": 89
         },
-        "pre_tokens": 197342557,
-        "post_tokens": 18415045,
-        "freed_tokens": 178927512,
-        "median_post_pre_pct": 8.95,
+        "pre_tokens": 229252856,
+        "post_tokens": 22061427,
+        "freed_tokens": 207191429,
+        "median_post_pre_pct": 9.33,
         "busiest_count": 140,
         "first_timestamp": "2026-10-02T15:10:05.604Z",
         "last_timestamp": "2026-10-04T20:03:55.633Z",
@@ -243,13 +243,9 @@
   "facts": [
     {
       "id": "haiku_share",
-      "text": "Haiku's share of Claude raw tokens by week: 1.4% (2026-10-05), 0.1% (2026-10-12), 3.5% (2026-10-19), 10.3% (2026-10-26). Opus raw tokens fell 34% between the last two complete weeks (1,956,373,270 to 1,300,734,433). Which model a session used is not logged, so the cause is not established.",
+      "text": "Haiku's share of Claude raw tokens by week: 0.1% (2026-10-12), 3.5% (2026-10-19), 10.3% (2026-10-26), 21.0% (2026-11-02). Opus raw tokens fell 83% between the last two complete weeks (1,300,734,433 to 219,955,869). Which model a session used is not logged, so the cause is not established.",
       "numbers": {
         "weeks": [
-          {
-            "week_start": "2026-10-05",
-            "haiku_pct": 1.4
-          },
           {
             "week_start": "2026-10-12",
             "haiku_pct": 0.14
@@ -261,11 +257,15 @@
           {
             "week_start": "2026-10-26",
             "haiku_pct": 10.28
+          },
+          {
+            "week_start": "2026-11-02",
+            "haiku_pct": 20.99
           }
         ],
-        "opus_previous": 1956373270,
-        "opus_latest": 1300734433,
-        "opus_change": -655638837
+        "opus_previous": 1300734433,
+        "opus_latest": 219955869,
+        "opus_change": -1080778564
       },
       "sources": [
         "Handoff claude_model_weekly.csv"
@@ -273,11 +273,11 @@
     },
     {
       "id": "ratio",
-      "text": "In 2026-10-28..2026-11-03 (last 7 complete UTC days), Claude read 133 cached tokens for each token it wrote; Codex read 160.",
+      "text": "In 2026-11-02..2026-11-08 (last 7 complete UTC days), Claude read 73 cached tokens for each token it wrote; Codex read 177.",
       "numbers": {
-        "claude_ratio": 133.2,
-        "codex_ratio": 159.8,
-        "window": "2026-10-28..2026-11-03 (last 7 complete UTC days)"
+        "claude_ratio": 72.6,
+        "codex_ratio": 176.7,
+        "window": "2026-11-02..2026-11-08 (last 7 complete UTC days)"
       },
       "sources": [
         "Handoff last7.json"

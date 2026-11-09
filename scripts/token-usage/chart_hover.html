@@ -52,10 +52,10 @@ document.querySelectorAll('.tr-donut').forEach(function(fig){
   if(e.key==='ArrowRight'||e.key==='ArrowDown'){items[(k+1)%items.length].focus();e.preventDefault()}
   else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){items[(k+items.length-1)%items.length].focus();e.preventDefault()}
   else if(e.key==='Escape'){setActive(fig,null)}})});
-/* time charts: any svg element inside a chart card carrying a <title> */
-var cur=null;
+/* time charts: any svg element inside a CHARTS card carrying a <title> */
+var cur=null,CHARTS=['hero','bus-activity'],SVGS='#hero svg, #bus-activity svg';
 function tipText(el){var t=el.querySelector(':scope > title');if(t){el.setAttribute('data-tip',t.textContent);el.setAttribute('aria-label',t.textContent);t.remove()}return el.getAttribute('data-tip')}
-function target(n){var el=n.closest&&n.closest('#hero svg *');if(!el)return null;while(el&&el.tagName!=='svg'){if(el.hasAttribute('data-tip')||el.querySelector(':scope > title'))return el;el=el.parentNode}return null}
+function target(n){var el=n.closest&&n.closest('#hero svg *, #bus-activity svg *');if(!el)return null;while(el&&el.tagName!=='svg'){if(el.hasAttribute('data-tip')||el.querySelector(':scope > title'))return el;el=el.parentNode}return null}
 function mark(el){if(cur)cur.classList.remove('hover-on');cur=el;if(el)el.classList.add('hover-on')}
 function tipHtml(s){var i=s.indexOf(': ');return i>0&&i<24?'<b>'+esc(s.slice(0,i))+'</b>'+esc(s.slice(i+2)):esc(s)}
 document.addEventListener('pointerover',function(e){var el=target(e.target);if(!el){return}var s=tipText(el);if(s){mark(el);show(tipHtml(s),e.clientX,e.clientY)}});
@@ -73,8 +73,8 @@ function wire(svg){if(svg.hasAttribute('data-hover-svg'))return;svg.setAttribute
   if(!pts.length)return;var k=pts.indexOf(cur);k=e.key==='ArrowRight'?Math.min(k+1,pts.length-1):Math.max(k<0?0:k-1,0);
   var el=pts[k],s=tipText(el);mark(el);var a=anchor(el);show(tipHtml(s),a[0],a[1]);e.preventDefault()});
  svg.addEventListener('blur',function(){mark(null);hide(true)})}
-function wireAll(){document.querySelectorAll('#hero svg').forEach(function(s){if(s.querySelector('[data-date]'))wire(s)})}
-wireAll();new MutationObserver(wireAll).observe(document.getElementById('hero')||document.body,{childList:true,subtree:true})}
+function wireAll(){document.querySelectorAll(SVGS).forEach(function(s){if(s.querySelector('[data-date]'))wire(s)})}
+wireAll();var mo=new MutationObserver(wireAll);CHARTS.forEach(function(c){var n=document.getElementById(c);if(n)mo.observe(n,{childList:true,subtree:true})})}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init()
 })();
 </script>

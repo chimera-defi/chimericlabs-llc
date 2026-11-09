@@ -20,8 +20,8 @@ Details: across all 3 tasks the Claude session used about 7.2M tokens, mostly re
 <p class="story">Compaction cut a long session&#x27;s carried text to a median 9% of its size, and one session did it 140 times in 53 hours.</p>
 <details><summary>Details and sources</summary>
 <p>When a session&#x27;s text gets too long, Claude Code summarizes it into a shorter one (compaction) so the work can go on.</p>
-<p>Across 1,015 compactions still on disk, 197,342,557 tokens became 18,415,045, freeing 178,927,512. The busiest session compacted 140 times, about once every 23 minutes.</p>
-<p>Median size after compaction: 8.9% of before.</p>
+<p>Across 1,177 compactions still on disk, 229,252,856 tokens became 22,061,427, freeing 207,191,429. The busiest session compacted 140 times, about once every 23 minutes.</p>
+<p>Median size after compaction: 9.3% of before.</p>
 <p>Compaction frees space but does not stop the text growing back.</p>
 <p>Claude deletes transcripts after about 30 days, so this counts only transcripts still on disk and shrinks with each refresh unless retention is raised. Duplicate records from resumed sessions are removed.</p>
 <ul>
@@ -98,7 +98,7 @@ Details: across all 3 tasks the Claude session used about 7.2M tokens, mostly re
 </ul></details>
 </article>
 <details><summary>Quick facts</summary><ul>
-<li>Haiku&#x27;s share of Claude raw tokens by week: 1.4% (2026-10-05), 0.1% (2026-10-12), 3.5% (2026-10-19), 10.3% (2026-10-26). Opus raw tokens fell 34% between the last two complete weeks (1,956,373,270 to 1,300,734,433). Which model a session used is not logged, so the cause is not established.</li>
-<li>In 2026-10-28..2026-11-03 (last 7 complete UTC days), Claude read 133 cached tokens for each token it wrote; Codex read 160.</li>
+<li>Haiku&#x27;s share of Claude raw tokens by week: 0.1% (2026-10-12), 3.5% (2026-10-19), 10.3% (2026-10-26), 21.0% (2026-11-02). Opus raw tokens fell 83% between the last two complete weeks (1,300,734,433 to 219,955,869). Which model a session used is not logged, so the cause is not established.</li>
+<li>In 2026-11-02..2026-11-08 (last 7 complete UTC days), Claude read 73 cached tokens for each token it wrote; Codex read 177.</li>
 </ul></details>
 </section>

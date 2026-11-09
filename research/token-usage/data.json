@@ -1,6 +1,6 @@
 {
   "schema": "token-usage-v5",
-  "updated": "2026-11-04",
+  "updated": "2026-11-09",
   "all_branch_commits": 15691,
   "row_fields": [
     "date",
@@ -3701,11 +3701,11 @@
     [
       "2026-11-04",
       "claude_transcripts:claude-desktop",
-      2040,
-      467151,
-      3811869,
-      127336991,
-      898
+      2610,
+      583496,
+      5405608,
+      162611155,
+      1136
     ],
     [
       "2026-11-04",
@@ -3719,20 +3719,29 @@
     [
       "2026-11-04",
       "claude_transcripts:cli",
-      2366,
-      815832,
-      3845667,
-      114891796,
-      1100
+      3582,
+      1282526,
+      5621552,
+      182152625,
+      1662
+    ],
+    [
+      "2026-11-04",
+      "claude_transcripts:cli:sidechain",
+      64,
+      35538,
+      166689,
+      1433688,
+      31
     ],
     [
       "2026-11-04",
       "claude_transcripts:sdk-cli",
-      8852,
-      14239070,
-      30735141,
-      371897097,
-      4194
+      9322,
+      14730302,
+      31980082,
+      393199108,
+      4428
     ],
     [
       "2026-11-04",
@@ -3755,12 +3764,257 @@
     [
       "2026-11-04",
       "codex_corrected",
-      3955753,
-      487409,
+      6483946,
+      976415,
       0,
-      64146176,
+      106423808,
       null,
-      66917992
+      110979256
+    ],
+    [
+      "2026-11-05",
+      "claude_transcripts:claude-desktop",
+      390,
+      90432,
+      990467,
+      25570092,
+      165
+    ],
+    [
+      "2026-11-05",
+      "claude_transcripts:claude-desktop:sidechain",
+      470,
+      306238,
+      1420522,
+      22753018,
+      233
+    ],
+    [
+      "2026-11-05",
+      "claude_transcripts:cli",
+      350,
+      131079,
+      932843,
+      17973947,
+      164
+    ],
+    [
+      "2026-11-05",
+      "claude_transcripts:cli:sidechain",
+      176,
+      122279,
+      350091,
+      5022825,
+      86
+    ],
+    [
+      "2026-11-06",
+      "claude_transcripts:claude-desktop",
+      854,
+      250354,
+      2161227,
+      52288805,
+      362
+    ],
+    [
+      "2026-11-06",
+      "claude_transcripts:claude-desktop:sidechain",
+      326,
+      179306,
+      893421,
+      14327371,
+      162
+    ],
+    [
+      "2026-11-06",
+      "claude_transcripts:cli",
+      1740,
+      702068,
+      2494519,
+      91965238,
+      783
+    ],
+    [
+      "2026-11-06",
+      "claude_transcripts:cli:sidechain",
+      1922,
+      1697536,
+      5060890,
+      75258503,
+      932
+    ],
+    [
+      "2026-11-06",
+      "claude_transcripts:sdk-cli",
+      336,
+      346044,
+      1087084,
+      9553411,
+      165
+    ],
+    [
+      "2026-11-07",
+      "claude_transcripts:claude-desktop",
+      2516,
+      869876,
+      4710081,
+      168053366,
+      1143
+    ],
+    [
+      "2026-11-07",
+      "claude_transcripts:claude-desktop:sidechain",
+      1420,
+      1121518,
+      4247072,
+      75070040,
+      697
+    ],
+    [
+      "2026-11-07",
+      "claude_transcripts:cli",
+      3334,
+      1539181,
+      8183683,
+      185560324,
+      1481
+    ],
+    [
+      "2026-11-07",
+      "claude_transcripts:cli:sidechain",
+      4166,
+      2391501,
+      8311832,
+      160786706,
+      2015
+    ],
+    [
+      "2026-11-07",
+      "claude_transcripts:sdk-cli",
+      210,
+      143164,
+      598395,
+      4600266,
+      102
+    ],
+    [
+      "2026-11-08",
+      "claude_transcripts:claude-desktop",
+      2832,
+      1416951,
+      7200524,
+      190743856,
+      1318
+    ],
+    [
+      "2026-11-08",
+      "claude_transcripts:claude-desktop:sidechain",
+      1382,
+      1344369,
+      4758048,
+      72487344,
+      682
+    ],
+    [
+      "2026-11-08",
+      "claude_transcripts:cli",
+      3000,
+      1786629,
+      7538081,
+      160697912,
+      1344
+    ],
+    [
+      "2026-11-08",
+      "claude_transcripts:cli:sidechain",
+      3916,
+      2588108,
+      8238856,
+      163774810,
+      1911
+    ],
+    [
+      "2026-11-08",
+      "claude_transcripts:sdk-cli",
+      116,
+      104297,
+      1134573,
+      3941545,
+      57
+    ],
+    [
+      "2026-11-08",
+      "claude_transcripts:unattributed",
+      0,
+      0,
+      0,
+      0,
+      5
+    ],
+    [
+      "2026-11-08",
+      "codex_corrected",
+      710646,
+      84471,
+      0,
+      10112640,
+      null,
+      10489909
+    ],
+    [
+      "2026-11-09",
+      "claude_transcripts:claude-desktop",
+      3462,
+      1626068,
+      9540262,
+      211612180,
+      1523
+    ],
+    [
+      "2026-11-09",
+      "claude_transcripts:claude-desktop:sidechain",
+      617,
+      352809,
+      2483616,
+      22057033,
+      274
+    ],
+    [
+      "2026-11-09",
+      "claude_transcripts:cli",
+      1014,
+      628731,
+      2954956,
+      55977230,
+      461
+    ],
+    [
+      "2026-11-09",
+      "claude_transcripts:cli:sidechain",
+      764,
+      482880,
+      1509726,
+      32932001,
+      372
+    ],
+    [
+      "2026-11-09",
+      "claude_transcripts:sdk-cli",
+      48,
+      20514,
+      221454,
+      998166,
+      22
+    ],
+    [
+      "2026-11-09",
+      "codex_corrected",
+      924974,
+      122826,
+      0,
+      37643648,
+      null,
+      38365071
     ]
   ],
   "isolated_observations": [
@@ -3838,7 +4092,7 @@
       "cache_read": null,
       "output": null,
       "unassigned": null,
-      "total": 22868211759
+      "total": 24930681339
     },
     "codex": {
       "fresh_input": null,
@@ -3846,15 +4100,15 @@
       "cache_read": null,
       "output": null,
       "unassigned": null,
-      "total": 28004903890
+      "total": 28097820134
     }
   },
   "claude_ledger_composition": {
-    "fresh_input": 1100251,
-    "cache_write": 629340492,
-    "cache_read": 18957215389,
-    "output": 139452480,
-    "total": 19727108612,
+    "fresh_input": 1137932,
+    "cache_write": 721143969,
+    "cache_read": 20906492070,
+    "output": 160804221,
+    "total": 21789578192,
     "unassigned": 0
   },
   "claude_audit_composition": {
@@ -3867,13 +4121,13 @@
   },
   "claude_measured": {
     "from": "2026-07-10",
-    "through": "2026-11-04",
+    "through": "2026-11-09",
     "note": "raw (fresh+cache write+cache read+output), per day max of the 2026-10-29 audit and the ledger, 2026-07-10..data_through; excludes anything before 2026-07-10 (not on disk) and the 2026-06..09 gaps; NOT lifetime. Ledger alone undercounts 2026-09-11..30 by ~3.1B because transcripts for those days were pruned after the audit.",
     "early_recovery": 709248815
   },
   "codex_correction": {
     "old_total": 263589031928,
-    "raw_final_cumulative": 261239560326,
+    "raw_final_cumulative": 261334454362,
     "handoff_final_counters": 261320000000,
     "inherited_tokens": 233200000000,
     "forked_sessions": 747
@@ -3922,7 +4176,7 @@
       "token data"
     ],
     [
-      "2026-08-24",
+      "2026-08-25",
       "bus records"
     ],
     [
@@ -4149,7 +4403,32 @@
     [
       "2026-11-04",
       "0",
-      "149610857.600"
+      "164270557.400"
+    ],
+    [
+      "2026-11-05",
+      "0",
+      "9651926.800"
+    ],
+    [
+      "2026-11-06",
+      "0",
+      "36587977.450"
+    ],
+    [
+      "2026-11-07",
+      "0",
+      "77753442.300"
+    ],
+    [
+      "2026-11-08",
+      "0",
+      "87091755.175"
+    ],
+    [
+      "2026-11-09",
+      "145039.275",
+      "44392808.475"
     ]
   ],
   "fable_window": {
@@ -4183,22 +4462,22 @@
     "claude_from": "2026-09-07",
     "token_start": "2026-05-24",
     "split_start": "2026-10-18",
-    "claude_through": "2026-11-04",
-    "corrected_codex_through": "2026-11-04"
+    "claude_through": "2026-11-09",
+    "corrected_codex_through": "2026-11-09"
   },
   "sources": {
     "source-1": "fbe74cca7d3eafe7d17d42d3b75a2b9d6e16032f6985c071f4bd83c12574bbc4",
-    "source-2": "a13b6e55e8312834bb898a8a73635596ab0484469696f3cf598cf8fb7d76582e",
+    "source-2": "ae1f7f49ee49874d272ff0527fb2f31f28fa3df09a5083eb439fe4b6c22c9e6f",
     "source-3": "3a550a23d40ae492432e764be93154ac7fa9f28db0f8a0d3d1aaac3e0f6c63aa",
-    "source-4": "e70470afa7e169033bb2981fbf0a86dcd8854b6c48869eaf203a18bdd368a592",
+    "source-4": "bd65fd4dde4e4c75cbc98186e2b94626fe165f4a269d20104b0deefb85f9a731",
     "source-5": "9951a41b3ea317c312c13d4319af3296f1bc20bdb05dbfea8eeb0d1a21fd8212",
-    "source-6": "2e6fcc36107808b7be9045078b3a663fdccf789acc44c24dd6521d949301c06d",
-    "source-7": "dee7171542c4d2a210224828ffcb701310c6999aaa4da742b59bcfb5a882683f",
-    "source-8": "f07bea8df68f272f5ed1c2c2cf8602ad1a8530c3470943c02535713d69a77f1a",
-    "source-9": "8a77d78808d8bd1b2c80d7305515442ea1a0a3bdc7bb0b742b734b4b511e035c",
-    "source-10": "49663b9508b1ee4f59d022ad98972144eb59bc561b55854243fb5675c62356fb",
-    "source-11": "93e6b7c6ea6f845499f5a856e477c3de3c3f6306763bd2b414a44578a52e6bbf",
-    "source-12": "ddebf7b24cca1ce26f7bd076e221c6047446027ae5f1345f8f99c96d491f7f4f",
+    "source-6": "4fce5d0cf97bb226d0852738935adbcf4eb9422fc19595052eb0940bcafef343",
+    "source-7": "1c259e631f7a5bf10bf557d2c3d498ca6633027361faf7708ba39a9ad8d83097",
+    "source-8": "5b407c80382347c27737d125827149718f3ee5c2235ca5b63770e2531b3efee9",
+    "source-9": "c8c25f105836881d22ca844aae5347de5373bdb799c1ac34e6f63beb5989444f",
+    "source-10": "b14dd33ebccf1641a884dff1a692714b7035ecbdb84adca25866b8404f832da7",
+    "source-11": "f0e63fd96460de22253ea88c291e467e5dde378d7d7baf3e7f2afa415de8d8ce",
+    "source-12": "72ff809ee04c48847a7053f38dba7456828b64e0b2990895ec2746a0493a8eb9",
     "source-13": "f9ffc0ee562dad632406ab53d6752974f0f7ffc94db9db232be203723c7211ac",
     "source-14": "d78f79f2e8c4335e9f5b306837cfa526ccaaa671ca806a4b837d78212a0cfe4f",
     "source-15": "96033e967ab4154f25906d7478cba61e4680f9e6d78c9474325ff6d1f0fd6995",
@@ -4206,25 +4485,3217 @@
     "source-17": "67af1548064a6ead4a07ede8180fd0fc2f3f743c84cca477935744249298d530",
     "source-18": "0ac22fbc853051b1dc1194000c23259eb2c4824cb1e58183b47430cbe5ecf9fa",
     "source-19": "a2994395b11c8fa0f1976c1406e17897e2e2e108d7de61c54ee9a7c0566da38f",
-    "source-20": "caf2e6e5d02d46b773c361e7d8cfcaa14c3a1bb2a25a23c35875a2e1ae48d8da",
+    "source-20": "6a0779261a8ee8dd4a6ad68e0912c2a6ba5dd12c873ed99e073be4500307ca8c",
     "source-21": "364f74048e6fdff20fae50014a00c59f7b32fb868f1698b6414caaec4108aac1",
-    "source-22": "1739c4da5e856c0a889281589f95765d66f7cb34f578a8cfda37212b4e94c57f",
-    "source-23": "154801b5778e4b642c7207843fa1d12cad2d731295a84a774beeb457bfc298e5",
-    "source-24": "057e16e882230e350acc763470d77febf626f26f9e4a43e666d5ae9aa2f3dbb8",
+    "source-22": "644903bd6382ed4b894b46024c6e14751d280252784e20d3cd030d305dfcfe74",
+    "source-23": "d261006141cee8b83bfa08f865a6045ab3d447f0b37df2b7943f96054c141ab3",
+    "source-24": "4122f7b4fbac2f53f6b37993aa3f6e4c1a3371fb90001c9ace7e5527f5c28a06",
     "source-25": "55e6f01e7b2c9450b7a9e70f233c7c8471b12f6a2cb5b42d0883de773eaadc7a",
-    "source-26": "3e0eab49a83898c177abb5591044f0a3f9f8c0019c45cd5d954d5a228a69727a",
-    "source-27": "d8e14622acc8f78f472641e4cd7d2f93c33fc10c1099eb908613eaab00945888",
+    "source-26": "90899b21b13e5529bb44093cadc60926456956201e55e8b826de81b453ba4ab4",
+    "source-27": "ea8cc56b563433856b42b7c5319708e8955b24aff124b0de4ffef53d33038880",
     "source-28": "a8c21fda504d89f04c60866c122592dd9cbd082eea3251c5eab5ecda4802433a",
     "source-29": "01cd0ac449d4efff69be43af1c652798f3d27f062a26a3dee490362742a85065",
-    "source-30": "f1c7073d1d40713157b5f83d1aa244db08d7854279a72744410d1dc8a565b1c2",
-    "source-31": "b23b03fdcea1cfc7fa7b355bcd8e7c20363a30a0c6cb5c449242d1a600ecf6fb",
-    "source-32": "c0a4c07060b299a70e06d74a183d4a44b745514b50a864de98529564c9be2ab7",
-    "source-33": "3f7a46daeab143b8107717e80b616b353d1b8847ebbcd22980efd0807c08e88c",
+    "source-30": "98ba5d8ec345f002db0ebe08e6cb4775c6ebf252d5b5c1b64f4feae41652d14e",
+    "source-31": "b54c2f09a47f02f88ac5d2a8032d4ce245bb0a1ea9f09957ecf0a1c4a3b193e8",
+    "source-32": "d826bed5d6f782beb9790fe4a5740db20c0c8f28734cb7445e703cb2b14f7b37",
+    "source-33": "bf81530fc3e30924570004621878b0c7a81f29555a6ce59b67c6522ba4df9d2c",
     "source-34": "2e8438d750ff716c4923286b08ee6b75ba04f6a9f004da8d7ff30142b2ce39f6",
     "source-35": "38774aeace09945f275c60258df739a62cdcde67a2120bf716e8f5f920767757",
     "source-36": "0f0524733f5b98d6cd2aeffb9c6776f84fd5ec25fb5d99b493e28ab96ae3e78c",
     "source-37": "cab4bb2eb57ca9d6522331f408a8a81c3a1e68654dd9cecc9ad380a47df00306",
     "source-38": "07844fb32d56177dfe31e9b4c6ef13e161c358378d60be208982d5be083f9353"
+  },
+  "bus_activity": {
+    "through": "2026-11-09",
+    "coverage": {
+      "bus_start": "2026-08-25",
+      "first_claude": "2026-09-04",
+      "claude_session_names": "2026-09-16"
+    },
+    "families": [
+      "claude",
+      "chatgpt",
+      "codex",
+      "automation",
+      "broadcast",
+      "other"
+    ],
+    "rows": [
+      [
+        "2026-08-25",
+        "received",
+        "automation",
+        12
+      ],
+      [
+        "2026-08-25",
+        "received",
+        "chatgpt",
+        35
+      ],
+      [
+        "2026-08-25",
+        "received",
+        "codex",
+        33
+      ],
+      [
+        "2026-08-25",
+        "received",
+        "other",
+        4
+      ],
+      [
+        "2026-08-25",
+        "sent",
+        "automation",
+        24
+      ],
+      [
+        "2026-08-25",
+        "sent",
+        "chatgpt",
+        48
+      ],
+      [
+        "2026-08-25",
+        "sent",
+        "codex",
+        12
+      ],
+      [
+        "2026-08-26",
+        "received",
+        "chatgpt",
+        17
+      ],
+      [
+        "2026-08-26",
+        "received",
+        "codex",
+        1
+      ],
+      [
+        "2026-08-26",
+        "sent",
+        "automation",
+        17
+      ],
+      [
+        "2026-08-26",
+        "sent",
+        "chatgpt",
+        1
+      ],
+      [
+        "2026-08-27",
+        "received",
+        "automation",
+        29
+      ],
+      [
+        "2026-08-27",
+        "received",
+        "chatgpt",
+        174
+      ],
+      [
+        "2026-08-27",
+        "received",
+        "codex",
+        3
+      ],
+      [
+        "2026-08-27",
+        "received",
+        "other",
+        1
+      ],
+      [
+        "2026-08-27",
+        "sent",
+        "automation",
+        173
+      ],
+      [
+        "2026-08-27",
+        "sent",
+        "chatgpt",
+        33
+      ],
+      [
+        "2026-08-27",
+        "sent",
+        "other",
+        1
+      ],
+      [
+        "2026-08-28",
+        "received",
+        "automation",
+        14
+      ],
+      [
+        "2026-08-28",
+        "received",
+        "chatgpt",
+        89
+      ],
+      [
+        "2026-08-28",
+        "received",
+        "other",
+        11
+      ],
+      [
+        "2026-08-28",
+        "sent",
+        "automation",
+        89
+      ],
+      [
+        "2026-08-28",
+        "sent",
+        "chatgpt",
+        19
+      ],
+      [
+        "2026-08-28",
+        "sent",
+        "other",
+        6
+      ],
+      [
+        "2026-08-29",
+        "received",
+        "automation",
+        50
+      ],
+      [
+        "2026-08-29",
+        "received",
+        "chatgpt",
+        183
+      ],
+      [
+        "2026-08-29",
+        "received",
+        "codex",
+        19
+      ],
+      [
+        "2026-08-29",
+        "received",
+        "other",
+        74
+      ],
+      [
+        "2026-08-29",
+        "sent",
+        "automation",
+        168
+      ],
+      [
+        "2026-08-29",
+        "sent",
+        "chatgpt",
+        81
+      ],
+      [
+        "2026-08-29",
+        "sent",
+        "codex",
+        51
+      ],
+      [
+        "2026-08-29",
+        "sent",
+        "other",
+        26
+      ],
+      [
+        "2026-08-30",
+        "received",
+        "automation",
+        68
+      ],
+      [
+        "2026-08-30",
+        "received",
+        "chatgpt",
+        174
+      ],
+      [
+        "2026-08-30",
+        "received",
+        "codex",
+        29
+      ],
+      [
+        "2026-08-30",
+        "received",
+        "other",
+        176
+      ],
+      [
+        "2026-08-30",
+        "sent",
+        "automation",
+        109
+      ],
+      [
+        "2026-08-30",
+        "sent",
+        "chatgpt",
+        96
+      ],
+      [
+        "2026-08-30",
+        "sent",
+        "codex",
+        242
+      ],
+      [
+        "2026-08-31",
+        "received",
+        "automation",
+        12
+      ],
+      [
+        "2026-08-31",
+        "received",
+        "chatgpt",
+        123
+      ],
+      [
+        "2026-08-31",
+        "received",
+        "codex",
+        100
+      ],
+      [
+        "2026-08-31",
+        "received",
+        "other",
+        283
+      ],
+      [
+        "2026-08-31",
+        "sent",
+        "automation",
+        77
+      ],
+      [
+        "2026-08-31",
+        "sent",
+        "chatgpt",
+        303
+      ],
+      [
+        "2026-08-31",
+        "sent",
+        "codex",
+        90
+      ],
+      [
+        "2026-08-31",
+        "sent",
+        "other",
+        48
+      ],
+      [
+        "2026-09-01",
+        "received",
+        "automation",
+        29
+      ],
+      [
+        "2026-09-01",
+        "received",
+        "chatgpt",
+        338
+      ],
+      [
+        "2026-09-01",
+        "received",
+        "codex",
+        124
+      ],
+      [
+        "2026-09-01",
+        "received",
+        "other",
+        29
+      ],
+      [
+        "2026-09-01",
+        "sent",
+        "automation",
+        227
+      ],
+      [
+        "2026-09-01",
+        "sent",
+        "chatgpt",
+        151
+      ],
+      [
+        "2026-09-01",
+        "sent",
+        "codex",
+        140
+      ],
+      [
+        "2026-09-01",
+        "sent",
+        "other",
+        2
+      ],
+      [
+        "2026-09-02",
+        "received",
+        "automation",
+        17
+      ],
+      [
+        "2026-09-02",
+        "received",
+        "chatgpt",
+        72
+      ],
+      [
+        "2026-09-02",
+        "received",
+        "codex",
+        24
+      ],
+      [
+        "2026-09-02",
+        "received",
+        "other",
+        13
+      ],
+      [
+        "2026-09-02",
+        "sent",
+        "automation",
+        65
+      ],
+      [
+        "2026-09-02",
+        "sent",
+        "chatgpt",
+        54
+      ],
+      [
+        "2026-09-02",
+        "sent",
+        "codex",
+        7
+      ],
+      [
+        "2026-09-03",
+        "received",
+        "chatgpt",
+        3
+      ],
+      [
+        "2026-09-03",
+        "received",
+        "claude",
+        1
+      ],
+      [
+        "2026-09-03",
+        "received",
+        "codex",
+        17
+      ],
+      [
+        "2026-09-03",
+        "sent",
+        "automation",
+        3
+      ],
+      [
+        "2026-09-03",
+        "sent",
+        "chatgpt",
+        18
+      ],
+      [
+        "2026-09-04",
+        "received",
+        "automation",
+        16
+      ],
+      [
+        "2026-09-04",
+        "received",
+        "chatgpt",
+        120
+      ],
+      [
+        "2026-09-04",
+        "received",
+        "claude",
+        1
+      ],
+      [
+        "2026-09-04",
+        "received",
+        "codex",
+        24
+      ],
+      [
+        "2026-09-04",
+        "received",
+        "other",
+        1
+      ],
+      [
+        "2026-09-04",
+        "sent",
+        "automation",
+        80
+      ],
+      [
+        "2026-09-04",
+        "sent",
+        "chatgpt",
+        41
+      ],
+      [
+        "2026-09-04",
+        "sent",
+        "claude",
+        1
+      ],
+      [
+        "2026-09-04",
+        "sent",
+        "codex",
+        40
+      ],
+      [
+        "2026-09-05",
+        "received",
+        "automation",
+        6
+      ],
+      [
+        "2026-09-05",
+        "received",
+        "chatgpt",
+        61
+      ],
+      [
+        "2026-09-05",
+        "received",
+        "claude",
+        4
+      ],
+      [
+        "2026-09-05",
+        "received",
+        "codex",
+        62
+      ],
+      [
+        "2026-09-05",
+        "sent",
+        "automation",
+        19
+      ],
+      [
+        "2026-09-05",
+        "sent",
+        "chatgpt",
+        70
+      ],
+      [
+        "2026-09-05",
+        "sent",
+        "claude",
+        14
+      ],
+      [
+        "2026-09-05",
+        "sent",
+        "codex",
+        29
+      ],
+      [
+        "2026-09-05",
+        "sent",
+        "other",
+        1
+      ],
+      [
+        "2026-09-06",
+        "received",
+        "chatgpt",
+        2
+      ],
+      [
+        "2026-09-06",
+        "received",
+        "claude",
+        3
+      ],
+      [
+        "2026-09-06",
+        "sent",
+        "chatgpt",
+        3
+      ],
+      [
+        "2026-09-06",
+        "sent",
+        "claude",
+        2
+      ],
+      [
+        "2026-09-07",
+        "received",
+        "chatgpt",
+        32
+      ],
+      [
+        "2026-09-07",
+        "received",
+        "claude",
+        26
+      ],
+      [
+        "2026-09-07",
+        "sent",
+        "automation",
+        5
+      ],
+      [
+        "2026-09-07",
+        "sent",
+        "chatgpt",
+        26
+      ],
+      [
+        "2026-09-07",
+        "sent",
+        "claude",
+        27
+      ],
+      [
+        "2026-09-08",
+        "received",
+        "automation",
+        2
+      ],
+      [
+        "2026-09-08",
+        "received",
+        "chatgpt",
+        65
+      ],
+      [
+        "2026-09-08",
+        "received",
+        "claude",
+        34
+      ],
+      [
+        "2026-09-08",
+        "received",
+        "other",
+        22
+      ],
+      [
+        "2026-09-08",
+        "sent",
+        "automation",
+        31
+      ],
+      [
+        "2026-09-08",
+        "sent",
+        "chatgpt",
+        60
+      ],
+      [
+        "2026-09-08",
+        "sent",
+        "claude",
+        18
+      ],
+      [
+        "2026-09-08",
+        "sent",
+        "codex",
+        11
+      ],
+      [
+        "2026-09-08",
+        "sent",
+        "other",
+        3
+      ],
+      [
+        "2026-09-09",
+        "received",
+        "automation",
+        5
+      ],
+      [
+        "2026-09-09",
+        "received",
+        "chatgpt",
+        10
+      ],
+      [
+        "2026-09-09",
+        "received",
+        "claude",
+        3
+      ],
+      [
+        "2026-09-09",
+        "received",
+        "codex",
+        1
+      ],
+      [
+        "2026-09-09",
+        "received",
+        "other",
+        30
+      ],
+      [
+        "2026-09-09",
+        "sent",
+        "chatgpt",
+        28
+      ],
+      [
+        "2026-09-09",
+        "sent",
+        "codex",
+        19
+      ],
+      [
+        "2026-09-09",
+        "sent",
+        "other",
+        2
+      ],
+      [
+        "2026-09-10",
+        "received",
+        "automation",
+        10
+      ],
+      [
+        "2026-09-10",
+        "received",
+        "claude",
+        3
+      ],
+      [
+        "2026-09-10",
+        "received",
+        "codex",
+        2
+      ],
+      [
+        "2026-09-10",
+        "received",
+        "other",
+        5
+      ],
+      [
+        "2026-09-10",
+        "sent",
+        "chatgpt",
+        20
+      ],
+      [
+        "2026-09-11",
+        "received",
+        "claude",
+        1
+      ],
+      [
+        "2026-09-11",
+        "sent",
+        "chatgpt",
+        1
+      ],
+      [
+        "2026-09-12",
+        "received",
+        "chatgpt",
+        73
+      ],
+      [
+        "2026-09-12",
+        "received",
+        "claude",
+        23
+      ],
+      [
+        "2026-09-12",
+        "received",
+        "codex",
+        3
+      ],
+      [
+        "2026-09-12",
+        "received",
+        "other",
+        4
+      ],
+      [
+        "2026-09-12",
+        "sent",
+        "chatgpt",
+        53
+      ],
+      [
+        "2026-09-12",
+        "sent",
+        "claude",
+        40
+      ],
+      [
+        "2026-09-12",
+        "sent",
+        "codex",
+        9
+      ],
+      [
+        "2026-09-12",
+        "sent",
+        "other",
+        1
+      ],
+      [
+        "2026-09-13",
+        "received",
+        "automation",
+        2
+      ],
+      [
+        "2026-09-13",
+        "received",
+        "broadcast",
+        1
+      ],
+      [
+        "2026-09-13",
+        "received",
+        "chatgpt",
+        11
+      ],
+      [
+        "2026-09-13",
+        "received",
+        "claude",
+        11
+      ],
+      [
+        "2026-09-13",
+        "received",
+        "codex",
+        4
+      ],
+      [
+        "2026-09-13",
+        "sent",
+        "chatgpt",
+        19
+      ],
+      [
+        "2026-09-13",
+        "sent",
+        "claude",
+        9
+      ],
+      [
+        "2026-09-13",
+        "sent",
+        "codex",
+        1
+      ],
+      [
+        "2026-09-15",
+        "received",
+        "automation",
+        9
+      ],
+      [
+        "2026-09-15",
+        "received",
+        "chatgpt",
+        56
+      ],
+      [
+        "2026-09-15",
+        "received",
+        "claude",
+        51
+      ],
+      [
+        "2026-09-15",
+        "sent",
+        "automation",
+        17
+      ],
+      [
+        "2026-09-15",
+        "sent",
+        "chatgpt",
+        71
+      ],
+      [
+        "2026-09-15",
+        "sent",
+        "claude",
+        28
+      ],
+      [
+        "2026-09-16",
+        "received",
+        "automation",
+        2
+      ],
+      [
+        "2026-09-16",
+        "received",
+        "broadcast",
+        3
+      ],
+      [
+        "2026-09-16",
+        "received",
+        "chatgpt",
+        25
+      ],
+      [
+        "2026-09-16",
+        "received",
+        "claude",
+        43
+      ],
+      [
+        "2026-09-16",
+        "sent",
+        "automation",
+        6
+      ],
+      [
+        "2026-09-16",
+        "sent",
+        "chatgpt",
+        50
+      ],
+      [
+        "2026-09-16",
+        "sent",
+        "claude",
+        17
+      ],
+      [
+        "2026-09-17",
+        "received",
+        "chatgpt",
+        37
+      ],
+      [
+        "2026-09-17",
+        "received",
+        "claude",
+        134
+      ],
+      [
+        "2026-09-17",
+        "sent",
+        "chatgpt",
+        72
+      ],
+      [
+        "2026-09-17",
+        "sent",
+        "claude",
+        99
+      ],
+      [
+        "2026-09-18",
+        "received",
+        "chatgpt",
+        19
+      ],
+      [
+        "2026-09-18",
+        "received",
+        "claude",
+        15
+      ],
+      [
+        "2026-09-18",
+        "sent",
+        "chatgpt",
+        21
+      ],
+      [
+        "2026-09-18",
+        "sent",
+        "codex",
+        13
+      ],
+      [
+        "2026-09-19",
+        "received",
+        "chatgpt",
+        6
+      ],
+      [
+        "2026-09-19",
+        "received",
+        "claude",
+        27
+      ],
+      [
+        "2026-09-19",
+        "sent",
+        "automation",
+        4
+      ],
+      [
+        "2026-09-19",
+        "sent",
+        "chatgpt",
+        23
+      ],
+      [
+        "2026-09-19",
+        "sent",
+        "claude",
+        6
+      ],
+      [
+        "2026-09-20",
+        "received",
+        "chatgpt",
+        22
+      ],
+      [
+        "2026-09-20",
+        "received",
+        "claude",
+        23
+      ],
+      [
+        "2026-09-20",
+        "sent",
+        "chatgpt",
+        18
+      ],
+      [
+        "2026-09-20",
+        "sent",
+        "claude",
+        26
+      ],
+      [
+        "2026-09-20",
+        "sent",
+        "codex",
+        1
+      ],
+      [
+        "2026-09-21",
+        "received",
+        "broadcast",
+        1
+      ],
+      [
+        "2026-09-21",
+        "received",
+        "chatgpt",
+        18
+      ],
+      [
+        "2026-09-21",
+        "received",
+        "claude",
+        36
+      ],
+      [
+        "2026-09-21",
+        "sent",
+        "chatgpt",
+        37
+      ],
+      [
+        "2026-09-21",
+        "sent",
+        "claude",
+        18
+      ],
+      [
+        "2026-09-22",
+        "received",
+        "automation",
+        1
+      ],
+      [
+        "2026-09-22",
+        "received",
+        "chatgpt",
+        32
+      ],
+      [
+        "2026-09-22",
+        "received",
+        "claude",
+        17
+      ],
+      [
+        "2026-09-22",
+        "sent",
+        "automation",
+        1
+      ],
+      [
+        "2026-09-22",
+        "sent",
+        "chatgpt",
+        17
+      ],
+      [
+        "2026-09-22",
+        "sent",
+        "claude",
+        32
+      ],
+      [
+        "2026-09-23",
+        "received",
+        "chatgpt",
+        39
+      ],
+      [
+        "2026-09-23",
+        "received",
+        "claude",
+        30
+      ],
+      [
+        "2026-09-23",
+        "sent",
+        "automation",
+        3
+      ],
+      [
+        "2026-09-23",
+        "sent",
+        "chatgpt",
+        44
+      ],
+      [
+        "2026-09-23",
+        "sent",
+        "claude",
+        20
+      ],
+      [
+        "2026-09-23",
+        "sent",
+        "codex",
+        2
+      ],
+      [
+        "2026-09-24",
+        "received",
+        "chatgpt",
+        21
+      ],
+      [
+        "2026-09-24",
+        "received",
+        "claude",
+        50
+      ],
+      [
+        "2026-09-24",
+        "received",
+        "other",
+        3
+      ],
+      [
+        "2026-09-24",
+        "sent",
+        "automation",
+        4
+      ],
+      [
+        "2026-09-24",
+        "sent",
+        "chatgpt",
+        60
+      ],
+      [
+        "2026-09-24",
+        "sent",
+        "claude",
+        9
+      ],
+      [
+        "2026-09-24",
+        "sent",
+        "codex",
+        1
+      ],
+      [
+        "2026-09-25",
+        "received",
+        "chatgpt",
+        7
+      ],
+      [
+        "2026-09-25",
+        "received",
+        "claude",
+        17
+      ],
+      [
+        "2026-09-25",
+        "sent",
+        "automation",
+        4
+      ],
+      [
+        "2026-09-25",
+        "sent",
+        "chatgpt",
+        13
+      ],
+      [
+        "2026-09-25",
+        "sent",
+        "claude",
+        7
+      ],
+      [
+        "2026-09-26",
+        "received",
+        "chatgpt",
+        80
+      ],
+      [
+        "2026-09-26",
+        "received",
+        "claude",
+        251
+      ],
+      [
+        "2026-09-26",
+        "received",
+        "codex",
+        8
+      ],
+      [
+        "2026-09-26",
+        "sent",
+        "automation",
+        84
+      ],
+      [
+        "2026-09-26",
+        "sent",
+        "chatgpt",
+        70
+      ],
+      [
+        "2026-09-26",
+        "sent",
+        "claude",
+        100
+      ],
+      [
+        "2026-09-26",
+        "sent",
+        "codex",
+        85
+      ],
+      [
+        "2026-09-27",
+        "received",
+        "chatgpt",
+        54
+      ],
+      [
+        "2026-09-27",
+        "received",
+        "claude",
+        152
+      ],
+      [
+        "2026-09-27",
+        "sent",
+        "automation",
+        38
+      ],
+      [
+        "2026-09-27",
+        "sent",
+        "chatgpt",
+        63
+      ],
+      [
+        "2026-09-27",
+        "sent",
+        "claude",
+        105
+      ],
+      [
+        "2026-09-28",
+        "received",
+        "automation",
+        15
+      ],
+      [
+        "2026-09-28",
+        "received",
+        "chatgpt",
+        40
+      ],
+      [
+        "2026-09-28",
+        "received",
+        "claude",
+        88
+      ],
+      [
+        "2026-09-28",
+        "sent",
+        "automation",
+        17
+      ],
+      [
+        "2026-09-28",
+        "sent",
+        "chatgpt",
+        41
+      ],
+      [
+        "2026-09-28",
+        "sent",
+        "claude",
+        85
+      ],
+      [
+        "2026-09-29",
+        "received",
+        "automation",
+        7
+      ],
+      [
+        "2026-09-29",
+        "received",
+        "chatgpt",
+        141
+      ],
+      [
+        "2026-09-29",
+        "received",
+        "claude",
+        17
+      ],
+      [
+        "2026-09-29",
+        "received",
+        "other",
+        2
+      ],
+      [
+        "2026-09-29",
+        "sent",
+        "automation",
+        126
+      ],
+      [
+        "2026-09-29",
+        "sent",
+        "chatgpt",
+        25
+      ],
+      [
+        "2026-09-29",
+        "sent",
+        "claude",
+        15
+      ],
+      [
+        "2026-09-29",
+        "sent",
+        "other",
+        1
+      ],
+      [
+        "2026-09-30",
+        "received",
+        "automation",
+        8
+      ],
+      [
+        "2026-09-30",
+        "received",
+        "chatgpt",
+        90
+      ],
+      [
+        "2026-09-30",
+        "received",
+        "claude",
+        27
+      ],
+      [
+        "2026-09-30",
+        "received",
+        "other",
+        1
+      ],
+      [
+        "2026-09-30",
+        "sent",
+        "automation",
+        57
+      ],
+      [
+        "2026-09-30",
+        "sent",
+        "chatgpt",
+        45
+      ],
+      [
+        "2026-09-30",
+        "sent",
+        "claude",
+        22
+      ],
+      [
+        "2026-09-30",
+        "sent",
+        "other",
+        2
+      ],
+      [
+        "2026-10-01",
+        "received",
+        "automation",
+        38
+      ],
+      [
+        "2026-10-01",
+        "received",
+        "chatgpt",
+        199
+      ],
+      [
+        "2026-10-01",
+        "received",
+        "claude",
+        26
+      ],
+      [
+        "2026-10-01",
+        "received",
+        "codex",
+        1
+      ],
+      [
+        "2026-10-01",
+        "received",
+        "other",
+        1
+      ],
+      [
+        "2026-10-01",
+        "sent",
+        "automation",
+        188
+      ],
+      [
+        "2026-10-01",
+        "sent",
+        "chatgpt",
+        50
+      ],
+      [
+        "2026-10-01",
+        "sent",
+        "claude",
+        25
+      ],
+      [
+        "2026-10-01",
+        "sent",
+        "codex",
+        2
+      ],
+      [
+        "2026-10-02",
+        "received",
+        "automation",
+        32
+      ],
+      [
+        "2026-10-02",
+        "received",
+        "chatgpt",
+        276
+      ],
+      [
+        "2026-10-02",
+        "received",
+        "claude",
+        194
+      ],
+      [
+        "2026-10-02",
+        "received",
+        "codex",
+        5
+      ],
+      [
+        "2026-10-02",
+        "received",
+        "other",
+        16
+      ],
+      [
+        "2026-10-02",
+        "sent",
+        "automation",
+        215
+      ],
+      [
+        "2026-10-02",
+        "sent",
+        "chatgpt",
+        211
+      ],
+      [
+        "2026-10-02",
+        "sent",
+        "claude",
+        61
+      ],
+      [
+        "2026-10-02",
+        "sent",
+        "codex",
+        15
+      ],
+      [
+        "2026-10-02",
+        "sent",
+        "other",
+        21
+      ],
+      [
+        "2026-10-03",
+        "received",
+        "chatgpt",
+        93
+      ],
+      [
+        "2026-10-03",
+        "received",
+        "claude",
+        93
+      ],
+      [
+        "2026-10-03",
+        "received",
+        "codex",
+        4
+      ],
+      [
+        "2026-10-03",
+        "received",
+        "other",
+        43
+      ],
+      [
+        "2026-10-03",
+        "sent",
+        "automation",
+        75
+      ],
+      [
+        "2026-10-03",
+        "sent",
+        "chatgpt",
+        123
+      ],
+      [
+        "2026-10-03",
+        "sent",
+        "claude",
+        26
+      ],
+      [
+        "2026-10-03",
+        "sent",
+        "other",
+        9
+      ],
+      [
+        "2026-10-04",
+        "received",
+        "automation",
+        1
+      ],
+      [
+        "2026-10-04",
+        "received",
+        "chatgpt",
+        107
+      ],
+      [
+        "2026-10-04",
+        "received",
+        "claude",
+        429
+      ],
+      [
+        "2026-10-04",
+        "received",
+        "codex",
+        54
+      ],
+      [
+        "2026-10-04",
+        "received",
+        "other",
+        8
+      ],
+      [
+        "2026-10-04",
+        "sent",
+        "automation",
+        70
+      ],
+      [
+        "2026-10-04",
+        "sent",
+        "chatgpt",
+        56
+      ],
+      [
+        "2026-10-04",
+        "sent",
+        "claude",
+        270
+      ],
+      [
+        "2026-10-04",
+        "sent",
+        "codex",
+        198
+      ],
+      [
+        "2026-10-04",
+        "sent",
+        "other",
+        5
+      ],
+      [
+        "2026-10-05",
+        "received",
+        "automation",
+        4
+      ],
+      [
+        "2026-10-05",
+        "received",
+        "chatgpt",
+        82
+      ],
+      [
+        "2026-10-05",
+        "received",
+        "claude",
+        85
+      ],
+      [
+        "2026-10-05",
+        "received",
+        "codex",
+        18
+      ],
+      [
+        "2026-10-05",
+        "sent",
+        "automation",
+        64
+      ],
+      [
+        "2026-10-05",
+        "sent",
+        "chatgpt",
+        26
+      ],
+      [
+        "2026-10-05",
+        "sent",
+        "claude",
+        66
+      ],
+      [
+        "2026-10-05",
+        "sent",
+        "codex",
+        33
+      ],
+      [
+        "2026-10-06",
+        "received",
+        "automation",
+        28
+      ],
+      [
+        "2026-10-06",
+        "received",
+        "chatgpt",
+        101
+      ],
+      [
+        "2026-10-06",
+        "received",
+        "claude",
+        45
+      ],
+      [
+        "2026-10-06",
+        "received",
+        "codex",
+        4
+      ],
+      [
+        "2026-10-06",
+        "received",
+        "other",
+        14
+      ],
+      [
+        "2026-10-06",
+        "sent",
+        "automation",
+        109
+      ],
+      [
+        "2026-10-06",
+        "sent",
+        "chatgpt",
+        35
+      ],
+      [
+        "2026-10-06",
+        "sent",
+        "claude",
+        48
+      ],
+      [
+        "2026-10-07",
+        "received",
+        "chatgpt",
+        63
+      ],
+      [
+        "2026-10-07",
+        "received",
+        "claude",
+        39
+      ],
+      [
+        "2026-10-07",
+        "received",
+        "codex",
+        4
+      ],
+      [
+        "2026-10-07",
+        "sent",
+        "automation",
+        51
+      ],
+      [
+        "2026-10-07",
+        "sent",
+        "chatgpt",
+        18
+      ],
+      [
+        "2026-10-07",
+        "sent",
+        "claude",
+        30
+      ],
+      [
+        "2026-10-07",
+        "sent",
+        "codex",
+        7
+      ],
+      [
+        "2026-10-08",
+        "received",
+        "automation",
+        133
+      ],
+      [
+        "2026-10-08",
+        "received",
+        "broadcast",
+        3
+      ],
+      [
+        "2026-10-08",
+        "received",
+        "chatgpt",
+        76
+      ],
+      [
+        "2026-10-08",
+        "received",
+        "claude",
+        153
+      ],
+      [
+        "2026-10-08",
+        "received",
+        "codex",
+        21
+      ],
+      [
+        "2026-10-08",
+        "sent",
+        "automation",
+        115
+      ],
+      [
+        "2026-10-08",
+        "sent",
+        "chatgpt",
+        114
+      ],
+      [
+        "2026-10-08",
+        "sent",
+        "claude",
+        75
+      ],
+      [
+        "2026-10-08",
+        "sent",
+        "codex",
+        81
+      ],
+      [
+        "2026-10-08",
+        "sent",
+        "other",
+        1
+      ],
+      [
+        "2026-10-09",
+        "received",
+        "automation",
+        1
+      ],
+      [
+        "2026-10-09",
+        "received",
+        "broadcast",
+        5
+      ],
+      [
+        "2026-10-09",
+        "received",
+        "chatgpt",
+        181
+      ],
+      [
+        "2026-10-09",
+        "received",
+        "claude",
+        137
+      ],
+      [
+        "2026-10-09",
+        "received",
+        "codex",
+        5
+      ],
+      [
+        "2026-10-09",
+        "received",
+        "other",
+        66
+      ],
+      [
+        "2026-10-09",
+        "sent",
+        "automation",
+        65
+      ],
+      [
+        "2026-10-09",
+        "sent",
+        "chatgpt",
+        107
+      ],
+      [
+        "2026-10-09",
+        "sent",
+        "claude",
+        96
+      ],
+      [
+        "2026-10-09",
+        "sent",
+        "codex",
+        41
+      ],
+      [
+        "2026-10-09",
+        "sent",
+        "other",
+        86
+      ],
+      [
+        "2026-10-10",
+        "received",
+        "automation",
+        6
+      ],
+      [
+        "2026-10-10",
+        "received",
+        "broadcast",
+        5
+      ],
+      [
+        "2026-10-10",
+        "received",
+        "chatgpt",
+        84
+      ],
+      [
+        "2026-10-10",
+        "received",
+        "claude",
+        51
+      ],
+      [
+        "2026-10-10",
+        "received",
+        "codex",
+        1
+      ],
+      [
+        "2026-10-10",
+        "received",
+        "other",
+        4
+      ],
+      [
+        "2026-10-10",
+        "sent",
+        "automation",
+        46
+      ],
+      [
+        "2026-10-10",
+        "sent",
+        "chatgpt",
+        23
+      ],
+      [
+        "2026-10-10",
+        "sent",
+        "claude",
+        82
+      ],
+      [
+        "2026-10-11",
+        "received",
+        "automation",
+        2
+      ],
+      [
+        "2026-10-11",
+        "received",
+        "chatgpt",
+        41
+      ],
+      [
+        "2026-10-11",
+        "received",
+        "claude",
+        24
+      ],
+      [
+        "2026-10-11",
+        "received",
+        "other",
+        1
+      ],
+      [
+        "2026-10-11",
+        "sent",
+        "automation",
+        14
+      ],
+      [
+        "2026-10-11",
+        "sent",
+        "chatgpt",
+        18
+      ],
+      [
+        "2026-10-11",
+        "sent",
+        "claude",
+        36
+      ],
+      [
+        "2026-10-12",
+        "received",
+        "broadcast",
+        3
+      ],
+      [
+        "2026-10-12",
+        "received",
+        "chatgpt",
+        69
+      ],
+      [
+        "2026-10-12",
+        "received",
+        "claude",
+        42
+      ],
+      [
+        "2026-10-12",
+        "received",
+        "other",
+        4
+      ],
+      [
+        "2026-10-12",
+        "sent",
+        "automation",
+        28
+      ],
+      [
+        "2026-10-12",
+        "sent",
+        "chatgpt",
+        39
+      ],
+      [
+        "2026-10-12",
+        "sent",
+        "claude",
+        50
+      ],
+      [
+        "2026-10-12",
+        "sent",
+        "codex",
+        1
+      ],
+      [
+        "2026-10-13",
+        "received",
+        "chatgpt",
+        37
+      ],
+      [
+        "2026-10-13",
+        "received",
+        "claude",
+        29
+      ],
+      [
+        "2026-10-13",
+        "sent",
+        "automation",
+        16
+      ],
+      [
+        "2026-10-13",
+        "sent",
+        "chatgpt",
+        9
+      ],
+      [
+        "2026-10-13",
+        "sent",
+        "claude",
+        21
+      ],
+      [
+        "2026-10-13",
+        "sent",
+        "codex",
+        20
+      ],
+      [
+        "2026-10-14",
+        "received",
+        "broadcast",
+        9
+      ],
+      [
+        "2026-10-14",
+        "received",
+        "chatgpt",
+        90
+      ],
+      [
+        "2026-10-14",
+        "received",
+        "claude",
+        81
+      ],
+      [
+        "2026-10-14",
+        "received",
+        "codex",
+        6
+      ],
+      [
+        "2026-10-14",
+        "received",
+        "other",
+        6
+      ],
+      [
+        "2026-10-14",
+        "sent",
+        "automation",
+        39
+      ],
+      [
+        "2026-10-14",
+        "sent",
+        "chatgpt",
+        20
+      ],
+      [
+        "2026-10-14",
+        "sent",
+        "claude",
+        84
+      ],
+      [
+        "2026-10-14",
+        "sent",
+        "codex",
+        49
+      ],
+      [
+        "2026-10-15",
+        "received",
+        "broadcast",
+        3
+      ],
+      [
+        "2026-10-15",
+        "received",
+        "chatgpt",
+        126
+      ],
+      [
+        "2026-10-15",
+        "received",
+        "claude",
+        219
+      ],
+      [
+        "2026-10-15",
+        "received",
+        "codex",
+        2
+      ],
+      [
+        "2026-10-15",
+        "received",
+        "other",
+        1
+      ],
+      [
+        "2026-10-15",
+        "sent",
+        "automation",
+        64
+      ],
+      [
+        "2026-10-15",
+        "sent",
+        "chatgpt",
+        100
+      ],
+      [
+        "2026-10-15",
+        "sent",
+        "claude",
+        175
+      ],
+      [
+        "2026-10-15",
+        "sent",
+        "codex",
+        11
+      ],
+      [
+        "2026-10-15",
+        "sent",
+        "other",
+        1
+      ],
+      [
+        "2026-10-16",
+        "received",
+        "chatgpt",
+        76
+      ],
+      [
+        "2026-10-16",
+        "received",
+        "claude",
+        112
+      ],
+      [
+        "2026-10-16",
+        "received",
+        "other",
+        1
+      ],
+      [
+        "2026-10-16",
+        "sent",
+        "automation",
+        52
+      ],
+      [
+        "2026-10-16",
+        "sent",
+        "chatgpt",
+        31
+      ],
+      [
+        "2026-10-16",
+        "sent",
+        "claude",
+        105
+      ],
+      [
+        "2026-10-16",
+        "sent",
+        "codex",
+        1
+      ],
+      [
+        "2026-10-17",
+        "received",
+        "chatgpt",
+        178
+      ],
+      [
+        "2026-10-17",
+        "received",
+        "claude",
+        254
+      ],
+      [
+        "2026-10-17",
+        "sent",
+        "automation",
+        117
+      ],
+      [
+        "2026-10-17",
+        "sent",
+        "chatgpt",
+        57
+      ],
+      [
+        "2026-10-17",
+        "sent",
+        "claude",
+        255
+      ],
+      [
+        "2026-10-17",
+        "sent",
+        "other",
+        3
+      ],
+      [
+        "2026-10-18",
+        "received",
+        "chatgpt",
+        27
+      ],
+      [
+        "2026-10-18",
+        "received",
+        "claude",
+        59
+      ],
+      [
+        "2026-10-18",
+        "sent",
+        "automation",
+        15
+      ],
+      [
+        "2026-10-18",
+        "sent",
+        "chatgpt",
+        6
+      ],
+      [
+        "2026-10-18",
+        "sent",
+        "claude",
+        65
+      ],
+      [
+        "2026-10-19",
+        "received",
+        "chatgpt",
+        19
+      ],
+      [
+        "2026-10-19",
+        "received",
+        "claude",
+        26
+      ],
+      [
+        "2026-10-19",
+        "sent",
+        "automation",
+        5
+      ],
+      [
+        "2026-10-19",
+        "sent",
+        "chatgpt",
+        4
+      ],
+      [
+        "2026-10-19",
+        "sent",
+        "claude",
+        36
+      ],
+      [
+        "2026-10-20",
+        "received",
+        "chatgpt",
+        31
+      ],
+      [
+        "2026-10-20",
+        "received",
+        "claude",
+        16
+      ],
+      [
+        "2026-10-20",
+        "sent",
+        "automation",
+        10
+      ],
+      [
+        "2026-10-20",
+        "sent",
+        "chatgpt",
+        6
+      ],
+      [
+        "2026-10-20",
+        "sent",
+        "claude",
+        31
+      ],
+      [
+        "2026-10-21",
+        "received",
+        "chatgpt",
+        106
+      ],
+      [
+        "2026-10-21",
+        "received",
+        "claude",
+        91
+      ],
+      [
+        "2026-10-21",
+        "sent",
+        "automation",
+        67
+      ],
+      [
+        "2026-10-21",
+        "sent",
+        "chatgpt",
+        35
+      ],
+      [
+        "2026-10-21",
+        "sent",
+        "claude",
+        78
+      ],
+      [
+        "2026-10-21",
+        "sent",
+        "codex",
+        16
+      ],
+      [
+        "2026-10-21",
+        "sent",
+        "other",
+        1
+      ],
+      [
+        "2026-10-22",
+        "received",
+        "chatgpt",
+        80
+      ],
+      [
+        "2026-10-22",
+        "received",
+        "claude",
+        88
+      ],
+      [
+        "2026-10-22",
+        "received",
+        "codex",
+        3
+      ],
+      [
+        "2026-10-22",
+        "sent",
+        "automation",
+        58
+      ],
+      [
+        "2026-10-22",
+        "sent",
+        "chatgpt",
+        47
+      ],
+      [
+        "2026-10-22",
+        "sent",
+        "claude",
+        39
+      ],
+      [
+        "2026-10-22",
+        "sent",
+        "codex",
+        24
+      ],
+      [
+        "2026-10-22",
+        "sent",
+        "other",
+        3
+      ],
+      [
+        "2026-10-23",
+        "received",
+        "chatgpt",
+        107
+      ],
+      [
+        "2026-10-23",
+        "received",
+        "claude",
+        179
+      ],
+      [
+        "2026-10-23",
+        "received",
+        "codex",
+        7
+      ],
+      [
+        "2026-10-23",
+        "sent",
+        "automation",
+        29
+      ],
+      [
+        "2026-10-23",
+        "sent",
+        "chatgpt",
+        47
+      ],
+      [
+        "2026-10-23",
+        "sent",
+        "claude",
+        208
+      ],
+      [
+        "2026-10-23",
+        "sent",
+        "codex",
+        9
+      ],
+      [
+        "2026-10-24",
+        "received",
+        "automation",
+        1
+      ],
+      [
+        "2026-10-24",
+        "received",
+        "chatgpt",
+        78
+      ],
+      [
+        "2026-10-24",
+        "received",
+        "claude",
+        554
+      ],
+      [
+        "2026-10-24",
+        "sent",
+        "automation",
+        65
+      ],
+      [
+        "2026-10-24",
+        "sent",
+        "chatgpt",
+        34
+      ],
+      [
+        "2026-10-24",
+        "sent",
+        "claude",
+        534
+      ],
+      [
+        "2026-10-25",
+        "received",
+        "chatgpt",
+        54
+      ],
+      [
+        "2026-10-25",
+        "received",
+        "claude",
+        294
+      ],
+      [
+        "2026-10-25",
+        "received",
+        "codex",
+        7
+      ],
+      [
+        "2026-10-25",
+        "sent",
+        "automation",
+        36
+      ],
+      [
+        "2026-10-25",
+        "sent",
+        "chatgpt",
+        10
+      ],
+      [
+        "2026-10-25",
+        "sent",
+        "claude",
+        298
+      ],
+      [
+        "2026-10-25",
+        "sent",
+        "codex",
+        9
+      ],
+      [
+        "2026-10-25",
+        "sent",
+        "other",
+        2
+      ],
+      [
+        "2026-10-26",
+        "received",
+        "automation",
+        1
+      ],
+      [
+        "2026-10-26",
+        "received",
+        "chatgpt",
+        81
+      ],
+      [
+        "2026-10-26",
+        "received",
+        "claude",
+        61
+      ],
+      [
+        "2026-10-26",
+        "received",
+        "other",
+        1
+      ],
+      [
+        "2026-10-26",
+        "sent",
+        "automation",
+        62
+      ],
+      [
+        "2026-10-26",
+        "sent",
+        "chatgpt",
+        12
+      ],
+      [
+        "2026-10-26",
+        "sent",
+        "claude",
+        55
+      ],
+      [
+        "2026-10-26",
+        "sent",
+        "codex",
+        8
+      ],
+      [
+        "2026-10-26",
+        "sent",
+        "other",
+        7
+      ],
+      [
+        "2026-10-27",
+        "received",
+        "chatgpt",
+        131
+      ],
+      [
+        "2026-10-27",
+        "received",
+        "claude",
+        71
+      ],
+      [
+        "2026-10-27",
+        "received",
+        "other",
+        2
+      ],
+      [
+        "2026-10-27",
+        "sent",
+        "automation",
+        81
+      ],
+      [
+        "2026-10-27",
+        "sent",
+        "chatgpt",
+        32
+      ],
+      [
+        "2026-10-27",
+        "sent",
+        "claude",
+        80
+      ],
+      [
+        "2026-10-27",
+        "sent",
+        "codex",
+        6
+      ],
+      [
+        "2026-10-27",
+        "sent",
+        "other",
+        5
+      ],
+      [
+        "2026-10-28",
+        "received",
+        "automation",
+        1
+      ],
+      [
+        "2026-10-28",
+        "received",
+        "chatgpt",
+        97
+      ],
+      [
+        "2026-10-28",
+        "received",
+        "claude",
+        172
+      ],
+      [
+        "2026-10-28",
+        "sent",
+        "automation",
+        64
+      ],
+      [
+        "2026-10-28",
+        "sent",
+        "chatgpt",
+        16
+      ],
+      [
+        "2026-10-28",
+        "sent",
+        "claude",
+        156
+      ],
+      [
+        "2026-10-28",
+        "sent",
+        "codex",
+        15
+      ],
+      [
+        "2026-10-28",
+        "sent",
+        "other",
+        19
+      ],
+      [
+        "2026-10-29",
+        "received",
+        "chatgpt",
+        32
+      ],
+      [
+        "2026-10-29",
+        "received",
+        "claude",
+        41
+      ],
+      [
+        "2026-10-29",
+        "sent",
+        "automation",
+        37
+      ],
+      [
+        "2026-10-29",
+        "sent",
+        "chatgpt",
+        8
+      ],
+      [
+        "2026-10-29",
+        "sent",
+        "claude",
+        28
+      ],
+      [
+        "2026-10-30",
+        "received",
+        "automation",
+        1
+      ],
+      [
+        "2026-10-30",
+        "received",
+        "chatgpt",
+        101
+      ],
+      [
+        "2026-10-30",
+        "received",
+        "claude",
+        174
+      ],
+      [
+        "2026-10-30",
+        "sent",
+        "automation",
+        111
+      ],
+      [
+        "2026-10-30",
+        "sent",
+        "chatgpt",
+        48
+      ],
+      [
+        "2026-10-30",
+        "sent",
+        "claude",
+        105
+      ],
+      [
+        "2026-10-30",
+        "sent",
+        "codex",
+        1
+      ],
+      [
+        "2026-10-30",
+        "sent",
+        "other",
+        11
+      ],
+      [
+        "2026-10-31",
+        "received",
+        "chatgpt",
+        19
+      ],
+      [
+        "2026-10-31",
+        "received",
+        "claude",
+        90
+      ],
+      [
+        "2026-10-31",
+        "sent",
+        "automation",
+        56
+      ],
+      [
+        "2026-10-31",
+        "sent",
+        "chatgpt",
+        13
+      ],
+      [
+        "2026-10-31",
+        "sent",
+        "claude",
+        40
+      ],
+      [
+        "2026-11-01",
+        "received",
+        "chatgpt",
+        17
+      ],
+      [
+        "2026-11-01",
+        "received",
+        "claude",
+        96
+      ],
+      [
+        "2026-11-01",
+        "sent",
+        "automation",
+        58
+      ],
+      [
+        "2026-11-01",
+        "sent",
+        "chatgpt",
+        5
+      ],
+      [
+        "2026-11-01",
+        "sent",
+        "claude",
+        48
+      ],
+      [
+        "2026-11-01",
+        "sent",
+        "other",
+        2
+      ],
+      [
+        "2026-11-02",
+        "received",
+        "chatgpt",
+        44
+      ],
+      [
+        "2026-11-02",
+        "received",
+        "claude",
+        137
+      ],
+      [
+        "2026-11-02",
+        "received",
+        "other",
+        1
+      ],
+      [
+        "2026-11-02",
+        "sent",
+        "automation",
+        74
+      ],
+      [
+        "2026-11-02",
+        "sent",
+        "chatgpt",
+        28
+      ],
+      [
+        "2026-11-02",
+        "sent",
+        "claude",
+        73
+      ],
+      [
+        "2026-11-02",
+        "sent",
+        "codex",
+        4
+      ],
+      [
+        "2026-11-02",
+        "sent",
+        "other",
+        3
+      ],
+      [
+        "2026-11-03",
+        "received",
+        "automation",
+        3
+      ],
+      [
+        "2026-11-03",
+        "received",
+        "chatgpt",
+        34
+      ],
+      [
+        "2026-11-03",
+        "received",
+        "claude",
+        153
+      ],
+      [
+        "2026-11-03",
+        "received",
+        "other",
+        15
+      ],
+      [
+        "2026-11-03",
+        "sent",
+        "automation",
+        66
+      ],
+      [
+        "2026-11-03",
+        "sent",
+        "chatgpt",
+        18
+      ],
+      [
+        "2026-11-03",
+        "sent",
+        "claude",
+        97
+      ],
+      [
+        "2026-11-03",
+        "sent",
+        "other",
+        24
+      ],
+      [
+        "2026-11-04",
+        "received",
+        "chatgpt",
+        47
+      ],
+      [
+        "2026-11-04",
+        "received",
+        "claude",
+        146
+      ],
+      [
+        "2026-11-04",
+        "received",
+        "other",
+        4
+      ],
+      [
+        "2026-11-04",
+        "sent",
+        "automation",
+        63
+      ],
+      [
+        "2026-11-04",
+        "sent",
+        "chatgpt",
+        14
+      ],
+      [
+        "2026-11-04",
+        "sent",
+        "claude",
+        98
+      ],
+      [
+        "2026-11-04",
+        "sent",
+        "codex",
+        1
+      ],
+      [
+        "2026-11-04",
+        "sent",
+        "other",
+        21
+      ],
+      [
+        "2026-11-05",
+        "received",
+        "chatgpt",
+        41
+      ],
+      [
+        "2026-11-05",
+        "received",
+        "claude",
+        29
+      ],
+      [
+        "2026-11-05",
+        "sent",
+        "automation",
+        32
+      ],
+      [
+        "2026-11-05",
+        "sent",
+        "chatgpt",
+        6
+      ],
+      [
+        "2026-11-05",
+        "sent",
+        "claude",
+        26
+      ],
+      [
+        "2026-11-05",
+        "sent",
+        "other",
+        6
+      ],
+      [
+        "2026-11-06",
+        "received",
+        "chatgpt",
+        47
+      ],
+      [
+        "2026-11-06",
+        "received",
+        "claude",
+        65
+      ],
+      [
+        "2026-11-06",
+        "sent",
+        "automation",
+        21
+      ],
+      [
+        "2026-11-06",
+        "sent",
+        "chatgpt",
+        14
+      ],
+      [
+        "2026-11-06",
+        "sent",
+        "claude",
+        67
+      ],
+      [
+        "2026-11-06",
+        "sent",
+        "other",
+        10
+      ],
+      [
+        "2026-11-07",
+        "received",
+        "chatgpt",
+        15
+      ],
+      [
+        "2026-11-07",
+        "received",
+        "claude",
+        35
+      ],
+      [
+        "2026-11-07",
+        "received",
+        "other",
+        2
+      ],
+      [
+        "2026-11-07",
+        "sent",
+        "automation",
+        7
+      ],
+      [
+        "2026-11-07",
+        "sent",
+        "chatgpt",
+        3
+      ],
+      [
+        "2026-11-07",
+        "sent",
+        "claude",
+        38
+      ],
+      [
+        "2026-11-07",
+        "sent",
+        "other",
+        4
+      ],
+      [
+        "2026-11-08",
+        "received",
+        "automation",
+        3
+      ],
+      [
+        "2026-11-08",
+        "received",
+        "chatgpt",
+        2
+      ],
+      [
+        "2026-11-08",
+        "received",
+        "claude",
+        33
+      ],
+      [
+        "2026-11-08",
+        "sent",
+        "automation",
+        9
+      ],
+      [
+        "2026-11-08",
+        "sent",
+        "chatgpt",
+        1
+      ],
+      [
+        "2026-11-08",
+        "sent",
+        "claude",
+        21
+      ],
+      [
+        "2026-11-08",
+        "sent",
+        "other",
+        7
+      ],
+      [
+        "2026-11-09",
+        "received",
+        "chatgpt",
+        44
+      ],
+      [
+        "2026-11-09",
+        "received",
+        "claude",
+        54
+      ],
+      [
+        "2026-11-09",
+        "received",
+        "codex",
+        3
+      ],
+      [
+        "2026-11-09",
+        "sent",
+        "automation",
+        22
+      ],
+      [
+        "2026-11-09",
+        "sent",
+        "chatgpt",
+        15
+      ],
+      [
+        "2026-11-09",
+        "sent",
+        "claude",
+        52
+      ],
+      [
+        "2026-11-09",
+        "sent",
+        "codex",
+        6
+      ],
+      [
+        "2026-11-09",
+        "sent",
+        "other",
+        6
+      ]
+    ]
   },
   "audit_window": "2026-10-24T01:57:08Z..2026-10-31T01:57:08Z",
   "closeout_through": "2026-10-29",
@@ -4240,15 +7711,15 @@
     "entrypoint": [
       [
         "cli",
-        14041981291
+        15120737241
       ],
       [
         "desktop",
-        4170527620
+        5108452973
       ],
       [
         "sdk-cli",
-        1514513197
+        1560301474
       ],
       [
         "unknown",
@@ -4258,33 +7729,33 @@
     "actor": [
       [
         "Main",
-        11047553680
+        12416041853
       ],
       [
         "Subagent",
-        8679554932
+        9373536339
       ]
     ],
     "model": [
       [
         "opus-5-5",
-        8043264890
-      ],
-      [
-        "sonnet-5",
-        5276812168
+        9314526702
       ],
       [
         "sonnet-5-5",
-        4838494018
+        5344263970
+      ],
+      [
+        "sonnet-5",
+        5276927493
       ],
       [
         "haiku-5-5",
-        985250007
+        1270360219
       ],
       [
         "fable-5-1",
-        490227400
+        490439679
       ],
       [
         "opus-5",
@@ -4309,12 +7780,12 @@
     ],
     "project": [
       [
-        "Other projects (211)",
-        8718112902
+        "Other projects (255)",
+        9870432327
       ],
       [
         "Session tooling",
-        4004842551
+        4896491278
       ],
       [
         "Orchestrator",
@@ -4322,7 +7793,7 @@
       ],
       [
         "29 projects, grouped (topic withheld)",
-        1404057545
+        1404516621
       ],
       [
         "Chief of staff",
@@ -4330,15 +7801,15 @@
       ],
       [
         "Bus follower",
-        820367147
+        824029912
       ],
       [
         "MCP tooling",
-        488754101
+        502795904
       ],
       [
         "Benchmarks",
-        315778410
+        316116194
       ],
       [
         "Usage audit",
@@ -4346,36 +7817,36 @@
       ]
     ]
   },
-  "who_total": 19727108612,
+  "who_total": 21789578192,
   "range_summaries": {
     "all": [
-      11047553680,
-      8679554932,
-      28004903890,
+      12416041853,
+      9373536339,
+      28097820134,
       3850351962
     ],
     "90": [
-      11047480515,
-      8679554932,
-      15117547374,
+      12415968688,
+      9373536339,
+      12741403889,
       3141103147
     ],
     "30": [
-      8152020577,
-      2187206118,
-      4786993051,
+      8327917934,
+      2284358585,
+      3925574592,
       0
     ],
     "7": [
-      2220889604,
-      450960883,
-      1915900289,
+      2451908543,
+      805217909,
+      631204926,
       0
     ],
     "since": [
-      11030892882,
-      8679554932,
-      6810306797,
+      12399381055,
+      9373536339,
+      6903223041,
       3141103147
     ]
   },
@@ -4448,7 +7919,10 @@
     "2026-09-14",
     "2026-10-10",
     "2026-10-19",
-    "2026-10-20"
+    "2026-10-20",
+    "2026-11-05",
+    "2026-11-06",
+    "2026-11-07"
   ],
   "claude_gap_summary": [
     "Missing transcripts: default cleanup suspected, not proven.",
@@ -4460,7 +7934,7 @@
     {
       "name": "Grok log",
       "tag": "OVERLAPS",
-      "raw": 10797136,
+      "raw": 11246820,
       "source": "grok_requests_daily.csv"
     },
     {
@@ -4472,13 +7946,13 @@
     {
       "name": "Router",
       "tag": "ESTIMATE",
-      "raw": 257437,
+      "raw": 248238,
       "source": "delegate_router_daily.csv"
     },
     {
       "name": "Task runs",
       "tag": "SUBSET",
-      "raw": 1817163330,
+      "raw": 959678473,
       "source": "server_task_runs_daily.csv"
     }
   ],
@@ -4570,29 +8044,29 @@
         [
           "2026-11",
           "claude-desktop",
-          9168,
-          5580336,
-          36805283,
-          1228572943,
-          96.7
+          15966,
+          13269441,
+          76804262,
+          2118810212,
+          95.9
         ],
         [
           "2026-11",
           "cli",
-          4532,
-          3984939,
-          19825191,
-          473140985,
-          95.2
+          14678,
+          16578825,
+          67343242,
+          1491784998,
+          94.7
         ],
         [
           "2026-11",
           "sdk-cli",
-          5726,
-          18275385,
-          41326128,
-          485744813,
-          89.1
+          6306,
+          19381816,
+          45612575,
+          526140212,
+          89.0
         ]
       ]
     },
@@ -4722,14 +8196,25 @@
         ],
         [
           "2026-11-02",
-          13449,
-          24000356,
-          76234996,
-          1437825051,
-          11,
-          22,
-          42,
-          35
+          28321,
+          42272871,
+          151328459,
+          3063525122,
+          25,
+          41,
+          41,
+          18
+        ],
+        [
+          "2026-11-09",
+          2652,
+          3116907,
+          16710014,
+          323576610,
+          17,
+          28,
+          72,
+          0
         ]
       ]
     },
@@ -4748,20 +8233,20 @@
         [
           "2026-05",
           "devin",
-          59,
-          57,
+          58,
+          56,
           2,
-          37084,
-          19540
+          36856,
+          19032
         ],
         [
           "2026-05",
           "kimi",
-          32,
-          25,
+          23,
+          16,
           7,
-          9111,
-          12684
+          5615,
+          8785
         ],
         [
           "2026-06",
@@ -4793,11 +8278,11 @@
         [
           "2026-07",
           "devin",
-          10,
-          8,
+          9,
+          7,
           3,
-          6382,
-          5105
+          5862,
+          4557
         ],
         [
           "2026-07",
@@ -4858,7 +8343,7 @@
         [
           "devin",
           "browser",
-          6,
+          5,
           4
         ],
         [
@@ -4882,7 +8367,7 @@
         [
           "devin",
           "review",
-          82,
+          81,
           6
         ],
         [
@@ -4894,7 +8379,7 @@
         [
           "kimi",
           "implementation-lite",
-          11,
+          6,
           2
         ],
         [
@@ -4906,7 +8391,7 @@
         [
           "kimi",
           "review",
-          129,
+          125,
           13
         ],
         [
@@ -5093,21 +8578,21 @@
         [
           "2026-10-05",
           "claude",
-          106,
-          1,
-          123879,
-          257077752,
-          2102111,
-          552.32
+          11,
+          0,
+          3035,
+          32230379,
+          310162,
+          80.62
         ],
         [
           "2026-10-05",
           "codex",
-          96,
-          12,
-          651425148,
-          632089088,
-          2997125,
+          1,
+          1,
+          0,
+          0,
+          0,
           0.0
         ],
         [
@@ -5173,12 +8658,42 @@
         [
           "2026-11-02",
           "claude",
+          2,
+          0,
+          32,
+          624027,
+          10259,
+          0.45
+        ],
+        [
+          "2026-11-02",
+          "codex",
+          2,
+          1,
+          5041468,
+          4867200,
+          23018,
+          0.0
+        ],
+        [
+          "2026-11-09",
+          "claude",
           1,
           0,
-          24,
-          529939,
-          8221,
-          0.33
+          26,
+          748198,
+          8581,
+          0.46
+        ],
+        [
+          "2026-11-09",
+          "codex",
+          2,
+          0,
+          17705684,
+          17440512,
+          74473,
+          0.0
         ]
       ]
     },
@@ -5219,49 +8734,49 @@
         ],
         [
           "2026-11",
-          57,
-          60,
-          4,
-          226,
-          251
+          104,
+          91,
+          11,
+          353,
+          511
         ]
       ]
     }
   ],
-  "data_through": "2026-11-04 10:54:55 UTC",
-  "partial_today": "2026-11-04",
+  "data_through": "2026-11-09 22:41:36 UTC",
+  "partial_today": "2026-11-09",
   "recent_coverage": {
     "Claude": {
-      "2026-11-03": true,
-      "2026-11-04": true
+      "2026-11-08": true,
+      "2026-11-09": true
     },
     "Codex": {
-      "2026-11-03": true,
-      "2026-11-04": true
+      "2026-11-08": true,
+      "2026-11-09": true
     }
   },
   "last7": {
-    "data_through": "2026-11-04T10:54:55Z",
-    "window": "2026-10-28..2026-11-03 (last 7 complete UTC days)",
-    "partial_today": "2026-11-04",
+    "data_through": "2026-11-09T22:41:36Z",
+    "window": "2026-11-02..2026-11-08 (last 7 complete UTC days)",
+    "partial_today": "2026-11-09",
     "claude": {
-      "fresh_input": 53746,
-      "output": 19167343,
-      "cache_write": 99725298,
-      "cache_read": 2552904100,
-      "weighted": 261930117,
+      "fresh_input": 60752,
+      "output": 42212119,
+      "cache_write": 151328459,
+      "cache_read": 3063525122,
+      "weighted": 385901409,
       "weighting": "input+cache_write+output+cache_read*0.05 (opus/sonnet-5.5; 0.025 fable; 0.1 other)",
-      "raw": 2671850487
+      "raw": 3257126452
     },
     "codex": {
-      "fresh_input": 52040032,
-      "cached_input": 1852266556,
-      "output": 11593701,
-      "total_own": 1915900289,
+      "fresh_input": 22262486,
+      "cached_input": 605516398,
+      "output": 3426042,
+      "total_own": 631204926,
       "weighted": "NOT_ESTABLISHED (no published Codex cache weights)"
     },
-    "start": "2026-10-28",
-    "end": "2026-11-03"
+    "start": "2026-11-02",
+    "end": "2026-11-08"
   },
   "other_sources": [
     {
@@ -5303,254 +8818,6 @@
   ],
   "mcp_callers": [],
   "last7_rows": [
-    [
-      "2026-10-28",
-      "claude_transcripts:claude-desktop",
-      1410,
-      326009,
-      2239442,
-      84895950,
-      592
-    ],
-    [
-      "2026-10-28",
-      "claude_transcripts:claude-desktop:sidechain",
-      362,
-      136900,
-      1416710,
-      11111022,
-      164
-    ],
-    [
-      "2026-10-28",
-      "claude_transcripts:cli",
-      4563,
-      1357495,
-      6410627,
-      245393415,
-      2051
-    ],
-    [
-      "2026-10-28",
-      "claude_transcripts:cli:sidechain",
-      7417,
-      1792585,
-      7218827,
-      136509745,
-      1483
-    ],
-    [
-      "2026-10-28",
-      "claude_transcripts:sdk-cli",
-      762,
-      841811,
-      2239950,
-      20335656,
-      371
-    ],
-    [
-      "2026-10-28",
-      "codex_corrected",
-      10430821,
-      2192288,
-      0,
-      254037888,
-      null,
-      270644497
-    ],
-    [
-      "2026-10-29",
-      "claude_transcripts:claude-desktop",
-      192,
-      52682,
-      356377,
-      13092530,
-      91
-    ],
-    [
-      "2026-10-29",
-      "claude_transcripts:cli",
-      532,
-      176982,
-      1292753,
-      31879012,
-      252
-    ],
-    [
-      "2026-10-29",
-      "claude_transcripts:sdk-cli",
-      71,
-      19869,
-      129731,
-      1523523,
-      31
-    ],
-    [
-      "2026-10-29",
-      "codex_corrected",
-      1282625,
-      270336,
-      0,
-      24937856,
-      null,
-      26130529
-    ],
-    [
-      "2026-10-30",
-      "claude_transcripts:claude-desktop",
-      1800,
-      477885,
-      3600942,
-      106363875,
-      823
-    ],
-    [
-      "2026-10-30",
-      "claude_transcripts:claude-desktop:sidechain",
-      156,
-      128941,
-      694057,
-      4902875,
-      77
-    ],
-    [
-      "2026-10-30",
-      "claude_transcripts:cli",
-      2836,
-      877590,
-      7282794,
-      153502040,
-      1268
-    ],
-    [
-      "2026-10-30",
-      "claude_transcripts:cli:sidechain",
-      926,
-      590242,
-      2937810,
-      34113031,
-      430
-    ],
-    [
-      "2026-10-30",
-      "claude_transcripts:sdk-cli",
-      595,
-      338487,
-      1783662,
-      22119058,
-      282
-    ],
-    [
-      "2026-10-30",
-      "codex_corrected",
-      9645026,
-      2563570,
-      0,
-      310871680,
-      null,
-      298150781
-    ],
-    [
-      "2026-10-31",
-      "claude_transcripts:claude-desktop",
-      1396,
-      291294,
-      2355103,
-      82167119,
-      605
-    ],
-    [
-      "2026-10-31",
-      "claude_transcripts:claude-desktop:sidechain",
-      150,
-      81075,
-      237056,
-      7400077,
-      74
-    ],
-    [
-      "2026-10-31",
-      "claude_transcripts:cli",
-      694,
-      214860,
-      1896944,
-      39403944,
-      313
-    ],
-    [
-      "2026-10-31",
-      "claude_transcripts:cli:sidechain",
-      210,
-      123508,
-      834376,
-      5074501,
-      103
-    ],
-    [
-      "2026-10-31",
-      "codex_corrected",
-      4096144,
-      1748971,
-      0,
-      358155776,
-      null,
-      279252988
-    ],
-    [
-      "2026-11-01",
-      "claude_transcripts:claude-desktop",
-      9470,
-      2045839,
-      12627336,
-      565011452,
-      4076
-    ],
-    [
-      "2026-11-01",
-      "claude_transcripts:claude-desktop:sidechain",
-      1842,
-      675655,
-      2789469,
-      38994656,
-      439
-    ],
-    [
-      "2026-11-01",
-      "claude_transcripts:cli",
-      1886,
-      531589,
-      3245145,
-      102194743,
-      845
-    ],
-    [
-      "2026-11-01",
-      "claude_transcripts:cli:sidechain",
-      1196,
-      551380,
-      2833375,
-      42663268,
-      585
-    ],
-    [
-      "2026-11-01",
-      "claude_transcripts:sdk-cli",
-      70,
-      21377,
-      226281,
-      769571,
-      32
-    ],
-    [
-      "2026-11-01",
-      "codex_corrected",
-      11517522,
-      2453380,
-      0,
-      416345728,
-      null,
-      531985733
-    ],
     [
       "2026-11-02",
       "claude_transcripts:claude-desktop",
@@ -5678,6 +8945,269 @@
       177901824,
       null,
       276892372
+    ],
+    [
+      "2026-11-04",
+      "claude_transcripts:claude-desktop",
+      2610,
+      583496,
+      5405608,
+      162611155,
+      1136
+    ],
+    [
+      "2026-11-04",
+      "claude_transcripts:claude-desktop:sidechain",
+      276,
+      202315,
+      1453718,
+      13583935,
+      136
+    ],
+    [
+      "2026-11-04",
+      "claude_transcripts:cli",
+      3582,
+      1282526,
+      5621552,
+      182152625,
+      1662
+    ],
+    [
+      "2026-11-04",
+      "claude_transcripts:cli:sidechain",
+      64,
+      35538,
+      166689,
+      1433688,
+      31
+    ],
+    [
+      "2026-11-04",
+      "claude_transcripts:sdk-cli",
+      9322,
+      14730302,
+      31980082,
+      393199108,
+      4428
+    ],
+    [
+      "2026-11-04",
+      "claude_transcripts:sdk-cli:sidechain",
+      232,
+      733724,
+      1312070,
+      6632195,
+      115
+    ],
+    [
+      "2026-11-04",
+      "claude_transcripts:unattributed",
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      "2026-11-04",
+      "codex_corrected",
+      6483946,
+      976415,
+      0,
+      106423808,
+      null,
+      110979256
+    ],
+    [
+      "2026-11-05",
+      "claude_transcripts:claude-desktop",
+      390,
+      90432,
+      990467,
+      25570092,
+      165
+    ],
+    [
+      "2026-11-05",
+      "claude_transcripts:claude-desktop:sidechain",
+      470,
+      306238,
+      1420522,
+      22753018,
+      233
+    ],
+    [
+      "2026-11-05",
+      "claude_transcripts:cli",
+      350,
+      131079,
+      932843,
+      17973947,
+      164
+    ],
+    [
+      "2026-11-05",
+      "claude_transcripts:cli:sidechain",
+      176,
+      122279,
+      350091,
+      5022825,
+      86
+    ],
+    [
+      "2026-11-06",
+      "claude_transcripts:claude-desktop",
+      854,
+      250354,
+      2161227,
+      52288805,
+      362
+    ],
+    [
+      "2026-11-06",
+      "claude_transcripts:claude-desktop:sidechain",
+      326,
+      179306,
+      893421,
+      14327371,
+      162
+    ],
+    [
+      "2026-11-06",
+      "claude_transcripts:cli",
+      1740,
+      702068,
+      2494519,
+      91965238,
+      783
+    ],
+    [
+      "2026-11-06",
+      "claude_transcripts:cli:sidechain",
+      1922,
+      1697536,
+      5060890,
+      75258503,
+      932
+    ],
+    [
+      "2026-11-06",
+      "claude_transcripts:sdk-cli",
+      336,
+      346044,
+      1087084,
+      9553411,
+      165
+    ],
+    [
+      "2026-11-07",
+      "claude_transcripts:claude-desktop",
+      2516,
+      869876,
+      4710081,
+      168053366,
+      1143
+    ],
+    [
+      "2026-11-07",
+      "claude_transcripts:claude-desktop:sidechain",
+      1420,
+      1121518,
+      4247072,
+      75070040,
+      697
+    ],
+    [
+      "2026-11-07",
+      "claude_transcripts:cli",
+      3334,
+      1539181,
+      8183683,
+      185560324,
+      1481
+    ],
+    [
+      "2026-11-07",
+      "claude_transcripts:cli:sidechain",
+      4166,
+      2391501,
+      8311832,
+      160786706,
+      2015
+    ],
+    [
+      "2026-11-07",
+      "claude_transcripts:sdk-cli",
+      210,
+      143164,
+      598395,
+      4600266,
+      102
+    ],
+    [
+      "2026-11-08",
+      "claude_transcripts:claude-desktop",
+      2832,
+      1416951,
+      7200524,
+      190743856,
+      1318
+    ],
+    [
+      "2026-11-08",
+      "claude_transcripts:claude-desktop:sidechain",
+      1382,
+      1344369,
+      4758048,
+      72487344,
+      682
+    ],
+    [
+      "2026-11-08",
+      "claude_transcripts:cli",
+      3000,
+      1786629,
+      7538081,
+      160697912,
+      1344
+    ],
+    [
+      "2026-11-08",
+      "claude_transcripts:cli:sidechain",
+      3916,
+      2588108,
+      8238856,
+      163774810,
+      1911
+    ],
+    [
+      "2026-11-08",
+      "claude_transcripts:sdk-cli",
+      116,
+      104297,
+      1134573,
+      3941545,
+      57
+    ],
+    [
+      "2026-11-08",
+      "claude_transcripts:unattributed",
+      0,
+      0,
+      0,
+      0,
+      5
+    ],
+    [
+      "2026-11-08",
+      "codex_corrected",
+      710646,
+      84471,
+      0,
+      10112640,
+      null,
+      10489909
     ]
   ],
   "tool_results": [
@@ -9327,11 +12857,11 @@
     [
       "2026-11-04",
       "claude_transcripts:claude-desktop",
-      2040,
-      467151,
-      3811869,
-      127336991,
-      898
+      2610,
+      583496,
+      5405608,
+      162611155,
+      1136
     ],
     [
       "2026-11-04",
@@ -9345,20 +12875,29 @@
     [
       "2026-11-04",
       "claude_transcripts:cli",
-      2366,
-      815832,
-      3845667,
-      114891796,
-      1100
+      3582,
+      1282526,
+      5621552,
+      182152625,
+      1662
+    ],
+    [
+      "2026-11-04",
+      "claude_transcripts:cli:sidechain",
+      64,
+      35538,
+      166689,
+      1433688,
+      31
     ],
     [
       "2026-11-04",
       "claude_transcripts:sdk-cli",
-      8852,
-      14239070,
-      30735141,
-      371897097,
-      4194
+      9322,
+      14730302,
+      31980082,
+      393199108,
+      4428
     ],
     [
       "2026-11-04",
@@ -9377,6 +12916,231 @@
       0,
       0,
       1
+    ],
+    [
+      "2026-11-05",
+      "claude_transcripts:claude-desktop",
+      390,
+      90432,
+      990467,
+      25570092,
+      165
+    ],
+    [
+      "2026-11-05",
+      "claude_transcripts:claude-desktop:sidechain",
+      470,
+      306238,
+      1420522,
+      22753018,
+      233
+    ],
+    [
+      "2026-11-05",
+      "claude_transcripts:cli",
+      350,
+      131079,
+      932843,
+      17973947,
+      164
+    ],
+    [
+      "2026-11-05",
+      "claude_transcripts:cli:sidechain",
+      176,
+      122279,
+      350091,
+      5022825,
+      86
+    ],
+    [
+      "2026-11-06",
+      "claude_transcripts:claude-desktop",
+      854,
+      250354,
+      2161227,
+      52288805,
+      362
+    ],
+    [
+      "2026-11-06",
+      "claude_transcripts:claude-desktop:sidechain",
+      326,
+      179306,
+      893421,
+      14327371,
+      162
+    ],
+    [
+      "2026-11-06",
+      "claude_transcripts:cli",
+      1740,
+      702068,
+      2494519,
+      91965238,
+      783
+    ],
+    [
+      "2026-11-06",
+      "claude_transcripts:cli:sidechain",
+      1922,
+      1697536,
+      5060890,
+      75258503,
+      932
+    ],
+    [
+      "2026-11-06",
+      "claude_transcripts:sdk-cli",
+      336,
+      346044,
+      1087084,
+      9553411,
+      165
+    ],
+    [
+      "2026-11-07",
+      "claude_transcripts:claude-desktop",
+      2516,
+      869876,
+      4710081,
+      168053366,
+      1143
+    ],
+    [
+      "2026-11-07",
+      "claude_transcripts:claude-desktop:sidechain",
+      1420,
+      1121518,
+      4247072,
+      75070040,
+      697
+    ],
+    [
+      "2026-11-07",
+      "claude_transcripts:cli",
+      3334,
+      1539181,
+      8183683,
+      185560324,
+      1481
+    ],
+    [
+      "2026-11-07",
+      "claude_transcripts:cli:sidechain",
+      4166,
+      2391501,
+      8311832,
+      160786706,
+      2015
+    ],
+    [
+      "2026-11-07",
+      "claude_transcripts:sdk-cli",
+      210,
+      143164,
+      598395,
+      4600266,
+      102
+    ],
+    [
+      "2026-11-08",
+      "claude_transcripts:claude-desktop",
+      2832,
+      1416951,
+      7200524,
+      190743856,
+      1318
+    ],
+    [
+      "2026-11-08",
+      "claude_transcripts:claude-desktop:sidechain",
+      1382,
+      1344369,
+      4758048,
+      72487344,
+      682
+    ],
+    [
+      "2026-11-08",
+      "claude_transcripts:cli",
+      3000,
+      1786629,
+      7538081,
+      160697912,
+      1344
+    ],
+    [
+      "2026-11-08",
+      "claude_transcripts:cli:sidechain",
+      3916,
+      2588108,
+      8238856,
+      163774810,
+      1911
+    ],
+    [
+      "2026-11-08",
+      "claude_transcripts:sdk-cli",
+      116,
+      104297,
+      1134573,
+      3941545,
+      57
+    ],
+    [
+      "2026-11-08",
+      "claude_transcripts:unattributed",
+      0,
+      0,
+      0,
+      0,
+      5
+    ],
+    [
+      "2026-11-09",
+      "claude_transcripts:claude-desktop",
+      3462,
+      1626068,
+      9540262,
+      211612180,
+      1523
+    ],
+    [
+      "2026-11-09",
+      "claude_transcripts:claude-desktop:sidechain",
+      617,
+      352809,
+      2483616,
+      22057033,
+      274
+    ],
+    [
+      "2026-11-09",
+      "claude_transcripts:cli",
+      1014,
+      628731,
+      2954956,
+      55977230,
+      461
+    ],
+    [
+      "2026-11-09",
+      "claude_transcripts:cli:sidechain",
+      764,
+      482880,
+      1509726,
+      32932001,
+      372
+    ],
+    [
+      "2026-11-09",
+      "claude_transcripts:sdk-cli",
+      48,
+      20514,
+      221454,
+      998166,
+      22
     ]
   ],
   "composition_as_first_measured": {
@@ -9386,7 +13150,7 @@
       "cache_read": null,
       "output": null,
       "unassigned": null,
-      "total": 22868211759
+      "total": 24930681339
     },
     "codex": {
       "fresh_input": 5583035694,
@@ -9399,38 +13163,38 @@
   },
   "ranges_as_first_measured": {
     "all": [
-      11047553680,
-      8679554932,
+      12416041853,
+      9373536339,
       263994077611,
       3850351962
     ],
     "90": [
-      11047480515,
-      8679554932,
-      123870486744,
+      12415968688,
+      9373536339,
+      50270216374,
       3141103147
     ],
     "30": [
-      8152020577,
-      2187206118,
-      4546599008,
+      8327917934,
+      2284358585,
+      3088981393,
       0
     ],
     "7": [
-      2220889604,
-      450960883,
-      698197497,
+      2451908543,
+      805217909,
+      0,
       0
     ],
     "since": [
-      11030892882,
-      8679554932,
+      12399381055,
+      9373536339,
       6929426675,
       3141103147
     ],
     "exclude": [
-      11047553680,
-      8679554932,
+      12416041853,
+      9373536339,
       12119357910,
       3850351962
     ]
@@ -9665,10 +13429,10 @@
         }
       ],
       "summary": {
-        "week_start": "2026-10-26",
+        "week_start": "2026-11-02",
         "model": "claude-opus-5-5",
-        "share": 0.491,
-        "started_on": "sonnet-5-5",
+        "share": 0.461,
+        "started_on": "claude-haiku-5-5",
         "basis": "weighted"
       }
     },
@@ -10036,9 +13800,9 @@
         }
       ],
       "summary": {
-        "week_start": "2026-10-26",
+        "week_start": "2026-11-02",
         "model": "gpt-6.1-sol",
-        "share": 1.0,
+        "share": 0.536,
         "started_on": "gpt-6.1-sol",
         "basis": "raw"
       }
@@ -10451,6 +14215,13 @@
         "added": 14731,
         "removed": 3531,
         "lines_touched": 18262
+      },
+      {
+        "week_start": "2026-11-09",
+        "actor": "all",
+        "added": 0,
+        "removed": 0,
+        "lines_touched": 0
       }
     ],
     "daily": [
@@ -13249,6 +17020,41 @@
       },
       {
         "date": "2026-11-04",
+        "actor": "all",
+        "added": 0,
+        "removed": 0,
+        "lines_touched": 0
+      },
+      {
+        "date": "2026-11-05",
+        "actor": "all",
+        "added": 0,
+        "removed": 0,
+        "lines_touched": 0
+      },
+      {
+        "date": "2026-11-06",
+        "actor": "all",
+        "added": 0,
+        "removed": 0,
+        "lines_touched": 0
+      },
+      {
+        "date": "2026-11-07",
+        "actor": "all",
+        "added": 0,
+        "removed": 0,
+        "lines_touched": 0
+      },
+      {
+        "date": "2026-11-08",
+        "actor": "all",
+        "added": 0,
+        "removed": 0,
+        "lines_touched": 0
+      },
+      {
+        "date": "2026-11-09",
         "actor": "all",
         "added": 0,
         "removed": 0,
@@ -22574,6 +26380,121 @@
     },
     {
       "date": "2026-11-04",
+      "day_status": "complete",
+      "commits_landed": "0",
+      "commits_landed_claude": "0",
+      "commits_landed_codex": "0",
+      "commits_landed_claude_codex": "0",
+      "commits_landed_other": "0",
+      "commits_landed_human": "0",
+      "commits_all_refs": "0",
+      "commits_merge": "0",
+      "code_added": "0",
+      "code_removed": "0",
+      "code_touched": "0",
+      "all_added_raw": "0",
+      "all_removed_raw": "0",
+      "tokens_claude": "823136412",
+      "tokens_codex": "110979256",
+      "tokens_other": "0",
+      "tokens_total": "934115668",
+      "claude_token_status": "measured",
+      "codex_token_status": "measured"
+    },
+    {
+      "date": "2026-11-05",
+      "day_status": "complete",
+      "commits_landed": "0",
+      "commits_landed_claude": "0",
+      "commits_landed_codex": "0",
+      "commits_landed_claude_codex": "0",
+      "commits_landed_other": "0",
+      "commits_landed_human": "0",
+      "commits_all_refs": "0",
+      "commits_merge": "0",
+      "code_added": "0",
+      "code_removed": "0",
+      "code_touched": "0",
+      "all_added_raw": "0",
+      "all_removed_raw": "0",
+      "tokens_claude": "75665219",
+      "tokens_codex": "0",
+      "tokens_other": "0",
+      "tokens_total": "75665219",
+      "claude_token_status": "measured",
+      "codex_token_status": "unmeasured"
+    },
+    {
+      "date": "2026-11-06",
+      "day_status": "complete",
+      "commits_landed": "0",
+      "commits_landed_claude": "0",
+      "commits_landed_codex": "0",
+      "commits_landed_claude_codex": "0",
+      "commits_landed_other": "0",
+      "commits_landed_human": "0",
+      "commits_all_refs": "0",
+      "commits_merge": "0",
+      "code_added": "0",
+      "code_removed": "0",
+      "code_touched": "0",
+      "all_added_raw": "0",
+      "all_removed_raw": "0",
+      "tokens_claude": "258270955",
+      "tokens_codex": "0",
+      "tokens_other": "0",
+      "tokens_total": "258270955",
+      "claude_token_status": "measured",
+      "codex_token_status": "unmeasured"
+    },
+    {
+      "date": "2026-11-07",
+      "day_status": "complete",
+      "commits_landed": "0",
+      "commits_landed_claude": "0",
+      "commits_landed_codex": "0",
+      "commits_landed_claude_codex": "0",
+      "commits_landed_other": "0",
+      "commits_landed_human": "0",
+      "commits_all_refs": "0",
+      "commits_merge": "0",
+      "code_added": "0",
+      "code_removed": "0",
+      "code_touched": "0",
+      "all_added_raw": "0",
+      "all_removed_raw": "0",
+      "tokens_claude": "626198651",
+      "tokens_codex": "0",
+      "tokens_other": "0",
+      "tokens_total": "626198651",
+      "claude_token_status": "measured",
+      "codex_token_status": "unmeasured"
+    },
+    {
+      "date": "2026-11-08",
+      "day_status": "complete",
+      "commits_landed": "0",
+      "commits_landed_claude": "0",
+      "commits_landed_codex": "0",
+      "commits_landed_claude_codex": "0",
+      "commits_landed_other": "0",
+      "commits_landed_human": "0",
+      "commits_all_refs": "0",
+      "commits_merge": "0",
+      "code_added": "0",
+      "code_removed": "0",
+      "code_touched": "0",
+      "all_added_raw": "0",
+      "all_removed_raw": "0",
+      "tokens_claude": "627767149",
+      "tokens_codex": "10489909",
+      "tokens_other": "0",
+      "tokens_total": "638257058",
+      "claude_token_status": "measured",
+      "codex_token_status": "measured"
+    },
+    {
+      "date": "2026-11-09",
       "day_status": "partial",
       "commits_landed": "0",
       "commits_landed_claude": "0",
@@ -22588,10 +26509,10 @@
       "code_touched": "0",
       "all_added_raw": "0",
       "all_removed_raw": "0",
-      "tokens_claude": "691972337",
-      "tokens_codex": "66917992",
+      "tokens_claude": "343403531",
+      "tokens_codex": "38365071",
       "tokens_other": "0",
-      "tokens_total": "758890329",
+      "tokens_total": "381768602",
       "claude_token_status": "measured",
       "codex_token_status": "measured"
     }
@@ -26196,6 +30117,51 @@
       "claude_codex": 0,
       "other": 0,
       "total": 0
+    },
+    {
+      "date": "2026-11-05",
+      "human": 0,
+      "claude": 0,
+      "codex": 0,
+      "claude_codex": 0,
+      "other": 0,
+      "total": 0
+    },
+    {
+      "date": "2026-11-06",
+      "human": 0,
+      "claude": 0,
+      "codex": 0,
+      "claude_codex": 0,
+      "other": 0,
+      "total": 0
+    },
+    {
+      "date": "2026-11-07",
+      "human": 0,
+      "claude": 0,
+      "codex": 0,
+      "claude_codex": 0,
+      "other": 0,
+      "total": 0
+    },
+    {
+      "date": "2026-11-08",
+      "human": 0,
+      "claude": 0,
+      "codex": 0,
+      "claude_codex": 0,
+      "other": 0,
+      "total": 0
+    },
+    {
+      "date": "2026-11-09",
+      "human": 0,
+      "claude": 0,
+      "codex": 0,
+      "claude_codex": 0,
+      "other": 0,
+      "total": 0
     }
   ],
   "commit_log": {
@@ -26338,7 +30304,7 @@
         "claude_codex": 21,
         "other": 17,
         "total": 195,
-        "days": 4
+        "days": 9
       }
     ],
     "events": [
@@ -26354,12 +30320,12 @@
   },
   "mcp": {
     "summary": {
-      "calls_completed": 166798,
-      "request_failed": 1886,
+      "calls_completed": 173390,
+      "request_failed": 1942,
       "transport_failed": 9407,
-      "tools": 58,
+      "tools": 59,
       "first": "2026-08-24",
-      "last": "2026-11-04"
+      "last": "2026-11-09"
     },
     "coverage": [
       [
@@ -26441,8 +30407,8 @@
     "months": "June to October",
     "sessions": 43,
     "own_tokens": 347244558,
-    "lifetime": 28004903890,
-    "share": 1.2399419736055377,
+    "lifetime": 28097820134,
+    "share": 1.2358416287953022,
     "commits": 667,
     "note": "Node-operations campaign, June to October: 43 Codex sessions, about 0.35B own tokens (about 1% of the Codex measured total); 667 commits in that period.",
     "public": true
@@ -26450,14 +30416,14 @@
   "public": true,
   "traffic": {
     "schema": 1,
-    "built": "2026-11-04",
+    "built": "2026-11-09",
     "coverage": {
       "transcripts": {
-        "files": 3694,
+        "files": 4199,
         "first": "2026-09-23",
-        "last": "2026-11-04",
+        "last": "2026-11-09",
         "fable_first": "2026-09-24",
-        "fable_last": "2026-11-01",
+        "fable_last": "2026-11-09",
         "gaps": [
           "Advisor-tool calls are not separate transcripts, so Fable-as-advisor is not counted.",
           "Only transcripts mirrored from this host; laptop Claude not included.",
@@ -26466,38 +30432,38 @@
       },
       "bus": {
         "first": "2026-08-25",
-        "last": "2026-11-04",
-        "messages": 12745
+        "last": "2026-11-09",
+        "messages": 13217
       },
       "mcp": {
         "first": "2026-08-24",
-        "last": "2026-11-04"
+        "last": "2026-11-09"
       }
     },
     "invocations_by_model": {
       "sonnet-5-5": {
-        "runs": 1067,
-        "messages": 79894,
-        "subagent_runs": 689,
-        "main_sessions": 378
+        "runs": 1306,
+        "messages": 90023,
+        "subagent_runs": 910,
+        "main_sessions": 396
       },
       "opus-5-5": {
-        "runs": 453,
-        "messages": 114664,
-        "subagent_runs": 187,
-        "main_sessions": 266
+        "runs": 521,
+        "messages": 135221,
+        "subagent_runs": 205,
+        "main_sessions": 316
       },
       "fable": {
-        "runs": 490,
-        "messages": 16339,
-        "subagent_runs": 476,
+        "runs": 491,
+        "messages": 16345,
+        "subagent_runs": 477,
         "main_sessions": 14
       }
     },
     "fable_invokers": [
       [
         "Claude opus-5-5 session, via Agent tool",
-        329
+        330
       ],
       [
         "Claude sonnet-5-5 session, via Agent tool",
@@ -26519,7 +30485,7 @@
     "fable_paths": [
       [
         "Agent tool (subagent)",
-        476
+        477
       ],
       [
         "desktop session",
@@ -26533,7 +30499,7 @@
     "fable_subagent_types": [
       [
         "reviewer subagent",
-        388
+        389
       ],
       [
         "model override on general-purpose",
@@ -26584,43 +30550,49 @@
       [
         "2026-11-02",
         0,
-        20,
-        41
+        69,
+        246
+      ],
+      [
+        "2026-11-09",
+        1,
+        19,
+        34
       ]
     ],
     "bus": {
       "sent": [
         [
           "ChatGPT",
-          3205
+          3252
         ],
         [
           "Claude sessions",
-          2313
+          2337
         ],
         [
           "Agent Host",
-          2214
-        ],
-        [
-          "Codex",
-          1303
+          2220
         ],
         [
           "Scheduled jobs",
-          1288
+          1393
+        ],
+        [
+          "Codex",
+          1310
         ],
         [
           "Other",
-          980
+          1256
         ],
         [
           "Another consumer",
-          617
+          623
         ],
         [
           "Claude launchers",
-          519
+          520
         ],
         [
           "Bus followers",
@@ -26638,19 +30610,19 @@
       "received": [
         [
           "ChatGPT",
-          5212
+          5396
         ],
         [
           "Claude sessions",
-          2844
+          2853
         ],
         [
           "Claude launchers",
-          1891
+          2010
         ],
         [
           "Other",
-          826
+          978
         ],
         [
           "ChatGPT/Codex research roles",
@@ -26658,7 +30630,7 @@
         ],
         [
           "Codex",
-          596
+          599
         ],
         [
           "Agent Host",
@@ -26666,7 +30638,7 @@
         ],
         [
           "Another consumer",
-          282
+          287
         ],
         [
           "Orchestrator agent",
@@ -26718,7 +30690,7 @@
     },
     "other_paths": {
       "bus_posts_naming_fable_model": 1,
-      "mcp_coordination_post_calls": 5009,
+      "mcp_coordination_post_calls": 5071,
       "launch_commands_naming_fable": {
         "claude": 6
       }
