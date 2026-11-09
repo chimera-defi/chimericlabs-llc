@@ -40,8 +40,8 @@ for d, x in codex.items():
     if d not in corrected: raise SystemExit(f'codex_daily_corrected.csv has no row for {d}')
     if d in corrected: x['cached_input'] = max(0, corrected[d] - x['fresh_input'] - x['output'])
 for d in days:
-    # A Codex day with no rows is a real zero (e.g. 2026-11-05..07, every session hit usage_limit_exceeded) when later Codex days exist.
-    if d not in claude or (d not in codex and not any(x > d for x in codex)):
+    # A Codex day with no rows is a real zero (e.g. 2026-11-05..07, every session hit usage_limit_exceeded) only when the corrected series has no usage that day and later Codex days exist.
+    if d not in claude or (d not in codex and (corrected.get(d, 0) or not any(x > d for x in codex))):
         sys.exit(f'last7: no Claude or Codex data for complete day {d}; refresh the inputs first')
 
 head = 'date,complete_day,claude_fresh_input,claude_output,claude_cache_write,claude_cache_read,claude_weighted,codex_fresh_input,codex_output,codex_cached_input,codex_total_own'.split(',')
