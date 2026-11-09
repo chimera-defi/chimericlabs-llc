@@ -3,6 +3,7 @@
 Claude comes from claude_daily_dim.csv, Codex totals from codex_daily_corrected.csv, fresh/output split from codex_daily_split.csv. Aggregates only.
 usage: last7.py HANDOFF_DIR [OUT_DIR]   (OUT_DIR defaults to HANDOFF_DIR)"""
 import csv, json, sys
+from decimal import Decimal
 from collections import defaultdict
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -17,12 +18,12 @@ partial = today.isoformat()
 
 def cache_read_weight(model):
     m = (model or '').lower()
-    if 'fable' in m: return .025
-    if m in ('claude-opus-5-5', 'claude-sonnet-5-5'): return .05
-    return .1
+    if 'fable' in m: return Decimal('.025')
+    if m in ('claude-opus-5-5', 'claude-sonnet-5-5'): return Decimal('.05')
+    return Decimal('.1')
 
 
-claude = defaultdict(lambda: dict(fresh_input=0, output=0, cache_write=0, cache_read=0, weighted=0.0))
+claude = defaultdict(lambda: dict(fresh_input=0, output=0, cache_write=0, cache_read=0, weighted=Decimal(0)))
 for r in csv.DictReader((H/'claude_daily_dim.csv').open()):
     if r['model'] == '<synthetic>': continue
     c = claude[r['date']]
@@ -39,13 +40,14 @@ for d, x in codex.items():
     if d not in corrected: raise SystemExit(f'codex_daily_corrected.csv has no row for {d}')
     if d in corrected: x['cached_input'] = max(0, corrected[d] - x['fresh_input'] - x['output'])
 for d in days:
-    if d not in claude or d not in codex:
+    # A Codex day with no rows is a real zero (e.g. 2026-11-05..07, every session hit usage_limit_exceeded) when later Codex days exist.
+    if d not in claude or (d not in codex and not any(x > d for x in codex)):
         sys.exit(f'last7: no Claude or Codex data for complete day {d}; refresh the inputs first')
 
 head = 'date,complete_day,claude_fresh_input,claude_output,claude_cache_write,claude_cache_read,claude_weighted,codex_fresh_input,codex_output,codex_cached_input,codex_total_own'.split(',')
 rows = []
 for d in days + [partial]:
-    c, x = claude.get(d), codex.get(d)
+    c, x = claude.get(d), codex.get(d, dict(fresh_input=0, cached_input=0, output=0) if d in days else None)
     if c is None or x is None: continue
     flag = 'yes' if d in days else f'partial (data through {t:%H:%M}Z)'
     rows.append([d, flag, c['fresh_input'], c['output'], c['cache_write'], c['cache_read'], round(c['weighted']),
@@ -59,7 +61,8 @@ doc = {
     'data_through': through,
     'window': f'{days[0]}..{days[-1]} (last 7 complete UTC days)',
     'partial_today': partial,
-    'claude': {'fresh_input': s(2), 'output': s(3), 'cache_write': s(4), 'cache_read': s(5), 'weighted': s(6),
+    # Weighted total rounds once over the week (not a sum of rounded days), as check_v5 recomputes it.
+    'claude': {'fresh_input': s(2), 'output': s(3), 'cache_write': s(4), 'cache_read': s(5), 'weighted': int(Decimal(sum(claude[d]['weighted'] for d in days)).to_integral_value()),
                'weighting': 'input+cache_write+output+cache_read*0.05 (opus/sonnet-5.5; 0.025 fable; 0.1 other)',
                'source': 'data_refresh/claude_daily_dim.csv'},
     'codex': {'fresh_input': s(7), 'cached_input': s(9), 'output': s(8), 'total_own': s(10),
