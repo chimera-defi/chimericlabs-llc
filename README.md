@@ -19,7 +19,7 @@ Open `index.html` directly in a browser, or serve the directory with any static 
 
 ## Research pages
 
-`research.html` lists our research reports. The DispatchBench page is pulled from the
+`research.html` lists every article, newest first, with a date and one line each. Add a card there for each new page: the deploy runs `python3 scripts/check_orphans.py _site`, which fails when a page cannot be reached by links from the home page (`--report` shows who links to what). The DispatchBench page is pulled from the
 [bench repo's main branch](https://github.com/chimera-defi/dispatchbench) on every deploy
 and daily. To refresh now, run:
 
