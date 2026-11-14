@@ -6,10 +6,10 @@
     <title>Research — ChimericLabs</title>
     <meta
       name="description"
-      content="Research from ChimericLabs: benchmarks and reports on AI coding agents, including DispatchBench."
+      content="Every ChimericLabs article, report and explainer, newest first: AI agent benchmarks, lab notes, Ethereum client research and contract explainers."
     />
     <meta property="og:title" content="Research — ChimericLabs" />
-    <meta property="og:description" content="Research from ChimericLabs: benchmarks and reports on AI coding agents, including DispatchBench." />
+    <meta property="og:description" content="Every ChimericLabs article, report and explainer, newest first: AI agent benchmarks, lab notes, Ethereum client research and contract explainers." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://chimericlabs.xyz/research.html" />
     <meta name="twitter:card" content="summary" />
@@ -109,38 +109,39 @@
       <section class="border-b border-line" aria-labelledby="research-heading">
         <div class="mx-auto max-w-6xl px-5 sm:px-8 py-[calc(var(--section-y)/2)]">
           <h1 id="research-heading" class="break-words font-serif text-3xl sm:text-5xl text-slate-50 text-balance max-w-lg">Research</h1>
-          <p class="mt-5 text-slate-400 leading-relaxed max-w-xl">Benchmarks and reports from our work with AI coding agents.</p>
+          <p class="mt-5 text-slate-400 leading-relaxed max-w-xl">Every article, report and explainer we publish, newest first.</p>
 
           <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-5">
             <article class="flex flex-col gap-4 fl-card fl-card--link">
               <div>
-                <span class="fl-label">Lab notes · 2026-10</span>
-                <h2 class="mt-2 font-serif text-xl text-slate-100">What we&#x27;ve been building</h2>
+                <span class="fl-label">Contract explainer · <time datetime="2026-11-14">14 Nov 2026</time></span>
+                <h2 class="mt-2 font-serif text-xl text-slate-100">What the trading bot contract 0x51C7…2A7F does</h2>
               </div>
               <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                Seven projects, eleven months, and the AI tokens behind them. A timeline with pictures.
+                A plain-words read of a verified Ethereum contract: a privately run trading and market-making bot that is also its own wallet.
               </p>
               <div class="flex flex-wrap items-center gap-x-5 gap-y-1 border-t border-line pt-4 text-sm">
-                <a href="research/building/" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Read it →</a>
+                <a href="research/trading-bot-contract/" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Read it →</a>
+                <a href="https://etherscan.io/address/0x51c72848c68a965f66fa7a88855f9f7784502a7f#code" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">Source on Etherscan</a>
               </div>
             </article>
 
             <article class="flex flex-col gap-4 fl-card fl-card--link">
               <div>
-                <span class="fl-label">Systems · 2026-10</span>
-                <h2 class="mt-2 font-serif text-xl text-slate-100">How Claudefolio works</h2>
+                <span class="fl-label">Visual explainer · <time datetime="2026-11-14">14 Nov 2026</time></span>
+                <h2 class="mt-2 font-serif text-xl text-slate-100">How the SHA-256 miner got faster</h2>
               </div>
               <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                A portfolio research platform any AI agent can hook into. Agents research and check; a human approves every trade.
+                Two changes made a simple SHA-256 miner faster: eight guesses per AVX2 operation, and a short filter that skips hopeless guesses.
               </p>
               <div class="flex flex-wrap items-center gap-x-5 gap-y-1 border-t border-line pt-4 text-sm">
-                <a href="research/claudefolio/" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Read it →</a>
+                <a href="research/sha256/" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Read it →</a>
               </div>
             </article>
 
             <article class="flex flex-col gap-4 fl-card fl-card--link">
               <div>
-                <span class="fl-label">Lab notes</span>
+                <span class="fl-label">Lab notes · <time datetime="2026-11-01">1 Nov 2026</time></span>
                 <h2 class="mt-2 font-serif text-xl text-slate-100">Token usage study</h2>
               </div>
               <p class="flex-1 text-sm text-slate-400 leading-relaxed">
@@ -153,7 +154,86 @@
 
             <article class="flex flex-col gap-4 fl-card fl-card--link">
               <div>
-                <span class="fl-label">Agent Benchmark · 2026-10</span>
+                <span class="fl-label">Agent Systems · <time datetime="2026-11-01">1 Nov 2026</time></span>
+                <h2 class="mt-2 font-serif text-xl text-slate-100">Wren scheduled jobs</h2>
+              </div>
+              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
+                An example of scheduled jobs on the Wren server: name, what each does and how often.
+              </p>
+              <div class="flex flex-wrap items-center gap-x-5 gap-y-1 border-t border-line pt-4 text-sm">
+                <a href="research/wren/jobs/" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Read it →</a>
+              </div>
+            </article>
+
+            <article class="flex flex-col gap-4 fl-card fl-card--link">
+              <div>
+                <span class="fl-label">Lab notes · <time datetime="2026-10-31">31 Oct 2026</time></span>
+                <h2 class="mt-2 font-serif text-xl text-slate-100">What we&#x27;ve been building</h2>
+              </div>
+              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
+                Seven projects, eleven months, and the AI tokens behind them. A timeline with pictures.
+              </p>
+              <div class="flex flex-wrap items-center gap-x-5 gap-y-1 border-t border-line pt-4 text-sm">
+                <a href="research/building/" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Read it →</a>
+              </div>
+            </article>
+
+            <article class="flex flex-col gap-4 fl-card fl-card--link">
+              <div>
+                <span class="fl-label">Systems · <time datetime="2026-10-31">31 Oct 2026</time></span>
+                <h2 class="mt-2 font-serif text-xl text-slate-100">How Claudefolio works</h2>
+              </div>
+              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
+                A portfolio research platform any AI agent can hook into. Agents research and check; a human approves every trade.
+              </p>
+              <div class="flex flex-wrap items-center gap-x-5 gap-y-1 border-t border-line pt-4 text-sm">
+                <a href="research/claudefolio/" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Read it →</a>
+              </div>
+            </article>
+
+            <article class="flex flex-col gap-4 fl-card fl-card--link">
+              <div>
+                <span class="fl-label">Archive · <time datetime="2026-10-31">31 Oct 2026</time></span>
+                <h2 class="mt-2 font-serif text-xl text-slate-100">What it looked like</h2>
+              </div>
+              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
+                Screenshots of Chimeric Labs project sites, kept here because sites go offline.
+              </p>
+              <div class="flex flex-wrap items-center gap-x-5 gap-y-1 border-t border-line pt-4 text-sm">
+                <a href="research/screenshots/" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">See them →</a>
+              </div>
+            </article>
+
+            <article class="flex flex-col gap-4 fl-card fl-card--link">
+              <div>
+                <span class="fl-label">Concept · Music Tokenization · <time datetime="2026-10-28">28 Oct 2026</time></span>
+                <h2 class="mt-2 font-serif text-xl text-slate-100">Breakout</h2>
+              </div>
+              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
+                A design concept for backing musicians early. It is a mock with placeholder numbers: no live trading, no wallet connection and no real artists.
+              </p>
+              <div class="flex flex-wrap items-center gap-x-5 gap-y-1 border-t border-line pt-4 text-sm">
+                <a href="breakout.html" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">View the concept →</a>
+              </div>
+            </article>
+
+            <article class="flex flex-col gap-4 fl-card fl-card--link">
+              <div>
+                <span class="fl-label">Agent Systems · <time datetime="2026-10-26">26 Oct 2026</time></span>
+                <h2 class="mt-2 font-serif text-xl text-slate-100">Wren: our own Claude Duet</h2>
+              </div>
+              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
+                Claude Code on a personal server, reachable from a phone or ChatGPT, handing work to cheaper models and other agents. What it's made of, how it compares with Claude Duet, and what it costs.
+              </p>
+              <div class="flex flex-wrap items-center gap-x-5 gap-y-1 border-t border-line pt-4 text-sm">
+                <a href="research/wren/" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Read the article →</a>
+                <a href="https://github.com/chimera-defi/claude-remote-session-skill" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">crss on GitHub</a>
+              </div>
+            </article>
+
+            <article class="flex flex-col gap-4 fl-card fl-card--link">
+              <div>
+                <span class="fl-label">Agent Benchmark · <time datetime="2026-10-25">25 Oct 2026</time></span>
                 <h2 class="mt-2 font-serif text-xl text-slate-100">DispatchBench</h2>
               </div>
               <p class="flex-1 text-sm text-slate-400 leading-relaxed">
@@ -167,28 +247,7 @@
 
             <article class="flex flex-col gap-4 fl-card fl-card--link">
               <div>
-                <span class="fl-label">Agent Systems · 2026-10</span>
-                <h2 class="mt-2 font-serif text-xl text-slate-100">Wren: our own Claude Duet</h2>
-              </div>
-              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                Claude Code on a personal server, reachable from a phone or ChatGPT, handing work to cheaper models and other agents. What it's made of, how it compares with Claude Duet, and what it costs.
-              </p>
-              <div class="flex flex-wrap items-center gap-x-5 gap-y-1 border-t border-line pt-4 text-sm">
-                <a href="research/wren/" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Read the article →</a>
-                <a href="https://github.com/chimera-defi/claude-remote-session-skill" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">crss on GitHub</a>
-              </div>
-            </article>
-          </div>
-
-          <div class="mt-10">
-            <span class="fl-label">Client research</span>
-            <p class="mt-3 max-w-2xl text-slate-400 leading-relaxed">Four articles from a six-week Ethereum client sync campaign: the write-up, raw results, agent methodology and harness reference.</p>
-          </div>
-
-          <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <article class="flex flex-col gap-4 fl-card fl-card--link">
-              <div>
-                <span class="fl-label">Ethereum Clients · 2026-07</span>
+                <span class="fl-label">Ethereum Clients · <time datetime="2026-07">Jul 2026</time></span>
                 <h2 class="mt-2 font-serif text-xl text-slate-100">Ethereum client bake-off</h2>
               </div>
               <p class="flex-1 text-sm text-slate-400 leading-relaxed">
@@ -196,13 +255,13 @@
               </p>
               <div class="flex flex-wrap items-center gap-x-5 gap-y-1 border-t border-line pt-4 text-sm">
                 <a href="research/eth2/ethereum-client-bakeoff/" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Read the article →</a>
-                <a href="https://eth2quickstart.com/blog/ethereum-client-bakeoff" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">Original on eth2quickstart.com</a>
+                <a href="https://eth2quickstart.com/blog/ethereum-client-bakeoff" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">Original</a>
               </div>
             </article>
 
             <article class="flex flex-col gap-4 fl-card fl-card--link">
               <div>
-                <span class="fl-label">Ethereum Clients · 2026-07</span>
+                <span class="fl-label">Ethereum Clients · <time datetime="2026-07">Jul 2026</time></span>
                 <h2 class="mt-2 font-serif text-xl text-slate-100">Bake-off results</h2>
               </div>
               <p class="flex-1 text-sm text-slate-400 leading-relaxed">
@@ -210,13 +269,13 @@
               </p>
               <div class="flex flex-wrap items-center gap-x-5 gap-y-1 border-t border-line pt-4 text-sm">
                 <a href="research/eth2/bakeoff-results/" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Read the article →</a>
-                <a href="https://eth2quickstart.com/blog/bakeoff-results" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">Original on eth2quickstart.com</a>
+                <a href="https://eth2quickstart.com/blog/bakeoff-results" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">Original</a>
               </div>
             </article>
 
             <article class="flex flex-col gap-4 fl-card fl-card--link">
               <div>
-                <span class="fl-label">Ethereum Clients · 2026-07</span>
+                <span class="fl-label">Ethereum Clients · <time datetime="2026-07">Jul 2026</time></span>
                 <h2 class="mt-2 font-serif text-xl text-slate-100">How we tested with Claude</h2>
               </div>
               <p class="flex-1 text-sm text-slate-400 leading-relaxed">
@@ -224,13 +283,13 @@
               </p>
               <div class="flex flex-wrap items-center gap-x-5 gap-y-1 border-t border-line pt-4 text-sm">
                 <a href="research/eth2/how-we-tested-with-claude/" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Read the article →</a>
-                <a href="https://eth2quickstart.com/blog/how-we-tested-with-claude" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">Original on eth2quickstart.com</a>
+                <a href="https://eth2quickstart.com/blog/how-we-tested-with-claude" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">Original</a>
               </div>
             </article>
 
             <article class="flex flex-col gap-4 fl-card fl-card--link">
               <div>
-                <span class="fl-label">Ethereum Clients · 2026-07</span>
+                <span class="fl-label">Ethereum Clients · <time datetime="2026-07">Jul 2026</time></span>
                 <h2 class="mt-2 font-serif text-xl text-slate-100">The bake-off harness</h2>
               </div>
               <p class="flex-1 text-sm text-slate-400 leading-relaxed">
@@ -238,9 +297,22 @@
               </p>
               <div class="flex flex-wrap items-center gap-x-5 gap-y-1 border-t border-line pt-4 text-sm">
                 <a href="research/eth2/bakeoff-harness/" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Read the article →</a>
-                <a href="https://eth2quickstart.com/blog/bakeoff-harness" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">Original on eth2quickstart.com</a>
+                <a href="https://eth2quickstart.com/blog/bakeoff-harness" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">Original</a>
               </div>
             </article>
+          </div>
+
+          <div class="mt-12">
+            <h2 class="fl-label">Reference</h2>
+            <p class="mt-3 max-w-2xl text-slate-400 leading-relaxed">Pages from the Fable design system that our pages are built with.</p>
+            <div class="mt-4 flex flex-wrap items-center gap-x-5 gap-y-1 text-sm">
+              <a href="design-system/guidelines/palette.html" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Full palette</a>
+              <a href="design-system/guidelines/grounds.card.html" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Grounds</a>
+              <a href="design-system/guidelines/accent-ramp.card.html" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Accent ramp</a>
+              <a href="design-system/guidelines/data-colours.card.html" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Data colours</a>
+              <a href="design-system/guidelines/type.card.html" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Type</a>
+              <a href="design-system/guidelines/controls.card.html" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Controls</a>
+            </div>
           </div>
         </div>
       </section>
