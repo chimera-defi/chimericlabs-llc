@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23080e1d'/><text x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='16' font-weight='600' fill='%2300c4ff'>CL</text></svg>" />
+<title>What the trading bot contract 0x51C7…2A7F does</title>
+<meta name="description" content="A plain-words read of a verified Ethereum contract: a privately run trading and market-making bot that is also its own wallet. What it does, who can do what, and what we checked.">
+<style>
+/* Fable tokens (Nocturne base, maroon accent), inlined so the page stays self-contained, as on research/sha256 */
+:root{
+  --color-bg:#1d1f27;--color-surface:#2b2d37;--color-text:#e9e9ed;
+  --color-muted:#b2b6ca;--color-line:#3f424d;--color-neutral-600:#75798c;
+  --color-accent:#f65b6f;--color-accent-400:#fe949b;--color-accent-800:#78182a;
+  --data-codex:#7fb0e6;
+  --font:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+  --radius-md:8px;--radius-lg:14px;
+}
+*{box-sizing:border-box}
+body{margin:0;font:17px/1.6 var(--font);color:var(--color-text);text-wrap:pretty;
+  background:radial-gradient(1200px 720px at 82% -160px,color-mix(in srgb,var(--color-accent-800) 70%,transparent),transparent 60%),var(--color-bg)}
+main{max-width:44rem;margin:0 auto;padding:40px 16px 72px}
+a{color:var(--color-accent-400);text-underline-offset:3px}
+.back{display:inline-flex;min-height:44px;align-items:center;margin-bottom:16px;font-size:.9rem;color:var(--color-muted)}
+.kicker{margin:0 0 12px;font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--color-accent-400)}
+h1{margin:0 0 16px;font-size:clamp(2rem,6vw,3rem);line-height:1.1;font-weight:600;letter-spacing:-.02em}
+h2{margin:0 0 16px;font-size:1.35rem;line-height:1.25;font-weight:600}
+h3{margin:0 0 8px;font-size:1rem;font-weight:600}
+.lede{margin:0;font-size:1.15rem;color:var(--color-muted)}
+section{margin-top:48px;padding-top:32px;border-top:1px solid var(--color-line)}
+p{margin:16px 0 0;color:var(--color-muted)}
+p strong,li strong{color:var(--color-text)}
+code{font:.9em var(--mono);overflow-wrap:anywhere}
+.nw{white-space:nowrap}
+.addr{font:.95rem var(--mono);overflow-wrap:anywhere}
+.answers{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:32px}
+.answer{padding:16px;background:var(--color-surface);border:1px solid var(--color-line);border-radius:var(--radius-md)}
+.answer p{margin:0;font-size:.95rem}
+.answer.watch{border-color:var(--color-accent)}
+.who{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+.role{padding:14px 12px;font-size:.95rem;background:var(--color-surface);border:1px solid var(--color-line);border-radius:var(--radius-md)}
+.role b{display:block;margin-bottom:4px;color:var(--color-text)}
+.role span{color:var(--color-muted)}
+.control{margin-top:8px;padding:14px 12px;text-align:center;font-size:.95rem;background:var(--color-accent-800);border-radius:var(--radius-md)}
+figure{margin:24px 0 0}
+figcaption{margin-bottom:8px;font-size:.85rem;color:var(--color-muted)}
+pre{margin:0;padding:14px 16px;font:.85rem/1.55 var(--mono);color:var(--color-text);white-space:pre-wrap;overflow-wrap:anywhere;
+  background:var(--color-surface);border:1px solid var(--color-line);border-radius:var(--radius-md)}
+.facts{margin:24px 0 0;padding:0;list-style:none}
+.facts li{padding:12px 0;border-top:1px solid var(--color-line);color:var(--color-muted)}
+.facts strong{font-variant-numeric:tabular-nums}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
+.checks ul{margin:0;padding-left:18px;color:var(--color-muted);font-size:.95rem}
+.checks li{margin-top:8px}
+.card{padding:16px;background:var(--color-surface);border:1px solid var(--color-line);border-radius:var(--radius-md)}
+.card.yes{border-top:3px solid var(--data-codex)}
+.card.no{border-top:3px solid var(--color-neutral-600)}
+.caveat{margin-top:24px;padding:16px;font-size:.95rem;color:var(--color-text);background:var(--color-surface);border-left:3px solid var(--color-accent);border-radius:var(--radius-md)}
+@media (max-width:640px){
+  .answers,.who,.checks{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<main>
+<a class="back" href="../../research.html">← Research</a>
+<p class="kicker">Contract explainer · Ethereum mainnet</p>
+<h1>What the trading bot contract <span class="nw">0x51C7…2A7F</span> does</h1>
+<p class="lede">It is a privately run trading and market-making bot that is also its own wallet. We read its verified source, rebuilt it, and checked the build against the chain.</p>
+<p class="addr"><a href="https://etherscan.io/address/0x51c72848c68a965f66fa7a88855f9f7784502a7f#code">0x51C72848c68a965f66FA7a88855F9f7784502a7F on Etherscan</a></p>
+
+<div class="answers">
+<div class="answer"><h3>What it does</h3><p>It trades its own funds on Uniswap and Curve, quotes prices for 0x and AirSwap orders, and pays out to a fixed list of addresses.</p></div>
+<div class="answer"><h3>Who it is for</h3><p>Only the people who run it. It has no deposit function and no user balances. Outsiders have no reason to call it.</p></div>
+<div class="answer watch"><h3>What to watch for</h3><p>Anything sent to it stays there. An unknown function call succeeds and does nothing. A registry contract decides who can move its funds.</p></div>
+</div>
+
+<section aria-labelledby="h-plain">
+<h2 id="h-plain">In plain words</h2>
+<div class="who" role="img" aria-label="Three groups of accounts, each with one job: operators trade, the RFQ signer quotes, transferers pay out. A registry contract sets all the lists and a multisig owns the bot.">
+<div class="role"><b>Operators</b><span>swap on whitelisted pools and can tip the block builder</span></div>
+<div class="role"><b>RFQ signer</b><span>an off-chain key whose signed quotes the bot vouches for</span></div>
+<div class="role"><b>Transferers</b><span>send tokens or ETH, only to approved recipients</span></div>
+</div>
+<div class="control">A registry contract sets every list. A multisig owns the bot and approves token allowances.</div>
+<p>The verified source calls itself an “MEV bot and contract wallet”. MEV bots trade on price gaps between pools inside a single block. This one also acts as a market maker: when 0x or AirSwap settle an order against it, they ask the bot whether the quote was really signed by its key.</p>
+<p><strong>Verdict:</strong> it is not a drainer and not a honeypot. No function lets an outsider take funds, and no function pulls tokens from anyone. Every path that moves value needs a role, a whitelist or an allowance.</p>
+</section>
+
+<section aria-labelledby="h-how">
+<h2 id="h-how">How it works</h2>
+<p>Short excerpts from the verified <code>Bot.sol</code>, with its line numbers. Names ending in a random suffix are the source's own stand-ins: its authors' real names are unknown.</p>
+
+<figure>
+<figcaption>Emergency brake, lines 373–381. Any staff role can stop the bot. It then zeroes every token allowance it gave out. Only the multisig can switch it back on.</figcaption>
+<pre>function killContract() external {
+    require(
+        _operators[msg.sender] || _wethHandlers_9mt4lD[msg.sender] || _transferers_3TlnxV[msg.sender]
+            || msg.sender == multiSigOwner,
+        "H11"
+    );
+    isActive = false;
+    revokeAllApprovals_IXLJyu();
+}</pre>
+</figure>
+
+<figure>
+<figcaption>Paying out, lines 459–463. Each check is a gate: the bot is on, the caller is a transferer, and every recipient is on the approved list.</figcaption>
+<pre>function transferTo(IERC20[] memory tokens, uint256[] memory amounts, address[] memory to)
+    external
+    whenActive
+    onlyTransferer
+    onlyApprovedRecipients(to)</pre>
+</figure>
+
+<figure>
+<figcaption>Builder tip, lines 685–686. A trade can pay ETH to the block builder, but only to a builder on its list. The result of the send is not checked.</figcaption>
+<pre>require(_approvedCoinbaseAddresses[block.coinbase], "H17");
+block.coinbase.call{value: tip, gas: 0}(""); // result ignored, as deployed</pre>
+</figure>
+
+<figure>
+<figcaption>Quote check, lines 689–692. Only approved venues may ask. The answer is yes only if the bot's RFQ key signed the hash.</figcaption>
+<pre>function isValidSignature(bytes32 hash, bytes memory signature) external view whenActive returns (bytes4) {
+    require(_approvedRfqCallers_1CiVF7[msg.sender], "H19");
+    return _validateSignature(hash, signature);
+}</pre>
+</figure>
+
+<figure>
+<figcaption>Curve payment, lines 673–679. A whitelisted Curve pool is paid the amount of the coin it names, if an operator sent the transaction.</figcaption>
+<pre>function curveSwapCallback1337(address sender, address receiver, address coin, uint256 dx, uint256 dy)
+    external
+    onlyCurvePool(msg.sender)
+{
+    require(_operators[tx.origin], "H31");
+    coin.call(abi.encodeWithSelector(IERC20.transfer.selector, msg.sender, dx));
+}</pre>
+</figure>
+</section>
+
+<section aria-labelledby="h-flags">
+<h2 id="h-flags">What a reviewer would flag</h2>
+<p>These are design facts, not claims that anything has gone wrong.</p>
+<ul class="facts">
+<li><strong>The registry holds the keys.</strong> It names the transferers and the recipients, and those two lists together are enough to send out any token or ETH. The registry contract is not verified, so its own rules can't be read.</li>
+<li><strong>The Curve payment trusts the transaction's sender.</strong> It checks <code>tx.origin</code> and the pool list, not whether the bot started the swap. Curve pools join the list without a factory check (lines 285–287).</li>
+<li><strong>A failed revoke drops the token anyway.</strong> The token leaves the tracked list before its <code>approve(0)</code> runs. If that call fails, a log is the only trace (lines 416–426).</li>
+<li><strong>Some results are ignored:</strong> ETH payouts (line 489), builder tips (686) and pool payments (656, 665, 669, 678).</li>
+<li><strong>A stored timelock is never enforced here.</strong> <code>timelockDelay</code> is set once and only read back (lines 128, 176, 362).</li>
+<li><strong>No upgrade path.</strong> There is no proxy, <code>delegatecall</code> or <code>selfdestruct</code>. The owner, registry and WETH addresses are fixed at deploy.</li>
+</ul>
+<p class="note">State read on 14 Nov 2026 (block 26,415,084): the bot is on. It has <strong>10</strong> approved spenders, among them Uniswap's Permit2 and 1inch's router, and <strong>161</strong> approved tokens with <strong>613</strong> open allowances.</p>
+</section>
+
+<section aria-labelledby="h-checked">
+<h2 id="h-checked">What we checked, and what we didn't</h2>
+<div class="checks">
+<div class="card yes"><h3>Checked</h3><ul>
+<li>The verified source, built with the exact compiler and settings, gives the deployed code byte for byte, deploy arguments included.</li>
+<li>We wrote a shorter readable version. It has the same functions, argument types and storage layout.</li>
+<li>Run side by side from the same address, the deployed bytes and the readable version gave identical results on every step of a test that calls every function.</li>
+<li>On a local copy of mainnet, both gave the same output for a real swap and zeroed the same 613 allowances.</li>
+</ul></div>
+<div class="card no"><h3>Not checked</h3><ul>
+<li>The metadata hash differs, as it must: the verified file is a reconstruction with stand-in names, listed as a partial match on Sourcify.</li>
+<li>Equivalence for every possible input. Tests are examples, not a proof.</li>
+<li>The outside contracts: the registry, the multisig's signers, the venues and the spenders.</li>
+<li>Who runs it. We make no claim about that.</li>
+</ul></div>
+</div>
+</section>
+
+<section aria-labelledby="h-read">
+<h2 id="h-read">How to read a contract on Etherscan</h2>
+<p>Open the address and pick the <strong>Contract</strong> tab. A green check means the source is verified: it was compiled and matched to the code on chain. <strong>Code</strong> shows the source, and <strong>Read Contract</strong> shows its current state without sending anything. Leave <strong>Write Contract</strong> alone: it asks your wallet to sign a transaction.</p>
+<p class="caveat">Research and explanation only. Everything here comes from the verified source and read-only calls; nothing was sent to the contract. This is not financial advice. Do not interact with contracts you don't know.</p>
+</section>
+</main>
+</body>
+</html>
