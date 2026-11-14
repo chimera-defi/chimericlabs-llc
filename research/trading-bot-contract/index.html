@@ -72,9 +72,9 @@ pre{margin:0;padding:14px 16px;font:.85rem/1.55 var(--mono);color:var(--color-te
 <p class="addr"><a href="https://etherscan.io/address/0x51c72848c68a965f66fa7a88855f9f7784502a7f#code">0x51C72848c68a965f66FA7a88855F9f7784502a7F on Etherscan</a></p>
 
 <div class="answers">
-<div class="answer"><h3>What it does</h3><p>It trades its own funds on Uniswap and Curve, quotes prices for 0x and AirSwap orders, and pays out to a fixed list of addresses.</p></div>
+<div class="answer"><h3>What it does</h3><p>It trades its own funds on Uniswap and Curve, confirms its signed quotes for 0x and AirSwap orders, and pays out to an approved list of addresses.</p></div>
 <div class="answer"><h3>Who it is for</h3><p>Only the people who run it. It has no deposit function and no user balances. Outsiders have no reason to call it.</p></div>
-<div class="answer watch"><h3>What to watch for</h3><p>Anything sent to it stays there. An unknown function call succeeds and does nothing. A registry contract decides who can move its funds.</p></div>
+<div class="answer watch"><h3>What to watch for</h3><p>Anything sent to it by mistake can't be pulled back by the sender. An unknown function call succeeds and does nothing. A registry contract decides who can move its funds.</p></div>
 </div>
 
 <section aria-labelledby="h-plain">
@@ -91,10 +91,10 @@ pre{margin:0;padding:14px 16px;font:.85rem/1.55 var(--mono);color:var(--color-te
 
 <section aria-labelledby="h-how">
 <h2 id="h-how">How it works</h2>
-<p>Short excerpts from the verified <code>Bot.sol</code>, with its line numbers. Names ending in a random suffix are the source's own stand-ins: its authors' real names are unknown.</p>
+<p>Short excerpts from the verified <code>Bot.sol</code>, with its line numbers. Names ending in a random suffix are the source's own stand-ins: the original function names are unknown.</p>
 
 <figure>
-<figcaption>Emergency brake, lines 373–381. Any staff role can stop the bot. It then zeroes every token allowance it gave out. Only the multisig can switch it back on.</figcaption>
+<figcaption>Emergency brake, lines 373–381. Any staff role can stop the bot. It then zeroes every token allowance it gave out; a failed one is only logged. Only the multisig can switch it back on.</figcaption>
 <pre>function killContract() external {
     require(
         _operators[msg.sender] || _wethHandlers_9mt4lD[msg.sender] || _transferers_3TlnxV[msg.sender]
@@ -145,10 +145,10 @@ block.coinbase.call{value: tip, gas: 0}(""); // result ignored, as deployed</pre
 <h2 id="h-flags">What a reviewer would flag</h2>
 <p>These are design facts, not claims that anything has gone wrong.</p>
 <ul class="facts">
-<li><strong>The registry holds the keys.</strong> It names the transferers and the recipients, and those two lists together are enough to send out any token or ETH. The registry contract is not verified, so its own rules can't be read.</li>
+<li><strong>The registry holds the keys.</strong> It names the transferers and the recipients, and those two lists together are enough to send out any token or ETH. The registry contract is not verified on Sourcify or Blockscout, so its own rules can't be read.</li>
 <li><strong>The Curve payment trusts the transaction's sender.</strong> It checks <code>tx.origin</code> and the pool list, not whether the bot started the swap. Curve pools join the list without a factory check (lines 285–287).</li>
 <li><strong>A failed revoke drops the token anyway.</strong> The token leaves the tracked list before its <code>approve(0)</code> runs. If that call fails, a log is the only trace (lines 416–426).</li>
-<li><strong>Some results are ignored:</strong> ETH payouts (line 489), builder tips (686) and pool payments (656, 665, 669, 678).</li>
+<li><strong>Some results are ignored:</strong> ETH payouts (line 489), builder tips (686) and pool payments (589, 656, 665, 669, 678).</li>
 <li><strong>A stored timelock is never enforced here.</strong> <code>timelockDelay</code> is set once and only read back (lines 128, 176, 362).</li>
 <li><strong>No upgrade path.</strong> There is no proxy, <code>delegatecall</code> or <code>selfdestruct</code>. The owner, registry and WETH addresses are fixed at deploy.</li>
 </ul>
@@ -161,8 +161,8 @@ block.coinbase.call{value: tip, gas: 0}(""); // result ignored, as deployed</pre
 <div class="card yes"><h3>Checked</h3><ul>
 <li>The verified source, built with the exact compiler and settings, gives the deployed code byte for byte, deploy arguments included.</li>
 <li>We wrote a shorter readable version. It has the same functions, argument types and storage layout.</li>
-<li>Run side by side from the same address, the deployed bytes and the readable version gave identical results on every step of a test that calls every function.</li>
-<li>On a local copy of mainnet, both gave the same output for a real swap and zeroed the same 613 allowances.</li>
+<li>Run side by side from the same address, the deployed bytes and the readable version gave identical results on every step of a test that calls every external function.</li>
+<li>On a local copy of mainnet at block 26,415,084, both gave the same output for a real swap and zeroed the same 613 allowances.</li>
 </ul></div>
 <div class="card no"><h3>Not checked</h3><ul>
 <li>The metadata hash differs, as it must: the verified file is a reconstruction with stand-in names, listed as a partial match on Sourcify.</li>
