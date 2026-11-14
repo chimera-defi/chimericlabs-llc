@@ -43,6 +43,9 @@ jobs:
       - name: Mirror eth2-quickstart articles
         run: python3 scripts/mirror_eth2_articles.py --out _site/research/eth2
 
+      - name: Every page is linked from the home page
+        run: python3 scripts/check_orphans.py _site
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
