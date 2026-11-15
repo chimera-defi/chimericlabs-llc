@@ -358,6 +358,32 @@
               </div>
             </article>
 
+            <article class="flex flex-col gap-5 fl-card fl-card--link">
+              <div>
+                <span class="fl-label">Explainer · SHA-256 mining</span>
+                <h3 class="mt-2 font-serif text-xl text-slate-100">We made SHA-256 hash mining about 42 times faster</h3>
+              </div>
+              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
+                Our SHA-256 miner went from 2.6 to 109 million guesses a second: C++ to Rust on a SIMD library, then our patch on top. Pictures, steps and every measured run.
+              </p>
+              <div class="flex items-center gap-5 border-t border-line pt-5 text-sm">
+                <a href="research/sha256/" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Read the explainer →</a>
+              </div>
+            </article>
+
+            <article class="flex flex-col gap-5 fl-card fl-card--link">
+              <div>
+                <span class="fl-label">Explainer · SHA-256 search cost</span>
+                <h3 class="mt-2 font-serif text-xl text-slate-100">What it costs to find a SHA-256 prefix</h3>
+              </div>
+              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
+                How many guesses, and how much time, a hash that starts with your prefix needs. Each extra character costs 64 times more. Pictures and a calculator.
+              </p>
+              <div class="flex items-center gap-5 border-t border-line pt-5 text-sm">
+                <a href="research/sha256-search-cost/" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Open the calculator →</a>
+              </div>
+            </article>
+
           </div>
 
           <p class="mt-8 text-sm">

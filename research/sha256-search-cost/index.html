@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SHA-256 prefix search cost: 64 times more per character</title>
+<meta name="description" content="How many guesses, and how long, it takes to find a SHA-256 hash that starts with a prefix you choose. Each extra Base64 character costs 64 times more, or 32 times for a letter when case is ignored. Pictures and a calculator.">
+<meta property="og:title" content="SHA-256 prefix search cost: 64 times more per character">
+<meta property="og:description" content="How many guesses and how much time a SHA-256 prefix needs, with a calculator.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://chimericlabs.xyz/research/sha256-search-cost/">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://chimericlabs.xyz/research/sha256-search-cost/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23080e1d'/><text x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='16' font-weight='600' fill='%2300c4ff'>CL</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Hanken+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/field-lab/tokens.css">
+<link rel="stylesheet" href="../../assets/field-lab/field-lab.css">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/article.css">
+<style>
+/* This page only: the calculator. The drawn pictures live in assets/article.css. */
+.calc { margin-top: var(--space-4); padding: var(--space-4); background: var(--surface); border: 1.5px solid var(--ink); }
+.calc *, .tile { box-sizing: border-box; }
+.calc .row > div { min-width: 0; }
+.calc .row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); gap: var(--space-4); align-items: end; }
+.art .calc input[type=number], .art .calc select { width: 100%; min-height: 44px; padding: 0 var(--space-3); font: 1rem var(--f-body); color: var(--ink); background: var(--bg); border: 1.5px solid var(--ink); border-radius: var(--radius-sm); }
+.art .calc input[type=range] { width: 100%; min-height: 44px; accent-color: var(--accent-ink); }
+.calc input:disabled { color: var(--ink-2); background: var(--surface-2); border-style: dashed; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: var(--space-3); margin-top: var(--space-4); }
+.tile { padding: var(--space-3) var(--space-4); background: var(--bg); border: 1px solid var(--ink); }
+.tile .k { display: block; font: var(--t-label); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); }
+.tile output { display: block; margin-top: var(--space-1); font: 600 1.375rem/1.25 var(--f-mono); overflow-wrap: anywhere; }
+.art .calc .hint { margin-top: var(--space-3); }
+.calc .lead { margin: 0 0 var(--space-3); }
+.js .nojs, html:not(.js) .needs-js { display: none; }
+.credit { margin-top: var(--space-3); }
+</style>
+<script>document.documentElement.classList.add("js")</script>
+</head>
+<body>
+<a class="skip" href="#article">Skip to content</a>
+<header class="site-header">
+<div class="site-header-inner">
+<a href="../../index.html" class="site-brand inline-flex">ChimericLabs</a>
+<nav class="site-nav" aria-label="Primary">
+<a href="../../portfolio.html" class="site-nav-link">Portfolio</a>
+<a href="../../research.html" class="site-nav-link" aria-current="page">Research</a>
+<a href="../../index.html#services" class="site-nav-link">Services</a>
+<a href="https://github.com/chimera-defi" target="_blank" rel="noreferrer" class="site-nav-link gh">GitHub</a>
+<a href="mailto:chimera_defi@protonmail.com" class="site-nav-link site-contact fl-btn">Contact</a>
+</nav>
+</div>
+</header>
+
+<main class="art-wrap">
+<nav class="art-crumb" aria-label="Breadcrumb"><a href="../../research.html">← Research</a> <a href="https://chimera-defi.github.io/simple-sha256-miner/">The miner and its docs</a></nav>
+
+<article class="art" id="article">
+<header class="art-head">
+<p class="fl-label">Explainer · <time datetime="2026-11-15">15 Nov 2026</time> · 6 min read</p>
+<h1>What it costs to find a SHA-256 prefix</h1>
+<p class="art-lede">Each extra Base64 character makes the search 64 times longer. Ignoring case makes a letter cost 32 times instead. More threads make guessing faster, not luckier.</p>
+</header>
+
+<div class="art-col">
+
+<section id="loop">
+<h2>1. Guess, hash, compare, repeat</h2>
+<p><strong>The miner tries numbers in order until a hash starts with your prefix.</strong> It joins your phrase and a counter, such as <code>gensys:0</code>. The counter is called the nonce. It hashes the text with SHA-256 and writes the digest in Base64 (<a href="https://github.com/chimera-defi/simple-sha256-miner/blob/4118081dec42179ccb260ad219df666392c5300a/v2/src/lib.rs#L113-L115">message</a>, <a href="https://github.com/chimera-defi/simple-sha256-miner/blob/4118081dec42179ccb260ad219df666392c5300a/v2/src/lib.rs#L127-L133">encoding</a>). Then it compares the first characters with your prefix. A miss is dropped. A hit is hashed again with a reference library before it is reported (<a href="https://github.com/chimera-defi/simple-sha256-miner/blob/4118081dec42179ccb260ad219df666392c5300a/v2/src/main.rs#L213-L215">main.rs</a>).</p>
+<figure class="pic">
+<svg viewBox="0 0 320 150" role="img" aria-labelledby="f1t f1d">
+<title id="f1t">Four guesses, one match</title>
+<desc id="f1d">Four columns. Each shows a guess, gensys:0 to gensys:3, with an arrow down to its result. The first three results read no match. The fourth reads match.</desc>
+<g>
+<rect class="box" x="4" y="8" width="72" height="30" rx="2"/><text class="t" x="40" y="27" text-anchor="middle">gensys:0</text>
+<path class="ln" d="M40 38 V70"/><path class="arr" d="M40 76 L35 68 H45 Z"/>
+<rect class="miss dash" x="4" y="80" width="72" height="30" rx="2"/><text class="t" x="40" y="99" text-anchor="middle">✗ no match</text>
+</g><g>
+<rect class="box" x="84" y="8" width="72" height="30" rx="2"/><text class="t" x="120" y="27" text-anchor="middle">gensys:1</text>
+<path class="ln" d="M120 38 V70"/><path class="arr" d="M120 76 L115 68 H125 Z"/>
+<rect class="miss dash" x="84" y="80" width="72" height="30" rx="2"/><text class="t" x="120" y="99" text-anchor="middle">✗ no match</text>
+</g><g>
+<rect class="box" x="164" y="8" width="72" height="30" rx="2"/><text class="t" x="200" y="27" text-anchor="middle">gensys:2</text>
+<path class="ln" d="M200 38 V70"/><path class="arr" d="M200 76 L195 68 H205 Z"/>
+<rect class="miss dash" x="164" y="80" width="72" height="30" rx="2"/><text class="t" x="200" y="99" text-anchor="middle">✗ no match</text>
+</g><g>
+<rect class="box" x="244" y="8" width="72" height="30" rx="2"/><text class="t" x="280" y="27" text-anchor="middle">gensys:3</text>
+<path class="ln" d="M280 38 V70"/><path class="arr" d="M280 76 L275 68 H285 Z"/>
+<rect class="hit" x="244" y="80" width="72" height="30" rx="2"/><text class="hit-t" x="280" y="99" text-anchor="middle">✓ match</text>
+</g>
+<text class="t2" x="160" y="137" text-anchor="middle">hash each guess, compare the start, keep or drop</text>
+</svg>
+<figcaption>Made-up run: nonce 3 is not a real match. A real one: prefix <code>gensy</code> with ignore-case was found at nonce 60,237,861 (<a href="https://github.com/chimera-defi/simple-sha256-miner/blob/4118081dec42179ccb260ad219df666392c5300a/v2/README.md#L25">v2/README.md</a>).</figcaption>
+</figure>
+</section>
+
+<section id="cost">
+<h2>2. Why one more character costs 64 times</h2>
+<p><strong>Each Base64 character is 6 bits, so it has 64 possible values.</strong> A hash lands on one given value 1 time in 64. One more exact character therefore means 64 times as many guesses on average.</p>
+<figure class="pic">
+<svg viewBox="0 0 320 190" role="img" aria-labelledby="f2t f2d">
+<title id="f2t">Work added by one more prefix character</title>
+<desc id="f2d">One more character multiplies the expected guesses by 64 for an exact character, by 32 for a letter when case is ignored, and by 64 for a digit, plus or slash even when case is ignored.</desc>
+<rect class="plate" x="4" y="6" width="312" height="30" rx="2"/><text class="plate-t" x="160" y="26" text-anchor="middle">One more character in the prefix</text>
+<path class="ln" d="M160 36 V50"/><path class="arr" d="M160 56 L155 48 H165 Z"/>
+<rect class="box" x="4" y="60" width="312" height="36" rx="2"/><text class="tb" x="14" y="76" >× 64</text><text class="t" x="14" y="90">exact case: any character</text>
+<rect class="hit" x="4" y="104" width="312" height="36" rx="2"/><text class="hit-t" x="14" y="120">× 32</text><text class="hit-t" x="14" y="134" style="font-weight:500">ignore case: a letter (A and a both count)</text>
+<rect class="box dash" x="4" y="148" width="312" height="36" rx="2"/><text class="tb" x="14" y="164">× 64</text><text class="t" x="14" y="178">ignore case: a digit, + or /</text>
+</svg>
+<figcaption>Ignore-case is a Base64 option only. Hex prefixes are lowercase and cost 16 times per character.</figcaption>
+</figure>
+<p>For a prefix with <var>L</var> letters and <var>D</var> other characters, expected guesses are 32<sup><var>L</var></sup> × 64<sup><var>D</var></sup>, with ignore-case on. With it off, they are 64<sup><var>L</var>+<var>D</var></sup>. Time is guesses divided by hashes per second. Extra threads raise that speed, but not in step: on one shared machine, 6 threads averaged 97 million hashes a second and 11 threads averaged 109, over 3 runs each (<a href="https://github.com/chimera-defi/simple-sha256-miner/blob/4118081dec42179ccb260ad219df666392c5300a/v2/README.md#L117-L121">earlier runs</a>). They do not lower the guesses.</p>
+<p>The miner takes 1 to 10 Base64 characters, or 1 to 16 hex (<a href="https://github.com/chimera-defi/simple-sha256-miner/blob/4118081dec42179ccb260ad219df666392c5300a/v2/src/lib.rs#L91-L102">lib.rs</a>, <a href="https://github.com/chimera-defi/simple-sha256-miner/blob/4118081dec42179ccb260ad219df666392c5300a/v2/README.md#L177-L180">limits</a>). The cost rule above is also in the <a href="https://github.com/chimera-defi/simple-sha256-miner/blob/4118081dec42179ccb260ad219df666392c5300a/README.md#L63">README</a>.</p>
+</section>
+
+<section id="try">
+<h2>3. Try it</h2>
+<p><strong>Six letters with ignore-case take about 10 seconds. Ten exact characters take centuries.</strong> Change the numbers to see the rest.</p>
+<div class="calc">
+<p class="needs-js small lead">Pick a length, a mode and a speed. The answers update as you type.</p>
+<p class="nojs small lead">The controls need JavaScript. The answers below are the default: 6 letters, ignore-case, 104.6 million hashes per second.</p>
+<div class="row needs-js">
+<div><label for="k">Prefix length: <span id="kv">6</span> characters</label><input id="k" type="range" min="1" max="10" step="1" value="6"></div>
+<div><label for="mode">Matching</label><select id="mode"><option value="ic" selected>Ignore case (Base64)</option><option value="ex">Exact case</option></select></div>
+<div><label for="d">Digits, + or / among them</label><input id="d" type="number" min="0" max="6" step="1" value="0" inputmode="numeric"></div>
+<div><label for="rate">Speed, million hashes per second</label><input id="rate" type="number" min="0" step="any" value="104.6" inputmode="decimal"></div>
+</div>
+<div class="tiles" role="group" aria-label="Results" aria-live="polite">
+<div class="tile"><span class="k" id="l1">Expected guesses</span><output id="guesses" aria-labelledby="l1">1,073,741,824</output></div>
+<div class="tile"><span class="k" id="l2">Expected time</span><output id="time" aria-labelledby="l2">10.27 seconds</output></div>
+<div class="tile"><span class="k" id="l3">Chance of a hit by then</span><output id="chance" aria-labelledby="l3">63.2%</output></div>
+</div>
+<p class="hint small" id="mnote">Ignore-case: all 6 characters are letters.</p>
+</div>
+<p class="small"><strong>Where 104.6 comes from.</strong> It is the median of a 3-run pilot, not a controlled benchmark: three pinned 6-thread runs of the default backend on one shared i7-8700 (<a href="https://github.com/chimera-defi/simple-sha256-miner/blob/4118081dec42179ccb260ad219df666392c5300a/v2/README.md#L127-L145">v2/README.md</a>). Unpinned runs gave a median of 87.6 (<a href="https://github.com/chimera-defi/simple-sha256-miner/blob/4118081dec42179ccb260ad219df666392c5300a/v2/README.md#L99-L105">same file</a>). At 87.6, six letters with ignore-case take about 12 seconds on average, not 10. The pilot does not show how much of the gap comes from pinning. The fast path only covers a message that fits one SHA-256 block (<a href="https://github.com/chimera-defi/simple-sha256-miner/blob/4118081dec42179ccb260ad219df666392c5300a/v2/README.md#L71-L77">why</a>). Your CPU will differ.</p>
+<p class="small"><strong>The model.</strong> It treats each hash as an independent random draw, which is a good model for SHA-256 and not a proof. It also assumes a steady speed. The miner counts nonces in order, but the hashes look random, so the order does not help. One hit in <var>N</var> tries is expected, and the chance of a hit within <var>N</var> tries is 1 − (1 − 1/<var>N</var>)<sup><var>N</var></sup>, about 63.2% for large <var>N</var>. A real run can finish far sooner or much later than the average.</p>
+<p class="small"><strong>Nonce limit.</strong> Nonces run from 0 to just under 2<sup>64</sup> (<a href="https://github.com/chimera-defi/simple-sha256-miner/blob/4118081dec42179ccb260ad219df666392c5300a/v2/src/lib.rs#L248-L250">lib.rs</a>). A 10-character exact prefix needs about 2<sup>60</sup> guesses, 16 times fewer. Running out of nonces first is possible, but the model puts it near 1 in 9 million. A 16-character hex prefix is the hard case: it needs 2<sup>64</sup> guesses, the whole nonce space, so the model has the miner run out first about 37% of the time. Starting above zero with <code>--start-nonce</code> leaves fewer nonces.</p>
+</section>
+
+<section id="memory">
+<h2>4. Why memory stays small</h2>
+<p><strong>The miner keeps no list of guesses, only the ranges it has finished.</strong> Each thread claims the lowest unfinished chunk, 262,144 nonces by default, and hashes it 128 at a time (<a href="https://github.com/chimera-defi/simple-sha256-miner/blob/4118081dec42179ccb260ad219df666392c5300a/v2/src/main.rs#L34-L35">chunk size</a>, <a href="https://github.com/chimera-defi/simple-sha256-miner/blob/4118081dec42179ccb260ad219df666392c5300a/v2/src/lib.rs#L247">batch size</a>, <a href="https://github.com/chimera-defi/simple-sha256-miner/blob/4118081dec42179ccb260ad219df666392c5300a/v2/src/main.rs#L153-L160">claiming</a>). Misses are dropped on the spot.</p>
+<figure class="pic">
+<svg viewBox="0 0 320 210" role="img" aria-labelledby="f3t f3d">
+<title id="f3t">Threads, chunks and the record of finished ranges</title>
+<desc id="f3d">Three thread boxes, labelled thread 1, thread 2 and thread N, each take one chunk of 262,144 nonces. Misses are discarded. Only finished chunks flow down into a journal of finished ranges, with a checkpoint every 30 seconds.</desc>
+<rect class="box" x="4" y="6" width="96" height="30" rx="2"/><text class="t" x="52" y="25" text-anchor="middle">thread 1</text>
+<rect class="box" x="112" y="6" width="96" height="30" rx="2"/><text class="t" x="160" y="25" text-anchor="middle">thread 2</text>
+<rect class="box" x="220" y="6" width="96" height="30" rx="2"/><text class="t" x="268" y="25" text-anchor="middle">thread N</text>
+<path class="ln" d="M52 36 V52 M160 36 V52 M268 36 V52"/><path class="arr" d="M52 58 L47 50 H57 Z M160 58 L155 50 H165 Z M268 58 L263 50 H273 Z"/>
+<rect class="miss dash" x="4" y="62" width="312" height="44" rx="2"/>
+<text class="tb" x="160" y="82" text-anchor="middle">one chunk each: 262,144 nonces</text>
+<text class="t2" x="160" y="98" text-anchor="middle">hash, compare, drop every miss</text>
+<path class="ln" d="M160 106 V126"/><path class="arr" d="M160 132 L155 124 H165 Z"/>
+<text class="t2" x="170" y="123">finished chunks only</text>
+<rect class="hit" x="4" y="136" width="312" height="62" rx="2"/>
+<text class="hit-t" x="160" y="158" text-anchor="middle">journal of finished ranges</text>
+<text class="hit-t" x="160" y="176" text-anchor="middle" style="font-weight:500">neighbouring ranges merge into one</text>
+<text class="hit-t" x="160" y="191" text-anchor="middle" style="font-weight:500">checkpoint every 30 s</text>
+</svg>
+<figcaption>Only the bottom box is kept, and a chunk that was cut short or holds a hit is not recorded.</figcaption>
+</figure>
+<p>The journal is appended every half second, and a checkpoint is written every 30 seconds (<a href="https://github.com/chimera-defi/simple-sha256-miner/blob/4118081dec42179ccb260ad219df666392c5300a/v2/src/main.rs#L182-L190">main.rs</a>). Finished ranges merge when they touch (<a href="https://github.com/chimera-defi/simple-sha256-miner/blob/4118081dec42179ccb260ad219df666392c5300a/v2/src/state.rs#L23-L41">state.rs</a>). A run with no gaps is one range, however many guesses it has made. Memory does not grow with the number of guesses.</p>
+<p>If you stop the miner and rerun it with the same flags, it resumes from the checkpoint and the journal and repeats any unfinished chunk (<a href="https://github.com/chimera-defi/simple-sha256-miner/blob/4118081dec42179ccb260ad219df666392c5300a/v2/README.md#L3-L5">v2/README.md</a>, <a href="https://github.com/chimera-defi/simple-sha256-miner/blob/4118081dec42179ccb260ad219df666392c5300a/v2/README.md#L40-L41">resume</a>).</p>
+</section>
+
+<section id="more">
+<h2>More</h2>
+<ul>
+<li><a href="https://github.com/chimera-defi/simple-sha256-miner">The repository</a> and its <a href="https://github.com/chimera-defi/simple-sha256-miner/blob/4118081dec42179ccb260ad219df666392c5300a/v2/README.md">v2 notes</a>.</li>
+<li><a href="../sha256/">We made SHA-256 hash mining about 42 times faster</a>: the step-by-step explainer, with the measured tests.</li>
+</ul>
+<p class="small credit">The analysis, diagrams and calculator were drafted by ChatGPT (OpenAI GPT-6), then reviewed and edited by Claude. This page describes expected work under a random-hash model. It is not a proof about every way to search SHA-256.</p>
+</section>
+
+</div>
+</article>
+</main>
+
+<footer class="site-footer">
+<div class="site-footer-inner">
+<span class="fl-mono">ChimericLabs LLC · Wyoming</span>
+<nav aria-label="Footer">
+<a href="../../index.html">Home</a>
+<a href="https://github.com/chimera-defi" target="_blank" rel="noreferrer">GitHub</a>
+<a href="https://github.com/chimera-defi/chimericlabs-llc" target="_blank" rel="noreferrer">Source</a>
+</nav>
+</div>
+</footer>
+<script type="module">
+const $ = id => document.getElementById(id)
+
+const group = n => n.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+// Plain words for a time in seconds.
+const fmt = s => {
+  if (!isFinite(s)) return "too long to show"
+  if (s < 0.005) return "under 0.01 seconds"
+  if (s < 60) return `${s.toFixed(2)} seconds`
+  if (s < 3600) return `${(s / 60).toFixed(2)} minutes`
+  if (s < 86400) return `${(s / 3600).toFixed(2)} hours`
+  const years = s / 31557600
+  if (years < 1) return `${(s / 86400).toFixed(2)} days`
+  if (years < 1e6) return `${group(years.toFixed(years < 100 ? 2 : 0))} years`
+  return `${years.toExponential(2).replace("e+", " × 10^")} years`
+}
+
+const update = () => {
+  const k = parseInt($("k").value, 10)
+  const ignoreCase = $("mode").value === "ic"
+  const digitBox = $("d")
+  let d = parseInt(digitBox.value, 10)
+  if (!(d >= 0)) d = 0
+  if (d > k) d = k
+  digitBox.max = k
+  digitBox.disabled = !ignoreCase
+  if (ignoreCase) digitBox.value = d
+  else d = 0
+  $("kv").textContent = k
+  const letters = k - d
+  const guesses = ignoreCase ? 32n ** BigInt(letters) * 64n ** BigInt(d) : 64n ** BigInt(k)
+  const rate = parseFloat($("rate").value)
+  $("guesses").textContent = guesses.toLocaleString("en-US")
+  $("time").textContent = rate > 0 ? fmt(Number(guesses) / (rate * 1e6)) : "Enter a speed above 0"
+  const n = Number(guesses)
+  $("chance").textContent = `${(-Math.expm1(n * Math.log1p(-1 / n)) * 100).toFixed(1)}%`
+  const letterText = letters ? `${letters} ${letters === 1 ? "letter costs" : "letters cost"} 32 times each` : ""
+  const otherText = d ? `${d} ${d === 1 ? "digit or symbol costs" : "digits or symbols cost"} 64 times each` : ""
+  $("mnote").textContent = ignoreCase
+    ? `Ignore-case: ${[letterText, otherText].filter(Boolean).join(", ")}.`
+    : "Exact case: every character costs 64 times."
+}
+
+for (const id of ["k", "mode", "d", "rate"]) $(id).addEventListener("input", update)
+update()
+</script>
+</body>
+</html>
