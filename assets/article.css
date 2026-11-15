@@ -16,6 +16,9 @@ body { margin: 0; min-height: 100vh; }
 .site-footer .fl-mono { font-size: .75rem; letter-spacing: .05em; color: var(--ink-2); }
 .site-footer nav { display: flex; flex-wrap: wrap; gap: var(--space-5); }
 .site-footer a { display: inline-flex; align-items: center; min-width: 44px; min-height: 44px; font-size: .75rem; }
+/* Links outside .art (breadcrumb, footer, skip link) match research.html: ink, 1px underline, 2px on hover. */
+.art-crumb a, .site-footer a, .skip { color: var(--ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.art-crumb a:hover, .site-footer a:hover { text-decoration-thickness: 2px; }
 @media (min-width: 640px) {
   .site-header-inner, .site-footer { padding-inline: 2rem; }
   .site-nav { gap: 1.75rem; }
