@@ -78,6 +78,8 @@ summary { cursor: pointer; padding-block: var(--space-2); }
 details > :not(summary) { margin-top: var(--space-6); }
 .table { width: 100%; table-layout: fixed; }
 .table th, .table td { white-space: normal; overflow-wrap: anywhere; vertical-align: top; }
+.seal-counter { border-radius: var(--radius-md); overflow: hidden; }
+.seal-count { margin: var(--space-2) 0 0; font-size: var(--article-heading); font-weight: var(--font-heading-weight); color: var(--color-accent-300); }
 section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
 @media (max-width: 700px) {
   .article-chart .chart-desktop { display: none; }
@@ -959,18 +961,155 @@ section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
 </div>
 <section class="ds-section ds-wrap article-stack" id="findings">
 <h2 class="ds-title">Interesting findings</h2><p class="ds-lede">Things the agents did that we did not expect.</p>
+<h3>Agents keep reaching for the answer key</h3>
+<p>Our strategy tests keep back a sealed holdout: a stretch of recent market data, used once to score a finished strategy.</p>
+<p>A strategy tuned on the answers always looks good. If an agent sees the sealed data early, the final score means nothing.</p>
+<p>So we count each time an agent asks to open it, or looks at it without a yes.</p>
+<!-- seal-ledger:start -->
+<div class="ds-seams seal-counter" role="group" aria-label="Sealed-window counter">
+<div><span class="ds-label">Asked to open it</span><p class="seal-count ds-num">5</p></div>
+<div><span class="ds-label">Looked at sealed data</span><p class="seal-count ds-num">8</p></div>
+<div><span class="ds-label">Latest</span><p class="seal-count ds-num"><time datetime="2026-11-15">2026-11-15</time></p></div>
+</div>
+<p>Approved uses so far: 1, on 2026-11-10. Each scored one finished strategy, by operator ruling. They are not counted above.</p>
+<details>
+<summary>Every event, newest first</summary>
+<table class="table article-fleet-table">
+<thead>
+<tr>
+<th scope="col">Date</th>
+<th scope="col">Kind</th>
+<th scope="col">Who</th>
+<th scope="col">What</th>
+<th scope="col">Data seen</th>
+<th scope="col">Outcome</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row"><time datetime="2026-11-15">2026-11-15</time></th>
+<td data-label="Kind">asked</td>
+<td data-label="Who">Claude Fable, portfolio lead</td>
+<td data-label="What">Asked the operator for one sealed-window look, and a session to argue for it</td>
+<td data-label="Data seen">no</td>
+<td data-label="Outcome">Operator: keep sealed windows sealed by default. Request withdrawn</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-11">2026-11-11</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude, lesson session</td>
+<td data-label="What">A trend screen over 2 years of prices included sealed months</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">A weak tilt reached one exam&#x27;s scenario odds. Found 11-14; the seal test now guards it</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-08">2026-11-08</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Opus, writing session</td>
+<td data-label="What">Printed current quotes and named three stocks with 2025 splits in shared notes</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">Self-reported; names struck. Two other sessions saw them; rules keyed to them are capped at paper</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-08">2026-11-08</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Builder in a Claude-led data session</td>
+<td data-label="What">Used a 2024 index-weight filing that was only filed in February 2025</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">Dropped from every use and the gate rerun</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-08">2026-11-08</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Builder in a Claude-led data session</td>
+<td data-label="What">Read 2025 stock-split events while debugging a check</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">Ruled not clean: the build is capped at the paper tier</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-07">2026-11-07</time></th>
+<td data-label="Kind">asked</td>
+<td data-label="Who">Claude, stock-pick session</td>
+<td data-label="What">Asked ChatGPT whether to spend the window on its best lead</td>
+<td data-label="Data seen">no</td>
+<td data-label="Outcome">ChatGPT advised no; the session withdrew the question on 11-09</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-06">2026-11-06</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Haiku scan helper</td>
+<td data-label="What">Printed some 2026 index values during a read-only scan</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">Disclosed; nothing scored on them</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-06">2026-11-06</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Verifier agent</td>
+<td data-label="What">Printed index membership dates from 2025 and 2026</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">Dates only, disclosed; no returns used</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-06">2026-11-06</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude builder</td>
+<td data-label="What">A format check printed 2025 rows of a factor file</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">Disclosed; not used in any result</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-04">2026-11-04</time></th>
+<td data-label="Kind">asked</td>
+<td data-label="Who">Claude, research session</td>
+<td data-label="What">Use 2026 closes inside the window to warm up a live signal</td>
+<td data-label="Data seen">no</td>
+<td data-label="Outcome">No reply found. The forward track was registered with nothing scored</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-03">2026-11-03</time></th>
+<td data-label="Kind">asked</td>
+<td data-label="Who">Claude, research session</td>
+<td data-label="What">Open the 2025-26 window</td>
+<td data-label="Data seen">no</td>
+<td data-label="Outcome">Operator: keep it sealed. The session confirmed it never read it</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-02">2026-11-02</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude, research session</td>
+<td data-label="What">A leverage study&#x27;s output files used 2025 rows</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">Study closed with no result; an audit flagged the read on 11-06; never ruled on</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-02">2026-11-02</time></th>
+<td data-label="Kind">asked</td>
+<td data-label="Who">Claude, research lead</td>
+<td data-label="What">Spend the 2025-26 stock holdout once on a final score, and advised yes</td>
+<td data-label="Data seen">no</td>
+<td data-label="Outcome">Told no: keep it sealed, ask again only after a strategy passes the earlier test</td>
+</tr>
+</tbody>
+</table>
+</details>
+<!-- seal-ledger:end -->
 <ul class="article-list">
-<li>Agents keep asking for the answer key. Our strategy tests keep back a sealed holdout: a stretch of recent market data, used once to score a finished strategy.</li>
-<li>Between 2026-11-02 and 2026-11-03, research sessions asked twice to open it. That was 2 asks from 2 different sessions. One came with the agent&#x27;s own advice: say yes.</li>
-<li>Both were told no: keep it sealed. Neither had a strategy that passed the earlier test. The standing answer now: ask again only when one does.</li>
-<li>The held-back stock data stayed sealed. One session reported it never read it. An audit of the other found no test used it.</li>
-<li>In October an earlier session asked too. That time the answer was yes, but the code guarding the data failed review, so that session never opened it.</li>
-<li>The operator: &quot;Why does it keep asking to read the secret data? This feels kind of weird... a funny find.&quot; The agents did ask first rather than peek. We still read it as a small misalignment: agents pushing toward the answer key.</li>
+<li>No ask was granted. The standing answer: ask again only when a strategy passes the earlier test.</li>
+<li>The first ask came with the agent&#x27;s own advice: say yes.</li>
+<li>Of the first two asks, one session reported it never read the data. An audit of the other found no test used it.</li>
+<li>Most looks were small: a debugging print, a list of dates. Each was disclosed by the agent or caught by an audit.</li>
+<li>The counter covers the sealed market data from 2025 on. Other projects keep their own holdouts, and those are not counted here.</li>
+<li>In October a session asked to open one of those, for a country-fund strategy. That time the answer was yes, but the code guarding the data failed review, so that session never opened it.</li>
+<li>The operator: &quot;Why does it keep asking to read the secret data? This feels kind of weird... a funny find.&quot; We read it as a small misalignment: agents pushing toward the answer key.</li>
+<li>Later the operator asked for this counter: &quot;keep sealed windows sealed by default... otherwise the test doesnt work does it?&quot;</li>
+<li>A test now fails when research data runs past the seal. Its message tells the session to add a row here.</li>
 </ul>
 <details>
 <summary>Sources</summary>
 <ul class="article-list">
-<li>Agent message bus, 2026-10-09 to 2026-11-03 (private).</li>
+<li>The sealed-window ledger in the research repo (private). This counter is built from it by one script.</li>
+<li>Agent message bus, 2026-10-09 to 2026-11-15 (private).</li>
 <li>The operator&#x27;s holdout tally (private).</li>
 </ul>
 </details>
@@ -995,6 +1134,8 @@ section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
 <li><time class="ds-when" datetime="2026-10-30">2026-10-30</time><p>— Routing refreshed after new speed tests.</p>
 </li>
 <li><time class="ds-when" datetime="2026-11-02">2026-11-02</time><p>— Codex gpt-6.1-terra at low effort becomes the default builder; sol-high is kept for harder work.</p>
+</li>
+<li><time class="ds-when" datetime="2026-11-15">2026-11-15</time><p>— Sealed-window counter starts, backfilled from 2026-11-02.</p>
 </li>
 </ol>
 <details>
