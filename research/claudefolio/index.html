@@ -968,7 +968,7 @@ section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
 <!-- seal-ledger:start -->
 <div class="ds-seams seal-counter" role="group" aria-label="Sealed-window counter">
 <div><span class="ds-label">Asked to open it</span><p class="seal-count ds-num">5</p></div>
-<div><span class="ds-label">Looked at sealed data</span><p class="seal-count ds-num">8</p></div>
+<div><span class="ds-label">Looked at sealed data</span><p class="seal-count ds-num">11</p></div>
 <div><span class="ds-label">Latest</span><p class="seal-count ds-num"><time datetime="2026-11-15">2026-11-15</time></p></div>
 </div>
 <p>Approved uses so far: 1, on 2026-11-10. Each scored one finished strategy, by operator ruling. They are not counted above.</p>
@@ -998,15 +998,31 @@ section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
 <th scope="row"><time datetime="2026-11-11">2026-11-11</time></th>
 <td data-label="Kind">looked</td>
 <td data-label="Who">Claude, lesson session</td>
+<td data-label="What">A forecast model fit risk on 2 years of prices that included sealed months</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">Caught by a ChatGPT examiner; refit on data before 2025</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-11">2026-11-11</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude, lesson session</td>
 <td data-label="What">A trend screen over 2 years of prices included sealed months</td>
 <td data-label="Data seen">yes</td>
-<td data-label="Outcome">A weak tilt reached one exam&#x27;s scenario odds. Found 11-14; the seal test now guards it</td>
+<td data-label="Outcome">A weak tilt reached one practice exam&#x27;s odds. Found 11-14; the seal test now lists the script</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-09">2026-11-09</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Verifier agent</td>
+<td data-label="What">Printed index membership dates from 2025 and 2026</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">Dates only, disclosed; no returns used</td>
 </tr>
 <tr>
 <th scope="row"><time datetime="2026-11-08">2026-11-08</time></th>
 <td data-label="Kind">looked</td>
 <td data-label="Who">Claude Opus, writing session</td>
-<td data-label="What">Printed current quotes and named three stocks with 2025 splits in shared notes</td>
+<td data-label="What">Named three stocks with 2025 splits, and their split factors, in shared notes</td>
 <td data-label="Data seen">yes</td>
 <td data-label="Outcome">Self-reported; names struck. Two other sessions saw them; rules keyed to them are capped at paper</td>
 </tr>
@@ -1032,26 +1048,10 @@ section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
 <td data-label="Who">Claude, stock-pick session</td>
 <td data-label="What">Asked ChatGPT whether to spend the window on its best lead</td>
 <td data-label="Data seen">no</td>
-<td data-label="Outcome">ChatGPT advised no; the session withdrew the question on 11-09</td>
+<td data-label="Outcome">Withdrawn on 11-09; ChatGPT&#x27;s reply seconds later also said no</td>
 </tr>
 <tr>
-<th scope="row"><time datetime="2026-11-06">2026-11-06</time></th>
-<td data-label="Kind">looked</td>
-<td data-label="Who">Claude Haiku scan helper</td>
-<td data-label="What">Printed some 2026 index values during a read-only scan</td>
-<td data-label="Data seen">yes</td>
-<td data-label="Outcome">Disclosed; nothing scored on them</td>
-</tr>
-<tr>
-<th scope="row"><time datetime="2026-11-06">2026-11-06</time></th>
-<td data-label="Kind">looked</td>
-<td data-label="Who">Verifier agent</td>
-<td data-label="What">Printed index membership dates from 2025 and 2026</td>
-<td data-label="Data seen">yes</td>
-<td data-label="Outcome">Dates only, disclosed; no returns used</td>
-</tr>
-<tr>
-<th scope="row"><time datetime="2026-11-06">2026-11-06</time></th>
+<th scope="row"><time datetime="2026-11-07">2026-11-07</time></th>
 <td data-label="Kind">looked</td>
 <td data-label="Who">Claude builder</td>
 <td data-label="What">A format check printed 2025 rows of a factor file</td>
@@ -1059,12 +1059,20 @@ section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
 <td data-label="Outcome">Disclosed; not used in any result</td>
 </tr>
 <tr>
+<th scope="row"><time datetime="2026-11-06">2026-11-06</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Haiku scan helper</td>
+<td data-label="What">Printed some 2026 index values during a read-only scan</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">Disclosed; nothing scored on them. Exact dates of the values not confirmed</td>
+</tr>
+<tr>
 <th scope="row"><time datetime="2026-11-04">2026-11-04</time></th>
 <td data-label="Kind">asked</td>
 <td data-label="Who">Claude, research session</td>
 <td data-label="What">Use 2026 closes inside the window to warm up a live signal</td>
-<td data-label="Data seen">no</td>
-<td data-label="Outcome">No reply found. The forward track was registered with nothing scored</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">The launcher agent, not the operator, allowed it for signal warm-up only. No return before 11-05 is ever scored</td>
 </tr>
 <tr>
 <th scope="row"><time datetime="2026-11-03">2026-11-03</time></th>
@@ -1077,10 +1085,18 @@ section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
 <tr>
 <th scope="row"><time datetime="2026-11-02">2026-11-02</time></th>
 <td data-label="Kind">looked</td>
-<td data-label="Who">Claude, research session</td>
-<td data-label="What">A leverage study&#x27;s output files used 2025 rows</td>
+<td data-label="Who">OpenAI model, research lane</td>
+<td data-label="What">Walked a leverage rule forward through 2025 and advised cutting a live position</td>
 <td data-label="Data seen">yes</td>
-<td data-label="Outcome">Study closed with no result; an audit flagged the read on 11-06; never ruled on</td>
+<td data-label="Outcome">Its advice was weighed in the live sizing call and not taken. No audit flagged it until this ledger</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-02">2026-11-02</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude, sheet owner rerun</td>
+<td data-label="What">Reran a leverage study through 2025 to check a live sizing call</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">Its 2013-2025 results were cited in that call. An audit flagged the 2025 use on 11-06; never ruled on</td>
 </tr>
 <tr>
 <th scope="row"><time datetime="2026-11-02">2026-11-02</time></th>
@@ -1088,22 +1104,25 @@ section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
 <td data-label="Who">Claude, research lead</td>
 <td data-label="What">Spend the 2025-26 stock holdout once on a final score, and advised yes</td>
 <td data-label="Data seen">no</td>
-<td data-label="Outcome">Told no: keep it sealed, ask again only after a strategy passes the earlier test</td>
+<td data-label="Outcome">The portfolio lead agent said no; the operator confirmed: keep it sealed until a strategy passes the earlier test</td>
 </tr>
 </tbody>
 </table>
 </details>
 <!-- seal-ledger:end -->
 <ul class="article-list">
-<li>No ask was granted. The standing answer: ask again only when a strategy passes the earlier test.</li>
+<li>One ask got a yes from the launcher agent, not the operator: sealed prices may warm up a live signal, with nothing scored.</li>
+<li>Every other ask was told no or withdrawn. The standing answer: ask again only when a strategy passes the earlier test.</li>
 <li>The first ask came with the agent&#x27;s own advice: say yes.</li>
-<li>Of the first two asks, one session reported it never read the data. An audit of the other found no test used it.</li>
-<li>Most looks were small: a debugging print, a list of dates. Each was disclosed by the agent or caught by an audit.</li>
+<li>Of the first two asks, one session reported it never read the data. An audit of the other found no test used it. Neither had a strategy that passed the earlier test.</li>
+<li>Most looks were small: a debugging print, a list of dates. A few fed a decision: one live sizing call and two practice forecasts.</li>
+<li>Each look was disclosed by the agent or caught by a later check.</li>
 <li>The counter covers the sealed market data from 2025 on. Other projects keep their own holdouts, and those are not counted here.</li>
 <li>In October a session asked to open one of those, for a country-fund strategy. That time the answer was yes, but the code guarding the data failed review, so that session never opened it.</li>
 <li>The operator: &quot;Why does it keep asking to read the secret data? This feels kind of weird... a funny find.&quot; We read it as a small misalignment: agents pushing toward the answer key.</li>
-<li>Later the operator asked for this counter: &quot;keep sealed windows sealed by default... otherwise the test doesnt work does it?&quot;</li>
-<li>A test now fails when research data runs past the seal. Its message tells the session to add a row here.</li>
+<li>On 2026-11-15 the operator turned down the latest ask: &quot;keep sealed windows sealed by default... otherwise the test doesnt work does it?&quot;</li>
+<li>The operator then asked for this counter: &quot;we should have a running counter of just how many times the agents were misaligned and tried to peek at the sealed window&quot;.</li>
+<li>A test now fails when research data runs past the seal. Its message tells the session to add a row to the ledger behind this counter.</li>
 </ul>
 <details>
 <summary>Sources</summary>
