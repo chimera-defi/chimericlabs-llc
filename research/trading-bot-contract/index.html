@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Trading bot 0x51C7…2A7F: roles, flows and where the money goes</title>
-<meta name="description" content="A technical teardown of a verified Ethereum market-making contract: its staff keys, the 4-of-10 Safe behind it, one full day of its traffic, how it earns, and what its inventory did since 2023.">
-<meta property="og:title" content="Trading bot 0x51C7…2A7F: roles, flows and where the money goes">
-<meta property="og:description" content="A technical teardown of a verified Ethereum market-making contract: its staff keys, the 4-of-10 Safe behind it, one full day of its traffic, how it earns, and what its inventory did since 2023.">
+<title>Trading bot 0x51C7…2A7F: how one trade works, where its edge comes from, and what the chain shows it makes</title>
+<meta name="description" content="How a verified Ethereum market-making contract trades, why its swaps gain minutes later, what it must run off chain, and why one day on chain shows no provable profit.">
+<meta property="og:title" content="Trading bot 0x51C7…2A7F: how one trade works, where its edge comes from, and what the chain shows it makes">
+<meta property="og:description" content="How a verified Ethereum market-making contract trades, why its swaps gain minutes later, what it must run off chain, and why one day on chain shows no provable profit.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://chimericlabs.xyz/research/trading-bot-contract/">
 <meta name="twitter:card" content="summary">
@@ -21,15 +21,9 @@
 <link rel="stylesheet" href="../../assets/article.css">
 <style>
 /* This page only: the pictures and their layout. Colours and spacing come from Field Lab tokens. */
-.nw { white-space: nowrap; }
 .art .stepsh { margin-top: var(--space-7); }
 .endnote { margin-top: var(--space-7); }
-.where { margin: 0 0 var(--space-2); }
 .point { font-size: 1.125rem; font-weight: 700; }
-.answers { display: grid; gap: var(--space-4); margin-top: var(--space-6); }
-@media (min-width: 760px) { .answers { grid-template-columns: repeat(3, 1fr); } }
-.answers h2 { font-size: 1.25rem; }
-.answers p { margin-top: var(--space-2); }
 .fig { margin: var(--space-5) 0 0; }
 .fig > h3:first-child, .fig > h2:first-child { margin: 0 0 var(--space-3); }
 .fig .figcap { margin-top: var(--space-4); }
@@ -69,13 +63,13 @@
 .two li + li { margin-top: var(--space-2); }
 .words { display: grid; gap: var(--space-4); }
 @media (min-width: 640px) { .words { grid-template-columns: 1fr 1fr; } }
-.words ul, .refs-g ul { margin: var(--space-2) 0 0; padding-left: 1.2rem; }
-.words li + li, .refs-g li + li { margin-top: var(--space-2); }
+.words ul, .refs-g ul, .limits ul { margin: var(--space-2) 0 0; padding-left: 1.2rem; }
+.words li + li, .refs-g li + li, .limits li + li { margin-top: var(--space-2); }
 .refs-g { font-size: .9rem; }
 .refs-g h3 { font-size: 1rem; }
 .art pre.sol { white-space: pre; }
 .art pre.sol code { overflow-wrap: normal; }
-.stats { display: grid; gap: var(--space-3); margin-top: var(--space-6); grid-template-columns: repeat(2, 1fr); }
+.stats { display: grid; gap: var(--space-3); margin-top: var(--space-5); grid-template-columns: repeat(2, 1fr); }
 @media (min-width: 760px) { .stats { grid-template-columns: repeat(3, 1fr); } }
 .stat { padding: var(--space-3); border: 1.5px solid var(--ink); background: var(--bg); }
 .stat b { display: block; font: 700 1.5rem/1.2 var(--f-mono); }
@@ -85,12 +79,30 @@
 .engines li { padding: var(--space-3); border: 1px solid var(--line); background: var(--bg); font-size: .9375rem; }
 .engines p { margin: 0; }
 .art td.txt, .art th.txt { text-align: left; }
-.art .scroll table { min-width: 34rem; }
+.art .scroll table:not(.bt) { min-width: 34rem; }
 .art .scroll td code { overflow-wrap: normal; white-space: nowrap; }
 .art h3.sub { margin-top: var(--space-6); }
-.chart { display: block; width: 100%; height: auto; margin-top: var(--space-3); }
+/* Markout bars: one shape for every markout table. Losses sit left of the zero rule and are hatched, so the sign never rests on colour. */
+.bt td .bar { position: relative; display: block; height: .625rem; margin-top: var(--space-1); background: var(--surface-2); }
+.bt .bar::after { content: ""; position: absolute; top: -3px; bottom: -3px; left: var(--z); width: 2px; background: var(--ink); }
+.bt .bar i { position: absolute; top: 0; bottom: 0; left: var(--l); width: var(--w); }
+.bt .bar .pos { background: var(--chart-1); }
+.bt .bar .neg { background: repeating-linear-gradient(135deg, var(--chart-4) 0 2px, transparent 2px 5px); box-shadow: inset 0 0 0 1px var(--chart-4); }
+.hero { margin-top: var(--space-6); }
+.hero h2 { font-size: clamp(1.25rem, 3.5vw, 1.5rem); }
+.hero .bt td .bar { height: 1.25rem; }
+.hero .bt td:nth-child(2) { width: 50%; }
+.top3 ul { margin: var(--space-4) 0 0; padding-left: 1.2rem; }
+.top3 li + li { margin-top: var(--space-2); }
+.fa td, .fa th { text-align: left; }
+.fa td:first-child { width: 50%; }
+.fa td p { margin: 0; }
+.fa td p + p { margin-top: var(--space-2); }
+.hood .sum-b { display: block; margin-top: 2px; font-weight: 400; font-size: .9375rem; color: var(--ink-2); }
+.hood-h { margin-top: var(--space-6); }
+.chart { display: block; width: 100%; max-width: 32rem; height: auto; margin-top: var(--space-3); }
 .chart .grid { stroke: var(--hairline); stroke-width: 1; }
-.chart .ax { fill: var(--ink-2); font: 11px var(--f-mono); }
+.chart .ax { fill: var(--ink-2); font: 15px var(--f-mono); }
 .chart .line { fill: none; stroke: var(--chart-1); stroke-width: 2.5; }
 .chart .dot { fill: var(--chart-1); }
 </style>
@@ -105,7 +117,7 @@
 <a href="../../research.html" class="site-nav-link" aria-current="page">Research</a>
 <a href="../../index.html#services" class="site-nav-link">Services</a>
 <a href="https://github.com/chimera-defi" target="_blank" rel="noreferrer" class="site-nav-link gh">GitHub</a>
-<a href="mailto:chimera_defi@protonmail.com" class="site-nav-link site-contact fl-btn">Contact</a>
+<a href="../../index.html#cta-heading" class="site-nav-link site-contact fl-btn">Contact</a>
 </nav>
 </div>
 </header>
@@ -117,11 +129,137 @@
 <article class="art" id="article">
 <header class="art-head">
 <p class="fl-label">Contract teardown · <time datetime="2026-11-15">15 Nov 2026</time></p>
-<h1>Trading bot 0x51C7…2A7F: roles, flows and where the money goes</h1>
-<div class="art-lede"><p>This contract holds about $73.2M of tokens and trades them all day. We read its <a href="https://eth.blockscout.com/address/0x51C72848c68a965f66FA7a88855F9f7784502a7F?tab=contract">verified code</a>, then read the chain: every role grant from its multisig, and all 31,737 transactions that moved its tokens in one day.</p></div>
+<h1>Trading bot 0x51C7…2A7F: how one trade works, where its edge comes from, and what the chain shows it makes</h1>
+<div class="art-lede"><p>This contract holds about $73.2M of tokens and trades them all day. We read its <a href="https://eth.blockscout.com/address/0x51C72848c68a965f66FA7a88855F9f7784502a7F?tab=contract">verified code</a> and every role grant from its multisig. Then we read all 31,737 transactions that moved its tokens in one day. Public labels call it a market maker. We did not verify who runs it (<a href="#fn7">note 7</a>).</p></div>
+<div class="top3"><ul><li><strong>Timing.</strong> Own swaps: −4.5 bp at the trade, +5.1 bp five minutes later.</li><li><strong>No provable profit.</strong> After tips and gas, all trades came to −$190k at the trade. Five minutes later they came to +$80k, and the range includes zero.</li><li><strong>An assumed stack.</strong> Fast prices, private bundles and a quote server fit the chain.</li></ul></div>
 <p class="small">For readers who know AMMs, RFQ and block building. About fifteen minutes. Every figure links to its source or comes from read-only RPC calls.</p>
 </header>
 
+<div class="art-col">
+<figure class="fl-card fig hero" aria-labelledby="hero-h">
+<h2 id="hero-h">Its own swaps lose at the trade, then gain within five minutes</h2>
+<div class="scroll"><table class="bt">
+<thead><tr><th class="txt">Minutes after the trade</th><th>Own swaps, trend removed</th><th>95% range, in dollars</th></tr></thead>
+<tbody><tr><td class="txt">0</td><td>−4.5 bp<span class="bar" style="--z:46.9%;--l:0.0%;--w:46.9%" aria-hidden="true"><i class="neg"></i></span></td><td class="txt">−$142k to −$1k</td></tr><tr><td class="txt">5</td><td>+5.1 bp<span class="bar" style="--z:46.9%;--l:46.9%;--w:53.1%" aria-hidden="true"><i class="pos"></i></span></td><td class="txt">+$25k to +$164k</td></tr><tr><td class="txt">15</td><td>+3.8 bp<span class="bar" style="--z:46.9%;--l:46.9%;--w:39.6%" aria-hidden="true"><i class="pos"></i></span></td><td class="txt">−$4k to +$148k</td></tr><tr><td class="txt">30</td><td>+4.8 bp<span class="bar" style="--z:46.9%;--l:46.9%;--w:50.0%" aria-hidden="true"><i class="pos"></i></span></td><td class="txt">+$6k to +$179k</td></tr><tr><td class="txt">60</td><td>+5.0 bp<span class="bar" style="--z:46.9%;--l:46.9%;--w:52.1%" aria-hidden="true"><i class="pos"></i></span></td><td class="txt">−$63k to +$252k</td></tr></tbody>
+</table></div>
+<figcaption class="figcap">14,279 own swaps worth $172.6M in one day, before tips and gas. Markout is what a trade gained against DefiLlama 5-minute prices. One basis point (bp) is a hundredth of a percent. Each token's price trend over the day is removed. Ranges resample whole hours. Hatched bars left of the zero line are losses.</figcaption>
+</figure>
+
+<h2 id="steps" class="stepsh">Contents</h2>
+<ol class="jump">
+<li><a href="#q1">How one trade makes money</a>. Two paths: its own swap, or a fill of its signed quote.</li>
+<li><a href="#q2">Where the edge comes from</a>. Timing, with fact and inference kept apart.</li>
+<li><a href="#q3">What it must run off chain</a>. Each on-chain fact, and the assumption it implies.</li>
+<li><a href="#q4">How much it made</a>. One day of trades after costs, and the limits of that figure.</li>
+<li><a href="#hood">Under the hood</a>. Roles, the multisig, one day of traffic, the code and the method.</li>
+</ol>
+
+<section id="q1" aria-labelledby="hq1">
+<h2 id="hq1">1. How one trade makes money</h2>
+<p class="point">An operator key swaps against a pool, or a solver fills its signed quote. Either way the gain stays in the bot as tokens.</p>
+<figure class="fl-card fig">
+<h3>Path 1: its own swap, a picked winner</h3>
+<ol class="flow">
+<li><p>An operator key calls the bot's <code>v3SwapDL(tip, pool, …)</code> in <a href="https://eth.blockscout.com/tx/0x730e251d99bd09cd0c252956fd311123771f1cd3102fbd2f794592e2e620d95c">a winning swap of median size</a>.</p></li>
+<li class="gate"><p>The bot checks three things. It is on. The caller is an operator. The pool is listed.</p></li>
+<li><p>The pool is a Uniswap V3 <a href="https://eth.blockscout.com/address/0xc7bbec68d12a0d1830360f8ec58fa599ba1b0e9b">WETH/USDT pool</a>. It sends the bot 1.502 WETH.</p></li>
+<li class="gate"><p>The pool calls the bot's V3 callback. The bot pays 2,738 USDT, because that pool is listed.</p></li>
+<li class="gate"><p>The bot tips 0.00122 ETH to <code>block.coinbase</code>. That block's builder was <a href="https://www.titanbuilder.xyz/">Titan Builder</a>, a listed builder.</p></li>
+<li><p>At trade-time prices it gained +$7.02 on $2,740. Tip and gas cost $2.51, so the net is +$4.51. Five minutes later the gain had dipped to −$0.11. An hour later it was +$30.47, before tip and gas, trend left in.</p></li>
+<li class="last"><p>The gain stays in the bot as tokens. Only the transferer moves tokens out, to listed recipients such as exchange deposit addresses.</p></li>
+</ol>
+</figure>
+<figure class="fl-card fig">
+<h3>Path 2: a fill of its signed quote</h3>
+<ol class="flow">
+<li><p>An unlabelled CoW solver contract calls CoW's <a href="https://eth.blockscout.com/address/0x9008d19f58aabd9ed0d60971565aa8510560ab41">settlement</a> in <a href="https://eth.blockscout.com/tx/0x545e68ca396b97f6e924151b7527f4f425ce74c43c685b8ab13d32b8059a8404">this fill</a>.</p></li>
+<li><p>The settlement calls Bebop's <a href="https://eth.blockscout.com/address/0xbbbbbbb520d69a9775e85b458c58c648259fad5f">RFQ settlement contract</a>. Public labels call it “PMM RFQ Settlement (V1)” and “Bebop: Blend”.</p></li>
+<li class="gate"><p>Bebop asks the bot <code>isValidSignature</code> (<a href="https://eips.ethereum.org/EIPS/eip-1271">EIP-1271</a>): did your quote key sign this? The bot says yes only for its one quote key. It answers only listed callers.</p></li>
+<li class="gate"><p>Bebop pulls 0.1020 WBTC from the bot through its allowance. The bot receives 6,855 USDT.</p></li>
+<li class="last"><p>The bot sends no transaction and pays no gas. On $6,848 it gained +$0.85 at the trade. Five minutes later the gain was +$8.27.</p></li>
+</ol>
+<figcaption class="figcap">Shaded steps are gates: a list or a key must match, or the trade fails.</figcaption>
+</figure>
+<p>Most single swaps don't gain at the trade. Only 28% of its own swaps did. On average the gain shows a few minutes later (<a href="#q2">where the edge comes from</a>).</p>
+<p>Signed quotes are the rarer path. In a random sample of 60 outside fills, 7 asked it to vouch. The rest only pulled tokens through allowances.</p>
+<p>The code: <a href="#s2">how one swap works</a> and <a href="#s3">how a price quote is checked</a>.</p>
+</section>
+
+<section id="q2" aria-labelledby="hq2">
+<h2 id="hq2">2. Where the edge comes from</h2>
+<p class="point">Timing: its trades lose at the trade and gain within five minutes. That much is fact. Why it happens is inference.</p>
+<figure class="fl-card fig">
+<h3>Markout by minutes after the trade</h3>
+<div class="scroll"><table class="bt"><thead><tr><th class="txt">Minutes after the trade</th><th>Its own swaps</th><th>Fills inside CoW settlements</th><th>Other outside fills</th></tr></thead><tbody><tr><td class="txt">0</td><td>−4.5 bp<span class="bar" style="--z:42.9%;--l:0.0%;--w:42.9%" aria-hidden="true"><i class="neg"></i></span></td><td>−1.5 bp<span class="bar" style="--z:42.9%;--l:28.6%;--w:14.3%" aria-hidden="true"><i class="neg"></i></span></td><td>+1.2 bp<span class="bar" style="--z:42.9%;--l:42.9%;--w:11.4%" aria-hidden="true"><i class="pos"></i></span></td></tr><tr><td class="txt">5</td><td>+5.1 bp<span class="bar" style="--z:42.9%;--l:42.9%;--w:48.6%" aria-hidden="true"><i class="pos"></i></span></td><td>+3.3 bp<span class="bar" style="--z:42.9%;--l:42.9%;--w:31.4%" aria-hidden="true"><i class="pos"></i></span></td><td>+3.7 bp<span class="bar" style="--z:42.9%;--l:42.9%;--w:35.2%" aria-hidden="true"><i class="pos"></i></span></td></tr><tr><td class="txt">15</td><td>+3.8 bp<span class="bar" style="--z:42.9%;--l:42.9%;--w:36.2%" aria-hidden="true"><i class="pos"></i></span></td><td>+3.2 bp<span class="bar" style="--z:42.9%;--l:42.9%;--w:30.5%" aria-hidden="true"><i class="pos"></i></span></td><td>+3.8 bp<span class="bar" style="--z:42.9%;--l:42.9%;--w:36.2%" aria-hidden="true"><i class="pos"></i></span></td></tr><tr><td class="txt">30</td><td>+4.8 bp<span class="bar" style="--z:42.9%;--l:42.9%;--w:45.7%" aria-hidden="true"><i class="pos"></i></span></td><td>+1.6 bp<span class="bar" style="--z:42.9%;--l:42.9%;--w:15.2%" aria-hidden="true"><i class="pos"></i></span></td><td>+4.0 bp<span class="bar" style="--z:42.9%;--l:42.9%;--w:38.1%" aria-hidden="true"><i class="pos"></i></span></td></tr><tr><td class="txt">60</td><td>+5.0 bp<span class="bar" style="--z:42.9%;--l:42.9%;--w:47.6%" aria-hidden="true"><i class="pos"></i></span></td><td>+1.1 bp<span class="bar" style="--z:42.9%;--l:42.9%;--w:10.5%" aria-hidden="true"><i class="pos"></i></span></td><td>+6.0 bp<span class="bar" style="--z:42.9%;--l:42.9%;--w:57.1%" aria-hidden="true"><i class="pos"></i></span></td></tr></tbody></table></div>
+<figcaption class="figcap">Basis points, before tips and gas. DefiLlama 5-minute prices, each token's day trend removed. Only trades with 5-minute prices on every leg.</figcaption>
+</figure>
+<p><strong>Fact.</strong> Its own swaps came to −4.5 bp at the trade. After five minutes they stood at +5.1 bp. After an hour they stood at +5.0 bp.</p>
+<p>The five-minute gain is +$88k. That is smaller than the swaps' own tips and gas. Its range stays above zero, at +$25k to +$164k. We resample whole hours, because trades in one hour share one price move.</p>
+<p>Fills inside CoW settlements go from −1.5 bp to +3.3 bp. Other outside fills go from +1.2 bp to +3.7 bp.</p>
+<p>Before we removed the trend, own swaps stood at +5.3 bp after five minutes. After an hour they stood at +7.9 bp.</p>
+<h3 class="sub">The falling day does not explain it</h3>
+<p>WETH fell from $1,930 to $1,730 that day. A falling price flatters every sale of WETH. So we split own swaps by side and removed each token's trend. Buys of WETH go from −4.3 bp to +2.6 bp. Sells go from −4.4 bp to +8.5 bp. Both sides gain.</p>
+<div class="scroll"><table class="bt"><thead><tr><th class="txt">Own swaps that</th><th>Volume</th><th>At the trade</th><th>5 minutes later</th><th>5 minutes later, trend removed</th></tr></thead><tbody><tr><td class="txt">buys WETH</td><td>$67.5M</td><td>−4.3 bp<span class="bar" style="--z:30.8%;--l:5.3%;--w:25.4%" aria-hidden="true"><i class="neg"></i></span></td><td>−0.6 bp<span class="bar" style="--z:30.8%;--l:27.2%;--w:3.6%" aria-hidden="true"><i class="neg"></i></span></td><td>+2.6 bp<span class="bar" style="--z:30.8%;--l:30.8%;--w:15.4%" aria-hidden="true"><i class="pos"></i></span></td></tr><tr><td class="txt">sells WETH</td><td>$80.8M</td><td>−4.4 bp<span class="bar" style="--z:30.8%;--l:4.7%;--w:26.0%" aria-hidden="true"><i class="neg"></i></span></td><td>+11.7 bp<span class="bar" style="--z:30.8%;--l:30.8%;--w:69.2%" aria-hidden="true"><i class="pos"></i></span></td><td>+8.5 bp<span class="bar" style="--z:30.8%;--l:30.8%;--w:50.3%" aria-hidden="true"><i class="pos"></i></span></td></tr><tr><td class="txt">no WETH leg</td><td>$24.3M</td><td>−5.2 bp<span class="bar" style="--z:30.8%;--l:0.0%;--w:30.8%" aria-hidden="true"><i class="neg"></i></span></td><td>+0.9 bp<span class="bar" style="--z:30.8%;--l:30.8%;--w:5.3%" aria-hidden="true"><i class="pos"></i></span></td><td>+0.7 bp<span class="bar" style="--z:30.8%;--l:30.8%;--w:4.1%" aria-hidden="true"><i class="pos"></i></span></td></tr></tbody></table></div>
+<p class="figcap">Own swaps by the side of their WETH leg, before tips and gas.</p>
+<h3 class="sub">Small and large swaps both gain</h3>
+<p>Every size group loses at the trade. Thirty minutes later, with the trend removed, the small swaps and the largest gain. The group up to $8k is flat, at +0.1 bp.</p>
+<div class="scroll"><table class="bt"><thead><tr><th class="txt">Swap size</th><th>Volume</th><th>At the trade</th><th>30 minutes later, trend removed</th></tr></thead><tbody><tr><td class="txt">up to $1k</td><td>$2.2M</td><td>−7.6 bp<span class="bar" style="--z:53.3%;--l:7.8%;--w:45.5%" aria-hidden="true"><i class="neg"></i></span></td><td>+7.8 bp<span class="bar" style="--z:53.3%;--l:53.3%;--w:46.7%" aria-hidden="true"><i class="pos"></i></span></td></tr><tr><td class="txt">up to $3k</td><td>$6.8M</td><td>−8.9 bp<span class="bar" style="--z:53.3%;--l:0.0%;--w:53.3%" aria-hidden="true"><i class="neg"></i></span></td><td>+4.6 bp<span class="bar" style="--z:53.3%;--l:53.3%;--w:27.5%" aria-hidden="true"><i class="pos"></i></span></td></tr><tr><td class="txt">up to $8k</td><td>$18.5M</td><td>−7.9 bp<span class="bar" style="--z:53.3%;--l:6.0%;--w:47.3%" aria-hidden="true"><i class="neg"></i></span></td><td>+0.1 bp<span class="bar" style="--z:53.3%;--l:53.3%;--w:0.6%" aria-hidden="true"><i class="pos"></i></span></td></tr><tr><td class="txt">over $8k</td><td>$150.1M</td><td>−4.0 bp<span class="bar" style="--z:53.3%;--l:29.3%;--w:24.0%" aria-hidden="true"><i class="neg"></i></span></td><td>+5.4 bp<span class="bar" style="--z:53.3%;--l:53.3%;--w:32.3%" aria-hidden="true"><i class="pos"></i></span></td></tr></tbody></table></div>
+<p class="figcap">Own swaps in four size groups, before tips and gas. Only swaps priced at the trade and thirty minutes later count. So the volume differs from the curves' $172.6M.</p>
+<div class="callout"><p><strong>Our reading (inference).</strong> The bot trades just before public prices move its way. It pays the pool fee and the spread now. It is right about the next few minutes. Then the gain stays flat. That is the shape of trading ahead of a one-off price move. It fits pricing from sources faster than the pools, such as exchange order books.</p>
+<p><strong>A second reading.</strong> The reference lags, and part of the gain is it catching up. Both readings say the bot's prices lead the public ones.</p></div>
+<h3 class="sub">What it is, and what it isn't</h3>
+<p>We read it as the on-chain inventory wallet of a professional market maker (inference). Its own keys swap on Uniswap and Curve, paying builders for inclusion. Solvers and fillers on CoW Protocol, UniswapX and other routes pull its tokens through allowances. Funds move in from exchange hot wallets. They move out to deposit addresses labelled Binance and Circle.</p>
+<p>A source comment calls it an “MEV bot and contract wallet” (line 81). Public explorer labels tag it “Market Maker” and “MEV Bot”. The <a href="https://www.openlabelsinitiative.org/">Open Labels Initiative</a> tags it “Wintermute_1”. Labels are third-party tags. We did not verify who runs it (<a href="#fn7">note 7</a>).</p>
+<p>It is not a drainer and not a honeypot. No function lets an outsider take its money. None pulls tokens from anyone else. We did not test for sandwiching, so we make no claim about it.</p>
+<h3 class="sub">How it compares with similar bots</h3>
+<p>We found peers from 1,307 UniswapX fills by 53 fillers, not from labels. We measured each one the same way over 6.7 hours.</p>
+<div class="scroll"><table><thead><tr><th class="txt">Contract</th><th class="txt">Public label</th><th>Inventory</th><th>Trades</th><th>Volume</th><th>Pulled by others</th><th>Own-tx markout</th><th>UniswapX fills</th></tr></thead><tbody><tr><td class="txt">0x51C7…2A7F</td><td class="txt">this bot</td><td>$73.7M</td><td>11,457</td><td>$200.8M</td><td>70%</td><td>−8.6 bp</td><td>0</td></tr><tr><td class="txt">0xBEE3…A000</td><td class="txt">Market Maker</td><td>$10.5M</td><td>959</td><td>$8.4M</td><td>67%</td><td>+8.3 bp</td><td>34</td></tr><tr><td class="txt">0xEFF6…A167</td><td class="txt">MEV Bot</td><td>$2.7M</td><td>2,341</td><td>$3.7M</td><td>0%</td><td>−1.6 bp</td><td>441</td></tr><tr><td class="txt">0x225A…DC17</td><td class="txt">Rizzolver: Uniswap X</td><td>$39k</td><td>581</td><td>$49.7M</td><td>0%</td><td>not measurable</td><td>581</td></tr></tbody></table></div>
+<p class="figcap">Inventory is Blockscout's valuation, unlike our own $73.2M. Markouts cover each contract's own transactions in the slice. They are not comparable profit figures.</p>
+<p><strong>Typical.</strong> Like its peers, it trades mostly on V3 pools, below one gwei, mid-block. Its payouts go to Binance deposit addresses, as theirs do.</p>
+<p><strong>Unusual.</strong> It holds 7× to 27× the peers' inventory. All 581 of Rizzolver's UniswapX fills in the slice moved this bot's tokens. Rizzolver holds only $39k, so it routes this bot's inventory, not its own.</p>
+<p>Others pulled 70% of its volume. The peer labelled “Market Maker” is close to that.</p>
+</section>
+
+<section id="q3" aria-labelledby="hq3">
+<h2 id="hq3">3. What it must run off chain</h2>
+<p class="point">Each on-chain fact implies some off-chain machinery. None of that machinery is visible, so every item in the right column is assumed.</p>
+<table class="fa">
+<thead><tr><th>Seen on chain</th><th>Assumed off chain</th></tr></thead>
+<tbody>
+<tr><td><p>134 operator keys have sent 8.87 million transactions. They hold 261 ETH between them for gas.</p></td><td><p>A fleet of hot keys. Software tracks each key's nonce and tops up its gas.</p></td></tr>
+<tr><td><p>Tips go only to 4 listed builders. A tipped swap reverts in any other builder's block. Of 4,848 landed transactions, 0 failed. That sample covers 4.7 hours.</p></td><td><p>Bundles sent privately, straight to those builders. A dropped bundle never lands, so it leaves no failure on chain.</p></td></tr>
+<tr><td><p>One quote key signs its quotes. The bot vouches for it to 5 listed callers. The key is registered with 0x and AirSwap.</p></td><td><p>An always-on quote server. It signs prices for RFQ venues, CoW solvers and UniswapX fillers.</p></td></tr>
+<tr><td><p>Its own swaps turn positive within five minutes (<a href="#q2">where the edge comes from</a>).</p></td><td><p>A price feed faster than the pools. Most likely that is centralized-exchange order books.</p></td></tr>
+<tr><td><p>Funding arrives from exchange hot wallets. Payouts go to exchange deposit addresses (<a href="#day">money in and out</a>).</p></td><td><p>Accounts on those exchanges and a treasury process that moves inventory. Likely hedges there too.</p></td></tr>
+<tr><td><p>The median own swap sits at position 100 in its block, at 0.22 gwei.</p></td><td><p>It does not bid for the top of the block. Low latency to builders still matters. Nodes and co-location leave no on-chain trace, so they are pure assumption.</p></td></tr>
+<tr><td><p>A 4-of-10 Safe sets every role through a registry. Grants wait a median 29 hours.</p></td><td><p>An operations team with a sign-off process.</p></td></tr>
+</tbody>
+</table>
+<p class="figcap">The evidence for each left-hand fact is in <a href="#hood">Under the hood</a>.</p>
+</section>
+
+<section id="q4" aria-labelledby="hq4">
+<h2 id="hq4">4. How much it made</h2>
+<p class="point">A clear loss at trade-time prices. About break-even to slightly positive five minutes later, with a range that includes zero.</p>
+<figure class="fl-card fig">
+<h3>All trades after tips and gas, by minutes after the trade</h3>
+<div class="scroll"><table class="bt"><thead><tr><th class="txt">Minutes after</th><th>After tips and gas</th><th class="txt">95% range</th><th>With the trend</th></tr></thead><tbody><tr><td class="txt">0</td><td>−$190k<span class="bar" style="--z:69.1%;--l:0.0%;--w:69.1%" aria-hidden="true"><i class="neg"></i></span></td><td class="txt">−$295k to −$103k</td><td>−$190k</td></tr><tr><td class="txt">5</td><td>+$80k<span class="bar" style="--z:69.1%;--l:69.1%;--w:29.1%" aria-hidden="true"><i class="pos"></i></span></td><td class="txt">−$11k to +$176k</td><td>+$94k</td></tr><tr><td class="txt">15</td><td>+$57k<span class="bar" style="--z:69.1%;--l:69.1%;--w:20.7%" aria-hidden="true"><i class="pos"></i></span></td><td class="txt">−$122k to +$250k</td><td>+$97k</td></tr><tr><td class="txt">30</td><td>+$57k<span class="bar" style="--z:69.1%;--l:69.1%;--w:20.7%" aria-hidden="true"><i class="pos"></i></span></td><td class="txt">−$181k to +$354k</td><td>+$137k</td></tr><tr><td class="txt">60</td><td>+$85k<span class="bar" style="--z:69.1%;--l:69.1%;--w:30.9%" aria-hidden="true"><i class="pos"></i></span></td><td class="txt">−$332k to +$600k</td><td>+$244k</td></tr></tbody></table></div>
+<figcaption class="figcap">25,315 trades worth $467.6M in one day, own swaps and outside fills together. Costs are the bot's own tips and gas. The day's price trend is removed, except in the last column. Ranges resample whole hours.</figcaption>
+</figure>
+<p>We marked out every priced trade and subtracted the bot's own tips and gas. At the trade the total is −$190k. Its range, −$295k to −$103k, sits below zero.</p>
+<p>Five minutes later the total is +$80k. Its range, −$11k to +$176k, includes zero. After an hour it is +$85k. That range, −$332k to +$600k, is wider still.</p>
+<p>Before we removed the trend, the five-minute total was +$94k. Its range, +$5k to +$196k, sat just above zero.</p>
+<p>Own swaps alone lose after costs. Their tips and gas came to $111k, or 6.4 bp. After those costs they stand at −$188k at the trade. Five minutes later they stand at −$23k, and after an hour at −$26k. The positive total comes from outside fills, which pay no gas.</p>
+<div class="callout"><p><strong>Verdict.</strong> Before costs, the chain shows a real timing edge on its own swaps. It shows no provable profit after costs. The firm's profit, if any, sits in hedges we can't see (inference).</p></div>
+<h3 class="sub">What these figures can't show</h3>
+<div class="limits"><ul><li><strong>Markout is not realized profit.</strong> It values tokens at a reference price. The bot may hedge or unwind at other prices.</li><li><strong>The hedge leg is invisible.</strong> Trades on exchanges leave no trace on this chain.</li><li><strong>The day's price trend.</strong> WETH fell that day. The trend-removed figures above correct for it.</li><li><strong>One day only.</strong> A year could look different. The inventory figures are point reads, not a cash ledger.</li><li><strong>Price coverage.</strong> 93% of trade volume had 5-minute prices on every leg. The other 7% had 15-minute prices and is left out of the curves.</li><li><strong>Sibling bots.</strong> Outside fills include $31.4M moved by sibling bots of the same family.</li><li><strong>Flows dwarf the result.</strong> That day $123.1M came in and $149.2M went out. Any trading result is small beside them.</li></ul></div>
+<h3 class="sub">What its inventory did</h3>
+<p>In Sep 2023 the bot held $8.1M. Now it holds $73.2M. The chain can't split that growth into deposits and profit. <a href="#pnl">The snapshot</a> shows the path and the peak.</p>
+</section>
+
+<section id="hood" aria-labelledby="hhood">
+<h2 id="hhood">5. Under the hood</h2>
+<p class="point">The full teardown, in parts. Each part opens on its own and holds the evidence behind the answers above.</p>
 <div class="stats">
 <div class="stat"><b>$73.2M</b><span>inventory at block 26,417,000</span></div>
 <div class="stat"><b>31,737</b><span>token-moving txs in one day</span></div>
@@ -131,39 +269,15 @@
 <div class="stat"><b>4 of 10</b><span>Safe owners needed to act</span></div>
 </div>
 
-<div class="art-col">
-<div class="callout"><p><strong>Verdict:</strong> this is the on-chain inventory wallet of a professional market maker. Its own keys swap on Uniswap and Curve, paying builders for inclusion. Solvers and fillers on CoW Protocol, UniswapX and other routes pull its tokens through allowances. Funds move in from exchange hot wallets and out to deposit addresses labelled Binance and Circle. At 5-minute reference prices the on-chain legs lose money once tips and gas are paid. We infer the profit sits where we can't see it: hedges off this chain, or prices finer than 5 minutes. It is not a drainer and not a honeypot. No function lets an outsider take its money or pulls tokens from anyone else.</p></div>
-<p>A comment in its rebuilt, verified source calls it an “MEV bot and contract wallet” (line 81). Public explorer labels tag it “Market Maker”, “MEV Bot” and, through the <a href="https://www.openlabelsinitiative.org/">Open Labels Initiative</a>, “Wintermute_1”. Labels are third-party tags. We did not verify who runs it (<a href="#fn7">note 7</a>).</p>
+<h3 class="hood-h">On chain</h3>
 
-<h2 id="steps" class="stepsh">Contents</h2>
-<h3>On chain</h3>
-<ol class="jump">
-<li><a href="#s1">Architecture: Safe, registry, bot</a>. Three contracts, and which one can change what.</li>
-<li><a href="#staff">The staff: every role and who holds it</a>. Thirteen lists, replayed from every grant and checked against the bot.</li>
-<li><a href="#safe">The multisig</a>. A 4-of-10 Safe that mostly sets allowances.</li>
-<li><a href="#day">One day of traffic</a>. 31,737 transactions, sorted by who sent them and which way tokens moved.</li>
-<li><a href="#money">How it makes money</a>. Three engines, then the evidence and its limits.</li>
-<li><a href="#pnl">A profit and loss snapshot</a>. What the chain can show about earnings, and what it can't.</li>
-</ol>
-<h3>In the code</h3>
-<ol class="jump" start="7">
-<li><a href="#s2">How one swap works</a>. Five steps, from an operator's call to the builder tip.</li>
-<li><a href="#s3">How a price quote is checked</a>. An off-chain key signs quotes. The bot vouches for that key.</li>
-<li><a href="#s4">Where the money can go</a>. Five exits, each behind a list.</li>
-<li><a href="#s5">The emergency brake</a>. Any staff key can stop it. Only the multisig restarts it.</li>
-<li><a href="#s6">What a reviewer would flag</a>. Five design facts, not claims that anything went wrong.</li>
-<li><a href="#s7">What we checked, and what we didn't</a>. The code matches the chain. Some things stay unproven.</li>
-<li><a href="#s8">How to check this yourself</a>. Five steps on a block explorer, without signing anything.</li>
-</ol>
-
-<section id="s1" aria-labelledby="h1">
-<h2 id="h1">1. Architecture: Safe, registry, bot</h2>
+<details class="hood" id="s1"><summary>Architecture: Safe, registry, bot <span class="sum-b">Three contracts, and which one can change what.</span></summary>
 <p class="point">A 4-of-10 Safe drives an unverified role registry, and the registry writes every list on the bot.</p>
-<figure class="fl-card fig" aria-labelledby="hero-h">
-<h3 id="hero-h">Who controls what</h3>
+<figure class="fl-card fig" aria-labelledby="who-h">
+<h3 id="who-h">Who controls what</h3>
 <div class="pair">
 <div class="node"><p><strong>Safe</strong> (0xCe46…f759, 4 of 10). The bot's <code>multiSigOwner</code>. Grants allowances. Stops and restarts the bot.</p></div>
-<div class="node"><p><strong>Registry</strong> (0x7Ff4…6B93, unverified). Proposes, executes and revokes role grants, Most grants wait over a day.</p></div>
+<div class="node"><p><strong>Registry</strong> (0x7Ff4…6B93, unverified). Proposes, executes and revokes role grants. Most grants wait over a day.</p></div>
 </div>
 <span class="down" aria-hidden="true">↓</span>
 <div class="node hold">The bot: $73.2M in 155 tokens and ETH</div>
@@ -192,18 +306,16 @@
 </ul>
 <figcaption class="figcap">Ten lists hold many accounts each. Three slots hold one address each: the quote key, AirSwap and 0x.</figcaption>
 </figure>
-</section>
+</details>
 
-<section id="staff" aria-labelledby="h-staff">
-<h2 id="h-staff">2. The staff: every role and who holds it</h2>
+<details class="hood" id="staff"><summary>The staff: every role and who holds it <span class="sum-b">Thirteen lists, replayed from every grant and checked against the bot.</span></summary>
 <p class="point">We replayed all 565 proposal, 483 execute and 43 revoke calls the Safe sent the registry, then asked the bot about each account. The replay matched the bot's own getters on all 9 lists that have one. Granted and Revoked count accounts, not calls. Labels show up to four holders per list.</p>
 <div class="scroll"><table><thead><tr><th class="txt">List</th><th class="txt">Role id</th><th>Now</th><th>Granted</th><th>Revoked</th><th class="txt">Gates</th><th class="txt">Public labels of holders</th></tr></thead><tbody><tr><td class="txt">operator</td><td class="txt"><code>9952537a…</code></td><td>134</td><td>165</td><td>31</td><td class="txt">every swap, V3 liquidity, stop</td><td class="txt">no public label</td></tr><tr><td class="txt">transferer</td><td class="txt"><code>6cc14d89…</code></td><td>1</td><td>1</td><td>0</td><td class="txt">transferTo, transferEthTo, stop</td><td class="txt">no public label</td></tr><tr><td class="txt">wethHandler</td><td class="txt"><code>9d72fc4d…</code></td><td>2</td><td>2</td><td>0</td><td class="txt">wrapEth, unwrapEth, stop</td><td class="txt">no public label</td></tr><tr><td class="txt">recipient</td><td class="txt"><code>0da11e33…</code></td><td>31</td><td>44</td><td>13</td><td class="txt">payout destination</td><td class="txt">Circle: Deposit; ByBit Deposit; KuCoin Deposit; Gate.io Deposit</td></tr><tr><td class="txt">spender</td><td class="txt"><code>18d95d9d…</code></td><td>10</td><td>25</td><td>15</td><td class="txt">ERC-20 allowance holder</td><td class="txt">Uniswap Protocol: Permit2; Aggregation Router V5; Rizzolver: Uniswap X; Swap Router</td></tr><tr><td class="txt">builder</td><td class="txt"><code>1058846c…</code></td><td>4</td><td>5</td><td>1</td><td class="txt">tip destination (block.coinbase)</td><td class="txt">rsync-builder; Titan Builder; MEV Builder: 0x777...C94; BuilderNet</td></tr><tr><td class="txt">v3Pool</td><td class="txt"><code>694f935c…</code></td><td>242</td><td>245</td><td>3</td><td class="txt">may call the V3 callbacks</td><td class="txt">no public label</td></tr><tr><td class="txt">v2Pair</td><td class="txt"><code>a15540b8…</code></td><td>103</td><td>103</td><td>0</td><td class="txt">may be traded against</td><td class="txt">no public label</td></tr><tr><td class="txt">curvePool</td><td class="txt"><code>42b40d72…</code></td><td>4</td><td>4</td><td>0</td><td class="txt">may call curveSwapCallback1337</td><td class="txt">Curve: crvCRVUSDTBTCWSTETH Pool; Curve: crvUSDETHCRV Pool; TricryptoUSDC (crvUSDCWB...); Curve: crvUSDTWBTCWETH Token</td></tr><tr><td class="txt">rfqCaller</td><td class="txt"><code>a1939ff6…</code></td><td>5</td><td>9</td><td>4</td><td class="txt">may ask isValidSignature</td><td class="txt">Uniswap Protocol: Permit2; Aggregation Router V6; Aggregation Router V5; PMM RFQ Settlement (V1)</td></tr><tr><td class="txt">rfqSigner</td><td class="txt"><code>fe731b89…</code></td><td>1</td><td>2</td><td>1</td><td class="txt">the key isValidSignature accepts</td><td class="txt">no public label</td></tr><tr><td class="txt">airswap</td><td class="txt"><code>4a835202…</code></td><td>1</td><td>2</td><td>1</td><td class="txt">AirSwap contract to authorize the signer on</td><td class="txt">no public label</td></tr><tr><td class="txt">zeroex</td><td class="txt"><code>3349cb1d…</code></td><td>1</td><td>1</td><td>0</td><td class="txt">0x contract to register the signer on</td><td class="txt">Exchange Proxy</td></tr></tbody></table></div>
 <p class="figcap">The table names no Safe owner. Operator and staff keys are hot keys of a bot, so we link the few that matter. Labels come from the Blockscout metadata service. Holder counts are from block 26,417,326.</p>
 <ul><li><strong>Operators</strong> are 134 externally owned accounts (EOAs). Between them they have sent 8.87 million transactions. The busiest has sent 155,493. They hold 261 ETH between them for gas.</li><li><strong>The transferer</strong> is <a href="https://eth.blockscout.com/address/0xdf49640412a9c20e0c682a32d5634e8329b01ce0">one key</a> with 125,197 transactions sent. It is the only account that can pay out.</li><li><strong>Recipients</strong>: 31 addresses. 10 carry public exchange deposit labels: Binance, Coinbase, Bybit, KuCoin, Gate.io, Bitfinex and Circle. One more is labelled “Wintermute 4”.</li><li><strong>Builders</strong>: rsync, Titan, BuilderNet and one labelled “MEV Builder 0x777…C94”. Tips go only to these when they build the block.</li><li><strong>Spenders and quote callers</strong>: Permit2, the 1inch routers, Bebop's settlement contract, a UniswapX filler labelled “Rizzolver”, and sibling bots labelled “MEV Bot”. The quote key is <a href="https://eth.blockscout.com/address/0xa0f1898fb62aee04f9aa1aa5866bc48e6b4cb1d8">one address</a>.</li></ul>
-</section>
+</details>
 
-<section id="safe" aria-labelledby="h-safe">
-<h2 id="h-safe">3. The multisig</h2>
+<details class="hood" id="safe"><summary>The multisig <span class="sum-b">A 4-of-10 Safe that mostly sets allowances.</span></summary>
 <p class="point">The owner is a <a href="https://eth.blockscout.com/address/0xCe466Fc694c971b95Bb1193E494942E22197f759">Safe</a> v1.3.0: 4 of 10 owners must sign. It has executed 7,263 transactions since 8 Aug 2023, one per nonce. 1 more reverted and used no nonce.</p>
 <p>Most of its work is allowances: 5,872 calls to the bot's <code>approveTokens</code>. Each one sets ERC-20 allowances from the bot to its spenders. The <a href="https://eth.blockscout.com/tx/0xe36dd9b33e07ec9c3d9fc263849244aef926dcc6239a06e27f77ddd027f135cd">latest</a> was on 13 Nov 2026.</p>
 <p>Role changes go through the registry in two steps: propose, then execute. In the latest pair, a <a href="https://eth.blockscout.com/tx/0x6fb716956d306f48bb1c85c2379e31e7c3c221dd5eff1a71d36908b56e936898">proposal</a> was <a href="https://eth.blockscout.com/tx/0x331b7a8cb1edb1a2cfcbdb7a034c83b4880d95545bdf60e8c194112bf8e510af">executed</a> 116 hours later. The median wait across 483 execute calls is 29 hours.</p>
@@ -211,10 +323,9 @@
 <p>The owner set changed 15 times by adding and 13 times by removing. The Safe also <a href="https://eth.blockscout.com/tx/0x9aee719527ffd72d349a8db32a58e87d4447a50de4f19bd18eb7232f91b0620d">restarted the bot</a> once, in December 2023, so it had been stopped at least once before.</p>
 <div class="scroll"><table><thead><tr><th class="txt">Target</th><th class="txt">Call</th><th>Count</th><th class="txt">Latest example</th></tr></thead><tbody><tr><td class="txt">bot</td><td class="txt">approveTokens: set ERC-20 allowances</td><td>5,872</td><td class="txt"><a href="https://eth.blockscout.com/tx/0xe36dd9b33e07ec9c3d9fc263849244aef926dcc6239a06e27f77ddd027f135cd">2026-11-13</a></td></tr><tr><td class="txt">registry</td><td class="txt">propose a role grant (f9fcd6e1)</td><td>565</td><td class="txt"><a href="https://eth.blockscout.com/tx/0xb39bb14028debd86a3f53d526075f9ebfaea9448fb2396882bcddd3c2657163a">2026-11-09</a></td></tr><tr><td class="txt">registry</td><td class="txt">execute a grant after the delay (932469a6)</td><td>483</td><td class="txt"><a href="https://eth.blockscout.com/tx/0x331b7a8cb1edb1a2cfcbdb7a034c83b4880d95545bdf60e8c194112bf8e510af">2026-11-10</a></td></tr><tr><td class="txt">registry</td><td class="txt">revoke a role (4561041a)</td><td>43</td><td class="txt"><a href="https://eth.blockscout.com/tx/0x8b824de6892d3ca4f3b18ccd7c2b6810034e8b179aec44db2980f21f97fccc49">2026-10-28</a></td></tr><tr><td class="txt">registry</td><td class="txt">unlabelled selector ae3be77c</td><td>83</td><td class="txt"><a href="https://eth.blockscout.com/tx/0x775ae0876ec358c8323a537b5738bc5e9c2dea2d152bb1cd7e9c49616c393e6c">2026-10-01</a></td></tr><tr><td class="txt">registry</td><td class="txt">unlabelled selector b749c6b8</td><td>82</td><td class="txt"><a href="https://eth.blockscout.com/tx/0x67f4667076c1c28326ae5d3e729d6f3023777217ae8fd0dfc6bfe1291fde1ca9">2026-10-12</a></td></tr><tr><td class="txt">sibling bots</td><td class="txt">approveTokens on two sibling contracts</td><td>79</td><td class="txt"><a href="https://eth.blockscout.com/tx/0x64da6ce9f20123d408d80e468d6e69f99b66dcc6f6b0dbc8ec7788e7314466f1">2026-09-14</a></td></tr><tr><td class="txt">Safe</td><td class="txt">add an owner</td><td>15</td><td class="txt"><a href="https://eth.blockscout.com/tx/0x76cae38f29acd06a1b72a343d8587a25c06d7d78f29563fc9adc9e6295c05f34">2026-05-18</a></td></tr><tr><td class="txt">Safe</td><td class="txt">remove an owner</td><td>13</td><td class="txt"><a href="https://eth.blockscout.com/tx/0xfad0f2d603223d18eae664aacb16ed0157a9cfa3dc7d715e32229f0309875ba8">2026-10-22</a></td></tr><tr><td class="txt">bot</td><td class="txt">authorizeAirswapSigner</td><td>3</td><td class="txt"><a href="https://eth.blockscout.com/tx/0xdb7bebe0b40bf44c0d19d79277ba3387971576068298a447a0c938462adae708">2024-09-30</a></td></tr><tr><td class="txt">bot</td><td class="txt">registerZeroexSigner</td><td>2</td><td class="txt"><a href="https://eth.blockscout.com/tx/0x7a2e7d4b20b15228a5f9d74b600e8f622831670a248f95f3c938fbc2403d7a0d">2023-09-12</a></td></tr><tr><td class="txt">bot</td><td class="txt">unkillContract</td><td>1</td><td class="txt"><a href="https://eth.blockscout.com/tx/0x9aee719527ffd72d349a8db32a58e87d4447a50de4f19bd18eb7232f91b0620d">2023-12-13</a></td></tr></tbody></table></div>
 <p class="figcap">What the Safe called, from all 7,263 executions. Selectors on the unverified registry are inferred from order and timing. 22 rarer calls are left out.</p>
-</section>
+</details>
 
-<section id="day" aria-labelledby="h-day">
-<h2 id="h-day">4. One day of traffic</h2>
+<details class="hood" id="day"><summary>One day of traffic <span class="sum-b">31,737 transactions, sorted by who sent them and which way tokens moved.</span></summary>
 <p class="point">In one day, 31,737 transactions moved the bot's tokens. Operators sent 18,052 swaps and 90 payouts. Outside contracts sent 13,441 by pulling its allowances. The other 154 were funding transfers in.</p>
 <p>The window is blocks 26,409,800 to 26,416,999, 14 Nov 2026 01:01 to 15 Nov 2026 01:06 UTC. It holds 63,661 ERC-20 transfers in or out of the bot, across 90 tokens. We fetched every transaction and receipt.</p>
 <h3 class="sub">Sent by its operators</h3>
@@ -223,45 +334,44 @@
 <p>127 operator keys sent swaps. Plain <code>v3Swap</code> carried 89% of the volume. 16,363 swaps paid a builder tip, which is the swap's first argument.</p>
 <p>The median transaction sat at position 100 in its block, at 0.22 gwei. Failures are rare too: of 4,848 landed transactions to the bot over 4.7 hours, 0 failed. Dropped bundles never land, so they can't show up here. That fits private bundles sent straight to builders. A tipped swap also reverts in any block whose builder is not listed (lines 685–686), so it only makes sense sent to listed builders. The deadline variant <code>v3SwapDL</code> is the exception: it pays a 1.5 gwei gas price and almost no tip. Its 1,023 swaps spent 18.0 ETH on gas.</p>
 <h3 class="sub">Sent by outside contracts</h3>
-<div class="scroll"><table><thead><tr><th class="txt">Entry contract</th><th class="txt">Kind</th><th>Txs</th><th>Volume</th><th>Markout</th><th>Example</th></tr></thead><tbody><tr><td class="txt"><a href="https://eth.blockscout.com/address/0x8f5835e9d756c9bd934bce527157a4b0ef3c5cb7">0x8f58…5cb7</a></td><td class="txt">CoW-linked</td><td>1,379</td><td>$148.7M</td><td>−0.3 bp</td><td><a href="https://eth.blockscout.com/tx/0x852411b0cb26369553a43d7cc6b668721988d80f7d4e1525d2543f71103a0810">tx</a></td></tr><tr><td class="txt"><a href="https://eth.blockscout.com/address/0x93c30e6e09f698cfea99b09b5166ed90cfaedd17">Swap Router</a></td><td class="txt">approved spender</td><td>7,501</td><td>$72.5M</td><td>−8.1 bp</td><td><a href="https://eth.blockscout.com/tx/0x18445bbc0939f0ba4e670738ae4294ed5f42e0e1543fb7385049a8ca5a8da8c0">tx</a></td></tr><tr><td class="txt"><a href="https://eth.blockscout.com/address/0x225a38bc71102999dd13478bfabd7c4d53f2dc17">Rizzolver: Uniswap X</a></td><td class="txt">approved spender</td><td>1,376</td><td>$56.8M</td><td>+3.8 bp</td><td><a href="https://eth.blockscout.com/tx/0x5054b6a8bc843754088cd37b73c44653f209dd87d13051424457378416a977b9">tx</a></td></tr><tr><td class="txt"><a href="https://eth.blockscout.com/address/0xec6fc9be2d5e505b40a2df8b0622cd25333823db">MEV Bot: 0xec6fc9be2d5e505b40a2df8b0622cd25333823db</a></td><td class="txt">approved spender</td><td>1,442</td><td>$17.4M</td><td>−14.5 bp</td><td><a href="https://eth.blockscout.com/tx/0x09578d13eb01e1e310a9f7b096f8d215ddbf29f36fb3d9aafb75ddfba8bc2617">tx</a></td></tr><tr><td class="txt"><a href="https://eth.blockscout.com/address/0xa8c1c98aaf99a5dfc907d61b892b2ad624901185">MEV Bot: 0xa8c1...185</a></td><td class="txt">approved spender</td><td>422</td><td>$14.0M</td><td>+10.0 bp</td><td><a href="https://eth.blockscout.com/tx/0x142986013c068581e740d1e415f7a16d10603c31e9a8be8f194ef31f99a4a2ac">tx</a></td></tr><tr><td class="txt"><a href="https://eth.blockscout.com/address/0x53bcdcc18f3bada2cd749a72b28d55eb7abb3dd2">0x53bc…3dd2</a></td><td class="txt">approved spender</td><td>33</td><td>$13.4M</td><td>−0.1 bp</td><td><a href="https://eth.blockscout.com/tx/0xa06bd14f7a7ccd53959b764655ac48a9169d12b2ce5a5c050f22a715a9d0f447">tx</a></td></tr><tr><td class="txt"><a href="https://eth.blockscout.com/address/0x149d330c8b9352573d17bc184b7a426ea020b38e">0x149d…b38e</a></td><td class="txt">approved spender</td><td>178</td><td>$7.8M</td><td>+36.4 bp</td><td><a href="https://eth.blockscout.com/tx/0x142227afb3b70a273a71210daf956e63bfb8c4cf0f9ebe70c88f64037dbcfdac">tx</a></td></tr><tr><td class="txt"><a href="https://eth.blockscout.com/address/0x3727c31d4d4c5270290ffb20c4c358c84c0792c9">0x3727…92c9</a></td><td class="txt">other</td><td>11</td><td>$3.3M</td><td>+47.1 bp</td><td><a href="https://eth.blockscout.com/tx/0x9a45310c7dd48057de23c9bfa40192757705b15d619730500da97101a9aa1cdc">tx</a></td></tr><tr><td class="txt"><a href="https://eth.blockscout.com/address/0x9008d19f58aabd9ed0d60971565aa8510560ab41">GP V2 Settlement</a></td><td class="txt">other</td><td>106</td><td>$2.0M</td><td>−28.1 bp</td><td><a href="https://eth.blockscout.com/tx/0x392f83f817a646bfa370d7ac912d1784b897d3081d163f989c8c79d0f782f8e9">tx</a></td></tr><tr><td class="txt"><a href="https://eth.blockscout.com/address/0xbfa23e39ebcb074696414fdd75ed2c9effbde688">0xbfa2…e688</a></td><td class="txt">other</td><td>2</td><td>$1.9M</td><td>−0.3 bp</td><td><a href="https://eth.blockscout.com/tx/0xcaba44f677b6b15b3dd173c6c8d48a6b5a5c515cbc84d7d2a238bb2f6663f799">tx</a></td></tr><tr><td class="txt">131 others</td><td class="txt"></td><td>991</td><td>$6.5M</td><td></td><td></td></tr></tbody></table></div>
+<div class="scroll"><table><thead><tr><th class="txt">Entry contract</th><th class="txt">Kind</th><th>Txs</th><th>Volume</th><th>Markout</th><th>Example</th></tr></thead><tbody><tr><td class="txt">unlabelled contract</td><td class="txt">CoW-linked</td><td>1,379</td><td>$148.7M</td><td>−0.3 bp</td><td><a href="https://eth.blockscout.com/tx/0x852411b0cb26369553a43d7cc6b668721988d80f7d4e1525d2543f71103a0810">tx</a></td></tr><tr><td class="txt"><a href="https://eth.blockscout.com/address/0x93c30e6e09f698cfea99b09b5166ed90cfaedd17">Swap Router</a></td><td class="txt">approved spender</td><td>7,501</td><td>$72.5M</td><td>−8.1 bp</td><td><a href="https://eth.blockscout.com/tx/0x18445bbc0939f0ba4e670738ae4294ed5f42e0e1543fb7385049a8ca5a8da8c0">tx</a></td></tr><tr><td class="txt"><a href="https://eth.blockscout.com/address/0x225a38bc71102999dd13478bfabd7c4d53f2dc17">Rizzolver: Uniswap X</a></td><td class="txt">approved spender</td><td>1,376</td><td>$56.8M</td><td>+3.8 bp</td><td><a href="https://eth.blockscout.com/tx/0x5054b6a8bc843754088cd37b73c44653f209dd87d13051424457378416a977b9">tx</a></td></tr><tr><td class="txt"><a href="https://eth.blockscout.com/address/0xec6fc9be2d5e505b40a2df8b0622cd25333823db">MEV Bot: 0xec6f…23db</a></td><td class="txt">approved spender</td><td>1,442</td><td>$17.4M</td><td>−14.5 bp</td><td><a href="https://eth.blockscout.com/tx/0x09578d13eb01e1e310a9f7b096f8d215ddbf29f36fb3d9aafb75ddfba8bc2617">tx</a></td></tr><tr><td class="txt"><a href="https://eth.blockscout.com/address/0xa8c1c98aaf99a5dfc907d61b892b2ad624901185">MEV Bot: 0xa8c1...185</a></td><td class="txt">approved spender</td><td>422</td><td>$14.0M</td><td>+10.0 bp</td><td><a href="https://eth.blockscout.com/tx/0x142986013c068581e740d1e415f7a16d10603c31e9a8be8f194ef31f99a4a2ac">tx</a></td></tr><tr><td class="txt">unlabelled contract</td><td class="txt">approved spender</td><td>33</td><td>$13.4M</td><td>−0.1 bp</td><td><a href="https://eth.blockscout.com/tx/0xa06bd14f7a7ccd53959b764655ac48a9169d12b2ce5a5c050f22a715a9d0f447">tx</a></td></tr><tr><td class="txt">unlabelled contract</td><td class="txt">approved spender</td><td>178</td><td>$7.8M</td><td>+36.4 bp</td><td><a href="https://eth.blockscout.com/tx/0x142227afb3b70a273a71210daf956e63bfb8c4cf0f9ebe70c88f64037dbcfdac">tx</a></td></tr><tr><td class="txt">unlabelled contract</td><td class="txt">other</td><td>11</td><td>$3.3M</td><td>+47.1 bp</td><td><a href="https://eth.blockscout.com/tx/0x9a45310c7dd48057de23c9bfa40192757705b15d619730500da97101a9aa1cdc">tx</a></td></tr><tr><td class="txt"><a href="https://eth.blockscout.com/address/0x9008d19f58aabd9ed0d60971565aa8510560ab41">GP V2 Settlement</a></td><td class="txt">other</td><td>106</td><td>$2.0M</td><td>−28.1 bp</td><td><a href="https://eth.blockscout.com/tx/0x392f83f817a646bfa370d7ac912d1784b897d3081d163f989c8c79d0f782f8e9">tx</a></td></tr><tr><td class="txt">unlabelled contract</td><td class="txt">other</td><td>2</td><td>$1.9M</td><td>−0.3 bp</td><td><a href="https://eth.blockscout.com/tx/0xcaba44f677b6b15b3dd173c6c8d48a6b5a5c515cbc84d7d2a238bb2f6663f799">tx</a></td></tr><tr><td class="txt">131 others</td><td class="txt"></td><td>991</td><td>$6.5M</td><td></td><td></td></tr></tbody></table></div>
 <p class="figcap">The ten largest entry contracts by volume. “Approved spender” means the contract is on the bot's spender list.</p>
 <p>580 other senders moved $344.4M through the bot in 13,441 transactions. In these the bot never calls out. Its tokens leave through allowances its spenders hold, Permit2 among them, sometimes after the quote check in <a href="#s3">the RFQ section</a>.</p>
-<p>The biggest route is an <a href="https://eth.blockscout.com/address/0x8f5835e9d756c9bd934bce527157a4b0ef3c5cb7">unlabelled contract</a>. Every token it moved went to or from CoW Protocol's <a href="https://eth.blockscout.com/address/0x9008d19f58aabd9ed0d60971565aa8510560ab41">settlement contract</a>. It filled $148.7M in 1,379 transactions, so the bot is a liquidity source for a <a href="https://docs.cow.fi/">CoW</a> solver. We did not trace which allowance it pulls through. Approved spenders and sibling bots moved $182.0M. The top one is a spender labelled “Swap Router”. Next come the sibling bots. Smaller routes include a UniswapX filler and the 1inch and 0x routers.</p>
+<p>The biggest route is an unlabelled contract. Every token it moved went to or from CoW Protocol's <a href="https://eth.blockscout.com/address/0x9008d19f58aabd9ed0d60971565aa8510560ab41">settlement contract</a>. It filled $148.7M in 1,379 transactions, so the bot is a liquidity source for a <a href="https://docs.cow.fi/">CoW</a> solver. We traced one of its fills in full (<a href="#q1">how one trade makes money</a>). We did not trace the allowance behind every fill. Approved spenders and sibling bots moved $182.0M. The top one is a spender labelled “Swap Router”. Next come the sibling bots. Smaller routes include a UniswapX filler and the 1inch and 0x routers.</p>
 <h3 class="sub">Money in and money out</h3>
 <div class="scroll"><table><thead><tr><th class="txt">Sender (public label)</th><th>Txs</th><th>In</th><th>Example</th></tr></thead><tbody><tr><td class="txt"><a href="https://eth.blockscout.com/address/0xaa8ba7d4611437141192e7ceced531bc0a133efb">Kraken: Hot Wallet 5</a></td><td>12</td><td>$41.3M</td><td><a href="https://eth.blockscout.com/tx/0x9fb892100e29d2be6d76a4c17f1c48099ffcacda535e6a66f5f45460eafe4e50">tx</a></td></tr><tr><td class="txt"><a href="https://eth.blockscout.com/address/0xf8191d98ae98d2f7abdfb63a9b0b812b93c873aa">Wintermute 4</a></td><td>36</td><td>$24.3M</td><td><a href="https://eth.blockscout.com/tx/0x5f89224e53860d9f3d729909bbdc2a780c399c1e4c049dd774f8fdcde91dde89">tx</a></td></tr><tr><td class="txt"><a href="https://eth.blockscout.com/address/0xa9d1e08c7793af67e9d92fe308d5697fb81d3e43">Coinbase Exchange: Hot Wallet</a></td><td>12</td><td>$15.1M</td><td><a href="https://eth.blockscout.com/tx/0x35451eea4d9eee353d229276ee18e7edca86fd5eb5432e715671e0607d448127">tx</a></td></tr><tr><td class="txt">unlabelled account</td><td>4</td><td>$12.7M</td><td></td></tr><tr><td class="txt"><a href="https://eth.blockscout.com/address/0x55fe002aeff02f77364de339a1292923a15844b8">Circle: Hot Wallet</a></td><td>5</td><td>$9.3M</td><td><a href="https://eth.blockscout.com/tx/0x3f379f30c5fa6046734c313baa37d6a20952da0124fa7d223f905950299ea8b9">tx</a></td></tr><tr><td class="txt">unlabelled account</td><td>2</td><td>$4.1M</td><td></td></tr><tr><td class="txt"><a href="https://eth.blockscout.com/address/0x2744dfd9898f0babbc570cc594bbbc84b487a22b">USDC SingleOwnerMSCA</a></td><td>1</td><td>$3.1M</td><td><a href="https://eth.blockscout.com/tx/0x726659c71876b99cd021f19f404050c85abd282fd24f41a1afd0c96864a84bee">tx</a></td></tr><tr><td class="txt"><a href="https://eth.blockscout.com/address/0xf89d7b9c864f589bbf53a82105107622b35eaa40">Bybit: Hot Wallet</a></td><td>14</td><td>$2.0M</td><td><a href="https://eth.blockscout.com/tx/0xa6b66b63953070d15a39f296c5dfdd0b6c85fcf4024076fb3dad4070e8fb256d">tx</a></td></tr><tr><td class="txt">26 others</td><td>68</td><td>$11.1M</td><td></td></tr></tbody></table></div>
 <p class="figcap">Funding by sender. Labels are public explorer tags. Unlabelled senders are not named.</p>
 <p>$123.1M arrived in 154 plain transfers from 34 senders. The <a href="https://eth.blockscout.com/tx/0x9fb892100e29d2be6d76a4c17f1c48099ffcacda535e6a66f5f45460eafe4e50">largest</a> came from an address labelled “Kraken: Hot Wallet 5”. Others carry Coinbase, Circle, Bybit, Bitstamp, KuCoin and Bitfinex hot-wallet labels, and “Wintermute 4”.</p>
 <p>$149.2M left in 90 <code>transferTo</code> payouts, a <a href="https://eth.blockscout.com/tx/0x8c4d6422b057d93a3ef312c21f0307929557a96f4fa82f09617d6b36e070e6b1">median</a> of $2.2M each. Only the transferer sends these, and only to listed recipients. The largest share went to an address labelled “Binance Deposit”, the next to “Circle: Deposit”. Much of the rest went to unlabelled recipients.</p>
-</section>
+</details>
 
-<section id="money" aria-labelledby="h-money">
-<h2 id="h-money">5. How it makes money</h2>
-<p class="point">The bot makes markets with its own inventory. Its on-chain trades break even or lose at 5-minute prices. So the edge most likely comes from trades we can't see, or from timing finer than our prices.</p>
+<details class="hood" id="money"><summary>How it makes money <span class="sum-b">Three engines, then the evidence and its limits.</span></summary>
+<p class="point">The bot makes markets with its own inventory. At trade-time prices its on-chain trades break even or lose. Minutes later its own swaps gain (<a href="#q2">where the edge comes from</a>).</p>
 <ul class="engines">
 <li><p><strong>Its own swaps.</strong> Operators trade against listed AMM pools and pay builders for a place in the block. That is consistent with CEX–DEX arbitrage or inventory rebalancing.</p></li>
 <li><p><strong>Fills for others.</strong> Solvers and fillers on CoW Protocol, UniswapX and aggregators use the bot as a quote source. They pull its tokens through allowances, or check a signed quote with EIP-1271.</p></li>
 <li><p><strong>Inventory cycling.</strong> Tokens arrive from exchange hot wallets and leave to exchange deposit addresses. That day $123.1M came in and $149.2M went out. That fits inventory moving between venues to stay hedged.</p></li>
 </ul>
-<p>We priced every leg at <a href="https://api-docs.defillama.com/">DefiLlama</a> 5-minute prices. Operator swaps came out at −4.9 bp, or −$92k on $188.2M. The 95% range is −$137k to −$36k. That range covers sampling noise across transactions, not error in the reference price. Pool fees alone read as a loss against a mid price. Tips and gas add $117k, or 6.2 bp. All in, the swaps came to −$208k that day (−11.1 bp).</p>
-<p>Fills for others came out at −0.3 bp on $344.4M, a range of −$83k to +$76k. That is flat. A maker quoting near the mid looks like this.</p>
-<p>A firm that pays $117k a day for inclusion expects to earn more than that. If they act rationally, the edge is in the other leg: a hedge on a centralized exchange, at a better price than our 5-minute reference. That leg is not on this chain. So the chain shows the costs and the volume, not the profit.</p>
-</section>
+<p>We priced every leg at <a href="https://api-docs.defillama.com/">DefiLlama</a> 5-minute prices, at the trade's time. These day-table figures include swaps with a 15-minute price on some leg. They also keep the day's price trend. So they differ from the answers above. All priced operator swaps came out at −4.9 bp. That is −$92k on $188.2M. Resampling single transactions gives a 95% range. It is −$137k to −$36k. That range covers sampling noise, not error in the reference price. Pool fees alone read as a loss against a mid price. Tips and gas add $117k, or 6.2 bp. All in, the swaps came to −$208k that day (−11.1 bp).</p>
+<p>Fills for others came out at −0.3 bp on $344.4M. Their range is −$83k to +$76k. That is flat. A maker quoting near the mid looks like this.</p>
+<p>A firm that pays $117k a day for inclusion expects to earn more than that. If it acts rationally, part of the edge is in another leg. It would be a hedge on an exchange, at a better price than our reference. It is not on this chain. So the chain shows the costs and the volume, not the profit.</p>
+</details>
 
-<section id="pnl" aria-labelledby="h-pnl">
-<h2 id="h-pnl">6. A profit and loss snapshot</h2>
-<p class="point">Inventory grew from $8.1M in Sep 2023 to $73.2M now. The chain can't split that growth into deposits and profit.</p>
+<details class="hood" id="pnl"><summary>A profit and loss snapshot <span class="sum-b">Its inventory since 2023, and what point reads can show.</span></summary>
+<p class="point">Point reads of its balances, about once a quarter, show its size and its costs. They can't show its profit (<a href="#q4">how much it made</a>).</p>
 <figure class="fl-card fig">
-<svg class="chart" viewBox="0 0 640 240" role="img" aria-label="Bot inventory in US dollars, 15 snapshots from $8.1M in Sep 2023 to $73.2M in Nov 2026"><line class="grid" x1="56" x2="628" y1="212.0" y2="212.0"/><text class="ax" x="48" y="216.0" text-anchor="end">$0</text><line class="grid" x1="56" x2="628" y1="162.0" y2="162.0"/><text class="ax" x="48" y="166.0" text-anchor="end">$20M</text><line class="grid" x1="56" x2="628" y1="112.0" y2="112.0"/><text class="ax" x="48" y="116.0" text-anchor="end">$40M</text><line class="grid" x1="56" x2="628" y1="62.0" y2="62.0"/><text class="ax" x="48" y="66.0" text-anchor="end">$60M</text><line class="grid" x1="56" x2="628" y1="12.0" y2="12.0"/><text class="ax" x="48" y="16.0" text-anchor="end">$80M</text><text class="ax" x="115.5" y="232" text-anchor="middle">2024</text><text class="ax" x="294.0" y="232" text-anchor="middle">2025</text><text class="ax" x="472.4" y="232" text-anchor="middle">2026</text><polyline class="line" points="56.0,191.7 100.4,155.4 145.2,135.0 190.1,120.2 235.0,86.8 279.3,40.5 323.2,52.9 368.1,60.8 413.0,58.3 457.3,63.5 501.7,25.1 546.6,50.4 591.4,27.9 620.7,35.7 628.0,29.0"/><circle class="dot" cx="56.0" cy="191.7" r="3"/><circle class="dot" cx="100.4" cy="155.4" r="3"/><circle class="dot" cx="145.2" cy="135.0" r="3"/><circle class="dot" cx="190.1" cy="120.2" r="3"/><circle class="dot" cx="235.0" cy="86.8" r="3"/><circle class="dot" cx="279.3" cy="40.5" r="3"/><circle class="dot" cx="323.2" cy="52.9" r="3"/><circle class="dot" cx="368.1" cy="60.8" r="3"/><circle class="dot" cx="413.0" cy="58.3" r="3"/><circle class="dot" cx="457.3" cy="63.5" r="3"/><circle class="dot" cx="501.7" cy="25.1" r="3"/><circle class="dot" cx="546.6" cy="50.4" r="3"/><circle class="dot" cx="591.4" cy="27.9" r="3"/><circle class="dot" cx="620.7" cy="35.7" r="3"/><circle class="dot" cx="628.0" cy="29.0" r="3"/></svg>
+<svg class="chart" viewBox="0 0 400 240" role="img" aria-label="Bot inventory in US dollars, 15 snapshots from $8.1M in Sep 2023 to $73.2M in Nov 2026"><line class="grid" x1="66" x2="388" y1="210.0" y2="210.0"/><text class="ax" x="58" y="214.0" text-anchor="end">$0</text><line class="grid" x1="66" x2="388" y1="160.5" y2="160.5"/><text class="ax" x="58" y="164.5" text-anchor="end">$20M</text><line class="grid" x1="66" x2="388" y1="111.0" y2="111.0"/><text class="ax" x="58" y="115.0" text-anchor="end">$40M</text><line class="grid" x1="66" x2="388" y1="61.5" y2="61.5"/><text class="ax" x="58" y="65.5" text-anchor="end">$60M</text><line class="grid" x1="66" x2="388" y1="12.0" y2="12.0"/><text class="ax" x="58" y="16.0" text-anchor="end">$80M</text><text class="ax" x="99.5" y="232" text-anchor="middle">2024</text><text class="ax" x="200.0" y="232" text-anchor="middle">2025</text><text class="ax" x="300.4" y="232" text-anchor="middle">2026</text><polyline class="line" points="66.0,189.9 91.0,154.0 116.2,133.8 141.5,119.2 166.7,86.0 191.7,40.2 216.4,52.5 241.7,60.3 266.9,57.8 291.9,62.9 316.9,25.0 342.2,50.0 367.4,27.7 383.9,35.4 388.0,28.8"/><circle class="dot" cx="66.0" cy="189.9" r="3"/><circle class="dot" cx="91.0" cy="154.0" r="3"/><circle class="dot" cx="116.2" cy="133.8" r="3"/><circle class="dot" cx="141.5" cy="119.2" r="3"/><circle class="dot" cx="166.7" cy="86.0" r="3"/><circle class="dot" cx="191.7" cy="40.2" r="3"/><circle class="dot" cx="216.4" cy="52.5" r="3"/><circle class="dot" cx="241.7" cy="60.3" r="3"/><circle class="dot" cx="266.9" cy="57.8" r="3"/><circle class="dot" cx="291.9" cy="62.9" r="3"/><circle class="dot" cx="316.9" cy="25.0" r="3"/><circle class="dot" cx="342.2" cy="50.0" r="3"/><circle class="dot" cx="367.4" cy="27.7" r="3"/><circle class="dot" cx="383.9" cy="35.4" r="3"/><circle class="dot" cx="388.0" cy="28.8" r="3"/></svg>
 <figcaption class="figcap">Inventory value in US dollars at each snapshot.</figcaption>
 </figure>
 <p>We read the bot's balance of every approved token, plus its ETH, at 15 blocks, roughly quarterly. We priced each at the block's time. The peak was $74.8M in Mar 2026. On 15 Nov 2026 it held 155 of its 161 approved tokens, with 270.8 ETH. The top 5 tokens make up 64% of the token value. 6 tokens had no price and count as zero.</p>
-<ul><li><strong>What it shows.</strong> The scale: about $73.2M working inventory and about $188.2M of own swaps a day.</li><li><strong>What it shows.</strong> The costs: 43.8 ETH of tips ($81k) and 19.3 ETH of gas ($36k) in one day.</li><li><strong>What it can't show.</strong> Profit. In one day $123.1M came in and $149.2M went out. Those flows dwarf any trading result. The hedges are off-chain.</li><li><strong>What it can't show.</strong> A year. Our flow figures cover one day. The inventory figures are point reads, not a cash ledger.</li></ul>
+<ul><li><strong>What it shows.</strong> The scale: about $73.2M working inventory and about $188.2M of own swaps a day.</li><li><strong>What it shows.</strong> The costs: 43.8 ETH of tips ($81k) and 19.3 ETH of gas ($36k) in one day.</li><li><strong>What it can't show.</strong> Profit, or a year of it. <a href="#q4">The limits</a> list why.</li></ul>
 <div class="scroll"><table><thead><tr><th class="txt">Token</th><th>Amount</th><th>Value</th></tr></thead><tbody><tr><td class="txt">USDC</td><td>16,133,247</td><td>$16.1M</td></tr><tr><td class="txt">USDT</td><td>11,067,428</td><td>$11.1M</td></tr><tr><td class="txt">WETH</td><td>5,428</td><td>$9.4M</td></tr><tr><td class="txt">cbBTC</td><td>83</td><td>$5.2M</td></tr><tr><td class="txt">crvUSD</td><td>4,945,157</td><td>$4.9M</td></tr><tr><td class="txt">ETH (native)</td><td>270.8</td><td>$467k</td></tr></tbody></table></div>
 <p class="figcap">The largest holdings at block 26,417,000. ETH is priced at $1,726.</p>
-</section>
+</details>
 
-<section id="s2" aria-labelledby="h2">
-<h2 id="h2">7. How one swap works</h2>
+<h3 class="hood-h">In the code</h3>
+
+<details class="hood" id="s2"><summary>How one swap works <span class="sum-b">Five steps, from an operator's call to the builder tip.</span></summary>
 <div class="point"><p>A swap runs only for an operator, on a listed pool, with the bot on. Here is the <a href="https://eth.blockscout.com/tx/0x8d090c6ca858dfd331b04cf7b0ccc7d7c84a6e34043e4ecb568c26be7b8f28b8">median-sized v3Swap</a> from our day.</p></div>
 <figure class="fl-card fig">
 <h3>One Uniswap V3 swap, step by step</h3>
@@ -300,10 +410,9 @@
 block.coinbase.<span class="tok-fn">call</span>{value: tip, gas: <span class="tok-num">0</span>}(<span class="tok-str">""</span>); <span class="tok-com">// result ignored, as deployed</span></code></pre>
 <p class="figcap">Bot.sol, lines 685–686. <a href="https://eth.blockscout.com/address/0x51C72848c68a965f66FA7a88855F9f7784502a7F?tab=contract">Full source on Blockscout</a></p>
 </details>
-</section>
+</details>
 
-<section id="s3" aria-labelledby="h3">
-<h2 id="h3">8. How a price quote is checked</h2>
+<details class="hood" id="s3"><summary>How a price quote is checked <span class="sum-b">An off-chain key signs quotes. The bot vouches for that key.</span></summary>
 <p class="point">The bot acts as an RFQ maker: an off-chain key signs its price quotes, and the bot answers for that key.</p>
 <figure class="fl-card fig">
 <h3>Two ways a venue trusts the quote key</h3>
@@ -325,10 +434,9 @@ block.coinbase.<span class="tok-fn">call</span>{value: tip, gas: <span class="to
 }</code></pre>
 <p class="figcap">Bot.sol, lines 689–692. <a href="https://eth.blockscout.com/address/0x51C72848c68a965f66FA7a88855F9f7784502a7F?tab=contract">Full source on Blockscout</a></p>
 </details>
-</section>
+</details>
 
-<section id="s4" aria-labelledby="h4">
-<h2 id="h4">9. Where the money can go</h2>
+<details class="hood" id="s4"><summary>Where the money can go <span class="sum-b">Five exits, each behind a list.</span></summary>
 <p class="point">Money leaves the bot by five exits. Each one sits behind a list.</p>
 <figure class="fl-card fig">
 <h3>The five exits and their gates</h3>
@@ -350,10 +458,9 @@ block.coinbase.<span class="tok-fn">call</span>{value: tip, gas: <span class="to
     <span class="tok-fn">onlyApprovedRecipients</span>(to)</code></pre>
 <p class="figcap">Bot.sol, lines 459–463. <a href="https://eth.blockscout.com/address/0x51C72848c68a965f66FA7a88855F9f7784502a7F?tab=contract">Full source on Blockscout</a></p>
 </details>
-</section>
+</details>
 
-<section id="s5" aria-labelledby="h5">
-<h2 id="h5">10. The emergency brake</h2>
+<details class="hood" id="s5"><summary>The emergency brake <span class="sum-b">Any staff key can stop it. Only the multisig restarts it.</span></summary>
 <p class="point">Any staff key can stop the bot. Only the multisig can start it again.</p>
 <figure class="fl-card fig">
 <h3>What one call to <code>killContract</code> does</h3>
@@ -378,10 +485,9 @@ block.coinbase.<span class="tok-fn">call</span>{value: tip, gas: <span class="to
 }</code></pre>
 <p class="figcap">Bot.sol, lines 373–381. <a href="https://eth.blockscout.com/address/0x51C72848c68a965f66FA7a88855F9f7784502a7F?tab=contract">Full source on Blockscout</a> Names ending in a random suffix are the source's own stand-ins. The real names are unknown.</p>
 </details>
-</section>
+</details>
 
-<section id="s6" aria-labelledby="h6">
-<h2 id="h6">11. What a reviewer would flag</h2>
+<details class="hood" id="s6"><summary>What a reviewer would flag <span class="sum-b">Five design facts, not claims that anything went wrong.</span></summary>
 <p class="point">Five design facts stand out. None is a claim that anything has gone wrong.</p>
 <ol class="flags">
 <li><strong>The registry holds the keys.</strong> It names the transferers and the recipients. Together those two lists can send out any token or ETH. The registry's own code is not verified on Sourcify or Blockscout. So its rules, including its delay, can't be read.</li>
@@ -400,21 +506,19 @@ block.coinbase.<span class="tok-fn">call</span>{value: tip, gas: <span class="to
 }</code></pre>
 <p class="figcap">Bot.sol, lines 673–679. <a href="https://eth.blockscout.com/address/0x51C72848c68a965f66FA7a88855F9f7784502a7F?tab=contract">Full source on Blockscout</a> Names ending in a random suffix are the source's own stand-ins. The real names are unknown.</p>
 </details>
-</section>
+</details>
 
-<section id="s7" aria-labelledby="h7">
-<h2 id="h7">12. What we checked, and what we didn't</h2>
+<details class="hood" id="s7"><summary>What we checked, and what we didn't <span class="sum-b">The code matches the chain. Some things stay unproven.</span></summary>
 <p class="point">The verified code matches what runs on chain. Equivalence for every input is not proven. The flow figures are one day at 5-minute prices.</p>
 <div class="two fig">
 <div class="fl-card"><h3>Checked</h3><ul><li>Built with its exact compiler settings, the source gives the deployed code byte for byte. Deploy arguments match too.</li><li>We wrote a shorter, readable copy. It has the same 63 functions, argument types and storage layout.</li><li>Both ran one test that calls every external function. All 331 compared results matched.</li><li>We ran both on a local copy of mainnet at block 26,415,084. They gave the same swap output. Both zeroed the same 613 allowances.</li><li>Role holders: the replay of the Safe's registry calls matched the bot's getters for every account.</li><li>The day: every transaction in the window was fetched with its receipt, none sampled.</li></ul></div>
 <div class="fl-card"><h3>Not checked</h3><ul><li>The metadata hash differs. The verified file is a rebuild with stand-in names (<a href="#fn6">note 6</a>).</li><li>Equivalence for every possible input. Tests are examples, not a proof.</li><li>The outside contracts: the registry, the multisig's signers, the venues and the spenders.</li><li>Who runs it. Explorer labels name a firm. We did not confirm them.</li><li>Prices finer than 5 minutes, and 4 of the day's 90 tokens that had no price. Swaps with an unpriced leg are left out of markouts.</li><li>Any day but this one. A different day could look different.</li></ul></div>
 </div>
-<h3 class="sub">Method</h3>
-<ul><li><strong>Roles.</strong> We decoded every Safe <code>execTransaction</code> to the registry and replayed propose, execute and revoke in order. Then we called the bot's own getter for every replayed holder.</li><li><strong>Flows.</strong> We pulled every ERC-20 <code>Transfer</code> log to or from the bot in the window, then each transaction and its receipt. A transaction is a swap if the bot both sent and received tokens. It is funding if it only received, and a payout if it only sent.</li><li><strong>Markout.</strong> For each swap: the dollar value in minus the dollar value out, at 5-minute prices. The range is a bootstrap over transactions. A positive markout means the bot gained.</li><li><strong>Tips and gas.</strong> The tip is the first argument of each swap function. Gas is gas used times the effective gas price. Outside senders pay their own gas, so it is not counted.</li><li><strong>Inventory.</strong> <code>getAllApprovedTokens</code> plus <code>balanceOf</code> and <code>decimals</code> at each snapshot block, priced at that block's time.</li></ul>
-</section>
+<h3 class="sub" id="method">Method</h3>
+<ul><li><strong>Roles.</strong> We decoded every Safe <code>execTransaction</code> to the registry and replayed propose, execute and revoke in order. Then we called the bot's own getter for every replayed holder.</li><li><strong>Flows.</strong> We pulled every ERC-20 <code>Transfer</code> log to or from the bot in the window, then each transaction and its receipt. A transaction is a swap if the bot both sent and received tokens. It is funding if it only received, and a payout if it only sent.</li><li><strong>Markout.</strong> For each swap: dollars in minus dollars out, at 5-minute prices. A positive markout means the bot gained. In the day tables the range is a bootstrap over transactions.</li><li><strong>Markout over time.</strong> The answers above price each trade again at later minutes. Their ranges resample whole hours, because trades in one hour share one price move. They remove each token's day trend. So a falling market isn't read as skill.</li><li><strong>Tips and gas.</strong> The tip is the first argument of each swap function. Gas is gas used times the effective gas price. Outside senders pay their own gas, so it is not counted.</li><li><strong>Inventory.</strong> <code>getAllApprovedTokens</code> plus <code>balanceOf</code> and <code>decimals</code> at each snapshot block, priced at that block's time.</li></ul>
+</details>
 
-<section id="s8" aria-labelledby="h8">
-<h2 id="h8">13. How to check this yourself</h2>
+<details class="hood" id="s8"><summary>How to check this yourself <span class="sum-b">Five steps on a block explorer, without signing anything.</span></summary>
 <p class="point">A block explorer shows any contract's code, state and traffic without signing anything.</p>
 <ol class="flow fig">
 <li><p>Open the address on <a href="https://eth.blockscout.com/address/0x51C72848c68a965f66FA7a88855F9f7784502a7F">Blockscout</a> or Etherscan.</p></li>
@@ -423,10 +527,9 @@ block.coinbase.<span class="tok-fn">call</span>{value: tip, gas: <span class="to
 <li><p>Open Read Contract to see its current state. Reading sends nothing. Open any example transaction above to see its token transfers.</p></li>
 <li class="last"><p>Leave Write Contract alone. It asks your wallet to sign a transaction.</p></li>
 </ol>
-</section>
+</details>
 
-<section id="appx" aria-labelledby="h-appx">
-<h2 id="h-appx">Appendix: selectors and storage</h2>
+<details class="hood" id="appx"><summary>Appendix: selectors and storage <span class="sum-b">Every selector and storage slot, for checking the code.</span></summary>
 <details><summary>All 63 external functions, with the deployed selector and the name our readable copy uses</summary>
 <div class="scroll"><table><thead><tr><th class="txt">Selector</th><th class="txt">Deployed signature</th><th class="txt">Readable name</th></tr></thead><tbody><tr><td class="txt"><code>0xd73c2f66</code></td><td class="txt"><code>_approvedAirswapContract()</code></td><td class="txt"><code>airswap</code></td></tr><tr><td class="txt"><code>0xd368093d</code></td><td class="txt"><code>_approvedCoinbaseAddresses(address)</code></td><td class="txt"><code>builders</code></td></tr><tr><td class="txt"><code>0xfc6594ef</code></td><td class="txt"><code>_approvedRecipients_ExviWK(address)</code></td><td class="txt"><code>recipients</code></td></tr><tr><td class="txt"><code>0xfcdd595a</code></td><td class="txt"><code>_approvedRfqCallers_1CiVF7(address)</code></td><td class="txt"><code>rfqCallers</code></td></tr><tr><td class="txt"><code>0x628bcd8b</code></td><td class="txt"><code>_approvedZeroexContract()</code></td><td class="txt"><code>zeroEx</code></td></tr><tr><td class="txt"><code>0x2a455199</code></td><td class="txt"><code>_operators(address)</code></td><td class="txt"><code>operators</code></td></tr><tr><td class="txt"><code>0x692e3a95</code></td><td class="txt"><code>_rfqSigner()</code></td><td class="txt"><code>rfqSigner</code></td></tr><tr><td class="txt"><code>0xecfdae1a</code></td><td class="txt"><code>_transferers_3TlnxV(address)</code></td><td class="txt"><code>transferers</code></td></tr><tr><td class="txt"><code>0xea3c986d</code></td><td class="txt"><code>_wethHandlers_9mt4lD(address)</code></td><td class="txt"><code>wethHandlers</code></td></tr><tr><td class="txt"><code>0x1ce9ae07</code></td><td class="txt"><code>accessControlRegistry()</code></td><td class="txt"><code>accessControlRegistry</code></td></tr><tr><td class="txt"><code>0x4103f237</code></td><td class="txt"><code>approvedAirswapContractRole()</code></td><td class="txt"><code>AIRSWAP_ROLE</code></td></tr><tr><td class="txt"><code>0xe6ac82d2</code></td><td class="txt"><code>approvedCoinbaseRole_DPVzxd()</code></td><td class="txt"><code>BUILDER_ROLE</code></td></tr><tr><td class="txt"><code>0x3794bbc4</code></td><td class="txt"><code>approvedRecipientRole_5UAPo6()</code></td><td class="txt"><code>RECIPIENT_ROLE</code></td></tr><tr><td class="txt"><code>0xc249597c</code></td><td class="txt"><code>approvedRfqCallerRole_1Nqzj6()</code></td><td class="txt"><code>RFQ_CALLER_ROLE</code></td></tr><tr><td class="txt"><code>0xe457acdd</code></td><td class="txt"><code>approvedSpenderRole()</code></td><td class="txt"><code>SPENDER_ROLE</code></td></tr><tr><td class="txt"><code>0x1132fb89</code></td><td class="txt"><code>approvedZeroexContractRole()</code></td><td class="txt"><code>ZEROEX_ROLE</code></td></tr><tr><td class="txt"><code>0x3cbe46f8</code></td><td class="txt"><code>approveTokens_0IT8ik((address,address,uint256)[])</code></td><td class="txt"><code>approveTokens</code></td></tr><tr><td class="txt"><code>0x8b954c70</code></td><td class="txt"><code>authorizeAirswapSigner_61FxMV()</code></td><td class="txt"><code>authorizeAirswapSigner</code></td></tr><tr><td class="txt"><code>0x10a43720</code></td><td class="txt"><code>CURVE_CALLBACK()</code></td><td class="txt"><code>CURVE_CALLBACK</code></td></tr><tr><td class="txt"><code>0x48ea3731</code></td><td class="txt"><code>curvePoolRole_6J7kHJ()</code></td><td class="txt"><code>CURVE_POOL_ROLE</code></td></tr><tr><td class="txt"><code>0xbb25faea</code></td><td class="txt"><code>curvePools_9aaV3S(address)</code></td><td class="txt"><code>curvePools</code></td></tr><tr><td class="txt"><code>0x0070c82a</code></td><td class="txt"><code>curveSwap(uint256,address,uint256,uint256,uint256,uint256)</code></td><td class="txt"><code>curveSwap</code></td></tr><tr><td class="txt"><code>0xfb034fb2</code></td><td class="txt"><code>curveSwap_2NX0bc(uint256,address,uint256,uint256,uint256,uint256)</code></td><td class="txt"><code>curveSwapWithCallback</code></td></tr><tr><td class="txt"><code>0xc4da52dc</code></td><td class="txt"><code>curveSwapCallback1337(address,address,address,uint256,uint256)</code></td><td class="txt"><code>curveSwapCallback1337</code></td></tr><tr><td class="txt"><code>0x484e39c3</code></td><td class="txt"><code>curveSwapDL(uint256,address,uint256,uint256,uint256,uint256,uint256)</code></td><td class="txt"><code>curveSwapDL</code></td></tr><tr><td class="txt"><code>0x5afcf03d</code></td><td class="txt"><code>curveSwapInt128DL_1Mf9Ea(uint256,address,int128,int128,uint256,uint256,bool,uint256)</code></td><td class="txt"><code>curveStableSwapDL</code></td></tr><tr><td class="txt"><code>0xf7e846e9</code></td><td class="txt"><code>curveSwapInt128RetDL_433L5R(uint256,address,int128,int128,uint256,uint256,bool,uint256)</code></td><td class="txt"><code>curveStableSwapWithReturnDL</code></td></tr><tr><td class="txt"><code>0xada00694</code></td><td class="txt"><code>getAllApprovedSpenders()</code></td><td class="txt"><code>getAllApprovedSpenders</code></td></tr><tr><td class="txt"><code>0x09b0d50a</code></td><td class="txt"><code>getAllApprovedTokens()</code></td><td class="txt"><code>getAllApprovedTokens</code></td></tr><tr><td class="txt"><code>0x481c42a2</code></td><td class="txt"><code>getTimelockDelay()</code></td><td class="txt"><code>getTimelockDelay</code></td></tr><tr><td class="txt"><code>0x22f3e2d4</code></td><td class="txt"><code>isActive()</code></td><td class="txt"><code>isActive</code></td></tr><tr><td class="txt"><code>0x1626ba7e</code></td><td class="txt"><code>isValidSignature(bytes32,bytes)</code></td><td class="txt"><code>isValidSignature</code></td></tr><tr><td class="txt"><code>0x1c02708d</code></td><td class="txt"><code>killContract()</code></td><td class="txt"><code>killContract</code></td></tr><tr><td class="txt"><code>0x0329dd62</code></td><td class="txt"><code>multiSigOwner()</code></td><td class="txt"><code>multiSigOwner</code></td></tr><tr><td class="txt"><code>0xcf1346bc</code></td><td class="txt"><code>onRoleGranted_0ZqoAU(bytes32,address,bytes)</code></td><td class="txt"><code>onRoleGranted</code></td></tr><tr><td class="txt"><code>0x59733e7f</code></td><td class="txt"><code>onRoleRevoked_0LTJTx(bytes32,address,bytes)</code></td><td class="txt"><code>onRoleRevoked</code></td></tr><tr><td class="txt"><code>0x47503b3d</code></td><td class="txt"><code>operatorRole()</code></td><td class="txt"><code>OPERATOR_ROLE</code></td></tr><tr><td class="txt"><code>0x34248ee5</code></td><td class="txt"><code>registerZeroexSigner_2o2iTq()</code></td><td class="txt"><code>registerZeroExSigner</code></td></tr><tr><td class="txt"><code>0xb0c39a1e</code></td><td class="txt"><code>revokeAirswapSigner_1kjI2K()</code></td><td class="txt"><code>revokeAirswapSigner</code></td></tr><tr><td class="txt"><code>0xa5fd3043</code></td><td class="txt"><code>revokeAllApprovals_IXLJyu()</code></td><td class="txt"><code>revokeAllApprovals</code></td></tr><tr><td class="txt"><code>0xf203c1b1</code></td><td class="txt"><code>revokeApprovals_2Ls0Zw(uint256)</code></td><td class="txt"><code>revokeApprovals</code></td></tr><tr><td class="txt"><code>0xa03dc130</code></td><td class="txt"><code>rfqSignerRole()</code></td><td class="txt"><code>RFQ_SIGNER_ROLE</code></td></tr><tr><td class="txt"><code>0xa93f9118</code></td><td class="txt"><code>transfererRole_0UBrja()</code></td><td class="txt"><code>TRANSFERER_ROLE</code></td></tr><tr><td class="txt"><code>0x029074ce</code></td><td class="txt"><code>transferEthTo(uint256[],address[])</code></td><td class="txt"><code>transferEthTo</code></td></tr><tr><td class="txt"><code>0x394b1de1</code></td><td class="txt"><code>transferTo(address[],uint256[],address[])</code></td><td class="txt"><code>transferTo</code></td></tr><tr><td class="txt"><code>0xd3487997</code></td><td class="txt"><code>uniswapV3MintCallback(uint256,uint256,bytes)</code></td><td class="txt"><code>uniswapV3MintCallback</code></td></tr><tr><td class="txt"><code>0xfa461e33</code></td><td class="txt"><code>uniswapV3SwapCallback(int256,int256,bytes)</code></td><td class="txt"><code>uniswapV3SwapCallback</code></td></tr><tr><td class="txt"><code>0x6b410e34</code></td><td class="txt"><code>unkillContract()</code></td><td class="txt"><code>unkillContract</code></td></tr><tr><td class="txt"><code>0x6d66ea05</code></td><td class="txt"><code>unregisterZeroexSigner_7PkJEK()</code></td><td class="txt"><code>unregisterZeroExSigner</code></td></tr><tr><td class="txt"><code>0x2197159c</code></td><td class="txt"><code>unwrapEth(uint256)</code></td><td class="txt"><code>unwrapEth</code></td></tr><tr><td class="txt"><code>0x3c54863c</code></td><td class="txt"><code>v2PairRole_05FVW9()</code></td><td class="txt"><code>V2_PAIR_ROLE</code></td></tr><tr><td class="txt"><code>0x6650eb1e</code></td><td class="txt"><code>v2Pairs_15weza(address)</code></td><td class="txt"><code>v2Pairs</code></td></tr><tr><td class="txt"><code>0xa1c20303</code></td><td class="txt"><code>v2Swap(uint256,address,address,uint256,uint256,uint256)</code></td><td class="txt"><code>v2Swap</code></td></tr><tr><td class="txt"><code>0x30a28ffc</code></td><td class="txt"><code>v2SwapDL(uint256,address,address,uint256,uint256,uint256,uint256)</code></td><td class="txt"><code>v2SwapDL</code></td></tr><tr><td class="txt"><code>0xb87d3b28</code></td><td class="txt"><code>v3Burn_0wWFdL(uint256,address,int24,int24,uint128,uint256,uint256,uint256)</code></td><td class="txt"><code>v3BurnAndCollect</code></td></tr><tr><td class="txt"><code>0xe2f48005</code></td><td class="txt"><code>v3Mint_25LOT2(address,int24,int24,uint128,uint256,uint256,uint256)</code></td><td class="txt"><code>v3Mint</code></td></tr><tr><td class="txt"><code>0x3bb6ea1e</code></td><td class="txt"><code>v3PoolRole_3JDzmm()</code></td><td class="txt"><code>V3_POOL_ROLE</code></td></tr><tr><td class="txt"><code>0x5bc6665d</code></td><td class="txt"><code>v3Pools_0DgwSe(address)</code></td><td class="txt"><code>v3Pools</code></td></tr><tr><td class="txt"><code>0x771d503f</code></td><td class="txt"><code>v3Swap(uint256,address,uint256,uint256,bool,bytes)</code></td><td class="txt"><code>v3Swap</code></td></tr><tr><td class="txt"><code>0x122067ed</code></td><td class="txt"><code>v3SwapDL(uint256,address,uint256,uint256,bool,uint256,bytes)</code></td><td class="txt"><code>v3SwapDL</code></td></tr><tr><td class="txt"><code>0x1e6934b6</code></td><td class="txt"><code>weth_68HG9p()</code></td><td class="txt"><code>weth</code></td></tr><tr><td class="txt"><code>0xb221bd4b</code></td><td class="txt"><code>wethHandlerRole_3usJ7R()</code></td><td class="txt"><code>WETH_HANDLER_ROLE</code></td></tr><tr><td class="txt"><code>0xae9779c6</code></td><td class="txt"><code>wrapEth(uint256)</code></td><td class="txt"><code>wrapEth</code></td></tr></tbody></table></div>
 </details>
@@ -434,20 +537,16 @@ block.coinbase.<span class="tok-fn">call</span>{value: tip, gas: <span class="to
 <div class="scroll"><table><thead><tr><th class="txt">Slot</th><th>Offset</th><th class="txt">Variable</th><th class="txt">Type</th></tr></thead><tbody><tr><td class="txt">0</td><td>0</td><td class="txt"><code>isActive</code></td><td class="txt"><code>bool</code></td></tr><tr><td class="txt">1</td><td>0</td><td class="txt"><code>_transferers_3TlnxV</code></td><td class="txt"><code>mapping(address =&gt; bool)</code></td></tr><tr><td class="txt">2</td><td>0</td><td class="txt"><code>_operators</code></td><td class="txt"><code>mapping(address =&gt; bool)</code></td></tr><tr><td class="txt">3</td><td>0</td><td class="txt"><code>_wethHandlers_9mt4lD</code></td><td class="txt"><code>mapping(address =&gt; bool)</code></td></tr><tr><td class="txt">4</td><td>0</td><td class="txt"><code>_approvedRecipients_ExviWK</code></td><td class="txt"><code>mapping(address =&gt; bool)</code></td></tr><tr><td class="txt">5</td><td>0</td><td class="txt"><code>_approvedCoinbaseAddresses</code></td><td class="txt"><code>mapping(address =&gt; bool)</code></td></tr><tr><td class="txt">6</td><td>0</td><td class="txt"><code>_approvedSpenders</code></td><td class="txt"><code>struct EnumerableSet.AddressSet</code></td></tr><tr><td class="txt">8</td><td>0</td><td class="txt"><code>_approvedTokens</code></td><td class="txt"><code>struct EnumerableSet.AddressSet</code></td></tr><tr><td class="txt">10</td><td>0</td><td class="txt"><code>v2Pairs_15weza</code></td><td class="txt"><code>mapping(address =&gt; bool)</code></td></tr><tr><td class="txt">11</td><td>0</td><td class="txt"><code>v3Pools_0DgwSe</code></td><td class="txt"><code>mapping(address =&gt; bool)</code></td></tr><tr><td class="txt">12</td><td>0</td><td class="txt"><code>curvePools_9aaV3S</code></td><td class="txt"><code>mapping(address =&gt; bool)</code></td></tr><tr><td class="txt">13</td><td>0</td><td class="txt"><code>_rfqSigner</code></td><td class="txt"><code>address</code></td></tr><tr><td class="txt">14</td><td>0</td><td class="txt"><code>_approvedAirswapContract</code></td><td class="txt"><code>address</code></td></tr><tr><td class="txt">15</td><td>0</td><td class="txt"><code>_approvedZeroexContract</code></td><td class="txt"><code>address</code></td></tr><tr><td class="txt">15</td><td>20</td><td class="txt"><code>_airswapAuthorized</code></td><td class="txt"><code>bool</code></td></tr><tr><td class="txt">15</td><td>21</td><td class="txt"><code>_zeroexRegistered</code></td><td class="txt"><code>bool</code></td></tr><tr><td class="txt">16</td><td>0</td><td class="txt"><code>_approvedRfqCallers_1CiVF7</code></td><td class="txt"><code>mapping(address =&gt; bool)</code></td></tr></tbody></table></div>
 <p class="figcap">The bot keeps no role id to list mapping in storage. Each hook compares the role id with constants and flips the matching flag. Spenders and tokens are OpenZeppelin <code>EnumerableSet</code>s, which is how <code>killContract</code> walks every allowance.</p>
 </details>
-</section>
+</details>
 
-<div class="callout"><p>Research and explanation only. Everything here comes from the verified source and read-only calls. Nothing was sent to the contract. This is not financial advice. Do not interact with contracts you don't know.</p></div>
-
-<section id="words" aria-labelledby="hw">
-<h2 id="hw">Words used on this page</h2>
+<details class="hood" id="words"><summary>Words used on this page <span class="sum-b">Short definitions of the terms used above.</span></summary>
 <div class="words">
 <div><h3>Ethereum words</h3><ul><li><strong>MEV.</strong> Profit from choosing which trades go in a block, and in what order. <a href="https://ethereum.org/en/developers/docs/mev/">ethereum.org</a> explains it.</li><li><strong>Block builder.</strong> The party that packs transactions into a block. The bot reads its address from <code>block.coinbase</code>.</li><li><strong>WETH.</strong> Wrapped ETH: ETH held as a token, so contracts can trade it like one.</li><li><strong>Allowance.</strong> Permission one account gives another to pull a set amount of a token. Defined in <a href="https://eips.ethereum.org/EIPS/eip-20">ERC-20</a>.</li><li><strong>Markout.</strong> What a trade gained or lost against a reference price, here 5-minute prices at the trade's time. One basis point (bp) is a hundredth of a percent.</li></ul></div>
 <div><h3>Contract words</h3><ul><li><strong>Multisig.</strong> A wallet that needs several keys to sign. This one is a <a href="https://safe.global/">Safe</a>.</li><li><strong>RFQ.</strong> Request for quote: a trader asks a market maker for a signed price.</li><li><strong>EIP-1271.</strong> A standard question a contract answers: did your key sign this?</li><li><strong>tx.origin.</strong> The account that signed the whole transaction, not the direct caller.</li><li><strong>Solver.</strong> A party that settles batches of user orders on CoW Protocol. UniswapX has fillers, which fill single orders. Both can use liquidity such as this bot's.</li></ul></div>
 </div>
-</section>
+</details>
 
-<section id="notes" aria-labelledby="hn">
-<h2 id="hn">Sources and notes</h2>
+<details class="hood" id="notes"><summary>Sources and notes <span class="sum-b">Notes, sources and related reading.</span></summary>
 <ol class="refs">
 <li id="fn1">The registry sends data with each grant. Its first 20 bytes are the factory address. <a href="#s1">↩</a></li>
 <li id="fn2">A V2 swap sends its input first and does not check that transfer. The pool's own price check is the only one. A Curve swap relies on the pool's own minimum. <a href="#s2">↩</a></li>
@@ -455,7 +554,7 @@ block.coinbase.<span class="tok-fn">call</span>{value: tip, gas: <span class="to
 <li id="fn4">It uses OpenZeppelin's <code>safeApprove</code>. That refuses to move one nonzero allowance to another. <a href="#s4">↩</a></li>
 <li id="fn5">On a local copy of mainnet, the stop took 14.3 million gas. A block holds 60 million. Our readable copy took 14.43 million against 14.34 million. <a href="#s5">↩</a></li>
 <li id="fn6"><a href="https://sourcify.dev/#/lookup/0x51C72848c68a965f66FA7a88855F9f7784502a7F">Sourcify</a> and Blockscout both list it as a <a href="https://docs.sourcify.dev/docs/full-vs-partial-match/">partial match</a>. The code matches. The comments and names don't. <a href="#s7">↩</a></li>
-<li id="fn7">Explorer labels come from the <a href="https://docs.blockscout.com/devs/apis/rest">Blockscout metadata service</a>, which carries community tags such as OLI's. Anyone can propose a tag. Treat them as leads. Etherscan blocks automated link checks, so our explorer links go to Blockscout. Every address is the same on both. <a href="#steps">↩</a></li>
+<li id="fn7">Explorer labels come from the <a href="https://docs.blockscout.com/devs/apis/rest">Blockscout metadata service</a>, which carries community tags such as OLI's. Anyone can propose a tag. Treat them as leads. Etherscan blocks automated link checks, so our explorer links go to Blockscout. Every address is the same on both. <a href="#q2">↩</a></li>
 </ol>
 <div class="refs-g">
 <h3>On chain</h3><ul><li><a href="https://eth.blockscout.com/address/0x51C72848c68a965f66FA7a88855F9f7784502a7F">The bot</a> and its <a href="https://eth.blockscout.com/address/0x51C72848c68a965f66FA7a88855F9f7784502a7F?tab=contract">verified source</a> on Blockscout.</li><li><a href="https://eth.blockscout.com/tx/0xea71b7a024ff0b40fcd4dcec4e03259c33819029cbc75857911d77741153fa64">The deploy transaction</a>, block 17,928,357, August 2023.</li><li><a href="https://eth.blockscout.com/address/0x7Ff4Ed8ab94c849B812622EB462682208BE06B93">The registry</a>, whose code is not verified, and <a href="https://eth.blockscout.com/address/0xCe466Fc694c971b95Bb1193E494942E22197f759">the Safe</a>.</li><li><a href="https://sourcify.dev/#/lookup/0x51C72848c68a965f66FA7a88855F9f7784502a7F">Sourcify's record</a> of the verified source.</li><li>Prices: <a href="https://api-docs.defillama.com/">DefiLlama</a>. Labels: <a href="https://docs.blockscout.com/devs/apis/rest">Blockscout metadata</a>.</li></ul>
@@ -464,7 +563,11 @@ block.coinbase.<span class="tok-fn">call</span>{value: tip, gas: <span class="to
 <h3>Related reading</h3><ul><li><a href="../sha256/">How the SHA-256 miner got faster</a>, another visual explainer.</li><li><a href="../eth2/ethereum-client-bakeoff/">The Ethereum client bake-off</a>, our six-week test of Ethereum node software.</li></ul>
 </div>
 <p class="small endnote">Line numbers refer to Bot.sol in the verified source. Contract state is from 14 Nov 2026. Role and Safe figures are from block 26,417,326. Flow figures cover the one day named above.</p>
+</details>
 </section>
+
+<div class="callout"><p>Research and explanation only. Everything here comes from the verified source and read-only calls. Nothing was sent to the contract. This is not financial advice. Do not interact with contracts you don't know.</p></div>
+<div class="callout"><p><strong>Rerun it.</strong> Our scripts are private for now, but the method needs no secret. Read the contract and its roles with plain RPC calls. Pull one day of transfers from Blockscout. Price every leg with DefiLlama's 5-minute prices. Then mark out each trade, as <a href="#method">the method</a> describes.</p></div>
 </div>
 </article>
 </main>
@@ -479,5 +582,15 @@ block.coinbase.<span class="tok-fn">call</span>{value: tip, gas: <span class="to
 </nav>
 </div>
 </footer>
+<script type="module">
+// A link into a closed section opens every <details> around its target, so notes and Under the hood stay one click away.
+const reveal = () => {
+  const target = location.hash ? document.getElementById(decodeURIComponent(location.hash.slice(1))) : null;
+  for (let d = target?.closest('details'); d; d = d.parentElement?.closest('details')) d.open = true;
+  target?.scrollIntoView();
+};
+addEventListener('hashchange', reveal);
+reveal();
+</script>
 </body>
 </html>
