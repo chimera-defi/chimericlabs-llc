@@ -95,3 +95,20 @@ body { margin: 0; min-height: 100vh; }
 .tok-num { color: var(--accent-ink); }
 .tok-com { color: var(--ink-2); font-style: italic; }
 .tok-type { color: var(--chart-3); font-weight: 700; }
+
+/* Drawn pictures (inline SVG): used by the search-cost article and the same pictures inside the SHA-256 article. */
+.pic { margin: var(--space-4) 0 0; padding: var(--space-4); background: var(--surface); border: 1px solid var(--line); }
+.pic svg { display: block; width: 100%; max-width: 40rem; height: auto; margin: 0 auto; }
+.pic figcaption { margin-top: var(--space-3); font-size: .875rem; line-height: 1.5; color: var(--ink-2); }
+.pic svg .t { font: 500 12px var(--f-body); fill: var(--ink); }
+.pic svg .t2 { font: 500 12px var(--f-body); fill: var(--ink-2); }
+.pic svg .tb { font: 700 13px var(--f-body); fill: var(--ink); }
+.pic svg .box { fill: var(--bg); stroke: var(--ink); stroke-width: 1.5; }
+.pic svg .miss { fill: var(--surface-2); stroke: var(--line); stroke-width: 1.5; }
+.pic svg .hit { fill: var(--accent); stroke: var(--ink); stroke-width: 1.5; }
+.pic svg .hit-t { font: 700 12px var(--f-body); fill: var(--on-accent); }
+.pic svg .plate { fill: var(--ink); }
+.pic svg .plate-t { font: 600 12px var(--f-body); fill: var(--bg); }
+.pic svg .dash { stroke-dasharray: 5 3; }
+.pic svg .ln { stroke: var(--ink); stroke-width: 1.5; fill: none; }
+.pic svg .arr { fill: var(--ink); }

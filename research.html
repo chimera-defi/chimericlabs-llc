@@ -128,13 +128,26 @@
             <article class="flex flex-col gap-4 fl-card fl-card--link">
               <div>
                 <span class="fl-label">Visual explainer · <time datetime="2026-11-15">15 Nov 2026</time></span>
-                <h2 class="mt-2 font-serif text-xl text-slate-100">How the SHA-256 miner got faster</h2>
+                <h2 class="mt-2 font-serif text-xl text-slate-100">We made our SHA-256 miner about 42 times faster</h2>
               </div>
               <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                A simple SHA-256 miner hashes eight guesses per AVX2 operation; a short filter then throws out nearly every guess before a full check.
+                Our SHA-256 miner went from 2.6 to 109 million guesses a second: C++ to Rust on a SIMD library, then our patch on top. Pictures, steps and every measured run.
               </p>
               <div class="flex flex-wrap items-center gap-x-5 gap-y-1 border-t border-line pt-4 text-sm">
                 <a href="research/sha256/" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Read it →</a>
+              </div>
+            </article>
+
+            <article class="flex flex-col gap-4 fl-card fl-card--link">
+              <div>
+                <span class="fl-label">Explainer · <time datetime="2026-11-15">15 Nov 2026</time></span>
+                <h2 class="mt-2 font-serif text-xl text-slate-100">What it costs to find a SHA-256 prefix</h2>
+              </div>
+              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
+                How many guesses, and how much time, a hash that starts with your prefix needs. Each extra Base64 character costs 64 times more. Pictures and a calculator.
+              </p>
+              <div class="flex flex-wrap items-center gap-x-5 gap-y-1 border-t border-line pt-4 text-sm">
+                <a href="research/sha256-search-cost/" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Read it →</a>
               </div>
             </article>
 
