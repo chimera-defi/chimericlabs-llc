@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/article.css">
 <style>
-/* This page only: the pictures. Colours and spacing come from Field Lab tokens. */
+/* This page only: the pictures and their layout. Colours and spacing come from Field Lab tokens. */
 .nw { white-space: nowrap; }
 .art .stepsh { margin-top: var(--space-7); }
 .endnote { margin-top: var(--space-7); }
@@ -105,7 +105,7 @@
 
 <div class="answers">
 <div class="fl-card"><h2>What it does</h2><p>It trades its own funds on <a href="https://docs.uniswap.org/contracts/v3/overview">Uniswap</a> and <a href="https://docs.curve.finance/">Curve</a>. It backs signed price quotes for traders. It pays out to an approved list.</p></div>
-<div class="fl-card"><h2>Who it is for</h2><p>Only the people who run it. It has no deposit function and no user balances.</p></div>
+<div class="fl-card"><h2>Who it is for</h2><p>Only the people who run it. It has no deposit function and no user balances. Outsiders have no reason to call it.</p></div>
 <div class="fl-card"><h2>What to watch for</h2><p>Tokens sent to it by mistake can't be pulled back by the sender. A call to a function it lacks succeeds and does nothing.</p></div>
 </div>
 
@@ -163,7 +163,7 @@
 </ul>
 <figcaption class="figcap">Ten lists hold many accounts each. Three slots hold one address each: the quote key, AirSwap and 0x.</figcaption>
 </figure>
-<p>The <a href="https://eth.blockscout.com/address/0x7Ff4Ed8ab94c849B812622EB462682208BE06B93">registry</a> calls the bot to add or remove an account. Nothing else can change a list (lines 240–349).</p>
+<p>The <a href="https://eth.blockscout.com/address/0x7Ff4Ed8ab94c849B812622EB462682208BE06B93">registry</a> calls the bot to add or remove an account. Nothing else can change these lists (lines 240–349).</p>
 <p>A Uniswap pool joins only if a factory lists it for its tokens. The registry names that factory each time (<a href="#fn1">note 1</a>). Curve pools join with no such check (lines 285–287).</p>
 <p>The owner, the registry and the wrapped-ETH contract are fixed at deploy. The bot has no upgrade path. There is no proxy, <code>delegatecall</code> or <code>selfdestruct</code>.</p>
 </section>
@@ -182,7 +182,7 @@
 <li class="gate"><p>The bot checks it got the minimum. Then it may tip the block builder.</p></li>
 </ol>
 </figure>
-<p>Curve and <a href="https://docs.uniswap.org/contracts/v2/overview">Uniswap V2</a> trades follow the same gates (<a href="#fn2">note 2</a>). Most trade functions have a version that takes a deadline.</p>
+<p>Curve and <a href="https://docs.uniswap.org/contracts/v2/overview">Uniswap V2</a> trades follow the same gates (<a href="#fn2">note 2</a>). Many trade functions have a version that takes a deadline.</p>
 <p>A tip goes only to a listed <a href="https://ethereum.org/en/roadmap/pbs/">block builder</a>. The bot does not check whether the tip arrived (<a href="#fn3">note 3</a>).</p>
 <details><summary>The minimum check and the tip</summary>
 <pre class="sol"><code><span class="tok-type">uint256</span> amountOut = <span class="tok-type">uint256</span>(amount0 &gt; <span class="tok-num">0</span> ? -amount1 : -amount0);
@@ -206,7 +206,7 @@ block.coinbase.<span class="tok-fn">call</span>{value: tip, gas: <span class="to
 <div class="node soft">A venue settles a trade against the bot's quote</div>
 <span class="down" aria-hidden="true">↓</span>
 <div class="two">
-<div class="node"><p><strong>Registered key.</strong> The multisig registers the key with <a href="https://github.com/airswap/airswap-protocols">AirSwap</a> and with <a href="https://0x.org/">0x</a>.</p></div>
+<div class="node"><p><strong>Registered key.</strong> The multisig registers the key with <a href="https://github.com/airswap/airswap-protocols">AirSwap</a> and with <a href="https://0x.org/">0x</a> (lines 706–738).</p></div>
 <div class="node"><p><strong>Asked on the spot.</strong> A listed caller asks the bot: did the key sign this hash?</p></div>
 </div>
 <span class="down" aria-hidden="true">↓</span>
@@ -231,7 +231,7 @@ block.coinbase.<span class="tok-fn">call</span>{value: tip, gas: <span class="to
 <h3>The five exits and their gates</h3>
 <ul class="exits">
 <li><p><strong>Payouts.</strong> Transferers send tokens or ETH to approved recipients only.</p></li>
-<li><p><strong>Trades.</strong> Listed pools are paid in a transaction an operator sent.</p></li>
+<li><p><strong>Trades.</strong> Listed pools are paid in a transaction an operator sent. Adding Uniswap V3 liquidity pays the same way.</p></li>
 <li><p><strong>Allowances.</strong> Approved spenders pull tokens, up to what the multisig granted (<a href="#fn4">note 4</a>).</p></li>
 <li><p><strong>Tips.</strong> Listed block builders get ETH on a trade.</p></li>
 <li class="stays"><p><strong>Wrapping.</strong> WETH handlers wrap and unwrap the bot's ETH. The value stays in the bot.</p></li>
@@ -256,12 +256,12 @@ block.coinbase.<span class="tok-fn">call</span>{value: tip, gas: <span class="to
 <h3>What one call to stop it does</h3>
 <ol class="flow">
 <li><p>An operator, transferer, WETH handler or the multisig calls stop.</p></li>
-<li class="gate"><p>The bot switches off. Trades, payouts and quotes stop.</p></li>
-<li class="gate"><p>Every allowance it gave out is set to zero.</p></li>
+<li class="gate"><p>The bot switches off. New trades, payouts and quotes are refused.</p></li>
+<li class="gate"><p>Each tracked token's allowance to each spender is set to zero.</p></li>
 <li class="last"><p>Only the multisig can switch it back on.</p></li>
 </ol>
 </figure>
-<p>A failed zeroing is only logged. The allowance stays open. The token still drops off the bot's list (lines 416–426).</p>
+<p>Pool callbacks don't check the switch. A failed zeroing is only logged. The allowance stays open. The token still drops off the bot's list (lines 416–426).</p>
 <p>On that day, stopping it would emit 614 logs. That fits in one block (<a href="#fn5">note 5</a>).</p>
 <details><summary>The stop function</summary>
 <pre class="sol"><code><span class="tok-kw">function</span> <span class="tok-fn">killContract</span>() <span class="tok-kw">external</span> {
@@ -283,7 +283,7 @@ block.coinbase.<span class="tok-fn">call</span>{value: tip, gas: <span class="to
 <p class="point">Five design facts stand out. None is a claim that anything has gone wrong.</p>
 <ol class="flags">
 <li><strong>The registry holds the keys.</strong> It names the transferers and the recipients. Together those two lists can send out any token or ETH. The registry's own code is not verified on Sourcify or Blockscout. So its rules can't be read.</li>
-<li><strong>The Curve payment trusts the transaction's sender.</strong> It pays any listed Curve pool that asks. An operator must have signed the transaction. It checks <a href="https://docs.soliditylang.org/en/v0.8.19/units-and-global-variables.html">tx.origin</a>, not whether the bot started the swap. Curve pools join with no factory check.</li>
+<li><strong>The Curve payment trusts the transaction's sender.</strong> It pays any listed Curve pool that asks. The pool names the coin and the amount. An operator must have signed the transaction. It checks <a href="https://docs.soliditylang.org/en/v0.8.19/units-and-global-variables.html">tx.origin</a>, not whether the bot started the swap. Curve pools join with no factory check (lines 285–287).</li>
 <li><strong>A failed revoke drops the token anyway.</strong> The token leaves the list first. Then its allowance is zeroed. A log is the only trace of a failure (lines 416–426).</li>
 <li><strong>Some results are ignored.</strong> Nothing checks that these worked: ETH payouts (line 489), builder tips (686), pool payments (589, 656, 665, 669, 678).</li>
 <li><strong>A stored timelock does nothing here.</strong> A one-day delay is set at deploy. It is only read back. This contract never enforces it. See lines 128, 176, 362.</li>
@@ -305,7 +305,7 @@ block.coinbase.<span class="tok-fn">call</span>{value: tip, gas: <span class="to
 <h2 id="h7">7. What we checked, and what we didn't</h2>
 <p class="point">The verified code matches what runs on chain. Equivalence for every input is not proven.</p>
 <div class="two fig">
-<div class="fl-card"><h3>Checked</h3><ul><li>Built with its exact compiler settings, the source gives the deployed code byte for byte. Deploy arguments match too.</li><li>We wrote a shorter, readable copy. It has the same 63 functions and the same storage.</li><li>Both ran one test that calls every external function. All 331 compared results matched.</li><li>We ran both on a local copy of mainnet at block 26,415,084. They gave the same swap output. Both zeroed the same 613 allowances.</li></ul></div>
+<div class="fl-card"><h3>Checked</h3><ul><li>Built with its exact compiler settings, the source gives the deployed code byte for byte. Deploy arguments match too.</li><li>We wrote a shorter, readable copy. It has the same 63 functions, argument types and storage layout.</li><li>Both ran one test that calls every external function. All 331 compared results matched.</li><li>We ran both on a local copy of mainnet at block 26,415,084. They gave the same swap output. Both zeroed the same 613 allowances.</li></ul></div>
 <div class="fl-card"><h3>Not checked</h3><ul><li>The metadata hash differs. The verified file is a rebuild with stand-in names (<a href="#fn6">note 6</a>).</li><li>Equivalence for every possible input. Tests are examples, not a proof.</li><li>The outside contracts: the registry, the multisig's signers, the venues and the spenders.</li><li>Who runs it. We make no claim about that.</li></ul></div>
 </div>
 </section>
