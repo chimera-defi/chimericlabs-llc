@@ -178,7 +178,7 @@ mark { background: var(--accent); color: var(--on-accent); padding: 0 .06em; }
 <div class="callout"><p><strong>Read the limits first.</strong> This is one short test on one shared, busy computer. It is not a controlled benchmark. Expect no gain on chips with SHA-NI or AVX-512. We did not measure which part of the change explains the gain. The change is <span class="fl-pill fl-pill--open">Proposed, not merged</span> as <a href="https://github.com/spool-labs/sha256/pull/4" rel="noopener noreferrer">spool-labs/sha256 pull request #4</a>.</p></div>
 
 <div class="callout" id="prefix-note"><p><strong>Is the prefix fixed at six letters? No.</strong> The miner takes 1 to 10 Base64 characters, or 1 to 16 hex characters (<a href="https://github.com/chimera-defi/simple-sha256-miner/blob/4118081dec42179ccb260ad219df666392c5300a/v2/src/lib.rs#L91-L112" rel="noopener noreferrer"><code>target()</code></a>). “gensys” is only our example phrase. Our example prefix, “gensy”, has five characters.</p>
-<p>Each extra Base64 character makes the search 64 times longer on average. The fast filter looks at up to 32 bits. The full check looks at the whole prefix. The ruler in <a href="#ruler">step 4</a> shows both.</p></div>
+<p>Each extra Base64 character makes the search 64 times longer on average. The fast filter looks at up to 32 bits. The full check looks at the whole prefix. The ruler in <a href="#ruler">step 4</a> shows both. To see how long your own prefix would take, use the <a href="https://chimera-defi.github.io/simple-sha256-miner/search-complexity.html" rel="noopener noreferrer">search cost calculator</a>.</p></div>
 
 <h2 id="steps" class="stepsh">Five steps, about 15 minutes</h2>
 <ol class="jump">
