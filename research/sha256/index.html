@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>How the SHA-256 miner got faster</title>
-<meta name="description" content="A plain-words explainer of a SHA-256 guessing miner: eight AVX2 lanes, a 32-bit filter, and one short test that ran about 1.5 times faster.">
-<meta property="og:title" content="How the SHA-256 miner got faster">
-<meta property="og:description" content="A visual, step-by-step explainer of a SHA-256 guessing miner, eight AVX2 lanes and a short filter.">
+<title>We made our SHA-256 miner about 42 times faster: C++ to Rust, then one patch</title>
+<meta name="description" content="Our SHA-256 miner went from 2.6 to 109 million guesses a second, about 42 times faster. C++ to Rust with a SIMD library gave about 27 times; our patch on top gave about 1.5 times. Pictures, steps and every run.">
+<meta property="og:title" content="We made our SHA-256 miner about 42 times faster">
+<meta property="og:description" content="From 2.6 to 109 million guesses a second: C++ to Rust with a SIMD library, then our patch. A visual, step-by-step explainer.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://chimericlabs.xyz/research/sha256/">
 <meta name="twitter:card" content="summary">
@@ -36,12 +36,18 @@
 .step.rare { border-style: dashed; }
 .arrow { text-align: center; line-height: 1; color: var(--accent-ink); font: 500 1.25rem var(--f-mono); }
 .bars { margin: 0; padding: 0; list-style: none; }
-.bars li { display: grid; grid-template-columns: 4.5rem 1fr 3.75rem; gap: var(--space-2); align-items: center; margin: var(--space-3) 0; }
+.bars li { display: grid; grid-template-columns: var(--lab, 4.5rem) 1fr 3.75rem; gap: var(--space-2); align-items: center; margin: var(--space-3) 0; }
 .bars b { font-weight: 700; }
 .val { text-align: right; font: 600 1rem var(--f-mono); }
 .track { height: 24px; background: var(--surface-2); border: 1px solid var(--line); }
 .bar { height: 100%; width: var(--w); }
 .bar.stock { background: var(--chart-3); }
+.bar.cpp { background: var(--chart-4); }
+.which { margin: var(--space-4) 0 0; padding-left: var(--space-5); }
+.which li { margin-top: var(--space-2); }
+.cost-go { margin-top: var(--space-5); }
+.cost-go h3 { margin-top: 0; }
+.cost-go .fl-btn { text-decoration: none; }
 .bar.patched { background: var(--chart-1); }
 /* Step list drawn as cards, bit strips, instruction counts and bars. */
 .flow { counter-reset: flow; margin: var(--space-4) 0 0; padding: 0; list-style: none; display: grid; gap: var(--space-3); }
@@ -69,6 +75,7 @@
 .runbar { display: block; }
 .runbar::before { content: ""; display: block; height: 100%; width: var(--w); }
 .runbar.stock::before { background: var(--chart-3); }
+.runbar.cpp::before { background: var(--chart-4); }
 .runbar.patched::before { background: var(--chart-1); }
 .runtab th[scope=row] { white-space: nowrap; }
 .runtab .runbar { min-width: 5rem; }
@@ -139,10 +146,24 @@ mark { background: var(--accent); color: var(--on-accent); padding: 0 .06em; }
 
 <article class="art" id="article">
 <header class="art-head">
-<p class="fl-label">Explainer · <time datetime="2026-11-15">15 Nov 2026</time> · 15 min read</p>
-<h1>How the SHA-256 miner got faster</h1>
-<p class="art-lede">The miner guesses text until the hash starts with letters we pick. In one short test, our change made it about 1.5 times faster. Three pictures first, then five short steps.</p>
+<p class="fl-label">Explainer · <time datetime="2026-11-15">15 Nov 2026</time> · 19 min read</p>
+<h1>We made our SHA-256 miner about 42 times faster</h1>
+<p class="art-lede">The miner guesses text until the hash starts with letters we pick. The first version, in C++, made about 2.6 million guesses a second. The Rust version makes about 109 million. Two steps got it there: a rewrite in Rust on a SIMD hashing library, then a patch of ours on top. Pictures first, then five short steps.</p>
 </header>
+
+<div class="fl-card which" id="which">
+<h2>Which step gave what</h2>
+<ul class="bars" style="--lab:6.75rem" aria-label="Millions of hashes per second, six pinned threads: C++ 2.62 and Rust with our patch 109.1 from test 1; Rust with the library as it ships 71.55 from test 2">
+<li><b>C++</b><div class="track" aria-hidden="true"><div class="bar cpp" style="--w:2.2%"></div></div><span class="val">2.62</span></li>
+<li><b>Rust</b><div class="track" aria-hidden="true"><div class="bar stock" style="--w:59.6%"></div></div><span class="val">71.55</span></li>
+<li><b>Rust + patch</b><div class="track" aria-hidden="true"><div class="bar patched" style="--w:90.9%"></div></div><span class="val">109.1</span></li>
+</ul>
+<ol class="which">
+<li><strong>C++ to Rust, on a SIMD library: about 27 times.</strong> The Rust miner builds on the open-source <a href="https://github.com/spool-labs/sha256" rel="noopener noreferrer">spool-labs/sha256</a> library, which hashes eight guesses at once. That took the miner from 2.62 to 71.55 MH/s (millions of hashes per second).</li>
+<li><strong>Our patch on top: about 1.5 times.</strong> The patch makes the library return only the start of each hash. That took it from 71.55 to 108.61 MH/s in a paired test, the same 1.52 that <a href="https://github.com/spool-labs/sha256/pull/4" rel="noopener noreferrer">pull request #4</a> reports.</li>
+</ol>
+<p class="figcap">Together: 2.62 to 109.1 MH/s, <strong>41.6 times</strong> in a direct paired test of the C++ and Rust programs. The 27 and the 1.5 multiply to about the same figure, but the 71.55 comes from a separate test the day before, so treat the split as approximate. The patched figure is 109.1 in the C++ test and 108.61 in the patch test: separate runs of the same build. MH/s, axis 0 to 120. Six pinned threads on one shared i7-8700. Every run is in <a href="#s5">step 5</a>.</p>
+</div>
 
 <div class="figs">
 <div class="fl-card fig">
@@ -165,7 +186,7 @@ mark { background: var(--accent); color: var(--on-accent); padding: 0 .06em; }
 </div>
 
 <div class="fl-card fig">
-<h2>Result: about 1.5 times faster</h2>
+<h2>Our patch alone: about 1.5 times faster</h2>
 <ul class="bars" aria-label="Median MH/s of three paired runs: stock 71.55, patched 108.61">
 <li><b>Stock</b><div class="track" aria-hidden="true"><div class="bar stock" style="--w:59.6%"></div></div><span class="val">71.55</span></li>
 <li><b>Patched</b><div class="track" aria-hidden="true"><div class="bar patched" style="--w:90.5%"></div></div><span class="val">108.61</span></li>
@@ -175,19 +196,20 @@ mark { background: var(--accent); color: var(--on-accent); padding: 0 .06em; }
 </div>
 
 <div class="art-col">
-<div class="callout"><p><strong>Read the limits first.</strong> This is one short test on one shared, busy computer. It is not a controlled benchmark. Expect no gain on chips with SHA-NI or AVX-512. We did not measure which part of the change explains the gain. The change is <span class="fl-pill fl-pill--open">Proposed, not merged</span> as <a href="https://github.com/spool-labs/sha256/pull/4" rel="noopener noreferrer">spool-labs/sha256 pull request #4</a>.</p></div>
+<div class="callout"><p><strong>Read the limits first.</strong> These are short tests on one shared, busy computer. It is not a controlled benchmark. Expect no gain on chips with SHA-NI or AVX-512. We did not measure which part of our patch explains its gain. The 42 times compares two programs on this one AVX2 computer without SHA-NI. The C++ miner uses OpenSSL, which may use SHA-NI where a chip has it, so the 42 times could be smaller there. The C++ build flags were ours. The change is <span class="fl-pill fl-pill--open">Proposed, not merged</span> as <a href="https://github.com/spool-labs/sha256/pull/4" rel="noopener noreferrer">spool-labs/sha256 pull request #4</a>.</p></div>
 
 <div class="callout" id="prefix-note"><p><strong>Is the prefix fixed at six letters? No.</strong> The miner takes 1 to 10 Base64 characters, or 1 to 16 hex characters (<a href="https://github.com/chimera-defi/simple-sha256-miner/blob/4118081dec42179ccb260ad219df666392c5300a/v2/src/lib.rs#L91-L112" rel="noopener noreferrer"><code>target()</code></a>). “gensys” is only our example phrase. Our example prefix, “gensy”, has five characters.</p>
-<p>Each extra Base64 character makes the search 64 times longer on average. The fast filter looks at up to 32 bits. The full check looks at the whole prefix. The ruler in <a href="#ruler">step 4</a> shows both. To see how long your own prefix would take, use the <a href="https://chimera-defi.github.io/simple-sha256-miner/search-complexity.html" rel="noopener noreferrer">search cost calculator</a>.</p></div>
+<p>The fast filter looks at up to 32 bits. The full check looks at the whole prefix. The ruler in <a href="#ruler">step 4</a> shows both. For how long your own prefix would take, see <a href="#cost">how hard the search is</a>.</p></div>
 
-<h2 id="steps" class="stepsh">Five steps, about 15 minutes</h2>
+<h2 id="steps" class="stepsh">Five steps, about 16 minutes</h2>
 <ol class="jump">
 <li><a href="#s1">The miner:</a> a loop of guesses, hashed and checked against a prefix. 3 min.</li>
 <li><a href="#s2">SHA-256:</a> a 256-bit fingerprint, with no shortcut backwards. 2 min.</li>
 <li><a href="#s3">AVX2:</a> eight 32-bit lanes in one register. 3 min.</li>
 <li><a href="#s4">What changed:</a> keep 32 bits as a filter, re-hash the survivors. 4 min.</li>
-<li><a href="#s5">The test:</a> how much faster, and how far to trust it. 3 min.</li>
+<li><a href="#s5">The tests:</a> how much faster, and how far to trust it. 4 min.</li>
 </ol>
+<p class="small">After step 5: <a href="#cost">how hard the search is</a>, with three pictures and a calculator.</p>
 
 <section id="s1" aria-labelledby="h1">
 <p class="fl-label">Step 1 of 5 · 3 min</p>
@@ -392,12 +414,44 @@ mark { background: var(--accent); color: var(--on-accent); padding: 0 .06em; }
 <details><summary>Go deeper: the hand-written kernel that lost</summary>
 <p>The miner also has an opt-in 8-lane kernel of its own. In every comparison we have, the patched library’s median or mean was higher. These are different comparisons on the same shared computer. None is part of the 1.52 figure. They are in the table of other runs in <a href="#s5">step 5</a>.<sup><a href="#fn12" id="r12">[12]</a></sup></p>
 </details>
-<p class="nextstep">Next: <a href="#s5">step 5, the measured test →</a></p>
+<p class="nextstep">Next: <a href="#s5">step 5, the measured tests →</a></p>
 </section>
 
 <section id="s5" aria-labelledby="h5">
-<p class="fl-label">Step 5 of 5 · 3 min</p>
-<h2 id="h5">In one short test, the patched build was about 1.5 times faster</h2>
+<p class="fl-label">Step 5 of 5 · 4 min</p>
+<h2 id="h5">Two short tests: about 42 times for the whole change, 1.5 for our patch</h2>
+<h3>Test 1: the C++ miner against the Rust miner</h3>
+<p><span class="fl-pill fl-pill--shipped">Measured</span> We built the C++ miner as it is in the repo (<code>g++ -O2</code>, linked to OpenSSL) and the Rust miner with our patch, on the same computer. We ran four pairs, alternating which went first, each pinned to six cores. The C++ program has no time limit and no choice of prefix, so we let each run last 11 seconds and read its own progress line at 10 seconds. The Rust miner ran for 10 seconds on a prefix that can never match.<sup><a href="#fn16" id="r16">[16]</a></sup></p>
+<div class="scroll"><table class="runtab">
+<caption>Every run as recorded, with load, clock and temperature sampled just before it. Pair ratios: 41.68, 41.52, 43.48, 41.31. Medians: C++ 2.62, Rust 109.1. Bars run from 0 to 120 MH/s.</caption>
+<thead><tr><th scope="col">Run</th><th scope="col">MH/s</th><th scope="col">Load</th><th scope="col">MHz</th><th scope="col">°C</th><th scope="col">MH/s, drawn</th></tr></thead>
+<tbody>
+<tr><th scope="row" class="mono">1a C++</th><td>2.63</td><td>3.38</td><td>3717</td><td>66</td><td><span class="runbar cpp" style="--w:2.2%"></span></td></tr>
+<tr><th scope="row" class="mono">1b Rust</th><td>109.61</td><td>3.86</td><td>4379</td><td>67</td><td><span class="runbar patched" style="--w:91.3%"></span></td></tr>
+<tr><th scope="row" class="mono">2a Rust</th><td>108.37</td><td>4.34</td><td>1879</td><td>58</td><td><span class="runbar patched" style="--w:90.3%"></span></td></tr>
+<tr><th scope="row" class="mono">2b C++</th><td>2.61</td><td>4.68</td><td>2984</td><td>63</td><td><span class="runbar cpp" style="--w:2.2%"></span></td></tr>
+<tr><th scope="row" class="mono">3a C++</th><td>2.52</td><td>4.88</td><td>4344</td><td>65</td><td><span class="runbar cpp" style="--w:2.1%"></span></td></tr>
+<tr><th scope="row" class="mono">3b Rust</th><td>109.58</td><td>5.05</td><td>4328</td><td>67</td><td><span class="runbar patched" style="--w:91.3%"></span></td></tr>
+<tr><th scope="row" class="mono">4a Rust</th><td>108.65</td><td>5.33</td><td>2611</td><td>63</td><td><span class="runbar patched" style="--w:90.5%"></span></td></tr>
+<tr><th scope="row" class="mono">4b C++</th><td>2.63</td><td>5.66</td><td>2854</td><td>64</td><td><span class="runbar cpp" style="--w:2.2%"></span></td></tr>
+</tbody>
+</table></div>
+<p>The C++ number agrees with the 2.66 MH/s in the miner’s README, which came from a different run and was not re-measured until now. The pairs agree within about 5%, so the headline is not a fluke of one run. It is still four short runs on a shared computer. The two programs report speed differently: the C++ figure is its own average since start, which includes thread start-up and slightly favours Rust, while the Rust figure is the miner’s own rate line.</p>
+<details><summary>The raw log of test 1, as recorded</summary>
+<pre>start 2026-11-15T02:13:17+01:00  02:13:17 up 23 days,  2:42,  4 users,  load average: 1.27, 0.98, 1.43
+warmup cpp: 2.61 (workers=6, v1 PROGRESS at 10 s)
+warmup rust: 114.90
+pair1 pos1 cpp MH/s=2.63 (workers=6, v1 PROGRESS at 10 s) | before: load1=3.38 running=3 MHz0-5=3717 pkgC=66 | after: load1=3.86 running=2 MHz0-5=4376 pkgC=66
+pair1 pos2 rust MH/s=109.61 | before: load1=3.86 running=1 MHz0-5=4379 pkgC=67 | after: load1=4.34 running=1 MHz0-5=2131 pkgC=58
+pair2 pos1 rust MH/s=108.37 | before: load1=4.34 running=1 MHz0-5=1879 pkgC=58 | after: load1=4.68 running=1 MHz0-5=3131 pkgC=63
+pair2 pos2 cpp MH/s=2.61 (workers=6, v1 PROGRESS at 10 s) | before: load1=4.68 running=1 MHz0-5=2984 pkgC=63 | after: load1=4.88 running=1 MHz0-5=4324 pkgC=67
+pair3 pos1 cpp MH/s=2.52 (workers=6, v1 PROGRESS at 10 s) | before: load1=4.88 running=1 MHz0-5=4344 pkgC=65 | after: load1=5.05 running=2 MHz0-5=4365 pkgC=71
+pair3 pos2 rust MH/s=109.58 | before: load1=5.05 running=3 MHz0-5=4328 pkgC=67 | after: load1=5.33 running=1 MHz0-5=2051 pkgC=64
+pair4 pos1 rust MH/s=108.65 | before: load1=5.33 running=2 MHz0-5=2611 pkgC=63 | after: load1=5.66 running=2 MHz0-5=3004 pkgC=65
+pair4 pos2 cpp MH/s=2.63 (workers=6, v1 PROGRESS at 10 s) | before: load1=5.66 running=1 MHz0-5=2854 pkgC=64 | after: load1=5.72 running=1 MHz0-5=4127 pkgC=71
+end 2026-11-15T02:15:05+01:00</pre>
+</details>
+<h3>Test 2: our patch alone</h3>
 <p><span class="fl-pill fl-pill--shipped">Measured</span> Same source, same build. Only the hash call differs. We ran three pairs of 10-second runs, with six threads pinned to six cores. Each searched for a prefix that can never match, so no run stopped early.<sup><a href="#fn13" id="r13">[13]</a></sup></p>
 <div class="scroll"><table class="runtab">
 <caption>Every run as recorded, with load, clock and temperature sampled mid-run. Pair ratios: 1.33, 1.52, 1.54. Medians: stock 71.55, patched 108.61. Bars run from 0 to 120 MH/s.</caption>
@@ -439,11 +493,86 @@ end 2026-11-14T01:11:24+01:00</pre>
 </details>
 <div class="callout">
 <p><strong>What this is not.</strong></p>
-<p>It is three pairs on one shared Intel i7-8700, which has AVX2 and no SHA-NI. The computer got busier during the run. The 1-minute load rose from 2.3 to 5.7. The clock was not locked. Part of the first pair’s 1.33 is noise. “Stock” still includes the miner’s own running counter, so it is not untouched library code.</p>
+<p>Test 1 is four pairs of about 10 s. The C++ build flags were ours, because the repo gives none, and a different compiler setting could move the C++ figure. Test 2 is three pairs on one shared Intel i7-8700, which has AVX2 and no SHA-NI. The computer got busier during the run. The 1-minute load rose from 2.3 to 5.7. The clock was not locked. Part of the first pair’s 1.33 is noise. “Stock” still includes the miner’s own running counter, so it is not untouched library code.</p>
 <p>It is a short test, not a sustained run, and not a result for other processors. Where the library picks SHA-NI or AVX-512, the stock path runs, so expect no gain. We know what the change removes. We did not profile the run, so this page does not say how much each part explains.</p>
 </div>
-<p class="nextstep">Done. Next: <a href="https://github.com/chimera-defi/simple-sha256-miner" rel="noopener noreferrer">open the miner’s README</a> and run this yourself:</p>
+<p class="nextstep">Next: <a href="https://github.com/chimera-defi/simple-sha256-miner" rel="noopener noreferrer">open the miner’s README</a> and run this yourself:</p>
 <pre class="code" aria-label="Shell command"><span class="tok-fn">vanity-miner</span> <span class="tok-kw">--prefix</span> gensy <span class="tok-kw">--ignore-case</span></pre>
+</section>
+
+<section id="cost" aria-labelledby="hc">
+<p class="fl-label">After step 5 · 3 min</p>
+<h2 id="hc">How hard is the search?</h2>
+<p>Speed is half of how long a search takes. The other half is how many guesses it needs, and that grows fast. Three pictures, from our separate article <a href="../sha256-search-cost/">What it costs to find a SHA-256 prefix</a>.</p>
+<h3>Guess, hash, compare, repeat</h3>
+<p>The miner hashes each guess and compares the start with your prefix. A miss is dropped. A hit is hashed again with a reference library before it is reported. <a href="#s1">Step 1</a> has real values.</p>
+<figure class="pic">
+<svg viewBox="0 0 320 150" role="img" aria-labelledby="f1t f1d">
+<title id="f1t">Four guesses, one match</title>
+<desc id="f1d">Four columns. Each shows a guess, gensys:0 to gensys:3, with an arrow down to its result. The first three results read no match. The fourth reads match.</desc>
+<g>
+<rect class="box" x="4" y="8" width="72" height="30" rx="2"/><text class="t" x="40" y="27" text-anchor="middle">gensys:0</text>
+<path class="ln" d="M40 38 V70"/><path class="arr" d="M40 76 L35 68 H45 Z"/>
+<rect class="miss dash" x="4" y="80" width="72" height="30" rx="2"/><text class="t" x="40" y="99" text-anchor="middle">✗ no match</text>
+</g><g>
+<rect class="box" x="84" y="8" width="72" height="30" rx="2"/><text class="t" x="120" y="27" text-anchor="middle">gensys:1</text>
+<path class="ln" d="M120 38 V70"/><path class="arr" d="M120 76 L115 68 H125 Z"/>
+<rect class="miss dash" x="84" y="80" width="72" height="30" rx="2"/><text class="t" x="120" y="99" text-anchor="middle">✗ no match</text>
+</g><g>
+<rect class="box" x="164" y="8" width="72" height="30" rx="2"/><text class="t" x="200" y="27" text-anchor="middle">gensys:2</text>
+<path class="ln" d="M200 38 V70"/><path class="arr" d="M200 76 L195 68 H205 Z"/>
+<rect class="miss dash" x="164" y="80" width="72" height="30" rx="2"/><text class="t" x="200" y="99" text-anchor="middle">✗ no match</text>
+</g><g>
+<rect class="box" x="244" y="8" width="72" height="30" rx="2"/><text class="t" x="280" y="27" text-anchor="middle">gensys:3</text>
+<path class="ln" d="M280 38 V70"/><path class="arr" d="M280 76 L275 68 H285 Z"/>
+<rect class="hit" x="244" y="80" width="72" height="30" rx="2"/><text class="hit-t" x="280" y="99" text-anchor="middle">✓ match</text>
+</g>
+<text class="t2" x="160" y="137" text-anchor="middle">hash each guess, compare the start, keep or drop</text>
+</svg>
+<figcaption>Made-up run: nonce 3 is not a real match. A real one: prefix <code>gensy</code> with ignore-case was found at nonce 60,237,861 (<a href="https://github.com/chimera-defi/simple-sha256-miner/blob/4118081dec42179ccb260ad219df666392c5300a/v2/README.md#L25">v2/README.md</a>).</figcaption>
+</figure>
+<h3>Why one more character costs 64 times</h3>
+<p>Each Base64 character is 6 bits, so it has 64 possible values. A hash lands on one given value 1 time in 64. One more exact character therefore means 64 times as many guesses on average.</p>
+<figure class="pic">
+<svg viewBox="0 0 320 190" role="img" aria-labelledby="f2t f2d">
+<title id="f2t">Work added by one more prefix character</title>
+<desc id="f2d">One more character multiplies the expected guesses by 64 for an exact character, by 32 for a letter when case is ignored, and by 64 for a digit, plus or slash even when case is ignored.</desc>
+<rect class="plate" x="4" y="6" width="312" height="30" rx="2"/><text class="plate-t" x="160" y="26" text-anchor="middle">One more character in the prefix</text>
+<path class="ln" d="M160 36 V50"/><path class="arr" d="M160 56 L155 48 H165 Z"/>
+<rect class="box" x="4" y="60" width="312" height="36" rx="2"/><text class="tb" x="14" y="76" >× 64</text><text class="t" x="14" y="90">exact case: any character</text>
+<rect class="hit" x="4" y="104" width="312" height="36" rx="2"/><text class="hit-t" x="14" y="120">× 32</text><text class="hit-t" x="14" y="134" style="font-weight:500">ignore case: a letter (A and a both count)</text>
+<rect class="box dash" x="4" y="148" width="312" height="36" rx="2"/><text class="tb" x="14" y="164">× 64</text><text class="t" x="14" y="178">ignore case: a digit, + or /</text>
+</svg>
+<figcaption>Ignore-case is a Base64 option only. Hex prefixes are lowercase and cost 16 times per character.</figcaption>
+</figure>
+<div class="callout cost-go">
+<h3>Work out the time for your own prefix</h3>
+<p>Six letters with ignore-case take about 10 seconds. Ten exact characters take centuries. Pick a length, a mode and a speed, and the calculator gives the guesses, the time and the chance of a hit.</p>
+<p><a class="fl-btn fl-btn--primary" href="../sha256-search-cost/#try">Open the search cost calculator</a></p>
+</div>
+<h3>Why memory stays small</h3>
+<p>The miner keeps no list of guesses, only the ranges it has finished. Misses are dropped on the spot, so memory does not grow with the number of guesses.</p>
+<figure class="pic">
+<svg viewBox="0 0 320 210" role="img" aria-labelledby="f3t f3d">
+<title id="f3t">Threads, chunks and the record of finished ranges</title>
+<desc id="f3d">Three thread boxes, labelled thread 1, thread 2 and thread N, each take one chunk of 262,144 nonces. Misses are discarded. Only finished chunks flow down into a journal of finished ranges, with a checkpoint every 30 seconds.</desc>
+<rect class="box" x="4" y="6" width="96" height="30" rx="2"/><text class="t" x="52" y="25" text-anchor="middle">thread 1</text>
+<rect class="box" x="112" y="6" width="96" height="30" rx="2"/><text class="t" x="160" y="25" text-anchor="middle">thread 2</text>
+<rect class="box" x="220" y="6" width="96" height="30" rx="2"/><text class="t" x="268" y="25" text-anchor="middle">thread N</text>
+<path class="ln" d="M52 36 V52 M160 36 V52 M268 36 V52"/><path class="arr" d="M52 58 L47 50 H57 Z M160 58 L155 50 H165 Z M268 58 L263 50 H273 Z"/>
+<rect class="miss dash" x="4" y="62" width="312" height="44" rx="2"/>
+<text class="tb" x="160" y="82" text-anchor="middle">one chunk each: 262,144 nonces</text>
+<text class="t2" x="160" y="98" text-anchor="middle">hash, compare, drop every miss</text>
+<path class="ln" d="M160 106 V126"/><path class="arr" d="M160 132 L155 124 H165 Z"/>
+<text class="t2" x="170" y="123">finished chunks only</text>
+<rect class="hit" x="4" y="136" width="312" height="62" rx="2"/>
+<text class="hit-t" x="160" y="158" text-anchor="middle">journal of finished ranges</text>
+<text class="hit-t" x="160" y="176" text-anchor="middle" style="font-weight:500">neighbouring ranges merge into one</text>
+<text class="hit-t" x="160" y="191" text-anchor="middle" style="font-weight:500">checkpoint every 30 s</text>
+</svg>
+<figcaption>Only the bottom box is kept, and a chunk that was cut short or holds a hit is not recorded.</figcaption>
+</figure>
+<p>The full article also has the formula, the limit on nonces, and how a stopped run resumes.</p>
 </section>
 
 <section id="words" aria-labelledby="hw">
@@ -480,9 +609,10 @@ end 2026-11-14T01:11:24+01:00</pre>
 <li id="fn10">From the miner’s source, <a href="https://github.com/chimera-defi/simple-sha256-miner/blob/4118081dec42179ccb260ad219df666392c5300a/v2/src/lib.rs#L146-L152" rel="noopener noreferrer"><code>head_filter()</code></a>: the mask covers the top min(prefix bits, 32) bits, and every survivor is checked in full.</li>
 <li id="fn11">In the pull request, the AVX2 fast path runs when the selected kernel is AVX2 and the message fits one block (<code>ONE_BLOCK_MAX</code> = 64 − 9 = 55 bytes), in groups of eight. Otherwise the general path hashes fully and truncates.</li>
 <li id="fn12">The miner’s pilot log for the custom kernel against the library: <a href="https://github.com/chimera-defi/simple-sha256-miner/blob/main/docs/bench-pilot-20261114.txt" rel="noopener noreferrer">docs/bench-pilot-20261114.txt</a>. Medians: library 104.57, custom AVX2 80.16.</li>
-<li id="fn13">Every number in the top picture, the first table in step 5 and the raw log comes from one file: the miner’s log for the stock-against-patched test, <a href="https://github.com/chimera-defi/simple-sha256-miner/blob/main/docs/bench-stock-vs-patched-20261114.txt" rel="noopener noreferrer">docs/bench-stock-vs-patched-20261114.txt</a>. We copied it row by row. The pull request description gives the same medians and ratio.</li>
+<li id="fn13">Every number in the patch picture, the test 2 table in step 5 and its raw log comes from one file: the miner’s log for the stock-against-patched test, <a href="https://github.com/chimera-defi/simple-sha256-miner/blob/main/docs/bench-stock-vs-patched-20261114.txt" rel="noopener noreferrer">docs/bench-stock-vs-patched-20261114.txt</a>. We copied it row by row. The pull request description gives the same medians and ratio.</li>
 <li id="fn14">The earlier means, the 11-thread runs and the 8 s paired medians are from the miner’s <a href="https://github.com/chimera-defi/simple-sha256-miner/blob/main/v2/README.md" rel="noopener noreferrer">v2/README.md</a>. The pinned library-against-custom pilot is in the file named in note 12.</li>
 <li id="fn15">The miner’s <a href="https://github.com/chimera-defi/simple-sha256-miner/blob/4118081dec42179ccb260ad219df666392c5300a/v2/src/lib.rs#L95-L102" rel="noopener noreferrer"><code>target()</code></a> allows 1 to 10 Base64 characters at 6 bits, or 1 to 16 hex characters at 4 bits. The README says the same under “Limits”. The 16-fold step per hex character is 2<sup>4</sup>, worked out from that.</li>
+<li id="fn16">The miner’s log for the C++-against-Rust test, <a href="https://github.com/chimera-defi/simple-sha256-miner/blob/main/docs/bench-cpp-vs-rust-20261115.txt" rel="noopener noreferrer">docs/bench-cpp-vs-rust-20261115.txt</a>: method, both programs’ hashes, the script and the raw log. The Rust miner is the repo’s v2 at commit <a href="https://github.com/chimera-defi/simple-sha256-miner/tree/61d8588bc25cc3347467e51fedaa17cf4de14fe5" rel="noopener noreferrer">61d8588</a>, which builds against our fork of the library carrying the patch. The 71.55 in the card at the top is the stock median from test 2.</li>
 </ol>
 </section>
 
