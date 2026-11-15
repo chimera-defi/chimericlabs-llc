@@ -3,98 +3,669 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="color-scheme" content="dark">
 <title>How the SHA-256 miner got faster</title>
-<meta name="description" content="Two changes made a simple SHA-256 miner faster: eight guesses per AVX2 operation, and a short filter that skips hopeless guesses.">
+<meta name="description" content="A visual, step-by-step explainer: a simple SHA-256 miner hashes eight guesses per AVX2 operation, and a short filter makes it about 1.5 times faster in one short test on one computer.">
+<meta property="og:title" content="How the SHA-256 miner got faster">
+<meta property="og:description" content="A visual, step-by-step explainer of a SHA-256 guessing miner, eight AVX2 lanes and a short filter.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://chimericlabs.xyz/research/sha256/">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://chimericlabs.xyz/research/sha256/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23080e1d'/><text x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='16' font-weight='600' fill='%2300c4ff'>CL</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Hanken+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/field-lab/tokens.css">
+<link rel="stylesheet" href="../../assets/field-lab/field-lab.css">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/article.css">
 <style>
-/* Fable tokens (Nocturne base, maroon accent), inlined so the page stays self-contained */
-:root{
-  --color-bg:#1d1f27;--color-surface:#2b2d37;--color-text:#e9e9ed;
-  --color-muted:#b2b6ca;--color-line:#3f424d;--color-neutral-600:#75798c;
-  --color-accent:#f65b6f;--color-accent-400:#fe949b;--color-accent-800:#78182a;
-  --data-codex:#7fb0e6;
-  --font:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
-  --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
-  --radius-md:8px;--radius-lg:14px;
-}
-*{box-sizing:border-box}
-body{margin:0;font:17px/1.6 var(--font);color:var(--color-text);text-wrap:pretty;
-  background:radial-gradient(1200px 720px at 82% -160px,color-mix(in srgb,var(--color-accent-800) 70%,transparent),transparent 60%),var(--color-bg)}
-main{max-width:44rem;margin:0 auto;padding:56px 16px 72px}
-.kicker{margin:0 0 12px;font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--color-accent-400)}
-h1{margin:0 0 16px;font-size:clamp(2rem,6vw,3rem);line-height:1.1;font-weight:600;letter-spacing:-.02em}
-h2{margin:0 0 16px;font-size:1.35rem;line-height:1.25;font-weight:600}
-.lede{margin:0;font-size:1.15rem;color:var(--color-muted)}
-section{margin-top:48px;padding-top:32px;border-top:1px solid var(--color-line)}
-p{margin:16px 0 0;color:var(--color-muted)}
-.note{font-size:.95rem}
-.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
-.step{flex:1 1 9rem;padding:14px 12px;text-align:center;font-size:.95rem;background:var(--color-surface);border:1px solid var(--color-line);border-radius:var(--radius-md)}
-.arrow{color:var(--color-accent);font-size:1.4rem;line-height:1}
-.lanes{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}
-.lane{padding:12px 0;text-align:center;font:600 .85rem var(--mono);background:var(--color-surface);border:1px solid var(--color-accent);border-radius:var(--radius-md)}
-.op{margin-top:8px;padding:14px 12px;text-align:center;font-size:.95rem;background:var(--color-accent-800);border-radius:var(--radius-md)}
-.bars{margin:0;padding:0;list-style:none}
-.bars li{display:grid;grid-template-columns:8.5rem 1fr 2.5rem;gap:12px;align-items:center;margin:14px 0}
-.bars b{font-weight:600}
-.bars .val{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
-.track{height:24px;background:var(--color-line);border-radius:var(--radius-md);overflow:hidden}
-.bar{height:100%}
-.facts{margin:24px 0 0;padding:0;list-style:none}
-.facts li{padding:12px 0;border-top:1px solid var(--color-line);color:var(--color-muted)}
-.facts strong{color:var(--color-text);font-variant-numeric:tabular-nums}
-.caveat{margin-top:24px;padding:16px;font-size:.95rem;color:var(--color-text);background:var(--color-surface);border-left:3px solid var(--color-accent);border-radius:var(--radius-md)}
-@media (max-width:480px){
-  main{padding-top:40px}
-  .lanes{grid-template-columns:repeat(4,1fr)}
-  .bars li{grid-template-columns:1fr 2.5rem;gap:4px 12px}
-  .bars b{grid-column:1/-1}
-  .arrow{flex-basis:100%;text-align:center}
-  .arrow::before{content:"↓"}
-  .arrow{font-size:0}
-  .arrow::before{font-size:1.4rem}
+/* This page only: the pictures and the demo. Colours come from Field Lab tokens. */
+.figs { display: grid; align-items: start; gap: var(--space-4); margin-top: var(--space-6); }
+@media (min-width: 960px) { .figs { grid-template-columns: repeat(3, 1fr); gap: var(--space-5); } }
+.fig { display: flex; flex-direction: column; }
+.fig h2 { font-size: 1.25rem; }
+.fig .figcap { padding-top: var(--space-4); }
+.fig > :nth-child(2) { margin-top: var(--space-4); }
+.lanes { display: grid; grid-template-columns: repeat(8, 1fr); gap: var(--space-1); }
+.lanes span { padding: var(--space-3) 0; text-align: center; font: 600 .875rem var(--f-mono); background: var(--bg); border: 1.5px solid var(--ink); }
+.op { margin-top: var(--space-1); padding: var(--space-3); text-align: center; font-size: .9375rem; color: var(--bg); background: var(--ink); }
+.steps { display: grid; gap: var(--space-1); }
+.step { padding: var(--space-3); text-align: center; font-weight: 700; background: var(--bg); border: 1.5px solid var(--ink); }
+.step small { display: block; margin-top: 2px; font: var(--t-label); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); }
+.step.rare { border-style: dashed; }
+.arrow { text-align: center; line-height: 1; color: var(--accent-ink); font: 500 1.25rem var(--f-mono); }
+.bars { margin: 0; padding: 0; list-style: none; }
+.bars li { display: grid; grid-template-columns: 4.5rem 1fr 3.75rem; gap: var(--space-2); align-items: center; margin: var(--space-3) 0; }
+.bars b { font-weight: 700; }
+.val { text-align: right; font: 600 1rem var(--f-mono); }
+.track { height: 24px; background: var(--surface-2); border: 1px solid var(--line); }
+.bar { height: 100%; width: var(--w); }
+.bar.stock { background: var(--chart-3); }
+.bar.patched { background: var(--chart-1); }
+.jump { margin-top: var(--space-3); }
+.flush { margin-top: 0; }
+.art .stepsh { margin-top: var(--space-7); }
+.endnote { margin-top: var(--space-7); }
+.q + p { margin-top: var(--space-3); }
+/* demo: rows, steppers, bit grid, lanes */
+.rows { margin: var(--space-4) 0 0; padding: 0; list-style: none; display: grid; gap: var(--space-3); }
+.rows li { padding: var(--space-3) var(--space-4); font-size: .9375rem; background: var(--surface); border: 1px solid var(--line); }
+.rows li.hit { border: 1.5px solid var(--ink); background: var(--surface-2); }
+.rows code, mark { color: var(--ink); }
+mark { background: var(--accent); color: var(--on-accent); padding: 0 .06em; }
+.verdict { display: inline-block; margin-right: var(--space-2); padding: 2px 8px; font: 700 .75rem var(--f-mono); border: 1.5px solid var(--ink); border-radius: var(--radius-pill); }
+.hit .verdict { background: var(--ink); color: var(--bg); }
+.check { display: block; margin-top: var(--space-2); font-size: .8125rem; color: var(--ink-2); }
+.stepper { margin-top: var(--space-4); }
+.frames { margin: 0; padding-left: 1.4rem; }
+.js .frames { list-style: none; padding: 0; }
+.js .frames li { padding: var(--space-3) var(--space-4); background: var(--surface); border: 1.5px solid var(--ink); }
+.js .frames li::before { content: attr(data-n) " of " attr(data-total); display: block; margin-bottom: var(--space-1); font: var(--t-label); letter-spacing: .06em; text-transform: uppercase; color: var(--accent-ink); }
+.nav, .seg { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-3); }
+.nav { display: none; }
+.js .nav { display: flex; }
+.row { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: end; margin-top: var(--space-3); }
+.row > div { flex: 1 1 12rem; }
+.meter { font: .875rem var(--f-mono); }
+.hash { padding: var(--space-3); word-break: break-all; font: .8125rem/1.5 var(--f-mono); background: var(--bg); border: 1px solid var(--line); }
+.grid { display: grid; grid-template-columns: repeat(16, 1fr); gap: 2px; margin-top: var(--space-3); max-width: 26rem; }
+.grid i { aspect-ratio: 1; background: var(--surface-2); outline: 1px solid var(--hairline); }
+.grid i.on { background: var(--accent); }
+.legend { display: flex; flex-wrap: wrap; gap: var(--space-4); margin-top: var(--space-2); font-size: .8125rem; color: var(--ink-2); }
+.sw { display: inline-block; width: 12px; height: 12px; margin-right: 6px; vertical-align: -1px; background: var(--surface-2); outline: 1px solid var(--hairline); }
+.sw.on { background: var(--accent); outline: 0; }
+.regs { display: grid; grid-template-columns: 2.2rem repeat(8, 1fr); gap: 3px; margin-top: var(--space-3); max-width: 24rem; align-items: center; }
+.regs b { font: 600 .75rem var(--f-mono); color: var(--ink-2); }
+.regs i { padding: 1px 0; text-align: center; font: 500 .6875rem/1.2 var(--f-mono); font-style: normal; background: var(--surface-2); border: 1px solid var(--line); }
+.one tr.dimrow { opacity: .35; }
+.js .nojs, html:not(.js) .needs-js { display: none; }
+@media (max-width: 480px) {
+  .lanes { grid-template-columns: repeat(4, 1fr); }
+  .grid { gap: 1px; }
+  .art th, .art td { padding-inline: var(--space-1); }
 }
 </style>
+<script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
-<main>
-<p class="kicker">Visual explainer · simple SHA-256 miner</p>
+<a class="skip" href="#article">Skip to content</a>
+<header class="site-header">
+<div class="site-header-inner">
+<a href="../../index.html" class="site-brand inline-flex">ChimericLabs</a>
+<nav class="site-nav" aria-label="Primary">
+<a href="../../portfolio.html" class="site-nav-link">Portfolio</a>
+<a href="../../research.html" class="site-nav-link" aria-current="page">Research</a>
+<a href="../../index.html#services" class="site-nav-link">Services</a>
+<a href="https://github.com/chimera-defi" target="_blank" rel="noreferrer" class="site-nav-link gh">GitHub</a>
+<a href="mailto:chimera_defi@protonmail.com" class="site-nav-link site-contact fl-btn">Contact</a>
+</nav>
+</div>
+</header>
+
+<main class="art-wrap">
+<nav class="art-crumb" aria-label="Breadcrumb"><a href="../../research.html">← Research</a> <a href="https://chimera-defi.github.io/simple-sha256-miner/">The miner and its docs</a></nav>
+
+<article class="art" id="article">
+<header class="art-head">
+<p class="fl-label">Visual explainer · <time datetime="2026-11-15">15 Nov 2026</time></p>
 <h1>How the SHA-256 miner got faster</h1>
-<p class="lede">Two changes: hash eight guesses at once, and stop hashing guesses that cannot win.</p>
+<p class="art-lede">A miner here is a program that guesses. The library it started from already hashed eight guesses at once. Our change is a short filter that throws out nearly every guess cheaply, then fully checks the few that pass. Three pictures first, then the same story step by step.</p>
+</header>
 
-<section aria-labelledby="h-lanes">
-<h2 id="h-lanes">1. Eight guesses per operation</h2>
-<div class="lanes" role="img" aria-label="Eight consecutive guesses, 100 to 107, processed together in one AVX2 operation">
-<div class="lane">100</div><div class="lane">101</div><div class="lane">102</div><div class="lane">103</div><div class="lane">104</div><div class="lane">105</div><div class="lane">106</div><div class="lane">107</div>
-</div>
+<div class="figs">
+<div class="fl-card fig">
+<h2>Eight guesses per operation</h2>
+<div role="img" aria-label="Eight consecutive guesses, gensys:0 to gensys:7, one per lane, processed together by one AVX2 operation">
+<div class="lanes"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span></div>
 <div class="op">One AVX2 operation across eight 32-bit lanes</div>
-<p>A full hash still takes many instructions, so eight lanes is not eight hashes per instruction.</p>
-</section>
-
-<section aria-labelledby="h-skip">
-<h2 id="h-skip">2. Skip the work</h2>
-<div class="flow">
-<div class="step">Compute the first 32 bits</div><span class="arrow" aria-hidden="true">→</span>
-<div class="step">Reject most guesses</div><span class="arrow" aria-hidden="true">→</span>
-<div class="step">Fully verify survivors</div>
 </div>
-<p>The short-message fast path is only a filter. Every winner is verified with a full hash.</p>
+<p class="figcap">Each numbered square is one guess (<code>gensys:0</code> to <code>gensys:7</code>), the same numbers as in <a href="#s3">section 3</a>. A full hash still takes many instructions, so eight lanes is not eight hashes per instruction. The library we started from already did this.</p>
+</div>
+
+<div class="fl-card fig">
+<h2>Keep 32 bits: a cheap filter</h2>
+<div class="steps" role="img" aria-label="Three steps: compute the first 32 bits, reject most guesses, fully verify the survivors">
+<div class="step">Compute the first 32 bits<small>of each digest</small></div><span class="arrow" aria-hidden="true">↓</span>
+<div class="step">Reject most guesses<small>the filter</small></div><span class="arrow" aria-hidden="true">↓</span>
+<div class="step rare">Fully verify survivors<small>a full hash, the whole prefix</small></div>
+</div>
+<p class="figcap">The short-message fast path is only a filter. Every winner is verified with a full hash, so no false hit is reported. Details in <a href="#s4">section 4</a>.</p>
+</div>
+
+<div class="fl-card fig">
+<h2>Result: about 1.5 times faster</h2>
+<ul class="bars" aria-label="Median MH/s of three paired runs: stock 71.55, patched 108.61">
+<li><b>Stock</b><div class="track" aria-hidden="true"><div class="bar stock" style="--w:59.6%"></div></div><span class="val">71.55</span></li>
+<li><b>Patched</b><div class="track" aria-hidden="true"><div class="bar patched" style="--w:90.5%"></div></div><span class="val">108.61</span></li>
+</ul>
+<p class="figcap">Medians of three paired 10 s runs, MH/s (millions of hashes per second), axis 0 to 120. Paired ratio <strong>1.52</strong>. Six threads pinned, one shared i7-8700. Every run, the raw log and other runs are in <a href="#s5">section 5</a>.</p>
+</div>
+</div>
+
+<div class="art-col">
+<div class="callout"><p><strong>Read this with the limits.</strong> One short pilot on one shared, busy computer; not a controlled benchmark. Expect no gain where the library uses SHA-NI or AVX-512. We did not measure how much of the gain each part of the change explains. The change is <span class="fl-pill fl-pill--open">Proposed, not merged</span> as <a href="https://github.com/spool-labs/sha256/pull/4" rel="noopener noreferrer">spool-labs/sha256 pull request #4</a>.</p></div>
+
+<h2 id="steps" class="stepsh">Step by step</h2>
+<p>New words are explained where they first appear and listed in the <a href="#words">word list</a>.</p>
+<ol class="jump">
+<li><a href="#s1">What does the miner do?</a> A loop of guesses, hashed and checked against a prefix.</li>
+<li><a href="#s2">What does SHA-256 do?</a> A 256-bit fingerprint where one changed letter flips about half the bits.</li>
+<li><a href="#s3">What does AVX2 do?</a> Eight 32-bit lanes in one register.</li>
+<li><a href="#s4">What changed?</a> Keep only 32 bits per guess as a filter; re-hash survivors in full.</li>
+<li><a href="#s5">How much faster, and how far can I trust that?</a> The measured pilot.</li>
+</ol>
+
+<section id="s1" aria-labelledby="h1">
+<h2 id="h1">1. What the miner does</h2>
+<p class="q">What is this program actually doing?</p>
+<p>It is a loop. Make a <strong>guess</strong>: a phrase plus a counter, like <code>gensys:60237861</code>. Hash it with SHA-256, which scrambles any text into a fixed-size <strong>digest</strong> (the fingerprint). Write the digest as text using <strong>Base64</strong>, a way to spell bytes with letters, digits, <code>+</code> and <code>/</code>. Check whether that text begins with the <strong>prefix</strong> we want, here <code>gensy</code>. If not, add one to the counter and go again. This finds a real hash that happens to start that way. It never edits a hash, and it is not Bitcoin mining.<sup><a href="#fn1" id="r1">[1]</a></sup></p>
+<ul class="rows" aria-label="Two real guesses">
+<li data-guess="gensys:60237860" data-digest="CavohN5mTw51SHkP+fQpSRLWfJbB87B0razFJM55G3Y=" data-hit="no">
+<span class="verdict">NO</span><code>gensys:60237860</code> → digest as Base64: <code>CavohN5mTw51SHkP+fQpSRLWfJbB87B0razFJM55G3Y=</code>. It starts with <code>Cavoh</code>, not <code>gensy</code>, so the miner moves on.
+<span class="check" data-check></span></li>
+<li class="hit" data-guess="gensys:60237861" data-digest="gensyT8AF4HHhEQvm/ieh0R05yWqjtlAd3ONa/xPjdk=" data-hit="yes">
+<span class="verdict">YES</span><code>gensys:60237861</code> → digest as Base64: <code><mark>gensy</mark>T8AF4HHhEQvm/ieh0R05yWqjtlAd3ONa/xPjdk=</code>. It starts with <code>gensy</code>: a hit, so the miner stops and prints it.
+<span class="check" data-check></span></li>
+</ul>
+<p>Both rows are real. They were worked out independently with Python (<code>hashlib</code> and <code>base64</code>) and with the command <code>printf %s 'gensys:60237861' | openssl dgst -sha256 -binary | base64</code>. If your browser can run scripts, this page also recomputes them right now and says so under each row. That hit took about 60 million guesses; five exact characters need about a billion on average, so it was a lucky one.<sup><a href="#fn2" id="r2">[2]</a></sup></p>
+
+<div class="stepper" data-stepper aria-label="Follow one guess">
+<h3>Follow one guess</h3>
+<ol class="frames">
+<li>The <strong>guess</strong> is plain text: <code>gensys:60237861</code>. The phrase is fixed; the counter goes up by one each time.</li>
+<li>SHA-256 turns the text into a <strong>256-bit digest</strong> (32 bytes). It is a fixed recipe with no key and no secret. In hex it begins <code>81e9ecc9…</code>.</li>
+<li>Base64 writes those bytes as text, 6 bits per character, so the digest becomes <code>gensyT8AF4HH…</code>.</li>
+<li>Compare the first characters with the prefix <code>gensy</code>. They match, so this is a hit. For <code>…60237860</code> they do not, and the loop continues.</li>
+</ol>
+</div>
+
+<h3>Try it: search yourself</h3>
+<div class="fl-card needs-js" id="search" data-cap="1000000">
+<p class="flush">Pick a phrase and a short prefix (1 to 3 characters; letters, digits, <code>+</code> or <code>/</code>; case matters). Your browser then hashes <code>phrase:0</code>, <code>phrase:1</code>, … until the Base64 text starts with the prefix. It stops after 1,000,000 guesses, or when you press Stop.</p>
+<div class="row">
+<div><label for="phrase">Phrase</label><input id="phrase" type="text" value="gensys" maxlength="20" autocomplete="off" spellcheck="false"></div>
+<div><label for="prefix">Prefix (1 to 3 characters)</label><input id="prefix" type="text" value="ab" maxlength="3" autocomplete="off" spellcheck="false"></div>
+</div>
+<div class="row"><button class="fl-btn fl-btn--secondary" id="go" type="button">Start</button><button class="fl-btn fl-btn--secondary" id="stop" type="button" disabled>Stop</button></div>
+<p class="meter" id="expect" aria-live="off"></p>
+<p class="meter" id="count" aria-live="off"></p>
+<p class="hash" id="found" hidden></p>
+<p id="sstatus" role="status"></p>
+</div>
+<div class="nojs"><p>The live search needs JavaScript, which is off. The two real rows above are still correct.</p></div>
+
+<details><summary>Go deeper: work, proof and ignore-case</summary>
+<p>Each extra exact-case Base64 character makes the search 64 times longer on average, because one character is 6 bits and 2^6 = 64. A 2-character prefix needs about 4,096 guesses, a 3-character one about 262,144. Luck varies: about 2 runs in 100 need more than 1,000,000 guesses for a 3-character prefix, which is why the search above has a cap.</p>
+<p>Every hit the real miner reports is re-checked with a separate reference SHA-256 before it is printed.<sup><a href="#fn3" id="r3">[3]</a></sup> The miner also has an optional ignore-case mode, where uppercase and lowercase letters both count as matches, so each letter in the prefix is 1 in 32 instead of 1 in 64; digits, <code>+</code> and <code>/</code> stay 1 in 64. The odds depend on which characters the prefix has. This page uses the default, exact-case.<sup><a href="#fn4" id="r4">[4]</a></sup> The prefix <code>gensy</code> is lowercase, so both modes accept this example.</p>
+</details>
 </section>
 
-<section aria-labelledby="h-results">
-<h2 id="h-results">3. Results</h2>
-<ul class="bars">
-<li><b>Stock library</b><div class="track" aria-hidden="true"><div class="bar" style="width:63%;background:var(--color-neutral-600)"></div></div><span class="val">63</span></li>
-<li><b>Custom AVX2</b><div class="track" aria-hidden="true"><div class="bar" style="width:79%;background:var(--data-codex)"></div></div><span class="val">79</span></li>
-<li><b>Optimized library</b><div class="track" aria-hidden="true"><div class="bar" style="width:97%;background:var(--color-accent)"></div></div><span class="val">97</span></li>
-</ul>
-<p class="note">Historical means, MH/s. Six threads, 3–4 alternating 5 s runs each, shared i7-8700, load ~4–7. Optimized range 90–105.</p>
-<ul class="facts">
-<li>Latest paired medians (6 threads, 8 s, load 5.4–9.7): optimized <strong>87.6</strong> vs custom AVX2 <strong>70.0</strong> MH/s.</li>
-<li>11 threads: mean <strong>~109</strong> MH/s, single-run peak <strong>109.7</strong>.</li>
-</ul>
-<p class="caveat">Not a controlled benchmark. Results vary by CPU and load. The gain comes from lanes and the filter together, not from the lane count alone.</p>
+<section id="s2" aria-labelledby="h2">
+<h2 id="h2">2. What SHA-256 does to a guess</h2>
+<p class="q">Why must the miner guess at all?</p>
+<p>SHA-256 gives every input a <strong>256-bit</strong> digest. A <strong>bit</strong> is a 0 or a 1, so the digest is 256 of them, the same as 32 bytes.<sup><a href="#fn5" id="r5">[5]</a></sup> Change one character of the input and about half of those bits flip, in no pattern anyone can work backwards. Nobody knows a shortcut from “I want a digest that starts like this” to an input that produces it, so the miner can only try inputs.</p>
+<p><span class="fl-pill fl-pill--archived">Toy, made up</span> Eight bits instead of 256, to show the idea:</p>
+<pre aria-label="Toy example: row A 0 1 1 0 1 0 0 1, row B 1 1 0 0 1 1 0 0, four of eight bits differ">
+A  0 1 1 0 1 0 0 1
+B  1 1 0 0 1 1 0 0
+   ■ □ ■ □ □ ■ □ ■    ■ = bit differs (4 of 8)   □ = same
+</pre>
+<p>Now the real thing, with the real 256 bits. <span class="fl-pill fl-pill--shipped">Measured</span> Edit A or B; the grid lights every bit that differs.</p>
+<div class="fl-card">
+<div class="row needs-js">
+<div><label for="a">Message A (edit me)</label><input id="a" type="text" value="hello world" autocomplete="off" spellcheck="false"></div>
+<div><label for="b">Message B</label><input id="b" type="text" value="hello worle" autocomplete="off" spellcheck="false"></div>
+</div>
+<div class="row needs-js"><button class="fl-btn fl-btn--secondary" id="tweak" type="button">Set B to A with the last character changed</button></div>
+<div class="needs-js">
+<p class="hash" id="ha"></p>
+<p class="hash" id="hb"></p>
+<p id="dcount"></p>
+<p class="sr" id="status" role="status" aria-live="polite"></p>
+</div>
+<div class="grid needs-js" id="grid" aria-hidden="true"></div>
+<p class="needs-js small" id="cell" aria-hidden="true">Point at a square to see which bit it is.</p>
+<div class="legend needs-js" aria-hidden="true"><span><span class="sw"></span>bit the same</span><span><span class="sw on"></span>bit flipped</span></div>
+<div class="nojs">
+<h3 class="flush">Example (JavaScript is off)</h3>
+<p>SHA-256 of <code>hello world</code>:</p><p class="hash">b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9</p>
+<p>SHA-256 of <code>hello worle</code>:</p><p class="hash">0fc30e735a0228a31cbbb969988b4f50e02e737f979f091d7d224b765443f5d4</p>
+<p>These two digests differ in 140 of their 256 bits.</p>
+</div>
+</div>
+<details><summary>Go deeper: why 140, and what “avalanche” means</summary>
+<p>If each bit flipped by a fair coin toss, you would expect 128 flips. 140 is an ordinary outcome for 256 tosses; other single-character changes give other counts near 128. That “half the bits change after a tiny change” behaviour is called the avalanche effect. SHA-256 itself is a public standard, not something we wrote.</p>
+<p>A prefix of N bits is hit by about one guess in 2^N, which is where the 64-fold rule in section 1 comes from.</p>
+</details>
 </section>
+
+<section id="s3" aria-labelledby="h3">
+<h2 id="h3">3. What “eight lanes” means</h2>
+<p class="q">What does an AVX2 register actually hold?</p>
+<p>A processor works on values held in <strong>registers</strong>, small fast slots inside it. An AVX2 register is 256 bits wide. SHA-256 works on <strong>32-bit</strong> words, and 256 ÷ 32 = 8, so one register holds eight words side by side. Each of the eight 32-bit slices is a <strong>lane</strong>. One AVX2 instruction acts on all eight lanes at once. The instructions used here keep each lane separate; AVX2 does have shuffle instructions that move values between lanes, but this hashing layout does not need them.<sup><a href="#fn6" id="r6">[6]</a></sup></p>
+<p class="small">The eight lanes are the first picture on this page: one number per guess, the same in every picture below. A row of eight is a whole register; one coloured square is one 32-bit value.</p>
+
+<div class="stepper" data-stepper aria-label="From one lane to a whole hash">
+<h3>One instruction, eight guesses</h3>
+<ol class="frames">
+<li>Put one guess in each lane: here guesses <code>gensys:0</code> to <code>gensys:7</code>. SHA-256 reads a message as 32-bit words; the second word of each is the four characters <code>ys:</code> plus the counter digit.</li>
+<li>Add the second SHA-256 round constant <code>0x71374491</code> to every lane with a single instruction (<code>_mm256_add_epi32</code>). The table below uses real values, and this page recomputes them. Doing it one value at a time takes eight instructions.</li>
+<li>That is only one tiny step of one round. A whole hash keeps 8 working values plus a message schedule for <em>each</em> guess, so in a layout like this each of those is its own register, with one lane per guess. Eight lanes are eight words of eight different guesses, not eight finished hashes in one register.</li>
+</ol>
+</div>
+<div class="seg needs-js" role="group" aria-label="Instruction count">
+<button class="fl-btn fl-btn--secondary" type="button" id="m1" aria-pressed="false">One value at a time</button>
+<button class="fl-btn fl-btn--secondary" type="button" id="m8" aria-pressed="true">Eight lanes</button>
+</div>
+<p class="meter needs-js" id="mcap">Eight lanes: 1 instruction does all 8 additions.</p>
+<div class="scroll"><table id="lanetab" aria-label="Real values, guesses 0 to 7">
+<caption><span class="fl-pill fl-pill--shipped">Measured</span> Real 32-bit values (hex), recomputed on this page when scripts are on</caption>
+<thead><tr><th scope="col">Lane / guess</th><th scope="col">Word “ys:k”</th><th scope="col">+ constant</th><th scope="col">= sum</th></tr></thead>
+<tbody>
+<tr><td class="mono">0 · gensys:0</td><td class="mono">79733a30</td><td class="mono">71374491</td><td class="mono">eaaa7ec1</td></tr>
+<tr class="dimrow"><td class="mono">1 · gensys:1</td><td class="mono">79733a31</td><td class="mono">71374491</td><td class="mono">eaaa7ec2</td></tr>
+<tr class="dimrow"><td class="mono">2 · gensys:2</td><td class="mono">79733a32</td><td class="mono">71374491</td><td class="mono">eaaa7ec3</td></tr>
+<tr class="dimrow"><td class="mono">3 · gensys:3</td><td class="mono">79733a33</td><td class="mono">71374491</td><td class="mono">eaaa7ec4</td></tr>
+<tr class="dimrow"><td class="mono">4 · gensys:4</td><td class="mono">79733a34</td><td class="mono">71374491</td><td class="mono">eaaa7ec5</td></tr>
+<tr class="dimrow"><td class="mono">5 · gensys:5</td><td class="mono">79733a35</td><td class="mono">71374491</td><td class="mono">eaaa7ec6</td></tr>
+<tr class="dimrow"><td class="mono">6 · gensys:6</td><td class="mono">79733a36</td><td class="mono">71374491</td><td class="mono">eaaa7ec7</td></tr>
+<tr class="dimrow"><td class="mono">7 · gensys:7</td><td class="mono">79733a37</td><td class="mono">71374491</td><td class="mono">eaaa7ec8</td></tr>
+</tbody>
+</table></div>
+<p class="check" id="lanecheck"></p>
+
+<h3>Schematic: why one register is not one hash</h3>
+<p><span class="fl-pill fl-pill--archived">Schematic</span> Not the real instruction sequence. Each row is one register; each coloured square is that guess's value for it.</p>
+<div class="regs" role="img" aria-label="Schematic: nine registers, a to h plus message words, each with eight coloured lanes, one per guess">
+<b>a</b><i>0</i><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i>
+<b>b</b><i>0</i><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i>
+<b>c</b><i>0</i><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i>
+<b>d</b><i>0</i><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i>
+<b>e</b><i>0</i><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i>
+<b>f</b><i>0</i><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i>
+<b>g</b><i>0</i><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i>
+<b>h</b><i>0</i><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i>
+<b>w…</b><i>0</i><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i>
+</div>
+<p>Rows <code>a</code> to <code>h</code> are SHA-256's eight working values; <code>w…</code> stands for the message words it mixes in. The 64 rounds of a hash then repeat many such steps, for all eight guesses together. Some steps cannot be spread across lanes, so eight lanes does not mean eight times faster, and this page makes no such claim. The library we start from already hashed eight guesses at once this way.<sup><a href="#fn7" id="r7">[7]</a></sup></p>
+<details><summary>Go deeper: AVX-512 and SHA-NI</summary>
+<p>Some processors have wider AVX-512 registers (16 lanes) or dedicated SHA instructions, called SHA-NI. The library checks the processor when the program starts and picks, in this order: AVX-512 if available (AMD Zen 4 chips with SHA-NI fall through to the next choice; Zen 5 uses a double-width variant), then SHA-NI, then AVX2 with eight lanes, then plain portable code. The change in the next section targets the AVX2 choice, so it applies to a processor with AVX2 and neither SHA-NI nor AVX-512.<sup><a href="#fn8" id="r8">[8]</a></sup> The <a href="https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html" rel="noopener noreferrer">Intel Intrinsics Guide</a> lists every AVX2 instruction.</p>
+</details>
+</section>
+
+<section id="s4" aria-labelledby="h4">
+<h2 id="h4">4. What we changed</h2>
+<p class="q">What exactly is different from the library we started with?</p>
+<p>The library already hashed eight guesses at a time with AVX2: we did not add that. The 64 rounds of SHA-256 are the same. What differs is the end. A miner only needs the start of each digest, so our call hands back just the first 32 bits of each one instead of writing out all 32 bytes.<sup><a href="#fn9" id="r9">[9]</a></sup> Those 32 bits are only a <strong>filter</strong>: a quick, cheap test that throws out almost every guess. A guess that passes is <strong>re-hashed</strong> the slow, safe way and checked against the whole prefix, so a filter pass is never reported as a hit.</p>
+<div class="scroll"><table>
+<caption>The stock call and our call, side by side</caption>
+<thead><tr><th scope="col">Step</th><th scope="col">Stock library call</th><th scope="col">Our call</th></tr></thead>
+<tbody>
+<tr><th scope="row">Guesses at once</th><td>8 (AVX2)</td><td>8 (AVX2), same</td></tr>
+<tr><th scope="row">Rounds</th><td>the 64 rounds of SHA-256</td><td>the same 64 rounds</td></tr>
+<tr><th scope="row">What comes out</th><td>all 8 full digests, 32 bytes each</td><td>only the first 32 bits of each digest</td></tr>
+<tr><th scope="row">What the miner does next</th><td>reads the first 4 bytes of each and compares</td><td>compares those 32 bits: the filter, where almost every guess ends</td></tr>
+<tr><th scope="row">Survivors</th><td>n/a</td><td>re-hashed in full, whole prefix checked; a false hit is never printed</td></tr>
+</tbody>
+</table></div>
+<h3>How wide is the filter?</h3>
+<p>The filter compares the top <code>min(prefix bits, 32)</code> bits of the first word. A prefix of N Base64 characters is 6N bits.<sup><a href="#fn10" id="r10">[10]</a></sup></p>
+<div class="scroll"><table>
+<caption>Exact-case prefixes</caption>
+<thead><tr><th scope="col">Characters</th><th scope="col">Prefix bits</th><th scope="col">Filter compares</th><th scope="col">Left for the full check</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>6</td><td>6 bits</td><td>none</td></tr>
+<tr><td>5</td><td>30</td><td>30 bits</td><td>none</td></tr>
+<tr><td>6</td><td>36</td><td>32 bits</td><td>4 bits</td></tr>
+<tr><td>10</td><td>60</td><td>32 bits</td><td>28 bits</td></tr>
+</tbody>
+</table></div>
+<p>In ignore-case mode the filter treats upper and lower case letters as equal, again over the first 32 bits only; survivors are still checked in full.</p>
+<div class="callout"><p><strong>When the new path runs.</strong> Only when the library picked its AVX2 kernel, and only if the whole message (phrase, colon and counter) fits in one 64-byte hashing block: at most 55 bytes (64, minus 1 padding byte and 8 length bytes). Anywhere else the stock path runs and the answers are identical.<sup><a href="#fn11" id="r11">[11]</a></sup></p></div>
+<div class="callout"><p><strong>Known and not known.</strong> Known from the design and source: the same rounds, a first-word output, the filter, and the full re-check of survivors. Measured, once, in the next section: about 1.5 times faster. Not established: how much of that each piece explains, because nobody profiled the run.</p></div>
+<p><span class="fl-pill fl-pill--open">Proposed, not merged</span> The change is proposed to the library as <a href="https://github.com/spool-labs/sha256/pull/4" rel="noopener noreferrer">spool-labs/sha256 pull request #4</a>. Until it is merged and released, the miner builds against a fork that carries it.</p>
+<details><summary>Go deeper: the hand-written kernel that lost</summary>
+<p>The miner also has an opt-in 8-lane kernel of its own. In every comparison we have, the patched library's median or mean was higher. Those are different comparisons on the same shared computer, and none is part of the 1.52 figure; they are in the table of other runs in <a href="#s5">section 5</a>.<sup><a href="#fn12" id="r12">[12]</a></sup></p>
+</details>
+</section>
+
+<section id="s5" aria-labelledby="h5">
+<h2 id="h5">5. The measured pilot</h2>
+<p class="q">How much faster was it, and how far can I trust that?</p>
+<p><span class="fl-pill fl-pill--shipped">Measured</span> Same source, same build; only the hash call differs. Three pairs of 10-second runs, six threads pinned to six cores, searching for a prefix that can never match so no run stops early. “MH/s” is millions of hashes per second.<sup><a href="#fn13" id="r13">[13]</a></sup></p>
+<div class="scroll"><table>
+<caption>Every run as recorded (load, clock and temperature sampled mid-run). Pair ratios 1.33, 1.52, 1.54; medians stock 71.55, patched 108.61.</caption>
+<thead><tr><th scope="col">Run</th><th scope="col">MH/s</th><th scope="col">Load</th><th scope="col">MHz</th><th scope="col">°C</th></tr></thead>
+<tbody>
+<tr><th scope="row" class="mono">1a stock</th><td>82.20</td><td>2.70</td><td>3900</td><td>77</td></tr>
+<tr><th scope="row" class="mono">1b patched</th><td>109.12</td><td>3.36</td><td>3868</td><td>76</td></tr>
+<tr><th scope="row" class="mono">2a patched</th><td>108.61</td><td>3.92</td><td>3800</td><td>76</td></tr>
+<tr><th scope="row" class="mono">2b stock</th><td>71.55</td><td>4.71</td><td>3800</td><td>76</td></tr>
+<tr><th scope="row" class="mono">3a stock</th><td>69.27</td><td>5.29</td><td>3800</td><td>78</td></tr>
+<tr><th scope="row" class="mono">3b patched</th><td>106.90</td><td>5.63</td><td>3900</td><td>77</td></tr>
+</tbody>
+</table></div>
+<details><summary>Other runs: earlier and separate, not comparable with the headline</summary>
+<p>These come from the miner's earlier notes and a separate pilot. They used different builds, thread counts, run lengths or pinning, so they are not on one axis with the picture at the top and are not a second result for the same claim.<sup><a href="#fn14" id="r14">[14]</a></sup></p>
+<div class="scroll"><table>
+<caption>MH/s unless noted; one shared i7-8700 throughout</caption>
+<thead><tr><th scope="col">Run set</th><th scope="col">Stock library</th><th scope="col">Custom AVX2</th><th scope="col">Patched library</th></tr></thead>
+<tbody>
+<tr><th scope="row">Earlier means, 6 threads, unpinned, 3–4 runs of 5 s, load 4–7</th><td>63</td><td>79</td><td>97 (runs 105.2, 90.1, 95.4)</td></tr>
+<tr><th scope="row">Earlier means, 11 threads, same setup</th><td>n/a</td><td>97</td><td>109 (runs 108.8, 109.7, 107.9)</td></tr>
+<tr><th scope="row">Paired medians, 6 threads, 3 runs of 8 s, load 5.4–9.7</th><td>n/a</td><td>70.0</td><td>87.6</td></tr>
+<tr><th scope="row">Pinned pilot, lib against custom AVX2, 3 pairs of 10 s (separate from the headline run)</th><td>n/a</td><td>76.94, 87.88, 80.16 (median 80.16)</td><td>108.61, 104.57, 99.51 (median 104.57)</td></tr>
+</tbody>
+</table></div>
+<p>The 105.2 and 109.7 are single-run peaks, not typical results. The earlier unpinned stock mean of 63 is not comparable with the pinned runs above.</p>
+</details>
+<details><summary>The raw log, as recorded</summary>
+<pre>start 2026-11-14T01:10:10+01:00  01:10:10 up 22 days,  1:39,  5 users,  load average: 2.47, 3.47, 4.10
+warmup stock 4s: 84.58 | mid: load1=2.35 running=2 MHz0-5=4299 pkgC=67
+warmup patched 4s: 114.70 | mid: load1=2.32 running=4 MHz0-5=3716 pkgC=68
+pair1 pos1 stock MH/s=82.20 | mid: load1=2.70 running=8 MHz0-5=3900 pkgC=77 | before: load1=2.32 running=2 MHz0-5=3716 pkgC=67 | after: load1=3.04 running=2 MHz0-5=2553 pkgC=71
+pair1 pos2 patched MH/s=109.12 | mid: load1=3.36 running=8 MHz0-5=3868 pkgC=76 | before: load1=3.04 running=3 MHz0-5=3144 pkgC=72 | after: load1=3.65 running=2 MHz0-5=3717 pkgC=71
+pair2 pos1 patched MH/s=108.61 | mid: load1=3.92 running=9 MHz0-5=3800 pkgC=76 | before: load1=3.65 running=2 MHz0-5=3719 pkgC=71 | after: load1=4.25 running=3 MHz0-5=4300 pkgC=71
+pair2 pos2 stock MH/s=71.55 | mid: load1=4.71 running=11 MHz0-5=3800 pkgC=76 | before: load1=4.25 running=3 MHz0-5=4299 pkgC=71 | after: load1=4.97 running=5 MHz0-5=4299 pkgC=78
+pair3 pos1 stock MH/s=69.27 | mid: load1=5.29 running=9 MHz0-5=3800 pkgC=78 | before: load1=4.97 running=4 MHz0-5=4300 pkgC=78 | after: load1=5.51 running=3 MHz0-5=4298 pkgC=73
+pair3 pos2 patched MH/s=106.90 | mid: load1=5.63 running=9 MHz0-5=3900 pkgC=77 | before: load1=5.51 running=3 MHz0-5=4301 pkgC=75 | after: load1=5.74 running=3 MHz0-5=4300 pkgC=72
+end 2026-11-14T01:11:24+01:00</pre>
+</details>
+<div class="callout">
+<p><strong>What this is not.</strong></p>
+<p>Three pairs on one shared Intel i7-8700 (AVX2, no SHA-NI) that got busier during the run: the 1-minute load rose from 2.3 to 5.7. The clock was not locked, and the first pair's 1.33 is partly noise. “Stock” still includes the miner's own running counter, so it is not untouched library code.</p>
+<p>It is a short pilot, not a sustained run, and not a result for other processors. Where the library picks SHA-NI or AVX-512, the stock path runs and you should expect no gain. We know what the change removes, but we did not profile the run, so this page does not say how much of the gain each part explains.</p>
+</div>
+</section>
+
+<section id="words" aria-labelledby="hw">
+<h2 id="hw">Words used on this page</h2>
+<dl>
+<dt>guess</dt><dd>A phrase plus a counter, like <code>gensys:60237861</code>.</dd>
+<dt>SHA-256 and digest</dt><dd>A fixed recipe that turns any text into a 256-bit fingerprint, called the digest. Specified in the public standard FIPS 180-4.</dd>
+<dt>bit, 256 bits</dt><dd>A bit is a 0 or a 1. 256 of them are 32 bytes.</dd>
+<dt>Base64</dt><dd>A way to write bytes as letters, digits, <code>+</code> and <code>/</code>; each character stands for 6 bits (RFC 4648).</dd>
+<dt>prefix</dt><dd>The first characters we want the Base64 text of the digest to start with.</dd>
+<dt>register and lane</dt><dd>A register is a wide slot inside the processor. A lane is one 32-bit slice of it; an AVX2 register has eight.</dd>
+<dt>AVX2, AVX-512, SHA-NI</dt><dd>Processor features: AVX2 works on 256 bits at a time, AVX-512 on 512, and SHA-NI adds instructions made for SHA hashing.</dd>
+<dt>filter</dt><dd>A quick, cheap test that throws out almost every guess and may let a few through.</dd>
+<dt>re-hash (full check)</dt><dd>Hashing a surviving guess again the slow, safe way and comparing the whole prefix.</dd>
+<dt>MH/s</dt><dd>Millions of hashes per second.</dd>
+</dl>
+</section>
+
+<section aria-labelledby="hr">
+<h2 id="hr">Sources and notes</h2>
+<p>The miner, its docs and its benchmark logs are on GitHub: <a href="https://github.com/chimera-defi/simple-sha256-miner" rel="noopener noreferrer">simple-sha256-miner</a>.</p>
+<ol class="refs">
+<li id="fn1">The miner's documentation: a guess is <code>phrase:number</code>, the test is on the start of the Base64 digest, and it is not Bitcoin mining.</li>
+<li id="fn2">The hit and miss rows were recomputed for this page as described in section 1. The ~60 million figure is nonce 60,237,861 from the miner's <a href="https://github.com/chimera-defi/simple-sha256-miner/blob/main/docs/bench-hillclimb1-20261114.txt" rel="noopener noreferrer">docs/bench-hillclimb1-20261114.txt</a>; the ~1 billion is 64^5 = 1,073,741,824.</li>
+<li id="fn3">The miner's documentation: every candidate hit is verified with a separate reference SHA-256 implementation before it is reported.</li>
+<li id="fn4">The miner's documentation: 64-fold per exact-case Base64 character; in ignore-case mode a letter matches 2 of the 64 Base64 characters (1 in 32), while a digit, + or / still matches 1 of 64.</li>
+<li id="fn5"><a href="https://csrc.nist.gov/pubs/fips/180-4/upd1/final" rel="noopener noreferrer">NIST FIPS 180-4, Secure Hash Standard</a> (256-bit digest, 32-bit words, 64 rounds, padding), and <a href="https://www.rfc-editor.org/rfc/rfc4648" rel="noopener noreferrer">RFC 4648</a> (6 bits per Base64 character). The 140-of-256 count for the two example messages equals a separate <code>sha256sum</code> and Python recount.</li>
+<li id="fn6"><a href="https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html" rel="noopener noreferrer">Intel Intrinsics Guide</a>: a 256-bit AVX2 register and <code>_mm256_add_epi32</code>, eight 32-bit additions in one instruction.</li>
+<li id="fn7">The library's pull request describes staging one padded block per lane. How it arranges its registers beyond that is not claimed here; the schematic is an illustration.</li>
+<li id="fn8">Kernel order read from the library's public source at commit <a href="https://github.com/spool-labs/sha256/blob/391432abfe4cb7f4174978ffd7797cd96d6aed41/src/lib.rs" rel="noopener noreferrer">391432a</a>, function <code>select()</code> and the SHA-NI check.</li>
+<li id="fn9">The new call, <code>hash_short_heads</code>, returns each digest's first 32-bit word; see <a href="https://github.com/spool-labs/sha256/pull/4" rel="noopener noreferrer">pull request #4</a>.</li>
+<li id="fn10">From the miner's source: the filter mask covers the top min(prefix bits, 32) bits, and every survivor is checked in full.</li>
+<li id="fn11">In the pull request, the AVX2 fast path runs when the selected kernel is AVX2 and the message fits one block (<code>ONE_BLOCK_MAX</code> = 64 − 9 = 55 bytes), in groups of eight; otherwise the general path hashes fully and truncates.</li>
+<li id="fn12">The miner's pilot log for the custom kernel against the library, <a href="https://github.com/chimera-defi/simple-sha256-miner/blob/main/docs/bench-pilot-20261114.txt" rel="noopener noreferrer">docs/bench-pilot-20261114.txt</a> (medians lib 104.57, custom AVX2 80.16).</li>
+<li id="fn13">Every number in the top picture and the first table of section 5 and the raw log comes from one file: the miner's log for the stock-against-patched pilot, <a href="https://github.com/chimera-defi/simple-sha256-miner/blob/main/docs/bench-stock-vs-patched-20261114.txt" rel="noopener noreferrer">docs/bench-stock-vs-patched-20261114.txt</a>, reproduced above row by row. The same medians and ratio appear in the pull request description.</li>
+<li id="fn14">The earlier means, 11-thread runs and the 8 s paired medians are from the miner's <a href="https://github.com/chimera-defi/simple-sha256-miner/blob/main/v2/README.md" rel="noopener noreferrer">v2/README.md</a>. The pinned lib-against-custom pilot is in the file named in note 12.</li>
+</ol>
+</section>
+
+<p class="small endnote">Numbers come from one host and one short pilot. They are not a benchmark of your machine.</p>
+</div>
+</article>
 </main>
+
+<footer class="site-footer">
+<div class="site-footer-inner">
+<span class="fl-mono">ChimericLabs LLC · Wyoming</span>
+<nav aria-label="Footer">
+<a href="../../index.html">Home</a>
+<a href="https://github.com/chimera-defi" target="_blank" rel="noreferrer">GitHub</a>
+<a href="https://github.com/chimera-defi/chimericlabs-llc" target="_blank" rel="noreferrer">Source</a>
+</nav>
+</div>
+</footer>
+<script type="module">
+const $ = id => document.getElementById(id)
+const enc = new TextEncoder()
+
+// Fallback for insecure contexts where crypto.subtle is missing. Constants derive from primes, as in FIPS 180-4.
+const primes = []
+for (let n = 2; primes.length < 64; n++) if (primes.every(p => n % p)) primes.push(n)
+const frac = x => Math.floor((x - Math.floor(x)) * 2 ** 32)
+const K = primes.map(p => frac(Math.cbrt(p)))
+const rotr = (x, n) => (x >>> n) | (x << (32 - n))
+const sha256Plain = bytes => {
+  const len = bytes.length
+  const size = (len + 9 + 63) & ~63
+  const msg = new Uint8Array(size)
+  msg.set(bytes)
+  msg[len] = 0x80
+  const view = new DataView(msg.buffer)
+  view.setUint32(size - 8, Math.floor(len / 2 ** 29))
+  view.setUint32(size - 4, (len * 8) >>> 0)
+  let h = primes.slice(0, 8).map(p => frac(Math.sqrt(p)))
+  const w = new Uint32Array(64)
+  for (let off = 0; off < size; off += 64) {
+    for (let i = 0; i < 16; i++) w[i] = view.getUint32(off + 4 * i)
+    for (let i = 16; i < 64; i++) {
+      const s0 = rotr(w[i - 15], 7) ^ rotr(w[i - 15], 18) ^ (w[i - 15] >>> 3)
+      const s1 = rotr(w[i - 2], 17) ^ rotr(w[i - 2], 19) ^ (w[i - 2] >>> 10)
+      w[i] = w[i - 16] + s0 + w[i - 7] + s1
+    }
+    let [a, b, c, d, e, f, g, hh] = h
+    for (let i = 0; i < 64; i++) {
+      const t1 = hh + (rotr(e, 6) ^ rotr(e, 11) ^ rotr(e, 25)) + ((e & f) ^ (~e & g)) + K[i] + w[i]
+      const t2 = (rotr(a, 2) ^ rotr(a, 13) ^ rotr(a, 22)) + ((a & b) ^ (a & c) ^ (b & c))
+      hh = g; g = f; f = e; e = (d + t1) | 0; d = c; c = b; b = a; a = (t1 + t2) | 0
+    }
+    h = h.map((v, i) => (v + [a, b, c, d, e, f, g, hh][i]) | 0)
+  }
+  const out = new Uint8Array(32)
+  h.forEach((v, i) => new DataView(out.buffer).setUint32(4 * i, v >>> 0))
+  return out
+}
+const sha256 = async text => {
+  const bytes = enc.encode(text)
+  return globalThis.crypto?.subtle ? new Uint8Array(await crypto.subtle.digest("SHA-256", bytes)) : sha256Plain(bytes)
+}
+const hex = bytes => [...bytes].map(x => x.toString(16).padStart(2, "0")).join("")
+const base64 = bytes => btoa(String.fromCharCode(...bytes))
+const fmt = n => n.toLocaleString("en-US")
+
+// ---- Steppers: each list of frames becomes one frame at a time, with Back / Next / Reset and arrow keys.
+for (const stepper of document.querySelectorAll("[data-stepper]")) {
+  const frames = [...stepper.querySelectorAll(".frames > li")]
+  frames.forEach((li, i) => { li.dataset.n = i + 1; li.dataset.total = frames.length })
+  const nav = document.createElement("div")
+  nav.className = "nav"
+  nav.setAttribute("role", "group")
+  nav.setAttribute("aria-label", "Step controls")
+  const make = text => {
+    const b = document.createElement("button")
+    b.type = "button"
+    b.className = "fl-btn fl-btn--secondary"
+    b.textContent = text
+    nav.append(b)
+    return b
+  }
+  const back = make("Back")
+  const next = make("Next")
+  const reset = make("Reset")
+  stepper.append(nav)
+  let at = 0
+  const show = i => {
+    at = Math.max(0, Math.min(frames.length - 1, i))
+    frames.forEach((li, k) => { li.hidden = k !== at })
+    back.disabled = at === 0
+    next.disabled = at === frames.length - 1
+  }
+  back.addEventListener("click", () => show(at - 1))
+  next.addEventListener("click", () => show(at + 1))
+  reset.addEventListener("click", () => show(0))
+  stepper.addEventListener("keydown", e => {
+    if (e.key === "ArrowRight") show(at + 1)
+    if (e.key === "ArrowLeft") show(at - 1)
+  })
+  show(0)
+}
+
+// ---- Section 1: recompute the two recorded rows.
+for (const row of document.querySelectorAll("[data-guess]")) {
+  const note = row.querySelector("[data-check]")
+  sha256(row.dataset.guess).then(bytes => {
+    const text = base64(bytes)
+    const startsWith = text.startsWith("gensy")
+    const ok = text === row.dataset.digest && startsWith === (row.dataset.hit === "yes")
+    note.textContent = ok
+      ? `✓ Recomputed in this page: it matches the recorded digest, and ${startsWith ? "does" : "does not"} start with gensy.`
+      : "✗ Recomputed in this page: this does NOT match the recorded value."
+  })
+}
+
+// ---- Section 1: bounded live search.
+const box = $("search")
+const letters = /^[A-Za-z0-9+/]{1,3}$/
+let running = false
+let stopRequested = false
+const showExpect = () => {
+  const p = $("prefix").value
+  $("expect").textContent = letters.test(p)
+    ? `A prefix of ${p.length} exact character${p.length > 1 ? "s" : ""} needs about ${fmt(64 ** p.length)} guesses on average.`
+    : "Use 1 to 3 letters, digits, + or /."
+}
+$("prefix").addEventListener("input", showExpect)
+showExpect()
+$("stop").addEventListener("click", () => { stopRequested = true })
+$("go").addEventListener("click", async () => {
+  if (running) return
+  const phrase = $("phrase").value
+  const prefix = $("prefix").value
+  if (!letters.test(prefix)) { $("sstatus").textContent = "Prefix must be 1 to 3 letters, digits, + or /."; return }
+  const cap = Number(box.dataset.cap)
+  running = true
+  stopRequested = false
+  $("go").disabled = true
+  $("stop").disabled = false
+  $("found").hidden = true
+  $("sstatus").textContent = ""
+  const started = performance.now()
+  let tried = 0
+  let hit = null
+  while (tried < cap && !stopRequested && hit === null) {
+    const size = Math.min(2000, cap - tried)
+    const guesses = Array.from({ length: size }, (_, i) => `${phrase}:${tried + i}`)
+    const digests = await Promise.all(guesses.map(sha256))
+    for (let i = 0; i < size; i++) {
+      const text = base64(digests[i])
+      if (text.startsWith(prefix)) { hit = { guess: guesses[i], text, at: tried + i + 1 }; break }
+    }
+    tried = hit ? hit.at : tried + size
+    $("count").textContent = `Tried ${fmt(tried)} guesses`
+    await new Promise(resolve => setTimeout(resolve))
+  }
+  const seconds = ((performance.now() - started) / 1000).toFixed(1)
+  if (hit) {
+    const mark = document.createElement("mark")
+    mark.textContent = prefix
+    $("found").hidden = false
+    $("found").replaceChildren(hit.guess + " → ", mark, hit.text.slice(prefix.length))
+    $("sstatus").textContent = `Hit after ${fmt(hit.at)} guesses (${seconds} s).`
+  } else if (stopRequested) {
+    $("sstatus").textContent = `Stopped after ${fmt(tried)} guesses with no hit.`
+  } else {
+    $("sstatus").textContent = `No hit in ${fmt(cap)} guesses. Try a shorter prefix or another phrase. A 3-character prefix needs about 262,144 guesses on average, so a few runs miss.`
+  }
+  running = false
+  $("go").disabled = false
+  $("stop").disabled = true
+})
+
+// ---- Section 2: two-message hash demo.
+const grid = $("grid")
+for (let i = 0; i < 256; i++) grid.append(document.createElement("i"))
+const flips = new Array(256).fill(null)
+grid.addEventListener("pointerover", e => {
+  const i = [...grid.children].indexOf(e.target)
+  if (i >= 0 && flips[i] !== null) $("cell").textContent = `Bit ${i + 1} of 256: ${flips[i] ? "differs" : "the same"}.`
+})
+let latest = 0
+let statusTimer
+const update = async () => {
+  const run = ++latest
+  const [da, db] = await Promise.all([sha256($("a").value), sha256($("b").value)])
+  if (run !== latest) return
+  let flipped = 0
+  da.forEach((x, i) => {
+    const diff = x ^ db[i]
+    for (let bit = 0; bit < 8; bit++) {
+      const on = (diff >> (7 - bit)) & 1
+      flips[i * 8 + bit] = on
+      grid.children[i * 8 + bit].classList.toggle("on", !!on)
+      flipped += on
+    }
+  })
+  $("ha").textContent = "A  " + hex(da)
+  $("hb").textContent = "B  " + hex(db)
+  $("dcount").textContent = flipped === 0
+    ? "The messages are identical, so no bits differ."
+    : `${flipped} of 256 bits differ (${Math.round(flipped / 2.56)}%). About half is typical.`
+  // Screen readers hear a short status once typing pauses, never the hex.
+  clearTimeout(statusTimer)
+  statusTimer = setTimeout(() => { $("status").textContent = `Hash updated, ${flipped} of 256 bits differ.` }, 700)
+}
+// Change the last code point (not UTF-16 unit) so emoji never split into lone surrogates.
+const changeLast = text => {
+  const points = Array.from(text)
+  const cp = points.pop().codePointAt(0)
+  let next = cp + 1
+  if (cp === 0x7a) next = 0x61
+  else if (cp === 0x5a) next = 0x41
+  else if (cp === 0x39) next = 0x30
+  else if (next >= 0xd800 && next <= 0xdfff) next = 0xe000
+  else if (next > 0x10ffff) next = 0x20
+  return points.join("") + String.fromCodePoint(next)
+}
+const syncTweak = () => { $("tweak").disabled = $("a").value === "" }
+$("a").addEventListener("input", syncTweak)
+$("a").addEventListener("input", update)
+$("b").addEventListener("input", update)
+$("tweak").addEventListener("click", () => {
+  $("b").value = changeLast($("a").value)
+  update()
+})
+syncTweak()
+update()
+
+// ---- Section 3: recompute the lane table and the instruction-count toggle.
+{
+  const rows = [...document.querySelectorAll("#lanetab tbody tr")]
+  const h8 = n => n.toString(16).padStart(8, "0")
+  const ok = K[1] === 0x71374491 && rows.every((tr, k) => {
+    const word = new DataView(enc.encode(`ys:${k}`).buffer).getUint32(0)
+    const cells = [...tr.querySelectorAll("td")].map(td => td.textContent)
+    return cells[1] === h8(word) && cells[2] === h8(K[1]) && cells[3] === h8((word + K[1]) >>> 0)
+  })
+  $("lanecheck").textContent = ok
+    ? "✓ Recomputed in this page: all eight rows match."
+    : "✗ Recomputed in this page: a row does NOT match."
+  const mode = eight => {
+    $("m8").setAttribute("aria-pressed", eight)
+    $("m1").setAttribute("aria-pressed", !eight)
+    $("lanetab").classList.toggle("one", !eight)
+    $("mcap").textContent = eight
+      ? "Eight lanes: 1 instruction does all 8 additions."
+      : "One value at a time: 8 instructions for the same 8 additions (only lane 0 is lit here)."
+  }
+  $("m1").addEventListener("click", () => mode(false))
+  $("m8").addEventListener("click", () => mode(true))
+}
+</script>
 </body>
 </html>
