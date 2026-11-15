@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>We made SHA-256 hash mining about 42 times faster: C++ to Rust, then one patch</title>
+<title>We made our SHA-256 miner about 42 times faster: C++ to Rust, then one patch</title>
 <meta name="description" content="Our SHA-256 miner went from 2.6 to 109 million guesses a second, about 42 times faster. C++ to Rust with a SIMD library gave about 27 times; our patch on top gave about 1.5 times. Pictures, steps and every run.">
-<meta property="og:title" content="We made SHA-256 hash mining about 42 times faster">
+<meta property="og:title" content="We made our SHA-256 miner about 42 times faster">
 <meta property="og:description" content="From 2.6 to 109 million guesses a second: C++ to Rust with a SIMD library, then our patch. A visual, step-by-step explainer.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://chimericlabs.xyz/research/sha256/">
@@ -146,14 +146,14 @@ mark { background: var(--accent); color: var(--on-accent); padding: 0 .06em; }
 
 <article class="art" id="article">
 <header class="art-head">
-<p class="fl-label">Explainer · <time datetime="2026-11-15">15 Nov 2026</time> · 18 min read</p>
-<h1>We made SHA-256 hash mining about 42 times faster</h1>
+<p class="fl-label">Explainer · <time datetime="2026-11-15">15 Nov 2026</time> · 19 min read</p>
+<h1>We made our SHA-256 miner about 42 times faster</h1>
 <p class="art-lede">The miner guesses text until the hash starts with letters we pick. The first version, in C++, made about 2.6 million guesses a second. The Rust version makes about 109 million. Two steps got it there: a rewrite in Rust on a SIMD hashing library, then a patch of ours on top. Pictures first, then five short steps.</p>
 </header>
 
 <div class="fl-card which" id="which">
 <h2>Which step gave what</h2>
-<ul class="bars" style="--lab:6.75rem" aria-label="Millions of hashes per second, six pinned threads: C++ 2.62, Rust with the library as it ships 71.55, Rust with our patch 109.1">
+<ul class="bars" style="--lab:6.75rem" aria-label="Millions of hashes per second, six pinned threads: C++ 2.62 and Rust with our patch 109.1 from test 1; Rust with the library as it ships 71.55 from test 2">
 <li><b>C++</b><div class="track" aria-hidden="true"><div class="bar cpp" style="--w:2.2%"></div></div><span class="val">2.62</span></li>
 <li><b>Rust</b><div class="track" aria-hidden="true"><div class="bar stock" style="--w:59.6%"></div></div><span class="val">71.55</span></li>
 <li><b>Rust + patch</b><div class="track" aria-hidden="true"><div class="bar patched" style="--w:90.9%"></div></div><span class="val">109.1</span></li>
@@ -162,7 +162,7 @@ mark { background: var(--accent); color: var(--on-accent); padding: 0 .06em; }
 <li><strong>C++ to Rust, on a SIMD library: about 27 times.</strong> The Rust miner builds on the open-source <a href="https://github.com/spool-labs/sha256" rel="noopener noreferrer">spool-labs/sha256</a> library, which hashes eight guesses at once. That took the miner from 2.62 to 71.55 MH/s (millions of hashes per second).</li>
 <li><strong>Our patch on top: about 1.5 times.</strong> The patch makes the library return only the start of each hash. That took it from 71.55 to 108.61 MH/s in a paired test, the same 1.52 that <a href="https://github.com/spool-labs/sha256/pull/4" rel="noopener noreferrer">pull request #4</a> reports.</li>
 </ol>
-<p class="figcap">Together: 2.62 to 109.1 MH/s, <strong>41.6 times</strong> in a direct paired test of the C++ and Rust programs. The 27 and the 1.5 multiply to about the same figure, but the 71.55 comes from a separate test the day before, so treat the split as approximate. MH/s, axis 0 to 120. Six pinned threads on one shared i7-8700. Every run is in <a href="#s5">step 5</a>.</p>
+<p class="figcap">Together: 2.62 to 109.1 MH/s, <strong>41.6 times</strong> in a direct paired test of the C++ and Rust programs. The 27 and the 1.5 multiply to about the same figure, but the 71.55 comes from a separate test the day before, so treat the split as approximate. The patched figure is 109.1 in the C++ test and 108.61 in the patch test: separate runs of the same build. MH/s, axis 0 to 120. Six pinned threads on one shared i7-8700. Every run is in <a href="#s5">step 5</a>.</p>
 </div>
 
 <div class="figs">
@@ -196,12 +196,12 @@ mark { background: var(--accent); color: var(--on-accent); padding: 0 .06em; }
 </div>
 
 <div class="art-col">
-<div class="callout"><p><strong>Read the limits first.</strong> These are short tests on one shared, busy computer. It is not a controlled benchmark. Expect no gain on chips with SHA-NI or AVX-512. We did not measure which part of our patch explains its gain. The 42 times compares two programs on that same computer, not two computers, and the C++ build flags were ours. The change is <span class="fl-pill fl-pill--open">Proposed, not merged</span> as <a href="https://github.com/spool-labs/sha256/pull/4" rel="noopener noreferrer">spool-labs/sha256 pull request #4</a>.</p></div>
+<div class="callout"><p><strong>Read the limits first.</strong> These are short tests on one shared, busy computer. It is not a controlled benchmark. Expect no gain on chips with SHA-NI or AVX-512. We did not measure which part of our patch explains its gain. The 42 times compares two programs on this one AVX2 computer without SHA-NI. The C++ miner uses OpenSSL, which may use SHA-NI where a chip has it, so the 42 times could be smaller there. The C++ build flags were ours. The change is <span class="fl-pill fl-pill--open">Proposed, not merged</span> as <a href="https://github.com/spool-labs/sha256/pull/4" rel="noopener noreferrer">spool-labs/sha256 pull request #4</a>.</p></div>
 
 <div class="callout" id="prefix-note"><p><strong>Is the prefix fixed at six letters? No.</strong> The miner takes 1 to 10 Base64 characters, or 1 to 16 hex characters (<a href="https://github.com/chimera-defi/simple-sha256-miner/blob/4118081dec42179ccb260ad219df666392c5300a/v2/src/lib.rs#L91-L112" rel="noopener noreferrer"><code>target()</code></a>). “gensys” is only our example phrase. Our example prefix, “gensy”, has five characters.</p>
 <p>The fast filter looks at up to 32 bits. The full check looks at the whole prefix. The ruler in <a href="#ruler">step 4</a> shows both. For how long your own prefix would take, see <a href="#cost">how hard the search is</a>.</p></div>
 
-<h2 id="steps" class="stepsh">Five steps, about 15 minutes</h2>
+<h2 id="steps" class="stepsh">Five steps, about 16 minutes</h2>
 <ol class="jump">
 <li><a href="#s1">The miner:</a> a loop of guesses, hashed and checked against a prefix. 3 min.</li>
 <li><a href="#s2">SHA-256:</a> a 256-bit fingerprint, with no shortcut backwards. 2 min.</li>
@@ -414,11 +414,11 @@ mark { background: var(--accent); color: var(--on-accent); padding: 0 .06em; }
 <details><summary>Go deeper: the hand-written kernel that lost</summary>
 <p>The miner also has an opt-in 8-lane kernel of its own. In every comparison we have, the patched library’s median or mean was higher. These are different comparisons on the same shared computer. None is part of the 1.52 figure. They are in the table of other runs in <a href="#s5">step 5</a>.<sup><a href="#fn12" id="r12">[12]</a></sup></p>
 </details>
-<p class="nextstep">Next: <a href="#s5">step 5, the measured test →</a></p>
+<p class="nextstep">Next: <a href="#s5">step 5, the measured tests →</a></p>
 </section>
 
 <section id="s5" aria-labelledby="h5">
-<p class="fl-label">Step 5 of 5 · 3 min</p>
+<p class="fl-label">Step 5 of 5 · 4 min</p>
 <h2 id="h5">Two short tests: about 42 times for the whole change, 1.5 for our patch</h2>
 <h3>Test 1: the C++ miner against the Rust miner</h3>
 <p><span class="fl-pill fl-pill--shipped">Measured</span> We built the C++ miner as it is in the repo (<code>g++ -O2</code>, linked to OpenSSL) and the Rust miner with our patch, on the same computer. We ran four pairs, alternating which went first, each pinned to six cores. The C++ program has no time limit and no choice of prefix, so we let each run last 11 seconds and read its own progress line at 10 seconds. The Rust miner ran for 10 seconds on a prefix that can never match.<sup><a href="#fn16" id="r16">[16]</a></sup></p>
@@ -436,7 +436,7 @@ mark { background: var(--accent); color: var(--on-accent); padding: 0 .06em; }
 <tr><th scope="row" class="mono">4b C++</th><td>2.63</td><td>5.66</td><td>2854</td><td>64</td><td><span class="runbar cpp" style="--w:2.2%"></span></td></tr>
 </tbody>
 </table></div>
-<p>The C++ number matches the 2.66 MH/s in the miner’s README, which came from a different run and was not re-measured until now. The pairs agree within about 5%, so the headline is not a fluke of one run. It is still four short runs on a shared computer.</p>
+<p>The C++ number agrees with the 2.66 MH/s in the miner’s README, which came from a different run and was not re-measured until now. The pairs agree within about 5%, so the headline is not a fluke of one run. It is still four short runs on a shared computer. The two programs report speed differently: the C++ figure is its own average since start, which includes thread start-up and slightly favours Rust, while the Rust figure is the miner’s own rate line.</p>
 <details><summary>The raw log of test 1, as recorded</summary>
 <pre>start 2026-11-15T02:13:17+01:00  02:13:17 up 23 days,  2:42,  4 users,  load average: 1.27, 0.98, 1.43
 warmup cpp: 2.61 (workers=6, v1 PROGRESS at 10 s)
