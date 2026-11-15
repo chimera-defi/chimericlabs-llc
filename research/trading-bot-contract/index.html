@@ -3,181 +3,368 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="color-scheme" content="dark">
+<title>Trading bot 0x51C7…2A7F: who can move its money</title>
+<meta name="description" content="A plain-words read of a verified Ethereum contract. It is a trading bot that keeps its own money. Who can trade with it, pay from it or stop it, in pictures.">
+<meta property="og:title" content="Trading bot 0x51C7…2A7F: who can move its money">
+<meta property="og:description" content="A plain-words read of a verified Ethereum contract. It is a trading bot that keeps its own money. Who can trade with it, pay from it or stop it, in pictures.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://chimericlabs.xyz/research/trading-bot-contract/">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://chimericlabs.xyz/research/trading-bot-contract/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23080e1d'/><text x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='16' font-weight='600' fill='%2300c4ff'>CL</text></svg>" />
-<title>What the trading bot contract 0x51C7…2A7F does</title>
-<meta name="description" content="A plain-words read of a verified Ethereum contract: a privately run trading and market-making bot that is also its own wallet. What it does, who can do what, and what we checked.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Hanken+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/field-lab/tokens.css">
+<link rel="stylesheet" href="../../assets/field-lab/field-lab.css">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/article.css">
 <style>
-/* Fable tokens (Nocturne base, maroon accent), inlined so the page stays self-contained, as on research/sha256 */
-:root{
-  --color-bg:#1d1f27;--color-surface:#2b2d37;--color-text:#e9e9ed;
-  --color-muted:#b2b6ca;--color-line:#3f424d;--color-neutral-600:#75798c;
-  --color-accent:#f65b6f;--color-accent-400:#fe949b;--color-accent-800:#78182a;
-  --data-codex:#7fb0e6;
-  --font:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
-  --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
-  --radius-md:8px;--radius-lg:14px;
-}
-*{box-sizing:border-box}
-body{margin:0;font:17px/1.6 var(--font);color:var(--color-text);text-wrap:pretty;
-  background:radial-gradient(1200px 720px at 82% -160px,color-mix(in srgb,var(--color-accent-800) 70%,transparent),transparent 60%),var(--color-bg)}
-main{max-width:44rem;margin:0 auto;padding:40px 16px 72px}
-a{color:var(--color-accent-400);text-underline-offset:3px}
-.back{display:inline-flex;min-height:44px;align-items:center;margin-bottom:16px;font-size:.9rem;color:var(--color-muted)}
-.kicker{margin:0 0 12px;font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--color-accent-400)}
-h1{margin:0 0 16px;font-size:clamp(2rem,6vw,3rem);line-height:1.1;font-weight:600;letter-spacing:-.02em}
-h2{margin:0 0 16px;font-size:1.35rem;line-height:1.25;font-weight:600}
-h3{margin:0 0 8px;font-size:1rem;font-weight:600}
-.lede{margin:0;font-size:1.15rem;color:var(--color-muted)}
-section{margin-top:48px;padding-top:32px;border-top:1px solid var(--color-line)}
-p{margin:16px 0 0;color:var(--color-muted)}
-p strong,li strong{color:var(--color-text)}
-code{font:.9em var(--mono);overflow-wrap:anywhere}
-.nw{white-space:nowrap}
-.addr{font:.95rem var(--mono);overflow-wrap:anywhere}
-.answers{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:32px}
-.answer{padding:16px;background:var(--color-surface);border:1px solid var(--color-line);border-radius:var(--radius-md)}
-.answer p{margin:0;font-size:.95rem}
-.answer.watch{border-color:var(--color-accent)}
-.who{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
-.role{padding:14px 12px;font-size:.95rem;background:var(--color-surface);border:1px solid var(--color-line);border-radius:var(--radius-md)}
-.role b{display:block;margin-bottom:4px;color:var(--color-text)}
-.role span{color:var(--color-muted)}
-.control{margin-top:8px;padding:14px 12px;text-align:center;font-size:.95rem;background:var(--color-accent-800);border-radius:var(--radius-md)}
-figure{margin:24px 0 0}
-figcaption{margin-bottom:8px;font-size:.85rem;color:var(--color-muted)}
-pre{margin:0;padding:14px 16px;font:.85rem/1.55 var(--mono);color:var(--color-text);white-space:pre-wrap;overflow-wrap:anywhere;
-  background:var(--color-surface);border:1px solid var(--color-line);border-radius:var(--radius-md)}
-.facts{margin:24px 0 0;padding:0;list-style:none}
-.facts li{padding:12px 0;border-top:1px solid var(--color-line);color:var(--color-muted)}
-.facts strong{font-variant-numeric:tabular-nums}
-.checks{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
-.checks ul{margin:0;padding-left:18px;color:var(--color-muted);font-size:.95rem}
-.checks li{margin-top:8px}
-.card{padding:16px;background:var(--color-surface);border:1px solid var(--color-line);border-radius:var(--radius-md)}
-.card.yes{border-top:3px solid var(--data-codex)}
-.card.no{border-top:3px solid var(--color-neutral-600)}
-.caveat{margin-top:24px;padding:16px;font-size:.95rem;color:var(--color-text);background:var(--color-surface);border-left:3px solid var(--color-accent);border-radius:var(--radius-md)}
-@media (max-width:640px){
-  .answers,.who,.checks{grid-template-columns:1fr}
-}
+/* This page only: the pictures. Colours and spacing come from Field Lab tokens. */
+.nw { white-space: nowrap; }
+.art .stepsh { margin-top: var(--space-7); }
+.endnote { margin-top: var(--space-7); }
+.where { margin: 0 0 var(--space-2); }
+.point { font-size: 1.125rem; font-weight: 700; }
+.answers { display: grid; gap: var(--space-4); margin-top: var(--space-6); }
+@media (min-width: 760px) { .answers { grid-template-columns: repeat(3, 1fr); } }
+.answers h2 { font-size: 1.25rem; }
+.answers p { margin-top: var(--space-2); }
+.fig { margin: var(--space-5) 0 0; }
+.fig > h3:first-child, .fig > h2:first-child { margin: 0 0 var(--space-3); }
+.fig .figcap { margin-top: var(--space-4); }
+.node { padding: var(--space-3); font-size: .9375rem; line-height: 1.45; background: var(--bg); border: 1.5px solid var(--ink); }
+.node p { margin: 0; }
+.node.hold { color: var(--bg); background: var(--ink); text-align: center; font-weight: 700; }
+.node.soft { border-style: dashed; color: var(--ink-2); }
+.anyone { margin-top: var(--space-2); }
+.down { display: block; text-align: center; line-height: 1.6; color: var(--accent-ink); font: 500 1.25rem var(--f-mono); }
+.pair, .four, .two { display: grid; gap: var(--space-2); }
+@media (min-width: 640px) { .pair, .two { grid-template-columns: 1fr 1fr; } .four { grid-template-columns: repeat(4, 1fr); } }
+.four .node { font-size: .875rem; }
+.groups { display: grid; gap: var(--space-3); margin: 0; padding: 0; list-style: none; }
+@media (min-width: 640px) { .groups { grid-template-columns: 1fr 1fr; } }
+.groups > li { padding: var(--space-3); border: 1px solid var(--line); background: var(--bg); }
+.groups .fl-label { margin: 0 0 var(--space-2); }
+.chips { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+.chips li { padding: 4px 10px; font: 500 .8125rem var(--f-mono); border: 1.5px solid var(--ink); }
+.groups .slot .chips li { border-style: dashed; }
+.flow { display: grid; gap: var(--space-2); margin: 0; padding: 0; list-style: none; counter-reset: flow; }
+.flow > li { position: relative; counter-increment: flow; padding: var(--space-3) var(--space-3) var(--space-3) 3rem; background: var(--bg); border: 1.5px solid var(--ink); }
+.flow > li::before { content: counter(flow); position: absolute; left: var(--space-3); top: var(--space-3); width: 1.5rem; height: 1.5rem; display: grid; place-items: center; font: 700 .8125rem var(--f-mono); color: var(--bg); background: var(--ink); }
+.flow > li.gate { background: var(--surface-2); }
+.flow > li.gate::before { color: var(--on-accent); background: var(--accent); }
+.flow > li.last { border-style: dashed; }
+.flow p { margin: 0; }
+.exits { display: grid; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+.exits li { display: grid; grid-template-columns: 2.25rem 1fr; align-items: start; gap: var(--space-3); padding: var(--space-3); background: var(--bg); border: 1px solid var(--line); }
+.exits li::before { content: "→"; text-align: center; font: 600 1.125rem/1.5 var(--f-mono); color: var(--accent-ink); }
+.exits li.stays::before { content: "↺"; }
+.exits p { margin: 0; }
+.flags { padding-left: 1.4rem; }
+.flags li { margin-top: var(--space-3); }
+.flags li::marker { font: 700 1rem var(--f-mono); color: var(--accent-ink); }
+.two .fl-card h3 { margin-top: 0; }
+.two ul { margin: var(--space-3) 0 0; padding-left: 1.2rem; }
+.two li + li { margin-top: var(--space-2); }
+.words { display: grid; gap: var(--space-4); }
+@media (min-width: 640px) { .words { grid-template-columns: 1fr 1fr; } }
+.words ul, .refs-g ul { margin: var(--space-2) 0 0; padding-left: 1.2rem; }
+.words li + li, .refs-g li + li { margin-top: var(--space-2); }
+.refs-g { font-size: .9rem; }
+.refs-g h3 { font-size: 1rem; }
+.art pre.sol { white-space: pre; }
+.art pre.sol code { overflow-wrap: normal; }
 </style>
 </head>
 <body>
-<main>
-<a class="back" href="../../research.html">← Research</a>
-<p class="kicker">Contract explainer · Ethereum mainnet</p>
-<h1>What the trading bot contract <span class="nw">0x51C7…2A7F</span> does</h1>
-<p class="lede">It is a privately run trading and market-making bot that is also its own wallet. We read its verified source, rebuilt it, and checked the build against the chain.</p>
-<p class="addr"><a href="https://etherscan.io/address/0x51c72848c68a965f66fa7a88855f9f7784502a7f#code">0x51C72848c68a965f66FA7a88855F9f7784502a7F on Etherscan</a></p>
+<a class="skip" href="#article">Skip to content</a>
+<header class="site-header">
+<div class="site-header-inner">
+<a href="../../index.html" class="site-brand inline-flex">ChimericLabs</a>
+<nav class="site-nav" aria-label="Primary">
+<a href="../../portfolio.html" class="site-nav-link">Portfolio</a>
+<a href="../../research.html" class="site-nav-link" aria-current="page">Research</a>
+<a href="../../index.html#services" class="site-nav-link">Services</a>
+<a href="https://github.com/chimera-defi" target="_blank" rel="noreferrer" class="site-nav-link gh">GitHub</a>
+<a href="mailto:chimera_defi@protonmail.com" class="site-nav-link site-contact fl-btn">Contact</a>
+</nav>
+</div>
+</header>
+
+<main class="art-wrap">
+<nav class="art-crumb" aria-label="Breadcrumb"><a href="../../research.html">← Research</a> <a href="https://eth.blockscout.com/address/0x51C72848c68a965f66FA7a88855F9f7784502a7F">The contract on Blockscout</a></nav>
+
+<article class="art" id="article">
+<header class="art-head">
+<p class="fl-label">Contract explainer · <time datetime="2026-11-15">15 Nov 2026</time></p>
+<h1>Trading bot 0x51C7…2A7F: who can move its money</h1>
+<div class="art-lede"><p>This Ethereum contract is a trading bot that keeps its own money. Only accounts on its lists can move that money. We read its <a href="https://eth.blockscout.com/address/0x51C72848c68a965f66FA7a88855F9f7784502a7F?tab=contract">verified code</a> and rebuilt it to check.</p></div>
+<p class="small">Eight short sections, about a minute each. Every section opens with its point.</p>
+</header>
 
 <div class="answers">
-<div class="answer"><h3>What it does</h3><p>It trades its own funds on Uniswap and Curve, confirms its signed quotes for 0x and AirSwap orders, and pays out to an approved list of addresses.</p></div>
-<div class="answer"><h3>Who it is for</h3><p>Only the people who run it. It has no deposit function and no user balances. Outsiders have no reason to call it.</p></div>
-<div class="answer watch"><h3>What to watch for</h3><p>Anything sent to it by mistake can't be pulled back by the sender. An unknown function call succeeds and does nothing. A registry contract decides who can move its funds.</p></div>
+<div class="fl-card"><h2>What it does</h2><p>It trades its own funds on <a href="https://docs.uniswap.org/contracts/v3/overview">Uniswap</a> and <a href="https://docs.curve.finance/">Curve</a>. It backs signed price quotes for traders. It pays out to an approved list.</p></div>
+<div class="fl-card"><h2>Who it is for</h2><p>Only the people who run it. It has no deposit function and no user balances.</p></div>
+<div class="fl-card"><h2>What to watch for</h2><p>Tokens sent to it by mistake can't be pulled back by the sender. A call to a function it lacks succeeds and does nothing.</p></div>
 </div>
 
-<section aria-labelledby="h-plain">
-<h2 id="h-plain">In plain words</h2>
-<div class="who" role="img" aria-label="Three groups of accounts, each with one job: operators trade, the RFQ signer quotes, transferers pay out. A registry contract sets all the lists and a multisig owns the bot.">
-<div class="role"><b>Operators</b><span>swap on whitelisted pools and can tip the block builder</span></div>
-<div class="role"><b>RFQ signer</b><span>an off-chain key whose signed quotes the bot vouches for</span></div>
-<div class="role"><b>Transferers</b><span>send tokens or ETH, only to approved recipients</span></div>
+<div class="art-col">
+<figure class="fl-card fig" aria-labelledby="hero-h">
+<h2 id="hero-h">Who can do what</h2>
+<div class="pair">
+<div class="node"><p><strong>Registry contract.</strong> Adds and removes accounts on every list below.</p></div>
+<div class="node"><p><strong>Multisig owner.</strong> A <a href="https://safe.global/">Safe</a> wallet. Grants token allowances. Stops and restarts the bot.</p></div>
 </div>
-<div class="control">A registry contract sets every list. A multisig owns the bot and approves token allowances.</div>
-<p>The verified source calls itself an “MEV bot and contract wallet”. MEV bots trade on price gaps between pools inside a single block. This one also acts as a market maker: when 0x or AirSwap settle an order against it, they ask the bot whether the quote was really signed by its key.</p>
-<p><strong>Verdict:</strong> it is not a drainer and not a honeypot. No function lets an outsider take funds, and no function pulls tokens from anyone. Every path that moves value needs a role, a whitelist or an allowance.</p>
-</section>
-
-<section aria-labelledby="h-how">
-<h2 id="h-how">How it works</h2>
-<p>Short excerpts from the verified <code>Bot.sol</code>, with its line numbers. Names ending in a random suffix are the source's own stand-ins: the original function names are unknown.</p>
-
-<figure>
-<figcaption>Emergency brake, lines 373–381. Any staff role can stop the bot. It then zeroes every token allowance it gave out; a failed one is only logged. Only the multisig can switch it back on.</figcaption>
-<pre>function killContract() external {
-    require(
-        _operators[msg.sender] || _wethHandlers_9mt4lD[msg.sender] || _transferers_3TlnxV[msg.sender]
-            || msg.sender == multiSigOwner,
-        "H11"
-    );
-    isActive = false;
-    revokeAllApprovals_IXLJyu();
-}</pre>
+<span class="down" aria-hidden="true">↓</span>
+<div class="node hold">The bot: its own ETH and tokens</div>
+<span class="down" aria-hidden="true">↓</span>
+<div class="four">
+<div class="node"><p><strong>Operators</strong> trade on listed pools and tip the block builder</p></div>
+<div class="node"><p><strong>Transferers</strong> pay listed recipients</p></div>
+<div class="node"><p><strong>Spenders</strong> pull up to their allowance</p></div>
+<div class="node"><p><strong>Quote callers</strong> check its signatures</p></div>
+</div>
+<div class="node soft anyone"><p><strong>Anyone else</strong> can send it money and read it. They can't take anything out.</p></div>
+<figcaption class="figcap">Every arrow out of the bot needs a list entry. Section 1 shows who writes the lists.</figcaption>
 </figure>
 
-<figure>
-<figcaption>Paying out, lines 459–463. Each check is a gate: the bot is on, the caller is a transferer, and every recipient is on the approved list.</figcaption>
-<pre>function transferTo(IERC20[] memory tokens, uint256[] memory amounts, address[] memory to)
-    external
+<div class="callout"><p><strong>Verdict:</strong> a privately run trading and market-making bot. It is not a drainer, a contract built to steal approved tokens. It is not a honeypot, a trap that keeps deposits. No function lets an outsider take its money. No function pulls tokens from anyone else. Every path that moves value needs a role, a list entry or an allowance.</p></div>
+<p>Its verified code calls itself an “MEV bot and contract wallet” (line 81). <a href="https://ethereum.org/en/developers/docs/mev/">MEV</a> is profit from choosing which trades go in a block, and in what order. Bots chase it by trading on price gaps between pools.</p>
+
+<h2 id="steps" class="stepsh">The eight sections</h2>
+<h3>How it works</h3>
+<ol class="jump">
+<li><a href="#s1">Who writes the lists</a>. A registry contract adds and removes every account.</li>
+<li><a href="#s2">How one trade works</a>. Five steps, from an operator's call to the builder tip.</li>
+<li><a href="#s3">How a price quote is checked</a>. An off-chain key signs quotes. The bot vouches for that key.</li>
+<li><a href="#s4">Where the money can go</a>. Five exits, each behind a list.</li>
+<li><a href="#s5">The emergency brake</a>. Any staff account can stop it. Only the multisig restarts it.</li>
+</ol>
+<h3>What to make of it</h3>
+<ol class="jump" start="6">
+<li><a href="#s6">What a reviewer would flag</a>. Five design facts, not claims that anything went wrong.</li>
+<li><a href="#s7">What we checked, and what we didn't</a>. The code matches the chain. Some things stay unproven.</li>
+<li><a href="#s8">How to read a contract yourself</a>. Five steps on a block explorer, without signing anything.</li>
+</ol>
+
+<section id="s1" aria-labelledby="h1">
+<p class="fl-label where">Section 1 of 8</p>
+<h2 id="h1">1. Who writes the lists</h2>
+<p class="point">One outside contract, the registry, decides who is on every list.</p>
+<figure class="fl-card fig">
+<h3>The lists the registry writes</h3>
+<ul class="groups">
+<li><p class="fl-label">Staff</p><ul class="chips"><li>Operators</li><li>WETH handlers</li><li>Transferers</li></ul></li>
+<li><p class="fl-label">Where money may go</p><ul class="chips"><li>Recipients</li><li>Spenders</li><li>Builders</li></ul></li>
+<li><p class="fl-label">Pools</p><ul class="chips"><li>Uniswap V2 pairs</li><li>Uniswap V3 pools</li><li>Curve pools</li></ul></li>
+<li><p class="fl-label">Quotes</p><ul class="chips"><li>Quote callers</li></ul></li>
+<li class="slot"><p class="fl-label">One-address slots</p><ul class="chips"><li>Quote key</li><li>AirSwap</li><li>0x</li></ul></li>
+</ul>
+<figcaption class="figcap">Ten lists hold many accounts each. Three slots hold one address each: the quote key, AirSwap and 0x.</figcaption>
+</figure>
+<p>The <a href="https://eth.blockscout.com/address/0x7Ff4Ed8ab94c849B812622EB462682208BE06B93">registry</a> calls the bot to add or remove an account. Nothing else can change a list (lines 240–349).</p>
+<p>A Uniswap pool joins only if a factory lists it for its tokens. The registry names that factory each time (<a href="#fn1">note 1</a>). Curve pools join with no such check (lines 285–287).</p>
+<p>The owner, the registry and the wrapped-ETH contract are fixed at deploy. The bot has no upgrade path. There is no proxy, <code>delegatecall</code> or <code>selfdestruct</code>.</p>
+</section>
+
+<section id="s2" aria-labelledby="h2">
+<p class="fl-label where">Section 2 of 8</p>
+<h2 id="h2">2. How one trade works</h2>
+<p class="point">A trade runs only for an operator, on a listed pool, with the bot on.</p>
+<figure class="fl-card fig">
+<h3>One Uniswap V3 swap, step by step</h3>
+<ol class="flow">
+<li><p>An operator calls the swap with a pool, an amount and a minimum.</p></li>
+<li class="gate"><p>The bot checks three things. It is on. The caller is an operator. The pool is listed.</p></li>
+<li><p>The pool sends the bought tokens, then calls the bot back to be paid.</p></li>
+<li class="gate"><p>The bot pays, because that pool is on its list.</p></li>
+<li class="gate"><p>The bot checks it got the minimum. Then it may tip the block builder.</p></li>
+</ol>
+</figure>
+<p>Curve and <a href="https://docs.uniswap.org/contracts/v2/overview">Uniswap V2</a> trades follow the same gates (<a href="#fn2">note 2</a>). Most trade functions have a version that takes a deadline.</p>
+<p>A tip goes only to a listed <a href="https://ethereum.org/en/roadmap/pbs/">block builder</a>. The bot does not check whether the tip arrived (<a href="#fn3">note 3</a>).</p>
+<details><summary>The minimum check and the tip</summary>
+<pre class="sol"><code><span class="tok-type">uint256</span> amountOut = <span class="tok-type">uint256</span>(amount0 &gt; <span class="tok-num">0</span> ? -amount1 : -amount0);
+<span class="tok-kw">require</span>(amountOut &gt;= minOut, <span class="tok-str">"S13"</span>);
+<span class="tok-fn">_tip</span>(tip);</code></pre>
+<p class="figcap">Bot.sol, lines 564–566. <a href="https://eth.blockscout.com/address/0x51C72848c68a965f66FA7a88855F9f7784502a7F?tab=contract">Full source on Blockscout</a></p>
+</details>
+<details><summary>The builder tip</summary>
+<pre class="sol"><code><span class="tok-kw">require</span>(_approvedCoinbaseAddresses[block.coinbase], <span class="tok-str">"H17"</span>);
+block.coinbase.<span class="tok-fn">call</span>{value: tip, gas: <span class="tok-num">0</span>}(<span class="tok-str">""</span>); <span class="tok-com">// result ignored, as deployed</span></code></pre>
+<p class="figcap">Bot.sol, lines 685–686. <a href="https://eth.blockscout.com/address/0x51C72848c68a965f66FA7a88855F9f7784502a7F?tab=contract">Full source on Blockscout</a></p>
+</details>
+</section>
+
+<section id="s3" aria-labelledby="h3">
+<p class="fl-label where">Section 3 of 8</p>
+<h2 id="h3">3. How a price quote is checked</h2>
+<p class="point">The bot acts as a market maker: an off-chain key signs its price quotes.</p>
+<figure class="fl-card fig">
+<h3>Two ways a venue trusts the quote key</h3>
+<div class="node soft">A venue settles a trade against the bot's quote</div>
+<span class="down" aria-hidden="true">↓</span>
+<div class="two">
+<div class="node"><p><strong>Registered key.</strong> The multisig registers the key with <a href="https://github.com/airswap/airswap-protocols">AirSwap</a> and with <a href="https://0x.org/">0x</a>.</p></div>
+<div class="node"><p><strong>Asked on the spot.</strong> A listed caller asks the bot: did the key sign this hash?</p></div>
+</div>
+<span class="down" aria-hidden="true">↓</span>
+<div class="node hold">Yes if the key signed it. Otherwise the call fails.</div>
+</figure>
+<p>The question in the second path is a standard one, called <a href="https://eips.ethereum.org/EIPS/eip-1271">EIP-1271</a>. Only callers on the list may ask it.</p>
+<p>Tokens then leave through allowances. <a href="#s4">Section 4</a> covers those.</p>
+<details><summary>The signature check</summary>
+<pre class="sol"><code><span class="tok-kw">function</span> <span class="tok-fn">isValidSignature</span>(<span class="tok-type">bytes32</span> hash, <span class="tok-type">bytes</span> <span class="tok-kw">memory</span> signature) <span class="tok-kw">external</span> <span class="tok-kw">view</span> whenActive <span class="tok-kw">returns</span> (<span class="tok-type">bytes4</span>) {
+    <span class="tok-kw">require</span>(_approvedRfqCallers_1CiVF7[msg.sender], <span class="tok-str">"H19"</span>);
+    <span class="tok-kw">return</span> <span class="tok-fn">_validateSignature</span>(hash, signature);
+}</code></pre>
+<p class="figcap">Bot.sol, lines 689–692. <a href="https://eth.blockscout.com/address/0x51C72848c68a965f66FA7a88855F9f7784502a7F?tab=contract">Full source on Blockscout</a></p>
+</details>
+</section>
+
+<section id="s4" aria-labelledby="h4">
+<p class="fl-label where">Section 4 of 8</p>
+<h2 id="h4">4. Where the money can go</h2>
+<p class="point">Money leaves the bot by five exits. Each one sits behind a list.</p>
+<figure class="fl-card fig">
+<h3>The five exits and their gates</h3>
+<ul class="exits">
+<li><p><strong>Payouts.</strong> Transferers send tokens or ETH to approved recipients only.</p></li>
+<li><p><strong>Trades.</strong> Listed pools are paid in a transaction an operator sent.</p></li>
+<li><p><strong>Allowances.</strong> Approved spenders pull tokens, up to what the multisig granted (<a href="#fn4">note 4</a>).</p></li>
+<li><p><strong>Tips.</strong> Listed block builders get ETH on a trade.</p></li>
+<li class="stays"><p><strong>Wrapping.</strong> WETH handlers wrap and unwrap the bot's ETH. The value stays in the bot.</p></li>
+</ul>
+</figure>
+<p>On 14 Nov 2026 the bot was on. It had 10 approved spenders. Among them were Uniswap's <a href="https://docs.uniswap.org/contracts/permit2/overview">Permit2</a>, the <a href="https://1inch.io/">1inch</a> router and <a href="https://bebop.xyz/">Bebop</a>'s settlement contract. It tracked 161 approved tokens. In all, 613 allowances were above zero.</p>
+<details><summary>The payout function's gates</summary>
+<pre class="sol"><code><span class="tok-kw">function</span> <span class="tok-fn">transferTo</span>(<span class="tok-type">IERC20</span>[] <span class="tok-kw">memory</span> tokens, <span class="tok-type">uint256</span>[] <span class="tok-kw">memory</span> amounts, <span class="tok-type">address</span>[] <span class="tok-kw">memory</span> to)
+    <span class="tok-kw">external</span>
     whenActive
     onlyTransferer
-    onlyApprovedRecipients(to)</pre>
-</figure>
+    <span class="tok-fn">onlyApprovedRecipients</span>(to)</code></pre>
+<p class="figcap">Bot.sol, lines 459–463. <a href="https://eth.blockscout.com/address/0x51C72848c68a965f66FA7a88855F9f7784502a7F?tab=contract">Full source on Blockscout</a></p>
+</details>
+</section>
 
-<figure>
-<figcaption>Builder tip, lines 685–686. A trade can pay ETH to the block builder, but only to a builder on its list. The result of the send is not checked.</figcaption>
-<pre>require(_approvedCoinbaseAddresses[block.coinbase], "H17");
-block.coinbase.call{value: tip, gas: 0}(""); // result ignored, as deployed</pre>
+<section id="s5" aria-labelledby="h5">
+<p class="fl-label where">Section 5 of 8</p>
+<h2 id="h5">5. The emergency brake</h2>
+<p class="point">Any staff account can stop the bot. Only the multisig can start it again.</p>
+<figure class="fl-card fig">
+<h3>What one call to stop it does</h3>
+<ol class="flow">
+<li><p>An operator, transferer, WETH handler or the multisig calls stop.</p></li>
+<li class="gate"><p>The bot switches off. Trades, payouts and quotes stop.</p></li>
+<li class="gate"><p>Every allowance it gave out is set to zero.</p></li>
+<li class="last"><p>Only the multisig can switch it back on.</p></li>
+</ol>
 </figure>
+<p>A failed zeroing is only logged. The allowance stays open. The token still drops off the bot's list (lines 416–426).</p>
+<p>On that day, stopping it would emit 614 logs. That fits in one block (<a href="#fn5">note 5</a>).</p>
+<details><summary>The stop function</summary>
+<pre class="sol"><code><span class="tok-kw">function</span> <span class="tok-fn">killContract</span>() <span class="tok-kw">external</span> {
+    <span class="tok-kw">require</span>(
+        _operators[msg.sender] || _wethHandlers_9mt4lD[msg.sender] || _transferers_3TlnxV[msg.sender]
+            || msg.sender == multiSigOwner,
+        <span class="tok-str">"H11"</span>
+    );
+    isActive = <span class="tok-kw">false</span>;
+    <span class="tok-fn">revokeAllApprovals_IXLJyu</span>();
+}</code></pre>
+<p class="figcap">Bot.sol, lines 373–381. <a href="https://eth.blockscout.com/address/0x51C72848c68a965f66FA7a88855F9f7784502a7F?tab=contract">Full source on Blockscout</a> Names ending in a random suffix are the source's own stand-ins. The real names are unknown.</p>
+</details>
+</section>
 
-<figure>
-<figcaption>Quote check, lines 689–692. Only approved venues may ask. The answer is yes only if the bot's RFQ key signed the hash.</figcaption>
-<pre>function isValidSignature(bytes32 hash, bytes memory signature) external view whenActive returns (bytes4) {
-    require(_approvedRfqCallers_1CiVF7[msg.sender], "H19");
-    return _validateSignature(hash, signature);
-}</pre>
-</figure>
-
-<figure>
-<figcaption>Curve payment, lines 673–679. A whitelisted Curve pool is paid the amount of the coin it names, if an operator sent the transaction.</figcaption>
-<pre>function curveSwapCallback1337(address sender, address receiver, address coin, uint256 dx, uint256 dy)
-    external
-    onlyCurvePool(msg.sender)
+<section id="s6" aria-labelledby="h6">
+<p class="fl-label where">Section 6 of 8</p>
+<h2 id="h6">6. What a reviewer would flag</h2>
+<p class="point">Five design facts stand out. None is a claim that anything has gone wrong.</p>
+<ol class="flags">
+<li><strong>The registry holds the keys.</strong> It names the transferers and the recipients. Together those two lists can send out any token or ETH. The registry's own code is not verified on Sourcify or Blockscout. So its rules can't be read.</li>
+<li><strong>The Curve payment trusts the transaction's sender.</strong> It pays any listed Curve pool that asks. An operator must have signed the transaction. It checks <a href="https://docs.soliditylang.org/en/v0.8.19/units-and-global-variables.html">tx.origin</a>, not whether the bot started the swap. Curve pools join with no factory check.</li>
+<li><strong>A failed revoke drops the token anyway.</strong> The token leaves the list first. Then its allowance is zeroed. A log is the only trace of a failure (lines 416–426).</li>
+<li><strong>Some results are ignored.</strong> Nothing checks that these worked: ETH payouts (line 489), builder tips (686), pool payments (589, 656, 665, 669, 678).</li>
+<li><strong>A stored timelock does nothing here.</strong> A one-day delay is set at deploy. It is only read back. This contract never enforces it. See lines 128, 176, 362.</li>
+</ol>
+<details><summary>The Curve payment</summary>
+<pre class="sol"><code><span class="tok-kw">function</span> <span class="tok-fn">curveSwapCallback1337</span>(<span class="tok-type">address</span> sender, <span class="tok-type">address</span> receiver, <span class="tok-type">address</span> coin, <span class="tok-type">uint256</span> dx, <span class="tok-type">uint256</span> dy)
+    <span class="tok-kw">external</span>
+    <span class="tok-fn">onlyCurvePool</span>(msg.sender)
 {
-    require(_operators[tx.origin], "H31");
-    coin.call(abi.encodeWithSelector(IERC20.transfer.selector, msg.sender, dx));
-}</pre>
-</figure>
+    <span class="tok-kw">require</span>(_operators[tx.origin], <span class="tok-str">"H31"</span>);
+    coin.<span class="tok-fn">call</span>(abi.<span class="tok-fn">encodeWithSelector</span>(<span class="tok-type">IERC20</span>.transfer.selector, msg.sender, dx));
+}</code></pre>
+<p class="figcap">Bot.sol, lines 673–679. <a href="https://eth.blockscout.com/address/0x51C72848c68a965f66FA7a88855F9f7784502a7F?tab=contract">Full source on Blockscout</a> Names ending in a random suffix are the source's own stand-ins. The real names are unknown.</p>
+</details>
 </section>
 
-<section aria-labelledby="h-flags">
-<h2 id="h-flags">What a reviewer would flag</h2>
-<p>These are design facts, not claims that anything has gone wrong.</p>
-<ul class="facts">
-<li><strong>The registry holds the keys.</strong> It names the transferers and the recipients, and those two lists together are enough to send out any token or ETH. The registry contract is not verified on Sourcify or Blockscout, so its own rules can't be read.</li>
-<li><strong>The Curve payment trusts the transaction's sender.</strong> It checks <code>tx.origin</code> and the pool list, not whether the bot started the swap. Curve pools join the list without a factory check (lines 285–287).</li>
-<li><strong>A failed revoke drops the token anyway.</strong> The token leaves the tracked list before its <code>approve(0)</code> runs. If that call fails, a log is the only trace (lines 416–426).</li>
-<li><strong>Some results are ignored:</strong> ETH payouts (line 489), builder tips (686) and pool payments (589, 656, 665, 669, 678).</li>
-<li><strong>A stored timelock is never enforced here.</strong> <code>timelockDelay</code> is set once and only read back (lines 128, 176, 362).</li>
-<li><strong>No upgrade path.</strong> There is no proxy, <code>delegatecall</code> or <code>selfdestruct</code>. The owner, registry and WETH addresses are fixed at deploy.</li>
-</ul>
-<p class="note">State read on 14 Nov 2026 (block 26,415,084): the bot is on. It has <strong>10</strong> approved spenders, among them Uniswap's Permit2 and 1inch's router, and <strong>161</strong> approved tokens with <strong>613</strong> open allowances.</p>
-</section>
-
-<section aria-labelledby="h-checked">
-<h2 id="h-checked">What we checked, and what we didn't</h2>
-<div class="checks">
-<div class="card yes"><h3>Checked</h3><ul>
-<li>The verified source, built with the exact compiler and settings, gives the deployed code byte for byte, deploy arguments included.</li>
-<li>We wrote a shorter readable version. It has the same functions, argument types and storage layout.</li>
-<li>Run side by side from the same address, the deployed bytes and the readable version gave identical results on every step of a test that calls every external function.</li>
-<li>On a local copy of mainnet at block 26,415,084, both gave the same output for a real swap and zeroed the same 613 allowances.</li>
-</ul></div>
-<div class="card no"><h3>Not checked</h3><ul>
-<li>The metadata hash differs, as it must: the verified file is a reconstruction with stand-in names, listed as a partial match on Sourcify.</li>
-<li>Equivalence for every possible input. Tests are examples, not a proof.</li>
-<li>The outside contracts: the registry, the multisig's signers, the venues and the spenders.</li>
-<li>Who runs it. We make no claim about that.</li>
-</ul></div>
+<section id="s7" aria-labelledby="h7">
+<p class="fl-label where">Section 7 of 8</p>
+<h2 id="h7">7. What we checked, and what we didn't</h2>
+<p class="point">The verified code matches what runs on chain. Equivalence for every input is not proven.</p>
+<div class="two fig">
+<div class="fl-card"><h3>Checked</h3><ul><li>Built with its exact compiler settings, the source gives the deployed code byte for byte. Deploy arguments match too.</li><li>We wrote a shorter, readable copy. It has the same 63 functions and the same storage.</li><li>Both ran one test that calls every external function. All 331 compared results matched.</li><li>We ran both on a local copy of mainnet at block 26,415,084. They gave the same swap output. Both zeroed the same 613 allowances.</li></ul></div>
+<div class="fl-card"><h3>Not checked</h3><ul><li>The metadata hash differs. The verified file is a rebuild with stand-in names (<a href="#fn6">note 6</a>).</li><li>Equivalence for every possible input. Tests are examples, not a proof.</li><li>The outside contracts: the registry, the multisig's signers, the venues and the spenders.</li><li>Who runs it. We make no claim about that.</li></ul></div>
 </div>
 </section>
 
-<section aria-labelledby="h-read">
-<h2 id="h-read">How to read a contract on Etherscan</h2>
-<p>Open the address and pick the <strong>Contract</strong> tab. A green check means the source is verified: it was compiled and matched to the code on chain. <strong>Code</strong> shows the source, and <strong>Read Contract</strong> shows its current state without sending anything. Leave <strong>Write Contract</strong> alone: it asks your wallet to sign a transaction.</p>
-<p class="caveat">Research and explanation only. Everything here comes from the verified source and read-only calls; nothing was sent to the contract. This is not financial advice. Do not interact with contracts you don't know.</p>
+<section id="s8" aria-labelledby="h8">
+<p class="fl-label where">Section 8 of 8</p>
+<h2 id="h8">8. How to read a contract yourself</h2>
+<p class="point">A block explorer shows any contract's code and state without signing anything.</p>
+<ol class="flow fig">
+<li><p>Open the address on <a href="https://eth.blockscout.com/address/0x51C72848c68a965f66FA7a88855F9f7784502a7F">Blockscout</a> or Etherscan.</p></li>
+<li><p>Pick the Contract tab. A check mark means the source is <a href="https://ethereum.org/en/developers/docs/smart-contracts/verifying/">verified</a>. It was compiled and matched to the code on chain.</p></li>
+<li><p>Read the Code view. Search it for the function names you see.</p></li>
+<li><p>Open Read Contract to see its current state. Reading sends nothing.</p></li>
+<li class="last"><p>Leave Write Contract alone. It asks your wallet to sign a transaction.</p></li>
+</ol>
+<p class="small">Etherscan blocks automated link checks, so our explorer links go to Blockscout. The address is the same on both.</p>
 </section>
+
+<div class="callout"><p>Research and explanation only. Everything here comes from the verified source and read-only calls. Nothing was sent to the contract. This is not financial advice. Do not interact with contracts you don't know.</p></div>
+
+<section id="words" aria-labelledby="hw">
+<h2 id="hw">Words used on this page</h2>
+<div class="words">
+<div><h3>Ethereum words</h3><ul><li><strong>MEV.</strong> Profit from choosing which trades go in a block, and in what order. <a href="https://ethereum.org/en/developers/docs/mev/">ethereum.org</a> explains it.</li><li><strong>Block builder.</strong> The party that packs transactions into a block. The bot reads its address from <code>block.coinbase</code>.</li><li><strong>WETH.</strong> Wrapped ETH: ETH held as a token, so contracts can trade it like one.</li><li><strong>Allowance.</strong> Permission one account gives another to pull a set amount of a token. Defined in <a href="https://eips.ethereum.org/EIPS/eip-20">ERC-20</a>.</li></ul></div>
+<div><h3>Contract words</h3><ul><li><strong>Multisig.</strong> A wallet that needs several keys to sign. This one is a <a href="https://safe.global/">Safe</a>.</li><li><strong>RFQ.</strong> Request for quote: a trader asks a market maker for a signed price.</li><li><strong>EIP-1271.</strong> A standard question a contract answers: did your key sign this?</li><li><strong>tx.origin.</strong> The account that signed the whole transaction, not the direct caller.</li></ul></div>
+</div>
+</section>
+
+<section id="notes" aria-labelledby="hn">
+<h2 id="hn">Sources and notes</h2>
+<ol class="refs">
+<li id="fn1">The registry sends data with each grant. Its first 20 bytes are the factory address. <a href="#s1">↩</a></li>
+<li id="fn2">A V2 trade sends its input first and does not check that transfer. The pool's own price check is the only one. A Curve trade relies on the pool's own minimum. <a href="#s2">↩</a></li>
+<li id="fn3">The tip is sent with no gas of its own. It gets only the 2,300-gas stipend, and its result is ignored. <a href="#s2">↩</a></li>
+<li id="fn4">It uses OpenZeppelin's <code>safeApprove</code>. That refuses to move one nonzero allowance to another. <a href="#s4">↩</a></li>
+<li id="fn5">On a local copy of mainnet, the stop took 14.3 million gas. A block holds 60 million. Our readable copy took 14.43 million against 14.34 million. <a href="#s5">↩</a></li>
+<li id="fn6"><a href="https://sourcify.dev/#/lookup/0x51C72848c68a965f66FA7a88855F9f7784502a7F">Sourcify</a> and Blockscout both list it as a <a href="https://docs.sourcify.dev/docs/full-vs-partial-match/">partial match</a>. The code matches. The comments and names don't. <a href="#s7">↩</a></li>
+</ol>
+<div class="refs-g">
+<h3>On chain</h3><ul><li><a href="https://eth.blockscout.com/address/0x51C72848c68a965f66FA7a88855F9f7784502a7F">The bot</a> and its <a href="https://eth.blockscout.com/address/0x51C72848c68a965f66FA7a88855F9f7784502a7F?tab=contract">verified source</a> on Blockscout.</li><li><a href="https://eth.blockscout.com/tx/0xea71b7a024ff0b40fcd4dcec4e03259c33819029cbc75857911d77741153fa64">The deploy transaction</a>, block 17,928,357, August 2023.</li><li><a href="https://eth.blockscout.com/address/0x7Ff4Ed8ab94c849B812622EB462682208BE06B93">The registry</a>, whose code is not verified.</li><li><a href="https://sourcify.dev/#/lookup/0x51C72848c68a965f66FA7a88855F9f7784502a7F">Sourcify's record</a> of the verified source.</li></ul>
+<h3>The protocols named</h3><ul><li><a href="https://docs.uniswap.org/contracts/v3/overview">Uniswap V3</a>, <a href="https://docs.uniswap.org/contracts/v2/overview">V2</a> and <a href="https://docs.uniswap.org/contracts/permit2/overview">Permit2</a>: Uniswap Labs docs.</li><li><a href="https://docs.curve.finance/">Curve</a>: Curve Finance docs.</li><li><a href="https://0x.org/">0x</a> and <a href="https://github.com/airswap/airswap-protocols">AirSwap</a>: the two quote venues.</li><li><a href="https://1inch.io/">1inch</a> and <a href="https://bebop.xyz/">Bebop</a>: two of the approved spenders.</li><li><a href="https://safe.global/">Safe</a>: the multisig wallet.</li></ul>
+<h3>Standards and code</h3><ul><li><a href="https://eips.ethereum.org/EIPS/eip-1271">EIP-1271</a> and <a href="https://eips.ethereum.org/EIPS/eip-20">ERC-20</a>: Ethereum standards.</li><li><a href="https://ethereum.org/en/developers/docs/mev/">MEV</a>, <a href="https://ethereum.org/en/roadmap/pbs/">block builders</a> and <a href="https://ethereum.org/en/developers/docs/smart-contracts/verifying/">verified contracts</a>: ethereum.org.</li><li><a href="https://github.com/OpenZeppelin/openzeppelin-contracts/tree/v4.7.3">OpenZeppelin 4.7.3</a>: the library the bot is built on.</li><li><a href="https://docs.soliditylang.org/en/v0.8.19/units-and-global-variables.html">tx.origin and block.coinbase</a>: Solidity docs.</li></ul>
+<h3>Related reading</h3><ul><li><a href="../sha256/">How the SHA-256 miner got faster</a>, another visual explainer.</li><li><a href="../eth2/ethereum-client-bakeoff/">The Ethereum client bake-off</a>, our six-week test of Ethereum node software.</li></ul>
+</div>
+<p class="small endnote">Line numbers refer to Bot.sol in the verified source. State figures are from one read on 14 Nov 2026.</p>
+</section>
+</div>
+</article>
 </main>
+
+<footer class="site-footer">
+<div class="site-footer-inner">
+<span class="fl-mono">ChimericLabs LLC · Wyoming</span>
+<nav aria-label="Footer">
+<a href="../../index.html">Home</a>
+<a href="https://github.com/chimera-defi" target="_blank" rel="noreferrer">GitHub</a>
+<a href="https://github.com/chimera-defi/chimericlabs-llc" target="_blank" rel="noreferrer">Source</a>
+</nav>
+</div>
+</footer>
 </body>
 </html>
