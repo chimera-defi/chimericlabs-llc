@@ -83,3 +83,12 @@ body { margin: 0; min-height: 100vh; }
 .skip { position: absolute; left: -999px; top: var(--space-2); }
 .skip:focus { left: var(--space-2); z-index: 60; padding: var(--space-2) var(--space-3); background: var(--surface); }
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+
+/* Code: static highlight spans written into the page (no script). Weight and style carry meaning as well as colour. */
+.art pre.code { margin-top: var(--space-3); }
+.tok-kw { color: var(--accent-ink); font-weight: 700; }
+.tok-fn { color: var(--ink); font-weight: 600; }
+.tok-str { color: var(--chart-3); }
+.tok-num { color: var(--accent-ink); }
+.tok-com { color: var(--ink-2); font-style: italic; }
+.tok-type { color: var(--chart-3); font-weight: 700; }
