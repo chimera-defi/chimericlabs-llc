@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Recreating a Ghibli-style short film in code, with a giant white wolf</title>
+<meta name="description" content="A 38.5 second Ghibli-style film: layered generated art animated by a small deterministic canvas engine at 60 fps, with a giant white wolf. How it was built and what went wrong.">
+<meta property="og:title" content="Recreating a Ghibli-style short film in code">
+<meta property="og:description" content="Generated art, a ~130-line canvas engine, one scene file per shot. What worked and what went wrong.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://chimericlabs.xyz/research/ghibli-astra/">
+<meta property="og:image" content="https://chimericlabs.xyz/research/ghibli-astra/poster.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://chimericlabs.xyz/research/ghibli-astra/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23080e1d'/><text x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='16' font-weight='600' fill='%2300c4ff'>CL</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Hanken+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/field-lab/tokens.css">
+<link rel="stylesheet" href="../../assets/field-lab/field-lab.css">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/article.css">
+<style>
+.shots { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-3); margin: var(--space-4) 0 0; padding: 0; }
+@media (min-width: 720px) { .shots { grid-template-columns: repeat(4, 1fr); } }
+.shots figure { margin: 0; }
+.shots img, .film { display: block; width: 100%; height: auto; border: 1px solid var(--line); }
+.shots figcaption { margin-top: var(--space-1); }
+</style>
+</head>
+<body>
+<a class="skip" href="#article">Skip to content</a>
+<header class="site-header">
+<div class="site-header-inner">
+<a href="../../index.html" class="site-brand inline-flex">ChimericLabs</a>
+<nav class="site-nav" aria-label="Primary">
+<a href="../../portfolio.html" class="site-nav-link">Portfolio</a>
+<a href="../../research.html" class="site-nav-link" aria-current="page">Research</a>
+<a href="../../index.html#services" class="site-nav-link">Services</a>
+<a href="https://github.com/chimera-defi" target="_blank" rel="noreferrer" class="site-nav-link gh">GitHub</a>
+<a href="../../index.html#services" class="site-nav-link site-contact fl-btn">Contact</a>
+</nav>
+</div>
+</header>
+
+<main class="art-wrap">
+<nav class="art-crumb" aria-label="Breadcrumb"><a href="../../research.html">&larr; Research</a></nav>
+
+<article class="art" id="article">
+<header class="art-head">
+<p class="fl-label">Experiment &middot; <time datetime="2026-11-20">20 Nov 2026</time> &middot; 2 min read</p>
+<h1>Recreating a Ghibli-style short film in code, with a giant white wolf</h1>
+<p class="art-lede">We set out to rebuild a 38.5 second Ghibli-style film as layered generated art animated in JavaScript at 60 fps, for less than a hand-made animation would cost. The twist is a giant white wolf, a nod to Princess Mononoke.</p>
+</header>
+
+<video class="film" controls preload="metadata" poster="poster.jpg" width="1280" height="720">
+<source src="ghibli-astra-720p.mp4" type="video/mp4">
+Your browser cannot play this video. <a href="ghibli-astra-720p.mp4">Download it (720p, 11.7 MB).</a>
+</video>
+<p class="figcap">The final cut, 720p, 38.5 s. The audio is a procedural drone, not music.</p>
+
+<h2>How it was built</h2>
+<ul>
+<li>About 70 plates and sprites came from ChatGPT image generation.</li>
+<li>A deterministic canvas engine of about 130 lines draws them: the same inputs give the same frame, every time.</li>
+<li>Each shot is one scene file. Builders on Haiku and Sonnet were fanned out, one per scene.</li>
+<li>Independent Fable review rounds compared our frames, one by one, against the original film and sent back fixes.</li>
+<li>Playwright renders the frames and ffmpeg encodes them.</li>
+</ul>
+
+<figure class="shots" aria-label="Four frames from the film">
+<figure><img src="frame-01.jpg" width="960" height="540" loading="lazy" alt="Opening shot at 1 second, a still frame from the film"><figcaption class="figcap">1.0 s</figcaption></figure>
+<figure><img src="frame-02.jpg" width="960" height="540" loading="lazy" alt="Frame at 12 seconds, mid-film"><figcaption class="figcap">12.0 s</figcaption></figure>
+<figure><img src="frame-03.jpg" width="960" height="540" loading="lazy" alt="Frame at 27.5 seconds, late in the film"><figcaption class="figcap">27.5 s</figcaption></figure>
+<figure><img src="frame-04.jpg" width="960" height="540" loading="lazy" alt="Closing frame at 36 seconds"><figcaption class="figcap">36.0 s</figcaption></figure>
+</figure>
+
+<h2>What went wrong</h2>
+<ul>
+<li>Version 1 was rejected as far worse than the original: no zoom, doubled tracks, static characters.</li>
+<li>The image quota ran out, so the final fixes were code-only. No plate was regenerated after that.</li>
+<li>The boy does not look the same across his three shots.</li>
+<li>The audio is a procedural drone, not a score.</li>
+</ul>
+
+<h2>Code</h2>
+<p><a href="https://github.com/chimera-defi/ghibli-astra">github.com/chimera-defi/ghibli-astra</a><br><span class="small">The repo is private until published.</span></p>
+</article>
+</main>
+</body>
+</html>
