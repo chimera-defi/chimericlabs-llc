@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Image model bench: 25 models on APIMart, scored on faces, plates and cut-out props</title>
+<meta name="description" content="Two quick passes over image models on the APIMart gateway: cost, time, emotion, text-free output and real transparency. Small samples, one reviewer.">
+<meta property="og:title" content="Image model bench: what 25 models cost and where they fail">
+<meta property="og:description" content="Cost, time and verdicts per use, from two passes on one gateway. Small samples.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://chimericlabs.xyz/research/image-model-bench/">
+<meta property="og:image" content="https://chimericlabs.xyz/research/image-model-bench/sheet-fear.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://chimericlabs.xyz/research/image-model-bench/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23080e1d'/><text x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='16' font-weight='600' fill='%2300c4ff'>CL</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Hanken+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/field-lab/tokens.css">
+<link rel="stylesheet" href="../../assets/field-lab/field-lab.css">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/article.css">
+<style>
+.film { display: block; width: 100%; height: auto; border: 1px solid var(--line); }
+</style>
+</head>
+<body>
+<a class="skip" href="#article">Skip to content</a>
+<header class="site-header">
+<div class="site-header-inner">
+<a href="../../index.html" class="site-brand inline-flex">ChimericLabs</a>
+<nav class="site-nav" aria-label="Primary">
+<a href="../../portfolio.html" class="site-nav-link">Portfolio</a>
+<a href="../../research.html" class="site-nav-link" aria-current="page">Research</a>
+<a href="../../index.html#services" class="site-nav-link">Services</a>
+<a href="https://github.com/chimera-defi" target="_blank" rel="noreferrer" class="site-nav-link gh">GitHub</a>
+<a href="../../index.html#services" class="site-nav-link site-contact fl-btn">Contact</a>
+</nav>
+</div>
+</header>
+
+<main class="art-wrap">
+<nav class="art-crumb" aria-label="Breadcrumb"><a href="../../research.html">&larr; Research</a></nav>
+
+<article class="art" id="article">
+<header class="art-head">
+<p class="fl-label">Benchmark &middot; <time datetime="2026-11-21">21 Nov 2026</time> &middot; 5 min read</p>
+<h1>Image model bench: what 25 models cost and where they fail</h1>
+<p class="art-lede">We needed art for a short film: faces that show fear, wide background plates, and prop sheets with a real transparent background. We ran two quick passes over image models on one gateway, APIMart, and kept the cost, the time and our verdict for each use.</p>
+</header>
+
+<h2>What we tested</h2>
+<ul>
+<li>Gateway: APIMart. 25 distinct image models across two passes; one image per model and prompt.</li>
+<li>Pass 1: 15 models, 3 prompts at 1K, 16:9. 38 of 45 images came back, $0.93 in total. Prompts: a transparent painted prop sheet, frightened children with a giant white wolf, and a wide Ghibli-style background plate.</li>
+<li>Pass 2: 14 models, 4 prompts, scored 0 to 5 on style, emotion and faces, text-free output, and edge quality. Prompts: props, fear, valley plate, wolf and viaduct plate. Total spend $2.38 (cap $6).</li>
+<li>Real transparency means a PNG with alpha where clear is above 0.4 and half is below 0.03. We checked it in code, not by eye.</li>
+</ul>
+
+<h2>Cost and time, pass 1</h2>
+<div class="scroll"><table>
+<caption>Pass 1: models that finished and their average time and cost per image.</caption>
+<thead><tr><th scope="col">Model</th><th scope="col">OK of 3</th><th scope="col">Avg seconds</th><th scope="col">Avg $ per image</th></tr></thead>
+<tbody><tr><th scope="row">gemini-3.1-flash-lite-image</th><td>3</td><td>21</td><td>0.027</td></tr><tr><th scope="row">gemini-nano-banana-2.1</th><td>3</td><td>46</td><td>0.032</td></tr><tr><th scope="row">gemini-3-pro-image-preview</th><td>3</td><td>25</td><td>0.020</td></tr><tr><th scope="row">gpt-image-2.5-flare</th><td>3</td><td>21</td><td>0.026</td></tr><tr><th scope="row">gpt-image-2</th><td>3</td><td>24</td><td>0.009</td></tr><tr><th scope="row">seedream-5-0-pro</th><td>3</td><td>62</td><td>0.036</td></tr><tr><th scope="row">seedream-5-5</th><td>2</td><td>24</td><td>0.016</td></tr><tr><th scope="row">flux-3-image</th><td>3</td><td>27</td><td>0.038</td></tr><tr><th scope="row">flux-2-pro</th><td>3</td><td>19</td><td>0.036</td></tr><tr><th scope="row">qwen-image-3.0</th><td>3</td><td>9</td><td>0.021</td></tr><tr><th scope="row">minimax-h3-image-highspeed</th><td>3</td><td>21</td><td>0.036</td></tr><tr><th scope="row">grok-imagine-image-2.0</th><td>0</td><td>0</td><td>0.000</td></tr><tr><th scope="row">z-image-turbo</th><td>3</td><td>6</td><td>0.010</td></tr><tr><th scope="row">mai-image-2.7-flash</th><td>3</td><td>16</td><td>0.008</td></tr><tr><th scope="row">imagen-4.0-apimart</th><td>0</td><td>0</td><td>0.000</td></tr></tbody>
+</table></div>
+
+<h2>Cost, time and scores, pass 2</h2>
+<div class="scroll"><table>
+<caption>Pass 2: average time, cost and our 0 to 5 scores. Midjourney had no price set on the gateway, so all 4 requests were rejected.</caption>
+<thead><tr><th scope="col">Model</th><th scope="col">OK of 4</th><th scope="col">Avg seconds</th><th scope="col">Avg $ per image</th><th scope="col">Style</th><th scope="col">Emotion / faces</th><th scope="col">Text-free</th><th scope="col">Edge / alpha</th><th scope="col">Real alpha</th></tr></thead>
+<tbody><tr><th scope="row">gpt-image-2.6-flare</th><td>4</td><td>12</td><td>0.026</td><td>5</td><td>5</td><td>5</td><td>5</td><td>yes</td></tr><tr><th scope="row">gpt-image-2.6-sunburst</th><td>4</td><td>29</td><td>0.026</td><td>5</td><td>5</td><td>5</td><td>5</td><td>yes</td></tr><tr><th scope="row">flux-2-max</th><td>4</td><td>34</td><td>0.080</td><td>3</td><td>3</td><td>5</td><td>2</td><td>no</td></tr><tr><th scope="row">flux-kontext-max</th><td>4</td><td>22</td><td>0.064</td><td>2</td><td>2</td><td>5</td><td>1</td><td>no</td></tr><tr><th scope="row">qwen-image-3.0-pro</th><td>4</td><td>13</td><td>0.029</td><td>4</td><td>4</td><td>3</td><td>2</td><td>no</td></tr><tr><th scope="row">kling-v4-image</th><td>4</td><td>35</td><td>0.057</td><td>4</td><td>2</td><td>2</td><td>2</td><td>no</td></tr><tr><th scope="row">flux-3-image</th><td>4</td><td>24</td><td>0.038</td><td>4</td><td>3</td><td>5</td><td>2</td><td>no</td></tr><tr><th scope="row">flux-2-flex</th><td>4</td><td>25</td><td>0.080</td><td>4</td><td>3</td><td>5</td><td>2</td><td>no</td></tr><tr><th scope="row">seedream-5-0-pro</th><td>4</td><td>53</td><td>0.036</td><td>4</td><td>3</td><td>5</td><td>2</td><td>no</td></tr><tr><th scope="row">gpt-image-2.5-flare</th><td>4</td><td>22</td><td>0.026</td><td>4</td><td>4</td><td>5</td><td>5</td><td>yes</td></tr><tr><th scope="row">gpt-image-2</th><td>4</td><td>24</td><td>0.009</td><td>4</td><td>4</td><td>5</td><td>5</td><td>yes</td></tr><tr><th scope="row">wan2.7-image-pro</th><td>4</td><td>29</td><td>0.054</td><td>3</td><td>3</td><td>5</td><td>4</td><td>yes</td></tr><tr><th scope="row">midjourney</th><td>0</td><td>0</td><td>0.000</td><td>0</td><td>0</td><td>0</td><td>0</td><td>-</td></tr><tr><th scope="row">hy-image-v3.5-preview</th><td>4</td><td>20</td><td>0.019</td><td>3</td><td>3</td><td>4</td><td>3</td><td>no</td></tr></tbody>
+</table></div>
+
+<h2>Verdicts by use</h2>
+<h3>Faces and emotion</h3>
+<p>gpt-image-2.6-flare had the best expression: true fear, wide eyes, huddled kids, and it is the cheapest of the top tier at about $0.026. gpt-image-2.6-sunburst is equal but slower. Of the Flux line, flux-2-flex and flux-3-image are decent with calmer faces; flux-2-max has a speckled, noisy texture and flux-kontext-max is weak, with tiny distant kids. In pass 1, flux-2-pro, gemini-3-pro-image-preview and minimax-h3-image-highspeed drew calm or stiff faces and missed the emotion.</p>
+<img class="film" src="sheet-fear.jpg" width="1280" height="768" loading="lazy" alt="Contact sheet of fear scene outputs, one tile per model">
+<p class="figcap">Fear scene, pass 2. Each tile is labelled with the model.</p>
+
+<h3>Plates</h3>
+<p>gpt-image-2.6-flare and sunburst were richest. flux-3-image is a good second with the best Ghibli background feel at $0.038. seedream-5-0-pro and qwen-image-3.0-pro are clean. The expensive flux-2-max ($0.08) is not better than flux-3-image. In pass 1 every model made a good plate.</p>
+<img class="film" src="sheet-wolf.jpg" width="1280" height="768" loading="lazy" alt="Contact sheet of wolf and viaduct plates, one tile per model">
+<p class="figcap">Wolf and viaduct plate, pass 2.</p>
+
+<h3>Transparent prop sheets</h3>
+<p>Only gpt-image-2, 2.5 and 2.6 (flare, sunburst) and wan2.7-image-pro give true alpha. Use gpt-image-2.6-flare: the cleanest, with hard edges. Flux and Seedream draw a fake checkerboard or a white backdrop, so they are not usable as cut-outs.</p>
+<img class="film" src="sheet-props.jpg" width="1280" height="768" loading="lazy" alt="Contact sheet of prop sheets with alpha shown on a dark background">
+<p class="figcap">Prop sheets, pass 2.</p>
+
+<h3>Cost-efficient</h3>
+<p>gpt-image-2 at $0.0085 is the pick for props and bulk. gpt-image-2.6-flare at $0.026 when quality matters.</p>
+
+<h2>Reference image</h2>
+<p>All six models we tried (gpt-image-2.5-flare, flux-kontext-max, seedream-5-0-pro, gemini-3-pro-image-preview, qwen-image-3.0-pro, flux-3-image) accept <code>image_urls</code>, a list of URLs or base64 data URIs, in the same request. All kept the style and layout. The Gemini and gpt outputs reproduced the reference composition most closely; seedream and flux-3 restyled the bridge more freely. Cost: $0.200 for the six.</p>
+<img class="film" src="sheet-ref.jpg" width="1280" height="512" loading="lazy" alt="Contact sheet of six models given the same reference image">
+<p class="figcap">Reference-image test, six models.</p>
+
+<h2>Oddities</h2>
+<ul>
+<li>midjourney: all 4 requests rejected with <code>model_price_error</code>; the price is not configured on APIMart. That is the gateway, not the model.</li>
+<li>kling-v4-image needs resolution 2K or higher (we ran 2K) and painted a sign and a lantern in kanji, so it fails text-free.</li>
+<li>qwen-image-3.0-pro put Japanese text on the ticket.</li>
+<li>Fake checkerboard alpha: the Flux and Seedream models paint the transparency grid into the image instead of returning alpha.</li>
+<li>imagen-4.0-apimart failed all three pass 1 requests (<code>KeyError 'result'</code>, about 62 s each). grok-imagine-image-2.0 rejects the <code>size</code> parameter and was not retried. seedream-5-5 failed the fear prompt (status failed, $0, reason not read).</li>
+</ul>
+
+<h2>Limits</h2>
+<ul>
+<li>Three or four prompts per model, one image each. No repeat runs, so a lucky or unlucky draw shows as a result.</li>
+<li>The 0 to 5 scores are one reviewer's eyes. The alpha check is the only measured test.</li>
+<li>Not tested: image editing, character consistency across images, native 2K or 4K (apart from kling), FLUX Kontext beyond the reference test, and video models.</li>
+<li>Prices and speeds are what the gateway reported on 21 Nov 2026 and will change.</li>
+</ul>
+
+<p class="small">Written by Wren (Claude Sonnet 5.5) on behalf of chimera-defi.</p>
+</article>
+</main>
+</body>
+</html>
