@@ -9,7 +9,7 @@
 <meta property="og:description" content="Generated art, a ~130-line canvas engine, one scene file per shot. What worked and what went wrong.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://chimericlabs.xyz/research/ghibli-astra/">
-<meta property="og:image" content="https://chimericlabs.xyz/research/ghibli-astra/v2-poster.jpg">
+<meta property="og:image" content="https://chimericlabs.xyz/research/ghibli-astra/best-poster.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://chimericlabs.xyz/research/ghibli-astra/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23080e1d'/><text x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='16' font-weight='600' fill='%2300c4ff'>CL</text></svg>" />
@@ -53,7 +53,7 @@
 <p class="art-lede">We set out to rebuild a 38.5 second Ghibli-style film as layered generated art animated in JavaScript at 60 fps, for less than a hand-made animation would cost. The twist is a giant white wolf, a nod to Princess Mononoke.</p>
 </header>
 
-<p>The best cut is first, then the three earlier tries. Same art, same brief; the original GPT-6.2 Astra film is not hosted here.</p>
+<p>This is the best cut. Same art, same brief; the original GPT-6.2 Astra film is not hosted here.</p>
 
 <h3>Best cut</h3>
 <video class="film" controls preload="none" poster="best-poster.jpg" width="1280" height="720">
@@ -62,29 +62,7 @@ Your browser cannot play this video. <a href="best-720p.mp4">Download it (720p, 
 </video>
 <p class="figcap">42.4 s. Round 1 plus: the train now rolls into the tunnel and then through the arch instead of hitting stone; the white bird folds into the card, gets stamped and flies on as a blue bird with the seal on its wing, and the bite leaves blue scraps; heads nod, hands flex, the girl's body rocks with each pedal stroke, the cat's ears flick; a soft form shadow sits on every character; doves float on the lake, lift off, and three of them splash back into the water at the end. New sounds for the tunnel, the paper fold, the splashes. Latest pass: the trains now follow the rails, the cat breathes, and a new flying camera sweeps over the viaduct.</p>
 
-<h3>Earlier cuts</h3>
-<p>The first three tries, for comparison.</p>
-
-<h3>Version 1: minimal text prompting</h3>
-<video class="film" controls preload="none" poster="v1-poster.jpg" width="1280" height="720">
-<source src="v1-720p.mp4" type="video/mp4">
-Your browser cannot play this video. <a href="v1-720p.mp4">Download it (720p, 8 MB).</a>
-</video>
-<p class="figcap">38.5 s. One brief, 8 images, no review rounds. Rejected as far worse than the original.</p>
-
-<h3>Version 2: many rounds of Sonnet builds and Fable reviews</h3>
-<video class="film" controls preload="none" poster="v2-poster.jpg" width="1280" height="720">
-<source src="v2-720p.mp4" type="video/mp4">
-Your browser cannot play this video. <a href="v2-720p.mp4">Download it (720p, 13 MB).</a>
-</video>
-<p class="figcap">38.5 s. About 70 images, one scene file per shot, frame-by-frame review against the original.</p>
-
-<h3>Version 3 (2F): an independent Fable run</h3>
-<video class="film" controls preload="none" poster="v3-poster.jpg" width="1280" height="720">
-<source src="v3-720p.mp4" type="video/mp4">
-Your browser cannot play this video. <a href="v3-720p.mp4">Download it (720p, 10 MB).</a>
-</video>
-<p class="figcap">41 s. Fable planned alone and fanned out to cheaper builders. It had no image model, so it reused our art. Wolf stomping and the chase are better than ours; trains and path alignment were not.</p>
+<p>Three earlier cuts (one brief, many review rounds, an independent Fable run) are described in the cost table below; their videos are no longer hosted.</p>
 
 <h2>What it cost</h2>
 <table>
