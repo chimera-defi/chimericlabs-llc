@@ -114,7 +114,7 @@ details > * + * { margin-top: var(--gap-s); }
 </nav>
 </header>
 <nav class="toc" aria-label="On this page"><ol>
-<li><a href="#verdict">Verdict</a></li><li><a href="#method">Method</a></li><li><a href="#frontier">Frontier</a></li><li><a href="#winners">Winners</a></li><li><a href="#repeat">Repeat runs</a></li><li><a href="#reference">Reference image</a></li><li><a href="#oddities">Oddities</a></li><li><a href="#spend">Where the $10 went</a></li><li><a href="#video">Video</a></li><li><a href="#data">All data</a></li><li><a href="#film">Film cost</a></li><li><a href="#limits">Limits</a></li><li><a href="#used-in">Used in</a></li><li><a href="#source">Source</a></li>
+<li><a href="#verdict">Verdict</a></li><li><a href="#method">Method</a></li><li><a href="#frontier">Frontier</a></li><li><a href="#winners">Winners</a></li><li><a href="#repeat">Repeat runs</a></li><li><a href="#reference">Reference image</a></li><li><a href="#oddities">Oddities</a></li><li><a href="#speed">Speed</a></li><li><a href="#spend">Where the $10 went</a></li><li><a href="#video">Video</a></li><li><a href="#data">All data</a></li><li><a href="#film">Film cost</a></li><li><a href="#limits">Limits</a></li><li><a href="#used-in">Used in</a></li><li><a href="#source">Source</a></li>
 </ol></nav>
 <main class="ds-wrap">
 <article class="bench" id="article">
@@ -336,6 +336,25 @@ beaten by a cheaper or better model" aria-label="hy-image-v3.5-preview, $0.0192 
 <li><span class="tag tag-neutral">Text</span><p>kling painted a sign and a lantern in kanji. qwen-image-3.0-pro put Japanese text on the ticket.</p></li>
 <li><span class="tag tag-neutral">Alpha</span><p>Flux and Seedream paint the transparency grid into the image instead of returning alpha. gpt-image-2 once drew a backdrop.</p></li>
 <li><span class="tag tag-neutral">Failures</span><p>imagen-4.0-apimart failed all 3 pass 1 requests (<code>KeyError 'result'</code>, about 62 s each). grok-imagine-image-2.0 rejects the <code>size</code> parameter and was not retried. seedream-5-5 failed the fear prompt (status failed, $0, reason not read).</p></li>
+</ul>
+</section>
+
+<section class="sec" id="speed" aria-labelledby="h-speed">
+<h2 id="h-speed">Speed</h2>
+<div class="card tldr"><p>Wall-clock seconds from submit to finished file, median over every completed run in the bench. <strong class="key">gpt-image-2.6-flare is the fastest of the strong models (13 s)</strong>; gpt-image-2 takes about 23 s at a third of the price.</p></div>
+<div class="scroll"><table class="table"><caption class="meta">Submit to download, polled every 4 s, so each figure can be up to 4 s high. Queue time on the gateway is included. n is the number of runs.</caption><thead><tr><th scope="col">Model</th><th scope="col" class="num">n</th><th scope="col" class="num">Median s</th><th scope="col" class="num">Range s</th><th scope="col" class="num">$ per image</th><th scope="col" class="num">Quality</th></tr></thead><tbody>
+<tr><th scope="row">gpt-image-2.6-flare</th><td class="num">14</td><td class="num">13.2</td><td class="num">9-14</td><td class="num">0.0265</td><td class="num">5.0</td></tr>
+<tr><th scope="row">gpt-image-2.5-flare</th><td class="num">7</td><td class="num">22.0</td><td class="num">18-23</td><td class="num">0.0261</td><td class="num">4.5</td></tr>
+<tr><th scope="row">gpt-image-2</th><td class="num">13</td><td class="num">22.8</td><td class="num">21-47</td><td class="num">0.0085</td><td class="num">4.5</td></tr>
+<tr><th scope="row">gpt-image-2.6-sunburst</th><td class="num">14</td><td class="num">30.3</td><td class="num">26-47</td><td class="num">0.0265</td><td class="num">5.0</td></tr>
+<tr><th scope="row">qwen-image-3.0-pro</th><td class="num">8</td><td class="num">13.2</td><td class="num">13-13</td><td class="num">0.0286</td><td class="num">3.25</td></tr>
+<tr><th scope="row">flux-3-image</th><td class="num">13</td><td class="num">22.5</td><td class="num">21-43</td><td class="num">0.0384</td><td class="num">3.5</td></tr>
+<tr><th scope="row">seedream-5-0-pro</th><td class="num">13</td><td class="num">57.2</td><td class="num">44-81</td><td class="num">0.036</td><td class="num">3.5</td></tr>
+</tbody></table></div>
+<ul>
+<li>Quality per dollar: gpt-image-2 gives 4.5 of 5 at $0.0085, flare 5.0 at $0.0265. Flare is faster; gpt-image-2 is 3x cheaper per image. Under batch fan-out, where many calls run at once, price matters more than a 10 s difference.</li>
+<li>The gap is in faces and transparent edges, which the bench scored; on plain scenes the two are hard to tell apart.</li>
+<li>Not measured: throughput under concurrent calls and rate limits. Every run here was sequential or small-batch.</li>
 </ul>
 </section>
 
