@@ -32,6 +32,8 @@ class Links(HTMLParser):
 
 def is_page(path):
     head = path.read_text(errors="ignore")[:4000].lower()
+    if 'http-equiv="refresh"' in head:
+        return False  # redirect stubs need no inbound link
     return "<html" in head or "<title" in head
 
 
