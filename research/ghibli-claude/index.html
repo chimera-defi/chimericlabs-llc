@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ghibli Claude: a Ghibli-style film rebuilt in code</title>
+<meta name="description" content="A Ghibli-style short film recreated in code from existing images, with a giant white wolf twist. The film, what it cost and how it was made.">
+<meta property="og:title" content="Ghibli Claude: a Ghibli-style short film rebuilt in code">
+<meta property="og:description" content="A Ghibli-style film recreated in code from existing images, with a giant white wolf. What it cost and how.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://chimericlabs.xyz/research/ghibli-astra/">
+<meta property="og:image" content="https://chimericlabs.xyz/research/ghibli-astra/best-poster.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://chimericlabs.xyz/research/ghibli-astra/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23080e1d'/><text x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='16' font-weight='600' fill='%2300c4ff'>CL</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Hanken+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/field-lab/tokens.css">
+<link rel="stylesheet" href="../../assets/field-lab/field-lab.css">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/article.css">
+<style>
+.shots { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-3); margin: var(--space-4) 0 0; padding: 0; }
+@media (min-width: 720px) { .shots { grid-template-columns: repeat(4, 1fr); } }
+.shots figure { margin: 0; }
+.shots img, .film { display: block; width: 100%; height: auto; border: 1px solid var(--line); }
+.shots figcaption { margin-top: var(--space-1); }
+.film { margin-top: var(--space-4); }
+.art h2 { margin-top: var(--space-6); }
+.art td, .art th { text-align: left; }
+.outro { margin-top: var(--space-5); }
+</style>
+</head>
+<body>
+<a class="skip" href="#article">Skip to content</a>
+<header class="site-header">
+<div class="site-header-inner">
+<a href="../../index.html" class="site-brand inline-flex">ChimericLabs</a>
+<nav class="site-nav" aria-label="Primary">
+<a href="../../portfolio.html" class="site-nav-link">Portfolio</a>
+<a href="../../research.html" class="site-nav-link" aria-current="page">Research</a>
+<a href="../../index.html#services" class="site-nav-link">Services</a>
+<a href="https://github.com/chimera-defi" target="_blank" rel="noreferrer" class="site-nav-link gh">GitHub</a>
+<a href="../../index.html#services" class="site-nav-link site-contact fl-btn">Contact</a>
+</nav>
+</div>
+</header>
+
+<main class="art-wrap">
+<nav class="art-crumb" aria-label="Breadcrumb"><a href="../../research.html">&larr; Research</a></nav>
+
+<article class="art" id="article">
+<header class="art-head">
+<p class="fl-label">Experiment &middot; <time datetime="2026-11-21">21 Nov 2026</time> &middot; 2 min read</p>
+<h1>Ghibli Claude: a Ghibli-style film rebuilt in code</h1>
+<p class="art-lede">A short Ghibli-style film, recreated in code from existing images. We added a twist: a giant white wolf, a nod to Princess Mononoke.</p>
+</header>
+
+<video class="film" controls preload="none" poster="best-poster.jpg" width="1280" height="720">
+<source src="best-720p.mp4" type="video/mp4">
+Your browser cannot play this video. <a href="best-720p.mp4">Download it (720p, 14 MB).</a>
+</video>
+
+<h2>What it cost</h2>
+<table>
+<caption>Approximate cost. Tokens are measured from session logs by clock window.</caption>
+<thead><tr><th>Part</th><th>Cost</th><th>Time</th></tr></thead>
+<tbody>
+<tr><th scope="row">Art</th><td>About 70 ChatGPT Instant images on a $20 plan</td><td>A minute or two each</td></tr>
+<tr><th scope="row">Early builds and reviews</th><td>Sonnet about 1.8M output tokens</td><td>About 10 h</td></tr>
+<tr><th scope="row">Final cut</th><td>Fable plan 0.14M, twelve Sonnet builders about 1.3M (input plus output)</td><td>About 2 h</td></tr>
+</tbody>
+</table>
+
+<h2>How it was made</h2>
+<ul>
+<li>About 70 plates and sprites from ChatGPT Instant.</li>
+<li>A small deterministic canvas engine animates them: the same inputs give the same frame.</li>
+<li>One scene file per shot, built by Claude Sonnet and Haiku builders in parallel.</li>
+<li>Independent Fable review rounds compared frames against the original and sent back fixes.</li>
+<li>Playwright renders the frames and ffmpeg encodes them.</li>
+<li>The soundtrack is synthesised in code.</li>
+</ul>
+
+<h2>Cinematic lessons</h2>
+<ul>
+<li>Every prop needs a setup and a payoff, or it is clutter.</li>
+<li>Stillness reads as broken: even a held shot needs small motion, like breathing.</li>
+<li>Camera moves sell scale, and a push-in on the wolf does more than any effect.</li>
+<li>Shadows and sound glue flat art into one world.</li>
+</ul>
+
+<h2>Credits</h2>
+<ul>
+<li>Original film and idea: GPT-6.2 Astra, shared by <a href="https://x.com/reach_vb/status/2123663632190021985" target="_blank" rel="noreferrer">@reach_vb on X</a>. We recreated it; it is not hosted here.</li>
+<li>Art: ChatGPT Instant. Code, builds and reviews: Claude.</li>
+<li>Image model comparison: <a href="../image-model-bench/">the image model bench</a> and its <a href="https://github.com/chimera-defi/chimericlabs-llc/tree/main/research/image-model-bench/code">source folder</a>.</li>
+<li>The film code is available on request.</li>
+</ul>
+<p class="small">Written by Wren (Claude Sonnet 5.5) on behalf of chimera-defi.</p>
+
+<h2 id="variant">Iterative current best</h2>
+<p>Work in progress: six beats are replaced with AI-generated stills from <code>gpt-image-2.6-flare</code> (16 images, about $0.57), so the children visibly fear the wolf. How we chose the model: <a href="../image-model-bench/">the image model bench</a>.</p>
+<video class="film" controls preload="none" poster="next-poster.jpg" width="1280" height="720">
+<source src="next-720p.mp4" type="video/mp4">
+Your browser cannot play this video. <a href="next-720p.mp4">Download it (720p, 15 MB).</a>
+</video>
+
+<video class="film outro" autoplay muted loop playsinline poster="outro-poster.jpg" width="1280" height="720" aria-label="Animated outro">
+<source src="outro.mp4" type="video/mp4">
+</video>
+<p class="figcap">Greek Chimera (the human), Claude (the orange one) and Instant (the painter robot) take a bow.</p>
+</article>
+</main>
+</body>
+</html>
