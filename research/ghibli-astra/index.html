@@ -53,12 +53,19 @@
 <p class="art-lede">We set out to rebuild a 38.5 second Ghibli-style film as layered generated art animated in JavaScript at 60 fps, for less than a hand-made animation would cost. The twist is a giant white wolf, a nod to Princess Mononoke.</p>
 </header>
 
-<p>Four cuts, from the first try to the best one. Same art, same brief; the original GPT-6.2 Astra film is not hosted here.</p>
+<p>Five cuts, from the first try to the best one. Same art, same brief; the original GPT-6.2 Astra film is not hosted here.</p>
 
-<h3>Best: Fable engine plus our fixes</h3>
+<h3>Best: round 2, with moving bodies</h3>
 <video class="film" controls preload="none" poster="best-poster.jpg" width="1280" height="720">
 <source src="best-720p.mp4" type="video/mp4">
-Your browser cannot play this video. <a href="best-720p.mp4">Download it (720p, 10 MB).</a>
+Your browser cannot play this video. <a href="best-720p.mp4">Download it (720p, 17 MB).</a>
+</video>
+<p class="figcap">42.4 s. Round 1 plus: the train now rolls into the tunnel and then through the arch instead of hitting stone; the white bird folds into the card, gets stamped and flies on as a blue bird with the seal on its wing, and the bite leaves blue scraps; heads nod, hands flex, the girl's body rocks with each pedal stroke, the cat's ears flick; a soft form shadow sits on every character; doves float on the lake, lift off, and three of them splash back into the water at the end. New sounds for the tunnel, the paper fold, the splashes.</p>
+
+<h3>Round 1 best: Fable engine plus our fixes</h3>
+<video class="film" controls preload="none" poster="round1-poster.jpg" width="1280" height="720">
+<source src="round1-720p.mp4" type="video/mp4">
+Your browser cannot play this video. <a href="round1-720p.mp4">Download it (720p, 10 MB).</a>
 </video>
 <p class="figcap">42.4 s. Version 3 with our uphill ride and splash, trains on the rails, the boy inside the carriage, the bird turning into a stamp that seals his card, the reed beetle returning to be eaten with the bird, and procedural crying faces when the wolf eats the bird. The soundtrack is procedural.</p>
 
@@ -91,7 +98,8 @@ Your browser cannot play this video. <a href="v3-720p.mp4">Download it (720p, 10
 <tr><th scope="row">v1, one brief</th><td>Sonnet 0.38M, Haiku 0.26M, Fable 0.03M</td><td>about 1.5 h</td><td>8</td></tr>
 <tr><th scope="row">v2, many rounds</th><td>Sonnet 1.18M, Fable 0.30M, Haiku 0.01M</td><td>about 6 h</td><td>about 70 in all</td></tr>
 <tr><th scope="row">v3, Fable alone</th><td>about $55 to $63 (planner is an estimate)</td><td>about 1.7 h</td><td>0, reused ours</td></tr>
-<tr><th scope="row">Best, merge</th><td>Sonnet 0.21M plus four builders</td><td>about 2.6 h</td><td>0</td></tr>
+<tr><th scope="row">Round 1 best, merge</th><td>Sonnet 0.21M plus four builders</td><td>about 2.6 h</td><td>0</td></tr>
+<tr><th scope="row">Round 2 best</th><td>Fable plan 0.14M, twelve Sonnet builders about 1.3M (input plus output, so not comparable to the rows above)</td><td>about 2 h</td><td>0</td></tr>
 </tbody>
 </table>
 <ul>
@@ -120,6 +128,8 @@ Your browser cannot play this video. <a href="v3-720p.mp4">Download it (720p, 10
 <ul>
 <li>The beetle on the first shot lands on the girl's handlebar, and the wolf takes it with the bird. A wing speck drops out at the lick.</li>
 <li>The swallows are the first sign of the wolf: they scatter as it lands at the window.</li>
+<li>The blue stamped bird is planted when the white bird flattens into the card, and pays off when it is bitten; the blue scraps fall into the boy's hand at dusk.</li>
+<li>The lake doves float at 20 s and lift off; three splash back into the lake at the end.</li>
 <li>Clouds, grass and motes are mood only. The full list is in the repo.</li>
 </ul>
 
@@ -130,6 +140,8 @@ Your browser cannot play this video. <a href="v3-720p.mp4">Download it (720p, 10
 <li>Sad faces in the best cut are drawn in code: the art only has smiling poses. New art waits for ChatGPT Instant to return.</li>
 <li>The girl still smiles for a moment at the bite, before the tears.</li>
 <li>The boy does not look the same across his three shots.</li>
+<li>The planned three-reviewer pass (Haiku, Opus, Fable) hit the weekly usage limit before it could run, so round 2 was checked by hand on stills only.</li>
+<li>Legs move by frame swap, not as a separate part: cutting a thigh tore at the knee. Some seams at the neck and wrist are faint but there.</li>
 <li>We judge it worse than the original GPT-6.2 Astra cut: motion, shading and emotion all fall short.</li>
 <li>The soundtrack is synthesised in code, not composed.</li>
 </ul>
