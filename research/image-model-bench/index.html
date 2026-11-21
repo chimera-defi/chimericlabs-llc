@@ -110,7 +110,7 @@ details > * + * { margin-top: var(--gap-s); }
 </nav>
 </header>
 <nav class="toc" aria-label="On this page"><ol>
-<li><a href="#verdict">Verdict</a></li><li><a href="#method">Method</a></li><li><a href="#frontier">Frontier</a></li><li><a href="#winners">Winners</a></li><li><a href="#repeat">Repeat runs</a></li><li><a href="#reference">Reference image</a></li><li><a href="#oddities">Oddities</a></li><li><a href="#limits">Limits</a></li><li><a href="#used-in">Used in</a></li><li><a href="#source">Source</a></li>
+<li><a href="#verdict">Verdict</a></li><li><a href="#method">Method</a></li><li><a href="#frontier">Frontier</a></li><li><a href="#winners">Winners</a></li><li><a href="#repeat">Repeat runs</a></li><li><a href="#reference">Reference image</a></li><li><a href="#oddities">Oddities</a></li><li><a href="#spend">Where the $10 went</a></li><li><a href="#video">Video</a></li><li><a href="#limits">Limits</a></li><li><a href="#used-in">Used in</a></li><li><a href="#source">Source</a></li>
 </ol></nav>
 <main class="ds-wrap">
 <article class="bench" id="article">
@@ -132,7 +132,7 @@ details > * + * { margin-top: var(--gap-s); }
 <li class="chip u-bulk"><span class="u">Cheap bulk</span><b>gpt-image-2</b><span>$0.0085; dropped alpha in 1 of 2 prop runs</span></li>
 <li class="chip u-ref"><span class="u">Same character from a reference</span><b>seedream-5-0-pro or 2.6-flare</b><span>Score 4 of 5</span></li>
 </ul>
-<p class="meta">147 requests, 132 returned, $4.25 in total. One reviewer, small samples.</p>
+<p class="meta">147 image requests, 132 returned, $4.25. Another $4.90 went on video tests: <a href="#spend">where the $10 went</a>. One reviewer, small samples.</p>
 </div>
 </section>
 
@@ -266,20 +266,46 @@ details > * + * { margin-top: var(--gap-s); }
 </ul>
 </section>
 
+<section class="sec" id="spend" aria-labelledby="h-spend">
+<h2 id="h-spend">Where the $10 went</h2>
+<div class="card tldr"><p>The first $10 of APIMart credit was gone in about a day. <strong class="key">Half of it, $4.90, went on 16 test video clips</strong>, not on images. The whole image bench was $4.25 for 147 requests, and the 16 images used in the film were $0.57.</p></div>
+<div class="scroll"><table class="table"><caption class="meta">Itemised from the task cost on each result. Account total used: $9.97.</caption><thead><tr><th scope="col">Spend</th><th scope="col" class="num">USD</th><th scope="col">Share</th><th scope="col">Note</th></tr></thead><tbody><tr><th scope="row">Video spike: 16 clips, 9 models</th><td class="num">$4.90</td><td><span style="display:block;height:10px;width:100%;background:var(--data-claude);border-radius:2px"></span></td><td>veo3.1-quality alone was $1.00; kling-v4-flash 2 clips $0.86; kling-v3 $0.67; seedance 2.0 and 2.5-flash about $0.65 each</td></tr><tr><th scope="row">Image bench pass 2: 60 images, 14 models</th><td class="num">$2.18</td><td><span style="display:block;height:10px;width:44%;background:var(--data-claude);border-radius:2px"></span></td><td>flux-2-max and flux-2-flex $0.32 each, flux-kontext-max $0.26: the expensive Flux models</td></tr><tr><th scope="row">Image bench pass 3: repeat runs, 36 images</th><td class="num">$0.94</td><td><span style="display:block;height:10px;width:19%;background:var(--data-claude);border-radius:2px"></span></td><td>flux-3-image $0.23, seedream-5-0-pro $0.22, flare $0.16</td></tr><tr><th scope="row">Image bench pass 1: 45 images, 15 models</th><td class="num">$0.93</td><td><span style="display:block;height:10px;width:19%;background:var(--data-claude);border-radius:2px"></span></td><td>about $0.02 an image, 38 came back</td></tr><tr><th scope="row">Film stills: 16 images in 2.6-flare</th><td class="num">$0.57</td><td><span style="display:block;height:10px;width:12%;background:var(--data-claude);border-radius:2px"></span></td><td>used in the generated-frames attempt</td></tr><tr><th scope="row">Reference-image test: 6 images</th><td class="num">$0.20</td><td><span style="display:block;height:10px;width:4%;background:var(--data-claude);border-radius:2px"></span></td><td></td></tr><tr><th scope="row">Unlogged probes and failures</th><td class="num">$0.25</td><td><span style="display:block;height:10px;width:5%;background:var(--data-claude);border-radius:2px"></span></td><td>the account shows $9.97 used; $9.72 is itemised</td></tr></tbody></table></div>
+<ul>
+<li>Cost scales with price per call times how many models you try, not with how good the winner is. The winner, gpt-image-2.6-flare, is $0.026 an image.</li>
+<li>Cheaper tests would have been a one-clip-per-model screen: the spike ran two prompts on seven models to compare faces and push-ins.</li>
+<li>The expensive models (Flux 2 max and flex, veo3.1-quality, kling-v4-flash) were not better than the cheap ones for our use.</li>
+</ul>
+</section>
+
+<section class="sec" id="video" aria-labelledby="h-video">
+<h2 id="h-video">Video models, quick test</h2>
+<p>Two image-to-video prompts: the boy reaching for the bird, and a push-in on the wolf. Best value: <strong class="key">MiniMax-Hailuo-2.3-Fast, $0.149 for 6 s</strong>, and <strong class="key">veo3.1-fast, $0.14 for 8 s</strong>. kling-v3 std ($0.336 per 5 s) has livelier motion. Image-to-video holds a face for 5 to 8 s but does not fix a different face in the next shot. Native resolution is 480 to 768p.</p>
+<div class="scroll"><table class="table"><caption class="meta">One run per cell.</caption><thead><tr><th scope="col">Model</th><th scope="col" class="num">$ per clip</th><th scope="col">Length</th><th scope="col">Notes</th></tr></thead><tbody>
+<tr><th scope="row">wan2.6-i2v-flash</th><td class="num">0.084</td><td>5 s</td><td>Cheapest; the train changed colour and shape</td></tr>
+<tr><th scope="row">MiniMax-Hailuo-2.3-Fast</th><td class="num">0.149</td><td>6 s</td><td>Most faithful, clean push-in, little motion</td></tr>
+<tr><th scope="row">veo3.1-fast</th><td class="num">0.140</td><td>8 s</td><td>Natural blink; a thin line artifact across the wolf</td></tr>
+<tr><th scope="row">veo3.1-quality</th><td class="num">1.00</td><td>8 s</td><td>Good, 7 times the price of fast</td></tr>
+<tr><th scope="row">kling-v3 std</th><td class="num">0.336</td><td>5 s</td><td>Livelier, the crane flies</td></tr>
+<tr><th scope="row">kling-v4-flash</th><td class="num">0.429</td><td>5 s</td><td>Similar to v3, slight face shift</td></tr>
+<tr><th scope="row">seedance-2.0 / 2.5-flash</th><td class="num">0.32 to 0.33</td><td>5 s</td><td>480p; the background drifts; strongest push-in</td></tr>
+<tr><th scope="row">wan2.7</th><td class="num">0.332</td><td>5 s</td><td>The boy's expression changed</td></tr>
+</tbody></table></div>
+</section>
+
 <section class="sec" id="limits" aria-labelledby="h-limits">
 <h2 id="h-limits">Limits</h2>
 <ul>
 <li>3 or 4 prompts per model, one image each; only 5 models have a second run. A lucky draw shows as a result.</li>
 <li>The 0 to 5 scores are one reviewer's eyes. The alpha check is the only measured test.</li>
 <li>The frontier uses pass 2 scores only. Models seen only in pass 1 are unscored.</li>
-<li>Not tested: image editing beyond one reference, native 2K or 4K (apart from kling), Midjourney, video models.</li>
+<li>Not tested: image editing beyond one reference, native 2K or 4K (apart from kling), Midjourney. Video models had one run per cell and no audio test.</li>
 <li>Prices and speeds are what the gateway reported on 21 Nov 2026 and will change.</li>
 </ul>
 </section>
 
 <section class="sec" id="used-in" aria-labelledby="h-used">
 <h2 id="h-used">Used in</h2>
-<p>These images were made for <a href="../ghibli-claude/">Ghibli Claude</a>, our short film rebuilt in code. Six stills from gpt-image-2.6-flare replace <strong class="key">4.8 s</strong> of the painted cut. <a href="../ghibli-claude/#variant">See the cut</a>. All 16 generated images cost $0.57; flare beat flux-3-image on all 8 frames.</p>
+<p>These images were made for <a href="../ghibli-claude/">Ghibli Claude</a>, our short film rebuilt in code. Six stills from gpt-image-2.6-flare replace <strong class="key">4.8 s</strong> of the painted cut. <a href="../ghibli-claude/#postscript">See the cut</a>. All 16 generated images cost $0.57; flare beat flux-3-image on all 8 frames.</p>
 <ul class="glist"><li class="card gcard"><div class="gpair"><figure><img src="img/gen-loom.jpg" width="480" height="270" loading="lazy" alt="Generated still: A huge white wolf towers over a stone viaduct in dusk mist"><figcaption>Generated</figcaption></figure><figure><img src="img/film-loom.jpg" width="480" height="270" loading="lazy" alt="The same beat in the film at 32.1 seconds"><figcaption>In the film, 32.1 s</figcaption></figure></div><h3>The wolf looms over the viaduct</h3><p class="meta">Plays 31.4 to 32.8 s &middot; $0.034</p></li><li class="card gcard"><div class="gpair"><figure><img src="img/gen-cage.jpg" width="480" height="270" loading="lazy" alt="Generated still: A small empty brass birdcage with its door open and a blue feather inside"><figcaption>Generated</figcaption></figure><figure><img src="img/film-cage.jpg" width="480" height="270" loading="lazy" alt="The same beat in the film at 34.0 seconds"><figcaption>In the film, 34 s</figcaption></figure></div><h3>The empty cage and the blue feather</h3><p class="meta">Plays 33.6 to 34.5 s &middot; $0.030</p></li><li class="card gcard"><div class="gpair"><figure><img src="img/gen-kids_wide.jpg" width="480" height="270" loading="lazy" alt="Generated still: Two children on a platform look up in fear"><figcaption>Generated</figcaption></figure><figure><img src="img/film-kids_wide.jpg" width="480" height="270" loading="lazy" alt="The same beat in the film at 34.85 seconds"><figcaption>In the film, 34.85 s</figcaption></figure></div><h3>The children look up in terror</h3><p class="meta">Plays 34.5 to 35.2 s &middot; $0.034</p></li><li class="card gcard"><div class="gpair"><figure><img src="img/gen-kids_med.jpg" width="480" height="270" loading="lazy" alt="Generated still: Two children huddle with hands over their mouths and tears on their cheeks"><figcaption>Generated</figcaption></figure><figure><img src="img/film-kids_med.jpg" width="480" height="270" loading="lazy" alt="The same beat in the film at 35.55 seconds"><figcaption>In the film, 35.55 s</figcaption></figure></div><h3>Hands over mouths, tears</h3><p class="meta">Plays 35.2 to 35.9 s &middot; $0.034</p></li><li class="card gcard"><div class="gpair"><figure><img src="img/gen-boy_close.jpg" width="480" height="270" loading="lazy" alt="Generated still: Close-up of a crying boy in a red cap"><figcaption>Generated</figcaption></figure><figure><img src="img/film-boy_close.jpg" width="480" height="270" loading="lazy" alt="The same beat in the film at 36.15 seconds"><figcaption>In the film, 36.15 s</figcaption></figure></div><h3>The boy, close up</h3><p class="meta">Plays 35.9 to 36.4 s &middot; $0.030</p></li><li class="card gcard"><div class="gpair"><figure><img src="img/gen-grief.jpg" width="480" height="270" loading="lazy" alt="Generated still: A girl in a yellow scarf cups a blue feather against her chest"><figcaption>Generated</figcaption></figure><figure><img src="img/film-grief.jpg" width="480" height="270" loading="lazy" alt="The same beat in the film at 38.45 seconds"><figcaption>In the film, 38.45 s</figcaption></figure></div><h3>The girl holds the feather</h3><p class="meta">Plays 37.8 to 39.1 s &middot; $0.034</p></li></ul>
 </section>
 
