@@ -1,5 +1,5 @@
 """Builds the two cost-vs-quality charts (inline SVG with hover tooltips) and models.json/csv.
-Run: python3 build_charts.py  -> writes charts.html (fragments) and models.json, models.csv next to it."""
+Run: python3 build_charts.py  -> writes charts.fragment.txt (fragments) and models.json, models.csv next to it."""
 import json, csv, html, os
 here = os.path.dirname(os.path.abspath(__file__))
 S = json.load(open(os.path.join(here, 'scores.json')))
@@ -91,5 +91,5 @@ ic, nf = chart(img, 'ci', 'Cost per image (log scale)', 'Quality (mean of 4 scor
 vc, nv = chart(vid, 'cv', 'Cost per second of video (log scale)', 'Quality (mean of identity, motion, clean; 0 to 5)', [.02, .05, .1], 2, 5,
                'Quality against cost per second for 9 video models',
                'Image-to-video test with two start frames. Frontier models are cheapest or best at their price.')
-open(os.path.join(here, 'charts.html'), 'w').write(f'<!--image {nf}-->\n{ic}\n<!--video {nv}-->\n{vc}\n')
+open(os.path.join(here, 'charts.fragment.txt'), 'w').write(f'<!--image {nf}-->\n{ic}\n<!--video {nv}-->\n{vc}\n')
 print('image frontier', nf, 'video frontier', nv)
