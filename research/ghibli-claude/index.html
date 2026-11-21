@@ -57,12 +57,19 @@
 <p class="art-lede">We set out to rebuild a 38.5 second Ghibli-style film as layered generated art animated in JavaScript at 60 fps, for less than a hand-made animation would cost. The twist is a giant white wolf, a nod to Princess Mononoke.</p>
 </header>
 
-<p>Seven cuts, best first. Same brief throughout; the original GPT-6.2 Astra film is not hosted here. The last section is a from-scratch attempt with generated video. The image models behind it are compared in <a href="../image-model-bench/">the image model bench</a>.</p>
+<p>Eight cuts, best first. Same brief throughout; the original GPT-6.2 Astra film is not hosted here. The last section is a from-scratch attempt with generated video. The image models behind it are compared in <a href="../image-model-bench/">the image model bench</a>.</p>
 
-<h3>Best: cut 7, the continuity pass</h3>
+<h3>Best: cut 8, the motion and eye pass</h3>
 <video class="film" controls preload="none" poster="best-poster.jpg" width="1280" height="720">
 <source src="best-720p.mp4" type="video/mp4">
 Your browser cannot play this video. <a href="best-720p.mp4">Download it (720p, 14 MB).</a>
+</video>
+<p class="figcap">42.4 s. Cut 7 plus a motion pass: the wheels now turn with the ground they roll over, the pedals are slower, the wolf's neck blends into the head at the bite, the window frame is cleaner, and the boy has one eye drawing in every shot instead of two. Same audio.</p>
+
+<h3>Cut 7, the continuity pass</h3>
+<video class="film" controls preload="none" poster="cut7-poster.jpg" width="1280" height="720">
+<source src="cut7-720p.mp4" type="video/mp4">
+Your browser cannot play this video. <a href="cut7-720p.mp4">Download it (720p, 14 MB).</a>
 </video>
 <p class="figcap">42.4 s. An audit of 29 defects, fixed in code. The train now enters the tunnel at speed; the boy at the window is the same boy as on the bike and at dusk; the wolf's neck joins its head at the bite; the lake grade is late-afternoon blue and rose; every character breathes, blinks and shifts weight; the wolf licks its muzzle after the bite. Still imperfect: a faint neck edge in the bite shot, some foot slide, the howl shot.</p>
 
@@ -118,7 +125,7 @@ Your browser cannot play this video. <a href="v3-720p.mp4">Download it (720p, 10
 <tr><th scope="row">v3, Fable alone</th><td>about $55 to $63 (planner is an estimate)</td><td>about 1.7 h</td><td>0, reused ours</td></tr>
 <tr><th scope="row">Round 1 best, merge</th><td>Sonnet 0.21M plus four builders</td><td>about 2.6 h</td><td>0</td></tr>
 <tr><th scope="row">Round 2 best</th><td>Fable plan 0.14M, twelve Sonnet builders about 1.3M (input plus output, so not comparable to the rows above)</td><td>about 2 h</td><td>0</td></tr>
-<tr><th scope="row">Cut 6 and 7</th><td>Cut 7: an audit by a Fable reviewer, then six Sonnet builders</td><td>about 3 h</td><td>0</td></tr>
+<tr><th scope="row">Cut 6, 7 and 8</th><td>Cut 8: one Sonnet builder, wheels, neck, eyes. Cut 7: an audit by a Fable reviewer, then six Sonnet builders</td><td>about 3 h</td><td>0</td></tr>
 </tbody>
 </table>
 <ul>
