@@ -5,8 +5,6 @@ on:
     branches:
       - main
   workflow_dispatch:
-  schedule:
-    - cron: '17 6 * * *'
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -29,27 +27,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Prepare site artifact
-        run: |
-          mkdir -p _site
-          rsync -a --exclude='.git' --exclude='.github' --exclude='.claude' --exclude='skills' --exclude='scripts/' --exclude='copy' --exclude='CLAUDE.md' --exclude='AGENTS.md' --exclude='README.md' --exclude='.gitignore' --exclude='_site' ./ _site/
-
-      - name: Download DispatchBench report
-        run: |
-          mkdir -p _site/dispatchbench
-          curl -fsSL --retry 3 https://raw.githubusercontent.com/chimera-defi/dispatchbench/main/results/report/page.html -o _site/dispatchbench/index.html
-          grep -Fq '<title>DispatchBench' _site/dispatchbench/index.html
-
-      - name: Mirror eth2-quickstart articles
-        run: python3 scripts/mirror_eth2_articles.py --out _site/research/eth2
-
-      - name: Every page is linked from the home page
-        run: python3 scripts/check_orphans.py _site
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: _site
+          path: .
 
       - name: Deploy
         id: deployment

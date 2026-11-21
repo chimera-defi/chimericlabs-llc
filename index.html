@@ -3,19 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ChimericLabs — Design and Development Studio</title>
+    <title>ChimericLabs — Staking Infrastructure & Protocol Engineering</title>
     <meta
       name="description"
-      content="ChimericLabs designs and builds software for clients and runs its own products: an Ethereum staking protocol, AI agent tooling and a private research platform."
+      content="ChimericLabs designs and ships full-stack liquid staking infrastructure — smart contracts, oracles, LST AMMs, and validator tooling. Deployed on Ethereum mainnet."
     />
-    <meta property="og:title" content="ChimericLabs — Design and Development Studio" />
+    <meta property="og:title" content="ChimericLabs — Staking Infrastructure & Protocol Engineering" />
     <meta
       property="og:description"
-      content="A design and development studio. We design and build for clients. We also fund, build and run our own products."
+      content="We build the infrastructure liquid staking runs on. Smart contracts, oracles, LST AMMs, and validator tooling — shipped to mainnet."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://chimericlabs.xyz/" />
-    <link rel="canonical" href="https://chimericlabs.xyz/" />
+    <meta property="og:url" content="https://chimericlabs.org/" />
+    <link rel="canonical" href="https://chimericlabs.org/" />
     <meta name="twitter:card" content="summary" />
     <meta name="theme-color" content="#080e1d" />
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23080e1d'/><text x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='16' font-weight='600' fill='%2300c4ff'>CL</text></svg>" />
@@ -23,100 +23,52 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Hanken+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
 
-    <style>
-      html { background: var(--bg); }
-      body {
-        margin: 0;
-        min-height: 100vh;
-        overflow-x: hidden;
-      }
-      @media (max-width: 639px) {
-        .mobile-hide { display: none !important; }
-      }
-      @media (prefers-reduced-motion: reduce) {
-        * { transition-duration: 0.01ms !important; }
-      }
-    </style>
-
-    <!-- Field Lab v3 style system (vendored from the lab-rig repo) -->
-    <link rel="stylesheet" href="assets/field-lab/tokens.css" />
-    <link rel="stylesheet" href="assets/field-lab/field-lab.css" />
-    <link rel="stylesheet" href="assets/site.css" />
-
-    <!-- Motion gate, runs before first paint: html.js enables the hidden initial states,
-         html.intro marks a session's first visit (never under reduced motion). -->
-    <script>
-      (function (r) {
-        r.classList.add("js");
-        try {
-          if (!matchMedia("(prefers-reduced-motion: reduce)").matches && !sessionStorage.getItem("fl-intro")) {
-            sessionStorage.setItem("fl-intro", "1");
-            r.classList.add("intro");
-            r.style.setProperty("--t0", "1s");
-          }
-        } catch {}
-      })(document.documentElement);
-    </script>
     <script src="https://cdn.tailwindcss.com"></script>
-
     <script>
-      window.tailwind = window.tailwind || {};
       tailwind.config = {
         theme: {
           extend: {
             fontFamily: {
-              sans: ['"Hanken Grotesk"', '"Helvetica Neue"', "Arial", "sans-serif"],
-              serif: ["Archivo", '"Arial Narrow"', '"Helvetica Neue"', "Arial", "sans-serif"],
-              mono: ['"IBM Plex Mono"', "ui-monospace", "Menlo", "Consolas", "monospace"],
+              sans: ["Inter", "system-ui", "sans-serif"],
+              serif: ['"DM Serif Display"', "Georgia", "serif"],
+              mono: ['"JetBrains Mono"', "monospace"],
             },
           },
-          // Field Lab v3: the old slate palette is re-pointed
-          // at the theme tokens in assets/field-lab/tokens.css, so every existing
-          // utility class follows light/dark automatically.
-          colors: (() => {
-            const t = (name) => `rgb(var(--${name}-rgb) / <alpha-value>)`;
-            const scale = (map) => Object.fromEntries(Object.entries(map).map(([k, v]) => [k, t(v)]));
-            return {
-              transparent: "transparent",
-              current: "currentColor",
-              bg: t("bg"), surface: t("surface"), "surface-2": t("surface-2"),
-              ink: t("ink"), "ink-2": t("ink-2"), line: t("line"), hairline: t("hairline"),
-              band: t("band"), "band-ink": t("band-ink"), "band-ink-2": t("band-ink-2"), "band-line": t("band-line"),
-              accent: t("accent"), "accent-ink": t("accent-ink"), "on-accent": t("on-accent"),
-              slate: scale({ 50: "ink", 100: "ink", 200: "ink", 300: "ink-2", 400: "ink-2", 500: "ink-2",
-                600: "ink-2", 700: "line", 800: "surface-2", 900: "surface", 950: "on-accent" }),
-            };
-          })(),
-          borderRadius: { none: "0", sm: "2px", DEFAULT: "2px", md: "2px", lg: "0", xl: "0", "2xl": "0", full: "999px" },
         },
       };
     </script>
+    <style>
+      :root { color-scheme: dark; }
+      .text-balance { text-wrap: balance; }
+      @media (prefers-reduced-motion: reduce) {
+        * { transition-duration: 0.01ms !important; }
+      }
+    </style>
   </head>
 
-  <body class="bg-bg text-slate-200 font-sans antialiased">
+  <body class="bg-[#080e1d] text-slate-200 font-sans antialiased">
 
     <!-- Header -->
-    <header class="fixed inset-x-0 top-0 z-50 border-b border-ink bg-bg/95 backdrop-blur-xl">
-      <div class="site-header-inner mx-auto flex h-14 max-w-6xl items-center justify-between sm:px-8">
-        <a href="./" class="site-brand inline-flex min-h-11 min-w-11 items-center">ChimericLabs</a>
-        <nav class="site-nav flex items-center sm:gap-7" aria-label="Primary">
-          <a href="portfolio.html" class="site-nav-link inline-flex min-h-11 min-w-11 items-center sm:text-sm text-slate-400 hover:text-slate-200 transition-colors">Portfolio</a>
-          <a href="research.html" class="site-nav-link inline-flex min-h-11 min-w-11 items-center sm:text-sm text-slate-400 hover:text-slate-200 transition-colors">Research</a>
-          <a href="#services" class="site-nav-link inline-flex min-h-11 min-w-11 items-center sm:text-sm text-slate-400 hover:text-slate-200 transition-colors">Services</a>
+    <header class="fixed inset-x-0 top-0 z-50 border-b border-white/[0.07] bg-[#080e1d]/90 backdrop-blur-xl">
+      <div class="mx-auto flex h-14 max-w-6xl items-center justify-between px-5 sm:px-8">
+        <a href="./" class="font-mono text-sm font-medium text-cyan-400 tracking-wide">ChimericLabs</a>
+        <nav class="flex items-center gap-5 sm:gap-7" aria-label="Primary">
+          <a href="portfolio.html" class="text-sm text-slate-400 hover:text-slate-200 transition-colors">Portfolio</a>
+          <a href="#services" class="text-sm text-slate-400 hover:text-slate-200 transition-colors">Services</a>
           <a
             href="https://github.com/chimera-defi"
             target="_blank"
             rel="noreferrer"
-            class="site-nav-link mobile-hide hidden min-h-11 items-center text-sm text-slate-400 hover:text-slate-200 transition-colors sm:inline-flex"
+            class="hidden sm:block text-sm text-slate-400 hover:text-slate-200 transition-colors"
             >GitHub</a
           >
           <a
             href="mailto:chimera_defi@protonmail.com"
-            class="site-nav-link site-contact fl-btn"
+            class="rounded-md bg-cyan-400 px-4 py-1.5 text-sm font-semibold text-slate-950 hover:bg-cyan-300 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-400 focus-visible:outline-offset-2"
             >Contact</a
           >
         </nav>
@@ -127,290 +79,200 @@
 
       <!-- Hero -->
       <section
-        class="site-hero fl-graph-paper--fade mx-auto max-w-6xl px-5 sm:px-8 pt-20 sm:pt-24 pb-0"
+        class="mx-auto max-w-6xl px-5 sm:px-8 pt-36 sm:pt-44 pb-24"
         aria-labelledby="hero-headline"
       >
-        <!-- Field Lab rig: self-drawing apparatus + scan line (assets/field-lab/lab-rig.svg) -->
-        <img class="hero-rig" src="assets/field-lab/lab-rig.svg" alt="" width="800" height="600" />
-        <div class="site-hero-grid grid min-w-0 gap-16 lg:contents">
-          <div class="min-w-0">
-            <p class="rise mb-7 fl-label text-accent-ink">
-              Design &amp; Development Studio
-            </p>
-            <h1
-              id="hero-headline"
-              style="--rd:.1s"
-              class="rise max-w-2xl break-words font-serif text-4xl sm:text-6xl lg:text-7xl text-slate-50 text-balance"
-            >
-              We design and build software, from first idea to production.
-            </h1>
-            <p style="--rd:.2s" class="rise mt-8 max-w-lg text-lg text-slate-400 leading-relaxed">
-              We work for clients and on our own products. Mainly product design, smart contracts, frontends and AI agent tooling.
-            </p>
-            <div style="--rd:.3s" class="rise mt-10 flex flex-wrap gap-4">
-              <a
-                href="mailto:chimera_defi@protonmail.com"
-                class="fl-btn fl-btn--primary"
-              >
-                Work with us
-              </a>
-              <a
-                href="portfolio.html"
-                class="fl-btn fl-btn--secondary"
-              >
-                See all projects
-              </a>
-            </div>
-          </div>
-
-          <div class="relative hidden h-[420px] lg:block" role="img" aria-label="ChimericLabs product build map">
-            <div class="absolute inset-0 fl-graph-paper"></div>
-            <div class="absolute left-2 top-3 fl-spec-text text-ink-2">What we build</div>
-            <div class="absolute z-10 left-8 top-20 w-44 border border-line bg-surface px-4 py-3">
-              <p class="fl-spec-text text-ink-2">Product</p>
-              <p class="mt-1 text-sm font-medium text-slate-100">Design system</p>
-            </div>
-            <div class="absolute z-10 right-4 top-32 w-40 border border-line bg-surface px-4 py-3">
-              <p class="fl-spec-text text-ink-2">Protocol</p>
-              <p class="mt-1 text-sm font-medium text-slate-100">Contracts + APIs</p>
-            </div>
-            <div class="absolute z-10 left-24 top-56 w-48 border border-line bg-surface px-4 py-3">
-              <p class="fl-spec-text text-ink-2">AI Tooling</p>
-              <p class="mt-1 text-sm font-medium text-slate-100">Agent workflows</p>
-            </div>
-            <div class="absolute z-10 right-0 bottom-8 w-48 border border-line bg-surface px-4 py-3">
-              <p class="fl-spec-text text-ink-2">Ops</p>
-              <p class="mt-1 text-sm font-medium text-slate-100">Launch + iteration</p>
-            </div>
-            <div class="absolute left-[13rem] top-[7.3rem] h-px w-24 bg-line"></div>
-            <div class="absolute left-[16.5rem] top-[10.5rem] h-28 w-px bg-line"></div>
-            <div class="absolute left-[17rem] top-[17.5rem] h-px w-28 bg-line"></div>
-          </div>
+        <p class="mb-7 font-mono text-xs tracking-widest text-cyan-400 uppercase">
+          Staking Infrastructure &amp; Protocol Engineering
+        </p>
+        <h1
+          id="hero-headline"
+          class="max-w-2xl font-serif text-5xl sm:text-6xl lg:text-7xl leading-[1.05] text-slate-50 text-balance"
+        >
+          We build the infrastructure liquid staking runs on.
+        </h1>
+        <p class="mt-8 max-w-lg text-lg text-slate-400 leading-relaxed">
+          ChimericLabs designs and ships full-stack liquid staking infrastructure — smart
+          contracts, oracles, LST AMMs, and validator tooling. We work with protocol
+          founders and infrastructure builders; collaborators include Thunderhead and
+          Valantis Labs.
+        </p>
+        <div class="mt-10 flex flex-wrap gap-4">
+          <a
+            href="mailto:chimera_defi@protonmail.com"
+            class="inline-flex items-center rounded-md bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 hover:bg-cyan-300 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-400 focus-visible:outline-offset-2"
+          >
+            Work with us
+          </a>
+          <a
+            href="portfolio.html"
+            class="inline-flex items-center rounded-md border border-white/10 px-6 py-3 text-sm text-slate-300 hover:border-white/20 hover:text-white transition-colors"
+          >
+            See all projects
+          </a>
         </div>
 
         <!-- Proof strip -->
         <div
-          class="site-band mt-20 grid grid-cols-2 py-8 sm:grid-cols-4 sm:py-12"
+          class="mt-20 grid grid-cols-2 sm:grid-cols-4 divide-x divide-y sm:divide-y-0 divide-white/[0.06] border border-white/[0.07] rounded-xl overflow-hidden"
           aria-label="At a glance"
         >
-          <canvas aria-hidden="true"></canvas>
-          <div class="border-band-line px-6 py-2">
-            <div class="band-ro">4+</div>
-            <div class="fl-label band-cap">Production systems shipped</div>
+          <div class="bg-slate-900/30 px-6 py-5">
+            <div class="font-mono text-xl font-semibold text-slate-100">2023</div>
+            <div class="mt-1 text-xs text-slate-500 leading-snug">Live on Ethereum mainnet since</div>
           </div>
-          <div class="border-l border-band-line px-6 py-2">
-            <div class="band-ro">4</div>
-            <div class="fl-label band-cap">Hackathon wins and finalist places</div>
+          <div class="bg-slate-900/30 px-6 py-5">
+            <div class="font-mono text-xl font-semibold text-slate-100">4+</div>
+            <div class="mt-1 text-xs text-slate-500 leading-snug">Protocols shipped to production</div>
           </div>
-          <div class="border-t border-band-line px-6 py-2 sm:border-l sm:border-t-0">
-            <div class="band-ro">36</div>
-            <div class="fl-label band-cap">Original public repos on GitHub</div>
+          <div class="bg-slate-900/30 px-6 py-5">
+            <div class="font-mono text-xl font-semibold text-slate-100">1 bps</div>
+            <div class="mt-1 text-xs text-slate-500 leading-snug">Min swap fee, STEX LST AMM</div>
           </div>
-          <div class="border-l border-t border-band-line px-6 py-2 sm:border-t-0">
-            <div class="band-ro">9</div>
-            <div class="fl-label band-cap">Repos outside our account with our code</div>
+          <div class="bg-slate-900/30 px-6 py-5">
+            <div class="font-mono text-xl font-semibold text-slate-100">100%</div>
+            <div class="mt-1 text-xs text-slate-500 leading-snug">Open source — all code auditable</div>
           </div>
         </div>
       </section>
 
       <!-- Featured Projects -->
-      <section id="work" class="border-t border-line" aria-labelledby="work-heading">
-        <div class="mx-auto max-w-6xl px-5 sm:px-8 py-[calc(var(--section-y)/2)]">
+      <section id="work" class="border-t border-white/[0.07]" aria-labelledby="work-heading">
+        <div class="mx-auto max-w-6xl px-5 sm:px-8 py-24">
           <div class="flex items-center gap-3 mb-12">
-            <span class="fl-label" aria-hidden="true">01</span>
-            <h2 id="work-heading" class="fl-label">
+            <span class="font-mono text-xs text-cyan-400 tracking-widest uppercase" aria-hidden="true">01</span>
+            <h2 id="work-heading" class="text-xs font-medium uppercase tracking-widest text-slate-500">
               Featured Projects
             </h2>
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
 
-            <article class="flex flex-col gap-5 fl-card fl-card--link">
+            <article class="flex flex-col gap-5 rounded-xl border border-white/[0.07] bg-[#0d1526] p-7 hover:border-white/[0.12] hover:bg-[#111f35] transition-all">
               <div>
-                <span class="fl-label">Payments · Design &amp; Development Partner</span>
-                <h3 class="mt-2 font-serif text-xl text-slate-100">AutoPay Protocol</h3>
-              </div>
-              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                Non-custodial crypto subscription payments for people and AI agents. As AutoPay’s design and development partner, we work on the product UX, protocol interfaces, frontend and agent payment integration.
-              </p>
-              <div class="flex items-center gap-5 border-t border-line pt-5 text-sm">
-                <a
-                  href="research/screenshots/#autopay"
-                  class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2"
-                  >What it looked like →</a
-                >
-                <a
-                  href="https://github.com/chimera-defi/Auto-Pay-Protocol"
-                  target="_blank"
-                  rel="noreferrer"
-                  class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors"
-                  >GitHub</a
-                >
-              </div>
-            </article>
-
-            <article class="flex flex-col gap-5 fl-card fl-card--link">
-              <div>
-                <span class="fl-label">Our Product · AI Developer Tooling</span>
-                <h3 class="mt-2 font-serif text-xl text-slate-100">Token Reduce</h3>
-              </div>
-              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                Cuts the tokens AI coding agents spend reading code. It runs cheap discovery first, routing lookups across file paths, snippets and code structure, and its hooks block broad reads.
-              </p>
-              <div class="flex items-center gap-5 border-t border-line pt-5 text-sm">
-                <a
-                  href="https://github.com/chimera-defi/token-reduce-skill"
-                  target="_blank"
-                  rel="noreferrer"
-                  class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2"
-                  >GitHub →</a
-                >
-              </div>
-            </article>
-
-            <article class="flex flex-col gap-5 fl-card fl-card--link">
-              <div>
-                <span class="fl-label">Our Product · Spec Editor</span>
-                <h3 class="mt-2 font-serif text-xl text-slate-100">SpecForge</h3>
-              </div>
-              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                An editor where people and AI agents write specs together in one shared markdown document, with review on every change. It runs in the browser, in the terminal, over a REST API and as an autonomous agent. The result is a spec a team can build from.
-              </p>
-              <div class="flex items-center gap-5 border-t border-line pt-5 text-sm">
-                <a
-                  href="https://github.com/chimera-defi/specforge"
-                  target="_blank"
-                  rel="noreferrer"
-                  class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2"
-                  >GitHub →</a
-                >
-              </div>
-            </article>
-
-            <article class="flex flex-col gap-5 fl-card fl-card--link">
-              <div>
-                <span class="fl-label">Our Product · Liquid Staking</span>
+                <span class="font-mono text-xs text-cyan-400 tracking-widest uppercase">Liquid Staking · Ethereum</span>
                 <h3 class="mt-2 font-serif text-xl text-slate-100">SharedDeposit (sgETH)</h3>
               </div>
               <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                Our liquid staking protocol on Ethereum mainnet, which we fund, build and run. The contracts cover the sgETH staking token, minter, rewards receiver, withdrawal queue and rollover, with a beacon chain oracle alongside. We have shipped it through several upgrade cycles.
+                Full-stack liquid staking protocol on Ethereum mainnet. Covers the complete stack:
+                ERC-20 staking token (sgETH), minter, rewards receiver, withdrawal queue,
+                rollover contracts, and a beacon chain oracle — deployed and maintained across
+                multiple upgrade cycles.
               </p>
-              <div class="flex items-center gap-5 border-t border-line pt-5 text-sm">
+              <div class="flex items-center gap-5 border-t border-white/[0.06] pt-5 text-sm">
                 <a
-                  href="research/screenshots/#sharedstake"
-                  class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2"
-                  >What it looked like →</a
+                  href="https://www.sharedstake.org/"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="font-medium text-cyan-400 hover:text-cyan-300 transition-colors"
+                  >Visit Site →</a
                 >
                 <a
                   href="https://github.com/chimera-defi/SharedDeposit"
                   target="_blank"
                   rel="noreferrer"
-                  class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors"
+                  class="text-slate-500 hover:text-slate-300 transition-colors"
                   >GitHub</a
                 >
               </div>
             </article>
+
+            <article class="flex flex-col gap-5 rounded-xl border border-white/[0.07] bg-[#0d1526] p-7 hover:border-white/[0.12] hover:bg-[#111f35] transition-all">
+              <div>
+                <span class="font-mono text-xs text-cyan-400 tracking-widest uppercase">LST AMM · HyperEVM</span>
+                <h3 class="mt-2 font-serif text-xl text-slate-100">Valantis STEX AMM</h3>
+              </div>
+              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
+                A novel AMM purpose-built for liquid staking tokens. Integrates with LST
+                withdrawal queues for 1:1 native redemption, routes idle reserves to AAVE
+                for extra yield, and uses dynamic fees as low as 1 bps. Built with Thunderhead
+                for stHYPE on HyperEVM.
+              </p>
+              <div class="flex items-center gap-5 border-t border-white/[0.06] pt-5 text-sm">
+                <a
+                  href="https://github.com/chimera-defi/valantis-stex"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="font-medium text-cyan-400 hover:text-cyan-300 transition-colors"
+                  >View on GitHub →</a
+                >
+                <a
+                  href="https://docs.valantis.xyz/staked-amm"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="text-slate-500 hover:text-slate-300 transition-colors"
+                  >Docs</a
+                >
+              </div>
+            </article>
+
+            <article class="flex flex-col gap-5 rounded-xl border border-white/[0.07] bg-[#0d1526] p-7 hover:border-white/[0.12] hover:bg-[#111f35] transition-all">
+              <div>
+                <span class="font-mono text-xs text-cyan-400 tracking-widest uppercase">Validator Infrastructure</span>
+                <h3 class="mt-2 font-serif text-xl text-slate-100">eth2-quickstart</h3>
+              </div>
+              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
+                One-command ETH2 node setup for solo stakers and pool operators. Supports
+                multiple client combinations for client diversity, checkpoint sync, and
+                uncensored RPC node deployment — cutting days of manual setup to minutes.
+              </p>
+              <div class="flex items-center gap-5 border-t border-white/[0.06] pt-5 text-sm">
+                <a
+                  href="https://github.com/chimera-defi/eth2-quickstart"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="font-medium text-cyan-400 hover:text-cyan-300 transition-colors"
+                  >View on GitHub →</a
+                >
+              </div>
+            </article>
+
+            <article class="flex flex-col gap-5 rounded-xl border border-white/[0.07] bg-[#0d1526] p-7 hover:border-white/[0.12] hover:bg-[#111f35] transition-all">
+              <div>
+                <span class="font-mono text-xs text-cyan-400 tracking-widest uppercase">Smart Contract Factory</span>
+                <h3 class="mt-2 font-serif text-xl text-slate-100">Sharedtools</h3>
+              </div>
+              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
+                Smart contract factory and tooling platform. Covers ERC-20 launches,
+                multi-sig setup, and protocol primitives — with its own RPC endpoint
+                and production frontend used across multiple protocol deployments.
+              </p>
+              <div class="flex items-center gap-5 border-t border-white/[0.06] pt-5 text-sm">
+                <a
+                  href="https://www.sharedtools.org/"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="font-medium text-cyan-400 hover:text-cyan-300 transition-colors"
+                  >Visit Site →</a
+                >
+                <a
+                  href="https://github.com/chimera-defi/sharedtools-index"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="text-slate-500 hover:text-slate-300 transition-colors"
+                  >GitHub</a
+                >
+              </div>
+            </article>
+
           </div>
 
           <div class="mt-10 flex justify-end">
             <a
               href="portfolio.html"
-              class="inline-flex min-h-11 min-w-11 items-center text-sm font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2"
+              class="text-sm font-medium text-cyan-400 hover:text-cyan-300 transition-colors"
               >View all projects →</a
             >
           </div>
         </div>
       </section>
 
-      <!-- Research and concepts -->
-      <section id="research-concepts" class="border-t border-line" aria-labelledby="research-concepts-heading">
-        <div class="mx-auto max-w-6xl px-5 sm:px-8 py-[calc(var(--section-y)/2)]">
-          <div class="flex items-center gap-3 mb-12">
-            <h2 id="research-concepts-heading" class="fl-label">Research &amp; Concepts</h2>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-
-            <article class="flex flex-col gap-5 fl-card fl-card--link">
-              <div>
-                <span class="fl-label">Agent Benchmark</span>
-                <h3 class="mt-2 font-serif text-xl text-slate-100">DispatchBench</h3>
-              </div>
-              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                Which model and effort level should do the coding work? DispatchBench runs Claude and Codex configs on fresh problems and repo tasks. It reports pass rate, cost and time per pass, and picks the cheapest config that still passes.
-              </p>
-              <div class="flex items-center gap-5 border-t border-line pt-5 text-sm">
-                <a href="dispatchbench/" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Read the report →</a>
-                <a href="https://github.com/chimera-defi/dispatchbench" target="_blank" rel="noreferrer" class="inline-flex min-h-11 min-w-11 items-center text-slate-500 hover:text-slate-300 transition-colors">Source on GitHub</a>
-              </div>
-            </article>
-
-            <article class="flex flex-col gap-5 fl-card fl-card--link">
-              <div>
-                <span class="fl-label">Concept · Music Tokenization</span>
-                <h3 class="mt-2 font-serif text-xl text-slate-100">Breakout</h3>
-              </div>
-              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                A design concept for backing musicians early. It is a mock with placeholder numbers: no live trading, no wallet connection and no real artists.
-              </p>
-              <div class="flex items-center gap-5 border-t border-line pt-5 text-sm">
-                <a href="breakout.html" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">View the concept →</a>
-              </div>
-            </article>
-
-            <article class="flex flex-col gap-5 fl-card fl-card--link">
-              <div>
-                <span class="fl-label">Explainer · SHA-256 mining</span>
-                <h3 class="mt-2 font-serif text-xl text-slate-100">We made our SHA-256 miner about 42 times faster</h3>
-              </div>
-              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                Our SHA-256 miner went from 2.6 to 109 million guesses a second: C++ to Rust on a SIMD library, then our patch on top. Pictures, steps and every measured run.
-              </p>
-              <div class="flex items-center gap-5 border-t border-line pt-5 text-sm">
-                <a href="research/sha256/" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Read the explainer →</a>
-              </div>
-            </article>
-
-            <article class="flex flex-col gap-5 fl-card fl-card--link">
-              <div>
-                <span class="fl-label">Explainer · SHA-256 search cost</span>
-                <h3 class="mt-2 font-serif text-xl text-slate-100">What it costs to find a SHA-256 prefix</h3>
-              </div>
-              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                How many guesses, and how much time, a hash that starts with your prefix needs. Each extra Base64 character costs 64 times more. Pictures and a calculator.
-              </p>
-              <div class="flex items-center gap-5 border-t border-line pt-5 text-sm">
-                <a href="research/sha256-search-cost/" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Open the calculator →</a>
-              </div>
-            </article>
-
-            <article class="flex flex-col gap-5 fl-card fl-card--link">
-              <div>
-                <span class="fl-label">Experiment &middot; Ghibli-style film</span>
-                <h3 class="mt-2 font-serif text-xl text-slate-100">Recreating a Ghibli-style short film in code</h3>
-              </div>
-              <p class="flex-1 text-sm text-slate-400 leading-relaxed">
-                A 38.5 second film from generated art and a small canvas engine, with a giant white wolf. What worked and what went wrong.
-              </p>
-              <div class="flex items-center gap-5 border-t border-line pt-5 text-sm">
-                <a href="research/ghibli-astra/" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Watch the film &rarr;</a>
-              </div>
-            </article>
-
-          </div>
-
-          <p class="mt-8 text-sm">
-            <a href="research.html" class="inline-flex min-h-11 min-w-11 items-center font-medium text-ink underline underline-offset-4 decoration-1 hover:decoration-2">All research, newest first →</a>
-          </p>
-        </div>
-      </section>
-
       <!-- Services -->
-      <section id="services" class="border-t border-line" aria-labelledby="services-heading">
-        <div class="mx-auto max-w-6xl px-5 sm:px-8 py-[calc(var(--section-y)/2)]">
+      <section id="services" class="border-t border-white/[0.07]" aria-labelledby="services-heading">
+        <div class="mx-auto max-w-6xl px-5 sm:px-8 py-24">
           <div class="flex items-center gap-3 mb-12">
-            <span class="fl-label" aria-hidden="true">02</span>
-            <h2 id="services-heading" class="fl-label">
+            <span class="font-mono text-xs text-cyan-400 tracking-widest uppercase" aria-hidden="true">02</span>
+            <h2 id="services-heading" class="text-xs font-medium uppercase tracking-widest text-slate-500">
               Services
             </h2>
           </div>
@@ -420,79 +282,65 @@
               <h3
                 class="font-serif text-3xl sm:text-4xl text-slate-100 leading-snug text-balance"
               >
-                Two kinds of work: client projects and our own products.
+                Full-stack staking expertise — from the initial spec through every upgrade cycle.
               </h3>
               <p class="mt-6 text-slate-400 leading-relaxed">
-                <strong class="font-medium text-slate-200">Client work.</strong> We take a product from strategy and UX through Solidity contracts, frontends and launch. You talk directly to the people writing the code. No account managers, no handoffs.
+                Most engagements start with a staking problem: a new protocol to architect,
+                an existing system to upgrade, or a new market mechanism to build. We work
+                across the full stack — Solidity contracts, off-chain oracles, AMM integrations,
+                validator tooling, and production frontends.
               </p>
               <p class="mt-4 text-slate-400 leading-relaxed">
-                <strong class="font-medium text-slate-200">Our own products.</strong> We build and run SharedDeposit, Token Reduce, SpecForge and other tools, all self-funded. We also run a private research platform that searches for portfolio strategies and hill-climbs the best ones.
+                We work directly with protocol founders and technical leads. You talk to
+                the engineer who built the system — no handoff, no overhead.
               </p>
             </div>
 
             <ul class="space-y-4" aria-label="Service areas">
-              <li class="border border-line bg-surface px-5 py-4">
+              <li class="rounded-lg border border-white/[0.07] border-l-2 border-l-cyan-400 bg-[#0d1526] px-5 py-4">
                 <div class="flex items-start gap-3">
-                  <span class="mt-0.5 fl-label shrink-0" aria-hidden="true">01</span>
+                  <span class="mt-0.5 font-mono text-xs text-cyan-400 shrink-0" aria-hidden="true">01</span>
                   <div>
-                    <div class="text-sm font-medium text-slate-200">Full-stack Design &amp; Build</div>
+                    <div class="text-sm font-medium text-slate-200">Staking Protocol Engineering</div>
                     <div class="mt-1 text-xs text-slate-500 leading-relaxed">
-                      Product strategy, UX, frontends, APIs and launch, all by one team.
+                      Smart contracts, oracles, withdrawal queues, and frontends for liquid
+                      staking protocols — end to end.
                     </div>
                   </div>
                 </div>
               </li>
-              <li class="border border-line bg-surface px-5 py-4">
+              <li class="rounded-lg border border-white/[0.07] border-l-2 border-l-cyan-400 bg-[#0d1526] px-5 py-4">
                 <div class="flex items-start gap-3">
-                  <span class="mt-0.5 fl-label shrink-0" aria-hidden="true">02</span>
+                  <span class="mt-0.5 font-mono text-xs text-cyan-400 shrink-0" aria-hidden="true">02</span>
                   <div>
-                    <div class="text-sm font-medium text-slate-200">AI Agent Tooling</div>
+                    <div class="text-sm font-medium text-slate-200">LST Market Design</div>
                     <div class="mt-1 text-xs text-slate-500 leading-relaxed">
-                      Agent workflows, delegation wrappers, token and context control, MCP integrations and spec-driven builds.
+                      AMM architecture and liquidity mechanisms purpose-built for liquid
+                      staking tokens and redeemable assets.
                     </div>
                   </div>
                 </div>
               </li>
-              <li class="border border-line bg-surface px-5 py-4">
+              <li class="rounded-lg border border-white/[0.07] border-l-2 border-l-cyan-400 bg-[#0d1526] px-5 py-4">
                 <div class="flex items-start gap-3">
-                  <span class="mt-0.5 fl-label shrink-0" aria-hidden="true">03</span>
+                  <span class="mt-0.5 font-mono text-xs text-cyan-400 shrink-0" aria-hidden="true">03</span>
                   <div>
-                    <div class="text-sm font-medium text-slate-200">Protocol Engineering</div>
+                    <div class="text-sm font-medium text-slate-200">Validator Infrastructure</div>
                     <div class="mt-1 text-xs text-slate-500 leading-relaxed">
-                      Smart contracts, staking systems, payments, relayers and the production web apps on top.
+                      Node setup, client diversity, and beacon chain tooling for staking
+                      operators and solo stakers.
                     </div>
                   </div>
                 </div>
               </li>
-              <li class="border border-line bg-surface px-5 py-4">
+              <li class="rounded-lg border border-white/[0.07] border-l-2 border-l-cyan-400 bg-[#0d1526] px-5 py-4">
                 <div class="flex items-start gap-3">
-                  <span class="mt-0.5 fl-label shrink-0" aria-hidden="true">04</span>
+                  <span class="mt-0.5 font-mono text-xs text-cyan-400 shrink-0" aria-hidden="true">04</span>
                   <div>
-                    <div class="text-sm font-medium text-slate-200">Staking Infrastructure</div>
+                    <div class="text-sm font-medium text-slate-200">Protocol Consulting</div>
                     <div class="mt-1 text-xs text-slate-500 leading-relaxed">
-                      We manage the Ethereum mainnet beacon and validator nodes behind SharedStake (Prysm), and publish eth2-quickstart, public scripts for setting up your own node.
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="border border-line bg-surface px-5 py-4">
-                <div class="flex items-start gap-3">
-                  <span class="mt-0.5 fl-label shrink-0" aria-hidden="true">05</span>
-                  <div>
-                    <div class="text-sm font-medium text-slate-200">Fractional CTO &amp; Advisory</div>
-                    <div class="mt-1 text-xs text-slate-500 leading-relaxed">
-                      Technical strategy, architecture review, hiring help and delivery planning. We stay hands-on.
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="border border-line bg-surface px-5 py-4">
-                <div class="flex items-start gap-3">
-                  <span class="mt-0.5 fl-label shrink-0" aria-hidden="true">06</span>
-                  <div>
-                    <div class="text-sm font-medium text-slate-200">Family Office Infrastructure</div>
-                    <div class="mt-1 text-xs text-slate-500 leading-relaxed">
-                      Entity and treasury structuring across jurisdictions, coordination with cross-border advisers, and wealth-preservation portfolios with rule-based allocation and risk controls that hold up across market regimes.
+                      Architecture review, smart contract strategy, and DeFi engineering
+                      for teams that need a technical partner.
                     </div>
                   </div>
                 </div>
@@ -503,60 +351,56 @@
       </section>
 
       <!-- CTA -->
-      <section class="border-t border-line" aria-labelledby="cta-heading">
-        <div class="mx-auto max-w-6xl px-5 sm:px-8 py-[calc(var(--section-y)/2)]">
-          <p class="mb-7 fl-label">Get in touch</p>
+      <section class="border-t border-white/[0.07]" aria-labelledby="cta-heading">
+        <div class="mx-auto max-w-6xl px-5 sm:px-8 py-32">
+          <p class="mb-7 font-mono text-xs tracking-widest text-cyan-400 uppercase">Get in touch</p>
           <h2
             id="cta-heading"
-            class="max-w-xl break-words font-serif text-3xl sm:text-5xl text-slate-100 leading-tight text-balance"
+            class="max-w-xl font-serif text-4xl sm:text-5xl text-slate-100 leading-tight text-balance"
           >
-            Need a design and development partner?
+            Building staking infrastructure?
           </h2>
           <p class="mt-6 max-w-md text-lg text-slate-400 leading-relaxed">
-            Tell us what you’re building, or ask about architecture reviews and fractional CTO work. We respond within 24 hours.
+            Designing a new protocol, upgrading an existing system, or need a technical
+            partner who's shipped staking infra to mainnet — reach out. We respond
+            within 24 hours.
           </p>
           <a
             href="mailto:chimera_defi@protonmail.com"
-            aria-describedby="index-email-address"
-            class="mt-10 fl-btn fl-btn--primary"
+            class="mt-10 inline-flex items-center rounded-md bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 hover:bg-cyan-300 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-400 focus-visible:outline-offset-2"
           >
-            Get in touch
+            chimera_defi@protonmail.com
           </a>
-          <p id="index-email-address" class="mt-3 font-mono text-xs text-slate-500">chimera_defi@protonmail.com</p>
         </div>
       </section>
 
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-line py-8">
+    <footer class="border-t border-white/[0.07] py-8">
       <div
         class="mx-auto max-w-6xl px-5 sm:px-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
       >
         <span class="font-mono text-xs text-slate-600 tracking-wider">ChimericLabs LLC · Wyoming</span>
         <div class="flex flex-wrap gap-6">
-          <a href="portfolio.html" class="inline-flex min-h-11 min-w-11 items-center text-xs text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Portfolio</a>
-          <a href="research.html" class="inline-flex min-h-11 min-w-11 items-center text-xs text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Research</a>
-          <a href="breakout.html" class="inline-flex min-h-11 min-w-11 items-center text-xs text-ink underline underline-offset-4 decoration-1 hover:decoration-2">Breakout (concept)</a>
+          <a href="portfolio.html" class="text-xs text-slate-600 hover:text-cyan-400 transition-colors">Portfolio</a>
           <a
             href="https://github.com/chimera-defi"
             target="_blank"
             rel="noreferrer"
-            class="inline-flex min-h-11 min-w-11 items-center text-xs text-ink underline underline-offset-4 decoration-1 hover:decoration-2"
+            class="text-xs text-slate-600 hover:text-cyan-400 transition-colors"
             >GitHub</a
           >
           <a
             href="https://github.com/chimera-defi/chimericlabs-llc"
             target="_blank"
             rel="noreferrer"
-            class="inline-flex min-h-11 min-w-11 items-center text-xs text-ink underline underline-offset-4 decoration-1 hover:decoration-2"
+            class="text-xs text-slate-600 hover:text-cyan-400 transition-colors"
             >Source</a
           >
         </div>
       </div>
     </footer>
 
-
-    <script type="module" src="assets/field-lab/motion.js"></script>
   </body>
 </html>
