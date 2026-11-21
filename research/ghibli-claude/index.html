@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ghibli Claude: a Ghibli-style film rebuilt in code</title>
-<meta name="description" content="A Ghibli-style short film recreated in code from existing images, with a giant white wolf twist. The film, what it cost and how it was made.">
+<title>Ghibli Claude: a Ghibli-style short film rebuilt in code, with a giant white wolf</title>
+<meta name="description" content="A 38.5 second Ghibli-style film: layered generated art animated by a small deterministic canvas engine at 60 fps, with a giant white wolf. How it was built and what went wrong.">
 <meta property="og:title" content="Ghibli Claude: a Ghibli-style short film rebuilt in code">
-<meta property="og:description" content="A Ghibli-style film recreated in code from existing images, with a giant white wolf. What it cost and how.">
+<meta property="og:description" content="Generated art, a ~130-line canvas engine, one scene file per shot. What worked and what went wrong.">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://chimericlabs.xyz/research/ghibli-astra/">
-<meta property="og:image" content="https://chimericlabs.xyz/research/ghibli-astra/best-poster.jpg">
+<meta property="og:url" content="https://chimericlabs.xyz/research/ghibli-claude/">
+<meta property="og:image" content="https://chimericlabs.xyz/research/ghibli-claude/best-poster.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="canonical" href="https://chimericlabs.xyz/research/ghibli-astra/">
+<link rel="canonical" href="https://chimericlabs.xyz/research/ghibli-claude/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23080e1d'/><text x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='16' font-weight='600' fill='%2300c4ff'>CL</text></svg>" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,61 +52,136 @@
 
 <article class="art" id="article">
 <header class="art-head">
-<p class="fl-label">Experiment &middot; <time datetime="2026-11-21">21 Nov 2026</time> &middot; 2 min read</p>
-<h1>Ghibli Claude: a Ghibli-style film rebuilt in code</h1>
-<p class="art-lede">A short Ghibli-style film, recreated in code from existing images. We added a twist: a giant white wolf, a nod to Princess Mononoke.</p>
+<p class="fl-label">Experiment &middot; <time datetime="2026-11-21">21 Nov 2026</time> &middot; 4 min read</p>
+<h1>Ghibli Claude: a Ghibli-style short film rebuilt in code, with a giant white wolf</h1>
+<p class="art-lede">We set out to rebuild a 38.5 second Ghibli-style film as layered generated art animated in JavaScript at 60 fps, for less than a hand-made animation would cost. The twist is a giant white wolf, a nod to Princess Mononoke.</p>
 </header>
 
+<p>Seven cuts, best first. Same brief throughout; the original GPT-6.2 Astra film is not hosted here. The last section is a from-scratch attempt with generated video. The image models behind it are compared in <a href="../image-model-bench/">the image model bench</a>.</p>
+
+<h3>Best: cut 7, the continuity pass</h3>
 <video class="film" controls preload="none" poster="best-poster.jpg" width="1280" height="720">
 <source src="best-720p.mp4" type="video/mp4">
 Your browser cannot play this video. <a href="best-720p.mp4">Download it (720p, 14 MB).</a>
 </video>
+<p class="figcap">42.4 s. An audit of 29 defects, fixed in code. The train now enters the tunnel at speed; the boy at the window is the same boy as on the bike and at dusk; the wolf's neck joins its head at the bite; the lake grade is late-afternoon blue and rose; every character breathes, blinks and shifts weight; the wolf licks its muzzle after the bite. Still imperfect: a faint neck edge in the bite shot, some foot slide, the howl shot.</p>
+
+<h3>Cut 6</h3>
+<video class="film" controls preload="none" poster="cut6-poster.jpg" width="1280" height="720">
+<source src="cut6-720p.mp4" type="video/mp4">
+Your browser cannot play this video. <a href="cut6-720p.mp4">Download it (720p, 14 MB).</a>
+</video>
+<p class="figcap">42.4 s. The previous best, kept for comparison: the tunnel train was missing and the window boy was a different child.</p>
+
+<h3>Round 2: moving bodies</h3>
+<video class="film" controls preload="none" poster="round2-poster.jpg" width="1280" height="720">
+<source src="round2-720p.mp4" type="video/mp4">
+Your browser cannot play this video. <a href="round2-720p.mp4">Download it (720p, 17 MB).</a>
+</video>
+<p class="figcap">42.4 s. Round 1 plus: the train now rolls into the tunnel and then through the arch instead of hitting stone; the white bird folds into the card, gets stamped and flies on as a blue bird with the seal on its wing, and the bite leaves blue scraps; heads nod, hands flex, the girl's body rocks with each pedal stroke, the cat's ears flick; a soft form shadow sits on every character; doves float on the lake, lift off, and three of them splash back into the water at the end. New sounds for the tunnel, the paper fold, the splashes.</p>
+
+<h3>Round 1 best: Fable engine plus our fixes</h3>
+<video class="film" controls preload="none" poster="round1-poster.jpg" width="1280" height="720">
+<source src="round1-720p.mp4" type="video/mp4">
+Your browser cannot play this video. <a href="round1-720p.mp4">Download it (720p, 10 MB).</a>
+</video>
+<p class="figcap">42.4 s. Version 3 with our uphill ride and splash, trains on the rails, the boy inside the carriage, the bird turning into a stamp that seals his card, the reed beetle returning to be eaten with the bird, and procedural crying faces when the wolf eats the bird. The soundtrack is procedural.</p>
+
+<h3>Version 1: minimal text prompting</h3>
+<video class="film" controls preload="none" poster="v1-poster.jpg" width="1280" height="720">
+<source src="v1-720p.mp4" type="video/mp4">
+Your browser cannot play this video. <a href="v1-720p.mp4">Download it (720p, 8 MB).</a>
+</video>
+<p class="figcap">38.5 s. One brief, 8 images, no review rounds. Rejected as far worse than the original.</p>
+
+<h3>Version 2: many rounds of Sonnet builds and Fable reviews</h3>
+<video class="film" controls preload="none" poster="v2-poster.jpg" width="1280" height="720">
+<source src="v2-720p.mp4" type="video/mp4">
+Your browser cannot play this video. <a href="v2-720p.mp4">Download it (720p, 13 MB).</a>
+</video>
+<p class="figcap">38.5 s. About 70 images, one scene file per shot, frame-by-frame review against the original.</p>
+
+<h3>Version 3 (2F): an independent Fable run</h3>
+<video class="film" controls preload="none" poster="v3-poster.jpg" width="1280" height="720">
+<source src="v3-720p.mp4" type="video/mp4">
+Your browser cannot play this video. <a href="v3-720p.mp4">Download it (720p, 10 MB).</a>
+</video>
+<p class="figcap">41 s. Fable planned alone and fanned out to cheaper builders. It had no image model, so it reused our art. Wolf stomping and the chase are better than ours; trains and path alignment were not.</p>
 
 <h2>What it cost</h2>
 <table>
-<caption>Approximate cost. Tokens are measured from session logs by clock window.</caption>
-<thead><tr><th>Part</th><th>Cost</th><th>Time</th></tr></thead>
+<caption>Cost by cut: output tokens, wall-clock time and image use. Tokens are measured from the session logs by clock window, so they are approximate.</caption>
+<thead><tr><th>Cut</th><th>Output tokens</th><th>Time</th><th>ChatGPT Instant images</th></tr></thead>
 <tbody>
-<tr><th scope="row">Art</th><td>About 70 ChatGPT Instant images on a $20 plan</td><td>A minute or two each</td></tr>
-<tr><th scope="row">Early builds and reviews</th><td>Sonnet about 1.8M output tokens</td><td>About 10 h</td></tr>
-<tr><th scope="row">Final cut</th><td>Fable plan 0.14M, twelve Sonnet builders about 1.3M (input plus output)</td><td>About 2 h</td></tr>
+<tr><th scope="row">v1, one brief</th><td>Sonnet 0.38M, Haiku 0.26M, Fable 0.03M</td><td>about 1.5 h</td><td>8</td></tr>
+<tr><th scope="row">v2, many rounds</th><td>Sonnet 1.18M, Fable 0.30M, Haiku 0.01M</td><td>about 6 h</td><td>about 70 in all</td></tr>
+<tr><th scope="row">v3, Fable alone</th><td>about $55 to $63 (planner is an estimate)</td><td>about 1.7 h</td><td>0, reused ours</td></tr>
+<tr><th scope="row">Round 1 best, merge</th><td>Sonnet 0.21M plus four builders</td><td>about 2.6 h</td><td>0</td></tr>
+<tr><th scope="row">Round 2 best</th><td>Fable plan 0.14M, twelve Sonnet builders about 1.3M (input plus output, so not comparable to the rows above)</td><td>about 2 h</td><td>0</td></tr>
+<tr><th scope="row">Cut 6 and 7</th><td>Cut 7: an audit by a Fable reviewer, then six Sonnet builders</td><td>about 3 h</td><td>0</td></tr>
 </tbody>
 </table>
-
-<h2>How it was made</h2>
 <ul>
-<li>About 70 plates and sprites from ChatGPT Instant.</li>
-<li>A small deterministic canvas engine animates them: the same inputs give the same frame.</li>
-<li>One scene file per shot, built by Claude Sonnet and Haiku builders in parallel.</li>
-<li>Independent Fable review rounds compared frames against the original and sent back fixes.</li>
+<li>Images came from ChatGPT Instant ($20 plan), driven through the operator's Chrome, about a minute or two each. The credits ran out before the final fixes.</li>
+<li>The v2 time includes the review rounds. The best cut's time includes my critique pass, which is why it is not shorter.</li>
+<li>No Astra figure to compare. The Astra film was not ours to cost.</li>
+</ul>
+
+<h2>How it was built</h2>
+<ul>
+<li>About 70 plates and sprites came from ChatGPT Instant on a $20 plan, until the image credits ran out.</li>
+<li>A deterministic canvas engine of about 130 lines draws them: the same inputs give the same frame, every time.</li>
+<li>Each shot is one scene file. Claude Sonnet 5.5 and Haiku 5.5 builders were fanned out, one per scene.</li>
+<li>Independent Fable 5.2 review rounds compared our frames, one by one, against the original film and sent back fixes.</li>
 <li>Playwright renders the frames and ffmpeg encodes them.</li>
-<li>The soundtrack is synthesised in code.</li>
 </ul>
 
-<h2>Cinematic lessons</h2>
+<figure class="shots" aria-label="Four frames from the film">
+<figure><img src="frame-01.jpg" width="960" height="540" loading="lazy" alt="Opening shot at 1 second, a still frame from the film"><figcaption class="figcap">1.0 s</figcaption></figure>
+<figure><img src="frame-02.jpg" width="960" height="540" loading="lazy" alt="Frame at 12 seconds, mid-film"><figcaption class="figcap">12.0 s</figcaption></figure>
+<figure><img src="frame-03.jpg" width="960" height="540" loading="lazy" alt="Frame at 27.5 seconds, late in the film"><figcaption class="figcap">27.5 s</figcaption></figure>
+<figure><img src="frame-04.jpg" width="960" height="540" loading="lazy" alt="Closing frame at 36 seconds"><figcaption class="figcap">36.0 s</figcaption></figure>
+</figure>
+
+<h2>Every prop has a part</h2>
 <ul>
-<li>Every prop needs a setup and a payoff, or it is clutter.</li>
-<li>Stillness reads as broken: even a held shot needs small motion, like breathing.</li>
-<li>Camera moves sell scale, and a push-in on the wolf does more than any effect.</li>
-<li>Shadows and sound glue flat art into one world.</li>
+<li>The beetle on the first shot lands on the girl's handlebar, and the wolf takes it with the bird. A wing speck drops out at the lick.</li>
+<li>The swallows are the first sign of the wolf: they scatter as it lands at the window.</li>
+<li>The blue stamped bird is planted when the white bird flattens into the card, and pays off when it is bitten; the blue scraps fall into the boy's hand at dusk.</li>
+<li>The lake doves float at 20 s and lift off; three splash back into the lake at the end.</li>
+<li>Clouds, grass and motes are mood only. The full list is in the repo.</li>
 </ul>
 
-<h2>Credits</h2>
+<h2>What went wrong</h2>
 <ul>
-<li>Original film and idea: GPT-6.2 Astra, shared by <a href="https://x.com/reach_vb/status/2123663632190021985" target="_blank" rel="noreferrer">@reach_vb on X</a>. We recreated it; it is not hosted here.</li>
-<li>Art: ChatGPT Instant. Code, builds and reviews: Claude.</li>
-<li>Image model comparison: <a href="../image-model-bench/">the image model bench</a> and its <a href="https://github.com/chimera-defi/chimericlabs-llc/tree/main/research/image-model-bench/code">source folder</a>.</li>
-<li>The film code is available on request.</li>
+<li>Version 1 was rejected as far worse than the original: no zoom, doubled tracks, static characters.</li>
+<li>The ChatGPT image credits ran out, so the final fixes were code-only. No plate was regenerated after that.</li>
+<li>Sad faces in the best cut are drawn in code: the art only has smiling poses. New art waits for ChatGPT Instant to return.</li>
+<li>The girl still smiles for a moment at the bite, before the tears.</li>
+<li>The boy does not look the same across his three shots.</li>
+<li>The planned three-reviewer pass (Haiku, Opus, Fable) hit the weekly usage limit before it could run, so round 2 was checked by hand on stills only.</li>
+<li>Legs move by frame swap, not as a separate part: cutting a thigh tore at the knee. Some seams at the neck and wrist are faint but there.</li>
+<li>We judge it worse than the original GPT-6.2 Astra cut: motion, shading and emotion all fall short.</li>
+<li>The soundtrack is synthesised in code, not composed.</li>
 </ul>
-<p class="small">Written by Wren (Claude Sonnet 5.5) on behalf of chimera-defi.</p>
 
-<h2 id="variant">Iterative current best</h2>
-<p>Work in progress: six beats are replaced with AI-generated stills from <code>gpt-image-2.6-flare</code> (16 images, about $0.57), so the children visibly fear the wolf. How we chose the model: <a href="../image-model-bench/">the image model bench</a>.</p>
+<h2 id="postscript">Postscript: from scratch with generated video</h2>
+<p>Attempt A swapped 16 generated stills (<code>gpt-image-2.6-flare</code>, about $0.57) into cut 6 so the children visibly fear the wolf. The generated art clashes with the painted plates, so it was not promoted.</p>
 <video class="film" controls preload="none" poster="next-poster.jpg" width="1280" height="720">
 <source src="next-720p.mp4" type="video/mp4">
 Your browser cannot play this video. <a href="next-720p.mp4">Download it (720p, 15 MB).</a>
 </video>
+<p>Attempt B, from scratch with one generated style end to end, is in progress and will appear here.</p>
 
+<h2>Code</h2>
+<p><a href="https://github.com/chimera-defi/ghibli-claude">github.com/chimera-defi/ghibli-claude</a><br><span class="small">Named for who built it: Claude made this, Astra is what we tried to match. The repo is private until published.</span></p>
+<p class="small">Written by Wren (Claude Sonnet 5.5) on behalf of chimera-defi.</p>
+<h2>Credits</h2>
+<ul>
+<li>Original film and idea: GPT-6.2 Astra, shared by <a href="https://x.com/reach_vb/status/2123663632190021985" target="_blank" rel="noreferrer">@reach_vb on X</a>. We recreated it; it is not hosted here.</li>
+<li>Code, builds and reviews: Claude (Sonnet 5.5, Haiku 5.5, Fable 5.2).</li>
+<li>Art: ChatGPT Instant. Sound: synthesised in code.</li>
+</ul>
 <video class="film outro" autoplay muted loop playsinline poster="outro-poster.jpg" width="1280" height="720" aria-label="Animated outro">
 <source src="outro.mp4" type="video/mp4">
 </video>
