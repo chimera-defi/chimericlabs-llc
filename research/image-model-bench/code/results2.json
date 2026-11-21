@@ -1,0 +1,490 @@
+[
+ {
+  "model": "gpt-image-2.6-flare",
+  "prompt": "fear",
+  "status": "completed",
+  "seconds": 13.5,
+  "cost": 0.026156,
+  "file": "gpt-image-2.6-flare__fear.png"
+ },
+ {
+  "model": "gpt-image-2.6-flare",
+  "prompt": "wolf",
+  "status": "completed",
+  "seconds": 13.4,
+  "cost": 0.02612,
+  "file": "gpt-image-2.6-flare__wolf.png"
+ },
+ {
+  "model": "gpt-image-2.6-flare",
+  "prompt": "props",
+  "status": "completed",
+  "seconds": 13.4,
+  "cost": 0.026184,
+  "file": "gpt-image-2.6-flare__props.png"
+ },
+ {
+  "model": "gpt-image-2.6-flare",
+  "prompt": "valley",
+  "status": "completed",
+  "seconds": 9.1,
+  "cost": 0.026104,
+  "file": "gpt-image-2.6-flare__valley.png"
+ },
+ {
+  "model": "gpt-image-2.6-sunburst",
+  "prompt": "fear",
+  "status": "completed",
+  "seconds": 30.5,
+  "cost": 0.026108,
+  "file": "gpt-image-2.6-sunburst__fear.png"
+ },
+ {
+  "model": "gpt-image-2.6-sunburst",
+  "prompt": "wolf",
+  "status": "completed",
+  "seconds": 30.7,
+  "cost": 0.026072,
+  "file": "gpt-image-2.6-sunburst__wolf.png"
+ },
+ {
+  "model": "gpt-image-2.6-sunburst",
+  "prompt": "props",
+  "status": "completed",
+  "seconds": 26.0,
+  "cost": 0.026136,
+  "file": "gpt-image-2.6-sunburst__props.png"
+ },
+ {
+  "model": "gpt-image-2.6-sunburst",
+  "prompt": "valley",
+  "status": "completed",
+  "seconds": 30.3,
+  "cost": 0.026056,
+  "file": "gpt-image-2.6-sunburst__valley.png"
+ },
+ {
+  "model": "flux-2-max",
+  "prompt": "fear",
+  "status": "completed",
+  "seconds": 38.9,
+  "cost": 0.08,
+  "file": "flux-2-max__fear.jpg"
+ },
+ {
+  "model": "flux-2-max",
+  "prompt": "wolf",
+  "status": "completed",
+  "seconds": 34.7,
+  "cost": 0.08,
+  "file": "flux-2-max__wolf.jpg"
+ },
+ {
+  "model": "flux-2-max",
+  "prompt": "props",
+  "status": "completed",
+  "seconds": 34.6,
+  "cost": 0.08,
+  "file": "flux-2-max__props.jpg"
+ },
+ {
+  "model": "flux-2-max",
+  "prompt": "valley",
+  "status": "completed",
+  "seconds": 26.0,
+  "cost": 0.08,
+  "file": "flux-2-max__valley.jpg"
+ },
+ {
+  "model": "flux-kontext-max",
+  "prompt": "fear",
+  "status": "completed",
+  "seconds": 26.0,
+  "cost": 0.064,
+  "file": "flux-kontext-max__fear.png"
+ },
+ {
+  "model": "flux-kontext-max",
+  "prompt": "wolf",
+  "status": "completed",
+  "seconds": 17.4,
+  "cost": 0.064,
+  "file": "flux-kontext-max__wolf.png"
+ },
+ {
+  "model": "flux-kontext-max",
+  "prompt": "props",
+  "status": "completed",
+  "seconds": 17.4,
+  "cost": 0.064,
+  "file": "flux-kontext-max__props.png"
+ },
+ {
+  "model": "flux-kontext-max",
+  "prompt": "valley",
+  "status": "completed",
+  "seconds": 25.9,
+  "cost": 0.064,
+  "file": "flux-kontext-max__valley.png"
+ },
+ {
+  "model": "qwen-image-3.0-pro",
+  "prompt": "fear",
+  "status": "completed",
+  "seconds": 13.2,
+  "cost": 0.028572,
+  "file": "qwen-image-3.0-pro__fear.png"
+ },
+ {
+  "model": "qwen-image-3.0-pro",
+  "prompt": "wolf",
+  "status": "completed",
+  "seconds": 13.3,
+  "cost": 0.028572,
+  "file": "qwen-image-3.0-pro__wolf.png"
+ },
+ {
+  "model": "qwen-image-3.0-pro",
+  "prompt": "props",
+  "status": "completed",
+  "seconds": 13.3,
+  "cost": 0.028572,
+  "file": "qwen-image-3.0-pro__props.png"
+ },
+ {
+  "model": "qwen-image-3.0-pro",
+  "prompt": "valley",
+  "status": "completed",
+  "seconds": 13.2,
+  "cost": 0.028572,
+  "file": "qwen-image-3.0-pro__valley.png"
+ },
+ {
+  "model": "kling-v4-image",
+  "prompt": "fear",
+  "status": null,
+  "seconds": null,
+  "cost": null,
+  "error": "{'error': {'code': 'invalid_request_error', 'message': '`resolution` must be 2K, 4K or 8K for kling-v4-image (got: 1k)', 'param': '', 'type': 'invalid_request_error'}}",
+  "dl": "KeyError('result')"
+ },
+ {
+  "model": "kling-v4-image",
+  "prompt": "wolf",
+  "status": null,
+  "seconds": null,
+  "cost": null,
+  "error": "{'error': {'code': 'invalid_request_error', 'message': '`resolution` must be 2K, 4K or 8K for kling-v4-image (got: 1k)', 'param': '', 'type': 'invalid_request_error'}}",
+  "dl": "KeyError('result')"
+ },
+ {
+  "model": "kling-v4-image",
+  "prompt": "props",
+  "status": null,
+  "seconds": null,
+  "cost": null,
+  "error": "{'error': {'code': 'invalid_request_error', 'message': '`resolution` must be 2K, 4K or 8K for kling-v4-image (got: 1k)', 'param': '', 'type': 'invalid_request_error'}}",
+  "dl": "KeyError('result')"
+ },
+ {
+  "model": "kling-v4-image",
+  "prompt": "valley",
+  "status": null,
+  "seconds": null,
+  "cost": null,
+  "error": "{'error': {'code': 'invalid_request_error', 'message': '`resolution` must be 2K, 4K or 8K for kling-v4-image (got: 1k)', 'param': '', 'type': 'invalid_request_error'}}",
+  "dl": "KeyError('result')"
+ },
+ {
+  "model": "flux-3-image",
+  "prompt": "fear",
+  "status": "completed",
+  "seconds": 26.3,
+  "cost": 0.0384,
+  "file": "flux-3-image__fear.png"
+ },
+ {
+  "model": "flux-3-image",
+  "prompt": "wolf",
+  "status": "completed",
+  "seconds": 22.1,
+  "cost": 0.0384,
+  "file": "flux-3-image__wolf.png"
+ },
+ {
+  "model": "flux-3-image",
+  "prompt": "props",
+  "status": "completed",
+  "seconds": 22.1,
+  "cost": 0.0384,
+  "file": "flux-3-image__props.png"
+ },
+ {
+  "model": "flux-3-image",
+  "prompt": "valley",
+  "status": "completed",
+  "seconds": 26.2,
+  "cost": 0.0384,
+  "file": "flux-3-image__valley.png"
+ },
+ {
+  "model": "flux-2-flex",
+  "prompt": "fear",
+  "status": "completed",
+  "seconds": 26.4,
+  "cost": 0.08,
+  "file": "flux-2-flex__fear.jpg"
+ },
+ {
+  "model": "flux-2-flex",
+  "prompt": "wolf",
+  "status": "completed",
+  "seconds": 26.4,
+  "cost": 0.08,
+  "file": "flux-2-flex__wolf.jpg"
+ },
+ {
+  "model": "flux-2-flex",
+  "prompt": "props",
+  "status": "completed",
+  "seconds": 22.5,
+  "cost": 0.08,
+  "file": "flux-2-flex__props.jpg"
+ },
+ {
+  "model": "flux-2-flex",
+  "prompt": "valley",
+  "status": "completed",
+  "seconds": 26.2,
+  "cost": 0.08,
+  "file": "flux-2-flex__valley.jpg"
+ },
+ {
+  "model": "seedream-5-0-pro",
+  "prompt": "fear",
+  "status": "completed",
+  "seconds": 52.6,
+  "cost": 0.036,
+  "file": "seedream-5-0-pro__fear.jpg"
+ },
+ {
+  "model": "seedream-5-0-pro",
+  "prompt": "wolf",
+  "status": "completed",
+  "seconds": 65.3,
+  "cost": 0.036,
+  "file": "seedream-5-0-pro__wolf.jpg"
+ },
+ {
+  "model": "seedream-5-0-pro",
+  "prompt": "props",
+  "status": "completed",
+  "seconds": 52.2,
+  "cost": 0.036,
+  "file": "seedream-5-0-pro__props.jpg"
+ },
+ {
+  "model": "seedream-5-0-pro",
+  "prompt": "valley",
+  "status": "completed",
+  "seconds": 43.6,
+  "cost": 0.036,
+  "file": "seedream-5-0-pro__valley.jpg"
+ },
+ {
+  "model": "gpt-image-2.5-flare",
+  "prompt": "fear",
+  "status": "completed",
+  "seconds": 22.2,
+  "cost": 0.026108,
+  "file": "gpt-image-2.5-flare__fear.png"
+ },
+ {
+  "model": "gpt-image-2.5-flare",
+  "prompt": "wolf",
+  "status": "completed",
+  "seconds": 22.1,
+  "cost": 0.026072,
+  "file": "gpt-image-2.5-flare__wolf.png"
+ },
+ {
+  "model": "gpt-image-2.5-flare",
+  "prompt": "props",
+  "status": "completed",
+  "seconds": 21.9,
+  "cost": 0.026136,
+  "file": "gpt-image-2.5-flare__props.png"
+ },
+ {
+  "model": "gpt-image-2.5-flare",
+  "prompt": "valley",
+  "status": "completed",
+  "seconds": 22.0,
+  "cost": 0.026056,
+  "file": "gpt-image-2.5-flare__valley.png"
+ },
+ {
+  "model": "gpt-image-2",
+  "prompt": "fear",
+  "status": "completed",
+  "seconds": 26.4,
+  "cost": 0.0085,
+  "file": "gpt-image-2__fear.png"
+ },
+ {
+  "model": "gpt-image-2",
+  "prompt": "wolf",
+  "status": "completed",
+  "seconds": 21.8,
+  "cost": 0.0085,
+  "file": "gpt-image-2__wolf.png"
+ },
+ {
+  "model": "gpt-image-2",
+  "prompt": "props",
+  "status": "completed",
+  "seconds": 26.4,
+  "cost": 0.0085,
+  "file": "gpt-image-2__props.png"
+ },
+ {
+  "model": "gpt-image-2",
+  "prompt": "valley",
+  "status": "completed",
+  "seconds": 22.1,
+  "cost": 0.0085,
+  "file": "gpt-image-2__valley.png"
+ },
+ {
+  "model": "wan2.7-image-pro",
+  "prompt": "fear",
+  "status": "completed",
+  "seconds": 30.6,
+  "cost": 0.0544,
+  "file": "wan2.7-image-pro__fear.png"
+ },
+ {
+  "model": "wan2.7-image-pro",
+  "prompt": "wolf",
+  "status": "completed",
+  "seconds": 30.9,
+  "cost": 0.0544,
+  "file": "wan2.7-image-pro__wolf.png"
+ },
+ {
+  "model": "wan2.7-image-pro",
+  "prompt": "props",
+  "status": "completed",
+  "seconds": 26.2,
+  "cost": 0.0544,
+  "file": "wan2.7-image-pro__props.png"
+ },
+ {
+  "model": "wan2.7-image-pro",
+  "prompt": "valley",
+  "status": "completed",
+  "seconds": 26.6,
+  "cost": 0.0544,
+  "file": "wan2.7-image-pro__valley.png"
+ },
+ {
+  "model": "kling-v4-image",
+  "prompt": "fear",
+  "status": "completed",
+  "seconds": 35.1,
+  "cost": 0.057144,
+  "file": "kling-v4-image__fear.png"
+ },
+ {
+  "model": "kling-v4-image",
+  "prompt": "wolf",
+  "status": "completed",
+  "seconds": 35.2,
+  "cost": 0.057144,
+  "file": "kling-v4-image__wolf.png"
+ },
+ {
+  "model": "kling-v4-image",
+  "prompt": "props",
+  "status": "completed",
+  "seconds": 35.4,
+  "cost": 0.057144,
+  "file": "kling-v4-image__props.png"
+ },
+ {
+  "model": "kling-v4-image",
+  "prompt": "valley",
+  "status": "completed",
+  "seconds": 35.5,
+  "cost": 0.057144,
+  "file": "kling-v4-image__valley.png"
+ },
+ {
+  "model": "midjourney",
+  "prompt": "fear",
+  "status": null,
+  "seconds": null,
+  "cost": null,
+  "error": "{'error': {'message': 'model `midjourney` ratio or price is not configured. Please contact the administrator or enable self-use mode (request id: 20261122013344421521916igjmd8rP)', 'type': 'apimart_error', 'param': '', 'code': 'model_price_error'}}",
+  "dl": "KeyError('result')"
+ },
+ {
+  "model": "midjourney",
+  "prompt": "wolf",
+  "status": null,
+  "seconds": null,
+  "cost": null,
+  "error": "{'error': {'message': 'model `midjourney` ratio or price is not configured. Please contact the administrator or enable self-use mode (request id: 20261122013344745916780ghhx7g7f)', 'type': 'apimart_error', 'param': '', 'code': 'model_price_error'}}",
+  "dl": "KeyError('result')"
+ },
+ {
+  "model": "midjourney",
+  "prompt": "props",
+  "status": null,
+  "seconds": null,
+  "cost": null,
+  "error": "{'error': {'message': 'model `midjourney` ratio or price is not configured. Please contact the administrator or enable self-use mode (request id: 20261122013345105969821d4Hu4YQk)', 'type': 'apimart_error', 'param': '', 'code': 'model_price_error'}}",
+  "dl": "KeyError('result')"
+ },
+ {
+  "model": "midjourney",
+  "prompt": "valley",
+  "status": null,
+  "seconds": null,
+  "cost": null,
+  "error": "{'error': {'message': 'model `midjourney` ratio or price is not configured. Please contact the administrator or enable self-use mode (request id: 20261122013345458777541eswVTGju)', 'type': 'apimart_error', 'param': '', 'code': 'model_price_error'}}",
+  "dl": "KeyError('result')"
+ },
+ {
+  "model": "hy-image-v3.5-preview",
+  "prompt": "fear",
+  "status": "completed",
+  "seconds": 22.8,
+  "cost": 0.0192,
+  "file": "hy-image-v3.5-preview__fear.png"
+ },
+ {
+  "model": "hy-image-v3.5-preview",
+  "prompt": "wolf",
+  "status": "completed",
+  "seconds": 18.3,
+  "cost": 0.0192,
+  "file": "hy-image-v3.5-preview__wolf.png"
+ },
+ {
+  "model": "hy-image-v3.5-preview",
+  "prompt": "props",
+  "status": "completed",
+  "seconds": 22.3,
+  "cost": 0.0192,
+  "file": "hy-image-v3.5-preview__props.png"
+ },
+ {
+  "model": "hy-image-v3.5-preview",
+  "prompt": "valley",
+  "status": "completed",
+  "seconds": 17.8,
+  "cost": 0.0192,
+  "file": "hy-image-v3.5-preview__valley.png"
+ }
+]
