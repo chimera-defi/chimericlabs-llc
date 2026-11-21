@@ -1,0 +1,518 @@
+[
+ {
+  "model": "gemini-3.1-flash-lite-image",
+  "prompt": "props",
+  "status": "completed",
+  "seconds": 13.3,
+  "cost": 0.026894,
+  "file": "gemini-3.1-flash-lite-image__props.jpg",
+  "error": null,
+  "dl": null,
+  "skipped": null
+ },
+ {
+  "model": "gemini-nano-banana-2.1",
+  "prompt": "props",
+  "status": "completed",
+  "seconds": 31.0,
+  "cost": 0.032038,
+  "file": "gemini-nano-banana-2.1__props.jpg",
+  "error": null,
+  "dl": null,
+  "skipped": null
+ },
+ {
+  "model": "gemini-3-pro-image-preview",
+  "prompt": "props",
+  "status": "completed",
+  "seconds": 22.2,
+  "cost": 0.02,
+  "file": "gemini-3-pro-image-preview__props.jpg",
+  "error": null,
+  "dl": null,
+  "skipped": null
+ },
+ {
+  "model": "gpt-image-2.5-flare",
+  "prompt": "props",
+  "status": "completed",
+  "seconds": 17.8,
+  "cost": 0.026168,
+  "file": "gpt-image-2.5-flare__props.png",
+  "error": null,
+  "dl": null,
+  "skipped": null
+ },
+ {
+  "model": "gpt-image-2",
+  "prompt": "props",
+  "status": "completed",
+  "seconds": 26.3,
+  "cost": 0.0085,
+  "file": "gpt-image-2__props.png",
+  "error": null,
+  "dl": null,
+  "skipped": null
+ },
+ {
+  "model": "seedream-5-0-pro",
+  "prompt": "props",
+  "status": "completed",
+  "seconds": 66.4,
+  "cost": 0.036,
+  "file": "seedream-5-0-pro__props.jpg",
+  "error": null,
+  "dl": null,
+  "skipped": null
+ },
+ {
+  "model": "seedream-5-5",
+  "prompt": "props",
+  "status": "completed",
+  "seconds": 22.1,
+  "cost": 0.016,
+  "file": "seedream-5-5__props.png",
+  "error": null,
+  "dl": null,
+  "skipped": null
+ },
+ {
+  "model": "flux-3-image",
+  "prompt": "props",
+  "status": "completed",
+  "seconds": 30.9,
+  "cost": 0.0384,
+  "file": "flux-3-image__props.png",
+  "error": null,
+  "dl": null,
+  "skipped": null
+ },
+ {
+  "model": "flux-2-pro",
+  "prompt": "props",
+  "status": "completed",
+  "seconds": 17.8,
+  "cost": 0.036,
+  "file": "flux-2-pro__props.jpg",
+  "error": null,
+  "dl": null,
+  "skipped": null
+ },
+ {
+  "model": "qwen-image-3.0",
+  "prompt": "props",
+  "status": "completed",
+  "seconds": 9.0,
+  "cost": 0.020572,
+  "file": "qwen-image-3.0__props.png",
+  "error": null,
+  "dl": null,
+  "skipped": null
+ },
+ {
+  "model": "minimax-h3-image-highspeed",
+  "prompt": "props",
+  "status": "completed",
+  "seconds": 22.6,
+  "cost": 0.036384,
+  "file": "minimax-h3-image-highspeed__props.jpg",
+  "error": null,
+  "dl": null,
+  "skipped": null
+ },
+ {
+  "model": "grok-imagine-image-2.0",
+  "prompt": "props",
+  "status": null,
+  "seconds": null,
+  "cost": null,
+  "file": null,
+  "error": {
+   "error": {
+    "code": "invalid_request_error",
+    "message": "parameter \"size\" is not supported for asynchronous xAI image tasks",
+    "param": "",
+    "type": "invalid_request_error"
+   }
+  },
+  "dl": "KeyError('result')",
+  "skipped": null
+ },
+ {
+  "model": "z-image-turbo",
+  "prompt": "props",
+  "status": "completed",
+  "seconds": 4.8,
+  "cost": 0.01,
+  "file": "z-image-turbo__props.png",
+  "error": null,
+  "dl": null,
+  "skipped": null
+ },
+ {
+  "model": "mai-image-2.7-flash",
+  "prompt": "props",
+  "status": "completed",
+  "seconds": 13.8,
+  "cost": 0.00817,
+  "file": "mai-image-2.7-flash__props.png",
+  "error": null,
+  "dl": null,
+  "skipped": null
+ },
+ {
+  "model": "imagen-4.0-apimart",
+  "prompt": "props",
+  "status": "failed",
+  "seconds": 63.4,
+  "cost": 0,
+  "file": null,
+  "error": null,
+  "dl": "KeyError('result')",
+  "skipped": null
+ },
+ {
+  "model": "gemini-3.1-flash-lite-image",
+  "prompt": "fear",
+  "status": "completed",
+  "seconds": 22.8,
+  "cost": 0.026894,
+  "file": "gemini-3.1-flash-lite-image__fear.jpg",
+  "error": null,
+  "dl": null,
+  "skipped": null
+ },
+ {
+  "model": "gemini-nano-banana-2.1",
+  "prompt": "fear",
+  "status": "completed",
+  "seconds": 45.4,
+  "cost": 0.032032,
+  "file": "gemini-nano-banana-2.1__fear.jpg",
+  "error": null,
+  "dl": null,
+  "skipped": null
+ },
+ {
+  "model": "gemini-3-pro-image-preview",
+  "prompt": "fear",
+  "status": "completed",
+  "seconds": 32.0,
+  "cost": 0.02,
+  "file": "gemini-3-pro-image-preview__fear.jpg",
+  "error": null,
+  "dl": null,
+  "skipped": null
+ },
+ {
+  "model": "gpt-image-2.5-flare",
+  "prompt": "fear",
+  "status": "completed",
+  "seconds": 22.6,
+  "cost": 0.026164,
+  "file": "gpt-image-2.5-flare__fear.png",
+  "error": null,
+  "dl": null,
+  "skipped": null
+ },
+ {
+  "model": "gpt-image-2",
+  "prompt": "fear",
+  "status": "completed",
+  "seconds": 22.8,
+  "cost": 0.0085,
+  "file": "gpt-image-2__fear.png",
+  "error": null,
+  "dl": null,
+  "skipped": null
+ },
+ {
+  "model": "seedream-5-0-pro",
+  "prompt": "fear",
+  "status": "completed",
+  "seconds": 62.3,
+  "cost": 0.036,
+  "file": "seedream-5-0-pro__fear.jpg",
+  "error": null,
+  "dl": null,
+  "skipped": null
+ },
+ {
+  "model": "seedream-5-5",
+  "prompt": "fear",
+  "status": "failed",
+  "seconds": 22.5,
+  "cost": 0,
+  "file": null,
+  "error": null,
+  "dl": "KeyError('result')",
+  "skipped": null
+ },
+ {
+  "model": "flux-3-image",
+  "prompt": "fear",
+  "status": "completed",
+  "seconds": 26.9,
+  "cost": 0.0384,
+  "file": "flux-3-image__fear.png",
+  "error": null,
+  "dl": null,
+  "skipped": null
+ },
+ {
+  "model": "flux-2-pro",
+  "prompt": "fear",
+  "status": "completed",
+  "seconds": 22.2,
+  "cost": 0.036,
+  "file": "flux-2-pro__fear.jpg",
+  "error": null,
+  "dl": null,
+  "skipped": null
+ },
+ {
+  "model": "qwen-image-3.0",
+  "prompt": "fear",
+  "status": "completed",
+  "seconds": 9.1,
+  "cost": 0.020572,
+  "file": "qwen-image-3.0__fear.png",
+  "error": null,
+  "dl": null,
+  "skipped": null
+ },
+ {
+  "model": "minimax-h3-image-highspeed",
+  "prompt": "fear",
+  "status": "completed",
+  "seconds": 22.1,
+  "cost": 0.036936,
+  "file": "minimax-h3-image-highspeed__fear.jpg",
+  "error": null,
+  "dl": null,
+  "skipped": null
+ },
+ {
+  "model": "grok-imagine-image-2.0",
+  "prompt": "fear",
+  "status": null,
+  "seconds": null,
+  "cost": null,
+  "file": null,
+  "error": {
+   "error": {
+    "code": "invalid_request_error",
+    "message": "parameter \"size\" is not supported for asynchronous xAI image tasks",
+    "param": "",
+    "type": "invalid_request_error"
+   }
+  },
+  "dl": "KeyError('result')",
+  "skipped": null
+ },
+ {
+  "model": "z-image-turbo",
+  "prompt": "fear",
+  "status": "completed",
+  "seconds": 9.0,
+  "cost": 0.01,
+  "file": "z-image-turbo__fear.png",
+  "error": null,
+  "dl": null,
+  "skipped": null
+ },
+ {
+  "model": "mai-image-2.7-flash",
+  "prompt": "fear",
+  "status": "completed",
+  "seconds": 17.7,
+  "cost": 0.008168,
+  "file": "mai-image-2.7-flash__fear.png",
+  "error": null,
+  "dl": null,
+  "skipped": null
+ },
+ {
+  "model": "imagen-4.0-apimart",
+  "prompt": "fear",
+  "status": "failed",
+  "seconds": 61.6,
+  "cost": 0,
+  "file": null,
+  "error": null,
+  "dl": "KeyError('result')",
+  "skipped": null
+ },
+ {
+  "model": "gemini-3.1-flash-lite-image",
+  "prompt": "plate",
+  "status": "completed",
+  "seconds": 26.3,
+  "cost": 0.026888,
+  "file": "gemini-3.1-flash-lite-image__plate.jpg",
+  "error": null,
+  "dl": null,
+  "skipped": null
+ },
+ {
+  "model": "gemini-nano-banana-2.1",
+  "prompt": "plate",
+  "status": "completed",
+  "seconds": 61.5,
+  "cost": 0.032006,
+  "file": "gemini-nano-banana-2.1__plate.jpg",
+  "error": null,
+  "dl": null,
+  "skipped": null
+ },
+ {
+  "model": "gemini-3-pro-image-preview",
+  "prompt": "plate",
+  "status": "completed",
+  "seconds": 22.1,
+  "cost": 0.02,
+  "file": "gemini-3-pro-image-preview__plate.jpg",
+  "error": null,
+  "dl": null,
+  "skipped": null
+ },
+ {
+  "model": "gpt-image-2.5-flare",
+  "prompt": "plate",
+  "status": "completed",
+  "seconds": 22.0,
+  "cost": 0.026072,
+  "file": "gpt-image-2.5-flare__plate.png",
+  "error": null,
+  "dl": null,
+  "skipped": null
+ },
+ {
+  "model": "gpt-image-2",
+  "prompt": "plate",
+  "status": "completed",
+  "seconds": 22.2,
+  "cost": 0.0085,
+  "file": "gpt-image-2__plate.png",
+  "error": null,
+  "dl": null,
+  "skipped": null
+ },
+ {
+  "model": "seedream-5-0-pro",
+  "prompt": "plate",
+  "status": "completed",
+  "seconds": 57.2,
+  "cost": 0.036,
+  "file": "seedream-5-0-pro__plate.jpg",
+  "error": null,
+  "dl": null,
+  "skipped": null
+ },
+ {
+  "model": "seedream-5-5",
+  "prompt": "plate",
+  "status": "completed",
+  "seconds": 26.5,
+  "cost": 0.016,
+  "file": "seedream-5-5__plate.png",
+  "error": null,
+  "dl": null,
+  "skipped": null
+ },
+ {
+  "model": "flux-3-image",
+  "prompt": "plate",
+  "status": "completed",
+  "seconds": 22.5,
+  "cost": 0.0384,
+  "file": "flux-3-image__plate.png",
+  "error": null,
+  "dl": null,
+  "skipped": null
+ },
+ {
+  "model": "flux-2-pro",
+  "prompt": "plate",
+  "status": "completed",
+  "seconds": 18.0,
+  "cost": 0.036,
+  "file": "flux-2-pro__plate.jpg",
+  "error": null,
+  "dl": null,
+  "skipped": null
+ },
+ {
+  "model": "qwen-image-3.0",
+  "prompt": "plate",
+  "status": "completed",
+  "seconds": 9.0,
+  "cost": 0.020572,
+  "file": "qwen-image-3.0__plate.png",
+  "error": null,
+  "dl": null,
+  "skipped": null
+ },
+ {
+  "model": "minimax-h3-image-highspeed",
+  "prompt": "plate",
+  "status": "completed",
+  "seconds": 17.7,
+  "cost": 0.03588,
+  "file": "minimax-h3-image-highspeed__plate.jpg",
+  "error": null,
+  "dl": null,
+  "skipped": null
+ },
+ {
+  "model": "grok-imagine-image-2.0",
+  "prompt": "plate",
+  "status": null,
+  "seconds": null,
+  "cost": null,
+  "file": null,
+  "error": {
+   "error": {
+    "code": "invalid_request_error",
+    "message": "parameter \"size\" is not supported for asynchronous xAI image tasks",
+    "param": "",
+    "type": "invalid_request_error"
+   }
+  },
+  "dl": "KeyError('result')",
+  "skipped": null
+ },
+ {
+  "model": "z-image-turbo",
+  "prompt": "plate",
+  "status": "completed",
+  "seconds": 4.8,
+  "cost": 0.01,
+  "file": "z-image-turbo__plate.png",
+  "error": null,
+  "dl": null,
+  "skipped": null
+ },
+ {
+  "model": "mai-image-2.7-flash",
+  "prompt": "plate",
+  "status": "completed",
+  "seconds": 17.7,
+  "cost": 0.008136,
+  "file": "mai-image-2.7-flash__plate.png",
+  "error": null,
+  "dl": null,
+  "skipped": null
+ },
+ {
+  "model": "imagen-4.0-apimart",
+  "prompt": "plate",
+  "status": "failed",
+  "seconds": 61.8,
+  "cost": 0,
+  "file": null,
+  "error": null,
+  "dl": "KeyError('result')",
+  "skipped": null
+ }
+]

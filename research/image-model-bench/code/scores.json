@@ -1,0 +1,16 @@
+{
+ "note": "Round 3 scores, 0 to 5, one reviewer viewing contact sheets sheet3_*.jpg (run A = round 2 image, run B = round 3 repeat). 5 = I would use it as is; props: 5 only when the PNG has real alpha (measured), 2 when the backdrop is drawn. pair and cine have one run.",
+ "repeat": {
+  "fear":   {"gpt-image-2.6-flare":[5,5],"gpt-image-2.6-sunburst":[5,5],"gpt-image-2":[4,4],"flux-3-image":[3,3],"seedream-5-0-pro":[3,4]},
+  "wolf":   {"gpt-image-2.6-flare":[5,5],"gpt-image-2.6-sunburst":[5,5],"gpt-image-2":[4,4],"flux-3-image":[3,3],"seedream-5-0-pro":[4,2]},
+  "valley": {"gpt-image-2.6-flare":[5,5],"gpt-image-2.6-sunburst":[5,5],"gpt-image-2":[4,4],"flux-3-image":[4,3],"seedream-5-0-pro":[4,4]},
+  "props":  {"gpt-image-2.6-flare":[5,5],"gpt-image-2.6-sunburst":[5,5],"gpt-image-2":[5,2],"flux-3-image":[2,2],"seedream-5-0-pro":[2,2]}
+ },
+ "single": {
+  "cine": {"gpt-image-2.6-flare":5,"gpt-image-2.6-sunburst":5,"gpt-image-2":4,"flux-3-image":3,"seedream-5-0-pro":4,"gemini-3-pro-image-preview":4},
+  "pair": {"gpt-image-2.6-flare":4,"gpt-image-2.6-sunburst":3,"gpt-image-2":3,"flux-3-image":3,"seedream-5-0-pro":4,"gemini-3-pro-image-preview":3}
+ },
+ "pair_notes": {"gpt-image-2.6-sunburst":"copied the reference's gold frame border","gpt-image-2":"copied the reference's gold frame border","gemini-3-pro-image-preview":"copied the reference's gold frame border"},
+ "pass2_scores": {"gpt-image-2.6-flare":[5,5,5,5],"gpt-image-2.6-sunburst":[5,5,5,5],"flux-2-max":[3,3,5,2],"flux-kontext-max":[2,2,5,1],"qwen-image-3.0-pro":[4,4,3,2],"kling-v4-image":[4,2,2,2],"flux-3-image":[4,3,5,2],"flux-2-flex":[4,3,5,2],"seedream-5-0-pro":[4,3,5,2],"gpt-image-2.5-flare":[4,4,5,5],"gpt-image-2":[4,4,5,5],"wan2.7-image-pro":[3,3,5,4],"hy-image-v3.5-preview":[3,3,4,3]},
+ "pass2_score_columns": ["style","emotion_faces","text_free","edge_alpha"]
+}
