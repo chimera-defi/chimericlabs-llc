@@ -96,6 +96,10 @@ details > summary:focus-visible { outline: 2px solid var(--color-accent); outlin
 details[open] > summary { margin-bottom: var(--gap-s); }
 details > * + * { margin-top: var(--gap-s); }
 .byline { font-size: 13px; color: var(--ds-muted); padding-top: var(--gap-l); }
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-top:16px}.vcell video{width:100%;height:auto;display:block;border:1px solid var(--data-grid)}.vcell h4{margin:0 0 2px}
+.chart svg{max-width:100%}.chart circle{cursor:pointer;transition:r .12s}.chart circle:hover,.chart circle:focus{outline:none;stroke:var(--color-text);stroke-width:3}
+.pa2{fill:var(--color-neutral-300);font-size:14px}.chart .pl{font-size:14px;paint-order:stroke;stroke:var(--color-surface);stroke-width:4px}.chart .pl2{font-size:13px}
+#tip{position:fixed;z-index:50;pointer-events:none;background:var(--color-surface);color:var(--color-text);border:1px solid var(--color-neutral-500);border-radius:6px;padding:8px 10px;font-size:13px;line-height:1.4;white-space:pre;box-shadow:0 4px 18px rgba(0,0,0,.4);display:none}
 </style>
 </head>
 <body class="ds-page">
@@ -110,7 +114,7 @@ details > * + * { margin-top: var(--gap-s); }
 </nav>
 </header>
 <nav class="toc" aria-label="On this page"><ol>
-<li><a href="#verdict">Verdict</a></li><li><a href="#method">Method</a></li><li><a href="#frontier">Frontier</a></li><li><a href="#winners">Winners</a></li><li><a href="#repeat">Repeat runs</a></li><li><a href="#reference">Reference image</a></li><li><a href="#oddities">Oddities</a></li><li><a href="#spend">Where the $10 went</a></li><li><a href="#video">Video</a></li><li><a href="#limits">Limits</a></li><li><a href="#used-in">Used in</a></li><li><a href="#source">Source</a></li>
+<li><a href="#verdict">Verdict</a></li><li><a href="#method">Method</a></li><li><a href="#frontier">Frontier</a></li><li><a href="#winners">Winners</a></li><li><a href="#repeat">Repeat runs</a></li><li><a href="#reference">Reference image</a></li><li><a href="#oddities">Oddities</a></li><li><a href="#spend">Where the $10 went</a></li><li><a href="#video">Video</a></li><li><a href="#data">All data</a></li><li><a href="#film">Film cost</a></li><li><a href="#limits">Limits</a></li><li><a href="#used-in">Used in</a></li><li><a href="#source">Source</a></li>
 </ol></nav>
 <main class="ds-wrap">
 <article class="bench" id="article">
@@ -153,38 +157,107 @@ details > * + * { margin-top: var(--gap-s); }
 
 <section class="sec" id="frontier" aria-labelledby="h-frontier">
 <h2 id="h-frontier">Frontier</h2>
-<p><strong class="key">3 of 13</strong> models are on the frontier: nothing is cheaper and scores higher. gpt-image-2 is the cheap end at $0.0085. gpt-image-2.6-sunburst and gpt-image-2.6-flare tie at the top, $0.026 for a 5.0. flux-2-max and flux-2-flex cost <strong class="key">$0.08</strong>, three times more, and score 3.25 and 3.5.</p>
+<p><strong class="key">3 of 13</strong> scored models are on the frontier (gpt-image-2, and the tied pair 2.6-flare and 2.6-sunburst): nothing is cheaper and scores higher. gpt-image-2 is the cheap end at $0.0085. gpt-image-2.6-sunburst and gpt-image-2.6-flare tie at the top, $0.026 for a 5.0. flux-2-max and flux-2-flex cost <strong class="key">$0.08</strong>, three times more, and score 3.25 and 3.5.</p>
 <figure class="chart">
-<svg viewBox="0 0 480 396" role="img" aria-labelledby="pt pd">
-<title id="pt">Quality score against cost per image for 13 image models</title>
-<desc id="pd">gpt-image-2 at 0.0085 dollars scores 4.5. gpt-image-2.6-sunburst and gpt-image-2.6-flare, both about 0.026 dollars, score 5.0. These three are on the frontier. The other ten models cost more or score lower than a frontier model.</desc>
-<line class="pg" x1="64" x2="456" y1="332.0" y2="332.0"/><text class="pa" x="54" y="336.0" text-anchor="end">2</text>
-<line class="pg" x1="64" x2="456" y1="229.3" y2="229.3"/><text class="pa" x="54" y="233.3" text-anchor="end">3</text>
-<line class="pg" x1="64" x2="456" y1="126.7" y2="126.7"/><text class="pa" x="54" y="130.7" text-anchor="end">4</text>
-<line class="pg" x1="64" x2="456" y1="24.0" y2="24.0"/><text class="pa" x="54" y="28.0" text-anchor="end">5</text>
-<line class="pg" x1="135.2" x2="135.2" y1="24" y2="332"/><text class="pa" x="135.2" y="352" text-anchor="middle">$0.01</text>
-<line class="pg" x1="231.8" x2="231.8" y1="24" y2="332"/><text class="pa" x="231.8" y="352" text-anchor="middle">$0.02</text>
-<line class="pg" x1="359.4" x2="359.4" y1="24" y2="332"/><text class="pa" x="359.4" y="352" text-anchor="middle">$0.05</text>
-<line class="pg" x1="456.0" x2="456.0" y1="24" y2="332"/><text class="pa" x="456.0" y="352" text-anchor="middle">$0.10</text>
-<text class="pa" x="260.0" y="374" text-anchor="middle">Cost per image (log scale)</text><text class="pa" transform="translate(16 178.0) rotate(-90)" text-anchor="middle">Quality score (0 to 5)</text>
-<polyline class="pf" points="112.5,75.3 269.1,24.0 456.0,24.0"/>
-<circle class="pd" cx="424.9" cy="203.7" r="6"><title>flux-2-max: $0.0800, score 3.25</title></circle>
-<circle class="pd" cx="393.8" cy="280.7" r="6"><title>flux-kontext-max: $0.0640, score 2.5</title></circle>
-<circle class="pd" cx="281.5" cy="203.7" r="6"><title>qwen-image-3.0-pro: $0.0286, score 3.25</title></circle>
-<circle class="pd" cx="378.0" cy="280.7" r="6"><title>kling-v4-image: $0.0571, score 2.5</title></circle>
-<circle class="pd" cx="322.6" cy="178.0" r="6"><title>flux-3-image: $0.0384, score 3.5</title></circle>
-<circle class="pd" cx="424.9" cy="178.0" r="6"><title>flux-2-flex: $0.0800, score 3.5</title></circle>
-<circle class="pd" cx="313.7" cy="178.0" r="6"><title>seedream-5-0-pro: $0.0360, score 3.5</title></circle>
-<circle class="pd" cx="268.8" cy="75.3" r="6"><title>gpt-image-2.5-flare: $0.0261, score 4.5</title></circle>
-<circle class="pd" cx="371.2" cy="152.3" r="6"><title>wan2.7-image-pro: $0.0544, score 3.75</title></circle>
-<circle class="pd" cx="226.1" cy="203.7" r="6"><title>hy-image-v3.5-preview: $0.0192, score 3.25</title></circle>
-<circle class="pb" cx="269.1" cy="24.0" r="8"><title>gpt-image-2.6-flare: $0.0261, score 5.0</title></circle>
-<circle class="pb" cx="268.8" cy="24.0" r="8"><title>gpt-image-2.6-sunburst: $0.0261, score 5.0</title></circle>
-<circle class="pb" cx="112.5" cy="75.3" r="8"><title>gpt-image-2: $0.0085, score 4.5</title></circle>
-<text class="pl" x="126.5" y="97.3">gpt-image-2</text><text class="pl2" x="126.5" y="116.3">$0.0085, 4.5</text>
-<text class="pl" x="456" y="50.0" text-anchor="end">2.6-sunburst, 2.6-flare</text><text class="pl2" x="456" y="68.0" text-anchor="end">$0.026, 5.0 (tied)</text>
+<svg viewBox="0 0 900 540" role="img" aria-labelledby="cit cid" id="ci"><title id="cit">Quality against cost per image for 13 image models</title><desc id="cid">Scored models. Frontier: gpt-image-2 at $0.0085 scoring 4.5, then gpt-image-2.6-flare and gpt-image-2.6-sunburst at $0.026 scoring 5.0 (tied, drawn side by side).</desc>
+<line class="pg" x1="70" x2="876" y1="476.0" y2="476.0"/><text class="pa2" x="60" y="481.0" text-anchor="end">2</text>
+<line class="pg" x1="70" x2="876" y1="400.7" y2="400.7"/><text class="pa2" x="60" y="405.7" text-anchor="end">2.5</text>
+<line class="pg" x1="70" x2="876" y1="325.3" y2="325.3"/><text class="pa2" x="60" y="330.3" text-anchor="end">3</text>
+<line class="pg" x1="70" x2="876" y1="250.0" y2="250.0"/><text class="pa2" x="60" y="255.0" text-anchor="end">3.5</text>
+<line class="pg" x1="70" x2="876" y1="174.7" y2="174.7"/><text class="pa2" x="60" y="179.7" text-anchor="end">4</text>
+<line class="pg" x1="70" x2="876" y1="99.3" y2="99.3"/><text class="pa2" x="60" y="104.3" text-anchor="end">4.5</text>
+<line class="pg" x1="70" x2="876" y1="24.0" y2="24.0"/><text class="pa2" x="60" y="29.0" text-anchor="end">5</text>
+<line class="pg" x1="185.6" x2="185.6" y1="24" y2="476"/><text class="pa2" x="185.6" y="498" text-anchor="middle">$0.01</text>
+<line class="pg" x1="393.5" x2="393.5" y1="24" y2="476"/><text class="pa2" x="393.5" y="498" text-anchor="middle">$0.02</text>
+<line class="pg" x1="668.2" x2="668.2" y1="24" y2="476"/><text class="pa2" x="668.2" y="498" text-anchor="middle">$0.05</text>
+<line class="pg" x1="876.0" x2="876.0" y1="24" y2="476"/><text class="pa2" x="876.0" y="498" text-anchor="middle">$0.1</text>
+<text class="pa2" x="473.0" y="528" text-anchor="middle">Cost per image (log scale)</text><text class="pa2" transform="translate(18 250.0) rotate(-90)" text-anchor="middle">Quality (mean of 4 scores, 0 to 5)</text>
+<polyline class="pf" points="136.9,99.3 477.8,24.0 492.8,24.0"/>
+<circle class="pb" cx="477.8" cy="24.0" r="9" tabindex="0" data-tip="gpt-image-2.6-flare
+$0.0265 per image
+quality 5.00 of 5
+style 5, emotion_faces 5, text_free 5, edge_alpha 5
+repeat runs [[5, 5], [5, 5], [5, 5], [5, 5]], cine/pair [5, 4]
+on the frontier" aria-label="gpt-image-2.6-flare, $0.0265 per image, quality 5.00 of 5, style 5, emotion_faces 5, text_free 5, edge_alpha 5, repeat runs [[5, 5], [5, 5], [5, 5], [5, 5]], cine/pair [5, 4], on the frontier"/>
+<text class="pl" x="463.8" y="29.0" text-anchor="end">gpt-img-2.6-flare</text>
+<circle class="pb" cx="492.8" cy="24.0" r="9" tabindex="0" data-tip="gpt-image-2.6-sunburst
+$0.0265 per image
+quality 5.00 of 5
+style 5, emotion_faces 5, text_free 5, edge_alpha 5
+repeat runs [[5, 5], [5, 5], [5, 5], [5, 5]], cine/pair [5, 3]
+on the frontier" aria-label="gpt-image-2.6-sunburst, $0.0265 per image, quality 5.00 of 5, style 5, emotion_faces 5, text_free 5, edge_alpha 5, repeat runs [[5, 5], [5, 5], [5, 5], [5, 5]], cine/pair [5, 3], on the frontier"/>
+<text class="pl" x="506.8" y="29.0" text-anchor="start">gpt-img-2.6-sunburst</text>
+<circle class="pb" cx="136.9" cy="99.3" r="9" tabindex="0" data-tip="gpt-image-2
+$0.0085 per image
+quality 4.50 of 5
+style 4, emotion_faces 4, text_free 5, edge_alpha 5
+repeat runs [[4, 4], [4, 4], [4, 4], [5, 2]], cine/pair [4, 3]
+on the frontier" aria-label="gpt-image-2, $0.0085 per image, quality 4.50 of 5, style 4, emotion_faces 4, text_free 5, edge_alpha 5, repeat runs [[4, 4], [4, 4], [4, 4], [5, 2]], cine/pair [4, 3], on the frontier"/>
+<text class="pl" x="150.9" y="104.3" text-anchor="start">gpt-img-2</text>
+<circle class="pd" cx="809.1" cy="287.7" r="7" tabindex="0" data-tip="flux-2-max
+$0.0800 per image
+quality 3.25 of 5
+style 3, emotion_faces 3, text_free 5, edge_alpha 2
+beaten by a cheaper or better model" aria-label="flux-2-max, $0.0800 per image, quality 3.25 of 5, style 3, emotion_faces 3, text_free 5, edge_alpha 2, beaten by a cheaper or better model"/>
+<text class="pl2" x="823.1" y="292.7" text-anchor="start">flux-2-max</text>
+<circle class="pd" cx="742.2" cy="400.7" r="7" tabindex="0" data-tip="flux-kontext-max
+$0.0640 per image
+quality 2.50 of 5
+style 2, emotion_faces 2, text_free 5, edge_alpha 1
+beaten by a cheaper or better model" aria-label="flux-kontext-max, $0.0640 per image, quality 2.50 of 5, style 2, emotion_faces 2, text_free 5, edge_alpha 1, beaten by a cheaper or better model"/>
+<text class="pl2" x="756.2" y="405.7" text-anchor="start">flux-kontext-max</text>
+<circle class="pd" cx="500.7" cy="287.7" r="7" tabindex="0" data-tip="qwen-image-3.0-pro
+$0.0286 per image
+quality 3.25 of 5
+style 4, emotion_faces 4, text_free 3, edge_alpha 2
+beaten by a cheaper or better model" aria-label="qwen-image-3.0-pro, $0.0286 per image, quality 3.25 of 5, style 4, emotion_faces 4, text_free 3, edge_alpha 2, beaten by a cheaper or better model"/>
+<text class="pl2" x="514.7" y="292.7" text-anchor="start">qwen-image-3.0-pro</text>
+<circle class="pd" cx="708.0" cy="400.7" r="7" tabindex="0" data-tip="kling-v4-image
+$0.0571 per image
+quality 2.50 of 5
+style 4, emotion_faces 2, text_free 2, edge_alpha 2
+beaten by a cheaper or better model" aria-label="kling-v4-image, $0.0571 per image, quality 2.50 of 5, style 4, emotion_faces 2, text_free 2, edge_alpha 2, beaten by a cheaper or better model"/>
+<text class="pl2" x="694.0" y="405.7" text-anchor="end">kling-v4-image</text>
+<circle class="pd" cx="589.0" cy="250.0" r="7" tabindex="0" data-tip="flux-3-image
+$0.0384 per image
+quality 3.50 of 5
+style 4, emotion_faces 3, text_free 5, edge_alpha 2
+repeat runs [[3, 3], [3, 3], [4, 3], [2, 2]], cine/pair [3, 3]
+beaten by a cheaper or better model" aria-label="flux-3-image, $0.0384 per image, quality 3.50 of 5, style 4, emotion_faces 3, text_free 5, edge_alpha 2, repeat runs [[3, 3], [3, 3], [4, 3], [2, 2]], cine/pair [3, 3], beaten by a cheaper or better model"/>
+<text class="pl2" x="603.0" y="255.0" text-anchor="start">flux-3-image</text>
+<circle class="pd" cx="809.1" cy="250.0" r="7" tabindex="0" data-tip="flux-2-flex
+$0.0800 per image
+quality 3.50 of 5
+style 4, emotion_faces 3, text_free 5, edge_alpha 2
+beaten by a cheaper or better model" aria-label="flux-2-flex, $0.0800 per image, quality 3.50 of 5, style 4, emotion_faces 3, text_free 5, edge_alpha 2, beaten by a cheaper or better model"/>
+<text class="pl2" x="795.1" y="255.0" text-anchor="end">flux-2-flex</text>
+<circle class="pd" cx="569.7" cy="250.0" r="7" tabindex="0" data-tip="seedream-5-0-pro
+$0.0360 per image
+quality 3.50 of 5
+style 4, emotion_faces 3, text_free 5, edge_alpha 2
+repeat runs [[3, 4], [4, 2], [4, 4], [2, 2]], cine/pair [4, 4]
+beaten by a cheaper or better model" aria-label="seedream-5-0-pro, $0.0360 per image, quality 3.50 of 5, style 4, emotion_faces 3, text_free 5, edge_alpha 2, repeat runs [[3, 4], [4, 2], [4, 4], [2, 2]], cine/pair [4, 4], beaten by a cheaper or better model"/>
+<text class="pl2" x="555.7" y="255.0" text-anchor="end">seedream-5-0-pro</text>
+<circle class="pd" cx="473.3" cy="99.3" r="7" tabindex="0" data-tip="gpt-image-2.5-flare
+$0.0261 per image
+quality 4.50 of 5
+style 4, emotion_faces 4, text_free 5, edge_alpha 5
+beaten by a cheaper or better model" aria-label="gpt-image-2.5-flare, $0.0261 per image, quality 4.50 of 5, style 4, emotion_faces 4, text_free 5, edge_alpha 5, beaten by a cheaper or better model"/>
+<text class="pl2" x="487.3" y="104.3" text-anchor="start">gpt-img-2.5-flare</text>
+<circle class="pd" cx="693.5" cy="212.3" r="7" tabindex="0" data-tip="wan2.7-image-pro
+$0.0544 per image
+quality 3.75 of 5
+style 3, emotion_faces 3, text_free 5, edge_alpha 4
+beaten by a cheaper or better model" aria-label="wan2.7-image-pro, $0.0544 per image, quality 3.75 of 5, style 3, emotion_faces 3, text_free 5, edge_alpha 4, beaten by a cheaper or better model"/>
+<text class="pl2" x="707.5" y="217.3" text-anchor="start">wan2.7-image-pro</text>
+<circle class="pd" cx="381.2" cy="287.7" r="7" tabindex="0" data-tip="hy-image-v3.5-preview
+$0.0192 per image
+quality 3.25 of 5
+style 3, emotion_faces 3, text_free 4, edge_alpha 3
+beaten by a cheaper or better model" aria-label="hy-image-v3.5-preview, $0.0192 per image, quality 3.25 of 5, style 3, emotion_faces 3, text_free 4, edge_alpha 3, beaten by a cheaper or better model"/>
+<text class="pl2" x="367.2" y="292.7" text-anchor="end">hy-image-v3.5-preview</text>
 </svg>
-<figcaption>Quality is the mean of the four pass 2 scores. Cost is the mean over four prompts. Filled dots are on the frontier; hollow dots are beaten. Midjourney and the pass 1 models are not scored.</figcaption>
+<figcaption>Hover or tap a dot for the model, cost and scores. Quality is the mean of four pass 2 scores (style, emotion and faces, text-free, edge). Cost is the mean over the prompts run. Filled red dots are on the frontier; hollow dots are beaten. gpt-image-2.6-flare and sunburst tie exactly and are drawn side by side. Midjourney and the pass 1 models are not scored.</figcaption>
 </figure>
 <details><summary>Data behind the chart</summary>
 <div class="scroll"><table class="table"><caption class="meta">Sorted by cost.</caption><thead><tr><th scope="col">Model</th><th scope="col" class="num">$ per image</th><th scope="col" class="num">Score</th><th scope="col">Status</th></tr></thead><tbody><tr><th scope="row">gpt-image-2</th><td class="num">$0.0085</td><td class="num">4.50</td><td>on the frontier</td></tr><tr><th scope="row">hy-image-v3.5-preview</th><td class="num">$0.0192</td><td class="num">3.25</td><td>beaten</td></tr><tr><th scope="row">gpt-image-2.6-sunburst</th><td class="num">$0.0261</td><td class="num">5.00</td><td>on the frontier</td></tr><tr><th scope="row">gpt-image-2.5-flare</th><td class="num">$0.0261</td><td class="num">4.50</td><td>beaten</td></tr><tr><th scope="row">gpt-image-2.6-flare</th><td class="num">$0.0261</td><td class="num">5.00</td><td>on the frontier</td></tr><tr><th scope="row">qwen-image-3.0-pro</th><td class="num">$0.0286</td><td class="num">3.25</td><td>beaten</td></tr><tr><th scope="row">seedream-5-0-pro</th><td class="num">$0.0360</td><td class="num">3.50</td><td>beaten</td></tr><tr><th scope="row">flux-3-image</th><td class="num">$0.0384</td><td class="num">3.50</td><td>beaten</td></tr><tr><th scope="row">wan2.7-image-pro</th><td class="num">$0.0544</td><td class="num">3.75</td><td>beaten</td></tr><tr><th scope="row">kling-v4-image</th><td class="num">$0.0571</td><td class="num">2.50</td><td>beaten</td></tr><tr><th scope="row">flux-kontext-max</th><td class="num">$0.0640</td><td class="num">2.50</td><td>beaten</td></tr><tr><th scope="row">flux-2-max</th><td class="num">$0.0800</td><td class="num">3.25</td><td>beaten</td></tr><tr><th scope="row">flux-2-flex</th><td class="num">$0.0800</td><td class="num">3.50</td><td>beaten</td></tr></tbody></table></div>
@@ -280,6 +353,89 @@ details > * + * { margin-top: var(--gap-s); }
 <section class="sec" id="video" aria-labelledby="h-video">
 <h2 id="h-video">Video models, quick test</h2>
 <p>Two image-to-video prompts: the boy reaching for the bird, and a push-in on the wolf. Best value: <strong class="key">MiniMax-Hailuo-2.3-Fast, $0.149 for 6 s</strong>, and <strong class="key">veo3.1-fast, $0.14 for 8 s</strong>. kling-v3 std ($0.336 per 5 s) has livelier motion. Image-to-video holds a face for 5 to 8 s but does not fix a different face in the next shot. Native resolution is 480 to 768p.</p>
+<figure class="chart">
+<svg viewBox="0 0 900 540" role="img" aria-labelledby="cvt cvd" id="cv"><title id="cvt">Quality against cost per second for 9 video models</title><desc id="cvd">Image-to-video test with two start frames. Frontier models are cheapest or best at their price.</desc>
+<line class="pg" x1="70" x2="876" y1="476.0" y2="476.0"/><text class="pa2" x="60" y="481.0" text-anchor="end">2</text>
+<line class="pg" x1="70" x2="876" y1="400.7" y2="400.7"/><text class="pa2" x="60" y="405.7" text-anchor="end">2.5</text>
+<line class="pg" x1="70" x2="876" y1="325.3" y2="325.3"/><text class="pa2" x="60" y="330.3" text-anchor="end">3</text>
+<line class="pg" x1="70" x2="876" y1="250.0" y2="250.0"/><text class="pa2" x="60" y="255.0" text-anchor="end">3.5</text>
+<line class="pg" x1="70" x2="876" y1="174.7" y2="174.7"/><text class="pa2" x="60" y="179.7" text-anchor="end">4</text>
+<line class="pg" x1="70" x2="876" y1="99.3" y2="99.3"/><text class="pa2" x="60" y="104.3" text-anchor="end">4.5</text>
+<line class="pg" x1="70" x2="876" y1="24.0" y2="24.0"/><text class="pa2" x="60" y="29.0" text-anchor="end">5</text>
+<line class="pg" x1="200.6" x2="200.6" y1="24" y2="476"/><text class="pa2" x="200.6" y="498" text-anchor="middle">$0.02</text>
+<line class="pg" x1="501.6" x2="501.6" y1="24" y2="476"/><text class="pa2" x="501.6" y="498" text-anchor="middle">$0.05</text>
+<line class="pg" x1="729.4" x2="729.4" y1="24" y2="476"/><text class="pa2" x="729.4" y="498" text-anchor="middle">$0.1</text>
+<text class="pa2" x="473.0" y="528" text-anchor="middle">Cost per second of video (log scale)</text><text class="pa2" transform="translate(18 250.0) rotate(-90)" text-anchor="middle">Quality (mean of identity, motion, clean; 0 to 5)</text>
+<polyline class="pf" points="143.3,350.9 160.5,174.7 276.5,149.1 598.8,124.9"/>
+<circle class="pb" cx="143.3" cy="350.9" r="9" tabindex="0" data-tip="wan2.6-i2v-flash
+$0.0168 per second
+quality 2.83 of 5
+identity 3.5, motion 3.0, clean 2.0
+cheapest; background drifts, train changed shape and colour
+on the frontier" aria-label="wan2.6-i2v-flash, $0.0168 per second, quality 2.83 of 5, identity 3.5, motion 3.0, clean 2.0, cheapest; background drifts, train changed shape and colour, on the frontier"/>
+<text class="pl" x="157.3" y="355.9" text-anchor="start">wan2.6-i2v-flash</text>
+<circle class="pb" cx="276.5" cy="149.1" r="9" tabindex="0" data-tip="MiniMax-Hailuo-2.3-Fast
+$0.0252 per second
+quality 4.17 of 5
+identity 5.0, motion 2.5, clean 5.0
+most faithful, clean wolf push-in, little motion
+on the frontier" aria-label="MiniMax-Hailuo-2.3-Fast, $0.0252 per second, quality 4.17 of 5, identity 5.0, motion 2.5, clean 5.0, most faithful, clean wolf push-in, little motion, on the frontier"/>
+<text class="pl" x="290.5" y="154.1" text-anchor="start">MiniMax-Hailuo-2.3-Fast</text>
+<circle class="pb" cx="160.5" cy="174.7" r="9" tabindex="0" data-tip="veo3.1-fast
+$0.0177 per second
+quality 4.00 of 5
+identity 4.5, motion 4.0, clean 3.5
+natural blink, crane moves; thin line across the wolf
+on the frontier" aria-label="veo3.1-fast, $0.0177 per second, quality 4.00 of 5, identity 4.5, motion 4.0, clean 3.5, natural blink, crane moves; thin line across the wolf, on the frontier"/>
+<text class="pl" x="174.5" y="179.7" text-anchor="start">veo3.1-fast</text>
+<circle class="pb" cx="598.8" cy="124.9" r="9" tabindex="0" data-tip="kling-v3 (std)
+$0.0672 per second
+quality 4.33 of 5
+identity 4.5, motion 4.5, clean 4.0
+livelier, crane flies, wolf walks forward
+on the frontier" aria-label="kling-v3 (std), $0.0672 per second, quality 4.33 of 5, identity 4.5, motion 4.5, clean 4.0, livelier, crane flies, wolf walks forward, on the frontier"/>
+<text class="pl" x="612.8" y="129.9" text-anchor="start">kling-v3 (std)</text>
+<circle class="pd" cx="802.7" cy="174.7" r="7" tabindex="0" data-tip="veo3.1-quality
+$0.1250 per second
+quality 4.00 of 5
+identity 4.5, motion 4.0, clean 3.5
+good but slight background change; 7x the price of fast
+beaten by a cheaper or better model" aria-label="veo3.1-quality, $0.1250 per second, quality 4.00 of 5, identity 4.5, motion 4.0, clean 3.5, good but slight background change; 7x the price of fast, beaten by a cheaper or better model"/>
+<text class="pl2" x="802.7" y="158.7" text-anchor="middle">veo3.1-quality</text>
+<circle class="pd" cx="678.7" cy="174.7" r="7" tabindex="0" data-tip="kling-v4-flash
+$0.0857 per second
+quality 4.00 of 5
+identity 4.0, motion 4.5, clean 3.5
+similar to v3 with a slight face and scene shift
+beaten by a cheaper or better model" aria-label="kling-v4-flash, $0.0857 per second, quality 4.00 of 5, identity 4.0, motion 4.5, clean 3.5, similar to v3 with a slight face and scene shift, beaten by a cheaper or better model"/>
+<text class="pl2" x="664.7" y="179.7" text-anchor="end">kling-v4-flash</text>
+<circle class="pd" cx="592.9" cy="250.0" r="7" tabindex="0" data-tip="seedance-2.0
+$0.0660 per second
+quality 3.50 of 5
+identity 3.0, motion 4.0, clean 3.5
+480p; background swaps, strong push-in
+beaten by a cheaper or better model" aria-label="seedance-2.0, $0.0660 per second, quality 3.50 of 5, identity 3.0, motion 4.0, clean 3.5, 480p; background swaps, strong push-in, beaten by a cheaper or better model"/>
+<text class="pl2" x="606.9" y="255.0" text-anchor="start">seedance-2.0</text>
+<circle class="pd" cx="581.2" cy="224.4" r="7" tabindex="0" data-tip="seedance-2.5-flash
+$0.0637 per second
+quality 3.67 of 5
+identity 3.0, motion 4.5, clean 3.5
+480p; background drifts, strongest push-in
+beaten by a cheaper or better model" aria-label="seedance-2.5-flash, $0.0637 per second, quality 3.67 of 5, identity 3.0, motion 4.5, clean 3.5, 480p; background drifts, strongest push-in, beaten by a cheaper or better model"/>
+<text class="pl2" x="595.2" y="229.4" text-anchor="start">seedance-2.5-flash</text>
+<circle class="pd" cx="594.8" cy="325.3" r="7" tabindex="0" data-tip="wan2.7
+$0.0664 per second
+quality 3.00 of 5
+identity 2.5, motion 3.0, clean 3.5
+one clip: the boy changed expression, zoom
+beaten by a cheaper or better model" aria-label="wan2.7, $0.0664 per second, quality 3.00 of 5, identity 2.5, motion 3.0, clean 3.5, one clip: the boy changed expression, zoom, beaten by a cheaper or better model"/>
+<text class="pl2" x="608.8" y="330.3" text-anchor="start">wan2.7</text>
+</svg>
+<figcaption>Hover or tap a dot. Cost is per second of output. Quality is the mean of three 0 to 5 scores by one reviewer: identity (the face and scene hold), motion (the shot has life) and clean (no artifacts). Two start frames, one run each; wan2.7 has one clip. Treat the 0.5 steps as a judgement, not a measurement.</figcaption>
+</figure>
+<h3>The 16 clips we paid for</h3>
+<p class="meta">All 16 test clips from the spike, re-encoded at 640 px for the page ($4.90 in all; veo3.1-quality and wan2.7 have only the boy clip). Click to play.</p>
+<div class="vgrid"><div class="vcell"><h4>MiniMax-Hailuo-2.3-Fast</h4><p class="meta">$0.149, 5.9 s per clip</p><video controls preload="none" muted loop playsinline poster="video/hail23f_boy.jpg" width="640" height="360"><source src="video/hail23f_boy.mp4" type="video/mp4"></video><p class="meta">Boy reaches for the bird</p><video controls preload="none" muted loop playsinline poster="video/hail23f_wolf.jpg" width="640" height="360"><source src="video/hail23f_wolf.mp4" type="video/mp4"></video><p class="meta">Wolf push-in</p></div><div class="vcell"><h4>veo3.1-fast</h4><p class="meta">$0.14, 7.9 s per clip</p><video controls preload="none" muted loop playsinline poster="video/veo31f_boy.jpg" width="640" height="360"><source src="video/veo31f_boy.mp4" type="video/mp4"></video><p class="meta">Boy reaches for the bird</p><video controls preload="none" muted loop playsinline poster="video/veo31f_wolf.jpg" width="640" height="360"><source src="video/veo31f_wolf.mp4" type="video/mp4"></video><p class="meta">Wolf push-in</p></div><div class="vcell"><h4>kling-v3 (std)</h4><p class="meta">$0.336, 5 s per clip</p><video controls preload="none" muted loop playsinline poster="video/klv3_boy.jpg" width="640" height="360"><source src="video/klv3_boy.mp4" type="video/mp4"></video><p class="meta">Boy reaches for the bird</p><video controls preload="none" muted loop playsinline poster="video/klv3_wolf.jpg" width="640" height="360"><source src="video/klv3_wolf.mp4" type="video/mp4"></video><p class="meta">Wolf push-in</p></div><div class="vcell"><h4>kling-v4-flash</h4><p class="meta">$0.429, 5 s per clip</p><video controls preload="none" muted loop playsinline poster="video/klv4f_boy.jpg" width="640" height="360"><source src="video/klv4f_boy.mp4" type="video/mp4"></video><p class="meta">Boy reaches for the bird</p><video controls preload="none" muted loop playsinline poster="video/klv4f_wolf.jpg" width="640" height="360"><source src="video/klv4f_wolf.mp4" type="video/mp4"></video><p class="meta">Wolf push-in</p></div><div class="vcell"><h4>veo3.1-quality</h4><p class="meta">$1.00, 8 s per clip</p><video controls preload="none" muted loop playsinline poster="video/veo31q_boy.jpg" width="640" height="360"><source src="video/veo31q_boy.mp4" type="video/mp4"></video><p class="meta">Boy reaches for the bird</p></div><div class="vcell"><h4>seedance-2.0</h4><p class="meta">$0.33, 5 s per clip</p><video controls preload="none" muted loop playsinline poster="video/sd20_boy.jpg" width="640" height="360"><source src="video/sd20_boy.mp4" type="video/mp4"></video><p class="meta">Boy reaches for the bird</p><video controls preload="none" muted loop playsinline poster="video/sd20_wolf.jpg" width="640" height="360"><source src="video/sd20_wolf.mp4" type="video/mp4"></video><p class="meta">Wolf push-in</p></div><div class="vcell"><h4>seedance-2.5-flash</h4><p class="meta">$0.318, 5 s per clip</p><video controls preload="none" muted loop playsinline poster="video/sd25f_boy.jpg" width="640" height="360"><source src="video/sd25f_boy.mp4" type="video/mp4"></video><p class="meta">Boy reaches for the bird</p><video controls preload="none" muted loop playsinline poster="video/sd25f_wolf.jpg" width="640" height="360"><source src="video/sd25f_wolf.mp4" type="video/mp4"></video><p class="meta">Wolf push-in</p></div><div class="vcell"><h4>wan2.6-i2v-flash</h4><p class="meta">$0.084, 5 s per clip</p><video controls preload="none" muted loop playsinline poster="video/wan26f_boy.jpg" width="640" height="360"><source src="video/wan26f_boy.mp4" type="video/mp4"></video><p class="meta">Boy reaches for the bird</p><video controls preload="none" muted loop playsinline poster="video/wan26f_wolf.jpg" width="640" height="360"><source src="video/wan26f_wolf.mp4" type="video/mp4"></video><p class="meta">Wolf push-in</p></div><div class="vcell"><h4>wan2.7</h4><p class="meta">$0.332, 5 s per clip</p><video controls preload="none" muted loop playsinline poster="video/wan27_boy.jpg" width="640" height="360"><source src="video/wan27_boy.mp4" type="video/mp4"></video><p class="meta">Boy reaches for the bird</p></div></div>
 <div class="scroll"><table class="table"><caption class="meta">One run per cell.</caption><thead><tr><th scope="col">Model</th><th scope="col" class="num">$ per clip</th><th scope="col">Length</th><th scope="col">Notes</th></tr></thead><tbody>
 <tr><th scope="row">wan2.6-i2v-flash</th><td class="num">0.084</td><td>5 s</td><td>Cheapest; the train changed colour and shape</td></tr>
 <tr><th scope="row">MiniMax-Hailuo-2.3-Fast</th><td class="num">0.149</td><td>6 s</td><td>Most faithful, clean push-in, little motion</td></tr>
@@ -290,6 +446,30 @@ details > * + * { margin-top: var(--gap-s); }
 <tr><th scope="row">seedance-2.0 / 2.5-flash</th><td class="num">0.32 to 0.33</td><td>5 s</td><td>480p; the background drifts; strongest push-in</td></tr>
 <tr><th scope="row">wan2.7</th><td class="num">0.332</td><td>5 s</td><td>The boy's expression changed</td></tr>
 </tbody></table></div>
+</section>
+
+<section class="sec" id="data" aria-labelledby="h-data">
+<h2 id="h-data">All scored models in one table</h2>
+<p>Every model with a quality score, image and video. Download: <a href="code/models.json">models.json</a>, <a href="code/models.csv">models.csv</a>. Charts are built from the same file by <a href="code/build_charts.py">build_charts.py</a>. Unscored image models (pass 1 only, or failed) are in the <a href="#source">source tables</a>.</p>
+<div class="scroll"><table class="table"><caption class="meta">Quality is 0 to 5, one reviewer. Cost is the mean over runs.</caption><thead><tr><th scope="col">Kind</th><th scope="col">Model</th><th scope="col" class="num">Cost</th><th scope="col" class="num">Quality</th><th scope="col">Scores</th></tr></thead><tbody><tr><td>image</td><th scope="row">gpt-image-2</th><td class="num">$0.0085 per image</td><td class="num">4.50</td><td>style 4, emotion_faces 4, text_free 5, edge_alpha 5</td></tr><tr><td>image</td><th scope="row">hy-image-v3.5-preview</th><td class="num">$0.0192 per image</td><td class="num">3.25</td><td>style 3, emotion_faces 3, text_free 4, edge_alpha 3</td></tr><tr><td>image</td><th scope="row">gpt-image-2.5-flare</th><td class="num">$0.0261 per image</td><td class="num">4.50</td><td>style 4, emotion_faces 4, text_free 5, edge_alpha 5</td></tr><tr><td>image</td><th scope="row">gpt-image-2.6-flare</th><td class="num">$0.0265 per image</td><td class="num">5.00</td><td>style 5, emotion_faces 5, text_free 5, edge_alpha 5</td></tr><tr><td>image</td><th scope="row">gpt-image-2.6-sunburst</th><td class="num">$0.0265 per image</td><td class="num">5.00</td><td>style 5, emotion_faces 5, text_free 5, edge_alpha 5</td></tr><tr><td>image</td><th scope="row">qwen-image-3.0-pro</th><td class="num">$0.0286 per image</td><td class="num">3.25</td><td>style 4, emotion_faces 4, text_free 3, edge_alpha 2</td></tr><tr><td>image</td><th scope="row">seedream-5-0-pro</th><td class="num">$0.0360 per image</td><td class="num">3.50</td><td>style 4, emotion_faces 3, text_free 5, edge_alpha 2</td></tr><tr><td>image</td><th scope="row">flux-3-image</th><td class="num">$0.0384 per image</td><td class="num">3.50</td><td>style 4, emotion_faces 3, text_free 5, edge_alpha 2</td></tr><tr><td>image</td><th scope="row">wan2.7-image-pro</th><td class="num">$0.0544 per image</td><td class="num">3.75</td><td>style 3, emotion_faces 3, text_free 5, edge_alpha 4</td></tr><tr><td>image</td><th scope="row">kling-v4-image</th><td class="num">$0.0571 per image</td><td class="num">2.50</td><td>style 4, emotion_faces 2, text_free 2, edge_alpha 2</td></tr><tr><td>image</td><th scope="row">flux-kontext-max</th><td class="num">$0.0640 per image</td><td class="num">2.50</td><td>style 2, emotion_faces 2, text_free 5, edge_alpha 1</td></tr><tr><td>image</td><th scope="row">flux-2-max</th><td class="num">$0.0800 per image</td><td class="num">3.25</td><td>style 3, emotion_faces 3, text_free 5, edge_alpha 2</td></tr><tr><td>image</td><th scope="row">flux-2-flex</th><td class="num">$0.0800 per image</td><td class="num">3.50</td><td>style 4, emotion_faces 3, text_free 5, edge_alpha 2</td></tr><tr><td>video</td><th scope="row">wan2.6-i2v-flash</th><td class="num">$0.0168 per second</td><td class="num">2.83</td><td>identity 3.5, motion 3.0, clean 2.0</td></tr><tr><td>video</td><th scope="row">veo3.1-fast</th><td class="num">$0.0177 per second</td><td class="num">4.00</td><td>identity 4.5, motion 4.0, clean 3.5</td></tr><tr><td>video</td><th scope="row">MiniMax-Hailuo-2.3-Fast</th><td class="num">$0.0252 per second</td><td class="num">4.17</td><td>identity 5.0, motion 2.5, clean 5.0</td></tr><tr><td>video</td><th scope="row">seedance-2.5-flash</th><td class="num">$0.0637 per second</td><td class="num">3.67</td><td>identity 3.0, motion 4.5, clean 3.5</td></tr><tr><td>video</td><th scope="row">seedance-2.0</th><td class="num">$0.0660 per second</td><td class="num">3.50</td><td>identity 3.0, motion 4.0, clean 3.5</td></tr><tr><td>video</td><th scope="row">wan2.7</th><td class="num">$0.0664 per second</td><td class="num">3.00</td><td>identity 2.5, motion 3.0, clean 3.5</td></tr><tr><td>video</td><th scope="row">kling-v3 (std)</th><td class="num">$0.0672 per second</td><td class="num">4.33</td><td>identity 4.5, motion 4.5, clean 4.0</td></tr><tr><td>video</td><th scope="row">kling-v4-flash</th><td class="num">$0.0857 per second</td><td class="num">4.00</td><td>identity 4.0, motion 4.5, clean 3.5</td></tr><tr><td>video</td><th scope="row">veo3.1-quality</th><td class="num">$0.1250 per second</td><td class="num">4.00</td><td>identity 4.5, motion 4.0, clean 3.5</td></tr></tbody></table></div>
+</section>
+
+<section class="sec" id="film" aria-labelledby="h-film">
+<h2 id="h-film">What the film cost, and would code be cheaper</h2>
+<p>The film is <a href="../ghibli-claude/">Ghibli Claude</a>. The cuts so far were built in code from ChatGPT Instant images, with Claude builders and Fable reviews. Image and video model spend is separate and small.</p>
+<div class="scroll"><table class="table"><caption class="meta">Cost of each way to make a 42 s cut. Measured where marked, otherwise an estimate from the measured unit prices.</caption><thead><tr><th scope="col">Way</th><th scope="col">Cost</th><th scope="col">Basis</th></tr></thead><tbody>
+<tr><th scope="row">Code-built cut, art from ChatGPT</th><td>Tens of dollars of model tokens per cut</td><td>Measured in tokens: about 1.3M builder tokens plus 0.14M Fable planning for the last cut. The one dollar figure we have is $55 to $63 for version 3, and its planner part is an estimate. Art was a $20 plan.</td></tr>
+<tr><th scope="row">Generated, one pass</th><td>About $3.2</td><td>Estimate: 13 keyframes at about $0.10 (attempt B measured $0.09 to $0.11 per keyframe with reference images) plus 13 Hailuo clips at $0.149.</td></tr>
+<tr><th scope="row">Generated, with re-rolls</th><td>About $6 to $7</td><td>Estimate: two tries per shot. Each re-roll is $0.15 to $0.34 for a clip and is random.</td></tr>
+<tr><th scope="row">Generated stills only, in the painted cut</th><td>$0.57</td><td>Measured: 16 images with gpt-image-2.6-flare. The art style clashed with the painted plates.</td></tr>
+<tr><th scope="row">Fully procedural, no art</th><td>No cheaper, likely more</td><td>See below.</td></tr>
+</tbody></table></div>
+<ul>
+<li><strong class="key">Generation is about an order of magnitude cheaper for a first cut</strong> ($3 to $7 against tens of dollars). It is the opposite of cheap for fixing things: a clip cannot be edited, only re-rolled, and a continuity error stays random.</li>
+<li><strong class="key">Going fully procedural would not save money.</strong> Art was never the expensive part: the whole image bench was $4.25 and the 16 film stills $0.57. The cost is builder tokens writing and fixing scene code, and a flat or wireframe film needs more of that, not less.</li>
+<li>Where code wins is the marginal cost: a re-render is free, a fix is deterministic and the crying faces drawn in code were good enough. Where generation wins is a new shot at $0.15, with real motion.</li>
+<li>Our plan: images stay on the cheap gpt-image models, video clips only where a shot needs real motion (the wolf push-in, the tunnel), code for the rest.</li>
+</ul>
 </section>
 
 <section class="sec" id="limits" aria-labelledby="h-limits">
@@ -353,6 +533,11 @@ const io = new IntersectionObserver((entries) => {
   first?.scrollIntoView({ block: "nearest", inline: "nearest" })
 }, { rootMargin: "-120px 0px -60% 0px" })
 for (const a of links) io.observe(document.querySelector(a.hash))
+</script>
+<div id="tip" role="tooltip"></div>
+<script>
+(()=>{const t=document.getElementById('tip');const show=(e,el)=>{t.textContent=el.dataset.tip;t.style.display='block';const r=el.getBoundingClientRect();let x=(e&&e.clientX!=null?e.clientX:r.right)+14,y=(e&&e.clientY!=null?e.clientY:r.top)+14;const w=t.offsetWidth,h=t.offsetHeight;if(x+w>innerWidth-8)x=innerWidth-w-8;if(y+h>innerHeight-8)y=y-h-28;t.style.left=Math.max(8,x)+'px';t.style.top=Math.max(8,y)+'px'};
+document.querySelectorAll('circle[data-tip]').forEach(c=>{c.addEventListener('mousemove',e=>show(e,c));c.addEventListener('click',e=>show(e,c));c.addEventListener('focus',e=>show(null,c));c.addEventListener('mouseleave',()=>t.style.display='none');c.addEventListener('blur',()=>t.style.display='none')});})();
 </script>
 </body>
 </html>

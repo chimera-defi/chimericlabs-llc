@@ -1,0 +1,438 @@
+{
+ "image": [
+  {
+   "kind": "image",
+   "model": "gpt-image-2.6-flare",
+   "cost": 0.0265,
+   "unit": "per image",
+   "quality": 5.0,
+   "detail": {
+    "style": 5,
+    "emotion_faces": 5,
+    "text_free": 5,
+    "edge_alpha": 5
+   },
+   "pass3": {
+    "repeat_runs": [
+     [
+      5,
+      5
+     ],
+     [
+      5,
+      5
+     ],
+     [
+      5,
+      5
+     ],
+     [
+      5,
+      5
+     ]
+    ],
+    "cine_pair": [
+     5,
+     4
+    ]
+   }
+  },
+  {
+   "kind": "image",
+   "model": "gpt-image-2.6-sunburst",
+   "cost": 0.0265,
+   "unit": "per image",
+   "quality": 5.0,
+   "detail": {
+    "style": 5,
+    "emotion_faces": 5,
+    "text_free": 5,
+    "edge_alpha": 5
+   },
+   "pass3": {
+    "repeat_runs": [
+     [
+      5,
+      5
+     ],
+     [
+      5,
+      5
+     ],
+     [
+      5,
+      5
+     ],
+     [
+      5,
+      5
+     ]
+    ],
+    "cine_pair": [
+     5,
+     3
+    ]
+   }
+  },
+  {
+   "kind": "image",
+   "model": "flux-2-max",
+   "cost": 0.08,
+   "unit": "per image",
+   "quality": 3.25,
+   "detail": {
+    "style": 3,
+    "emotion_faces": 3,
+    "text_free": 5,
+    "edge_alpha": 2
+   },
+   "pass3": null
+  },
+  {
+   "kind": "image",
+   "model": "flux-kontext-max",
+   "cost": 0.064,
+   "unit": "per image",
+   "quality": 2.5,
+   "detail": {
+    "style": 2,
+    "emotion_faces": 2,
+    "text_free": 5,
+    "edge_alpha": 1
+   },
+   "pass3": null
+  },
+  {
+   "kind": "image",
+   "model": "qwen-image-3.0-pro",
+   "cost": 0.0286,
+   "unit": "per image",
+   "quality": 3.25,
+   "detail": {
+    "style": 4,
+    "emotion_faces": 4,
+    "text_free": 3,
+    "edge_alpha": 2
+   },
+   "pass3": null
+  },
+  {
+   "kind": "image",
+   "model": "kling-v4-image",
+   "cost": 0.0571,
+   "unit": "per image",
+   "quality": 2.5,
+   "detail": {
+    "style": 4,
+    "emotion_faces": 2,
+    "text_free": 2,
+    "edge_alpha": 2
+   },
+   "pass3": null
+  },
+  {
+   "kind": "image",
+   "model": "flux-3-image",
+   "cost": 0.0384,
+   "unit": "per image",
+   "quality": 3.5,
+   "detail": {
+    "style": 4,
+    "emotion_faces": 3,
+    "text_free": 5,
+    "edge_alpha": 2
+   },
+   "pass3": {
+    "repeat_runs": [
+     [
+      3,
+      3
+     ],
+     [
+      3,
+      3
+     ],
+     [
+      4,
+      3
+     ],
+     [
+      2,
+      2
+     ]
+    ],
+    "cine_pair": [
+     3,
+     3
+    ]
+   }
+  },
+  {
+   "kind": "image",
+   "model": "flux-2-flex",
+   "cost": 0.08,
+   "unit": "per image",
+   "quality": 3.5,
+   "detail": {
+    "style": 4,
+    "emotion_faces": 3,
+    "text_free": 5,
+    "edge_alpha": 2
+   },
+   "pass3": null
+  },
+  {
+   "kind": "image",
+   "model": "seedream-5-0-pro",
+   "cost": 0.036,
+   "unit": "per image",
+   "quality": 3.5,
+   "detail": {
+    "style": 4,
+    "emotion_faces": 3,
+    "text_free": 5,
+    "edge_alpha": 2
+   },
+   "pass3": {
+    "repeat_runs": [
+     [
+      3,
+      4
+     ],
+     [
+      4,
+      2
+     ],
+     [
+      4,
+      4
+     ],
+     [
+      2,
+      2
+     ]
+    ],
+    "cine_pair": [
+     4,
+     4
+    ]
+   }
+  },
+  {
+   "kind": "image",
+   "model": "gpt-image-2.5-flare",
+   "cost": 0.0261,
+   "unit": "per image",
+   "quality": 4.5,
+   "detail": {
+    "style": 4,
+    "emotion_faces": 4,
+    "text_free": 5,
+    "edge_alpha": 5
+   },
+   "pass3": null
+  },
+  {
+   "kind": "image",
+   "model": "gpt-image-2",
+   "cost": 0.0085,
+   "unit": "per image",
+   "quality": 4.5,
+   "detail": {
+    "style": 4,
+    "emotion_faces": 4,
+    "text_free": 5,
+    "edge_alpha": 5
+   },
+   "pass3": {
+    "repeat_runs": [
+     [
+      4,
+      4
+     ],
+     [
+      4,
+      4
+     ],
+     [
+      4,
+      4
+     ],
+     [
+      5,
+      2
+     ]
+    ],
+    "cine_pair": [
+     4,
+     3
+    ]
+   }
+  },
+  {
+   "kind": "image",
+   "model": "wan2.7-image-pro",
+   "cost": 0.0544,
+   "unit": "per image",
+   "quality": 3.75,
+   "detail": {
+    "style": 3,
+    "emotion_faces": 3,
+    "text_free": 5,
+    "edge_alpha": 4
+   },
+   "pass3": null
+  },
+  {
+   "kind": "image",
+   "model": "hy-image-v3.5-preview",
+   "cost": 0.0192,
+   "unit": "per image",
+   "quality": 3.25,
+   "detail": {
+    "style": 3,
+    "emotion_faces": 3,
+    "text_free": 4,
+    "edge_alpha": 3
+   },
+   "pass3": null
+  }
+ ],
+ "video": [
+  {
+   "kind": "video",
+   "model": "wan2.6-i2v-flash",
+   "cost": 0.0168,
+   "unit": "per second",
+   "cost_per_clip": 0.084,
+   "seconds": 5.0,
+   "quality": 2.83,
+   "detail": {
+    "identity": 3.5,
+    "motion": 3.0,
+    "clean": 2.0
+   },
+   "note": "cheapest; background drifts, train changed shape and colour"
+  },
+  {
+   "kind": "video",
+   "model": "MiniMax-Hailuo-2.3-Fast",
+   "cost": 0.0252,
+   "unit": "per second",
+   "cost_per_clip": 0.1488,
+   "seconds": 5.9,
+   "quality": 4.17,
+   "detail": {
+    "identity": 5.0,
+    "motion": 2.5,
+    "clean": 5.0
+   },
+   "note": "most faithful, clean wolf push-in, little motion"
+  },
+  {
+   "kind": "video",
+   "model": "veo3.1-fast",
+   "cost": 0.0177,
+   "unit": "per second",
+   "cost_per_clip": 0.14,
+   "seconds": 7.9,
+   "quality": 4.0,
+   "detail": {
+    "identity": 4.5,
+    "motion": 4.0,
+    "clean": 3.5
+   },
+   "note": "natural blink, crane moves; thin line across the wolf"
+  },
+  {
+   "kind": "video",
+   "model": "veo3.1-quality",
+   "cost": 0.125,
+   "unit": "per second",
+   "cost_per_clip": 1.0,
+   "seconds": 8.0,
+   "quality": 4.0,
+   "detail": {
+    "identity": 4.5,
+    "motion": 4.0,
+    "clean": 3.5
+   },
+   "note": "good but slight background change; 7x the price of fast"
+  },
+  {
+   "kind": "video",
+   "model": "kling-v3 (std)",
+   "cost": 0.0672,
+   "unit": "per second",
+   "cost_per_clip": 0.336,
+   "seconds": 5.0,
+   "quality": 4.33,
+   "detail": {
+    "identity": 4.5,
+    "motion": 4.5,
+    "clean": 4.0
+   },
+   "note": "livelier, crane flies, wolf walks forward"
+  },
+  {
+   "kind": "video",
+   "model": "kling-v4-flash",
+   "cost": 0.0857,
+   "unit": "per second",
+   "cost_per_clip": 0.4286,
+   "seconds": 5.0,
+   "quality": 4.0,
+   "detail": {
+    "identity": 4.0,
+    "motion": 4.5,
+    "clean": 3.5
+   },
+   "note": "similar to v3 with a slight face and scene shift"
+  },
+  {
+   "kind": "video",
+   "model": "seedance-2.0",
+   "cost": 0.066,
+   "unit": "per second",
+   "cost_per_clip": 0.33,
+   "seconds": 5.0,
+   "quality": 3.5,
+   "detail": {
+    "identity": 3.0,
+    "motion": 4.0,
+    "clean": 3.5
+   },
+   "note": "480p; background swaps, strong push-in"
+  },
+  {
+   "kind": "video",
+   "model": "seedance-2.5-flash",
+   "cost": 0.0637,
+   "unit": "per second",
+   "cost_per_clip": 0.3183,
+   "seconds": 5.0,
+   "quality": 3.67,
+   "detail": {
+    "identity": 3.0,
+    "motion": 4.5,
+    "clean": 3.5
+   },
+   "note": "480p; background drifts, strongest push-in"
+  },
+  {
+   "kind": "video",
+   "model": "wan2.7",
+   "cost": 0.0664,
+   "unit": "per second",
+   "cost_per_clip": 0.332,
+   "seconds": 5.0,
+   "quality": 3.0,
+   "detail": {
+    "identity": 2.5,
+    "motion": 3.0,
+    "clean": 3.5
+   },
+   "note": "one clip: the boy changed expression, zoom"
+  }
+ ]
+}
