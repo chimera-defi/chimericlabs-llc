@@ -93,6 +93,9 @@ for (const ex of document.querySelectorAll(".ex[data-charts]")) {
     b.append(model)
     chips.append(b)
   }
+  // With every model off the chart is blank, so say why.
+  const empty = Object.assign(document.createElement("p"), { className: "meta", hidden: true, textContent: "Every model is switched off. Switch one back on to see the chart." })
+  plot.after(empty)
   chips.addEventListener("click", (ev) => {
     const b = ev.target.closest("button[data-model]")
     if (!b) return
@@ -100,6 +103,7 @@ for (const ex of document.querySelectorAll(".ex[data-charts]")) {
     b.setAttribute("aria-pressed", String(show))
     show ? hidden.delete(b.dataset.model) : hidden.add(b.dataset.model)
     for (const svg of svgs.values()) restyle(svg, hidden)
+    empty.hidden = hidden.size < models.size
   })
 
   const view = () => {
