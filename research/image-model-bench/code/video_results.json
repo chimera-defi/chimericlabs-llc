@@ -1,0 +1,130 @@
+[
+ {
+  "model": "MiniMax-Hailuo-2.3-Fast",
+  "img": "boy",
+  "cost_usd": 0.1488,
+  "latency_s": 66.2,
+  "status": "completed",
+  "file": "out/hail23f_boy.mp4"
+ },
+ {
+  "model": "MiniMax-Hailuo-2.3-Fast",
+  "img": "wolf",
+  "cost_usd": 0.1488,
+  "latency_s": 57.9,
+  "status": "completed",
+  "file": "out/hail23f_wolf.mp4"
+ },
+ {
+  "model": "kling-v3",
+  "img": "boy",
+  "cost_usd": 0.336,
+  "latency_s": 115.5,
+  "status": "completed",
+  "file": "out/klv3_boy.mp4"
+ },
+ {
+  "model": "kling-v3",
+  "img": "wolf",
+  "cost_usd": 0.336,
+  "latency_s": 123.9,
+  "status": "completed",
+  "file": "out/klv3_wolf.mp4"
+ },
+ {
+  "model": "kling-v4-flash",
+  "img": "boy",
+  "cost_usd": 0.428572,
+  "latency_s": 91.2,
+  "status": "completed",
+  "file": "out/klv4f_boy.mp4"
+ },
+ {
+  "model": "kling-v4-flash",
+  "img": "wolf",
+  "cost_usd": 0.428572,
+  "latency_s": 91.0,
+  "status": "completed",
+  "file": "out/klv4f_wolf.mp4"
+ },
+ {
+  "model": "seedance-2.0",
+  "img": "boy",
+  "cost_usd": 0.33,
+  "latency_s": 165.1,
+  "status": "completed",
+  "file": "out/sd20_boy.mp4"
+ },
+ {
+  "model": "seedance-2.0",
+  "img": "wolf",
+  "cost_usd": 0.33,
+  "latency_s": 206.1,
+  "status": "completed",
+  "file": "out/sd20_wolf.mp4"
+ },
+ {
+  "model": "seedance-2-5-flash",
+  "img": "boy",
+  "cost_usd": 0.3183,
+  "latency_s": 74.7,
+  "status": "completed",
+  "file": "out/sd25f_boy.mp4"
+ },
+ {
+  "model": "seedance-2-5-flash",
+  "img": "wolf",
+  "cost_usd": 0.3183,
+  "latency_s": 115.6,
+  "status": "completed",
+  "file": "out/sd25f_wolf.mp4"
+ },
+ {
+  "model": "veo3.1-fast",
+  "img": "boy",
+  "cost_usd": 0.14,
+  "latency_s": 132.2,
+  "status": "completed",
+  "file": "out/veo31f_boy.mp4"
+ },
+ {
+  "model": "veo3.1-fast",
+  "img": "wolf",
+  "cost_usd": 0.14,
+  "latency_s": 66.2,
+  "status": "completed",
+  "file": "out/veo31f_wolf.mp4"
+ },
+ {
+  "model": "veo3.1-quality",
+  "img": "boy",
+  "cost_usd": 1,
+  "latency_s": 107.7,
+  "status": "completed",
+  "file": "out/veo31q_boy.mp4"
+ },
+ {
+  "model": "wan2.6-i2v-flash",
+  "img": "boy",
+  "cost_usd": 0.084,
+  "latency_s": 49.7,
+  "status": "completed",
+  "file": "out/wan26f_boy.mp4"
+ },
+ {
+  "model": "wan2.6-i2v-flash",
+  "img": "wolf",
+  "cost_usd": 0.084,
+  "latency_s": 74.3,
+  "status": "completed",
+  "file": "out/wan26f_wolf.mp4"
+ },
+ {
+  "model": "wan2.7",
+  "img": "boy",
+  "cost_usd": 0.332,
+  "latency_s": 156.9,
+  "status": "completed",
+  "file": "out/wan27_boy.mp4"
+ }
+]
