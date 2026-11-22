@@ -9,7 +9,7 @@
 <meta property="og:description" content="Generated art, a ~130-line canvas engine, one scene file per shot. What worked and what went wrong.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://chimericlabs.xyz/research/ghibli-claude/">
-<meta property="og:image" content="https://chimericlabs.xyz/research/ghibli-claude/best-poster.jpg">
+<meta property="og:image" content="https://chimericlabs.xyz/research/ghibli-claude/cut10-poster.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://chimericlabs.xyz/research/ghibli-claude/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23080e1d'/><text x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='16' font-weight='600' fill='%2300c4ff'>CL</text></svg>" />
@@ -31,7 +31,7 @@
 .art td, .art th { text-align: left; }
 .outro { margin-top: var(--space-5); }
 </style>
-<style>details.ps{border:1px solid var(--color-divider,#444);border-radius:8px;padding:1rem}details.ps>summary{cursor:pointer;font-weight:600}details.ps>:not(summary){margin-top:1rem}</style>
+<style>details.ps{border:1px solid var(--line);border-radius:8px;padding:1rem}details.ps>summary{cursor:pointer;font-weight:600}details.ps>:not(summary){margin-top:1rem}</style>
 </head>
 <body>
 <a class="skip" href="#article">Skip to content</a>
@@ -60,12 +60,12 @@
 
 <p>The best cut is first. Version 1, 2 and 3 follow, then the cost and method. Every other cut and attempt is in the collapsed postscript at the end, newest first. The original GPT-6.2 Astra film is not hosted here. The image models behind the art are compared in <a href="../image-model-bench/">the image model bench</a>, and the video models behind the veo clips in <a href="../video-model-bench/">the video model bench</a>.</p>
 
-<h3>Best: cut 9</h3>
-<video class="film" controls preload="none" poster="cut9-poster.jpg" width="1280" height="720">
-<source src="cut9-720p.mp4" type="video/mp4">
-Your browser cannot play this video. <a href="cut9-720p.mp4">Download it (720p, 25 MB).</a>
+<h3>Best: cut 10</h3>
+<video class="film" controls preload="none" poster="cut10-poster.jpg" width="1280" height="720">
+<source src="cut10-720p.mp4" type="video/mp4">
+Your browser cannot play this video. <a href="cut10-720p.mp4">Download it (720p, 22 MB).</a>
 </video>
-<p class="figcap">43.8 s. Rebuilt against the original, frame by frame. The tram now rides the rails into the tunnel and out of the arch; the paper crane lands on the boy's palm; the card is stamped and the crane flies on blue. One boy, inside the carriage, in every shot. Shots with real motion use short generated video clips from one set of keyframes; the timing, sound, stamp, scraps and ripples stay in code. Three reviewers (Fable, Opus, Haiku) passed it after seven rounds, on stills and strips rather than the playing video. Known gaps: the wolf is drawn at different scales across shots, the girl is too small in the wides to judge her legs, and the end splashes are faint.</p>
+<p class="figcap">43.8 s. Cut 9 with one shot rebuilt: the train coming out of the tunnel (10.4 to 13.8 s). In cut 9 that shot was one generated clip, and the train's nose, lamps and number of cars drifted as it came closer. Now the train is drawn in code as one rigid object riding the measured rails over a still painting of the empty scene, so it keeps its shape from the tunnel mouth to the camera. Generated clips with more keyframes were tried first and failed all three probes, inventing a second train or restarting the approach; the code train won a blind review by Fable, Opus and Haiku and cost $0.03. The other shots are the cut 9 renders. Known gaps: the wisteria in that shot is still, the pantograph is cut by the top edge in the last 0.3 s, and the train's paint does not change with the light as it leaves the tunnel. The probes and the review are on the <a href="../video-model-bench/#firstlast">video model bench</a>.</p>
 
 <h2>First attempts</h2>
 <h3>Version 1: minimal text prompting</h3>
@@ -101,6 +101,7 @@ Your browser cannot play this video. <a href="v3-720p.mp4">Download it (720p, 10
 <tr><th scope="row">Round 2 best</th><td>Fable plan 0.14M, twelve Sonnet builders about 1.3M (input plus output, so not comparable to the rows above)</td><td>about 2 h</td><td>0</td></tr>
 <tr><th scope="row">Attempt B, from scratch</th><td>13 ChatGPT keyframes, 13 veo3.1-fast clips ($1.96 API), one assembly script</td><td>about 1 h</td><td>13</td></tr>
 <tr><th scope="row">Cut 9</th><td>Fable lead, Sonnet builders and seven review rounds; $1.09 of API (4 images, 5 veo3.1-fast clips)</td><td>about 4 h</td><td>0</td></tr>
+<tr><th scope="row">Cut 10</th><td>Opus lead and a blind strip review by Fable, Opus and Haiku; $0.94 of API (5 images, 4 veo3.1-fast clips), of which only a $0.03 image is in the film</td><td>about 1 h</td><td>0</td></tr>
 <tr><th scope="row">Cut 6, 7 and 8</th><td>Cut 8: one Sonnet builder, wheels, neck, eyes. Cut 7: an audit by a Fable reviewer, then six Sonnet builders</td><td>about 3 h</td><td>0</td></tr>
 </tbody>
 </table>
@@ -152,6 +153,13 @@ Your browser cannot play this video. <a href="v3-720p.mp4">Download it (720p, 10
 <details class="ps">
 <summary>Show the iterative cuts, the Fable-only run and the from-scratch attempts (older, newest first)</summary>
 <h3>Iterative cuts</h3>
+<h4>Cut 9, the veo pass</h4>
+<video class="film" controls preload="none" poster="cut9-poster.jpg" width="1280" height="720">
+<source src="cut9-720p.mp4" type="video/mp4">
+Your browser cannot play this video. <a href="cut9-720p.mp4">Download it (720p, 25 MB).</a>
+</video>
+<p class="figcap">43.8 s. Rebuilt against the original, frame by frame. The tram now rides the rails into the tunnel and out of the arch; the paper crane lands on the boy's palm; the card is stamped and the crane flies on blue. One boy, inside the carriage, in every shot. Shots with real motion use short generated video clips from one set of keyframes; the timing, sound, stamp, scraps and ripples stay in code. Three reviewers (Fable, Opus, Haiku) passed it after seven rounds, on stills and strips rather than the playing video. Known gaps: the wolf is drawn at different scales across shots, the girl is too small in the wides to judge her legs, and the end splashes are faint.</p>
+
 <h4>Cut 8, the motion and eye pass</h4>
 <video class="film" controls preload="none" poster="best-poster.jpg" width="1280" height="720">
 <source src="best-720p.mp4" type="video/mp4">
@@ -210,11 +218,11 @@ Your browser cannot play this video. <a href="attemptB-720p.mp4">Download it (72
 
 <h2>Code</h2>
 <p><a href="https://github.com/chimera-defi/ghibli-claude">github.com/chimera-defi/ghibli-claude</a><br><span class="small">Named for who built it: Claude made this, Astra is what we tried to match. The repo is private until published.</span></p>
-<p class="small">Written by Wren (Claude Sonnet 5.5) on behalf of chimera-defi.</p>
+<p class="small">Written by Wren (Claude Sonnet 5.5) on behalf of chimera-defi. Cut 10 update by Wren (Claude Opus 5.5).</p>
 <h2>Credits</h2>
 <ul>
 <li>Original film and idea: GPT-6.2 Astra, shared by <a href="https://x.com/reach_vb/status/2123663632190021985" target="_blank" rel="noreferrer">@reach_vb on X</a>. We recreated it; it is not hosted here.</li>
-<li>Code, builds and reviews: Claude (Sonnet 5.5, Haiku 5.5, Fable 5.2).</li>
+<li>Code, builds and reviews: Claude (Sonnet 5.5, Opus 5.5, Haiku 5.5, Fable 5.2).</li>
 <li>Art: ChatGPT Instant. Sound: synthesised in code.</li>
 </ul>
 <video class="film outro" autoplay muted loop playsinline poster="outro-poster.jpg" width="1280" height="720" aria-label="Animated outro">

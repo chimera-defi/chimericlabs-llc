@@ -1,5 +1,5 @@
 {
- "note": "Verbatim prompts for the video bench, film attempt B and cut 9. Sources: ghibli-video-spike/run.py, ghibli-scratch/keys.py and animate.py, overnight/gen9.py calls. Image inputs are named, not included. No keys.",
+ "note": "Verbatim prompts for the video bench, film attempt B, cut 9 and cut 10. Sources: ghibli-video-spike/run.py, ghibli-scratch/keys.py and animate.py, overnight/gen9.py calls, ghibli-fable2/work/c10/genkeysA.py and gen10.py. Image inputs are named, not included. No keys.",
  "prompts": [
   {
    "set": "video bench",
@@ -264,6 +264,70 @@
    "image_input": "kdusk.png",
    "prompt": "Static locked-off camera, hand-painted anime film. The boy holds his open palm out of the train window and waits with a small hopeful smile, his hair moving gently in the wind. After two seconds his smile slowly fades, his eyebrows lower, he looks down at his palm with a sad face, and a single tear rolls down his cheek. His arm stays out, palm open. The cat sleeps on the sill, its side slowly rising and falling as it breathes. The lake glitters and the far shore with its lights drifts slowly past to the left.",
    "used": "yes"
+  },
+  {
+   "set": "cut 10 keyframes",
+   "name": "k1",
+   "model": "gpt-image-2.6-flare",
+   "image_input": "key_tunnel_small.jpg (the cut 9 tunnel key), train_ref.jpg (the train from it)",
+   "prompt": "Edit the first image. Keep the painting exactly the same: same framing and camera, same stone arch with wisteria, tunnel, track, parapets, sea, town, clouds, same hand-painted gouache style and light. Keep the SAME train exactly as drawn (the second image shows it): red lower body with a thin gold stripe, cream upper body, three front windows, one big round lamp on the roof above the windows and two round lamps low on the front, a diamond pantograph on the roof, grey-blue roof, carriages joined by dark bellows. Only move the train along the same track: the train is far away, just coming out of the dark tunnel mouth: only the front of the first carriage is out, small, its three lamps glowing; the rest is still inside the dark tunnel. No text, no people.",
+   "used": "option A only"
+  },
+  {
+   "set": "cut 10 keyframes",
+   "name": "k2",
+   "model": "gpt-image-2.6-flare",
+   "image_input": "key_tunnel_small.jpg (the cut 9 tunnel key), train_ref.jpg (the train from it)",
+   "prompt": "Edit the first image. Keep the painting exactly the same: same framing and camera, same stone arch with wisteria, tunnel, track, parapets, sea, town, clouds, same hand-painted gouache style and light. Keep the SAME train exactly as drawn (the second image shows it): red lower body with a thin gold stripe, cream upper body, three front windows, one big round lamp on the roof above the windows and two round lamps low on the front, a diamond pantograph on the roof, grey-blue roof, carriages joined by dark bellows. Only move the train along the same track: the train is about one third of the way from the tunnel toward the viewer, smaller than in the first image, its first carriage fully out of the tunnel and the second carriage coming out. No text, no people.",
+   "used": "option A only"
+  },
+  {
+   "set": "cut 10 keyframes",
+   "name": "k4",
+   "model": "gpt-image-2.6-flare",
+   "image_input": "key_tunnel_small.jpg (the cut 9 tunnel key), train_ref.jpg (the train from it)",
+   "prompt": "Edit the first image. Keep the painting exactly the same: same framing and camera, same stone arch with wisteria, tunnel, track, parapets, sea, town, clouds, same hand-painted gouache style and light. Keep the SAME train exactly as drawn (the second image shows it): red lower body with a thin gold stripe, cream upper body, three front windows, one big round lamp on the roof above the windows and two round lamps low on the front, a diamond pantograph on the roof, grey-blue roof, carriages joined by dark bellows. Only move the train along the same track: the train is close to the viewer: the front of the first carriage is large, about twice the size it is in the first image, standing on the track in the lower middle of the picture, with the carriages stretching back to the tunnel. No text, no people.",
+   "used": "option A only"
+  },
+  {
+   "set": "cut 10 keyframes",
+   "name": "k5",
+   "model": "gpt-image-2.6-flare",
+   "image_input": "key_tunnel_small.jpg (the cut 9 tunnel key), train_ref.jpg (the train from it)",
+   "prompt": "Edit the first image. Keep the painting exactly the same: same framing and camera, same stone arch with wisteria, tunnel, track, parapets, sea, town, clouds, same hand-painted gouache style and light. Keep the SAME train exactly as drawn (the second image shows it): red lower body with a thin gold stripe, cream upper body, three front windows, one big round lamp on the roof above the windows and two round lamps low on the front, a diamond pantograph on the roof, grey-blue roof, carriages joined by dark bellows. Only move the train along the same track: the train is passing very close to the viewer: the front of the first carriage is at the left of the picture, very large, cut by the bottom edge, and the side of the carriages fills the middle and right of the picture back to the tunnel. No text, no people.",
+   "used": "option A only"
+  },
+  {
+   "set": "cut 10 clips",
+   "name": "plate",
+   "model": "veo3.1-fast, 8 s",
+   "image_input": "c10_plate_notrain.png (the cut 9 key with the train painted out)",
+   "prompt": "Locked-off static camera, no camera movement at all. A hand-painted Ghibli-style scene on a sunny breezy day: the hanging wisteria sways gently in the breeze, a few petals drift, the sea glitters softly, the clouds drift very slowly. The railway track and the tunnel stay completely empty: no train, no vehicle, no people, no animals. Nothing else moves.",
+   "used": "option C only"
+  },
+  {
+   "set": "cut 10 clips",
+   "name": "A13",
+   "model": "veo3.1-fast, 8 s, first and last frame",
+   "image_input": "first c10_A_k1.png, last key_tunnel.png",
+   "prompt": "Locked-off static camera, no camera movement. The same red and cream vintage electric train glides smoothly out of the dark stone tunnel along the rails toward the viewer at constant speed; the train keeps exactly the same shape, same headlamps, same carriages throughout. Wisteria sways gently in the breeze. Hand-painted anime film style. No cuts, no text.",
+   "used": "no"
+  },
+  {
+   "set": "cut 10 clips",
+   "name": "A32",
+   "model": "veo3.1-fast, 8 s, first and last frame",
+   "image_input": "first key_tunnel.png, last c10_A_k2.png",
+   "prompt": "Locked-off static camera, no camera movement. The same red and cream vintage electric train moves slowly forward along the rails toward the viewer, a short distance only; the train keeps exactly the same shape, same headlamps, same pantograph, same carriages throughout. No other trains. Wisteria sways gently. Hand-painted anime film style. No cuts, no text.",
+   "used": "no"
+  },
+  {
+   "set": "cut 10 clips",
+   "name": "A34",
+   "model": "veo3.1-fast, 8 s, first and last frame",
+   "image_input": "first key_tunnel.png, last c10_A_k4.png",
+   "prompt": "Locked-off static camera, no camera movement. The same red and cream vintage electric train moves forward along the rails toward the viewer, a short distance only; the train keeps exactly the same shape, same headlamps, same pantograph, same carriages throughout. No other trains. Wisteria sways gently. Hand-painted anime film style. No cuts, no text.",
+   "used": "no"
   }
  ]
 }
