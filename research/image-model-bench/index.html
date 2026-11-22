@@ -926,6 +926,7 @@ beaten on this chart" aria-label="wan2.7, $0.0664 per second, 156.9 s median to 
 </tbody></table></div>
 <ul>
 <li><strong class="key">Use it as the free heavy lifter while the cap lasts, and gpt-image-2 through the API when it runs out or when shots are needed in parallel.</strong> At $0.0085 and 23 s per call with 20 calls in parallel (39.5 s), the API wins on speed; the plan is cheaper per image only above about 80 images a day (and only if you use the whole cap).</li>
+<li><strong class="key">Google AI Mode is a free fallback.</strong> One test prompt (signed in, "Generate an image: ..."): an image in about 10 to 13 s at 1376x768, first try, no cap or limit notice. By eye it is more muted and painterly than ChatGPT but less crisp, with a small blurry crane and the wrong tram colours, so ChatGPT is still the pick for character shots. One prompt only; the cap is unknown.</li>
 <li><a href="code/chatgpt_images.js">chatgpt_images.js</a> replaces the browser tool calls with a Playwright script that attaches to a Chrome you signed in to yourself. It is untested against the live site and the selectors will need fixing; sign-in stays manual.</li>
 </ul>
 </section>
