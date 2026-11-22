@@ -6,14 +6,14 @@ here = os.path.dirname(os.path.abspath(__file__))
 vhere = os.path.join(here, '..', '..', 'video-model-bench', 'code')
 S = json.load(open(os.path.join(here, 'scores.json')))
 R = json.load(open(os.path.join(here, 'results2.json')))
-R3 = json.load(open(os.path.join(here, 'results3.json')))
+R3 = json.load(open(os.path.join(here, 'results3.json'))) + json.load(open(os.path.join(here, 'results4.json')))
 import collections
 cost = collections.defaultdict(list)
 for r in R + R3:
     if r.get('cost'): cost[r['model']].append(r['cost'])
 import statistics
 secs = collections.defaultdict(list)
-for fn in ('results.json', 'results2.json', 'results3.json'):
+for fn in ('results.json', 'results2.json', 'results3.json', 'results4.json'):
     for r in json.load(open(os.path.join(here, fn))):
         if r.get('status') == 'completed' and r.get('seconds'): secs[r['model']].append(r['seconds'])
 VR = collections.defaultdict(list)

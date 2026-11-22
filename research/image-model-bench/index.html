@@ -126,6 +126,8 @@ details > * + * { margin-top: var(--gap-s); }
 .ex[data-colour="family"] circle.pd{fill-opacity:.45}
 .prompts h3{font-size:15px;margin-top:var(--gap-m)}
 .ex .seg-opt:has(input:checked){color:var(--color-accent-400)}
+.next{display:grid;gap:var(--space-2);padding-left:var(--space-5)}
+.next b{font-family:var(--font-mono);font-weight:600}
 .prompts-body{max-height:min(75vh,42rem);overflow:auto;overscroll-behavior:contain;padding-right:var(--space-2)}
 .prompts pre{margin:0;overflow:auto;padding:var(--space-3);border-radius:var(--radius-md);background:var(--color-surface);border:1px solid var(--color-divider);font:12px/1.5 ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere}
 .stub{font-size:15px}
@@ -147,7 +149,7 @@ details > * + * { margin-top: var(--gap-s); }
 </nav>
 </header>
 <nav class="toc" aria-label="On this page"><ol>
-<li><a href="#verdict">Verdict</a></li><li><a href="#explore">Explore</a></li><li><a href="#method">Method</a></li><li><a href="#frontier">Frontier</a></li><li><a href="#winners">Winners</a></li><li><a href="#repeat">Repeat runs</a></li><li><a href="#reference">Reference image</a></li><li><a href="#oddities">Oddities</a></li><li><a href="#speed">Speed</a></li><li><a href="#spend">Where the $10 went</a></li><li><a href="#data">All models</a></li><li><a href="#chatgpt">ChatGPT Instant</a></li><li><a href="#limits">Limits</a></li><li><a href="#used-in">Used in</a></li><li><a href="#prompts">Prompts</a></li><li><a href="#source">Source</a></li><li><a href="../video-model-bench/">Video bench</a></li>
+<li><a href="#verdict">Verdict</a></li><li><a href="#explore">Explore</a></li><li><a href="#method">Method</a></li><li><a href="#frontier">Frontier</a></li><li><a href="#winners">Winners</a></li><li><a href="#repeat">Repeat runs</a></li><li><a href="#reference">Reference image</a></li><li><a href="#oddities">Oddities</a></li><li><a href="#speed">Speed</a></li><li><a href="#spend">Where the $10 went</a></li><li><a href="#data">All models</a></li><li><a href="#chatgpt">ChatGPT Instant</a></li><li><a href="#pass4">Pass 4</a></li><li><a href="#next">Test next</a></li><li><a href="#limits">Limits</a></li><li><a href="#used-in">Used in</a></li><li><a href="#prompts">Prompts</a></li><li><a href="#source">Source</a></li><li><a href="#updates">Update log</a></li><li><a href="../video-model-bench/">Video bench</a></li>
 </ol></nav>
 <main class="ds-wrap">
 <article class="bench" id="article">
@@ -165,10 +167,11 @@ details > * + * { margin-top: var(--gap-s); }
 <section class="sec" id="verdict" aria-labelledby="h-verdict">
 <h2 id="h-verdict">Verdict</h2>
 <div class="card tldr">
-<p>Use <strong class="key">gpt-image-2.6-flare at $0.0265</strong> an image for faces, plates and cut-out props. Use <strong class="key">gpt-image-2 at $0.0085</strong> when cost matters. Only <strong class="key">3 of 13</strong> scored models sit on the cost-quality frontier; the other 10 cost more or score lower.</p>
+<p>Use <strong class="key">gpt-image-2.6-flare at $0.0265</strong> an image for faces, plates and cut-out props. Use <strong class="key">gpt-image-2 at $0.0085</strong> when cost matters. Only <strong class="key">4 of 15</strong> scored models sit on the cost-quality frontier; the other 11 cost more or score lower. New in pass 4: <strong class="key">flux-3-image-klein at $0.0072</strong> is the cheapest scored model, but it paints a backdrop instead of returning alpha.</p>
 <div class="scroll"><table class="table pick"><caption class="meta">Pick this. Measured on this bench, one reviewer; ChatGPT Instant is unscored on the rubric.</caption><thead><tr><th scope="col">When you need</th><th scope="col">Pick</th><th scope="col" class="num">Cost</th><th scope="col" class="num">Median time</th><th scope="col">Measured</th></tr></thead><tbody>
 <tr><th scope="row">A new keyframe set, one character across shots</th><td>ChatGPT Instant</td><td class="num">$20 plan</td><td class="num">70 s, one at a time</td><td>All 13 keyframes kept the same boy, girl and wolf as each other. About $0.013 an image at 50 a day (a model); the daily cap is unmeasured.</td></tr>
 <tr><th scope="row">Keyframes that must match an existing cut</th><td>gpt-image-2.6-flare with frames of the cut as references</td><td class="num">$0.09 to $0.11</td><td class="num">not timed</td><td>Cut 9: the boy and the train match the film. The ChatGPT set above did not match the code-built cut (<a href="../video-model-bench/#cut9">video bench</a>).</td></tr>
+<tr><th scope="row">Stills and plates at the lowest price, no cut-outs</th><td>flux-3-image-klein</td><td class="num">$0.0072</td><td class="num">12.9 s</td><td>3.75 of 5, one run per prompt. Frightened faces read well. Paints a white backdrop instead of alpha.</td></tr>
 <tr><th scope="row">Bulk and parallel</th><td>gpt-image-2</td><td class="num">$0.0085</td><td class="num">22.8 s</td><td>4.50 of 5. 20 calls at once finished in 39.5 s. Dropped alpha in 1 of 2 prop runs.</td></tr>
 <tr><th scope="row">Faces, plates and cut-out props</th><td>gpt-image-2.6-flare</td><td class="num">$0.0265</td><td class="num">13.2 s</td><td>5.00 of 5, real alpha in both runs. Also the keyframe model for the veo clips in cut 9.</td></tr>
 </tbody></table></div>
@@ -179,7 +182,7 @@ details > * + * { margin-top: var(--gap-s); }
 <li class="chip u-bulk"><span class="u">Cheap bulk</span><b>gpt-image-2</b><span>$0.0085; dropped alpha in 1 of 2 prop runs</span></li>
 <li class="chip u-ref"><span class="u">Same character from a reference</span><b>seedream-5-0-pro or 2.6-flare</b><span>Score 4 of 5</span></li>
 </ul>
-<p class="meta">147 image requests, 132 returned, $4.25. Another $4.90 went on video tests: <a href="#spend">where the $10 went</a>, and the <a href="../video-model-bench/">video model bench</a> for what they showed. One reviewer, small samples.</p>
+<p class="meta">158 image requests, 142 returned, $4.50. Another $4.90 went on video tests: <a href="#spend">where the $10 went</a>, and the <a href="../video-model-bench/">video model bench</a> for what they showed. One reviewer, small samples.</p>
 </div>
 </section>
 
@@ -196,7 +199,7 @@ details > * + * { margin-top: var(--gap-s); }
 </div>
 <div class="ex-chips" role="group" aria-label="Show or hide a model; the frontier is redrawn"></div>
 <div class="ex-plot"></div>
-<figcaption>Pick the axes, switch a model off to see the frontier redrawn without it, or colour the dots by maker. Hover, tap or tab to a dot for its numbers. The quality views have the 13 scored models; cost against speed also has ChatGPT Instant, unscored.</figcaption>
+<figcaption>Pick the axes, switch a model off to see the frontier redrawn without it, or colour the dots by maker. Hover, tap or tab to a dot for its numbers. The quality views have the 15 scored models; cost against speed also has ChatGPT Instant, unscored.</figcaption>
 </figure>
 </section>
 
@@ -212,12 +215,13 @@ details > * + * { margin-top: var(--gap-s); }
 <li><strong class="key">Pass 1:</strong> 15 models, 3 prompts. 38 of 45 images came back, $0.93.</li>
 <li><strong class="key">Pass 2:</strong> 14 models, 4 prompts, scored on style, emotion and faces, text-free output and edge quality. $2.38 with the reference test.</li>
 <li><strong class="key">Pass 3:</strong> 6 models, 6 images each, $0.94. A repeat of the 4 pass 2 prompts, plus a wide wolf plate and a character pair.</li>
+<li><strong class="key">Pass 4:</strong> 3 models new to the bench, the 4 pass 2 prompts, one run each, $0.25. gpt-image-1.5 stopped after one $0.163 image.</li>
 </ul>
 </section>
 
 <section class="sec" id="frontier" aria-labelledby="h-frontier">
 <h2 id="h-frontier">Frontier</h2>
-<p><strong class="key">3 of 13</strong> scored models are on the frontier (gpt-image-2, and the tied pair 2.6-flare and 2.6-sunburst): nothing is cheaper and scores higher. gpt-image-2 is the cheap end at $0.0085. gpt-image-2.6-sunburst and gpt-image-2.6-flare tie at the top, $0.0265 for a 5.0. flux-2-max and flux-2-flex cost <strong class="key">$0.08</strong>, three times more, and score 3.25 and 3.5.</p>
+<p><strong class="key">4 of 15</strong> scored models are on the frontier (flux-3-image-klein, gpt-image-2, and the tied pair 2.6-flare and 2.6-sunburst): nothing is cheaper and scores higher. flux-3-image-klein is the cheap end at $0.0072 for a 3.75, with no alpha; gpt-image-2 is the cheapest with alpha, $0.0085 for a 4.5. gpt-image-2.6-sunburst and gpt-image-2.6-flare tie at the top, $0.0265 for a 5.0. flux-2-max and flux-2-flex cost <strong class="key">$0.08</strong>, three times more, and score 3.25 and 3.5.</p>
 <figure class="chart" id="f-ci">
 <svg viewBox="0 0 900 540" role="img" aria-labelledby="cit cid" id="ci"><title id="cit">Quality against cost per image for 13 image models</title><desc id="cid">Scored models. Frontier: gpt-image-2 at $0.0085 scoring 4.5, then gpt-image-2.6-flare and gpt-image-2.6-sunburst at $0.0265 scoring 5.0 (tied, drawn side by side).</desc>
 <line class="pg" x1="70" x2="876" y1="476.0" y2="476.0"/><text class="pa2" x="60" y="481.0" text-anchor="end">2</text>
@@ -227,113 +231,127 @@ details > * + * { margin-top: var(--gap-s); }
 <line class="pg" x1="70" x2="876" y1="174.7" y2="174.7"/><text class="pa2" x="60" y="179.7" text-anchor="end">4</text>
 <line class="pg" x1="70" x2="876" y1="99.3" y2="99.3"/><text class="pa2" x="60" y="104.3" text-anchor="end">4.5</text>
 <line class="pg" x1="70" x2="876" y1="24.0" y2="24.0"/><text class="pa2" x="60" y="29.0" text-anchor="end">5</text>
-<line class="pg" x1="185.6" x2="185.6" y1="24" y2="476"/><text class="pa2" x="185.6" y="498" text-anchor="middle">$0.01</text>
-<line class="pg" x1="393.5" x2="393.5" y1="24" y2="476"/><text class="pa2" x="393.5" y="498" text-anchor="middle">$0.02</text>
-<line class="pg" x1="668.2" x2="668.2" y1="24" y2="476"/><text class="pa2" x="668.2" y="498" text-anchor="middle">$0.05</text>
+<line class="pg" x1="225.8" x2="225.8" y1="24" y2="476"/><text class="pa2" x="225.8" y="498" text-anchor="middle">$0.01</text>
+<line class="pg" x1="421.5" x2="421.5" y1="24" y2="476"/><text class="pa2" x="421.5" y="498" text-anchor="middle">$0.02</text>
+<line class="pg" x1="680.3" x2="680.3" y1="24" y2="476"/><text class="pa2" x="680.3" y="498" text-anchor="middle">$0.05</text>
 <line class="pg" x1="876.0" x2="876.0" y1="24" y2="476"/><text class="pa2" x="876.0" y="498" text-anchor="middle">$0.1</text>
 <text class="pa2" x="473.0" y="528" text-anchor="middle">Cost per image (log scale)</text><text class="pa2" transform="translate(18 250.0) rotate(-90)" text-anchor="middle">Quality (mean of 4 scores, 0 to 5)</text>
-<polyline class="pf" points="136.9,99.3 477.8,24.0 492.8,24.0"/>
-<circle class="pb" cx="477.8" cy="24.0" r="9" tabindex="0" data-model="gpt-image-2.6-flare" data-family="openai" data-x="0.0265" data-y="5" data-tip="gpt-image-2.6-flare
+<polyline class="pf" points="133.0,212.3 179.9,99.3 501.0,24.0 516.0,24.0"/>
+<circle class="pb" cx="501.0" cy="24.0" r="9" tabindex="0" data-model="gpt-image-2.6-flare" data-family="openai" data-x="0.0265" data-y="5" data-tip="gpt-image-2.6-flare
 $0.0265 per image
 13.2 s median to finish (10 runs)
 quality 5.00 of 5
 style 5, emotion_faces 5, text_free 5, edge_alpha 5
 repeat runs [[5, 5], [5, 5], [5, 5], [5, 5]], cine/pair [5, 4]
 on the frontier" aria-label="gpt-image-2.6-flare, $0.0265 per image, 13.2 s median to finish (10 runs), quality 5.00 of 5, style 5, emotion_faces 5, text_free 5, edge_alpha 5, repeat runs [[5, 5], [5, 5], [5, 5], [5, 5]], cine/pair [5, 4], on the frontier"/>
-<text class="pl" data-model="gpt-image-2.6-flare" x="463.8" y="29.0" text-anchor="end">gpt-img-2.6-flare</text>
-<circle class="pb" cx="492.8" cy="24.0" r="9" tabindex="0" data-model="gpt-image-2.6-sunburst" data-family="openai" data-x="0.0265" data-y="5" data-tip="gpt-image-2.6-sunburst
+<text class="pl" data-model="gpt-image-2.6-flare" x="487.0" y="29.0" text-anchor="end">gpt-img-2.6-flare</text>
+<circle class="pb" cx="516.0" cy="24.0" r="9" tabindex="0" data-model="gpt-image-2.6-sunburst" data-family="openai" data-x="0.0265" data-y="5" data-tip="gpt-image-2.6-sunburst
 $0.0265 per image
 30.2 s median to finish (10 runs)
 quality 5.00 of 5
 style 5, emotion_faces 5, text_free 5, edge_alpha 5
 repeat runs [[5, 5], [5, 5], [5, 5], [5, 5]], cine/pair [5, 3]
 on the frontier" aria-label="gpt-image-2.6-sunburst, $0.0265 per image, 30.2 s median to finish (10 runs), quality 5.00 of 5, style 5, emotion_faces 5, text_free 5, edge_alpha 5, repeat runs [[5, 5], [5, 5], [5, 5], [5, 5]], cine/pair [5, 3], on the frontier"/>
-<text class="pl" data-model="gpt-image-2.6-sunburst" x="506.8" y="29.0" text-anchor="start">gpt-img-2.6-sunburst</text>
-<circle class="pb" cx="136.9" cy="99.3" r="9" tabindex="0" data-model="gpt-image-2" data-family="openai" data-x="0.0085" data-y="4.5" data-tip="gpt-image-2
+<text class="pl" data-model="gpt-image-2.6-sunburst" x="530.0" y="29.0" text-anchor="start">gpt-img-2.6-sunburst</text>
+<circle class="pb" cx="179.9" cy="99.3" r="9" tabindex="0" data-model="gpt-image-2" data-family="openai" data-x="0.0085" data-y="4.5" data-tip="gpt-image-2
 $0.0085 per image
 22.8 s median to finish (13 runs)
 quality 4.50 of 5
 style 4, emotion_faces 4, text_free 5, edge_alpha 5
 repeat runs [[4, 4], [4, 4], [4, 4], [5, 2]], cine/pair [4, 3]
 on the frontier" aria-label="gpt-image-2, $0.0085 per image, 22.8 s median to finish (13 runs), quality 4.50 of 5, style 4, emotion_faces 4, text_free 5, edge_alpha 5, repeat runs [[4, 4], [4, 4], [4, 4], [5, 2]], cine/pair [4, 3], on the frontier"/>
-<text class="pl" data-model="gpt-image-2" x="150.9" y="104.3" text-anchor="start">gpt-img-2</text>
-<circle class="pd" cx="809.1" cy="287.7" r="7" tabindex="0" data-model="flux-2-max" data-family="bfl" data-x="0.08" data-y="3.25" data-tip="flux-2-max
+<text class="pl" data-model="gpt-image-2" x="193.9" y="104.3" text-anchor="start">gpt-img-2</text>
+<circle class="pb" cx="133.0" cy="212.3" r="9" tabindex="0" data-model="flux-3-image-klein" data-family="bfl" data-x="0.0072" data-y="3.75" data-tip="flux-3-image-klein
+$0.0072 per image
+12.9 s median to finish (4 runs)
+quality 3.75 of 5
+style 4, emotion_faces 4, text_free 5, edge_alpha 2
+on the frontier" aria-label="flux-3-image-klein, $0.0072 per image, 12.9 s median to finish (4 runs), quality 3.75 of 5, style 4, emotion_faces 4, text_free 5, edge_alpha 2, on the frontier"/>
+<text class="pl" data-model="flux-3-image-klein" x="147.0" y="217.3" text-anchor="start">flux-3-image-klein</text>
+<circle class="pd" cx="813.0" cy="287.7" r="7" tabindex="0" data-model="flux-2-max" data-family="bfl" data-x="0.08" data-y="3.25" data-tip="flux-2-max
 $0.0800 per image
 34.7 s median to finish (4 runs)
 quality 3.25 of 5
 style 3, emotion_faces 3, text_free 5, edge_alpha 2
 beaten on this chart" aria-label="flux-2-max, $0.0800 per image, 34.7 s median to finish (4 runs), quality 3.25 of 5, style 3, emotion_faces 3, text_free 5, edge_alpha 2, beaten on this chart"/>
-<text class="pl2" data-model="flux-2-max" x="823.1" y="292.7" text-anchor="start">flux-2-max</text>
-<circle class="pd" cx="742.2" cy="400.7" r="7" tabindex="0" data-model="flux-kontext-max" data-family="bfl" data-x="0.064" data-y="2.5" data-tip="flux-kontext-max
+<text class="pl2" data-model="flux-2-max" x="799.0" y="292.7" text-anchor="end">flux-2-max</text>
+<circle class="pd" cx="750.0" cy="400.7" r="7" tabindex="0" data-model="flux-kontext-max" data-family="bfl" data-x="0.064" data-y="2.5" data-tip="flux-kontext-max
 $0.0640 per image
 21.6 s median to finish (4 runs)
 quality 2.50 of 5
 style 2, emotion_faces 2, text_free 5, edge_alpha 1
 beaten on this chart" aria-label="flux-kontext-max, $0.0640 per image, 21.6 s median to finish (4 runs), quality 2.50 of 5, style 2, emotion_faces 2, text_free 5, edge_alpha 1, beaten on this chart"/>
-<text class="pl2" data-model="flux-kontext-max" x="756.2" y="405.7" text-anchor="start">flux-kontext-max</text>
-<circle class="pd" cx="500.7" cy="287.7" r="7" tabindex="0" data-model="qwen-image-3.0-pro" data-family="alibaba" data-x="0.0286" data-y="3.25" data-tip="qwen-image-3.0-pro
+<text class="pl2" data-model="flux-kontext-max" x="764.0" y="405.7" text-anchor="start">flux-kontext-max</text>
+<circle class="pd" cx="522.5" cy="287.7" r="7" tabindex="0" data-model="qwen-image-3.0-pro" data-family="alibaba" data-x="0.0286" data-y="3.25" data-tip="qwen-image-3.0-pro
 $0.0286 per image
 13.2 s median to finish (4 runs)
 quality 3.25 of 5
 style 4, emotion_faces 4, text_free 3, edge_alpha 2
 beaten on this chart" aria-label="qwen-image-3.0-pro, $0.0286 per image, 13.2 s median to finish (4 runs), quality 3.25 of 5, style 4, emotion_faces 4, text_free 3, edge_alpha 2, beaten on this chart"/>
-<text class="pl2" data-model="qwen-image-3.0-pro" x="514.7" y="292.7" text-anchor="start">qwen-image-3.0-pro</text>
-<circle class="pd" cx="708.0" cy="400.7" r="7" tabindex="0" data-model="kling-v4-image" data-family="kling" data-x="0.0571" data-y="2.5" data-tip="kling-v4-image
+<text class="pl2" data-model="qwen-image-3.0-pro" x="536.5" y="292.7" text-anchor="start">qwen-image-3.0-pro</text>
+<circle class="pd" cx="717.8" cy="400.7" r="7" tabindex="0" data-model="kling-v4-image" data-family="kling" data-x="0.0571" data-y="2.5" data-tip="kling-v4-image
 $0.0571 per image
 35.3 s median to finish (4 runs)
 quality 2.50 of 5
 style 4, emotion_faces 2, text_free 2, edge_alpha 2
 beaten on this chart" aria-label="kling-v4-image, $0.0571 per image, 35.3 s median to finish (4 runs), quality 2.50 of 5, style 4, emotion_faces 2, text_free 2, edge_alpha 2, beaten on this chart"/>
-<text class="pl2" data-model="kling-v4-image" x="694.0" y="405.7" text-anchor="end">kling-v4-image</text>
-<circle class="pd" cx="589.0" cy="250.0" r="7" tabindex="0" data-model="flux-3-image" data-family="bfl" data-x="0.0384" data-y="3.5" data-tip="flux-3-image
+<text class="pl2" data-model="kling-v4-image" x="703.8" y="405.7" text-anchor="end">kling-v4-image</text>
+<circle class="pd" cx="605.7" cy="250.0" r="7" tabindex="0" data-model="flux-3-image" data-family="bfl" data-x="0.0384" data-y="3.5" data-tip="flux-3-image
 $0.0384 per image
 22.5 s median to finish (13 runs)
 quality 3.50 of 5
 style 4, emotion_faces 3, text_free 5, edge_alpha 2
 repeat runs [[3, 3], [3, 3], [4, 3], [2, 2]], cine/pair [3, 3]
 beaten on this chart" aria-label="flux-3-image, $0.0384 per image, 22.5 s median to finish (13 runs), quality 3.50 of 5, style 4, emotion_faces 3, text_free 5, edge_alpha 2, repeat runs [[3, 3], [3, 3], [4, 3], [2, 2]], cine/pair [3, 3], beaten on this chart"/>
-<text class="pl2" data-model="flux-3-image" x="603.0" y="255.0" text-anchor="start">flux-3-image</text>
-<circle class="pd" cx="809.1" cy="250.0" r="7" tabindex="0" data-model="flux-2-flex" data-family="bfl" data-x="0.08" data-y="3.5" data-tip="flux-2-flex
+<text class="pl2" data-model="flux-3-image" x="619.7" y="255.0" text-anchor="start">flux-3-image</text>
+<circle class="pd" cx="813.0" cy="250.0" r="7" tabindex="0" data-model="flux-2-flex" data-family="bfl" data-x="0.08" data-y="3.5" data-tip="flux-2-flex
 $0.0800 per image
 26.3 s median to finish (4 runs)
 quality 3.50 of 5
 style 4, emotion_faces 3, text_free 5, edge_alpha 2
 beaten on this chart" aria-label="flux-2-flex, $0.0800 per image, 26.3 s median to finish (4 runs), quality 3.50 of 5, style 4, emotion_faces 3, text_free 5, edge_alpha 2, beaten on this chart"/>
-<text class="pl2" data-model="flux-2-flex" x="795.1" y="255.0" text-anchor="end">flux-2-flex</text>
-<circle class="pd" cx="569.7" cy="250.0" r="7" tabindex="0" data-model="seedream-5-0-pro" data-family="bytedance" data-x="0.036" data-y="3.5" data-tip="seedream-5-0-pro
+<text class="pl2" data-model="flux-2-flex" x="799.0" y="255.0" text-anchor="end">flux-2-flex</text>
+<circle class="pd" cx="587.5" cy="250.0" r="7" tabindex="0" data-model="seedream-5-0-pro" data-family="bytedance" data-x="0.036" data-y="3.5" data-tip="seedream-5-0-pro
 $0.0360 per image
 57.2 s median to finish (13 runs)
 quality 3.50 of 5
 style 4, emotion_faces 3, text_free 5, edge_alpha 2
 repeat runs [[3, 4], [4, 2], [4, 4], [2, 2]], cine/pair [4, 4]
 beaten on this chart" aria-label="seedream-5-0-pro, $0.0360 per image, 57.2 s median to finish (13 runs), quality 3.50 of 5, style 4, emotion_faces 3, text_free 5, edge_alpha 2, repeat runs [[3, 4], [4, 2], [4, 4], [2, 2]], cine/pair [4, 4], beaten on this chart"/>
-<text class="pl2" data-model="seedream-5-0-pro" x="555.7" y="255.0" text-anchor="end">seedream-5-0-pro</text>
-<circle class="pd" cx="473.3" cy="99.3" r="7" tabindex="0" data-model="gpt-image-2.5-flare" data-family="openai" data-x="0.0261" data-y="4.5" data-tip="gpt-image-2.5-flare
+<text class="pl2" data-model="seedream-5-0-pro" x="573.5" y="255.0" text-anchor="end">seedream-5-0-pro</text>
+<circle class="pd" cx="496.7" cy="99.3" r="7" tabindex="0" data-model="gpt-image-2.5-flare" data-family="openai" data-x="0.0261" data-y="4.5" data-tip="gpt-image-2.5-flare
 $0.0261 per image
 22 s median to finish (7 runs)
 quality 4.50 of 5
 style 4, emotion_faces 4, text_free 5, edge_alpha 5
 beaten on this chart" aria-label="gpt-image-2.5-flare, $0.0261 per image, 22 s median to finish (7 runs), quality 4.50 of 5, style 4, emotion_faces 4, text_free 5, edge_alpha 5, beaten on this chart"/>
-<text class="pl2" data-model="gpt-image-2.5-flare" x="487.3" y="104.3" text-anchor="start">gpt-img-2.5-flare</text>
-<circle class="pd" cx="693.5" cy="212.3" r="7" tabindex="0" data-model="wan2.7-image-pro" data-family="alibaba" data-x="0.0544" data-y="3.75" data-tip="wan2.7-image-pro
+<text class="pl2" data-model="gpt-image-2.5-flare" x="510.7" y="104.3" text-anchor="start">gpt-img-2.5-flare</text>
+<circle class="pd" cx="704.1" cy="212.3" r="7" tabindex="0" data-model="wan2.7-image-pro" data-family="alibaba" data-x="0.0544" data-y="3.75" data-tip="wan2.7-image-pro
 $0.0544 per image
 28.6 s median to finish (4 runs)
 quality 3.75 of 5
 style 3, emotion_faces 3, text_free 5, edge_alpha 4
 beaten on this chart" aria-label="wan2.7-image-pro, $0.0544 per image, 28.6 s median to finish (4 runs), quality 3.75 of 5, style 3, emotion_faces 3, text_free 5, edge_alpha 4, beaten on this chart"/>
-<text class="pl2" data-model="wan2.7-image-pro" x="707.5" y="217.3" text-anchor="start">wan2.7-image-pro</text>
-<circle class="pd" cx="381.2" cy="287.7" r="7" tabindex="0" data-model="hy-image-v3.5-preview" data-family="tencent" data-x="0.0192" data-y="3.25" data-tip="hy-image-v3.5-preview
+<text class="pl2" data-model="wan2.7-image-pro" x="718.1" y="217.3" text-anchor="start">wan2.7-image-pro</text>
+<circle class="pd" cx="410.0" cy="287.7" r="7" tabindex="0" data-model="hy-image-v3.5-preview" data-family="tencent" data-x="0.0192" data-y="3.25" data-tip="hy-image-v3.5-preview
 $0.0192 per image
 20.3 s median to finish (4 runs)
 quality 3.25 of 5
 style 3, emotion_faces 3, text_free 4, edge_alpha 3
 beaten on this chart" aria-label="hy-image-v3.5-preview, $0.0192 per image, 20.3 s median to finish (4 runs), quality 3.25 of 5, style 3, emotion_faces 3, text_free 4, edge_alpha 3, beaten on this chart"/>
-<text class="pl2" data-model="hy-image-v3.5-preview" x="367.2" y="292.7" text-anchor="end">hy-image-v3.5-preview</text>
+<text class="pl2" data-model="hy-image-v3.5-preview" x="396.0" y="292.7" text-anchor="end">hy-image-v3.5-preview</text>
+<circle class="pd" cx="347.7" cy="212.3" r="7" tabindex="0" data-model="mai-image-2.6-flash" data-family="other" data-x="0.0154" data-y="3.75" data-tip="mai-image-2.6-flash
+$0.0154 per image
+15.1 s median to finish (4 runs)
+quality 3.75 of 5
+style 4, emotion_faces 4, text_free 5, edge_alpha 2
+beaten on this chart" aria-label="mai-image-2.6-flash, $0.0154 per image, 15.1 s median to finish (4 runs), quality 3.75 of 5, style 4, emotion_faces 4, text_free 5, edge_alpha 2, beaten on this chart"/>
+<text class="pl2" data-model="mai-image-2.6-flash" x="361.7" y="217.3" text-anchor="start">mai-image-2.6-flash</text>
 </svg>
 <figcaption>Hover or tap a dot for the model, cost and scores. Quality is the mean of four pass 2 scores (style, emotion and faces, text-free, edge). Cost is the mean over the prompts run. Filled red dots are on the frontier; hollow dots are beaten. gpt-image-2.6-flare and sunburst tie (both 5.00 at $0.0265) and are drawn side by side. Midjourney and the pass 1 models are not scored.</figcaption>
 </figure>
 <details><summary>Data behind the chart</summary>
-<div class="scroll"><table class="table"><caption class="meta">Sorted by cost. Cost is the mean over pass 2 and pass 3 runs. The two 2.6 models ran one reference-image call in pass 3 at about $0.030; text-only, all three gpt-image-2.x-flare/sunburst calls were $0.0261.</caption><thead><tr><th scope="col">Model</th><th scope="col" class="num">$ per image</th><th scope="col" class="num">Score</th><th scope="col">Status</th></tr></thead><tbody><tr><th scope="row">gpt-image-2</th><td class="num">$0.0085</td><td class="num">4.50</td><td>on the frontier</td></tr><tr><th scope="row">hy-image-v3.5-preview</th><td class="num">$0.0192</td><td class="num">3.25</td><td>beaten</td></tr><tr><th scope="row">gpt-image-2.5-flare</th><td class="num">$0.0261</td><td class="num">4.50</td><td>beaten</td></tr><tr><th scope="row">gpt-image-2.6-flare</th><td class="num">$0.0265</td><td class="num">5.00</td><td>on the frontier</td></tr><tr><th scope="row">gpt-image-2.6-sunburst</th><td class="num">$0.0265</td><td class="num">5.00</td><td>on the frontier</td></tr><tr><th scope="row">qwen-image-3.0-pro</th><td class="num">$0.0286</td><td class="num">3.25</td><td>beaten</td></tr><tr><th scope="row">seedream-5-0-pro</th><td class="num">$0.0360</td><td class="num">3.50</td><td>beaten</td></tr><tr><th scope="row">flux-3-image</th><td class="num">$0.0384</td><td class="num">3.50</td><td>beaten</td></tr><tr><th scope="row">wan2.7-image-pro</th><td class="num">$0.0544</td><td class="num">3.75</td><td>beaten</td></tr><tr><th scope="row">kling-v4-image</th><td class="num">$0.0571</td><td class="num">2.50</td><td>beaten</td></tr><tr><th scope="row">flux-kontext-max</th><td class="num">$0.0640</td><td class="num">2.50</td><td>beaten</td></tr><tr><th scope="row">flux-2-max</th><td class="num">$0.0800</td><td class="num">3.25</td><td>beaten</td></tr><tr><th scope="row">flux-2-flex</th><td class="num">$0.0800</td><td class="num">3.50</td><td>beaten</td></tr></tbody></table></div>
+<div class="scroll"><table class="table"><caption class="meta">Sorted by cost. Cost is the mean over pass 2 and pass 3 runs (pass 4 for the two new models). The two 2.6 models ran one reference-image call in pass 3 at about $0.030; text-only, all three gpt-image-2.x-flare/sunburst calls were $0.0261.</caption><thead><tr><th scope="col">Model</th><th scope="col" class="num">$ per image</th><th scope="col" class="num">Score</th><th scope="col">Status</th></tr></thead><tbody><tr><th scope="row">flux-3-image-klein</th><td class="num">$0.0072</td><td class="num">3.75</td><td>on the frontier</td></tr><tr><th scope="row">gpt-image-2</th><td class="num">$0.0085</td><td class="num">4.50</td><td>on the frontier</td></tr><tr><th scope="row">mai-image-2.6-flash</th><td class="num">$0.0154</td><td class="num">3.75</td><td>beaten</td></tr><tr><th scope="row">hy-image-v3.5-preview</th><td class="num">$0.0192</td><td class="num">3.25</td><td>beaten</td></tr><tr><th scope="row">gpt-image-2.5-flare</th><td class="num">$0.0261</td><td class="num">4.50</td><td>beaten</td></tr><tr><th scope="row">gpt-image-2.6-flare</th><td class="num">$0.0265</td><td class="num">5.00</td><td>on the frontier</td></tr><tr><th scope="row">gpt-image-2.6-sunburst</th><td class="num">$0.0265</td><td class="num">5.00</td><td>on the frontier</td></tr><tr><th scope="row">qwen-image-3.0-pro</th><td class="num">$0.0286</td><td class="num">3.25</td><td>beaten</td></tr><tr><th scope="row">seedream-5-0-pro</th><td class="num">$0.0360</td><td class="num">3.50</td><td>beaten</td></tr><tr><th scope="row">flux-3-image</th><td class="num">$0.0384</td><td class="num">3.50</td><td>beaten</td></tr><tr><th scope="row">wan2.7-image-pro</th><td class="num">$0.0544</td><td class="num">3.75</td><td>beaten</td></tr><tr><th scope="row">kling-v4-image</th><td class="num">$0.0571</td><td class="num">2.50</td><td>beaten</td></tr><tr><th scope="row">flux-kontext-max</th><td class="num">$0.0640</td><td class="num">2.50</td><td>beaten</td></tr><tr><th scope="row">flux-2-max</th><td class="num">$0.0800</td><td class="num">3.25</td><td>beaten</td></tr><tr><th scope="row">flux-2-flex</th><td class="num">$0.0800</td><td class="num">3.50</td><td>beaten</td></tr></tbody></table></div>
 </details>
 </section>
 
@@ -407,14 +425,14 @@ beaten on this chart" aria-label="hy-image-v3.5-preview, $0.0192 per image, 20.3
 <li><span class="tag tag-neutral">Gateway</span><p>midjourney: all 4 requests rejected with <code>model_price_error</code>. The price is not set on APIMart; this is the gateway, not the model.</p></li>
 <li><span class="tag tag-neutral">Resolution</span><p>kling-v4-image needs 2K or higher, so we ran 2K.</p></li>
 <li><span class="tag tag-neutral">Text</span><p>kling painted a sign and a lantern in kanji. qwen-image-3.0-pro put Japanese text on the ticket.</p></li>
-<li><span class="tag tag-neutral">Alpha</span><p>Flux and Seedream paint the transparency grid into the image instead of returning alpha. gpt-image-2 once drew a backdrop.</p></li>
+<li><span class="tag tag-neutral">Alpha</span><p>Flux and Seedream paint the transparency grid into the image instead of returning alpha. gpt-image-2 once drew a backdrop. In pass 4, mai-image-2.6-flash drew the grid too, flux-3-image-klein a plain white backdrop, and gpt-image-1.5 returned alpha but cut out the cat&rsquo;s eyes.</p></li>
 <li><span class="tag tag-neutral">Failures</span><p>imagen-4.0-apimart failed all 3 pass 1 requests (<code>KeyError 'result'</code>, about 62 s each). grok-imagine-image-2.0 rejects the <code>size</code> parameter and was not retried. seedream-5-5 failed the fear prompt (status failed, $0, reason not read).</p></li>
 </ul>
 </section>
 
 <section class="sec" id="speed" aria-labelledby="h-speed">
 <h2 id="h-speed">Speed</h2>
-<div class="card tldr"><p>Median seconds from submit to finished file for the 13 scored models. <strong class="key">gpt-image-2.6-flare is the fastest of the strong models (13 s)</strong>; gpt-image-2 takes about 23 s at a third of the price.</p></div>
+<div class="card tldr"><p>Median seconds from submit to finished file for the 15 scored models. <strong class="key">gpt-image-2.6-flare is the fastest of the strong models (13 s)</strong>; gpt-image-2 takes about 23 s at a third of the price.</p></div>
 <figure class="chart" id="f-cis">
 <svg viewBox="0 0 900 540" role="img" aria-labelledby="cist cisd" id="cis"><title id="cist">Quality against seconds per image</title><desc id="cisd">Scored image models: median submit-to-file time against quality.</desc>
 <line class="pg" x1="70" x2="876" y1="476.0" y2="476.0"/><text class="pa2" x="60" y="481.0" text-anchor="end">2</text>
@@ -424,108 +442,122 @@ beaten on this chart" aria-label="hy-image-v3.5-preview, $0.0192 per image, 20.3
 <line class="pg" x1="70" x2="876" y1="174.7" y2="174.7"/><text class="pa2" x="60" y="179.7" text-anchor="end">4</text>
 <line class="pg" x1="70" x2="876" y1="99.3" y2="99.3"/><text class="pa2" x="60" y="104.3" text-anchor="end">4.5</text>
 <line class="pg" x1="70" x2="876" y1="24.0" y2="24.0"/><text class="pa2" x="60" y="29.0" text-anchor="end">5</text>
-<line class="pg" x1="47.0" x2="47.0" y1="24" y2="476"/><text class="pa2" x="47.0" y="498" text-anchor="middle">10 s</text>
-<line class="pg" x1="339.1" x2="339.1" y1="24" y2="476"/><text class="pa2" x="339.1" y="498" text-anchor="middle">20 s</text>
-<line class="pg" x1="631.2" x2="631.2" y1="24" y2="476"/><text class="pa2" x="631.2" y="498" text-anchor="middle">40 s</text>
-<line class="pg" x1="802.1" x2="802.1" y1="24" y2="476"/><text class="pa2" x="802.1" y="498" text-anchor="middle">60 s</text>
+<line class="pg" x1="56.9" x2="56.9" y1="24" y2="476"/><text class="pa2" x="56.9" y="498" text-anchor="middle">10 s</text>
+<line class="pg" x1="345.5" x2="345.5" y1="24" y2="476"/><text class="pa2" x="345.5" y="498" text-anchor="middle">20 s</text>
+<line class="pg" x1="634.1" x2="634.1" y1="24" y2="476"/><text class="pa2" x="634.1" y="498" text-anchor="middle">40 s</text>
+<line class="pg" x1="803.0" x2="803.0" y1="24" y2="476"/><text class="pa2" x="803.0" y="498" text-anchor="middle">60 s</text>
 <text class="pa2" x="473.0" y="528" text-anchor="middle">Median seconds to finish (log scale)</text><text class="pa2" transform="translate(18 250.0) rotate(-90)" text-anchor="middle">Quality (mean of 4 scores, 0 to 5)</text>
-<polyline class="pf" points="164.0,24.0"/>
-<circle class="pb" cx="164.0" cy="24.0" r="9" tabindex="0" data-model="gpt-image-2.6-flare" data-family="openai" data-x="13.2" data-y="5" data-tip="gpt-image-2.6-flare
+<polyline class="pf" points="162.9,212.3 172.5,24.0"/>
+<circle class="pb" cx="172.5" cy="24.0" r="9" tabindex="0" data-model="gpt-image-2.6-flare" data-family="openai" data-x="13.2" data-y="5" data-tip="gpt-image-2.6-flare
 $0.0265 per image
 13.2 s median to finish (10 runs)
 quality 5.00 of 5
 style 5, emotion_faces 5, text_free 5, edge_alpha 5
 repeat runs [[5, 5], [5, 5], [5, 5], [5, 5]], cine/pair [5, 4]
 on the frontier" aria-label="gpt-image-2.6-flare, $0.0265 per image, 13.2 s median to finish (10 runs), quality 5.00 of 5, style 5, emotion_faces 5, text_free 5, edge_alpha 5, repeat runs [[5, 5], [5, 5], [5, 5], [5, 5]], cine/pair [5, 4], on the frontier"/>
-<text class="pl" data-model="gpt-image-2.6-flare" x="178.0" y="29.0" text-anchor="start">gpt-img-2.6-flare</text>
-<circle class="pd" cx="512.8" cy="24.0" r="7" tabindex="0" data-model="gpt-image-2.6-sunburst" data-family="openai" data-x="30.2" data-y="5" data-tip="gpt-image-2.6-sunburst
+<text class="pl" data-model="gpt-image-2.6-flare" x="186.5" y="29.0" text-anchor="start">gpt-img-2.6-flare</text>
+<circle class="pb" cx="162.9" cy="212.3" r="9" tabindex="0" data-model="flux-3-image-klein" data-family="bfl" data-x="12.9" data-y="3.75" data-tip="flux-3-image-klein
+$0.0072 per image
+12.9 s median to finish (4 runs)
+quality 3.75 of 5
+style 4, emotion_faces 4, text_free 5, edge_alpha 2
+on the frontier" aria-label="flux-3-image-klein, $0.0072 per image, 12.9 s median to finish (4 runs), quality 3.75 of 5, style 4, emotion_faces 4, text_free 5, edge_alpha 2, on the frontier"/>
+<text class="pl" data-model="flux-3-image-klein" x="148.9" y="217.3" text-anchor="end">flux-3-image-klein</text>
+<circle class="pd" cx="517.1" cy="24.0" r="7" tabindex="0" data-model="gpt-image-2.6-sunburst" data-family="openai" data-x="30.2" data-y="5" data-tip="gpt-image-2.6-sunburst
 $0.0265 per image
 30.2 s median to finish (10 runs)
 quality 5.00 of 5
 style 5, emotion_faces 5, text_free 5, edge_alpha 5
 repeat runs [[5, 5], [5, 5], [5, 5], [5, 5]], cine/pair [5, 3]
 beaten on this chart" aria-label="gpt-image-2.6-sunburst, $0.0265 per image, 30.2 s median to finish (10 runs), quality 5.00 of 5, style 5, emotion_faces 5, text_free 5, edge_alpha 5, repeat runs [[5, 5], [5, 5], [5, 5], [5, 5]], cine/pair [5, 3], beaten on this chart"/>
-<text class="pl2" data-model="gpt-image-2.6-sunburst" x="526.8" y="29.0" text-anchor="start">gpt-img-2.6-sunburst</text>
-<circle class="pd" cx="571.3" cy="287.7" r="7" tabindex="0" data-model="flux-2-max" data-family="bfl" data-x="34.7" data-y="3.25" data-tip="flux-2-max
+<text class="pl2" data-model="gpt-image-2.6-sunburst" x="531.1" y="29.0" text-anchor="start">gpt-img-2.6-sunburst</text>
+<circle class="pd" cx="575.0" cy="287.7" r="7" tabindex="0" data-model="flux-2-max" data-family="bfl" data-x="34.7" data-y="3.25" data-tip="flux-2-max
 $0.0800 per image
 34.7 s median to finish (4 runs)
 quality 3.25 of 5
 style 3, emotion_faces 3, text_free 5, edge_alpha 2
 beaten on this chart" aria-label="flux-2-max, $0.0800 per image, 34.7 s median to finish (4 runs), quality 3.25 of 5, style 3, emotion_faces 3, text_free 5, edge_alpha 2, beaten on this chart"/>
-<text class="pl2" data-model="flux-2-max" x="585.3" y="292.7" text-anchor="start">flux-2-max</text>
-<circle class="pd" cx="371.6" cy="400.7" r="7" tabindex="0" data-model="flux-kontext-max" data-family="bfl" data-x="21.6" data-y="2.5" data-tip="flux-kontext-max
+<text class="pl2" data-model="flux-2-max" x="589.0" y="292.7" text-anchor="start">flux-2-max</text>
+<circle class="pd" cx="377.6" cy="400.7" r="7" tabindex="0" data-model="flux-kontext-max" data-family="bfl" data-x="21.6" data-y="2.5" data-tip="flux-kontext-max
 $0.0640 per image
 21.6 s median to finish (4 runs)
 quality 2.50 of 5
 style 2, emotion_faces 2, text_free 5, edge_alpha 1
 beaten on this chart" aria-label="flux-kontext-max, $0.0640 per image, 21.6 s median to finish (4 runs), quality 2.50 of 5, style 2, emotion_faces 2, text_free 5, edge_alpha 1, beaten on this chart"/>
-<text class="pl2" data-model="flux-kontext-max" x="385.6" y="405.7" text-anchor="start">flux-kontext-max</text>
-<circle class="pd" cx="164.0" cy="287.7" r="7" tabindex="0" data-model="qwen-image-3.0-pro" data-family="alibaba" data-x="13.2" data-y="3.25" data-tip="qwen-image-3.0-pro
+<text class="pl2" data-model="flux-kontext-max" x="391.6" y="405.7" text-anchor="start">flux-kontext-max</text>
+<circle class="pd" cx="172.5" cy="287.7" r="7" tabindex="0" data-model="qwen-image-3.0-pro" data-family="alibaba" data-x="13.2" data-y="3.25" data-tip="qwen-image-3.0-pro
 $0.0286 per image
 13.2 s median to finish (4 runs)
 quality 3.25 of 5
 style 4, emotion_faces 4, text_free 3, edge_alpha 2
 beaten on this chart" aria-label="qwen-image-3.0-pro, $0.0286 per image, 13.2 s median to finish (4 runs), quality 3.25 of 5, style 4, emotion_faces 4, text_free 3, edge_alpha 2, beaten on this chart"/>
-<text class="pl2" data-model="qwen-image-3.0-pro" x="178.0" y="292.7" text-anchor="start">qwen-image-3.0-pro</text>
-<circle class="pd" cx="578.6" cy="400.7" r="7" tabindex="0" data-model="kling-v4-image" data-family="kling" data-x="35.3" data-y="2.5" data-tip="kling-v4-image
+<text class="pl2" data-model="qwen-image-3.0-pro" x="186.5" y="292.7" text-anchor="start">qwen-image-3.0-pro</text>
+<circle class="pd" cx="582.1" cy="400.7" r="7" tabindex="0" data-model="kling-v4-image" data-family="kling" data-x="35.3" data-y="2.5" data-tip="kling-v4-image
 $0.0571 per image
 35.3 s median to finish (4 runs)
 quality 2.50 of 5
 style 4, emotion_faces 2, text_free 2, edge_alpha 2
 beaten on this chart" aria-label="kling-v4-image, $0.0571 per image, 35.3 s median to finish (4 runs), quality 2.50 of 5, style 4, emotion_faces 2, text_free 2, edge_alpha 2, beaten on this chart"/>
-<text class="pl2" data-model="kling-v4-image" x="592.6" y="405.7" text-anchor="start">kling-v4-image</text>
-<circle class="pd" cx="388.8" cy="250.0" r="7" tabindex="0" data-model="flux-3-image" data-family="bfl" data-x="22.5" data-y="3.5" data-tip="flux-3-image
+<text class="pl2" data-model="kling-v4-image" x="596.1" y="405.7" text-anchor="start">kling-v4-image</text>
+<circle class="pd" cx="394.6" cy="250.0" r="7" tabindex="0" data-model="flux-3-image" data-family="bfl" data-x="22.5" data-y="3.5" data-tip="flux-3-image
 $0.0384 per image
 22.5 s median to finish (13 runs)
 quality 3.50 of 5
 style 4, emotion_faces 3, text_free 5, edge_alpha 2
 repeat runs [[3, 3], [3, 3], [4, 3], [2, 2]], cine/pair [3, 3]
 beaten on this chart" aria-label="flux-3-image, $0.0384 per image, 22.5 s median to finish (13 runs), quality 3.50 of 5, style 4, emotion_faces 3, text_free 5, edge_alpha 2, repeat runs [[3, 3], [3, 3], [4, 3], [2, 2]], cine/pair [3, 3], beaten on this chart"/>
-<text class="pl2" data-model="flux-3-image" x="374.8" y="255.0" text-anchor="end">flux-3-image</text>
-<circle class="pd" cx="454.5" cy="250.0" r="7" tabindex="0" data-model="flux-2-flex" data-family="bfl" data-x="26.3" data-y="3.5" data-tip="flux-2-flex
+<text class="pl2" data-model="flux-3-image" x="380.6" y="255.0" text-anchor="end">flux-3-image</text>
+<circle class="pd" cx="459.5" cy="250.0" r="7" tabindex="0" data-model="flux-2-flex" data-family="bfl" data-x="26.3" data-y="3.5" data-tip="flux-2-flex
 $0.0800 per image
 26.3 s median to finish (4 runs)
 quality 3.50 of 5
 style 4, emotion_faces 3, text_free 5, edge_alpha 2
 beaten on this chart" aria-label="flux-2-flex, $0.0800 per image, 26.3 s median to finish (4 runs), quality 3.50 of 5, style 4, emotion_faces 3, text_free 5, edge_alpha 2, beaten on this chart"/>
-<text class="pl2" data-model="flux-2-flex" x="468.5" y="255.0" text-anchor="start">flux-2-flex</text>
-<circle class="pd" cx="782.0" cy="250.0" r="7" tabindex="0" data-model="seedream-5-0-pro" data-family="bytedance" data-x="57.2" data-y="3.5" data-tip="seedream-5-0-pro
+<text class="pl2" data-model="flux-2-flex" x="473.5" y="255.0" text-anchor="start">flux-2-flex</text>
+<circle class="pd" cx="783.1" cy="250.0" r="7" tabindex="0" data-model="seedream-5-0-pro" data-family="bytedance" data-x="57.2" data-y="3.5" data-tip="seedream-5-0-pro
 $0.0360 per image
 57.2 s median to finish (13 runs)
 quality 3.50 of 5
 style 4, emotion_faces 3, text_free 5, edge_alpha 2
 repeat runs [[3, 4], [4, 2], [4, 4], [2, 2]], cine/pair [4, 4]
 beaten on this chart" aria-label="seedream-5-0-pro, $0.0360 per image, 57.2 s median to finish (13 runs), quality 3.50 of 5, style 4, emotion_faces 3, text_free 5, edge_alpha 2, repeat runs [[3, 4], [4, 2], [4, 4], [2, 2]], cine/pair [4, 4], beaten on this chart"/>
-<text class="pl2" data-model="seedream-5-0-pro" x="768.0" y="255.0" text-anchor="end">seedream-5-0-pro</text>
-<circle class="pd" cx="379.3" cy="99.3" r="7" tabindex="0" data-model="gpt-image-2.5-flare" data-family="openai" data-x="22" data-y="4.5" data-tip="gpt-image-2.5-flare
+<text class="pl2" data-model="seedream-5-0-pro" x="769.1" y="255.0" text-anchor="end">seedream-5-0-pro</text>
+<circle class="pd" cx="385.2" cy="99.3" r="7" tabindex="0" data-model="gpt-image-2.5-flare" data-family="openai" data-x="22" data-y="4.5" data-tip="gpt-image-2.5-flare
 $0.0261 per image
 22 s median to finish (7 runs)
 quality 4.50 of 5
 style 4, emotion_faces 4, text_free 5, edge_alpha 5
 beaten on this chart" aria-label="gpt-image-2.5-flare, $0.0261 per image, 22 s median to finish (7 runs), quality 4.50 of 5, style 4, emotion_faces 4, text_free 5, edge_alpha 5, beaten on this chart"/>
-<text class="pl2" data-model="gpt-image-2.5-flare" x="365.3" y="104.3" text-anchor="end">gpt-img-2.5-flare</text>
-<circle class="pd" cx="394.4" cy="99.3" r="7" tabindex="0" data-model="gpt-image-2" data-family="openai" data-x="22.8" data-y="4.5" data-tip="gpt-image-2
+<text class="pl2" data-model="gpt-image-2.5-flare" x="371.2" y="104.3" text-anchor="end">gpt-img-2.5-flare</text>
+<circle class="pd" cx="415.1" cy="99.3" r="7" tabindex="0" data-model="gpt-image-2" data-family="openai" data-x="22.8" data-y="4.5" data-tip="gpt-image-2
 $0.0085 per image
 22.8 s median to finish (13 runs)
 quality 4.50 of 5
 style 4, emotion_faces 4, text_free 5, edge_alpha 5
 repeat runs [[4, 4], [4, 4], [4, 4], [5, 2]], cine/pair [4, 3]
 beaten on this chart" aria-label="gpt-image-2, $0.0085 per image, 22.8 s median to finish (13 runs), quality 4.50 of 5, style 4, emotion_faces 4, text_free 5, edge_alpha 5, repeat runs [[4, 4], [4, 4], [4, 4], [5, 2]], cine/pair [4, 3], beaten on this chart"/>
-<text class="pl2" data-model="gpt-image-2" x="408.4" y="104.3" text-anchor="start">gpt-img-2</text>
-<circle class="pd" cx="489.9" cy="212.3" r="7" tabindex="0" data-model="wan2.7-image-pro" data-family="alibaba" data-x="28.6" data-y="3.75" data-tip="wan2.7-image-pro
+<text class="pl2" data-model="gpt-image-2" x="429.1" y="104.3" text-anchor="start">gpt-img-2</text>
+<circle class="pd" cx="494.5" cy="212.3" r="7" tabindex="0" data-model="wan2.7-image-pro" data-family="alibaba" data-x="28.6" data-y="3.75" data-tip="wan2.7-image-pro
 $0.0544 per image
 28.6 s median to finish (4 runs)
 quality 3.75 of 5
 style 3, emotion_faces 3, text_free 5, edge_alpha 4
 beaten on this chart" aria-label="wan2.7-image-pro, $0.0544 per image, 28.6 s median to finish (4 runs), quality 3.75 of 5, style 3, emotion_faces 3, text_free 5, edge_alpha 4, beaten on this chart"/>
-<text class="pl2" data-model="wan2.7-image-pro" x="503.9" y="217.3" text-anchor="start">wan2.7-image-pro</text>
-<circle class="pd" cx="345.4" cy="287.7" r="7" tabindex="0" data-model="hy-image-v3.5-preview" data-family="tencent" data-x="20.3" data-y="3.25" data-tip="hy-image-v3.5-preview
+<text class="pl2" data-model="wan2.7-image-pro" x="508.5" y="217.3" text-anchor="start">wan2.7-image-pro</text>
+<circle class="pd" cx="351.7" cy="287.7" r="7" tabindex="0" data-model="hy-image-v3.5-preview" data-family="tencent" data-x="20.3" data-y="3.25" data-tip="hy-image-v3.5-preview
 $0.0192 per image
 20.3 s median to finish (4 runs)
 quality 3.25 of 5
 style 3, emotion_faces 3, text_free 4, edge_alpha 3
 beaten on this chart" aria-label="hy-image-v3.5-preview, $0.0192 per image, 20.3 s median to finish (4 runs), quality 3.25 of 5, style 3, emotion_faces 3, text_free 4, edge_alpha 3, beaten on this chart"/>
-<text class="pl2" data-model="hy-image-v3.5-preview" x="359.4" y="292.7" text-anchor="start">hy-image-v3.5-preview</text>
+<text class="pl2" data-model="hy-image-v3.5-preview" x="365.7" y="292.7" text-anchor="start">hy-image-v3.5-preview</text>
+<circle class="pd" cx="228.5" cy="212.3" r="7" tabindex="0" data-model="mai-image-2.6-flash" data-family="other" data-x="15.1" data-y="3.75" data-tip="mai-image-2.6-flash
+$0.0154 per image
+15.1 s median to finish (4 runs)
+quality 3.75 of 5
+style 4, emotion_faces 4, text_free 5, edge_alpha 2
+beaten on this chart" aria-label="mai-image-2.6-flash, $0.0154 per image, 15.1 s median to finish (4 runs), quality 3.75 of 5, style 4, emotion_faces 4, text_free 5, edge_alpha 2, beaten on this chart"/>
+<text class="pl2" data-model="mai-image-2.6-flash" x="242.5" y="217.3" text-anchor="start">mai-image-2.6-flash</text>
 </svg>
 <figcaption>Hover a dot for the model, time, cost and scores. Seconds are submit to download, polled every 4 s, queue time included, so each can read up to 4 s high.</figcaption>
 </figure>
@@ -536,122 +568,138 @@ beaten on this chart" aria-label="hy-image-v3.5-preview, $0.0192 per image, 20.3
 <line class="pg" x1="70" x2="876" y1="312.0" y2="312.0"/><text class="pa2" x="60" y="317.0" text-anchor="end">$0.02</text>
 <line class="pg" x1="70" x2="876" y1="148.0" y2="148.0"/><text class="pa2" x="60" y="153.0" text-anchor="end">$0.05</text>
 <line class="pg" x1="70" x2="876" y1="24.0" y2="24.0"/><text class="pa2" x="60" y="29.0" text-anchor="end">$0.1</text>
-<line class="pg" x1="49.2" x2="49.2" y1="24" y2="476"/><text class="pa2" x="49.2" y="498" text-anchor="middle">10</text>
-<line class="pg" x1="313.4" x2="313.4" y1="24" y2="476"/><text class="pa2" x="313.4" y="498" text-anchor="middle">20</text>
-<line class="pg" x1="577.6" x2="577.6" y1="24" y2="476"/><text class="pa2" x="577.6" y="498" text-anchor="middle">40</text>
-<line class="pg" x1="790.9" x2="790.9" y1="24" y2="476"/><text class="pa2" x="790.9" y="498" text-anchor="middle">70</text>
+<line class="pg" x1="58.1" x2="58.1" y1="24" y2="476"/><text class="pa2" x="58.1" y="498" text-anchor="middle">10</text>
+<line class="pg" x1="319.5" x2="319.5" y1="24" y2="476"/><text class="pa2" x="319.5" y="498" text-anchor="middle">20</text>
+<line class="pg" x1="580.8" x2="580.8" y1="24" y2="476"/><text class="pa2" x="580.8" y="498" text-anchor="middle">40</text>
+<line class="pg" x1="791.9" x2="791.9" y1="24" y2="476"/><text class="pa2" x="791.9" y="498" text-anchor="middle">70</text>
 <text class="pa2" x="473.0" y="528" text-anchor="middle">Median seconds to finish (log scale)</text><text class="pa2" transform="translate(18 250.0) rotate(-90)" text-anchor="middle">Cost per image</text>
-<polyline class="pf" points="155.1,261.7 319.1,319.3 363.4,465.2"/>
-<circle class="pb" cx="155.1" cy="261.7" r="9" tabindex="0" data-model="gpt-image-2.6-flare" data-family="openai" data-x="13.2" data-y="0.0265" data-tip="gpt-image-2.6-flare
+<polyline class="pf" points="154.1,494.9"/>
+<circle class="pb" cx="154.1" cy="494.9" r="9" tabindex="0" data-model="flux-3-image-klein" data-family="bfl" data-x="12.9" data-y="0.0072" data-tip="flux-3-image-klein
+$0.0072 per image
+12.9 s median to finish (4 runs)
+quality 3.75 of 5
+style 4, emotion_faces 4, text_free 5, edge_alpha 2
+on the frontier" aria-label="flux-3-image-klein, $0.0072 per image, 12.9 s median to finish (4 runs), quality 3.75 of 5, style 4, emotion_faces 4, text_free 5, edge_alpha 2, on the frontier"/>
+<text class="pl" data-model="flux-3-image-klein" x="168.1" y="499.9" text-anchor="start">flux-3-image-klein</text>
+<circle class="pd" cx="162.8" cy="261.7" r="7" tabindex="0" data-model="gpt-image-2.6-flare" data-family="openai" data-x="13.2" data-y="0.0265" data-tip="gpt-image-2.6-flare
 $0.0265 per image
 13.2 s median to finish (10 runs)
 quality 5.00 of 5
 style 5, emotion_faces 5, text_free 5, edge_alpha 5
 repeat runs [[5, 5], [5, 5], [5, 5], [5, 5]], cine/pair [5, 4]
-on the frontier" aria-label="gpt-image-2.6-flare, $0.0265 per image, 13.2 s median to finish (10 runs), quality 5.00 of 5, style 5, emotion_faces 5, text_free 5, edge_alpha 5, repeat runs [[5, 5], [5, 5], [5, 5], [5, 5]], cine/pair [5, 4], on the frontier"/>
-<text class="pl" data-model="gpt-image-2.6-flare" x="141.1" y="266.7" text-anchor="end">gpt-img-2.6-flare</text>
-<circle class="pb" cx="363.4" cy="465.2" r="9" tabindex="0" data-model="gpt-image-2" data-family="openai" data-x="22.8" data-y="0.0085" data-tip="gpt-image-2
-$0.0085 per image
-22.8 s median to finish (13 runs)
-quality 4.50 of 5
-style 4, emotion_faces 4, text_free 5, edge_alpha 5
-repeat runs [[4, 4], [4, 4], [4, 4], [5, 2]], cine/pair [4, 3]
-on the frontier" aria-label="gpt-image-2, $0.0085 per image, 22.8 s median to finish (13 runs), quality 4.50 of 5, style 4, emotion_faces 4, text_free 5, edge_alpha 5, repeat runs [[4, 4], [4, 4], [4, 4], [5, 2]], cine/pair [4, 3], on the frontier"/>
-<text class="pl" data-model="gpt-image-2" x="377.4" y="470.2" text-anchor="start">gpt-img-2</text>
-<circle class="pb" cx="319.1" cy="319.3" r="9" tabindex="0" data-model="hy-image-v3.5-preview" data-family="tencent" data-x="20.3" data-y="0.0192" data-tip="hy-image-v3.5-preview
-$0.0192 per image
-20.3 s median to finish (4 runs)
-quality 3.25 of 5
-style 3, emotion_faces 3, text_free 4, edge_alpha 3
-on the frontier" aria-label="hy-image-v3.5-preview, $0.0192 per image, 20.3 s median to finish (4 runs), quality 3.25 of 5, style 3, emotion_faces 3, text_free 4, edge_alpha 3, on the frontier"/>
-<text class="pl" data-model="hy-image-v3.5-preview" x="333.1" y="324.3" text-anchor="start">hy-image-v3.5-preview</text>
-<circle class="pd" cx="470.5" cy="261.7" r="7" tabindex="0" data-model="gpt-image-2.6-sunburst" data-family="openai" data-x="30.2" data-y="0.0265" data-tip="gpt-image-2.6-sunburst
+beaten on this chart" aria-label="gpt-image-2.6-flare, $0.0265 per image, 13.2 s median to finish (10 runs), quality 5.00 of 5, style 5, emotion_faces 5, text_free 5, edge_alpha 5, repeat runs [[5, 5], [5, 5], [5, 5], [5, 5]], cine/pair [5, 4], beaten on this chart"/>
+<text class="pl2" data-model="gpt-image-2.6-flare" x="148.8" y="266.7" text-anchor="end">gpt-img-2.6-flare</text>
+<circle class="pd" cx="474.9" cy="261.7" r="7" tabindex="0" data-model="gpt-image-2.6-sunburst" data-family="openai" data-x="30.2" data-y="0.0265" data-tip="gpt-image-2.6-sunburst
 $0.0265 per image
 30.2 s median to finish (10 runs)
 quality 5.00 of 5
 style 5, emotion_faces 5, text_free 5, edge_alpha 5
 repeat runs [[5, 5], [5, 5], [5, 5], [5, 5]], cine/pair [5, 3]
 beaten on this chart" aria-label="gpt-image-2.6-sunburst, $0.0265 per image, 30.2 s median to finish (10 runs), quality 5.00 of 5, style 5, emotion_faces 5, text_free 5, edge_alpha 5, repeat runs [[5, 5], [5, 5], [5, 5], [5, 5]], cine/pair [5, 3], beaten on this chart"/>
-<text class="pl2" data-model="gpt-image-2.6-sunburst" x="484.5" y="266.7" text-anchor="start">gpt-img-2.6-sunburst</text>
-<circle class="pd" cx="523.5" cy="63.9" r="7" tabindex="0" data-model="flux-2-max" data-family="bfl" data-x="34.7" data-y="0.08" data-tip="flux-2-max
+<text class="pl2" data-model="gpt-image-2.6-sunburst" x="488.9" y="266.7" text-anchor="start">gpt-img-2.6-sunburst</text>
+<circle class="pd" cx="527.3" cy="63.9" r="7" tabindex="0" data-model="flux-2-max" data-family="bfl" data-x="34.7" data-y="0.08" data-tip="flux-2-max
 $0.0800 per image
 34.7 s median to finish (4 runs)
 quality 3.25 of 5
 style 3, emotion_faces 3, text_free 5, edge_alpha 2
 beaten on this chart" aria-label="flux-2-max, $0.0800 per image, 34.7 s median to finish (4 runs), quality 3.25 of 5, style 3, emotion_faces 3, text_free 5, edge_alpha 2, beaten on this chart"/>
-<text class="pl2" data-model="flux-2-max" x="537.5" y="68.9" text-anchor="start">flux-2-max</text>
-<circle class="pd" cx="342.8" cy="103.9" r="7" tabindex="0" data-model="flux-kontext-max" data-family="bfl" data-x="21.6" data-y="0.064" data-tip="flux-kontext-max
+<text class="pl2" data-model="flux-2-max" x="541.3" y="68.9" text-anchor="start">flux-2-max</text>
+<circle class="pd" cx="348.5" cy="103.9" r="7" tabindex="0" data-model="flux-kontext-max" data-family="bfl" data-x="21.6" data-y="0.064" data-tip="flux-kontext-max
 $0.0640 per image
 21.6 s median to finish (4 runs)
 quality 2.50 of 5
 style 2, emotion_faces 2, text_free 5, edge_alpha 1
 beaten on this chart" aria-label="flux-kontext-max, $0.0640 per image, 21.6 s median to finish (4 runs), quality 2.50 of 5, style 2, emotion_faces 2, text_free 5, edge_alpha 1, beaten on this chart"/>
-<text class="pl2" data-model="flux-kontext-max" x="356.8" y="108.9" text-anchor="start">flux-kontext-max</text>
-<circle class="pd" cx="170.1" cy="248.0" r="7" tabindex="0" data-model="qwen-image-3.0-pro" data-family="alibaba" data-x="13.2" data-y="0.0286" data-tip="qwen-image-3.0-pro
+<text class="pl2" data-model="flux-kontext-max" x="362.5" y="108.9" text-anchor="start">flux-kontext-max</text>
+<circle class="pd" cx="177.8" cy="248.0" r="7" tabindex="0" data-model="qwen-image-3.0-pro" data-family="alibaba" data-x="13.2" data-y="0.0286" data-tip="qwen-image-3.0-pro
 $0.0286 per image
 13.2 s median to finish (4 runs)
 quality 3.25 of 5
 style 4, emotion_faces 4, text_free 3, edge_alpha 2
 beaten on this chart" aria-label="qwen-image-3.0-pro, $0.0286 per image, 13.2 s median to finish (4 runs), quality 3.25 of 5, style 4, emotion_faces 4, text_free 3, edge_alpha 2, beaten on this chart"/>
-<text class="pl2" data-model="qwen-image-3.0-pro" x="184.1" y="253.0" text-anchor="start">qwen-image-3.0-pro</text>
-<circle class="pd" cx="530.0" cy="124.3" r="7" tabindex="0" data-model="kling-v4-image" data-family="kling" data-x="35.3" data-y="0.0571" data-tip="kling-v4-image
+<text class="pl2" data-model="qwen-image-3.0-pro" x="191.8" y="253.0" text-anchor="start">qwen-image-3.0-pro</text>
+<circle class="pd" cx="533.7" cy="124.3" r="7" tabindex="0" data-model="kling-v4-image" data-family="kling" data-x="35.3" data-y="0.0571" data-tip="kling-v4-image
 $0.0571 per image
 35.3 s median to finish (4 runs)
 quality 2.50 of 5
 style 4, emotion_faces 2, text_free 2, edge_alpha 2
 beaten on this chart" aria-label="kling-v4-image, $0.0571 per image, 35.3 s median to finish (4 runs), quality 2.50 of 5, style 4, emotion_faces 2, text_free 2, edge_alpha 2, beaten on this chart"/>
-<text class="pl2" data-model="kling-v4-image" x="544.0" y="129.3" text-anchor="start">kling-v4-image</text>
-<circle class="pd" cx="358.3" cy="195.3" r="7" tabindex="0" data-model="flux-3-image" data-family="bfl" data-x="22.5" data-y="0.0384" data-tip="flux-3-image
+<text class="pl2" data-model="kling-v4-image" x="547.7" y="129.3" text-anchor="start">kling-v4-image</text>
+<circle class="pd" cx="363.9" cy="195.3" r="7" tabindex="0" data-model="flux-3-image" data-family="bfl" data-x="22.5" data-y="0.0384" data-tip="flux-3-image
 $0.0384 per image
 22.5 s median to finish (13 runs)
 quality 3.50 of 5
 style 4, emotion_faces 3, text_free 5, edge_alpha 2
 repeat runs [[3, 3], [3, 3], [4, 3], [2, 2]], cine/pair [3, 3]
 beaten on this chart" aria-label="flux-3-image, $0.0384 per image, 22.5 s median to finish (13 runs), quality 3.50 of 5, style 4, emotion_faces 3, text_free 5, edge_alpha 2, repeat runs [[3, 3], [3, 3], [4, 3], [2, 2]], cine/pair [3, 3], beaten on this chart"/>
-<text class="pl2" data-model="flux-3-image" x="372.3" y="200.3" text-anchor="start">flux-3-image</text>
-<circle class="pd" cx="417.8" cy="63.9" r="7" tabindex="0" data-model="flux-2-flex" data-family="bfl" data-x="26.3" data-y="0.08" data-tip="flux-2-flex
+<text class="pl2" data-model="flux-3-image" x="377.9" y="200.3" text-anchor="start">flux-3-image</text>
+<circle class="pd" cx="422.7" cy="63.9" r="7" tabindex="0" data-model="flux-2-flex" data-family="bfl" data-x="26.3" data-y="0.08" data-tip="flux-2-flex
 $0.0800 per image
 26.3 s median to finish (4 runs)
 quality 3.50 of 5
 style 4, emotion_faces 3, text_free 5, edge_alpha 2
 beaten on this chart" aria-label="flux-2-flex, $0.0800 per image, 26.3 s median to finish (4 runs), quality 3.50 of 5, style 4, emotion_faces 3, text_free 5, edge_alpha 2, beaten on this chart"/>
-<text class="pl2" data-model="flux-2-flex" x="431.8" y="68.9" text-anchor="start">flux-2-flex</text>
-<circle class="pd" cx="714.0" cy="206.8" r="7" tabindex="0" data-model="seedream-5-0-pro" data-family="bytedance" data-x="57.2" data-y="0.036" data-tip="seedream-5-0-pro
+<text class="pl2" data-model="flux-2-flex" x="436.7" y="68.9" text-anchor="start">flux-2-flex</text>
+<circle class="pd" cx="715.7" cy="206.8" r="7" tabindex="0" data-model="seedream-5-0-pro" data-family="bytedance" data-x="57.2" data-y="0.036" data-tip="seedream-5-0-pro
 $0.0360 per image
 57.2 s median to finish (13 runs)
 quality 3.50 of 5
 style 4, emotion_faces 3, text_free 5, edge_alpha 2
 repeat runs [[3, 4], [4, 2], [4, 4], [2, 2]], cine/pair [4, 4]
 beaten on this chart" aria-label="seedream-5-0-pro, $0.0360 per image, 57.2 s median to finish (13 runs), quality 3.50 of 5, style 4, emotion_faces 3, text_free 5, edge_alpha 2, repeat runs [[3, 4], [4, 2], [4, 4], [2, 2]], cine/pair [4, 4], beaten on this chart"/>
-<text class="pl2" data-model="seedream-5-0-pro" x="728.0" y="211.8" text-anchor="start">seedream-5-0-pro</text>
-<circle class="pd" cx="349.8" cy="264.4" r="7" tabindex="0" data-model="gpt-image-2.5-flare" data-family="openai" data-x="22" data-y="0.0261" data-tip="gpt-image-2.5-flare
+<text class="pl2" data-model="seedream-5-0-pro" x="729.7" y="211.8" text-anchor="start">seedream-5-0-pro</text>
+<circle class="pd" cx="355.4" cy="264.4" r="7" tabindex="0" data-model="gpt-image-2.5-flare" data-family="openai" data-x="22" data-y="0.0261" data-tip="gpt-image-2.5-flare
 $0.0261 per image
 22 s median to finish (7 runs)
 quality 4.50 of 5
 style 4, emotion_faces 4, text_free 5, edge_alpha 5
 beaten on this chart" aria-label="gpt-image-2.5-flare, $0.0261 per image, 22 s median to finish (7 runs), quality 4.50 of 5, style 4, emotion_faces 4, text_free 5, edge_alpha 5, beaten on this chart"/>
-<text class="pl2" data-model="gpt-image-2.5-flare" x="335.8" y="269.4" text-anchor="end">gpt-img-2.5-flare</text>
-<circle class="pd" cx="449.8" cy="133.0" r="7" tabindex="0" data-model="wan2.7-image-pro" data-family="alibaba" data-x="28.6" data-y="0.0544" data-tip="wan2.7-image-pro
+<text class="pl2" data-model="gpt-image-2.5-flare" x="341.4" y="269.4" text-anchor="end">gpt-img-2.5-flare</text>
+<circle class="pd" cx="368.9" cy="465.2" r="7" tabindex="0" data-model="gpt-image-2" data-family="openai" data-x="22.8" data-y="0.0085" data-tip="gpt-image-2
+$0.0085 per image
+22.8 s median to finish (13 runs)
+quality 4.50 of 5
+style 4, emotion_faces 4, text_free 5, edge_alpha 5
+repeat runs [[4, 4], [4, 4], [4, 4], [5, 2]], cine/pair [4, 3]
+beaten on this chart" aria-label="gpt-image-2, $0.0085 per image, 22.8 s median to finish (13 runs), quality 4.50 of 5, style 4, emotion_faces 4, text_free 5, edge_alpha 5, repeat runs [[4, 4], [4, 4], [4, 4], [5, 2]], cine/pair [4, 3], beaten on this chart"/>
+<text class="pl2" data-model="gpt-image-2" x="382.9" y="470.2" text-anchor="start">gpt-img-2</text>
+<circle class="pd" cx="454.4" cy="133.0" r="7" tabindex="0" data-model="wan2.7-image-pro" data-family="alibaba" data-x="28.6" data-y="0.0544" data-tip="wan2.7-image-pro
 $0.0544 per image
 28.6 s median to finish (4 runs)
 quality 3.75 of 5
 style 3, emotion_faces 3, text_free 5, edge_alpha 4
 beaten on this chart" aria-label="wan2.7-image-pro, $0.0544 per image, 28.6 s median to finish (4 runs), quality 3.75 of 5, style 3, emotion_faces 3, text_free 5, edge_alpha 4, beaten on this chart"/>
-<text class="pl2" data-model="wan2.7-image-pro" x="435.8" y="138.0" text-anchor="end">wan2.7-image-pro</text>
-<circle class="pd" cx="790.9" cy="385.0" r="7" tabindex="0" data-model="ChatGPT Instant" data-family="openai" data-x="70" data-y="0.0133" data-tip="ChatGPT Instant
+<text class="pl2" data-model="wan2.7-image-pro" x="440.4" y="138.0" text-anchor="end">wan2.7-image-pro</text>
+<circle class="pd" cx="325.1" cy="319.3" r="7" tabindex="0" data-model="hy-image-v3.5-preview" data-family="tencent" data-x="20.3" data-y="0.0192" data-tip="hy-image-v3.5-preview
+$0.0192 per image
+20.3 s median to finish (4 runs)
+quality 3.25 of 5
+style 3, emotion_faces 3, text_free 4, edge_alpha 3
+beaten on this chart" aria-label="hy-image-v3.5-preview, $0.0192 per image, 20.3 s median to finish (4 runs), quality 3.25 of 5, style 3, emotion_faces 3, text_free 4, edge_alpha 3, beaten on this chart"/>
+<text class="pl2" data-model="hy-image-v3.5-preview" x="339.1" y="324.3" text-anchor="start">hy-image-v3.5-preview</text>
+<circle class="pd" cx="213.5" cy="358.8" r="7" tabindex="0" data-model="mai-image-2.6-flash" data-family="other" data-x="15.1" data-y="0.0154" data-tip="mai-image-2.6-flash
+$0.0154 per image
+15.1 s median to finish (4 runs)
+quality 3.75 of 5
+style 4, emotion_faces 4, text_free 5, edge_alpha 2
+beaten on this chart" aria-label="mai-image-2.6-flash, $0.0154 per image, 15.1 s median to finish (4 runs), quality 3.75 of 5, style 4, emotion_faces 4, text_free 5, edge_alpha 2, beaten on this chart"/>
+<text class="pl2" data-model="mai-image-2.6-flash" x="227.5" y="363.8" text-anchor="start">mai-image-2.6-flash</text>
+<circle class="pd" cx="791.9" cy="385.0" r="7" tabindex="0" data-model="ChatGPT Instant" data-family="openai" data-x="70" data-y="0.0133" data-tip="ChatGPT Instant
 $0.0133 per image (model: $20 / (50 per day x 30))
 70 s median to finish (13 runs)
 quality unscored
 beaten on this chart" aria-label="ChatGPT Instant, $0.0133 per image (model: $20 / (50 per day x 30)), 70 s median to finish (13 runs), quality unscored, beaten on this chart"/>
-<text class="pl2" data-model="ChatGPT Instant" x="776.9" y="390.0" text-anchor="end">ChatGPT Instant (unscored)</text>
+<text class="pl2" data-model="ChatGPT Instant" x="777.9" y="390.0" text-anchor="end">ChatGPT Instant (unscored)</text>
 </svg>
 <figcaption>Cost against time: lower left is better. Filled red dots are not beaten on both. ChatGPT Instant is marked unscored: its speed is measured, its cost is a model at 50 images a day, and it has no quality score, so it is on this chart only.</figcaption>
 </figure>
 
 <details><summary>Data behind the charts</summary>
 <div class="scroll"><table class="table"><caption class="meta">Sorted by speed. n is the number of timed runs.</caption><thead><tr><th scope="col">Model</th><th scope="col" class="num">n</th><th scope="col" class="num">Median s</th><th scope="col" class="num">$ per image</th><th scope="col" class="num">Quality</th></tr></thead><tbody>
+<tr><th scope="row">flux-3-image-klein</th><td class="num">4</td><td class="num">12.9</td><td class="num">$0.0072</td><td class="num">3.75</td></tr>
 <tr><th scope="row">gpt-image-2.6-flare</th><td class="num">10</td><td class="num">13.2</td><td class="num">$0.0265</td><td class="num">5.00</td></tr>
 <tr><th scope="row">qwen-image-3.0-pro</th><td class="num">4</td><td class="num">13.2</td><td class="num">$0.0286</td><td class="num">3.25</td></tr>
+<tr><th scope="row">mai-image-2.6-flash</th><td class="num">4</td><td class="num">15.1</td><td class="num">$0.0154</td><td class="num">3.75</td></tr>
 <tr><th scope="row">hy-image-v3.5-preview</th><td class="num">4</td><td class="num">20.3</td><td class="num">$0.0192</td><td class="num">3.25</td></tr>
 <tr><th scope="row">flux-kontext-max</th><td class="num">4</td><td class="num">21.6</td><td class="num">$0.0640</td><td class="num">2.50</td></tr>
 <tr><th scope="row">gpt-image-2.5-flare</th><td class="num">7</td><td class="num">22</td><td class="num">$0.0261</td><td class="num">4.50</td></tr>
@@ -675,7 +723,7 @@ beaten on this chart" aria-label="ChatGPT Instant, $0.0133 per image (model: $20
 <section class="sec" id="spend" aria-labelledby="h-spend">
 <h2 id="h-spend">Where the $10 went</h2>
 <div class="card tldr"><p>The first $10 of APIMart credit was gone in about a day. <strong class="key">Half of it, $4.90, went on 16 test video clips</strong>, not on images. The whole image bench was $4.25 for 147 requests, and the 16 images used in the film were $0.57.</p></div>
-<div class="scroll"><table class="table"><caption class="meta">Itemised from the task cost on each result. Account total used: $9.97.</caption><thead><tr><th scope="col">Spend</th><th scope="col" class="num">USD</th><th scope="col">Share</th><th scope="col">Note</th></tr></thead><tbody><tr><th scope="row"><a href="../video-model-bench/#spend">Video spike: 16 clips, 9 models</a></th><td class="num">$4.90</td><td><span style="display:block;height:10px;width:100%;background:var(--data-claude);border-radius:2px"></span></td><td>veo3.1-quality alone was $1.00; kling-v4-flash 2 clips $0.86; kling-v3 $0.67; seedance 2.0 and 2.5-flash about $0.65 each</td></tr><tr><th scope="row">Image bench pass 2: 60 images, 14 models</th><td class="num">$2.18</td><td><span style="display:block;height:10px;width:44%;background:var(--data-claude);border-radius:2px"></span></td><td>flux-2-max and flux-2-flex $0.32 each, flux-kontext-max $0.26: the expensive Flux models</td></tr><tr><th scope="row">Image bench pass 3: repeat runs, 36 images</th><td class="num">$0.94</td><td><span style="display:block;height:10px;width:19%;background:var(--data-claude);border-radius:2px"></span></td><td>flux-3-image $0.23, seedream-5-0-pro $0.22, flare $0.16</td></tr><tr><th scope="row">Image bench pass 1: 45 images, 15 models</th><td class="num">$0.93</td><td><span style="display:block;height:10px;width:19%;background:var(--data-claude);border-radius:2px"></span></td><td>about $0.02 an image, 38 came back</td></tr><tr><th scope="row">Film stills: 16 images in 2.6-flare</th><td class="num">$0.57</td><td><span style="display:block;height:10px;width:12%;background:var(--data-claude);border-radius:2px"></span></td><td>used in the generated-frames attempt</td></tr><tr><th scope="row">Reference-image test: 6 images</th><td class="num">$0.20</td><td><span style="display:block;height:10px;width:4%;background:var(--data-claude);border-radius:2px"></span></td><td></td></tr><tr><th scope="row">Unlogged probes and failures</th><td class="num">$0.25</td><td><span style="display:block;height:10px;width:5%;background:var(--data-claude);border-radius:2px"></span></td><td>the account shows $9.97 used; $9.72 is itemised</td></tr></tbody></table></div>
+<div class="scroll"><table class="table"><caption class="meta">Itemised from the task cost on each result. Account total used: $9.97.</caption><thead><tr><th scope="col">Spend</th><th scope="col" class="num">USD</th><th scope="col">Share</th><th scope="col">Note</th></tr></thead><tbody><tr><th scope="row"><a href="../video-model-bench/#spend">Video spike: 16 clips, 9 models</a></th><td class="num">$4.90</td><td><span style="display:block;height:10px;width:100%;background:var(--data-claude);border-radius:2px"></span></td><td>veo3.1-quality alone was $1.00; kling-v4-flash 2 clips $0.86; kling-v3 $0.67; seedance 2.0 and 2.5-flash about $0.65 each</td></tr><tr><th scope="row">Image bench pass 2: 60 images, 14 models</th><td class="num">$2.18</td><td><span style="display:block;height:10px;width:44%;background:var(--data-claude);border-radius:2px"></span></td><td>flux-2-max and flux-2-flex $0.32 each, flux-kontext-max $0.26: the expensive Flux models</td></tr><tr><th scope="row">Image bench pass 3: repeat runs, 36 images</th><td class="num">$0.94</td><td><span style="display:block;height:10px;width:19%;background:var(--data-claude);border-radius:2px"></span></td><td>flux-3-image $0.23, seedream-5-0-pro $0.22, flare $0.16</td></tr><tr><th scope="row">Image bench pass 4: 10 images, 3 models</th><td class="num">$0.25</td><td><span style="display:block;height:10px;width:5%;background:var(--data-claude);border-radius:2px"></span></td><td>gpt-image-1.5 $0.16 for one image; 2026-11-22, after the $9.97 reading</td></tr><tr><th scope="row">Image bench pass 1: 45 images, 15 models</th><td class="num">$0.93</td><td><span style="display:block;height:10px;width:19%;background:var(--data-claude);border-radius:2px"></span></td><td>about $0.02 an image, 38 came back</td></tr><tr><th scope="row">Film stills: 16 images in 2.6-flare</th><td class="num">$0.57</td><td><span style="display:block;height:10px;width:12%;background:var(--data-claude);border-radius:2px"></span></td><td>used in the generated-frames attempt</td></tr><tr><th scope="row">Reference-image test: 6 images</th><td class="num">$0.20</td><td><span style="display:block;height:10px;width:4%;background:var(--data-claude);border-radius:2px"></span></td><td></td></tr><tr><th scope="row">Unlogged probes and failures</th><td class="num">$0.25</td><td><span style="display:block;height:10px;width:5%;background:var(--data-claude);border-radius:2px"></span></td><td>the account shows $9.97 used; $9.72 is itemised</td></tr></tbody></table></div>
 <ul>
 <li>Cost scales with price per call times how many models you try, not with how good the winner is. The winner, gpt-image-2.6-flare, is $0.0265 an image.</li>
 <li>Cheaper tests would have been a one-clip-per-model screen: the spike ran two prompts on seven models to compare faces and push-ins.</li>
@@ -686,7 +734,7 @@ beaten on this chart" aria-label="ChatGPT Instant, $0.0133 per image (model: $20
 <section class="sec" id="data" aria-labelledby="h-data">
 <h2 id="h-data">All scored image models in one table</h2>
 <p>Every image model with a quality score. The nine video models are in the <a href="../video-model-bench/#data">video bench table</a>; the download keeps both. Download: <a href="code/models.json">models.json</a>, <a href="code/models.csv">models.csv</a>. Charts are built from the same file by <a href="code/build_charts.py">build_charts.py</a>. Unscored image models (pass 1 only, or failed) are in the <a href="#source">source tables</a>.</p>
-<div class="scroll"><table class="table"><caption class="meta">Quality is 0 to 5, one reviewer. Cost is the mean over runs. Seconds are the median time to finish one call, 4 to 13 timed runs per model.</caption><thead><tr><th scope="col">Kind</th><th scope="col">Model</th><th scope="col" class="num">Cost</th><th scope="col" class="num">Median s</th><th scope="col" class="num">Quality</th><th scope="col">Scores</th></tr></thead><tbody><tr><td>image</td><th scope="row">gpt-image-2</th><td class="num">$0.0085 per image</td><td class="num">22.8</td><td class="num">4.50</td><td>style 4, emotion_faces 4, text_free 5, edge_alpha 5</td></tr><tr><td>image</td><th scope="row">hy-image-v3.5-preview</th><td class="num">$0.0192 per image</td><td class="num">20.3</td><td class="num">3.25</td><td>style 3, emotion_faces 3, text_free 4, edge_alpha 3</td></tr><tr><td>image</td><th scope="row">gpt-image-2.5-flare</th><td class="num">$0.0261 per image</td><td class="num">22</td><td class="num">4.50</td><td>style 4, emotion_faces 4, text_free 5, edge_alpha 5</td></tr><tr><td>image</td><th scope="row">gpt-image-2.6-flare</th><td class="num">$0.0265 per image</td><td class="num">13.2</td><td class="num">5.00</td><td>style 5, emotion_faces 5, text_free 5, edge_alpha 5</td></tr><tr><td>image</td><th scope="row">gpt-image-2.6-sunburst</th><td class="num">$0.0265 per image</td><td class="num">30.2</td><td class="num">5.00</td><td>style 5, emotion_faces 5, text_free 5, edge_alpha 5</td></tr><tr><td>image</td><th scope="row">qwen-image-3.0-pro</th><td class="num">$0.0286 per image</td><td class="num">13.2</td><td class="num">3.25</td><td>style 4, emotion_faces 4, text_free 3, edge_alpha 2</td></tr><tr><td>image</td><th scope="row">seedream-5-0-pro</th><td class="num">$0.0360 per image</td><td class="num">57.2</td><td class="num">3.50</td><td>style 4, emotion_faces 3, text_free 5, edge_alpha 2</td></tr><tr><td>image</td><th scope="row">flux-3-image</th><td class="num">$0.0384 per image</td><td class="num">22.5</td><td class="num">3.50</td><td>style 4, emotion_faces 3, text_free 5, edge_alpha 2</td></tr><tr><td>image</td><th scope="row">wan2.7-image-pro</th><td class="num">$0.0544 per image</td><td class="num">28.6</td><td class="num">3.75</td><td>style 3, emotion_faces 3, text_free 5, edge_alpha 4</td></tr><tr><td>image</td><th scope="row">kling-v4-image</th><td class="num">$0.0571 per image</td><td class="num">35.3</td><td class="num">2.50</td><td>style 4, emotion_faces 2, text_free 2, edge_alpha 2</td></tr><tr><td>image</td><th scope="row">flux-kontext-max</th><td class="num">$0.0640 per image</td><td class="num">21.6</td><td class="num">2.50</td><td>style 2, emotion_faces 2, text_free 5, edge_alpha 1</td></tr><tr><td>image</td><th scope="row">flux-2-max</th><td class="num">$0.0800 per image</td><td class="num">34.7</td><td class="num">3.25</td><td>style 3, emotion_faces 3, text_free 5, edge_alpha 2</td></tr><tr><td>image</td><th scope="row">flux-2-flex</th><td class="num">$0.0800 per image</td><td class="num">26.3</td><td class="num">3.50</td><td>style 4, emotion_faces 3, text_free 5, edge_alpha 2</td></tr></tbody></table></div>
+<div class="scroll"><table class="table"><caption class="meta">Quality is 0 to 5, one reviewer. Cost is the mean over runs. Seconds are the median time to finish one call, 4 to 13 timed runs per model.</caption><thead><tr><th scope="col">Kind</th><th scope="col">Model</th><th scope="col" class="num">Cost</th><th scope="col" class="num">Median s</th><th scope="col" class="num">Quality</th><th scope="col">Scores</th></tr></thead><tbody><tr><td>image</td><th scope="row">flux-3-image-klein</th><td class="num">$0.0072 per image</td><td class="num">12.9</td><td class="num">3.75</td><td>style 4, emotion_faces 4, text_free 5, edge_alpha 2</td></tr><tr><td>image</td><th scope="row">gpt-image-2</th><td class="num">$0.0085 per image</td><td class="num">22.8</td><td class="num">4.50</td><td>style 4, emotion_faces 4, text_free 5, edge_alpha 5</td></tr><tr><td>image</td><th scope="row">mai-image-2.6-flash</th><td class="num">$0.0154 per image</td><td class="num">15.1</td><td class="num">3.75</td><td>style 4, emotion_faces 4, text_free 5, edge_alpha 2</td></tr><tr><td>image</td><th scope="row">hy-image-v3.5-preview</th><td class="num">$0.0192 per image</td><td class="num">20.3</td><td class="num">3.25</td><td>style 3, emotion_faces 3, text_free 4, edge_alpha 3</td></tr><tr><td>image</td><th scope="row">gpt-image-2.5-flare</th><td class="num">$0.0261 per image</td><td class="num">22</td><td class="num">4.50</td><td>style 4, emotion_faces 4, text_free 5, edge_alpha 5</td></tr><tr><td>image</td><th scope="row">gpt-image-2.6-flare</th><td class="num">$0.0265 per image</td><td class="num">13.2</td><td class="num">5.00</td><td>style 5, emotion_faces 5, text_free 5, edge_alpha 5</td></tr><tr><td>image</td><th scope="row">gpt-image-2.6-sunburst</th><td class="num">$0.0265 per image</td><td class="num">30.2</td><td class="num">5.00</td><td>style 5, emotion_faces 5, text_free 5, edge_alpha 5</td></tr><tr><td>image</td><th scope="row">qwen-image-3.0-pro</th><td class="num">$0.0286 per image</td><td class="num">13.2</td><td class="num">3.25</td><td>style 4, emotion_faces 4, text_free 3, edge_alpha 2</td></tr><tr><td>image</td><th scope="row">seedream-5-0-pro</th><td class="num">$0.0360 per image</td><td class="num">57.2</td><td class="num">3.50</td><td>style 4, emotion_faces 3, text_free 5, edge_alpha 2</td></tr><tr><td>image</td><th scope="row">flux-3-image</th><td class="num">$0.0384 per image</td><td class="num">22.5</td><td class="num">3.50</td><td>style 4, emotion_faces 3, text_free 5, edge_alpha 2</td></tr><tr><td>image</td><th scope="row">wan2.7-image-pro</th><td class="num">$0.0544 per image</td><td class="num">28.6</td><td class="num">3.75</td><td>style 3, emotion_faces 3, text_free 5, edge_alpha 4</td></tr><tr><td>image</td><th scope="row">kling-v4-image</th><td class="num">$0.0571 per image</td><td class="num">35.3</td><td class="num">2.50</td><td>style 4, emotion_faces 2, text_free 2, edge_alpha 2</td></tr><tr><td>image</td><th scope="row">flux-kontext-max</th><td class="num">$0.0640 per image</td><td class="num">21.6</td><td class="num">2.50</td><td>style 2, emotion_faces 2, text_free 5, edge_alpha 1</td></tr><tr><td>image</td><th scope="row">flux-2-max</th><td class="num">$0.0800 per image</td><td class="num">34.7</td><td class="num">3.25</td><td>style 3, emotion_faces 3, text_free 5, edge_alpha 2</td></tr><tr><td>image</td><th scope="row">flux-2-flex</th><td class="num">$0.0800 per image</td><td class="num">26.3</td><td class="num">3.50</td><td>style 4, emotion_faces 3, text_free 5, edge_alpha 2</td></tr></tbody></table></div>
 </section>
 
 <section class="sec" id="chatgpt" aria-labelledby="h-chatgpt">
@@ -711,6 +759,20 @@ beaten on this chart" aria-label="ChatGPT Instant, $0.0133 per image (model: $20
 <p class="stub" id="film"><span id="h-film">What the film cost, and whether code is cheaper, is now on the video bench:</span> <a href="../video-model-bench/#film">film cost</a>.</p>
 </section>
 
+<section class="sec" id="pass4" aria-labelledby="h-pass4">
+<h2 id="h-pass4">Pass 4: three cheap models new to the bench</h2>
+<div class="card tldr"><p><strong class="key">flux-3-image-klein</strong> is the cheapest scored image at $0.0072 and the fastest at 12.9 s, and its frightened faces beat flux-3-image&rsquo;s. It paints a white backdrop on the props sheet, so gpt-image-2 stays the cheap pick for cut-outs. mai-image-2.6-flash scores the same 3.75 at twice the price. gpt-image-1.5 billed $0.163 for one props image, so the run stopped there.</p></div>
+<div class="pics"><figure class="pic"><img src="img/fear-flux-3-image-klein.jpg" width="640" height="360" loading="lazy" alt="Two frightened children hug a birdcage beside a green train at dusk"><figcaption><b>flux-3-image-klein</b><span>$0.0072 &middot; faces 4</span></figcaption></figure><figure class="pic"><img src="img/fear-mai-image-2.6-flash.jpg" width="640" height="360" loading="lazy" alt="Two worried children crouch with a birdcage on a wet platform at night"><figcaption><b>mai-image-2.6-flash</b><span>$0.0154 &middot; faces 4</span></figcaption></figure><figure class="pic"><img src="img/props-gpt-image-1.5.jpg" width="640" height="360" loading="lazy" alt="Six props on a dark background; the black cat&rsquo;s eyes are see-through"><figcaption><b>gpt-image-1.5</b><span>$0.163 &middot; real alpha, eyes cut out</span></figcaption></figure></div>
+<p class="meta">One run per prompt and one reviewer, scored beside the pass 2 images. Scores and the reasons: <a href="code/scores.json">scores.json</a> (pass4_note).</p>
+</section>
+
+<section class="sec" id="next" aria-labelledby="h-next">
+<h2 id="h-next">Image models to test next</h2>
+<p>Ranked by how likely a run is to move the cost-quality frontier, from this bench's own numbers. A price is the model's own only where it ran in pass 1; otherwise it is a tested sibling's, as named. Untested ids come from the APIMart model list (266 ids, 2026-11-22) checked against every model in the results files.</p>
+<ol class="next"><li><b>mai-image-2.7-flash</b> ran in pass 1 at $0.0082 (its own price), never scored. Its sibling 2.6-flash scored 3.75 at $0.0154, so it would need a 4 to join the frontier.</li><li><b>z-image-turbo</b> ran in pass 1 at $0.010 and 6 s (its own numbers), never scored. The cheapest and fastest pass 1 model.</li><li><b>wan2.7-image</b> sibling wan2.7-image-pro returned real alpha at $0.0544 (edge 4), the only maker outside OpenAI to do so. A cheaper non-pro that keeps alpha would move the frontier.</li><li><b>seedream-5-0-lite, seedream-5-0-flash</b> sibling seedream-5-0-pro scored 3.5 at $0.036; seedream-5-5 cost $0.016 in pass 1.</li><li><b>gemini-3.1-flash-image-preview</b> siblings cost $0.020 to $0.032 in pass 1 and were not scored.</li><li><b>qwen-image-2.0</b> sibling qwen-image-3.0 cost $0.021 in pass 1; 3.0-pro scored 3.25.</li></ol>
+<p class="meta">Not worth a run on this evidence: gpt-image-2.5-sunburst (its sibling 2.5-flare scores below 2.6 at the same price), the -official and -ext copies of models already tested, and gpt-image-1, dall-e-3 and older seedream 4 models. Video candidates are on the <a href="../video-model-bench/#next">video bench</a>.</p>
+</section>
+
 <section class="sec" id="limits" aria-labelledby="h-limits">
 <h2 id="h-limits">Limits</h2>
 <ul>
@@ -731,7 +793,7 @@ beaten on this chart" aria-label="ChatGPT Instant, $0.0133 per image (model: $20
 <section class="sec prompts" id="prompts" aria-labelledby="h-prompts">
 <h2 id="h-prompts">Prompts used</h2>
 <details><summary>Every image prompt, verbatim from the code</summary><div class="prompts-body" tabindex="0" role="region" aria-label="Prompts, scrollable">
-<p class="meta">Copied from the scripts in <a href="https://github.com/chimera-defi/chimericlabs-llc/tree/main/research/image-model-bench/code">code/</a>. One image per model per prompt at 1K, 16:9, unless the model needed otherwise (kling-v4-image ran at 2K). The keyframe prompts for the film clips are on the <a href="../video-model-bench/#prompts">video bench</a>.</p>
+<p class="meta">Copied from the scripts in <a href="https://github.com/chimera-defi/chimericlabs-llc/tree/main/research/image-model-bench/code">code/</a>. One image per model per prompt at 1K, 16:9, unless the model needed otherwise (kling-v4-image ran at 2K, gpt-image-1.5 at 1536x1024). The keyframe prompts for the film clips are on the <a href="../video-model-bench/#prompts">video bench</a>.</p>
 <h3>Pass 1 (run_all.py): 15 models</h3>
 <p class="meta" style="margin:0">props &middot; models: gemini-3.1-flash-lite-image, gemini-nano-banana-2.1, gemini-3-pro-image-preview, gpt-image-2.5-flare, gpt-image-2, seedream-5-0-pro, seedream-5-5, flux-3-image, flux-2-pro, qwen-image-3.0, minimax-h3-image-highspeed, grok-imagine-image-2.0, z-image-turbo, mai-image-2.7-flash, imagen-4.0-apimart</p><pre>Painted gouache sheet in a Ghibli-inspired style: six small objects well apart on a fully transparent background, hard clean edges, no shadows and no ground: a brass bicycle bell, a folded paper crane, a ticket stub, a red conductor cap, a yellow scarf, a small brown suitcase. No text, no people.</pre>
 <p class="meta" style="margin:0">fear &middot; models: gemini-3.1-flash-lite-image, gemini-nano-banana-2.1, gemini-3-pro-image-preview, gpt-image-2.5-flare, gpt-image-2, seedream-5-0-pro, seedream-5-5, flux-3-image, flux-2-pro, qwen-image-3.0, minimax-h3-image-highspeed, grok-imagine-image-2.0, z-image-turbo, mai-image-2.7-flash, imagen-4.0-apimart</p><pre>Ghibli-style anime film still: a boy and a girl on a seaside path at dusk, both frightened, eyes wide, faces pale, backing away from a giant white wolf looming at the edge of frame. The boy&#x27;s open empty hands tremble; their pet paper bird is gone. Soft painterly light, no text.</pre>
@@ -746,6 +808,9 @@ beaten on this chart" aria-label="ChatGPT Instant, $0.0133 per image (model: $20
 <p class="meta" style="margin:0">Style line, put before every prompt in this set</p><pre>Ghibli-inspired hand-painted gouache style, soft film-still look, no text.</pre>
 <p class="meta" style="margin:0">cine &middot; models: gpt-image-2.6-flare, gpt-image-2.6-sunburst, gpt-image-2, flux-3-image, seedream-5-0-pro, gemini-3-pro-image-preview</p><pre>Ultra-wide cinematic establishing shot: a giant white wolf walking along a lake shore at golden dusk, a small train on a long bridge far away, layered mountains, huge sky of glowing clouds, no people.</pre>
 <p class="meta" style="margin:0">pair &middot; models: gpt-image-2.6-flare, gpt-image-2.6-sunburst, gpt-image-2, flux-3-image, seedream-5-0-pro, gemini-3-pro-image-preview &middot; image input: reference-frame-03.jpg</p><pre>Same girl as in the reference image (black wavy hair, yellow scarf, white shirt), same painting style, now standing still on a quiet train platform at dusk looking up at a small white paper crane, full body, no text.</pre>
+<h3>Pass 4 (run4.py): the 4 pass 2 prompts and style line, one run each</h3>
+<p class="meta" style="margin:0">fear, wolf, valley &middot; models: flux-3-image-klein, mai-image-2.6-flash</p>
+<p class="meta" style="margin:0">props &middot; models: flux-3-image-klein, mai-image-2.6-flash, gpt-image-1.5</p>
 <h3>Reference test (ref.py): 6 models</h3>
 <p class="meta" style="margin:0">ref &middot; models: gpt-image-2.5-flare, flux-kontext-max, seedream-5-0-pro, gemini-3-pro-image-preview, qwen-image-3.0-pro, flux-3-image &middot; image input: the gpt-image-2.6-flare valley plate</p><pre>Same hand-painted Ghibli gouache style and palette as the reference image: a small steam train crossing a stone bridge in a misty valley, no people, no text.</pre>
 <h3>Film stills (film_frames_gen_v2.py): gpt-image-2.6-flare (quality high) and flux-3-image, 8 frames each</h3>
@@ -761,6 +826,11 @@ beaten on this chart" aria-label="ChatGPT Instant, $0.0133 per image (model: $20
 </div></details>
 </section>
 
+<section class="sec" id="updates" aria-labelledby="h-updates">
+<h2 id="h-updates">Update log</h2>
+<ul><li><time datetime="2026-11-21">2026-11-21</time> First published: passes 1 to 3.</li><li><time datetime="2026-11-22">2026-11-22</time> Video results moved to their own page; chart explorer added; fixes from a live check at three widths.</li><li><time datetime="2026-11-22">2026-11-22</time> Pass 4: flux-3-image-klein, mai-image-2.6-flash and gpt-image-1.5 added, $0.25; test-next list added.</li></ul>
+</section>
+
 <section class="sec" id="source" aria-labelledby="h-source">
 <h2 id="h-source">Source code and data</h2>
 <ul class="files">
@@ -769,11 +839,13 @@ beaten on this chart" aria-label="ChatGPT Instant, $0.0133 per image (model: $20
 <li><a href="code/run2.py">run2.py</a> pass 2 (<a href="code/run2_prompts.py">prompts</a>)</li>
 <li><a href="code/ref.py">ref.py</a> reference test</li>
 <li><a href="code/run3.py">run3.py</a> pass 3</li>
+<li><a href="code/run4.py">run4.py</a> pass 4, one request at a time under a spend cap</li>
 <li><a href="code/sheets3.py">sheets3.py</a> contact sheets</li>
 <li><a href="code/film_frames_gen_v2.py">film_frames_gen_v2.py</a> film stills</li>
 <li><a href="code/results.json">results.json</a> pass 1</li>
 <li><a href="code/results2.json">results2.json</a> pass 2</li>
 <li><a href="code/results3.json">results3.json</a> pass 3</li>
+<li><a href="code/results4.json">results4.json</a> pass 4</li>
 <li><a href="code/ref_results.json">ref_results.json</a> reference test</li>
 <li><a href="code/scores.json">scores.json</a> all scores</li>
 <li><a href="code/table.md">table.md</a>, <a href="code/table2.md">table2.md</a></li>
@@ -788,6 +860,9 @@ beaten on this chart" aria-label="ChatGPT Instant, $0.0133 per image (model: $20
 </details>
 <details><summary>Pass 2 table: time, cost and scores</summary>
 <div class="scroll"><table class="table"><caption class="meta">Midjourney had no price set on the gateway, so all 4 requests were rejected and it is not listed.</caption><thead><tr><th scope="col">Model</th><th scope="col" class="num">OK of 4</th><th scope="col" class="num">Avg seconds</th><th scope="col" class="num">Avg $ per image</th><th scope="col" class="num">Style</th><th scope="col" class="num">Emotion</th><th scope="col" class="num">Text-free</th><th scope="col" class="num">Edge</th><th scope="col">Real alpha</th></tr></thead><tbody><tr><th scope="row">gpt-image-2.6-flare</th><td class="num">4</td><td class="num">12</td><td class="num">0.026</td><td class="num">5</td><td class="num">5</td><td class="num">5</td><td class="num">5</td><td>yes</td></tr><tr><th scope="row">gpt-image-2.6-sunburst</th><td class="num">4</td><td class="num">29</td><td class="num">0.026</td><td class="num">5</td><td class="num">5</td><td class="num">5</td><td class="num">5</td><td>yes</td></tr><tr><th scope="row">flux-2-max</th><td class="num">4</td><td class="num">34</td><td class="num">0.080</td><td class="num">3</td><td class="num">3</td><td class="num">5</td><td class="num">2</td><td>no</td></tr><tr><th scope="row">flux-kontext-max</th><td class="num">4</td><td class="num">22</td><td class="num">0.064</td><td class="num">2</td><td class="num">2</td><td class="num">5</td><td class="num">1</td><td>no</td></tr><tr><th scope="row">qwen-image-3.0-pro</th><td class="num">4</td><td class="num">13</td><td class="num">0.029</td><td class="num">4</td><td class="num">4</td><td class="num">3</td><td class="num">2</td><td>no</td></tr><tr><th scope="row">kling-v4-image</th><td class="num">4</td><td class="num">35</td><td class="num">0.057</td><td class="num">4</td><td class="num">2</td><td class="num">2</td><td class="num">2</td><td>no</td></tr><tr><th scope="row">flux-3-image</th><td class="num">4</td><td class="num">24</td><td class="num">0.038</td><td class="num">4</td><td class="num">3</td><td class="num">5</td><td class="num">2</td><td>no</td></tr><tr><th scope="row">flux-2-flex</th><td class="num">4</td><td class="num">25</td><td class="num">0.080</td><td class="num">4</td><td class="num">3</td><td class="num">5</td><td class="num">2</td><td>no</td></tr><tr><th scope="row">seedream-5-0-pro</th><td class="num">4</td><td class="num">53</td><td class="num">0.036</td><td class="num">4</td><td class="num">3</td><td class="num">5</td><td class="num">2</td><td>no</td></tr><tr><th scope="row">gpt-image-2.5-flare</th><td class="num">4</td><td class="num">22</td><td class="num">0.026</td><td class="num">4</td><td class="num">4</td><td class="num">5</td><td class="num">5</td><td>yes</td></tr><tr><th scope="row">gpt-image-2</th><td class="num">4</td><td class="num">24</td><td class="num">0.009</td><td class="num">4</td><td class="num">4</td><td class="num">5</td><td class="num">5</td><td>yes</td></tr><tr><th scope="row">wan2.7-image-pro</th><td class="num">4</td><td class="num">29</td><td class="num">0.054</td><td class="num">3</td><td class="num">3</td><td class="num">5</td><td class="num">4</td><td>yes</td></tr><tr><th scope="row">hy-image-v3.5-preview</th><td class="num">4</td><td class="num">20</td><td class="num">0.019</td><td class="num">3</td><td class="num">3</td><td class="num">4</td><td class="num">3</td><td>no</td></tr></tbody></table></div>
+</details>
+<details><summary>Pass 4 table: 11 requests</summary>
+<div class="scroll"><table class="table"><caption class="meta">gpt-image-1.5 rejected size 16:9 once ($0, refunded), then ran props at 1536x1024.</caption><thead><tr><th scope="col">Model</th><th scope="col" class="num">OK</th><th scope="col" class="num">Avg seconds</th><th scope="col" class="num">Avg $ per image</th><th scope="col" class="num">Style</th><th scope="col" class="num">Emotion</th><th scope="col" class="num">Text-free</th><th scope="col" class="num">Edge</th><th scope="col">Real alpha</th></tr></thead><tbody><tr><th scope="row">flux-3-image-klein</th><td class="num">4 of 4</td><td class="num">13</td><td class="num">0.0072</td><td class="num">4</td><td class="num">4</td><td class="num">5</td><td class="num">2</td><td>no</td></tr><tr><th scope="row">mai-image-2.6-flash</th><td class="num">4 of 4</td><td class="num">15</td><td class="num">0.0154</td><td class="num">4</td><td class="num">4</td><td class="num">5</td><td class="num">2</td><td>no</td></tr><tr><th scope="row">gpt-image-1.5</th><td class="num">1 of 2</td><td class="num">38</td><td class="num">0.163</td><td colspan="4">not scored, props only</td><td>yes</td></tr></tbody></table></div>
 </details>
 <details><summary>Contact sheets, pass 2</summary>
 <div class="pics two"><img src="sheet-fear.jpg" width="1280" height="768" loading="lazy" alt="Contact sheet of fear scene outputs, one tile per model" style="width:100%;height:auto;border-radius:var(--radius-md)"><img src="sheet-wolf.jpg" width="1280" height="768" loading="lazy" alt="Contact sheet of wolf and viaduct plates, one tile per model" style="width:100%;height:auto;border-radius:var(--radius-md)"><img src="sheet-props.jpg" width="1280" height="768" loading="lazy" alt="Contact sheet of prop sheets with alpha shown on a dark background" style="width:100%;height:auto;border-radius:var(--radius-md)"></div>

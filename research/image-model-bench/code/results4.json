@@ -1,0 +1,83 @@
+[
+ {
+  "model": "gpt-image-1.5",
+  "prompt": "props",
+  "status": "failed",
+  "seconds": 4.5,
+  "cost": 0,
+  "error": "{'code': 'task_failed', 'message': \"Invalid size '16:9'. Supported sizes are 1024x1024, 1024x1536, 1536x1024, and auto. Any deducted quota has been refunded automatically.\", 'param': '', 'reason': 'invalid_parameter', 'type': 'task_failed'}",
+  "dl": "KeyError('result')"
+ },
+ {
+  "model": "mai-image-2.6-flash",
+  "prompt": "props",
+  "status": "completed",
+  "seconds": 17.2,
+  "cost": 0.015404,
+  "file": "mai-image-2.6-flash__props.png"
+ },
+ {
+  "model": "flux-3-image-klein",
+  "prompt": "props",
+  "status": "completed",
+  "seconds": 12.9,
+  "cost": 0.0072,
+  "file": "flux-3-image-klein__props.jpg"
+ },
+ {
+  "model": "gpt-image-1.5",
+  "prompt": "props",
+  "status": "completed",
+  "seconds": 38.3,
+  "cost": 0.16274,
+  "file": "gpt-image-1.5__props.png"
+ },
+ {
+  "model": "mai-image-2.6-flash",
+  "prompt": "fear",
+  "status": "completed",
+  "seconds": 17.2,
+  "cost": 0.015394,
+  "file": "mai-image-2.6-flash__fear.png"
+ },
+ {
+  "model": "mai-image-2.6-flash",
+  "prompt": "wolf",
+  "status": "completed",
+  "seconds": 12.9,
+  "cost": 0.015382,
+  "file": "mai-image-2.6-flash__wolf.png"
+ },
+ {
+  "model": "mai-image-2.6-flash",
+  "prompt": "valley",
+  "status": "completed",
+  "seconds": 12.9,
+  "cost": 0.015376,
+  "file": "mai-image-2.6-flash__valley.png"
+ },
+ {
+  "model": "flux-3-image-klein",
+  "prompt": "fear",
+  "status": "completed",
+  "seconds": 12.9,
+  "cost": 0.0072,
+  "file": "flux-3-image-klein__fear.jpg"
+ },
+ {
+  "model": "flux-3-image-klein",
+  "prompt": "wolf",
+  "status": "completed",
+  "seconds": 12.9,
+  "cost": 0.0072,
+  "file": "flux-3-image-klein__wolf.jpg"
+ },
+ {
+  "model": "flux-3-image-klein",
+  "prompt": "valley",
+  "status": "completed",
+  "seconds": 13.0,
+  "cost": 0.0072,
+  "file": "flux-3-image-klein__valley.jpg"
+ }
+]
