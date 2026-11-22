@@ -26,6 +26,8 @@ for m, sc in S['pass2_scores'].items():
     extra = [S['single'][k][m] for k in ('cine', 'pair') if m in S['single'][k]]
     img.append(dict(kind='image', model=m, secs=round(statistics.median(secs[m]), 1), secs_n=len(secs[m]), cost=round(sum(c) / len(c), 4), unit='per image', quality=round(q, 2),
                     detail={k: v for k, v in zip(cols, sc)}, pass3=(dict(repeat_runs=rep, cine_pair=extra) if rep else None)))
+# ChatGPT Instant: plan-priced browser lane, speed measured (13 keyframes, median 70 s), cost = $20/(n*30) at n=50/day, never scored
+instant = dict(kind='image', model='ChatGPT Instant', secs=70.0, secs_n=13, cost=round(20 / (50 * 30), 4), unit='per image (model: $20 / (50 per day x 30))', quality=None, detail={}, unscored=True)
 # video: scores 0-5 in half steps by one reviewer from the 4-frame strips and the clips; see verdict
 V = [  # model, $ per clip, seconds, identity, motion, clean, note
  ('wan2.6-i2v-flash', .084, 5.0, 3.5, 3.0, 2.0, 'cheapest; background drifts, train changed shape and colour'),
@@ -40,10 +42,10 @@ V = [  # model, $ per clip, seconds, identity, motion, clean, note
 ]
 vid = [dict(kind='video', model=m, secs=round(statistics.median(VR[VMAP.get(m, m)]), 1), secs_n=len(VR[VMAP.get(m, m)]), cost=round(c / d, 4), unit='per second', cost_per_clip=c, seconds=d, quality=round((i + mo + cl) / 3, 2),
             detail=dict(identity=i, motion=mo, clean=cl), note=n) for m, c, d, i, mo, cl, n in V]
-json.dump(dict(image=img, video=vid), open(os.path.join(here, 'models.json'), 'w'), indent=1)
+json.dump(dict(image=img + [instant], video=vid), open(os.path.join(here, 'models.json'), 'w'), indent=1)
 with open(os.path.join(here, 'models.csv'), 'w', newline='') as f:
     w = csv.writer(f); w.writerow(['kind', 'model', 'usd_per_unit', 'unit', 'quality_0_5', 'median_seconds', 'runs_timed', 'detail'])
-    for d in img + vid: w.writerow([d['kind'], d['model'], d['cost'], d['unit'], d['quality'], d['secs'], d['secs_n'], json.dumps(d['detail'])])
+    for d in img + [instant] + vid: w.writerow([d['kind'], d['model'], d['cost'], d['unit'], '' if d['quality'] is None else d['quality'], d['secs'], d['secs_n'], json.dumps(d['detail'])])
 
 import math
 def frontier(pts):
@@ -88,12 +90,12 @@ def chart(pts, cid, xlab, ylab, xt, ylo, yhi, title, desc, xk='cost', yk='qualit
     placed += [(a[0]-4, a[1]-8, a[0]+4, a[1]+8) for a in []]
     for p in sorted(pts, key=lambda p: p['model'] not in fr):
         x, y = pos[p['model']]; on = p['model'] in fr
-        tip = f"{p['model']}\n${p['cost']:.4f} {p['unit']}\n{p['secs']:g} s median to finish ({p['secs_n']} runs)\nquality {p['quality']:.2f} of 5\n" + ', '.join(f'{k} {v}' for k, v in p['detail'].items())
+        tip = f"{p['model']}\n${p['cost']:.4f} {p['unit']}\n{p['secs']:g} s median to finish ({p['secs_n']} runs)\n" + ('quality unscored' if p.get('unscored') else f"quality {p['quality']:.2f} of 5\n" + ', '.join(f'{k} {v}' for k, v in p['detail'].items()))
         if p.get('pass3'): tip += f"\nrepeat runs {p['pass3']['repeat_runs']}, cine/pair {p['pass3']['cine_pair']}"
         if p.get('note'): tip += '\n' + p['note']
         tip += '\n' + ('on the frontier' if on else 'beaten on this chart')
         o.append(f'<circle class="{"pb" if on else "pd"}" cx="{x:.1f}" cy="{y:.1f}" r="{9 if on else 7}" tabindex="0" data-tip="{html.escape(tip)}" aria-label="{html.escape(tip.replace(chr(10), ", "))}"/>')
-        name = p['model'].replace('gpt-image-', 'gpt-img-')
+        name = p['model'].replace('gpt-image-', 'gpt-img-') + (' (unscored)' if p.get('unscored') else '')
         w = 7.2 * len(name)
         for dx, dy, anc in [(14, 5, 'start'), (-14, 5, 'end'), (0, -16, 'middle'), (0, 28, 'middle'), (14, -14, 'start'), (-14, 22, 'end'), (14, 22, 'start'), (-14, -14, 'end')]:
             lx = x + dx; x0 = lx if anc == 'start' else lx - w if anc == 'end' else lx - w / 2
@@ -113,8 +115,8 @@ vc, nv = chart(vid, 'cv', 'Cost per second of video (log scale)', 'Quality (mean
 sec_t = lambda t: f'{t:g} s'
 isq, n1 = chart(img, 'cis', 'Median seconds to finish (log scale)', 'Quality (mean of 4 scores, 0 to 5)', [10, 20, 40, 60], 2, 5,
                 'Quality against seconds per image', 'Scored image models: median submit-to-file time against quality.', xk='secs', xf=sec_t)
-isc, n2 = chart(img, 'cic', 'Median seconds to finish (log scale)', 'Cost per image', [10, 20, 40, 60], .008, .1,
-                'Cost against seconds per image', 'Scored image models: cost against median time. Lower left is better.', xk='secs', yk='cost', xf=lambda t: f'{t:g}' if t >= 1 else f'${t:g}', ylog=True, yt=[.01, .02, .05, .1])
+isc, n2 = chart(img + [instant], 'cic', 'Median seconds to finish (log scale)', 'Cost per image', [10, 20, 40, 70], .008, .1,
+                'Cost against seconds per image', 'Scored image models plus ChatGPT Instant (unscored, plan-priced cost model at 50 images a day): cost against median time. Lower left is better.', xk='secs', yk='cost', xf=lambda t: f'{t:g}' if t >= 1 else f'${t:g}', ylog=True, yt=[.01, .02, .05, .1])
 vsq, n3 = chart(vid, 'cvs', 'Median seconds to finish (log scale)', 'Quality (mean of identity, motion, clean; 0 to 5)', [50, 70, 100, 150, 200], 2, 5,
                 'Quality against seconds per clip', 'Video models: median generation time against quality.', xk='secs', xf=sec_t)
 vsc, n4 = chart(vid, 'cvc', 'Median seconds to finish (log scale)', 'Cost per second of video', [50, 70, 100, 150, 200], .015, .2,
