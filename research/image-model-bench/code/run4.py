@@ -10,11 +10,11 @@ old = json.load(open(FN)) if os.path.exists(FN) else []
 spent = sum(r.get("cost") or 0 for r in old)
 CAP = float(sys.argv[2])
 prompts = sys.argv[3].split(",") if len(sys.argv) > 3 else list(P)
-# First call to an unpriced model is assumed to cost the dearest image seen on this gateway.
+# An unpriced model may cost more than anything seen (gpt-image-1.5 billed $0.163), so reserve $0.20 or the dearest seen.
 seen = {r["model"]: r["cost"] for r in old if r.get("cost")}
 for m in sys.argv[1].split(","):
     for p in prompts:
-        est = seen.get(m, 0.08)
+        est = seen.get(m, max([0.20, *seen.values()]))
         if spent + est > CAP:
             print("skip", m, p, "cap", round(spent, 4)); continue
         rec = run(m, P[p], p, {"resolution": "1k", **EX.get(m, {})})
