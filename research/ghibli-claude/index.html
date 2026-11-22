@@ -125,6 +125,7 @@ Your browser cannot play this video. <a href="v3-720p.mp4">Download it (720p, 10
 <tr><th scope="row">v3, Fable alone</th><td>about $55 to $63 (planner is an estimate)</td><td>about 1.7 h</td><td>0, reused ours</td></tr>
 <tr><th scope="row">Round 1 best, merge</th><td>Sonnet 0.21M plus four builders</td><td>about 2.6 h</td><td>0</td></tr>
 <tr><th scope="row">Round 2 best</th><td>Fable plan 0.14M, twelve Sonnet builders about 1.3M (input plus output, so not comparable to the rows above)</td><td>about 2 h</td><td>0</td></tr>
+<tr><th scope="row">Attempt B, from scratch</th><td>13 ChatGPT keyframes, 13 veo3.1-fast clips ($1.96 API), one assembly script</td><td>about 1 h</td><td>13</td></tr>
 <tr><th scope="row">Cut 6, 7 and 8</th><td>Cut 8: one Sonnet builder, wheels, neck, eyes. Cut 7: an audit by a Fable reviewer, then six Sonnet builders</td><td>about 3 h</td><td>0</td></tr>
 </tbody>
 </table>
@@ -179,11 +180,17 @@ Your browser cannot play this video. <a href="v3-720p.mp4">Download it (720p, 10
 Your browser cannot play this video. <a href="next-720p.mp4">Download it (720p, 15 MB).</a>
 </video>
 <h3>Attempt B: one generated style, end to end</h3>
+<video class="film" controls preload="none" poster="attemptB2-poster.jpg" width="1280" height="720">
+<source src="attemptB2-720p.mp4" type="video/mp4">
+Your browser cannot play this video. <a href="attemptB2-720p.mp4">Download it (720p, 17 MB).</a>
+</video>
+<p class="figcap">42.4 s, same timeline and audio. All 13 shots were drawn fresh in ChatGPT in one chat, from text descriptions of the three characters, then animated one clip each with <code>veo3.1-fast</code> ($0.14 a clip, $1.96 with one test clip). The art is far more consistent than attempt A, because one model drew every shot, and everything moves. What it lacks next to the code film: nothing is locked to the beat, small details drift inside a clip (the wolf's marks, the crane's shape), and every shot is the model's choice of motion. Hailuo-2.3-Fast, the first choice, returned "service_unavailable" that day.</p>
+<h3>Attempt B, stills only</h3>
 <video class="film" controls preload="none" poster="attemptB-poster.jpg" width="1280" height="720">
 <source src="attemptB-720p.mp4" type="video/mp4">
 Your browser cannot play this video. <a href="attemptB-720p.mp4">Download it (720p, 13 MB).</a>
 </video>
-<p class="figcap">42.4 s, same timeline and audio. All 13 shots were drawn fresh in ChatGPT in one chat, from text descriptions of the three characters, then given a slow camera move. No paid API calls: the APIMart credit was spent, so there is no generated motion, only camera moves over stills. The art is far more consistent than attempt A, because one model drew every shot. The cost is that nothing moves inside a shot: no pedalling, blinking or wing flaps, which is what the code film does well. Generated clips would add that motion for about $0.15 each.</p>
+<p class="figcap">The same 13 keyframes with slow camera moves only, made first while the API credit was spent. $0 in API calls.</p>
 
 <h2>Code</h2>
 <p><a href="https://github.com/chimera-defi/ghibli-claude">github.com/chimera-defi/ghibli-claude</a><br><span class="small">Named for who built it: Claude made this, Astra is what we tried to match. The repo is private until published.</span></p>
