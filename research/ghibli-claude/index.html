@@ -172,13 +172,18 @@ Your browser cannot play this video. <a href="v3-720p.mp4">Download it (720p, 10
 <li>The soundtrack is synthesised in code, not composed.</li>
 </ul>
 
-<h2 id="postscript">Postscript: from scratch with generated video</h2>
+<h2 id="postscript">Postscript: from scratch with generated art</h2>
 <p>Attempt A swapped 16 generated stills (<code>gpt-image-2.6-flare</code>, about $0.57) into cut 6 so the children visibly fear the wolf. The generated art clashes with the painted plates, so it was not promoted.</p>
 <video class="film" controls preload="none" poster="next-poster.jpg" width="1280" height="720">
 <source src="next-720p.mp4" type="video/mp4">
 Your browser cannot play this video. <a href="next-720p.mp4">Download it (720p, 15 MB).</a>
 </video>
-<p>Attempt B, from scratch with one generated style end to end, is in progress and will appear here.</p>
+<h3>Attempt B: one generated style, end to end</h3>
+<video class="film" controls preload="none" poster="attemptB-poster.jpg" width="1280" height="720">
+<source src="attemptB-720p.mp4" type="video/mp4">
+Your browser cannot play this video. <a href="attemptB-720p.mp4">Download it (720p, 13 MB).</a>
+</video>
+<p class="figcap">42.4 s, same timeline and audio. All 13 shots were drawn fresh in ChatGPT in one chat, from text descriptions of the three characters, then given a slow camera move. No paid API calls: the APIMart credit was spent, so there is no generated motion, only camera moves over stills. The art is far more consistent than attempt A, because one model drew every shot. The cost is that nothing moves inside a shot: no pedalling, blinking or wing flaps, which is what the code film does well. Generated clips would add that motion for about $0.15 each.</p>
 
 <h2>Code</h2>
 <p><a href="https://github.com/chimera-defi/ghibli-claude">github.com/chimera-defi/ghibli-claude</a><br><span class="small">Named for who built it: Claude made this, Astra is what we tried to match. The repo is private until published.</span></p>
