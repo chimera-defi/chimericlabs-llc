@@ -1,7 +1,9 @@
-"""Builds the two cost-vs-quality charts (inline SVG with hover tooltips) and models.json/csv.
-Run: python3 build_charts.py  -> writes charts.fragment.txt (fragments) and models.json, models.csv next to it."""
+"""Builds the six bench charts (inline SVG with hover tooltips) and models.json/csv.
+Run: python3 build_charts.py  -> writes charts.fragment.txt here (image charts), ../../video-model-bench/code/charts.fragment.txt (video charts),
+and models.json, models.csv here (image and video rows in one file, the format film-kit reads)."""
 import json, csv, html, os
 here = os.path.dirname(os.path.abspath(__file__))
+vhere = os.path.join(here, '..', '..', 'video-model-bench', 'code')
 S = json.load(open(os.path.join(here, 'scores.json')))
 R = json.load(open(os.path.join(here, 'results2.json')))
 R3 = json.load(open(os.path.join(here, 'results3.json')))
@@ -15,9 +17,8 @@ for fn in ('results.json', 'results2.json', 'results3.json'):
     for r in json.load(open(os.path.join(here, fn))):
         if r.get('status') == 'completed' and r.get('seconds'): secs[r['model']].append(r['seconds'])
 VR = collections.defaultdict(list)
-for r in json.load(open(os.path.join(here, 'video_results.json'))):
+for r in json.load(open(os.path.join(vhere, 'video_results.json'))):
     if r.get('status') == 'completed': VR[r['model']].append(r['latency_s'])
-VMAP = {'kling-v3 (std)': 'kling-v3', 'seedance-2.5-flash': 'seedance-2-5-flash'}
 cols = S['pass2_score_columns']
 img = []
 for m, sc in S['pass2_scores'].items():
@@ -28,32 +29,25 @@ for m, sc in S['pass2_scores'].items():
                     detail={k: v for k, v in zip(cols, sc)}, pass3=(dict(repeat_runs=rep, cine_pair=extra) if rep else None)))
 # ChatGPT Instant: plan-priced browser lane, speed measured (13 keyframes, median 70 s), cost = $20/(n*30) at n=50/day, never scored
 instant = dict(kind='image', model='ChatGPT Instant', secs=70.0, secs_n=13, cost=round(20 / (50 * 30), 4), unit='per image (model: $20 / (50 per day x 30))', quality=None, detail={}, unscored=True)
-# video: scores 0-5 in half steps by one reviewer from the 4-frame strips and the clips; see verdict
-V = [  # model, $ per clip, seconds, identity, motion, clean, note
- ('wan2.6-i2v-flash', .084, 5.0, 3.5, 3.0, 2.0, 'cheapest; background drifts, train changed shape and colour'),
- ('MiniMax-Hailuo-2.3-Fast', .1488, 5.9, 5.0, 2.5, 5.0, 'most faithful, clean wolf push-in, little motion'),
- ('veo3.1-fast', .14, 7.9, 4.5, 4.0, 3.5, 'natural blink, crane moves; thin line across the wolf'),
- ('veo3.1-quality', 1.0, 8.0, 4.5, 4.0, 3.5, 'good but slight background change; 7x the price of fast'),
- ('kling-v3 (std)', .336, 5.0, 4.5, 4.5, 4.0, 'livelier, crane flies, wolf walks forward'),
- ('kling-v4-flash', .4286, 5.0, 4.0, 4.5, 3.5, 'similar to v3 with a slight face and scene shift'),
- ('seedance-2.0', .33, 5.0, 3.0, 4.0, 3.5, '480p; background swaps, strong push-in'),
- ('seedance-2.5-flash', .3183, 5.0, 3.0, 4.5, 3.5, '480p; background drifts, strongest push-in'),
- ('wan2.7', .332, 5.0, 2.5, 3.0, 3.5, 'one clip: the boy changed expression, zoom'),
-]
-vid = [dict(kind='video', model=m, secs=round(statistics.median(VR[VMAP.get(m, m)]), 1), secs_n=len(VR[VMAP.get(m, m)]), cost=round(c / d, 4), unit='per second', cost_per_clip=c, seconds=d, quality=round((i + mo + cl) / 3, 2),
-            detail=dict(identity=i, motion=mo, clean=cl), note=n) for m, c, d, i, mo, cl, n in V]
+# video: scores 0-5 in half steps by one reviewer from the 4-frame strips and the clips; see the video bench verdict
+V = json.load(open(os.path.join(vhere, 'video_scores.json')))['models']
+vid = []
+for v in V:
+    t = VR[v.get('results_name', v['model'])]
+    vid.append(dict(kind='video', model=v['model'], secs=round(statistics.median(t), 1), secs_n=len(t), cost=round(v['usd_per_clip'] / v['clip_seconds'], 4), unit='per second',
+                    cost_per_clip=v['usd_per_clip'], seconds=v['clip_seconds'], quality=round((v['identity'] + v['motion'] + v['clean']) / 3, 2),
+                    detail=dict(identity=v['identity'], motion=v['motion'], clean=v['clean']), note=v['note']))
 json.dump(dict(image=img + [instant], video=vid), open(os.path.join(here, 'models.json'), 'w'), indent=1)
 with open(os.path.join(here, 'models.csv'), 'w', newline='') as f:
     w = csv.writer(f); w.writerow(['kind', 'model', 'usd_per_unit', 'unit', 'quality_0_5', 'median_seconds', 'runs_timed', 'detail'])
     for d in img + [instant] + vid: w.writerow([d['kind'], d['model'], d['cost'], d['unit'], '' if d['quality'] is None else d['quality'], d['secs'], d['secs_n'], json.dumps(d['detail'])])
 
 import math
-def frontier(pts):
-    pts = sorted(pts, key=lambda p: (p['cost'], -p['quality'])); best = -1; out = []; lastc = None
-    for p in pts:
-        if p['quality'] > best or (p['quality'] == best and p['cost'] == lastc): out.append(p['model']); lastc = p['cost']
-        best = max(best, p['quality'])
-    return set(out)
+# maker, for the explorer's "Colour by" select
+def family(m):
+    for k, f in (('gpt-', 'openai'), ('ChatGPT', 'openai'), ('flux', 'bfl'), ('kling', 'kling'), ('wan', 'alibaba'), ('qwen', 'alibaba'), ('seed', 'bytedance'), ('veo', 'google'), ('Hailuo', 'minimax'), ('hy-', 'tencent')):
+        if k in m: return f
+    return 'other'
 
 def frontier2(pts, xk, yk, ylog):
     if not ylog: 
@@ -78,7 +72,7 @@ def chart(pts, cid, xlab, ylab, xt, ylo, yhi, title, desc, xk='cost', yk='qualit
     for t in xt:
         o.append(f'<line class="pg" x1="{X(t):.1f}" x2="{X(t):.1f}" y1="{T}" y2="{H-B}"/><text class="pa2" x="{X(t):.1f}" y="{H-B+22}" text-anchor="middle">{xf(t)}</text>')
     o.append(f'<text class="pa2" x="{(L+W-Rr)/2}" y="{H-12}" text-anchor="middle">{xlab}</text><text class="pa2" transform="translate(18 {(T+H-B)/2}) rotate(-90)" text-anchor="middle">{ylab}</text>')
-    fp = sorted([p for p in pts if p['model'] in fr], key=lambda p: p['cost'])
+    fp = sorted([p for p in pts if p['model'] in fr], key=lambda p: p[xk])
     # nudge points that would overlap
     pos = {}
     for p in pts:
@@ -87,14 +81,13 @@ def chart(pts, cid, xlab, ylab, xt, ylo, yhi, title, desc, xk='cost', yk='qualit
         pos[p['model']] = (x, y)
     o.append('<polyline class="pf" points="' + ' '.join(f'{pos[p["model"]][0]:.1f},{pos[p["model"]][1]:.1f}' for p in fp) + '"/>')
     placed = [(pos[p['model']][0]-11, pos[p['model']][1]-11, pos[p['model']][0]+11, pos[p['model']][1]+11) for p in pts]
-    placed += [(a[0]-4, a[1]-8, a[0]+4, a[1]+8) for a in []]
     for p in sorted(pts, key=lambda p: p['model'] not in fr):
         x, y = pos[p['model']]; on = p['model'] in fr
         tip = f"{p['model']}\n${p['cost']:.4f} {p['unit']}\n{p['secs']:g} s median to finish ({p['secs_n']} runs)\n" + ('quality unscored' if p.get('unscored') else f"quality {p['quality']:.2f} of 5\n" + ', '.join(f'{k} {v}' for k, v in p['detail'].items()))
         if p.get('pass3'): tip += f"\nrepeat runs {p['pass3']['repeat_runs']}, cine/pair {p['pass3']['cine_pair']}"
         if p.get('note'): tip += '\n' + p['note']
         tip += '\n' + ('on the frontier' if on else 'beaten on this chart')
-        o.append(f'<circle class="{"pb" if on else "pd"}" cx="{x:.1f}" cy="{y:.1f}" r="{9 if on else 7}" tabindex="0" data-tip="{html.escape(tip)}" aria-label="{html.escape(tip.replace(chr(10), ", "))}"/>')
+        o.append(f'<circle class="{"pb" if on else "pd"}" cx="{x:.1f}" cy="{y:.1f}" r="{9 if on else 7}" tabindex="0" data-model="{html.escape(p["model"])}" data-family="{family(p["model"])}" data-x="{p[xk]:g}" data-y="{p[yk]:g}" data-tip="{html.escape(tip)}" aria-label="{html.escape(tip.replace(chr(10), ", "))}"/>')
         name = p['model'].replace('gpt-image-', 'gpt-img-') + (' (unscored)' if p.get('unscored') else '')
         w = 7.2 * len(name)
         for dx, dy, anc in [(14, 5, 'start'), (-14, 5, 'end'), (0, -16, 'middle'), (0, 28, 'middle'), (14, -14, 'start'), (-14, 22, 'end'), (14, 22, 'start'), (-14, -14, 'end')]:
@@ -102,13 +95,13 @@ def chart(pts, cid, xlab, ylab, xt, ylo, yhi, title, desc, xk='cost', yk='qualit
             box = (x0, y + dy - 12, x0 + w, y + dy + 4)
             if x0 < 4 or x0 + w > W - 4 or box[1] < 2: continue
             if any(not (box[2] < b[0] or box[0] > b[2] or box[3] < b[1] or box[1] > b[3]) for b in placed): continue
-            placed.append(box); o.append(f'<text class="{"pl" if on else "pl2"}" x="{lx:.1f}" y="{y+dy:.1f}" text-anchor="{anc}">{html.escape(name)}</text>'); break
+            placed.append(box); o.append(f'<text class="{"pl" if on else "pl2"}" data-model="{html.escape(p["model"])}" x="{lx:.1f}" y="{y+dy:.1f}" text-anchor="{anc}">{html.escape(name)}</text>'); break
     o.append('</svg>')
     return '\n'.join(o), len(fr)
 
 ic, nf = chart(img, 'ci', 'Cost per image (log scale)', 'Quality (mean of 4 scores, 0 to 5)', [.01, .02, .05, .1], 2, 5,
                'Quality against cost per image for 13 image models',
-               'Scored models. Frontier: gpt-image-2 at $0.0085 scoring 4.5, then gpt-image-2.6-flare and gpt-image-2.6-sunburst at $0.026 scoring 5.0 (tied, drawn side by side).')
+               'Scored models. Frontier: gpt-image-2 at $0.0085 scoring 4.5, then gpt-image-2.6-flare and gpt-image-2.6-sunburst at $0.0265 scoring 5.0 (tied, drawn side by side).')
 vc, nv = chart(vid, 'cv', 'Cost per second of video (log scale)', 'Quality (mean of identity, motion, clean; 0 to 5)', [.02, .05, .1], 2, 5,
                'Quality against cost per second for 9 video models',
                'Image-to-video test with two start frames. Frontier models are cheapest or best at their price.')
@@ -121,5 +114,6 @@ vsq, n3 = chart(vid, 'cvs', 'Median seconds to finish (log scale)', 'Quality (me
                 'Quality against seconds per clip', 'Video models: median generation time against quality.', xk='secs', xf=sec_t)
 vsc, n4 = chart(vid, 'cvc', 'Median seconds to finish (log scale)', 'Cost per second of video', [50, 70, 100, 150, 200], .015, .2,
                 'Cost against seconds per clip', 'Video models: cost per second of video against generation time. Lower left is better.', xk='secs', yk='cost', xf=lambda t: f'{t:g}', ylog=True, yt=[.02, .05, .1, .2])
-open(os.path.join(here, 'charts.fragment.txt'), 'w').write(f'<!--image {nf}-->\n{ic}\n<!--video {nv}-->\n{vc}\n<!--image speed-->\n{isq}\n<!--image cost speed-->\n{isc}\n<!--video speed-->\n{vsq}\n<!--video cost speed-->\n{vsc}\n')
+open(os.path.join(here, 'charts.fragment.txt'), 'w').write(f'<!--image {nf}-->\n{ic}\n<!--image speed-->\n{isq}\n<!--image cost speed-->\n{isc}\n')
+open(os.path.join(vhere, 'charts.fragment.txt'), 'w').write(f'<!--video {nv}-->\n{vc}\n<!--video speed-->\n{vsq}\n<!--video cost speed-->\n{vsc}\n')
 print('image frontier', nf, 'video frontier', nv)

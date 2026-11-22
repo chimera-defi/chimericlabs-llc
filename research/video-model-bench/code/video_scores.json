@@ -1,0 +1,88 @@
+{
+ "note": "Scores 0-5 in half steps by one reviewer from the 4-frame strips and the clips. usd_per_clip is the gateway price for the clip length in seconds. results_name maps to the model name in video_results.json where it differs.",
+ "models": [
+  {
+   "model": "wan2.6-i2v-flash",
+   "usd_per_clip": 0.084,
+   "clip_seconds": 5.0,
+   "identity": 3.5,
+   "motion": 3.0,
+   "clean": 2.0,
+   "note": "cheapest; background drifts, train changed shape and colour"
+  },
+  {
+   "model": "MiniMax-Hailuo-2.3-Fast",
+   "usd_per_clip": 0.1488,
+   "clip_seconds": 5.9,
+   "identity": 5.0,
+   "motion": 2.5,
+   "clean": 5.0,
+   "note": "most faithful, clean wolf push-in, little motion"
+  },
+  {
+   "model": "veo3.1-fast",
+   "usd_per_clip": 0.14,
+   "clip_seconds": 7.9,
+   "identity": 4.5,
+   "motion": 4.0,
+   "clean": 3.5,
+   "note": "natural blink, crane moves; thin line across the wolf"
+  },
+  {
+   "model": "veo3.1-quality",
+   "usd_per_clip": 1.0,
+   "clip_seconds": 8.0,
+   "identity": 4.5,
+   "motion": 4.0,
+   "clean": 3.5,
+   "note": "good but slight background change; 7x the price of fast"
+  },
+  {
+   "model": "kling-v3 (std)",
+   "usd_per_clip": 0.336,
+   "clip_seconds": 5.0,
+   "identity": 4.5,
+   "motion": 4.5,
+   "clean": 4.0,
+   "note": "livelier, crane flies, wolf walks forward",
+   "results_name": "kling-v3"
+  },
+  {
+   "model": "kling-v4-flash",
+   "usd_per_clip": 0.4286,
+   "clip_seconds": 5.0,
+   "identity": 4.0,
+   "motion": 4.5,
+   "clean": 3.5,
+   "note": "similar to v3 with a slight face and scene shift"
+  },
+  {
+   "model": "seedance-2.0",
+   "usd_per_clip": 0.33,
+   "clip_seconds": 5.0,
+   "identity": 3.0,
+   "motion": 4.0,
+   "clean": 3.5,
+   "note": "480p; background swaps, strong push-in"
+  },
+  {
+   "model": "seedance-2.5-flash",
+   "usd_per_clip": 0.3183,
+   "clip_seconds": 5.0,
+   "identity": 3.0,
+   "motion": 4.5,
+   "clean": 3.5,
+   "note": "480p; background drifts, strongest push-in",
+   "results_name": "seedance-2-5-flash"
+  },
+  {
+   "model": "wan2.7",
+   "usd_per_clip": 0.332,
+   "clip_seconds": 5.0,
+   "identity": 2.5,
+   "motion": 3.0,
+   "clean": 3.5,
+   "note": "one clip: the boy changed expression, zoom"
+  }
+ ]
+}

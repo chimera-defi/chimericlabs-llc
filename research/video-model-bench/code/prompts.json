@@ -1,0 +1,269 @@
+{
+ "note": "Verbatim prompts for the video bench, film attempt B and cut 9. Sources: ghibli-video-spike/run.py, ghibli-scratch/keys.py and animate.py, overnight/gen9.py calls. Image inputs are named, not included. No keys.",
+ "prompts": [
+  {
+   "set": "video bench",
+   "name": "boy",
+   "models": "all 9 video models in the test",
+   "image_input": "boy.jpg (a frame of the painted film)",
+   "prompt": "The boy breathes gently, blinks slowly, his hair moves softly in the wind, his open hand turns slightly as the paper crane drifts. Locked camera. Studio Ghibli hand-painted animation look, same art style as the input frame, locked camera, no text, no subtitles, no morphing or changing of the face, characters keep identical appearance."
+  },
+  {
+   "set": "video bench",
+   "name": "wolf",
+   "models": "all 9 video models in the test",
+   "image_input": "wolf.jpg (a frame of the painted film)",
+   "prompt": "The giant wolf looms over the viaduct, slow push-in camera, drifting mist rolling past, fur moving slightly in the wind. Studio Ghibli hand-painted animation look, same art style as the input frame, locked camera, no text, no subtitles, no morphing or changing of the face, characters keep identical appearance."
+  },
+  {
+   "set": "attempt B keyframes",
+   "name": "reed",
+   "model": "ChatGPT Instant (all 13); gpt-image-2.6-flare API for ride, ticket, viaduct3d",
+   "image_input": "sheetA.jpg (character sheet)",
+   "prompt": "Hand-painted Studio Ghibli gouache film still, the exact same art style, character designs and colour palette as the reference character sheet, cinematic 16:9, rich painterly background, no text. Characters match the reference sheet exactly: the boy with messy black hair, red cap with gold button and white sailor-collar shirt with navy trim; the girl with long black windblown hair and yellow scarf; the giant white wolf with red kabuki face markings; red-and-cream tram with gold trim. Wide shot: a long ivy-covered stone arched viaduct over a blue lake, a tiny red-and-cream tram crossing it far away, snowy mountains, village on a cliff, tall golden reeds and a small beetle in the foreground, bright morning."
+  },
+  {
+   "set": "attempt B keyframes",
+   "name": "ride",
+   "model": "ChatGPT Instant (all 13); gpt-image-2.6-flare API for ride, ticket, viaduct3d",
+   "image_input": "sheetA.jpg (character sheet)",
+   "prompt": "Hand-painted Studio Ghibli gouache film still, the exact same art style, character designs and colour palette as the reference character sheet, cinematic 16:9, rich painterly background, no text. Characters match the reference sheet exactly: the boy with messy black hair, red cap with gold button and white sailor-collar shirt with navy trim; the girl with long black windblown hair and yellow scarf; the giant white wolf with red kabuki face markings; red-and-cream tram with gold trim. The red-and-cream tram rolling along a track beside a stone wall toward a tunnel under hanging purple wisteria, lake and village behind; the small boy in the red cap peeks out of a tram window; a small white paper crane flutters near."
+  },
+  {
+   "set": "attempt B keyframes",
+   "name": "ticket",
+   "model": "ChatGPT Instant (all 13); gpt-image-2.6-flare API for ride, ticket, viaduct3d",
+   "image_input": "sheetA.jpg (character sheet)",
+   "prompt": "Hand-painted Studio Ghibli gouache film still, the exact same art style, character designs and colour palette as the reference character sheet, cinematic 16:9, rich painterly background, no text. Characters match the reference sheet exactly: the boy with messy black hair, red cap with gold button and white sailor-collar shirt with navy trim; the girl with long black windblown hair and yellow scarf; the giant white wolf with red kabuki face markings; red-and-cream tram with gold trim. Close-up of a hand folding a small white paper card into an origami crane on a wooden brass-edged tram window ledge, lake and mountains blurred in the window behind, warm light."
+  },
+  {
+   "set": "attempt B keyframes",
+   "name": "viaduct3d",
+   "model": "ChatGPT Instant (all 13); gpt-image-2.6-flare API for ride, ticket, viaduct3d",
+   "image_input": "sheetA.jpg (character sheet)",
+   "prompt": "Hand-painted Studio Ghibli gouache film still, the exact same art style, character designs and colour palette as the reference character sheet, cinematic 16:9, rich painterly background, no text. Characters match the reference sheet exactly: the boy with messy black hair, red cap with gold button and white sailor-collar shirt with navy trim; the girl with long black windblown hair and yellow scarf; the giant white wolf with red kabuki face markings; red-and-cream tram with gold trim. The red-and-cream tram entering a dark stone tunnel in a cliffside beside an arched viaduct, wisteria hanging, lake far below, a small white paper crane flying beside the train."
+  },
+  {
+   "set": "attempt B keyframes",
+   "name": "boy",
+   "model": "ChatGPT Instant (all 13); gpt-image-2.6-flare API for ride, ticket, viaduct3d",
+   "image_input": "sheetA.jpg (character sheet)",
+   "prompt": "Hand-painted Studio Ghibli gouache film still, the exact same art style, character designs and colour palette as the reference character sheet, cinematic 16:9, rich painterly background, no text. Characters match the reference sheet exactly: the boy with messy black hair, red cap with gold button and white sailor-collar shirt with navy trim; the girl with long black windblown hair and yellow scarf; the giant white wolf with red kabuki face markings; red-and-cream tram with gold trim. Medium shot: the boy in the red cap and sailor collar leaning out of the tram window, happily reaching his open hand toward a white paper crane in the air, lake and mountains behind, a striped tabby cat asleep on the window ledge."
+  },
+  {
+   "set": "attempt B keyframes",
+   "name": "stamp",
+   "model": "ChatGPT Instant (all 13); gpt-image-2.6-flare API for ride, ticket, viaduct3d",
+   "image_input": "sheetA.jpg (character sheet)",
+   "prompt": "Hand-painted Studio Ghibli gouache film still, the exact same art style, character designs and colour palette as the reference character sheet, cinematic 16:9, rich painterly background, no text. Characters match the reference sheet exactly: the boy with messy black hair, red cap with gold button and white sailor-collar shirt with navy trim; the girl with long black windblown hair and yellow scarf; the giant white wolf with red kabuki face markings; red-and-cream tram with gold trim. Close-up of a hand pressing a brass rubber stamp onto a small white paper ticket on a wooden window ledge with brass plate, lake blurred behind."
+  },
+  {
+   "set": "attempt B keyframes",
+   "name": "boy_b",
+   "model": "ChatGPT Instant (all 13); gpt-image-2.6-flare API for ride, ticket, viaduct3d",
+   "image_input": "sheetA.jpg (character sheet)",
+   "prompt": "Hand-painted Studio Ghibli gouache film still, the exact same art style, character designs and colour palette as the reference character sheet, cinematic 16:9, rich painterly background, no text. Characters match the reference sheet exactly: the boy with messy black hair, red cap with gold button and white sailor-collar shirt with navy trim; the girl with long black windblown hair and yellow scarf; the giant white wolf with red kabuki face markings; red-and-cream tram with gold trim. Close-up of the boy in red cap smiling with eyes closed, his open palm held out with a small white paper crane lifting off it, bright meadow behind."
+  },
+  {
+   "set": "attempt B keyframes",
+   "name": "lake",
+   "model": "ChatGPT Instant (all 13); gpt-image-2.6-flare API for ride, ticket, viaduct3d",
+   "image_input": "sheetA.jpg (character sheet)",
+   "prompt": "Hand-painted Studio Ghibli gouache film still, the exact same art style, character designs and colour palette as the reference character sheet, cinematic 16:9, rich painterly background, no text. Characters match the reference sheet exactly: the boy with messy black hair, red cap with gold button and white sailor-collar shirt with navy trim; the girl with long black windblown hair and yellow scarf; the giant white wolf with red kabuki face markings; red-and-cream tram with gold trim. Wide shot: a small girl cyclist riding a bicycle along a dirt path across a green meadow toward a stone cottage, arched viaduct and snowy mountains behind, wisteria framing the left, white paper crane flying in the sky."
+  },
+  {
+   "set": "attempt B keyframes",
+   "name": "window",
+   "model": "ChatGPT Instant (all 13); gpt-image-2.6-flare API for ride, ticket, viaduct3d",
+   "image_input": "sheetA.jpg (character sheet)",
+   "prompt": "Hand-painted Studio Ghibli gouache film still, the exact same art style, character designs and colour palette as the reference character sheet, cinematic 16:9, rich painterly background, no text. Characters match the reference sheet exactly: the boy with messy black hair, red cap with gold button and white sailor-collar shirt with navy trim; the girl with long black windblown hair and yellow scarf; the giant white wolf with red kabuki face markings; red-and-cream tram with gold trim. Two children, the boy in red cap and sailor collar and the girl with long black hair and yellow scarf, side by side at a tram window looking up in terror, wide frightened eyes, hands over mouths, a huge white shadow reflected in the glass, dusk-coloured sky."
+  },
+  {
+   "set": "attempt B keyframes",
+   "name": "bell",
+   "model": "ChatGPT Instant (all 13); gpt-image-2.6-flare API for ride, ticket, viaduct3d",
+   "image_input": "sheetA.jpg (character sheet)",
+   "prompt": "Hand-painted Studio Ghibli gouache film still, the exact same art style, character designs and colour palette as the reference character sheet, cinematic 16:9, rich painterly background, no text. Characters match the reference sheet exactly: the boy with messy black hair, red cap with gold button and white sailor-collar shirt with navy trim; the girl with long black windblown hair and yellow scarf; the giant white wolf with red kabuki face markings; red-and-cream tram with gold trim. The girl with black windblown hair and yellow scarf riding her bicycle uphill along a lakeside path, a white paper crane near her handlebar bell; behind her a gigantic white wolf with red kabuki face markings rises up out of the reeds, huge jaws opening toward the crane, dramatic menace."
+  },
+  {
+   "set": "attempt B keyframes",
+   "name": "lick",
+   "model": "ChatGPT Instant (all 13); gpt-image-2.6-flare API for ride, ticket, viaduct3d",
+   "image_input": "sheetA.jpg (character sheet)",
+   "prompt": "Hand-painted Studio Ghibli gouache film still, the exact same art style, character designs and colour palette as the reference character sheet, cinematic 16:9, rich painterly background, no text. Characters match the reference sheet exactly: the boy with messy black hair, red cap with gold button and white sailor-collar shirt with navy trim; the girl with long black windblown hair and yellow scarf; the giant white wolf with red kabuki face markings; red-and-cream tram with gold trim. Extreme close-up of the giant white wolf with red kabuki face markings licking its muzzle with its tongue, satisfied, tiny torn blue paper scraps and a few white feathers drifting in the air, dusk sky behind."
+  },
+  {
+   "set": "attempt B keyframes",
+   "name": "duskboy",
+   "model": "ChatGPT Instant (all 13); gpt-image-2.6-flare API for ride, ticket, viaduct3d",
+   "image_input": "sheetA.jpg (character sheet)",
+   "prompt": "Hand-painted Studio Ghibli gouache film still, the exact same art style, character designs and colour palette as the reference character sheet, cinematic 16:9, rich painterly background, no text. Characters match the reference sheet exactly: the boy with messy black hair, red cap with gold button and white sailor-collar shirt with navy trim; the girl with long black windblown hair and yellow scarf; the giant white wolf with red kabuki face markings; red-and-cream tram with gold trim. Dusk, the boy in red cap and sailor collar at the tram window, face full of grief and fear, holding torn blue paper scraps in his open hand, purple and orange sky, lake behind."
+  },
+  {
+   "set": "attempt B keyframes",
+   "name": "duskwide",
+   "model": "ChatGPT Instant (all 13); gpt-image-2.6-flare API for ride, ticket, viaduct3d",
+   "image_input": "sheetA.jpg (character sheet)",
+   "prompt": "Hand-painted Studio Ghibli gouache film still, the exact same art style, character designs and colour palette as the reference character sheet, cinematic 16:9, rich painterly background, no text. Characters match the reference sheet exactly: the boy with messy black hair, red cap with gold button and white sailor-collar shirt with navy trim; the girl with long black windblown hair and yellow scarf; the giant white wolf with red kabuki face markings; red-and-cream tram with gold trim. Wide dusk shot: the red-and-cream tram standing on a flooded railway track on a wooden trestle across a purple-pink lake, reflections, broken white paper crane pieces floating on the water, wisteria at left, mountains and village far away."
+  },
+  {
+   "set": "attempt B clips",
+   "name": "reed",
+   "model": "veo3.1-fast, 8 s",
+   "image_input": "reed.png (the ChatGPT keyframe)",
+   "prompt": "Tall reeds sway in the wind, the beetle crawls slowly, ripples on the water, slow gentle push-in camera. Studio Ghibli hand-painted animation look, same art style as the input frame, no text, no subtitles, no morphing or changing of any face, characters keep identical appearance."
+  },
+  {
+   "set": "attempt B clips",
+   "name": "ride",
+   "model": "veo3.1-fast, 8 s",
+   "image_input": "ride.png (the ChatGPT keyframe)",
+   "prompt": "The girl pedals the bicycle along the path, her hair and yellow scarf stream in the wind, the white wolf looms close behind and its fur ripples, camera tracks alongside. Studio Ghibli hand-painted animation look, same art style as the input frame, no text, no subtitles, no morphing or changing of any face, characters keep identical appearance."
+  },
+  {
+   "set": "attempt B clips",
+   "name": "ticket",
+   "model": "veo3.1-fast, 8 s",
+   "image_input": "ticket.png (the ChatGPT keyframe)",
+   "prompt": "The red tram glides out of the tunnel toward camera, wisteria petals drift, the paper crane flutters, smooth steady camera. Studio Ghibli hand-painted animation look, same art style as the input frame, no text, no subtitles, no morphing or changing of any face, characters keep identical appearance."
+  },
+  {
+   "set": "attempt B clips",
+   "name": "viaduct3d",
+   "model": "veo3.1-fast, 8 s",
+   "image_input": "viaduct3d.png (the ChatGPT keyframe)",
+   "prompt": "The tram crosses the stone viaduct, a boy at the window leans out, birds fly past, slow camera drift. Studio Ghibli hand-painted animation look, same art style as the input frame, no text, no subtitles, no morphing or changing of any face, characters keep identical appearance."
+  },
+  {
+   "set": "attempt B clips",
+   "name": "boy",
+   "model": "veo3.1-fast, 8 s",
+   "image_input": "boy.png (the ChatGPT keyframe)",
+   "prompt": "The boy breathes, blinks, smiles and gently turns his open palm as the paper crane lands, soft wind in his hair, locked camera. Studio Ghibli hand-painted animation look, same art style as the input frame, no text, no subtitles, no morphing or changing of any face, characters keep identical appearance."
+  },
+  {
+   "set": "attempt B clips",
+   "name": "stamp",
+   "model": "veo3.1-fast, 8 s",
+   "image_input": "stamp.png (the ChatGPT keyframe)",
+   "prompt": "The hand presses the brass stamp down onto the paper and lifts it, light slides across the wood, locked camera. Studio Ghibli hand-painted animation look, same art style as the input frame, no text, no subtitles, no morphing or changing of any face, characters keep identical appearance."
+  },
+  {
+   "set": "attempt B clips",
+   "name": "boy_b",
+   "model": "veo3.1-fast, 8 s",
+   "image_input": "boy_b.png (the ChatGPT keyframe)",
+   "prompt": "The boy laughs with his eyes closed as the paper crane lifts off his hand and flies away, hair moving in the wind, locked camera. Studio Ghibli hand-painted animation look, same art style as the input frame, no text, no subtitles, no morphing or changing of any face, characters keep identical appearance."
+  },
+  {
+   "set": "attempt B clips",
+   "name": "lake",
+   "model": "veo3.1-fast, 8 s",
+   "image_input": "lake.png (the ChatGPT keyframe)",
+   "prompt": "The girl cycles along the lakeside path away from camera, the crane flies overhead, clouds drift, slow push-in. Studio Ghibli hand-painted animation look, same art style as the input frame, no text, no subtitles, no morphing or changing of any face, characters keep identical appearance."
+  },
+  {
+   "set": "attempt B clips",
+   "name": "window",
+   "model": "veo3.1-fast, 8 s",
+   "image_input": "window.png (the ChatGPT keyframe)",
+   "prompt": "Two frightened children at the tram window, trembling, breathing fast, a huge wolf shape moves in the sunset sky behind them, slow push-in. Studio Ghibli hand-painted animation look, same art style as the input frame, no text, no subtitles, no morphing or changing of any face, characters keep identical appearance."
+  },
+  {
+   "set": "attempt B clips",
+   "name": "bell",
+   "model": "veo3.1-fast, 8 s",
+   "image_input": "bell.png (the ChatGPT keyframe)",
+   "prompt": "The white wolf lunges with open jaws toward the girl on the bicycle, her scarf and hair whip back, the crane flutters between them, fast tracking camera. Studio Ghibli hand-painted animation look, same art style as the input frame, no text, no subtitles, no morphing or changing of any face, characters keep identical appearance."
+  },
+  {
+   "set": "attempt B clips",
+   "name": "lick",
+   "model": "veo3.1-fast, 8 s",
+   "image_input": "lick.png (the ChatGPT keyframe)",
+   "prompt": "The white wolf closes its eyes and slowly licks its muzzle, fur moves in the wind, torn paper scraps drift past, slow push-in. Studio Ghibli hand-painted animation look, same art style as the input frame, no text, no subtitles, no morphing or changing of any face, characters keep identical appearance."
+  },
+  {
+   "set": "attempt B clips",
+   "name": "duskboy",
+   "model": "veo3.1-fast, 8 s",
+   "image_input": "duskboy.png (the ChatGPT keyframe)",
+   "prompt": "The boy cries, tears fall, his trembling hands hold torn paper scraps, sunset light flickers on his face, locked camera. Studio Ghibli hand-painted animation look, same art style as the input frame, no text, no subtitles, no morphing or changing of any face, characters keep identical appearance."
+  },
+  {
+   "set": "attempt B clips",
+   "name": "duskwide",
+   "model": "veo3.1-fast, 8 s",
+   "image_input": "duskwide.png (the ChatGPT keyframe)",
+   "prompt": "The tram races along the lake toward the sunset, the white wolf runs beside it, scraps of paper drift, slow pull-back. Studio Ghibli hand-painted animation look, same art style as the input frame, no text, no subtitles, no morphing or changing of any face, characters keep identical appearance."
+  },
+  {
+   "set": "cut 9 keyframes",
+   "name": "kboy_a",
+   "model": "gpt-image-2.6-flare",
+   "image_input": "b2_boy_palm_up.jpg, c8_15.2.jpg (frames of the code-built cut 8)",
+   "prompt": "Hand-painted Studio Ghibli anime film still, cel-shaded character over a rich gouache background, cinematic 16:9, no text, no logos. Draw EXACTLY the boy from reference image 1: same face, same messy dark curly hair, same red cap with black band and round gold button, same white sailor-collar shirt with navy stripes, same flat cel colours and line style. Staging: the camera is INSIDE an old train carriage. The boy sits in the right foreground, seen from the chest up in side profile facing left, calm small smile, eyes open. His bare right forearm reaches out to the left through the open window, hand open with the palm up and EMPTY. Behind and beside him is the carriage's own window: a polished dark mahogany frame with thin brass trim, and a broad wooden sill running along the bottom of the picture with a small blank brass plate on it. On the sill at the far left a small striped tabby cat sleeps curled up next to a navy conductor's cap, as in reference image 2. Outside the window, as in reference image 2: bright midday, green flower meadow, deep blue lake, far shore village, snowy mountains, big white clouds. No bird, no paper, nothing in his hand. Clear daylight on the boy, no dark shadow over him."
+  },
+  {
+   "set": "cut 9 keyframes",
+   "name": "kboy_b",
+   "model": "gpt-image-2.6-flare",
+   "image_input": "kboy_a.jpg",
+   "prompt": "Edit reference image 1, keeping the exact same boy (same face, hair, red cap with black band and gold button, sailor shirt), the same hand-painted Ghibli anime style, the same cat with navy cap, the same landscape and colours. Change only the staging so the boy is unmistakably INSIDE the train carriage with the camera beside him: his shoulder, chest and upper body fill the lower right corner in the near foreground, unobstructed, running off the bottom edge of the picture; the wooden window sill and the mahogany window frame with brass trim are BEHIND his body, between him and the landscape; his bare forearm passes over the sill and out through the open window, open hand palm up and empty. The sleeping tabby cat and navy cap stay on the sill at the left. A little of the carriage interior (dark wood panel, blue patterned curtain) at the right edge behind his head. Bright midday light. No bird, no paper, no text."
+  },
+  {
+   "set": "cut 9 keyframes",
+   "name": "ktun_a",
+   "model": "gpt-image-2.6-flare",
+   "image_input": "q3_train_front.jpg, c8_tunnel_wide.jpg (frames of the code-built cut 8)",
+   "prompt": "Hand-painted Studio Ghibli anime background style film frame, 16:9, rich gouache colours, bright midday. The exact electric train from reference image 1 (cream upper body, red lower body, dark grey roof, brass trim, round amber headlamps, red cow-catcher, pantograph) is coming OUT of a round stone tunnel portal in a wisteria-covered cliff, the same coastal hill town world as reference image 2. The front car and one and a half carriages are already out in the sun, the rest of the train is still inside the dark tunnel mouth. The train rides exactly on two steel rails with wooden sleepers and gravel; the rails are clearly visible in front of the train and curve gently toward the lower left foreground along the top of an old stone viaduct with a low weathered stone parapet. Low three-quarter camera standing on the viaduct beside the track, the train approaching. A big rough stone archway with hanging purple wisteria frames the top and left edge of the picture in the near foreground. Beyond the parapet: deep blue sea bay, terracotta-roof town, green mountains, towering white clouds. Train windows show only warm lamp glow and curtains. No people, no animals, no birds, no text, no signs, no letters."
+  },
+  {
+   "set": "cut 9 keyframes",
+   "name": "kdusk",
+   "model": "gpt-image-2.6-flare",
+   "image_input": "kboy_b.png",
+   "prompt": "Edit this image. Keep the same boy (red cap with black band and gold button, dark curly hair, white sailor shirt with navy collar), the same carriage interior, the same framing and composition exactly: boy large in the right foreground seen from behind his shoulder in profile, his arm reaching out of the open train window, open empty palm facing up at the centre of the frame, the tabby cat asleep on the blue cap on the wooden sill with the brass plate. Change only the time of day and the mood: dusk just after sunset, deep violet-blue sky with pink and orange clouds, a wide dark-blue lake with a small lit village on the far shore and hills, no meadow. Warm amber lamp light from inside the carriage on the varnished wood, on his cheek and on his sleeve. His face is hopeful, a small waiting smile, eyes open looking out at the sky. Hand-painted anime film background style, clean line art, same as the input."
+  },
+  {
+   "set": "cut 9 clips",
+   "name": "boy_probe",
+   "model": "veo3.1-fast, 8 s",
+   "image_input": "kboy_a.jpg",
+   "prompt": "The boy sits at the open train window and holds his open hand out, palm up and steady. He breathes gently, blinks, and his eyes follow something small approaching his hand from the left; his smile grows a little and his fingers curl slightly. A soft breeze moves his hair and collar. The sleeping tabby cat breathes slowly, its side rising and falling. Outside, the meadow, lake and mountains drift slowly to the left because the train is moving. Locked camera. No bird, no paper, nothing appears in his hand. Studio Ghibli hand-painted animation look, same art style as the input frame, no text, no subtitles, no morphing, the boy's face and clothes stay identical.",
+   "used": "no (a probe; replaced in round 5)"
+  },
+  {
+   "set": "cut 9 clips",
+   "name": "boy_close",
+   "model": "veo3.1-fast, 8 s",
+   "image_input": "kboy_b.jpg",
+   "prompt": "Gentle living hold of this exact frame. The boy keeps his open hand out of the train window, palm up. He breathes, blinks once, his eyes look at his palm and his smile slowly grows; his hand bobs softly down and up once, fingers curl a little. Breeze moves his dark hair and the cap ribbon. The tabby cat sleeps and breathes slowly on the sill. Outside the window the meadow, trees, lake and mountains slide steadily to the left as the train travels. Locked camera, same hand-painted Studio Ghibli animation style, face and clothes unchanged.",
+   "used": "yes"
+  },
+  {
+   "set": "cut 9 clips",
+   "name": "tunnel_a",
+   "model": "veo3.1-fast, 8 s",
+   "image_input": "ktun_a.jpg",
+   "prompt": "The red and cream electric train rolls smoothly forward out of the stone tunnel, its wheels staying on the steel rails, following the gentle curve of the track toward the lower left past the camera. More carriages keep emerging one after another from the dark tunnel mouth behind it. Headlamps glow, the pantograph sways slightly. The camera glides slowly backward and a little to the left along the viaduct, keeping the front car in frame, under the wisteria arch. Wisteria blossoms sway in the wind of the passing train, clouds drift, the sea glitters. Hand-painted Studio Ghibli animation style, same as the input frame, steady, the train keeps its exact shape and colours.",
+   "used": "no (rejected)"
+  },
+  {
+   "set": "cut 9 clips",
+   "name": "tunnel_b",
+   "model": "veo3.1-fast, 8 s",
+   "image_input": "ktun_a.jpg",
+   "prompt": "Static locked-off camera. The red and cream electric train drives briskly forward out of the stone tunnel at full travelling speed, wheels rolling on the steel rails along the curve of the track. It grows larger as it approaches, the front car sweeps past close to the camera and exits the frame at the lower left edge, and the following carriages keep streaming out of the dark tunnel mouth and rushing past one after another. The wisteria blossoms are whipped by the wind of the passing train, a few petals fly. Clouds drift, the sea glitters. Hand-painted Studio Ghibli animation, same style as the input frame; the train keeps its exact shape and colours.",
+   "used": "yes"
+  },
+  {
+   "set": "cut 9 clips",
+   "name": "dusk_a",
+   "model": "veo3.1-fast, 8 s",
+   "image_input": "kdusk.png",
+   "prompt": "Static locked-off camera, hand-painted anime film. The boy holds his open palm out of the train window and waits with a small hopeful smile, his hair moving gently in the wind. After two seconds his smile slowly fades, his eyebrows lower, he looks down at his palm with a sad face, and a single tear rolls down his cheek. His arm stays out, palm open. The cat sleeps on the sill, its side slowly rising and falling as it breathes. The lake glitters and the far shore with its lights drifts slowly past to the left.",
+   "used": "yes"
+  }
+ ]
+}

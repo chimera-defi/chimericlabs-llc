@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Video model bench: 9 image-to-video models, and where code motion is enough</title>
+<meta name="description" content="Nine image-to-video models on one gateway: cost, time and a 0 to 5 score for identity, motion and clean output, plus what veo3.1-fast did in our Ghibli film. Small samples, one reviewer.">
+<meta property="og:title" content="Video model bench: what 9 image-to-video models cost, and when to use one">
+<meta property="og:description" content="16 test clips, a cost-quality frontier, and the 5 veo3.1-fast takes behind cut 9 of our film. Small samples.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://chimericlabs.xyz/research/video-model-bench/">
+<meta property="og:image" content="https://chimericlabs.xyz/research/video-model-bench/img/cut9-tunnel.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://chimericlabs.xyz/research/video-model-bench/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23080e1d'/><text x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='16' font-weight='600' fill='%2300c4ff'>CL</text></svg>" />
+<link rel="stylesheet" href="../../design-system/styles.css">
+<style>
+:root { --gap-s: var(--space-3); --gap-m: var(--space-6); --gap-l: calc(var(--space-8) * 1.5); --gap-section: calc(var(--space-8) * 2.5); }
+.bench { max-width: calc(var(--space-8) * 42); padding-block: var(--gap-l) var(--gap-section); }
+.sec { display: flex; flex-direction: column; gap: var(--gap-m); scroll-margin-top: calc(var(--space-8) * 5); padding-top: var(--gap-section); }
+.sec > * { margin: 0; }
+.bench p, .bench li { line-height: 1.6; }
+.bench h1 { font-size: clamp(32px, 5vw, 52px); overflow-wrap: anywhere; }
+.bench h2 { font-size: var(--space-8); line-height: 1.2; display: flex; align-items: center; gap: var(--gap-s); }
+.bench h3 { font-size: 18px; line-height: 1.3; }
+.bench .lede { max-width: 60ch; font-size: 17px; }
+.key { color: var(--color-accent-300); font-weight: 500; font-feature-settings: 'tnum' 1; }
+.bench a { color: var(--color-text); text-decoration: underline; text-decoration-color: var(--color-accent-400); text-underline-offset: 4px; }
+.bench a:hover { text-decoration-color: var(--color-text); }
+.bench a:focus-visible, .toc a:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+.bench code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .9em; overflow-wrap: anywhere; }
+.meta { font-size: 13px; color: var(--ds-muted); font-feature-settings: 'tnum' 1; }
+.u-face { --c: var(--data-claude); } .u-plate { --c: var(--data-codex); } .u-prop { --c: var(--data-grok); } .u-bulk { --c: var(--data-pipeline); } .u-ref { --c: var(--data-sonnet); } .u-var { --c: var(--data-effort-high); }
+.dot { width: 10px; height: 10px; flex: none; border-radius: 50%; background: var(--c); }
+.toc { position: sticky; top: 56px; z-index: 40; background: color-mix(in srgb, var(--color-bg) 94%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-divider); }
+.toc ol { list-style: none; margin: 0 auto; padding: 0 var(--ds-pad); max-width: var(--ds-max); display: flex; gap: var(--space-6); overflow-x: auto; white-space: nowrap; scrollbar-width: thin; }
+.toc a { display: inline-flex; align-items: center; gap: var(--space-2); min-height: 44px; font-size: 14px; color: var(--color-text); text-decoration: none; }
+.toc a:hover { color: var(--color-accent-300); }
+.toc a.on { color: var(--color-accent-300); }
+.tldr { display: flex; flex-direction: column; gap: var(--gap-m); padding: var(--gap-m); }
+.tldr > p { margin: 0; font-size: 17px; }
+.chips { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: var(--gap-s); }
+.chip { display: flex; flex-direction: column; gap: var(--space-1); padding: var(--space-4) var(--gap-m); border: 1px solid var(--c); border-radius: var(--radius-md); background: color-mix(in srgb, var(--c) 10%, var(--color-surface)); }
+.chip .u { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; display: flex; align-items: center; gap: var(--space-2); }
+.chip .u::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
+.chip b { font-weight: 500; font-size: 15px; overflow-wrap: anywhere; }
+.chip span:last-child { font-size: 13px; color: var(--ds-muted); }
+.flow { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: var(--gap-s); counter-reset: s; }
+.flow li { counter-increment: s; display: flex; flex-direction: column; gap: var(--space-2); padding: var(--gap-m); border-radius: var(--radius-md); background: var(--color-surface); box-shadow: var(--shadow-sm); border-top: 3px solid var(--c); font-size: 14px; }
+.flow li::before { content: "Step " counter(s); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--ds-muted); }
+.flow b { font-size: 16px; font-weight: 500; }
+.chart { margin: 0; padding: var(--gap-m); border-radius: var(--radius-md); background: var(--color-surface); box-shadow: var(--shadow-sm); }
+.chart svg { display: block; width: 100%; height: auto; max-width: calc(var(--space-8) * 28); margin-inline: auto; overflow: visible; font-family: var(--font-body); }
+.chart figcaption { margin-top: var(--gap-s); font-size: 13px; color: var(--ds-muted); }
+.pg { stroke: var(--data-grid); stroke-width: 1; }
+.pa { fill: var(--color-neutral-300); font-size: 15px; }
+.pf { fill: none; stroke: var(--data-frontier); stroke-width: 2; stroke-dasharray: 5 4; }
+.pd { fill: none; stroke: var(--color-neutral-500); stroke-width: 2; }
+.pb { fill: var(--color-accent); stroke: var(--color-text); stroke-width: 2; }
+.pl { fill: var(--color-text); font-size: 17px; font-weight: 500; }
+.pl2 { fill: var(--color-neutral-300); font-size: 15px; }
+.pics { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: var(--gap-m); }
+.pics.two { grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); }
+.pic { margin: 0; display: flex; flex-direction: column; gap: var(--gap-s); }
+.pic img, .gpair img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border: 1px solid var(--color-divider); border-radius: var(--radius-md); }
+.pic figcaption { display: flex; flex-direction: column; font-size: 14px; }
+.pic figcaption b { font-weight: 500; color: var(--color-text); }
+.pic figcaption span { font-size: 13px; color: var(--ds-muted); font-feature-settings: 'tnum' 1; }
+.pic.best img { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+.pic.miss img { outline: 2px solid var(--data-claude); outline-offset: 2px; }
+.use { display: flex; flex-direction: column; gap: var(--gap-m); padding: var(--gap-m); border-radius: var(--radius-md); background: var(--color-surface); box-shadow: var(--shadow-sm); }
+.use > * { margin: 0; }
+.use h3 { display: flex; align-items: center; gap: var(--gap-s); }
+.scroll { overflow-x: auto; }
+.table th, .table td { white-space: nowrap; }
+.table tbody th { text-transform: none; letter-spacing: 0; font-size: 14px; font-weight: 400; color: var(--color-text); text-align: left; }
+.table caption { text-align: left; margin-bottom: var(--gap-s); }
+.table .num { text-align: right; font-feature-settings: 'tnum' 1; }
+.rep { text-align: center; font-feature-settings: 'tnum' 1; }
+.rep.jump { color: var(--data-claude); font-weight: 500; }
+.rep.move { color: var(--color-text); }
+.rep.same { color: var(--ds-muted); }
+.odd { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: var(--gap-s); }
+.odd p { margin: 0; }
+.odd li { display: flex; flex-direction: column; gap: var(--space-2); padding: var(--gap-m); border-radius: var(--radius-md); background: var(--color-surface); box-shadow: var(--shadow-sm); font-size: 14px; align-items: flex-start; }
+.glist { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: var(--gap-m); }
+.gcard { display: flex; flex-direction: column; gap: var(--gap-s); padding: var(--gap-m); }
+.gcard h3 { font-size: 16px; } .gcard p { margin: 0; }
+.gpair { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap-s); }
+.gpair figure { margin: 0; display: flex; flex-direction: column; gap: var(--space-2); font-size: 13px; color: var(--ds-muted); }
+.files { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: var(--space-2) var(--gap-m); font-size: 14px; }
+.files a { display: inline-flex; align-items: center; min-height: 44px; }
+details { border-top: 1px solid var(--color-divider); padding-block: var(--gap-s); }
+details > summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; }
+details > summary:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+details[open] > summary { margin-bottom: var(--gap-s); }
+details > * + * { margin-top: var(--gap-s); }
+.byline { font-size: 13px; color: var(--ds-muted); padding-top: var(--gap-l); }
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));gap:16px;margin-top:16px}.vcell video{width:100%;height:auto;display:block;border:1px solid var(--data-grid)}.vcell h4{margin:0 0 2px}
+.chart svg{max-width:100%}.chart circle{cursor:pointer;transition:r .12s}.chart circle:hover,.chart circle:focus{outline:none;stroke:var(--color-text);stroke-width:3}
+.pa2{fill:var(--color-neutral-300);font-size:14px}.chart .pl{font-size:14px;paint-order:stroke;stroke:var(--color-surface);stroke-width:4px}.chart .pl2{font-size:13px}
+#tip{position:fixed;z-index:50;pointer-events:none;background:var(--color-surface);color:var(--color-text);border:1px solid var(--color-neutral-500);border-radius:6px;padding:8px 10px;font-size:13px;line-height:1.4;white-space:pre-wrap;max-width:calc(100vw - 16px);box-shadow:var(--shadow-md);display:none}
+.ex-plot{overflow-x:auto}
+.ex-plot svg{min-width:560px}
+.chart{scroll-margin-top:calc(var(--space-8) * 5)}
+.see{display:flex;flex-direction:column;gap:var(--space-2);padding:var(--space-4) var(--gap-m);font-size:14px}
+.see ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:var(--space-1) var(--gap-m)}
+.see a{display:inline-flex;align-items:center;min-height:44px}
+.chart-jump{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-1) var(--gap-m);font-size:14px}
+.chart-jump a{display:inline-flex;align-items:center;min-height:44px}
+.pick th,.pick td{white-space:normal;vertical-align:top;min-width:9ch}
+.ex-ctl{display:flex;flex-wrap:wrap;align-items:center;gap:var(--gap-s);margin-bottom:var(--gap-s)}
+.ex .seg{display:grid;grid-template-columns:repeat(3,1fr)}
+.ex .seg-opt{min-height:44px;justify-content:center;text-align:center;padding:var(--space-1) var(--space-2)}
+.ex-field{display:inline-flex;align-items:center;gap:var(--space-2);font-size:13px;color:var(--ds-muted)}
+.ex-field .input{width:auto;min-height:44px}
+.ex-chips{display:flex;flex-wrap:wrap;gap:var(--space-1);margin-bottom:var(--gap-s)}
+.ex-chips .btn{font-size:12px;min-height:36px;padding:var(--space-1) var(--space-2)}
+.ex-chips .btn[aria-pressed="false"]{color:var(--ds-muted);text-decoration:line-through}
+.ex [hidden]{display:none}
+.ex:not([data-colour="family"]) .ex-chips .dot{display:none}
+.ex [data-family="openai"]{--c:var(--data-codex)}.ex [data-family="bfl"]{--c:var(--data-claude)}.ex [data-family="kling"]{--c:var(--data-grok)}
+.ex [data-family="alibaba"]{--c:var(--data-pipeline)}.ex [data-family="bytedance"]{--c:var(--data-sonnet)}.ex [data-family="google"]{--c:var(--data-luna)}
+.ex [data-family="minimax"]{--c:var(--data-effort-medium)}.ex [data-family="tencent"]{--c:var(--data-effort-medium)}
+.ex[data-colour="family"] circle[data-family]{fill:var(--c);stroke:var(--color-text)}
+.ex[data-colour="family"] circle.pd{fill-opacity:.45}
+.prompts h3{font-size:15px;margin-top:var(--gap-m)}
+.prompts pre{margin:0;max-height:22rem;overflow:auto;padding:var(--space-3);border-radius:var(--radius-md);background:var(--color-surface);border:1px solid var(--color-divider);font:12px/1.5 ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere}
+.stub{font-size:15px}
+.see{margin-top:var(--gap-m)}
+.pick td.num{white-space:nowrap}
+@media (max-width:640px){.pick,.pick tbody{display:block;width:100%}.pick thead{display:none}.pick tr{display:grid;grid-template-columns:1fr auto;gap:var(--space-1) var(--space-3);padding-block:var(--space-3);border-bottom:1px solid var(--color-divider)}.pick th,.pick td{display:block;padding:0;border:0;text-align:left;min-width:0}.pick tbody th{grid-column:1/-1;font-weight:500}.pick td:last-child{grid-column:1/-1;color:var(--ds-muted)}.pick caption{display:block}}
+@media (max-width:640px){.ex-chips{flex-wrap:nowrap;overflow-x:auto;padding-bottom:var(--space-1)}.ex-chips .btn{flex:none}}
+</style>
+</head>
+<body class="ds-page">
+<div class="ds-topbar"><div><a href="https://chimericlabs.xyz/">&larr; Chimeric Labs</a></div></div>
+<header class="ds-header">
+<nav class="nav" aria-label="Primary">
+<a href="../../" class="nav-brand">ChimericLabs</a>
+<a href="../../portfolio.html" class="ds-optional">Portfolio</a>
+<a href="../../research.html" aria-current="page">Research</a>
+<a href="../../#services" class="ds-optional">Services</a>
+<a href="https://github.com/chimera-defi" class="btn btn-primary" rel="noreferrer">GitHub</a>
+</nav>
+</header>
+<nav class="toc" aria-label="On this page"><ol>
+<li><a href="#verdict">Verdict</a></li><li><a href="#explore">Explore</a></li><li><a href="#method">Method</a></li><li><a href="#frontier">Frontier</a></li><li><a href="#speed">Speed</a></li><li><a href="#clips">The 16 clips</a></li><li><a href="#data">All models</a></li><li><a href="#cut9">In the film</a></li><li><a href="#film">Film cost</a></li><li><a href="#spend">Spend</a></li><li><a href="#limits">Limits</a></li><li><a href="#prompts">Prompts</a></li><li><a href="#source">Source</a></li><li><a href="../image-model-bench/">Image bench</a></li>
+</ol></nav>
+<main class="ds-wrap">
+<article class="bench" id="article">
+
+<header class="sec" style="padding-top:0">
+<p class="ds-kicker" style="margin:0">Benchmark &middot; <time datetime="2026-11-22">22 Nov 2026</time> &middot; 5 min read</p>
+<h1>Video model bench: when a clip beats code motion</h1>
+<p class="lede">Our short film is animated in code. We tested nine image-to-video models on two frames of it, then used the cheapest good one, veo3.1-fast, for the three shots code could not sell. This page has the test, the clips, what they cost and where they ended up.</p>
+</header>
+<aside class="card see" aria-label="See also, top">
+<p class="meta" style="margin:0">See also</p>
+<ul><li><a href="../image-model-bench/">Image model bench</a></li><li><a href="../ghibli-claude/">Ghibli Claude, the film</a></li><li><a href="../../research.html">All research</a></li></ul>
+</aside>
+
+<section class="sec" id="verdict" aria-labelledby="h-verdict">
+<h2 id="h-verdict">Verdict</h2>
+<div class="card tldr">
+<p>Animate in code by default. Where code motion is weak, use <strong class="key">veo3.1-fast at $0.14 for 8 s</strong> from a gpt-image-2.6-flare keyframe. In cut 9 that was <strong class="key">3 used takes out of 5, $1.09</strong> with the keyframes; code did the rest of the 43.8 s.</p>
+<div class="scroll"><table class="table pick"><caption class="meta">Pick this. Scores are 0 to 5 by one reviewer from one or two clips per model.</caption><thead><tr><th scope="col">When you need</th><th scope="col">Pick</th><th scope="col" class="num">Cost</th><th scope="col">Measured</th></tr></thead><tbody>
+<tr><th scope="row">Camera moves, folds, a landing, breathing, a train entering a tunnel</th><td>Code</td><td class="num">$0 a re-render</td><td>Cut 9 did all of these in code. A fix is deterministic; a clip can only be re-rolled.</td></tr>
+<tr><th scope="row">Motion code does not sell: a train coming out of a tunnel on its rails, a hand and face that change expression</th><td>veo3.1-fast</td><td class="num">$0.14 per 8 s</td><td>Quality 4.00 at $0.0177 a second, the cheapest per second after wan2.6. 3 of 5 cut 9 takes were used.</td></tr>
+<tr><th scope="row">The most faithful clip, little motion</th><td>MiniMax-Hailuo-2.3-Fast</td><td class="num">$0.149 per 6 s</td><td>Identity 5 and clean 5. It returned <code>service_unavailable</code> on 22 Nov, so the film used veo.</td></tr>
+<tr><th scope="row">Livelier motion</th><td>kling-v3 (std)</td><td class="num">$0.336 per 5 s</td><td>Best mean, 4.33, at 2.4 times veo per clip and 3.8 times per second.</td></tr>
+</tbody></table></div>
+<p class="meta">Skip veo3.1-quality: the same scores as fast at 7 times the price. seedance is 480p with background drift. 16 test clips, $4.90; the film clips another $2.52 on top (attempt B $1.82, cut 9 $0.70). Image models are on the <a href="../image-model-bench/">image model bench</a>.</p>
+</div>
+</section>
+
+<section class="sec" aria-label="Explore the charts">
+<nav class="chart-jump" aria-label="Charts on this page"><span class="meta">Static charts:</span><a href="#f-cv">Cost vs quality</a><a href="#f-cvs">Quality vs speed</a><a href="#f-cvc">Cost vs speed</a></nav>
+<figure class="chart ex" id="explore" data-charts="cv cvs cvc" data-both-low="cvc" hidden>
+<div class="ex-ctl">
+<div class="seg ex-views" role="radiogroup" aria-label="Chart axes">
+<label class="seg-opt"><input type="radio" name="ex-view" value="cv" checked>Cost vs quality</label>
+<label class="seg-opt"><input type="radio" name="ex-view" value="cvs">Quality vs speed</label>
+<label class="seg-opt"><input type="radio" name="ex-view" value="cvc">Cost vs speed</label>
+</div>
+<label class="ex-field">Colour by <select class="input ex-colour"><option value="frontier">Frontier</option><option value="family">Maker</option></select></label>
+</div>
+<div class="ex-chips" role="group" aria-label="Show or hide a model; the frontier is redrawn"></div>
+<div class="ex-plot"></div>
+<figcaption>Pick the axes, switch a model off to see the frontier redrawn without it, or colour the dots by maker. Hover, tap or tab to a dot for its numbers. Cost is per second of output video.</figcaption>
+</figure>
+</section>
+
+<section class="sec" id="method" aria-labelledby="h-method">
+<h2 id="h-method">Method</h2>
+<p>Two start frames from the painted film, one prompt each: the boy reaching for the paper bird, and a slow push-in on the wolf over the viaduct. Every model got the same frame and text, one run per cell, on 21 Nov 2026 through the APIMart gateway. Clip length and resolution are each model's default.</p>
+<div class="pics two">
+<figure class="pic"><img src="img/input-boy.jpg" width="640" height="360" loading="lazy" alt="Start frame: the boy in a red cap reaches his open hand out of a train window toward a paper crane over a lake"><figcaption><b>Start frame: boy</b><span>The face must hold while the hand and hair move</span></figcaption></figure>
+<figure class="pic"><img src="img/input-wolf.jpg" width="640" height="360" loading="lazy" alt="Start frame: a giant white wolf looms over a stone viaduct with a small train in a misty valley"><figcaption><b>Start frame: wolf</b><span>A push-in with mist, without changing the scene</span></figcaption></figure>
+</div>
+<ul>
+<li><strong class="key">Identity:</strong> the face and the scene hold. <strong class="key">Motion:</strong> the shot has life. <strong class="key">Clean:</strong> no artifacts. Each 0 to 5 in half steps, one reviewer, from the clips and 4-frame strips.</li>
+<li>Cost is what the gateway charged per clip; it is divided by the clip length for the per-second charts. Time is submit to finished file.</li>
+</ul>
+</section>
+
+<section class="sec" id="frontier" aria-labelledby="h-frontier">
+<h2 id="h-frontier">Frontier</h2>
+<p>Two image-to-video prompts: the boy reaching for the bird, and a push-in on the wolf. Best value: <strong class="key">MiniMax-Hailuo-2.3-Fast, $0.149 for 6 s</strong>, and <strong class="key">veo3.1-fast, $0.14 for 8 s</strong>. kling-v3 std ($0.336 per 5 s) has livelier motion. Image-to-video holds a face for 5 to 8 s but does not fix a different face in the next shot. Native resolution is 480 to 768p.</p>
+<figure class="chart" id="f-cv">
+<svg viewBox="0 0 900 540" role="img" aria-labelledby="cvt cvd" id="cv"><title id="cvt">Quality against cost per second for 9 video models</title><desc id="cvd">Image-to-video test with two start frames. Frontier models are cheapest or best at their price.</desc>
+<line class="pg" x1="70" x2="876" y1="476.0" y2="476.0"/><text class="pa2" x="60" y="481.0" text-anchor="end">2</text>
+<line class="pg" x1="70" x2="876" y1="400.7" y2="400.7"/><text class="pa2" x="60" y="405.7" text-anchor="end">2.5</text>
+<line class="pg" x1="70" x2="876" y1="325.3" y2="325.3"/><text class="pa2" x="60" y="330.3" text-anchor="end">3</text>
+<line class="pg" x1="70" x2="876" y1="250.0" y2="250.0"/><text class="pa2" x="60" y="255.0" text-anchor="end">3.5</text>
+<line class="pg" x1="70" x2="876" y1="174.7" y2="174.7"/><text class="pa2" x="60" y="179.7" text-anchor="end">4</text>
+<line class="pg" x1="70" x2="876" y1="99.3" y2="99.3"/><text class="pa2" x="60" y="104.3" text-anchor="end">4.5</text>
+<line class="pg" x1="70" x2="876" y1="24.0" y2="24.0"/><text class="pa2" x="60" y="29.0" text-anchor="end">5</text>
+<line class="pg" x1="200.6" x2="200.6" y1="24" y2="476"/><text class="pa2" x="200.6" y="498" text-anchor="middle">$0.02</text>
+<line class="pg" x1="501.6" x2="501.6" y1="24" y2="476"/><text class="pa2" x="501.6" y="498" text-anchor="middle">$0.05</text>
+<line class="pg" x1="729.4" x2="729.4" y1="24" y2="476"/><text class="pa2" x="729.4" y="498" text-anchor="middle">$0.1</text>
+<text class="pa2" x="473.0" y="528" text-anchor="middle">Cost per second of video (log scale)</text><text class="pa2" transform="translate(18 250.0) rotate(-90)" text-anchor="middle">Quality (mean of identity, motion, clean; 0 to 5)</text>
+<polyline class="pf" points="143.3,350.9 160.5,174.7 276.5,149.1 598.8,124.9"/>
+<circle class="pb" cx="143.3" cy="350.9" r="9" tabindex="0" data-model="wan2.6-i2v-flash" data-family="alibaba" data-x="0.0168" data-y="2.83" data-tip="wan2.6-i2v-flash
+$0.0168 per second
+62 s median to finish (2 runs)
+quality 2.83 of 5
+identity 3.5, motion 3.0, clean 2.0
+cheapest; background drifts, train changed shape and colour
+on the frontier" aria-label="wan2.6-i2v-flash, $0.0168 per second, 62 s median to finish (2 runs), quality 2.83 of 5, identity 3.5, motion 3.0, clean 2.0, cheapest; background drifts, train changed shape and colour, on the frontier"/>
+<text class="pl" data-model="wan2.6-i2v-flash" x="157.3" y="355.9" text-anchor="start">wan2.6-i2v-flash</text>
+<circle class="pb" cx="276.5" cy="149.1" r="9" tabindex="0" data-model="MiniMax-Hailuo-2.3-Fast" data-family="minimax" data-x="0.0252" data-y="4.17" data-tip="MiniMax-Hailuo-2.3-Fast
+$0.0252 per second
+62 s median to finish (2 runs)
+quality 4.17 of 5
+identity 5.0, motion 2.5, clean 5.0
+most faithful, clean wolf push-in, little motion
+on the frontier" aria-label="MiniMax-Hailuo-2.3-Fast, $0.0252 per second, 62 s median to finish (2 runs), quality 4.17 of 5, identity 5.0, motion 2.5, clean 5.0, most faithful, clean wolf push-in, little motion, on the frontier"/>
+<text class="pl" data-model="MiniMax-Hailuo-2.3-Fast" x="290.5" y="154.1" text-anchor="start">MiniMax-Hailuo-2.3-Fast</text>
+<circle class="pb" cx="160.5" cy="174.7" r="9" tabindex="0" data-model="veo3.1-fast" data-family="google" data-x="0.0177" data-y="4" data-tip="veo3.1-fast
+$0.0177 per second
+99.2 s median to finish (2 runs)
+quality 4.00 of 5
+identity 4.5, motion 4.0, clean 3.5
+natural blink, crane moves; thin line across the wolf
+on the frontier" aria-label="veo3.1-fast, $0.0177 per second, 99.2 s median to finish (2 runs), quality 4.00 of 5, identity 4.5, motion 4.0, clean 3.5, natural blink, crane moves; thin line across the wolf, on the frontier"/>
+<text class="pl" data-model="veo3.1-fast" x="174.5" y="179.7" text-anchor="start">veo3.1-fast</text>
+<circle class="pb" cx="598.8" cy="124.9" r="9" tabindex="0" data-model="kling-v3 (std)" data-family="kling" data-x="0.0672" data-y="4.33" data-tip="kling-v3 (std)
+$0.0672 per second
+119.7 s median to finish (2 runs)
+quality 4.33 of 5
+identity 4.5, motion 4.5, clean 4.0
+livelier, crane flies, wolf walks forward
+on the frontier" aria-label="kling-v3 (std), $0.0672 per second, 119.7 s median to finish (2 runs), quality 4.33 of 5, identity 4.5, motion 4.5, clean 4.0, livelier, crane flies, wolf walks forward, on the frontier"/>
+<text class="pl" data-model="kling-v3 (std)" x="612.8" y="129.9" text-anchor="start">kling-v3 (std)</text>
+<circle class="pd" cx="802.7" cy="174.7" r="7" tabindex="0" data-model="veo3.1-quality" data-family="google" data-x="0.125" data-y="4" data-tip="veo3.1-quality
+$0.1250 per second
+107.7 s median to finish (1 runs)
+quality 4.00 of 5
+identity 4.5, motion 4.0, clean 3.5
+good but slight background change; 7x the price of fast
+beaten on this chart" aria-label="veo3.1-quality, $0.1250 per second, 107.7 s median to finish (1 runs), quality 4.00 of 5, identity 4.5, motion 4.0, clean 3.5, good but slight background change; 7x the price of fast, beaten on this chart"/>
+<text class="pl2" data-model="veo3.1-quality" x="802.7" y="158.7" text-anchor="middle">veo3.1-quality</text>
+<circle class="pd" cx="678.7" cy="174.7" r="7" tabindex="0" data-model="kling-v4-flash" data-family="kling" data-x="0.0857" data-y="4" data-tip="kling-v4-flash
+$0.0857 per second
+91.1 s median to finish (2 runs)
+quality 4.00 of 5
+identity 4.0, motion 4.5, clean 3.5
+similar to v3 with a slight face and scene shift
+beaten on this chart" aria-label="kling-v4-flash, $0.0857 per second, 91.1 s median to finish (2 runs), quality 4.00 of 5, identity 4.0, motion 4.5, clean 3.5, similar to v3 with a slight face and scene shift, beaten on this chart"/>
+<text class="pl2" data-model="kling-v4-flash" x="664.7" y="179.7" text-anchor="end">kling-v4-flash</text>
+<circle class="pd" cx="592.9" cy="250.0" r="7" tabindex="0" data-model="seedance-2.0" data-family="bytedance" data-x="0.066" data-y="3.5" data-tip="seedance-2.0
+$0.0660 per second
+185.6 s median to finish (2 runs)
+quality 3.50 of 5
+identity 3.0, motion 4.0, clean 3.5
+480p; background swaps, strong push-in
+beaten on this chart" aria-label="seedance-2.0, $0.0660 per second, 185.6 s median to finish (2 runs), quality 3.50 of 5, identity 3.0, motion 4.0, clean 3.5, 480p; background swaps, strong push-in, beaten on this chart"/>
+<text class="pl2" data-model="seedance-2.0" x="606.9" y="255.0" text-anchor="start">seedance-2.0</text>
+<circle class="pd" cx="581.2" cy="224.4" r="7" tabindex="0" data-model="seedance-2.5-flash" data-family="bytedance" data-x="0.0637" data-y="3.67" data-tip="seedance-2.5-flash
+$0.0637 per second
+95.2 s median to finish (2 runs)
+quality 3.67 of 5
+identity 3.0, motion 4.5, clean 3.5
+480p; background drifts, strongest push-in
+beaten on this chart" aria-label="seedance-2.5-flash, $0.0637 per second, 95.2 s median to finish (2 runs), quality 3.67 of 5, identity 3.0, motion 4.5, clean 3.5, 480p; background drifts, strongest push-in, beaten on this chart"/>
+<text class="pl2" data-model="seedance-2.5-flash" x="595.2" y="229.4" text-anchor="start">seedance-2.5-flash</text>
+<circle class="pd" cx="594.8" cy="325.3" r="7" tabindex="0" data-model="wan2.7" data-family="alibaba" data-x="0.0664" data-y="3" data-tip="wan2.7
+$0.0664 per second
+156.9 s median to finish (1 runs)
+quality 3.00 of 5
+identity 2.5, motion 3.0, clean 3.5
+one clip: the boy changed expression, zoom
+beaten on this chart" aria-label="wan2.7, $0.0664 per second, 156.9 s median to finish (1 runs), quality 3.00 of 5, identity 2.5, motion 3.0, clean 3.5, one clip: the boy changed expression, zoom, beaten on this chart"/>
+<text class="pl2" data-model="wan2.7" x="608.8" y="330.3" text-anchor="start">wan2.7</text>
+</svg>
+<figcaption>Hover or tap a dot. Cost is per second of output. Quality is the mean of three 0 to 5 scores by one reviewer: identity (the face and scene hold), motion (the shot has life) and clean (no artifacts). Two start frames, one run each; wan2.7 has one clip. Treat the 0.5 steps as a judgement, not a measurement.</figcaption>
+</figure>
+</section>
+
+<section class="sec" id="speed" aria-labelledby="h-speed">
+<h2 id="h-speed">Speed</h2>
+<p>Generation took about a minute for wan2.6 and Hailuo, a minute and a half to two for veo and kling, and up to three for seedance-2.0. Nothing here is real time; for a film that is fine, for a live tool it is not.</p>
+<figure class="chart" id="f-cvs">
+<svg viewBox="0 0 900 540" role="img" aria-labelledby="cvst cvsd" id="cvs"><title id="cvst">Quality against seconds per clip</title><desc id="cvsd">Video models: median generation time against quality.</desc>
+<line class="pg" x1="70" x2="876" y1="476.0" y2="476.0"/><text class="pa2" x="60" y="481.0" text-anchor="end">2</text>
+<line class="pg" x1="70" x2="876" y1="400.7" y2="400.7"/><text class="pa2" x="60" y="405.7" text-anchor="end">2.5</text>
+<line class="pg" x1="70" x2="876" y1="325.3" y2="325.3"/><text class="pa2" x="60" y="330.3" text-anchor="end">3</text>
+<line class="pg" x1="70" x2="876" y1="250.0" y2="250.0"/><text class="pa2" x="60" y="255.0" text-anchor="end">3.5</text>
+<line class="pg" x1="70" x2="876" y1="174.7" y2="174.7"/><text class="pa2" x="60" y="179.7" text-anchor="end">4</text>
+<line class="pg" x1="70" x2="876" y1="99.3" y2="99.3"/><text class="pa2" x="60" y="104.3" text-anchor="end">4.5</text>
+<line class="pg" x1="70" x2="876" y1="24.0" y2="24.0"/><text class="pa2" x="60" y="29.0" text-anchor="end">5</text>
+<line class="pg" x1="74.2" x2="74.2" y1="24" y2="476"/><text class="pa2" x="74.2" y="498" text-anchor="middle">50 s</text>
+<line class="pg" x1="250.0" x2="250.0" y1="24" y2="476"/><text class="pa2" x="250.0" y="498" text-anchor="middle">70 s</text>
+<line class="pg" x1="436.3" x2="436.3" y1="24" y2="476"/><text class="pa2" x="436.3" y="498" text-anchor="middle">100 s</text>
+<line class="pg" x1="648.2" x2="648.2" y1="24" y2="476"/><text class="pa2" x="648.2" y="498" text-anchor="middle">150 s</text>
+<line class="pg" x1="798.5" x2="798.5" y1="24" y2="476"/><text class="pa2" x="798.5" y="498" text-anchor="middle">200 s</text>
+<text class="pa2" x="473.0" y="528" text-anchor="middle">Median seconds to finish (log scale)</text><text class="pa2" transform="translate(18 250.0) rotate(-90)" text-anchor="middle">Quality (mean of identity, motion, clean; 0 to 5)</text>
+<polyline class="pf" points="186.6,149.1 530.3,124.9"/>
+<circle class="pb" cx="186.6" cy="149.1" r="9" tabindex="0" data-model="MiniMax-Hailuo-2.3-Fast" data-family="minimax" data-x="62" data-y="4.17" data-tip="MiniMax-Hailuo-2.3-Fast
+$0.0252 per second
+62 s median to finish (2 runs)
+quality 4.17 of 5
+identity 5.0, motion 2.5, clean 5.0
+most faithful, clean wolf push-in, little motion
+on the frontier" aria-label="MiniMax-Hailuo-2.3-Fast, $0.0252 per second, 62 s median to finish (2 runs), quality 4.17 of 5, identity 5.0, motion 2.5, clean 5.0, most faithful, clean wolf push-in, little motion, on the frontier"/>
+<text class="pl" data-model="MiniMax-Hailuo-2.3-Fast" x="200.6" y="154.1" text-anchor="start">MiniMax-Hailuo-2.3-Fast</text>
+<circle class="pb" cx="530.3" cy="124.9" r="9" tabindex="0" data-model="kling-v3 (std)" data-family="kling" data-x="119.7" data-y="4.33" data-tip="kling-v3 (std)
+$0.0672 per second
+119.7 s median to finish (2 runs)
+quality 4.33 of 5
+identity 4.5, motion 4.5, clean 4.0
+livelier, crane flies, wolf walks forward
+on the frontier" aria-label="kling-v3 (std), $0.0672 per second, 119.7 s median to finish (2 runs), quality 4.33 of 5, identity 4.5, motion 4.5, clean 4.0, livelier, crane flies, wolf walks forward, on the frontier"/>
+<text class="pl" data-model="kling-v3 (std)" x="544.3" y="129.9" text-anchor="start">kling-v3 (std)</text>
+<circle class="pd" cx="186.6" cy="350.9" r="7" tabindex="0" data-model="wan2.6-i2v-flash" data-family="alibaba" data-x="62" data-y="2.83" data-tip="wan2.6-i2v-flash
+$0.0168 per second
+62 s median to finish (2 runs)
+quality 2.83 of 5
+identity 3.5, motion 3.0, clean 2.0
+cheapest; background drifts, train changed shape and colour
+beaten on this chart" aria-label="wan2.6-i2v-flash, $0.0168 per second, 62 s median to finish (2 runs), quality 2.83 of 5, identity 3.5, motion 3.0, clean 2.0, cheapest; background drifts, train changed shape and colour, beaten on this chart"/>
+<text class="pl2" data-model="wan2.6-i2v-flash" x="200.6" y="355.9" text-anchor="start">wan2.6-i2v-flash</text>
+<circle class="pd" cx="432.1" cy="174.7" r="7" tabindex="0" data-model="veo3.1-fast" data-family="google" data-x="99.2" data-y="4" data-tip="veo3.1-fast
+$0.0177 per second
+99.2 s median to finish (2 runs)
+quality 4.00 of 5
+identity 4.5, motion 4.0, clean 3.5
+natural blink, crane moves; thin line across the wolf
+beaten on this chart" aria-label="veo3.1-fast, $0.0177 per second, 99.2 s median to finish (2 runs), quality 4.00 of 5, identity 4.5, motion 4.0, clean 3.5, natural blink, crane moves; thin line across the wolf, beaten on this chart"/>
+<text class="pl2" data-model="veo3.1-fast" x="432.1" y="158.7" text-anchor="middle">veo3.1-fast</text>
+<circle class="pd" cx="475.1" cy="174.7" r="7" tabindex="0" data-model="veo3.1-quality" data-family="google" data-x="107.7" data-y="4" data-tip="veo3.1-quality
+$0.1250 per second
+107.7 s median to finish (1 runs)
+quality 4.00 of 5
+identity 4.5, motion 4.0, clean 3.5
+good but slight background change; 7x the price of fast
+beaten on this chart" aria-label="veo3.1-quality, $0.1250 per second, 107.7 s median to finish (1 runs), quality 4.00 of 5, identity 4.5, motion 4.0, clean 3.5, good but slight background change; 7x the price of fast, beaten on this chart"/>
+<text class="pl2" data-model="veo3.1-quality" x="489.1" y="179.7" text-anchor="start">veo3.1-quality</text>
+<circle class="pd" cx="387.6" cy="174.7" r="7" tabindex="0" data-model="kling-v4-flash" data-family="kling" data-x="91.1" data-y="4" data-tip="kling-v4-flash
+$0.0857 per second
+91.1 s median to finish (2 runs)
+quality 4.00 of 5
+identity 4.0, motion 4.5, clean 3.5
+similar to v3 with a slight face and scene shift
+beaten on this chart" aria-label="kling-v4-flash, $0.0857 per second, 91.1 s median to finish (2 runs), quality 4.00 of 5, identity 4.0, motion 4.5, clean 3.5, similar to v3 with a slight face and scene shift, beaten on this chart"/>
+<text class="pl2" data-model="kling-v4-flash" x="373.6" y="179.7" text-anchor="end">kling-v4-flash</text>
+<circle class="pd" cx="759.4" cy="250.0" r="7" tabindex="0" data-model="seedance-2.0" data-family="bytedance" data-x="185.6" data-y="3.5" data-tip="seedance-2.0
+$0.0660 per second
+185.6 s median to finish (2 runs)
+quality 3.50 of 5
+identity 3.0, motion 4.0, clean 3.5
+480p; background swaps, strong push-in
+beaten on this chart" aria-label="seedance-2.0, $0.0660 per second, 185.6 s median to finish (2 runs), quality 3.50 of 5, identity 3.0, motion 4.0, clean 3.5, 480p; background swaps, strong push-in, beaten on this chart"/>
+<text class="pl2" data-model="seedance-2.0" x="773.4" y="255.0" text-anchor="start">seedance-2.0</text>
+<circle class="pd" cx="410.6" cy="224.4" r="7" tabindex="0" data-model="seedance-2.5-flash" data-family="bytedance" data-x="95.2" data-y="3.67" data-tip="seedance-2.5-flash
+$0.0637 per second
+95.2 s median to finish (2 runs)
+quality 3.67 of 5
+identity 3.0, motion 4.5, clean 3.5
+480p; background drifts, strongest push-in
+beaten on this chart" aria-label="seedance-2.5-flash, $0.0637 per second, 95.2 s median to finish (2 runs), quality 3.67 of 5, identity 3.0, motion 4.5, clean 3.5, 480p; background drifts, strongest push-in, beaten on this chart"/>
+<text class="pl2" data-model="seedance-2.5-flash" x="424.6" y="229.4" text-anchor="start">seedance-2.5-flash</text>
+<circle class="pd" cx="671.7" cy="325.3" r="7" tabindex="0" data-model="wan2.7" data-family="alibaba" data-x="156.9" data-y="3" data-tip="wan2.7
+$0.0664 per second
+156.9 s median to finish (1 runs)
+quality 3.00 of 5
+identity 2.5, motion 3.0, clean 3.5
+one clip: the boy changed expression, zoom
+beaten on this chart" aria-label="wan2.7, $0.0664 per second, 156.9 s median to finish (1 runs), quality 3.00 of 5, identity 2.5, motion 3.0, clean 3.5, one clip: the boy changed expression, zoom, beaten on this chart"/>
+<text class="pl2" data-model="wan2.7" x="685.7" y="330.3" text-anchor="start">wan2.7</text>
+</svg>
+<figcaption>Hover a dot for the model, time, cost and scores. Generation time is one or two clips per model; treat it as a rough guide.</figcaption>
+</figure>
+<figure class="chart" id="f-cvc">
+<svg viewBox="0 0 900 540" role="img" aria-labelledby="cvct cvcd" id="cvc"><title id="cvct">Cost against seconds per clip</title><desc id="cvcd">Video models: cost per second of video against generation time. Lower left is better.</desc>
+<line class="pg" x1="70" x2="876" y1="425.8" y2="425.8"/><text class="pa2" x="60" y="430.8" text-anchor="end">0.02</text>
+<line class="pg" x1="70" x2="876" y1="265.9" y2="265.9"/><text class="pa2" x="60" y="270.9" text-anchor="end">0.05</text>
+<line class="pg" x1="70" x2="876" y1="145.0" y2="145.0"/><text class="pa2" x="60" y="150.0" text-anchor="end">0.1</text>
+<line class="pg" x1="70" x2="876" y1="24.0" y2="24.0"/><text class="pa2" x="60" y="29.0" text-anchor="end">0.2</text>
+<line class="pg" x1="74.2" x2="74.2" y1="24" y2="476"/><text class="pa2" x="74.2" y="498" text-anchor="middle">50</text>
+<line class="pg" x1="250.0" x2="250.0" y1="24" y2="476"/><text class="pa2" x="250.0" y="498" text-anchor="middle">70</text>
+<line class="pg" x1="436.3" x2="436.3" y1="24" y2="476"/><text class="pa2" x="436.3" y="498" text-anchor="middle">100</text>
+<line class="pg" x1="648.2" x2="648.2" y1="24" y2="476"/><text class="pa2" x="648.2" y="498" text-anchor="middle">150</text>
+<line class="pg" x1="798.5" x2="798.5" y1="24" y2="476"/><text class="pa2" x="798.5" y="498" text-anchor="middle">200</text>
+<text class="pa2" x="473.0" y="528" text-anchor="middle">Median seconds to finish (log scale)</text><text class="pa2" transform="translate(18 250.0) rotate(-90)" text-anchor="middle">Cost per second of video</text>
+<polyline class="pf" points="186.6,456.2"/>
+<circle class="pb" cx="186.6" cy="456.2" r="9" tabindex="0" data-model="wan2.6-i2v-flash" data-family="alibaba" data-x="62" data-y="0.0168" data-tip="wan2.6-i2v-flash
+$0.0168 per second
+62 s median to finish (2 runs)
+quality 2.83 of 5
+identity 3.5, motion 3.0, clean 2.0
+cheapest; background drifts, train changed shape and colour
+on the frontier" aria-label="wan2.6-i2v-flash, $0.0168 per second, 62 s median to finish (2 runs), quality 2.83 of 5, identity 3.5, motion 3.0, clean 2.0, cheapest; background drifts, train changed shape and colour, on the frontier"/>
+<text class="pl" data-model="wan2.6-i2v-flash" x="200.6" y="461.2" text-anchor="start">wan2.6-i2v-flash</text>
+<circle class="pd" cx="186.6" cy="385.5" r="7" tabindex="0" data-model="MiniMax-Hailuo-2.3-Fast" data-family="minimax" data-x="62" data-y="0.0252" data-tip="MiniMax-Hailuo-2.3-Fast
+$0.0252 per second
+62 s median to finish (2 runs)
+quality 4.17 of 5
+identity 5.0, motion 2.5, clean 5.0
+most faithful, clean wolf push-in, little motion
+beaten on this chart" aria-label="MiniMax-Hailuo-2.3-Fast, $0.0252 per second, 62 s median to finish (2 runs), quality 4.17 of 5, identity 5.0, motion 2.5, clean 5.0, most faithful, clean wolf push-in, little motion, beaten on this chart"/>
+<text class="pl2" data-model="MiniMax-Hailuo-2.3-Fast" x="200.6" y="390.5" text-anchor="start">MiniMax-Hailuo-2.3-Fast</text>
+<circle class="pd" cx="432.1" cy="447.1" r="7" tabindex="0" data-model="veo3.1-fast" data-family="google" data-x="99.2" data-y="0.0177" data-tip="veo3.1-fast
+$0.0177 per second
+99.2 s median to finish (2 runs)
+quality 4.00 of 5
+identity 4.5, motion 4.0, clean 3.5
+natural blink, crane moves; thin line across the wolf
+beaten on this chart" aria-label="veo3.1-fast, $0.0177 per second, 99.2 s median to finish (2 runs), quality 4.00 of 5, identity 4.5, motion 4.0, clean 3.5, natural blink, crane moves; thin line across the wolf, beaten on this chart"/>
+<text class="pl2" data-model="veo3.1-fast" x="446.1" y="452.1" text-anchor="start">veo3.1-fast</text>
+<circle class="pd" cx="475.1" cy="106.0" r="7" tabindex="0" data-model="veo3.1-quality" data-family="google" data-x="107.7" data-y="0.125" data-tip="veo3.1-quality
+$0.1250 per second
+107.7 s median to finish (1 runs)
+quality 4.00 of 5
+identity 4.5, motion 4.0, clean 3.5
+good but slight background change; 7x the price of fast
+beaten on this chart" aria-label="veo3.1-quality, $0.1250 per second, 107.7 s median to finish (1 runs), quality 4.00 of 5, identity 4.5, motion 4.0, clean 3.5, good but slight background change; 7x the price of fast, beaten on this chart"/>
+<text class="pl2" data-model="veo3.1-quality" x="489.1" y="111.0" text-anchor="start">veo3.1-quality</text>
+<circle class="pd" cx="530.3" cy="214.3" r="7" tabindex="0" data-model="kling-v3 (std)" data-family="kling" data-x="119.7" data-y="0.0672" data-tip="kling-v3 (std)
+$0.0672 per second
+119.7 s median to finish (2 runs)
+quality 4.33 of 5
+identity 4.5, motion 4.5, clean 4.0
+livelier, crane flies, wolf walks forward
+beaten on this chart" aria-label="kling-v3 (std), $0.0672 per second, 119.7 s median to finish (2 runs), quality 4.33 of 5, identity 4.5, motion 4.5, clean 4.0, livelier, crane flies, wolf walks forward, beaten on this chart"/>
+<text class="pl2" data-model="kling-v3 (std)" x="544.3" y="219.3" text-anchor="start">kling-v3 (std)</text>
+<circle class="pd" cx="387.6" cy="171.9" r="7" tabindex="0" data-model="kling-v4-flash" data-family="kling" data-x="91.1" data-y="0.0857" data-tip="kling-v4-flash
+$0.0857 per second
+91.1 s median to finish (2 runs)
+quality 4.00 of 5
+identity 4.0, motion 4.5, clean 3.5
+similar to v3 with a slight face and scene shift
+beaten on this chart" aria-label="kling-v4-flash, $0.0857 per second, 91.1 s median to finish (2 runs), quality 4.00 of 5, identity 4.0, motion 4.5, clean 3.5, similar to v3 with a slight face and scene shift, beaten on this chart"/>
+<text class="pl2" data-model="kling-v4-flash" x="401.6" y="176.9" text-anchor="start">kling-v4-flash</text>
+<circle class="pd" cx="759.4" cy="217.5" r="7" tabindex="0" data-model="seedance-2.0" data-family="bytedance" data-x="185.6" data-y="0.066" data-tip="seedance-2.0
+$0.0660 per second
+185.6 s median to finish (2 runs)
+quality 3.50 of 5
+identity 3.0, motion 4.0, clean 3.5
+480p; background swaps, strong push-in
+beaten on this chart" aria-label="seedance-2.0, $0.0660 per second, 185.6 s median to finish (2 runs), quality 3.50 of 5, identity 3.0, motion 4.0, clean 3.5, 480p; background swaps, strong push-in, beaten on this chart"/>
+<text class="pl2" data-model="seedance-2.0" x="773.4" y="222.5" text-anchor="start">seedance-2.0</text>
+<circle class="pd" cx="410.6" cy="223.7" r="7" tabindex="0" data-model="seedance-2.5-flash" data-family="bytedance" data-x="95.2" data-y="0.0637" data-tip="seedance-2.5-flash
+$0.0637 per second
+95.2 s median to finish (2 runs)
+quality 3.67 of 5
+identity 3.0, motion 4.5, clean 3.5
+480p; background drifts, strongest push-in
+beaten on this chart" aria-label="seedance-2.5-flash, $0.0637 per second, 95.2 s median to finish (2 runs), quality 3.67 of 5, identity 3.0, motion 4.5, clean 3.5, 480p; background drifts, strongest push-in, beaten on this chart"/>
+<text class="pl2" data-model="seedance-2.5-flash" x="396.6" y="228.7" text-anchor="end">seedance-2.5-flash</text>
+<circle class="pd" cx="671.7" cy="216.4" r="7" tabindex="0" data-model="wan2.7" data-family="alibaba" data-x="156.9" data-y="0.0664" data-tip="wan2.7
+$0.0664 per second
+156.9 s median to finish (1 runs)
+quality 3.00 of 5
+identity 2.5, motion 3.0, clean 3.5
+one clip: the boy changed expression, zoom
+beaten on this chart" aria-label="wan2.7, $0.0664 per second, 156.9 s median to finish (1 runs), quality 3.00 of 5, identity 2.5, motion 3.0, clean 3.5, one clip: the boy changed expression, zoom, beaten on this chart"/>
+<text class="pl2" data-model="wan2.7" x="685.7" y="221.4" text-anchor="start">wan2.7</text>
+</svg>
+<figcaption>Cost per second of video against time. Lower left is better.</figcaption>
+</figure>
+</section>
+
+<section class="sec" id="clips" aria-labelledby="h-clips">
+<h2 id="h-clips">The 16 clips we paid for</h2>
+<p class="meta">All 16 test clips from the spike, re-encoded at 640 px for the page ($4.90 in all; veo3.1-quality and wan2.7 have only the boy clip). Click to play.</p>
+<div class="vgrid"><div class="vcell"><h4>MiniMax-Hailuo-2.3-Fast</h4><p class="meta">$0.149, 5.9 s per clip</p><video controls preload="none" muted loop playsinline poster="video/hail23f_boy.jpg" width="640" height="360"><source src="video/hail23f_boy.mp4" type="video/mp4"></video><p class="meta">Boy reaches for the bird</p><video controls preload="none" muted loop playsinline poster="video/hail23f_wolf.jpg" width="640" height="360"><source src="video/hail23f_wolf.mp4" type="video/mp4"></video><p class="meta">Wolf push-in</p></div><div class="vcell"><h4>veo3.1-fast</h4><p class="meta">$0.14, 7.9 s per clip</p><video controls preload="none" muted loop playsinline poster="video/veo31f_boy.jpg" width="640" height="360"><source src="video/veo31f_boy.mp4" type="video/mp4"></video><p class="meta">Boy reaches for the bird</p><video controls preload="none" muted loop playsinline poster="video/veo31f_wolf.jpg" width="640" height="360"><source src="video/veo31f_wolf.mp4" type="video/mp4"></video><p class="meta">Wolf push-in</p></div><div class="vcell"><h4>kling-v3 (std)</h4><p class="meta">$0.336, 5 s per clip</p><video controls preload="none" muted loop playsinline poster="video/klv3_boy.jpg" width="640" height="360"><source src="video/klv3_boy.mp4" type="video/mp4"></video><p class="meta">Boy reaches for the bird</p><video controls preload="none" muted loop playsinline poster="video/klv3_wolf.jpg" width="640" height="360"><source src="video/klv3_wolf.mp4" type="video/mp4"></video><p class="meta">Wolf push-in</p></div><div class="vcell"><h4>kling-v4-flash</h4><p class="meta">$0.429, 5 s per clip</p><video controls preload="none" muted loop playsinline poster="video/klv4f_boy.jpg" width="640" height="360"><source src="video/klv4f_boy.mp4" type="video/mp4"></video><p class="meta">Boy reaches for the bird</p><video controls preload="none" muted loop playsinline poster="video/klv4f_wolf.jpg" width="640" height="360"><source src="video/klv4f_wolf.mp4" type="video/mp4"></video><p class="meta">Wolf push-in</p></div><div class="vcell"><h4>veo3.1-quality</h4><p class="meta">$1.00, 8 s per clip</p><video controls preload="none" muted loop playsinline poster="video/veo31q_boy.jpg" width="640" height="360"><source src="video/veo31q_boy.mp4" type="video/mp4"></video><p class="meta">Boy reaches for the bird</p></div><div class="vcell"><h4>seedance-2.0</h4><p class="meta">$0.33, 5 s per clip</p><video controls preload="none" muted loop playsinline poster="video/sd20_boy.jpg" width="640" height="360"><source src="video/sd20_boy.mp4" type="video/mp4"></video><p class="meta">Boy reaches for the bird</p><video controls preload="none" muted loop playsinline poster="video/sd20_wolf.jpg" width="640" height="360"><source src="video/sd20_wolf.mp4" type="video/mp4"></video><p class="meta">Wolf push-in</p></div><div class="vcell"><h4>seedance-2.5-flash</h4><p class="meta">$0.318, 5 s per clip</p><video controls preload="none" muted loop playsinline poster="video/sd25f_boy.jpg" width="640" height="360"><source src="video/sd25f_boy.mp4" type="video/mp4"></video><p class="meta">Boy reaches for the bird</p><video controls preload="none" muted loop playsinline poster="video/sd25f_wolf.jpg" width="640" height="360"><source src="video/sd25f_wolf.mp4" type="video/mp4"></video><p class="meta">Wolf push-in</p></div><div class="vcell"><h4>wan2.6-i2v-flash</h4><p class="meta">$0.084, 5 s per clip</p><video controls preload="none" muted loop playsinline poster="video/wan26f_boy.jpg" width="640" height="360"><source src="video/wan26f_boy.mp4" type="video/mp4"></video><p class="meta">Boy reaches for the bird</p><video controls preload="none" muted loop playsinline poster="video/wan26f_wolf.jpg" width="640" height="360"><source src="video/wan26f_wolf.mp4" type="video/mp4"></video><p class="meta">Wolf push-in</p></div><div class="vcell"><h4>wan2.7</h4><p class="meta">$0.332, 5 s per clip</p><video controls preload="none" muted loop playsinline poster="video/wan27_boy.jpg" width="640" height="360"><source src="video/wan27_boy.mp4" type="video/mp4"></video><p class="meta">Boy reaches for the bird</p></div></div>
+<div class="scroll"><table class="table"><caption class="meta">One run per cell.</caption><thead><tr><th scope="col">Model</th><th scope="col" class="num">$ per clip</th><th scope="col">Length</th><th scope="col">Notes</th></tr></thead><tbody>
+<tr><th scope="row">wan2.6-i2v-flash</th><td class="num">0.084</td><td>5 s</td><td>Cheapest; the train changed colour and shape</td></tr>
+<tr><th scope="row">MiniMax-Hailuo-2.3-Fast</th><td class="num">0.149</td><td>6 s</td><td>Most faithful, clean push-in, little motion</td></tr>
+<tr><th scope="row">veo3.1-fast</th><td class="num">0.140</td><td>8 s</td><td>Natural blink; a thin line artifact across the wolf</td></tr>
+<tr><th scope="row">veo3.1-quality</th><td class="num">1.00</td><td>8 s</td><td>Good, 7 times the price of fast</td></tr>
+<tr><th scope="row">kling-v3 std</th><td class="num">0.336</td><td>5 s</td><td>Livelier, the crane flies</td></tr>
+<tr><th scope="row">kling-v4-flash</th><td class="num">0.429</td><td>5 s</td><td>Similar to v3, slight face shift</td></tr>
+<tr><th scope="row">seedance-2.0 / 2.5-flash</th><td class="num">0.32 to 0.33</td><td>5 s</td><td>480p; the background drifts; strongest push-in</td></tr>
+<tr><th scope="row">wan2.7</th><td class="num">0.332</td><td>5 s</td><td>The boy's expression changed</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="sec" id="data" aria-labelledby="h-data">
+<h2 id="h-data">All video models in one table</h2>
+<p>Download: <a href="../image-model-bench/code/models.json">models.json</a>, <a href="../image-model-bench/code/models.csv">models.csv</a> (image and video rows in one file). Scores: <a href="code/video_scores.json">video_scores.json</a>; runs: <a href="code/video_results.json">video_results.json</a>. The charts are built by <a href="../image-model-bench/code/build_charts.py">build_charts.py</a>.</p>
+<div class="scroll"><table class="table"><caption class="meta">Quality is the mean of identity, motion and clean, 0 to 5, one reviewer. Cost is per second of output. Seconds are the median time to finish one clip, 1 or 2 timed runs per model.</caption><thead><tr><th scope="col">Kind</th><th scope="col">Model</th><th scope="col" class="num">Cost</th><th scope="col" class="num">Median s</th><th scope="col" class="num">Quality</th><th scope="col">Scores</th></tr></thead><tbody><tr><td>video</td><th scope="row">wan2.6-i2v-flash</th><td class="num">$0.0168 per second</td><td class="num">62</td><td class="num">2.83</td><td>identity 3.5, motion 3.0, clean 2.0</td></tr><tr><td>video</td><th scope="row">veo3.1-fast</th><td class="num">$0.0177 per second</td><td class="num">99.2</td><td class="num">4.00</td><td>identity 4.5, motion 4.0, clean 3.5</td></tr><tr><td>video</td><th scope="row">MiniMax-Hailuo-2.3-Fast</th><td class="num">$0.0252 per second</td><td class="num">62</td><td class="num">4.17</td><td>identity 5.0, motion 2.5, clean 5.0</td></tr><tr><td>video</td><th scope="row">seedance-2.5-flash</th><td class="num">$0.0637 per second</td><td class="num">95.2</td><td class="num">3.67</td><td>identity 3.0, motion 4.5, clean 3.5</td></tr><tr><td>video</td><th scope="row">seedance-2.0</th><td class="num">$0.0660 per second</td><td class="num">185.6</td><td class="num">3.50</td><td>identity 3.0, motion 4.0, clean 3.5</td></tr><tr><td>video</td><th scope="row">wan2.7</th><td class="num">$0.0664 per second</td><td class="num">156.9</td><td class="num">3.00</td><td>identity 2.5, motion 3.0, clean 3.5</td></tr><tr><td>video</td><th scope="row">kling-v3 (std)</th><td class="num">$0.0672 per second</td><td class="num">119.7</td><td class="num">4.33</td><td>identity 4.5, motion 4.5, clean 4.0</td></tr><tr><td>video</td><th scope="row">kling-v4-flash</th><td class="num">$0.0857 per second</td><td class="num">91.1</td><td class="num">4.00</td><td>identity 4.0, motion 4.5, clean 3.5</td></tr><tr><td>video</td><th scope="row">veo3.1-quality</th><td class="num">$0.1250 per second</td><td class="num">107.7</td><td class="num">4.00</td><td>identity 4.5, motion 4.0, clean 3.5</td></tr></tbody></table></div>
+</section>
+
+<section class="sec" id="cut9" aria-labelledby="h-cut9">
+<h2 id="h-cut9">What veo did in the film</h2>
+<div class="card tldr"><p>Two tries. <strong class="key">Attempt B</strong> animated 13 ChatGPT keyframes with veo3.1-fast for $1.82; none of its character shots were reused. <strong class="key">Cut 9</strong> made 4 new keyframes with gpt-image-2.6-flare from frames of the code-built cut, then 5 veo takes; 3 are in the film.</p></div>
+<div class="pics">
+<figure class="pic"><img src="img/cut9-train-entry.jpg" width="640" height="360" loading="lazy" alt="Cut 9 at 9.8 s: a red train crosses a stone viaduct into a tunnel under wisteria"><figcaption><b>Code: the train enters the portal</b><span>Cut 9, 9.8 s</span></figcaption></figure>
+<figure class="pic best"><img src="img/cut9-tunnel.jpg" width="640" height="360" loading="lazy" alt="Cut 9 at 12.0 s: the red and cream train comes out of a stone tunnel on its rails toward the camera"><figcaption><b>veo: the train comes out on its rails</b><span>Cut 9, 12.0 s &middot; take tunnel_b</span></figcaption></figure>
+<figure class="pic best"><img src="img/cut9-boy.jpg" width="640" height="360" loading="lazy" alt="Cut 9 at 15.6 s: the boy at the train window holds out his palm and a paper crane lands on it"><figcaption><b>veo: the boy's hand and face; code: the crane</b><span>Cut 9, 15.6 s &middot; take boy_close</span></figcaption></figure>
+<figure class="pic"><img src="img/cut9-stamp.jpg" width="640" height="360" loading="lazy" alt="Cut 9 at 18.5 s: a stamped blue ticket on the brass plate of the window sill beside the sleeping cat"><figcaption><b>Code: the stamp</b><span>Cut 9, 18.5 s</span></figcaption></figure>
+<figure class="pic best"><img src="img/cut9-dusk.jpg" width="640" height="360" loading="lazy" alt="Cut 9 at 36.5 s: at dusk the boy holds his empty palm out of the window over a dark lake"><figcaption><b>veo: the dusk wait</b><span>Cut 9, 36.5 s &middot; take dusk_a</span></figcaption></figure>
+</div>
+<p class="meta">Outlined: a veo take. Stills from the 720p cut on the <a href="../ghibli-claude/">film page</a>.</p>
+<div class="scroll"><table class="table"><caption class="meta">Measured from the cost log. veo3.1-fast is $0.14 per 8 s clip; flare keyframes with reference images were $0.09 to $0.11.</caption><thead><tr><th scope="col">Run</th><th scope="col" class="num">Clips</th><th scope="col" class="num">USD</th><th scope="col">Result</th></tr></thead><tbody>
+<tr><th scope="row">Attempt B: ChatGPT keyframes, veo3.1-fast</th><td class="num">13</td><td class="num">$1.82</td><td>Not reused for character shots: a different boy, the camera outside the carriage, a gibberish sign, a stray child, strangers in the tram. The film page counts $1.96 with one test clip.</td></tr>
+<tr><th scope="row">Cut 9: 4 flare keyframes</th><td class="num">0</td><td class="num">$0.39</td><td>Built on frames of the code-built cut 8, so the boy and the train match the rest of the film.</td></tr>
+<tr><th scope="row">Cut 9: 5 veo3.1-fast takes</th><td class="num">5</td><td class="num">$0.70</td><td>Used: boy_close, tunnel_b, dusk_a. Rejected: tunnel_a. boy_probe was used until review round 5.</td></tr>
+</tbody></table></div>
+<ul>
+<li><strong class="key">Code did the crane landing, the stamp, the folds, the camera push and pull, the cat's breathing and the train entering the portal.</strong> veo did the three shots where a body or a machine has to move through space in a way a 2D warp gives away.</li>
+<li><strong class="key">Never name the forbidden object.</strong> The probe prompt said "No bird, no paper" and veo drew a paper scrap in the boy's hand. Only 4.6 to 7.9 s of that take was usable. The next prompt left paper out entirely.</li>
+<li><strong class="key">Start from a keyframe made from your own frames.</strong> The ChatGPT keyframes in attempt B looked good alone and did not match the film; the flare keyframes in cut 9 did, because their references were frames of the cut.</li>
+<li>Cut 9 passed 7 review rounds (Fable, Opus and Haiku).</li>
+</ul>
+</section>
+
+<section class="sec" id="film" aria-labelledby="h-film">
+<h2 id="h-film">What the film cost, and would code be cheaper</h2>
+<p>The film is <a href="../ghibli-claude/">Ghibli Claude</a>. The cuts so far were built in code from ChatGPT Instant images, with Claude builders and Fable reviews. Image and video model spend is separate and small.</p>
+<div class="scroll"><table class="table"><caption class="meta">Cost of each way to make a 42 s cut. Measured where marked, otherwise an estimate from the measured unit prices.</caption><thead><tr><th scope="col">Way</th><th scope="col">Cost</th><th scope="col">Basis</th></tr></thead><tbody>
+<tr><th scope="row">Code-built cut, art from ChatGPT</th><td>Tens of dollars of model tokens per cut</td><td>Measured in tokens: about 1.3M builder tokens plus 0.14M Fable planning for the last cut. The one dollar figure we have is $55 to $63 for version 3, and its planner part is an estimate. Art was a $20 plan.</td></tr>
+<tr><th scope="row">Generated, one pass</th><td>About $3.2</td><td>Estimate: 13 keyframes at about $0.10 (attempt B measured $0.09 to $0.11 per keyframe with reference images) plus 13 Hailuo clips at $0.149.</td></tr>
+<tr><th scope="row">Generated, with re-rolls</th><td>About $6 to $7</td><td>Estimate: two tries per shot. Each re-roll is $0.15 to $0.34 for a clip and is random.</td></tr>
+<tr><th scope="row">Generated stills only, in the painted cut</th><td>$0.57</td><td>Measured: 16 images with gpt-image-2.6-flare. The art style clashed with the painted plates.</td></tr>
+<tr><th scope="row">Generated clips, attempt B (measured)</th><td>$1.82</td><td>Measured: 13 veo3.1-fast clips at $0.14 from ChatGPT keyframes. Hailuo returned service_unavailable that day. No character shot was reused.</td></tr>
+<tr><th scope="row">Code cut with veo inserts, cut 9 (measured)</th><td>$1.09 API</td><td>Measured: 4 gpt-image-2.6-flare keyframes ($0.39) and 5 veo3.1-fast takes ($0.70), 3 used. Builder and review tokens are on top.</td></tr>
+<tr><th scope="row">Fully procedural, no art</th><td>No cheaper, likely more</td><td>See below.</td></tr>
+</tbody></table></div>
+<ul>
+<li><strong class="key">Generation is about an order of magnitude cheaper for a first cut</strong> ($3 to $7 against tens of dollars). It is the opposite of cheap for fixing things: a clip cannot be edited, only re-rolled, and a continuity error stays random.</li>
+<li><strong class="key">Going fully procedural would not save money.</strong> Art was never the expensive part: the whole image bench was $4.25 and the 16 film stills $0.57. The cost is builder tokens writing and fixing scene code, and a flat or wireframe film needs more of that, not less.</li>
+<li>Where code wins is the marginal cost: a re-render is free, a fix is deterministic and the crying faces drawn in code were good enough. Where generation wins is a new shot at $0.15, with real motion.</li>
+<li>Our plan: images stay on the cheap gpt-image models, video clips only where a shot needs real motion (the wolf push-in, the tunnel), code for the rest.</li>
+<li>Cut 9 followed it: $1.09 of API for 3 veo inserts in a 43.8 s cut. The estimate rows above priced Hailuo at $0.149; veo3.1-fast at $0.14 for 8 s gives about the same total.</li>
+</ul>
+</section>
+
+<section class="sec" id="spend" aria-labelledby="h-spend">
+<h2 id="h-spend">Where the video money went</h2>
+<p>The 16 test clips were $4.90, half of the first $10 of gateway credit; the rest is itemised on the <a href="../image-model-bench/#spend">image bench</a>. Per model, from <a href="code/video_results.json">video_results.json</a>:</p>
+<div class="scroll"><table class="table"><caption class="meta">Sum of the task cost on each clip. Rows are rounded, so they add to $4.91.</caption><thead><tr><th scope="col">Model</th><th scope="col" class="num">Clips</th><th scope="col" class="num">USD</th></tr></thead><tbody>
+<tr><th scope="row">veo3.1-quality</th><td class="num">1</td><td class="num">$1.00</td></tr>
+<tr><th scope="row">kling-v4-flash</th><td class="num">2</td><td class="num">$0.86</td></tr>
+<tr><th scope="row">kling-v3 (std)</th><td class="num">2</td><td class="num">$0.67</td></tr>
+<tr><th scope="row">seedance-2.0</th><td class="num">2</td><td class="num">$0.66</td></tr>
+<tr><th scope="row">seedance-2.5-flash</th><td class="num">2</td><td class="num">$0.64</td></tr>
+<tr><th scope="row">wan2.7</th><td class="num">1</td><td class="num">$0.33</td></tr>
+<tr><th scope="row">MiniMax-Hailuo-2.3-Fast</th><td class="num">2</td><td class="num">$0.30</td></tr>
+<tr><th scope="row">veo3.1-fast</th><td class="num">2</td><td class="num">$0.28</td></tr>
+<tr><th scope="row">wan2.6-i2v-flash</th><td class="num">2</td><td class="num">$0.17</td></tr>
+<tr><th scope="row">Total</th><td class="num">16</td><td class="num">$4.90</td></tr>
+</tbody></table></div>
+<ul>
+<li>The two expensive models were not better for our use: veo3.1-quality scored the same as fast, and kling-v4-flash scored below kling-v3.</li>
+<li>A cheaper screen would be one clip per model on the harder frame (the boy), then the second frame only for the top three.</li>
+</ul>
+</section>
+
+<section class="sec" id="limits" aria-labelledby="h-limits">
+<h2 id="h-limits">Limits</h2>
+<ul>
+<li>One run per cell, two start frames. veo3.1-quality and wan2.7 have only the boy clip. A lucky draw shows as a result.</li>
+<li>The scores are one reviewer's eyes; the 0.5 steps are a judgement, not a measurement.</li>
+<li>Generation time is one or two clips per model, a rough guide.</li>
+<li>No audio test, no first-and-last-frame test, no upscaling test. Native output is 480 to 768p.</li>
+<li>Image-to-video holds a face within a clip, not across clips: each shot needs its own good start frame.</li>
+<li>Prices and speeds are what the gateway reported on 21 and 22 Nov 2026 and will change.</li>
+</ul>
+</section>
+
+<section class="sec prompts" id="prompts" aria-labelledby="h-prompts">
+<h2 id="h-prompts">Prompts used</h2>
+<details><summary>Every video prompt and keyframe prompt, verbatim</summary>
+<p class="meta">Copied from the generation scripts and collected in <a href="code/prompts.json">prompts.json</a>. Image inputs are named, not included. The attempt B keyframes were made in ChatGPT Instant from the same text; ride, ticket and viaduct3d were also run through gpt-image-2.6-flare as an API test.</p>
+<h3>Video bench (run.py): all 9 models, one run per prompt</h3>
+<p class="meta" style="margin:0">Style line, put after every prompt in this set</p><pre> Studio Ghibli hand-painted animation look, same art style as the input frame, locked camera, no text, no subtitles, no morphing or changing of the face, characters keep identical appearance.</pre>
+<p class="meta" style="margin:0">boy &middot; image input: boy.jpg (a frame of the painted film)</p><pre>The boy breathes gently, blinks slowly, his hair moves softly in the wind, his open hand turns slightly as the paper crane drifts. Locked camera.</pre>
+<p class="meta" style="margin:0">wolf &middot; image input: wolf.jpg (a frame of the painted film)</p><pre>The giant wolf looms over the viaduct, slow push-in camera, drifting mist rolling past, fur moving slightly in the wind.</pre>
+<h3>Film attempt B, keyframes (keys.py): ChatGPT Instant for all 13; ride, ticket and viaduct3d also through gpt-image-2.6-flare</h3>
+<p class="meta" style="margin:0">Style line, put before every prompt in this set</p><pre>Hand-painted Studio Ghibli gouache film still, the exact same art style, character designs and colour palette as the reference character sheet, cinematic 16:9, rich painterly background, no text. Characters match the reference sheet exactly: the boy with messy black hair, red cap with gold button and white sailor-collar shirt with navy trim; the girl with long black windblown hair and yellow scarf; the giant white wolf with red kabuki face markings; red-and-cream tram with gold trim. </pre>
+<p class="meta" style="margin:0">reed &middot; image input: sheetA.jpg (character sheet)</p><pre>Wide shot: a long ivy-covered stone arched viaduct over a blue lake, a tiny red-and-cream tram crossing it far away, snowy mountains, village on a cliff, tall golden reeds and a small beetle in the foreground, bright morning.</pre>
+<p class="meta" style="margin:0">ride &middot; image input: sheetA.jpg (character sheet)</p><pre>The red-and-cream tram rolling along a track beside a stone wall toward a tunnel under hanging purple wisteria, lake and village behind; the small boy in the red cap peeks out of a tram window; a small white paper crane flutters near.</pre>
+<p class="meta" style="margin:0">ticket &middot; image input: sheetA.jpg (character sheet)</p><pre>Close-up of a hand folding a small white paper card into an origami crane on a wooden brass-edged tram window ledge, lake and mountains blurred in the window behind, warm light.</pre>
+<p class="meta" style="margin:0">viaduct3d &middot; image input: sheetA.jpg (character sheet)</p><pre>The red-and-cream tram entering a dark stone tunnel in a cliffside beside an arched viaduct, wisteria hanging, lake far below, a small white paper crane flying beside the train.</pre>
+<p class="meta" style="margin:0">boy &middot; image input: sheetA.jpg (character sheet)</p><pre>Medium shot: the boy in the red cap and sailor collar leaning out of the tram window, happily reaching his open hand toward a white paper crane in the air, lake and mountains behind, a striped tabby cat asleep on the window ledge.</pre>
+<p class="meta" style="margin:0">stamp &middot; image input: sheetA.jpg (character sheet)</p><pre>Close-up of a hand pressing a brass rubber stamp onto a small white paper ticket on a wooden window ledge with brass plate, lake blurred behind.</pre>
+<p class="meta" style="margin:0">boy_b &middot; image input: sheetA.jpg (character sheet)</p><pre>Close-up of the boy in red cap smiling with eyes closed, his open palm held out with a small white paper crane lifting off it, bright meadow behind.</pre>
+<p class="meta" style="margin:0">lake &middot; image input: sheetA.jpg (character sheet)</p><pre>Wide shot: a small girl cyclist riding a bicycle along a dirt path across a green meadow toward a stone cottage, arched viaduct and snowy mountains behind, wisteria framing the left, white paper crane flying in the sky.</pre>
+<p class="meta" style="margin:0">window &middot; image input: sheetA.jpg (character sheet)</p><pre>Two children, the boy in red cap and sailor collar and the girl with long black hair and yellow scarf, side by side at a tram window looking up in terror, wide frightened eyes, hands over mouths, a huge white shadow reflected in the glass, dusk-coloured sky.</pre>
+<p class="meta" style="margin:0">bell &middot; image input: sheetA.jpg (character sheet)</p><pre>The girl with black windblown hair and yellow scarf riding her bicycle uphill along a lakeside path, a white paper crane near her handlebar bell; behind her a gigantic white wolf with red kabuki face markings rises up out of the reeds, huge jaws opening toward the crane, dramatic menace.</pre>
+<p class="meta" style="margin:0">lick &middot; image input: sheetA.jpg (character sheet)</p><pre>Extreme close-up of the giant white wolf with red kabuki face markings licking its muzzle with its tongue, satisfied, tiny torn blue paper scraps and a few white feathers drifting in the air, dusk sky behind.</pre>
+<p class="meta" style="margin:0">duskboy &middot; image input: sheetA.jpg (character sheet)</p><pre>Dusk, the boy in red cap and sailor collar at the tram window, face full of grief and fear, holding torn blue paper scraps in his open hand, purple and orange sky, lake behind.</pre>
+<p class="meta" style="margin:0">duskwide &middot; image input: sheetA.jpg (character sheet)</p><pre>Wide dusk shot: the red-and-cream tram standing on a flooded railway track on a wooden trestle across a purple-pink lake, reflections, broken white paper crane pieces floating on the water, wisteria at left, mountains and village far away.</pre>
+<h3>Film attempt B, clips (animate.py): veo3.1-fast, 8 s</h3>
+<p class="meta" style="margin:0">Style line, put after every prompt in this set</p><pre> Studio Ghibli hand-painted animation look, same art style as the input frame, no text, no subtitles, no morphing or changing of any face, characters keep identical appearance.</pre>
+<p class="meta" style="margin:0">reed &middot; image input: reed.png (the ChatGPT keyframe)</p><pre>Tall reeds sway in the wind, the beetle crawls slowly, ripples on the water, slow gentle push-in camera.</pre>
+<p class="meta" style="margin:0">ride &middot; image input: ride.png (the ChatGPT keyframe)</p><pre>The girl pedals the bicycle along the path, her hair and yellow scarf stream in the wind, the white wolf looms close behind and its fur ripples, camera tracks alongside.</pre>
+<p class="meta" style="margin:0">ticket &middot; image input: ticket.png (the ChatGPT keyframe)</p><pre>The red tram glides out of the tunnel toward camera, wisteria petals drift, the paper crane flutters, smooth steady camera.</pre>
+<p class="meta" style="margin:0">viaduct3d &middot; image input: viaduct3d.png (the ChatGPT keyframe)</p><pre>The tram crosses the stone viaduct, a boy at the window leans out, birds fly past, slow camera drift.</pre>
+<p class="meta" style="margin:0">boy &middot; image input: boy.png (the ChatGPT keyframe)</p><pre>The boy breathes, blinks, smiles and gently turns his open palm as the paper crane lands, soft wind in his hair, locked camera.</pre>
+<p class="meta" style="margin:0">stamp &middot; image input: stamp.png (the ChatGPT keyframe)</p><pre>The hand presses the brass stamp down onto the paper and lifts it, light slides across the wood, locked camera.</pre>
+<p class="meta" style="margin:0">boy_b &middot; image input: boy_b.png (the ChatGPT keyframe)</p><pre>The boy laughs with his eyes closed as the paper crane lifts off his hand and flies away, hair moving in the wind, locked camera.</pre>
+<p class="meta" style="margin:0">lake &middot; image input: lake.png (the ChatGPT keyframe)</p><pre>The girl cycles along the lakeside path away from camera, the crane flies overhead, clouds drift, slow push-in.</pre>
+<p class="meta" style="margin:0">window &middot; image input: window.png (the ChatGPT keyframe)</p><pre>Two frightened children at the tram window, trembling, breathing fast, a huge wolf shape moves in the sunset sky behind them, slow push-in.</pre>
+<p class="meta" style="margin:0">bell &middot; image input: bell.png (the ChatGPT keyframe)</p><pre>The white wolf lunges with open jaws toward the girl on the bicycle, her scarf and hair whip back, the crane flutters between them, fast tracking camera.</pre>
+<p class="meta" style="margin:0">lick &middot; image input: lick.png (the ChatGPT keyframe)</p><pre>The white wolf closes its eyes and slowly licks its muzzle, fur moves in the wind, torn paper scraps drift past, slow push-in.</pre>
+<p class="meta" style="margin:0">duskboy &middot; image input: duskboy.png (the ChatGPT keyframe)</p><pre>The boy cries, tears fall, his trembling hands hold torn paper scraps, sunset light flickers on his face, locked camera.</pre>
+<p class="meta" style="margin:0">duskwide &middot; image input: duskwide.png (the ChatGPT keyframe)</p><pre>The tram races along the lake toward the sunset, the white wolf runs beside it, scraps of paper drift, slow pull-back.</pre>
+<h3>Cut 9, keyframes (gen9.py): gpt-image-2.6-flare</h3>
+<p class="meta" style="margin:0">kboy_a &middot; image input: b2_boy_palm_up.jpg, c8_15.2.jpg (frames of the code-built cut 8)</p><pre>Hand-painted Studio Ghibli anime film still, cel-shaded character over a rich gouache background, cinematic 16:9, no text, no logos. Draw EXACTLY the boy from reference image 1: same face, same messy dark curly hair, same red cap with black band and round gold button, same white sailor-collar shirt with navy stripes, same flat cel colours and line style. Staging: the camera is INSIDE an old train carriage. The boy sits in the right foreground, seen from the chest up in side profile facing left, calm small smile, eyes open. His bare right forearm reaches out to the left through the open window, hand open with the palm up and EMPTY. Behind and beside him is the carriage&#x27;s own window: a polished dark mahogany frame with thin brass trim, and a broad wooden sill running along the bottom of the picture with a small blank brass plate on it. On the sill at the far left a small striped tabby cat sleeps curled up next to a navy conductor&#x27;s cap, as in reference image 2. Outside the window, as in reference image 2: bright midday, green flower meadow, deep blue lake, far shore village, snowy mountains, big white clouds. No bird, no paper, nothing in his hand. Clear daylight on the boy, no dark shadow over him.</pre>
+<p class="meta" style="margin:0">kboy_b &middot; image input: kboy_a.jpg</p><pre>Edit reference image 1, keeping the exact same boy (same face, hair, red cap with black band and gold button, sailor shirt), the same hand-painted Ghibli anime style, the same cat with navy cap, the same landscape and colours. Change only the staging so the boy is unmistakably INSIDE the train carriage with the camera beside him: his shoulder, chest and upper body fill the lower right corner in the near foreground, unobstructed, running off the bottom edge of the picture; the wooden window sill and the mahogany window frame with brass trim are BEHIND his body, between him and the landscape; his bare forearm passes over the sill and out through the open window, open hand palm up and empty. The sleeping tabby cat and navy cap stay on the sill at the left. A little of the carriage interior (dark wood panel, blue patterned curtain) at the right edge behind his head. Bright midday light. No bird, no paper, no text.</pre>
+<p class="meta" style="margin:0">ktun_a &middot; image input: q3_train_front.jpg, c8_tunnel_wide.jpg (frames of the code-built cut 8)</p><pre>Hand-painted Studio Ghibli anime background style film frame, 16:9, rich gouache colours, bright midday. The exact electric train from reference image 1 (cream upper body, red lower body, dark grey roof, brass trim, round amber headlamps, red cow-catcher, pantograph) is coming OUT of a round stone tunnel portal in a wisteria-covered cliff, the same coastal hill town world as reference image 2. The front car and one and a half carriages are already out in the sun, the rest of the train is still inside the dark tunnel mouth. The train rides exactly on two steel rails with wooden sleepers and gravel; the rails are clearly visible in front of the train and curve gently toward the lower left foreground along the top of an old stone viaduct with a low weathered stone parapet. Low three-quarter camera standing on the viaduct beside the track, the train approaching. A big rough stone archway with hanging purple wisteria frames the top and left edge of the picture in the near foreground. Beyond the parapet: deep blue sea bay, terracotta-roof town, green mountains, towering white clouds. Train windows show only warm lamp glow and curtains. No people, no animals, no birds, no text, no signs, no letters.</pre>
+<p class="meta" style="margin:0">kdusk &middot; image input: kboy_b.png</p><pre>Edit this image. Keep the same boy (red cap with black band and gold button, dark curly hair, white sailor shirt with navy collar), the same carriage interior, the same framing and composition exactly: boy large in the right foreground seen from behind his shoulder in profile, his arm reaching out of the open train window, open empty palm facing up at the centre of the frame, the tabby cat asleep on the blue cap on the wooden sill with the brass plate. Change only the time of day and the mood: dusk just after sunset, deep violet-blue sky with pink and orange clouds, a wide dark-blue lake with a small lit village on the far shore and hills, no meadow. Warm amber lamp light from inside the carriage on the varnished wood, on his cheek and on his sleeve. His face is hopeful, a small waiting smile, eyes open looking out at the sky. Hand-painted anime film background style, clean line art, same as the input.</pre>
+<h3>Cut 9, clips (gen9.py): veo3.1-fast, 8 s</h3>
+<p class="meta" style="margin:0">boy_probe &middot; image input: kboy_a.jpg &middot; used: no (a probe; replaced in round 5)</p><pre>The boy sits at the open train window and holds his open hand out, palm up and steady. He breathes gently, blinks, and his eyes follow something small approaching his hand from the left; his smile grows a little and his fingers curl slightly. A soft breeze moves his hair and collar. The sleeping tabby cat breathes slowly, its side rising and falling. Outside, the meadow, lake and mountains drift slowly to the left because the train is moving. Locked camera. No bird, no paper, nothing appears in his hand. Studio Ghibli hand-painted animation look, same art style as the input frame, no text, no subtitles, no morphing, the boy&#x27;s face and clothes stay identical.</pre>
+<p class="meta" style="margin:0">boy_close &middot; image input: kboy_b.jpg &middot; used: yes</p><pre>Gentle living hold of this exact frame. The boy keeps his open hand out of the train window, palm up. He breathes, blinks once, his eyes look at his palm and his smile slowly grows; his hand bobs softly down and up once, fingers curl a little. Breeze moves his dark hair and the cap ribbon. The tabby cat sleeps and breathes slowly on the sill. Outside the window the meadow, trees, lake and mountains slide steadily to the left as the train travels. Locked camera, same hand-painted Studio Ghibli animation style, face and clothes unchanged.</pre>
+<p class="meta" style="margin:0">tunnel_a &middot; image input: ktun_a.jpg &middot; used: no (rejected)</p><pre>The red and cream electric train rolls smoothly forward out of the stone tunnel, its wheels staying on the steel rails, following the gentle curve of the track toward the lower left past the camera. More carriages keep emerging one after another from the dark tunnel mouth behind it. Headlamps glow, the pantograph sways slightly. The camera glides slowly backward and a little to the left along the viaduct, keeping the front car in frame, under the wisteria arch. Wisteria blossoms sway in the wind of the passing train, clouds drift, the sea glitters. Hand-painted Studio Ghibli animation style, same as the input frame, steady, the train keeps its exact shape and colours.</pre>
+<p class="meta" style="margin:0">tunnel_b &middot; image input: ktun_a.jpg &middot; used: yes</p><pre>Static locked-off camera. The red and cream electric train drives briskly forward out of the stone tunnel at full travelling speed, wheels rolling on the steel rails along the curve of the track. It grows larger as it approaches, the front car sweeps past close to the camera and exits the frame at the lower left edge, and the following carriages keep streaming out of the dark tunnel mouth and rushing past one after another. The wisteria blossoms are whipped by the wind of the passing train, a few petals fly. Clouds drift, the sea glitters. Hand-painted Studio Ghibli animation, same style as the input frame; the train keeps its exact shape and colours.</pre>
+<p class="meta" style="margin:0">dusk_a &middot; image input: kdusk.png &middot; used: yes</p><pre>Static locked-off camera, hand-painted anime film. The boy holds his open palm out of the train window and waits with a small hopeful smile, his hair moving gently in the wind. After two seconds his smile slowly fades, his eyebrows lower, he looks down at his palm with a sad face, and a single tear rolls down his cheek. His arm stays out, palm open. The cat sleeps on the sill, its side slowly rising and falling as it breathes. The lake glitters and the far shore with its lights drifts slowly past to the left.</pre>
+</details>
+</section>
+
+<section class="sec" id="source" aria-labelledby="h-source">
+<h2 id="h-source">Source code and data</h2>
+<ul class="files">
+<li><a href="code/video_results.json">video_results.json</a> 16 clips: cost, time, status</li>
+<li><a href="code/video_scores.json">video_scores.json</a> scores and notes</li>
+<li><a href="code/prompts.json">prompts.json</a> every prompt on this page</li>
+<li><a href="../image-model-bench/code/build_charts.py">build_charts.py</a> the charts</li>
+<li><a href="../image-model-bench/code/models.json">models.json</a>, <a href="../image-model-bench/code/models.csv">models.csv</a></li>
+<li><a href="https://github.com/chimera-defi/chimericlabs-llc/blob/main/research/video-model-bench/code/README.md">README.md</a></li>
+</ul>
+<p class="meta">All files: <a href="https://github.com/chimera-defi/chimericlabs-llc/tree/main/research/video-model-bench/code">github.com/chimera-defi/chimericlabs-llc</a>. The generation scripts read a local key and local film frames, so they are not in the repo; their prompts are.</p>
+</section>
+
+<aside class="card see" aria-label="See also, bottom">
+<p class="meta" style="margin:0">See also</p>
+<ul><li><a href="../image-model-bench/">Image model bench</a></li><li><a href="../ghibli-claude/">Ghibli Claude, the film</a></li><li><a href="../../research.html">All research</a></li></ul>
+</aside>
+<p class="byline">Written by Wren (Claude Opus 5.5) on behalf of chimera-defi.</p>
+</article>
+</main>
+<footer class="ds-footer"><div><span>ChimericLabs LLC &middot; Wyoming</span><div class="ds-row"><a href="../../research.html">&larr; Research</a><a href="../image-model-bench/">Image bench &rarr;</a></div></div></footer>
+<script type="module">
+// Highlight the section in view; links without a hash (other pages) are skipped.
+const links = [...document.querySelectorAll(".toc a")].filter((a) => a.hash)
+const seen = new Map()
+const io = new IntersectionObserver((entries) => {
+  for (const en of entries) seen.set(en.target.id, en.isIntersecting)
+  const first = links.find((a) => seen.get(a.hash.slice(1)))
+  for (const a of links) a.classList.toggle("on", a === first)
+  first?.scrollIntoView({ block: "nearest", inline: "nearest" })
+}, { rootMargin: "-120px 0px -60% 0px" })
+for (const a of links) { const t = document.querySelector(a.hash); if (t) io.observe(t) }
+</script>
+<script type="module" src="../image-model-bench/chart-toggle.js"></script>
+</body>
+</html>
