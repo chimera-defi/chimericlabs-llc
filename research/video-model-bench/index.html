@@ -126,7 +126,7 @@ details > * + * { margin-top: var(--gap-s); }
 .ex[data-colour="family"] circle.pd{fill-opacity:.45}
 .prompts h3{font-size:15px;margin-top:var(--gap-m)}
 .ex .seg-opt:has(input:checked){color:var(--color-accent-400)}
-.next{display:grid;gap:var(--space-2);padding-left:var(--space-5)}
+.next{display:grid;gap:var(--space-2);padding-left:var(--space-6)}
 .next b{font-family:var(--font-mono);font-weight:600}
 .prompts-body{max-height:min(75vh,42rem);overflow:auto;overscroll-behavior:contain;padding-right:var(--space-2)}
 .prompts pre{margin:0;overflow:auto;padding:var(--space-3);border-radius:var(--radius-md);background:var(--color-surface);border:1px solid var(--color-divider);font:12px/1.5 ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere}
@@ -577,7 +577,7 @@ beaten on this chart" aria-label="wan2.7, $0.0664 per second, 156.9 s median to 
 <section class="sec" id="next" aria-labelledby="h-next">
 <h2 id="h-next">Video models to test next</h2>
 <p>Ranked by how likely a run is to move the cost-quality frontier, from this bench's own numbers. A price is the model's own nowhere here: each is a tested sibling's, as named. Untested ids come from the APIMart model list (266 ids, 2026-11-22) checked against every model in the results files.</p>
-<ol class="next"><li><b>veo3.1-lite</b> sibling veo3.1-fast scored 4.0 at $0.14 a clip, the best cheap clip on the bench. A cheaper veo that keeps its motion would take the cheap end.</li><li><b>MiniMax-Hailuo-2.3</b> sibling 2.3-Fast is the cleanest clip (clean 5) at $0.149 but scored 2.5 on motion; the full model may fix the weak column.</li><li><b>kling-3.0-turbo</b> sibling kling-v3 is the top score (4.33) at $0.336; a turbo at a lower price could join the frontier.</li><li><b>seedance-2.0-fast, seedance-2.0-mini</b> sibling seedance-2.0 scored 3.5 at $0.33; only worth it well under that price.</li><li><b>wan2.6-i2v</b> sibling wan2.6-i2v-flash is the cheapest clip ($0.084) but scored 2.83.</li></ol>
+<ol class="next"><li><b>veo3.1-lite</b> sibling veo3.1-fast scored 4.0 at $0.14 for 8 s, the page&rsquo;s pick for motion that code does not sell. A cheaper veo that keeps that motion would move the frontier.</li><li><b>MiniMax-Hailuo-2.3</b> sibling 2.3-Fast is the cleanest clip (clean 5) at $0.149 but scored 2.5 on motion; the full model may fix the weak column.</li><li><b>kling-3.0-turbo</b> sibling kling-v3 is the top score (4.33) at $0.336; a turbo at a lower price could join the frontier.</li><li><b>seedance-2.0-fast, seedance-2.0-mini</b> sibling seedance-2.0 scored 3.5 at $0.33; only worth it well under that price.</li><li><b>wan2.6-i2v</b> sibling wan2.6-i2v-flash is the cheapest clip ($0.084) but scored 2.83.</li></ol>
 <p class="meta">Not ranked, no sibling measured here: wan3.0-video, viduq3-turbo, pixverse-v6, grok-imagine-video-1.5, flux-3-video. Likely dearer than their tested siblings: kling-v4, seedance-2.5. None of these has been run. Image candidates are on the <a href="../image-model-bench/#next">image bench</a>.</p>
 </section>
 
