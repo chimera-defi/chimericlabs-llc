@@ -126,6 +126,8 @@ details > * + * { margin-top: var(--gap-s); }
 .ex[data-colour="family"] circle.pd{fill-opacity:.45}
 .prompts h3{font-size:15px;margin-top:var(--gap-m)}
 .ex .seg-opt:has(input:checked){color:var(--color-accent-400)}
+.next{display:grid;gap:var(--space-2);padding-left:var(--space-5)}
+.next b{font-family:var(--font-mono);font-weight:600}
 .prompts-body{max-height:min(75vh,42rem);overflow:auto;overscroll-behavior:contain;padding-right:var(--space-2)}
 .prompts pre{margin:0;overflow:auto;padding:var(--space-3);border-radius:var(--radius-md);background:var(--color-surface);border:1px solid var(--color-divider);font:12px/1.5 ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere}
 .stub{font-size:15px}
@@ -147,7 +149,7 @@ details > * + * { margin-top: var(--gap-s); }
 </nav>
 </header>
 <nav class="toc" aria-label="On this page"><ol>
-<li><a href="#verdict">Verdict</a></li><li><a href="#explore">Explore</a></li><li><a href="#method">Method</a></li><li><a href="#frontier">Frontier</a></li><li><a href="#speed">Speed</a></li><li><a href="#clips">The 16 clips</a></li><li><a href="#data">All models</a></li><li><a href="#cut9">In the film</a></li><li><a href="#film">Film cost</a></li><li><a href="#spend">Spend</a></li><li><a href="#limits">Limits</a></li><li><a href="#prompts">Prompts</a></li><li><a href="#source">Source</a></li><li><a href="../image-model-bench/">Image bench</a></li>
+<li><a href="#verdict">Verdict</a></li><li><a href="#explore">Explore</a></li><li><a href="#method">Method</a></li><li><a href="#frontier">Frontier</a></li><li><a href="#speed">Speed</a></li><li><a href="#clips">The 16 clips</a></li><li><a href="#data">All models</a></li><li><a href="#cut9">In the film</a></li><li><a href="#film">Film cost</a></li><li><a href="#spend">Spend</a></li><li><a href="#next">Test next</a></li><li><a href="#limits">Limits</a></li><li><a href="#prompts">Prompts</a></li><li><a href="#source">Source</a></li><li><a href="#updates">Update log</a></li><li><a href="../image-model-bench/">Image bench</a></li>
 </ol></nav>
 <main class="ds-wrap">
 <article class="bench" id="article">
@@ -544,7 +546,7 @@ beaten on this chart" aria-label="wan2.7, $0.0664 per second, 156.9 s median to 
 </tbody></table></div>
 <ul>
 <li><strong class="key">Generation is about an order of magnitude cheaper for a first cut</strong> ($3 to $7 against tens of dollars). It is the opposite of cheap for fixing things: a clip cannot be edited, only re-rolled, and a continuity error stays random.</li>
-<li><strong class="key">Going fully procedural would not save money.</strong> Art was never the expensive part: the whole image bench was $4.25 and the 16 film stills $0.57. The cost is builder tokens writing and fixing scene code, and a flat or wireframe film needs more of that, not less.</li>
+<li><strong class="key">Going fully procedural would not save money.</strong> Art was never the expensive part: the whole image bench was $4.50 and the 16 film stills $0.57. The cost is builder tokens writing and fixing scene code, and a flat or wireframe film needs more of that, not less.</li>
 <li>Where code wins is the marginal cost: a re-render is free, a fix is deterministic and the crying faces drawn in code were good enough. Where generation wins is a new shot at $0.15, with real motion.</li>
 <li>Our plan: images stay on the cheap gpt-image models, video clips only where a shot needs real motion (the wolf push-in, the tunnel), code for the rest.</li>
 <li>Cut 9 followed it: $1.09 of API for 3 veo inserts in a 43.8 s cut. The estimate rows above priced Hailuo at $0.149; veo3.1-fast at $0.14 for 8 s gives about the same total.</li>
@@ -570,6 +572,13 @@ beaten on this chart" aria-label="wan2.7, $0.0664 per second, 156.9 s median to 
 <li>The two expensive models were not better for our use: veo3.1-quality scored the same as fast, and kling-v4-flash scored below kling-v3.</li>
 <li>A cheaper screen would be one clip per model on the harder frame (the boy), then the second frame only for the top three.</li>
 </ul>
+</section>
+
+<section class="sec" id="next" aria-labelledby="h-next">
+<h2 id="h-next">Video models to test next</h2>
+<p>Ranked by how likely a run is to move the cost-quality frontier, from this bench's own numbers. A price is the model's own nowhere here: each is a tested sibling's, as named. Untested ids come from the APIMart model list (266 ids, 2026-11-22) checked against every model in the results files.</p>
+<ol class="next"><li><b>veo3.1-lite</b> sibling veo3.1-fast scored 4.0 at $0.14 a clip, the best cheap clip on the bench. A cheaper veo that keeps its motion would take the cheap end.</li><li><b>MiniMax-Hailuo-2.3</b> sibling 2.3-Fast is the cleanest clip (clean 5) at $0.149 but scored 2.5 on motion; the full model may fix the weak column.</li><li><b>kling-3.0-turbo</b> sibling kling-v3 is the top score (4.33) at $0.336; a turbo at a lower price could join the frontier.</li><li><b>seedance-2.0-fast, seedance-2.0-mini</b> sibling seedance-2.0 scored 3.5 at $0.33; only worth it well under that price.</li><li><b>wan2.6-i2v</b> sibling wan2.6-i2v-flash is the cheapest clip ($0.084) but scored 2.83.</li></ol>
+<p class="meta">Not ranked, no sibling measured here: wan3.0-video, viduq3-turbo, pixverse-v6, grok-imagine-video-1.5, flux-3-video. Likely dearer than their tested siblings: kling-v4, seedance-2.5. None of these has been run. Image candidates are on the <a href="../image-model-bench/#next">image bench</a>.</p>
 </section>
 
 <section class="sec" id="limits" aria-labelledby="h-limits">
@@ -634,6 +643,11 @@ beaten on this chart" aria-label="wan2.7, $0.0664 per second, 156.9 s median to 
 <p class="meta" style="margin:0">tunnel_b &middot; image input: ktun_a.jpg &middot; used: yes</p><pre>Static locked-off camera. The red and cream electric train drives briskly forward out of the stone tunnel at full travelling speed, wheels rolling on the steel rails along the curve of the track. It grows larger as it approaches, the front car sweeps past close to the camera and exits the frame at the lower left edge, and the following carriages keep streaming out of the dark tunnel mouth and rushing past one after another. The wisteria blossoms are whipped by the wind of the passing train, a few petals fly. Clouds drift, the sea glitters. Hand-painted Studio Ghibli animation, same style as the input frame; the train keeps its exact shape and colours.</pre>
 <p class="meta" style="margin:0">dusk_a &middot; image input: kdusk.png &middot; used: yes</p><pre>Static locked-off camera, hand-painted anime film. The boy holds his open palm out of the train window and waits with a small hopeful smile, his hair moving gently in the wind. After two seconds his smile slowly fades, his eyebrows lower, he looks down at his palm with a sad face, and a single tear rolls down his cheek. His arm stays out, palm open. The cat sleeps on the sill, its side slowly rising and falling as it breathes. The lake glitters and the far shore with its lights drifts slowly past to the left.</pre>
 </div></details>
+</section>
+
+<section class="sec" id="updates" aria-labelledby="h-updates">
+<h2 id="h-updates">Update log</h2>
+<ul><li><time datetime="2026-11-21">2026-11-21</time> Test run: 16 clips, 9 models, published inside the image bench.</li><li><time datetime="2026-11-22">2026-11-22</time> Moved to its own page with a chart explorer; fixes from a live check at three widths; test-next list added.</li></ul>
 </section>
 
 <section class="sec" id="source" aria-labelledby="h-source">

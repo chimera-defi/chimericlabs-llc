@@ -12,6 +12,8 @@ image,gpt-image-2.5-flare,0.0261,per image,4.5,22.0,7,"{""style"": 4, ""emotion_
 image,gpt-image-2,0.0085,per image,4.5,22.8,13,"{""style"": 4, ""emotion_faces"": 4, ""text_free"": 5, ""edge_alpha"": 5}"
 image,wan2.7-image-pro,0.0544,per image,3.75,28.6,4,"{""style"": 3, ""emotion_faces"": 3, ""text_free"": 5, ""edge_alpha"": 4}"
 image,hy-image-v3.5-preview,0.0192,per image,3.25,20.3,4,"{""style"": 3, ""emotion_faces"": 3, ""text_free"": 4, ""edge_alpha"": 3}"
+image,flux-3-image-klein,0.0072,per image,3.75,12.9,4,"{""style"": 4, ""emotion_faces"": 4, ""text_free"": 5, ""edge_alpha"": 2}"
+image,mai-image-2.6-flash,0.0154,per image,3.75,15.1,4,"{""style"": 4, ""emotion_faces"": 4, ""text_free"": 5, ""edge_alpha"": 2}"
 image,ChatGPT Instant,0.0133,per image (model: $20 / (50 per day x 30)),,70.0,13,{}
 video,wan2.6-i2v-flash,0.0168,per second,2.83,62.0,2,"{""identity"": 3.5, ""motion"": 3.0, ""clean"": 2.0}"
 video,MiniMax-Hailuo-2.3-Fast,0.0252,per second,4.17,62.0,2,"{""identity"": 5.0, ""motion"": 2.5, ""clean"": 5.0}"

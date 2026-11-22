@@ -38,3 +38,6 @@ Run the scripts next to `bench.py`, with the key in `~/secrets/apimart_api_key`.
 ## Charts and the video split (2026-11-22)
 `build_charts.py` builds all six charts: the three image charts go to `charts.fragment.txt` here, the three video charts to `../../video-model-bench/code/charts.fragment.txt`. It reads the video runs and scores from `../../video-model-bench/code/` (`video_results.json`, `video_scores.json`) and writes one `models.json` / `models.csv` with image and video rows. Each dot carries `data-model`, `data-family`, `data-x` and `data-y` for the page explorer (`../chart-toggle.js`, shared by both bench pages).
 The video test, clips and prompts live in [../../video-model-bench/code/](../../video-model-bench/code/README.md).
+
+## Pass 4 (2026-11-22)
+`run4.py MODEL[,MODEL...] CAP [PROMPT,...]` runs the pass-2 prompts one request at a time and refuses any request that could take spend past `CAP` (an unpriced model is assumed to cost $0.20 or the dearest image seen, whichever is more; gpt-image-1.5 billed $0.163). Results go to `results4.json`; `build_charts.py` reads them with passes 2 and 3. Scores are in `scores.json` (`pass2_scores`, reasons in `pass4_note`). Ran flux-3-image-klein, mai-image-2.6-flash (4 prompts each) and gpt-image-1.5 (props only, $0.163), $0.25 in all.

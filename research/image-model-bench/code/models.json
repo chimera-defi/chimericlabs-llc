@@ -325,6 +325,38 @@
   },
   {
    "kind": "image",
+   "model": "flux-3-image-klein",
+   "secs": 12.9,
+   "secs_n": 4,
+   "cost": 0.0072,
+   "unit": "per image",
+   "quality": 3.75,
+   "detail": {
+    "style": 4,
+    "emotion_faces": 4,
+    "text_free": 5,
+    "edge_alpha": 2
+   },
+   "pass3": null
+  },
+  {
+   "kind": "image",
+   "model": "mai-image-2.6-flash",
+   "secs": 15.1,
+   "secs_n": 4,
+   "cost": 0.0154,
+   "unit": "per image",
+   "quality": 3.75,
+   "detail": {
+    "style": 4,
+    "emotion_faces": 4,
+    "text_free": 5,
+    "edge_alpha": 2
+   },
+   "pass3": null
+  },
+  {
+   "kind": "image",
    "model": "ChatGPT Instant",
    "secs": 70.0,
    "secs_n": 13,
