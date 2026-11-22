@@ -322,6 +322,17 @@
     "edge_alpha": 3
    },
    "pass3": null
+  },
+  {
+   "kind": "image",
+   "model": "ChatGPT Instant",
+   "secs": 70.0,
+   "secs_n": 13,
+   "cost": 0.0133,
+   "unit": "per image (model: $20 / (50 per day x 30))",
+   "quality": null,
+   "detail": {},
+   "unscored": true
   }
  ],
  "video": [
