@@ -601,7 +601,7 @@ beaten on this chart" aria-label="wan2.7-image-pro, $0.0544 per image, 28.6 s me
 <ul>
 <li>Quality per dollar: gpt-image-2 gives 4.5 of 5 at $0.0085, flare 5.0 at $0.0265. Flare is faster; gpt-image-2 is 3x cheaper. For batch fan-out, price matters more than a 10 s difference.</li>
 <li>The quality gap is in faces and transparent edges, which the bench scored; on plain scenes the two are hard to tell apart.</li>
-<li>Not measured: throughput under concurrent calls and rate limits. Every run here was sequential or small-batch.</li>
+<li>Concurrency test, 2026-11-22: 20 gpt-image-2 calls sent at once ($0.17). All 20 completed, the median call took 19.9 s, and the whole batch finished in 39.5 s, about 30 images a minute. No rate-limit errors at that size. Larger batches were not tried.</li>
 </ul>
 </section>
 
