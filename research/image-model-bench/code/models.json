@@ -3,6 +3,8 @@
   {
    "kind": "image",
    "model": "gpt-image-2.6-flare",
+   "secs": 13.2,
+   "secs_n": 10,
    "cost": 0.0265,
    "unit": "per image",
    "quality": 5.0,
@@ -40,6 +42,8 @@
   {
    "kind": "image",
    "model": "gpt-image-2.6-sunburst",
+   "secs": 30.2,
+   "secs_n": 10,
    "cost": 0.0265,
    "unit": "per image",
    "quality": 5.0,
@@ -77,6 +81,8 @@
   {
    "kind": "image",
    "model": "flux-2-max",
+   "secs": 34.7,
+   "secs_n": 4,
    "cost": 0.08,
    "unit": "per image",
    "quality": 3.25,
@@ -91,6 +97,8 @@
   {
    "kind": "image",
    "model": "flux-kontext-max",
+   "secs": 21.6,
+   "secs_n": 4,
    "cost": 0.064,
    "unit": "per image",
    "quality": 2.5,
@@ -105,6 +113,8 @@
   {
    "kind": "image",
    "model": "qwen-image-3.0-pro",
+   "secs": 13.2,
+   "secs_n": 4,
    "cost": 0.0286,
    "unit": "per image",
    "quality": 3.25,
@@ -119,6 +129,8 @@
   {
    "kind": "image",
    "model": "kling-v4-image",
+   "secs": 35.3,
+   "secs_n": 4,
    "cost": 0.0571,
    "unit": "per image",
    "quality": 2.5,
@@ -133,6 +145,8 @@
   {
    "kind": "image",
    "model": "flux-3-image",
+   "secs": 22.5,
+   "secs_n": 13,
    "cost": 0.0384,
    "unit": "per image",
    "quality": 3.5,
@@ -170,6 +184,8 @@
   {
    "kind": "image",
    "model": "flux-2-flex",
+   "secs": 26.3,
+   "secs_n": 4,
    "cost": 0.08,
    "unit": "per image",
    "quality": 3.5,
@@ -184,6 +200,8 @@
   {
    "kind": "image",
    "model": "seedream-5-0-pro",
+   "secs": 57.2,
+   "secs_n": 13,
    "cost": 0.036,
    "unit": "per image",
    "quality": 3.5,
@@ -221,6 +239,8 @@
   {
    "kind": "image",
    "model": "gpt-image-2.5-flare",
+   "secs": 22.0,
+   "secs_n": 7,
    "cost": 0.0261,
    "unit": "per image",
    "quality": 4.5,
@@ -235,6 +255,8 @@
   {
    "kind": "image",
    "model": "gpt-image-2",
+   "secs": 22.8,
+   "secs_n": 13,
    "cost": 0.0085,
    "unit": "per image",
    "quality": 4.5,
@@ -272,6 +294,8 @@
   {
    "kind": "image",
    "model": "wan2.7-image-pro",
+   "secs": 28.6,
+   "secs_n": 4,
    "cost": 0.0544,
    "unit": "per image",
    "quality": 3.75,
@@ -286,6 +310,8 @@
   {
    "kind": "image",
    "model": "hy-image-v3.5-preview",
+   "secs": 20.3,
+   "secs_n": 4,
    "cost": 0.0192,
    "unit": "per image",
    "quality": 3.25,
@@ -302,6 +328,8 @@
   {
    "kind": "video",
    "model": "wan2.6-i2v-flash",
+   "secs": 62.0,
+   "secs_n": 2,
    "cost": 0.0168,
    "unit": "per second",
    "cost_per_clip": 0.084,
@@ -317,6 +345,8 @@
   {
    "kind": "video",
    "model": "MiniMax-Hailuo-2.3-Fast",
+   "secs": 62.0,
+   "secs_n": 2,
    "cost": 0.0252,
    "unit": "per second",
    "cost_per_clip": 0.1488,
@@ -332,6 +362,8 @@
   {
    "kind": "video",
    "model": "veo3.1-fast",
+   "secs": 99.2,
+   "secs_n": 2,
    "cost": 0.0177,
    "unit": "per second",
    "cost_per_clip": 0.14,
@@ -347,6 +379,8 @@
   {
    "kind": "video",
    "model": "veo3.1-quality",
+   "secs": 107.7,
+   "secs_n": 1,
    "cost": 0.125,
    "unit": "per second",
    "cost_per_clip": 1.0,
@@ -362,6 +396,8 @@
   {
    "kind": "video",
    "model": "kling-v3 (std)",
+   "secs": 119.7,
+   "secs_n": 2,
    "cost": 0.0672,
    "unit": "per second",
    "cost_per_clip": 0.336,
@@ -377,6 +413,8 @@
   {
    "kind": "video",
    "model": "kling-v4-flash",
+   "secs": 91.1,
+   "secs_n": 2,
    "cost": 0.0857,
    "unit": "per second",
    "cost_per_clip": 0.4286,
@@ -392,6 +430,8 @@
   {
    "kind": "video",
    "model": "seedance-2.0",
+   "secs": 185.6,
+   "secs_n": 2,
    "cost": 0.066,
    "unit": "per second",
    "cost_per_clip": 0.33,
@@ -407,6 +447,8 @@
   {
    "kind": "video",
    "model": "seedance-2.5-flash",
+   "secs": 95.2,
+   "secs_n": 2,
    "cost": 0.0637,
    "unit": "per second",
    "cost_per_clip": 0.3183,
@@ -422,6 +464,8 @@
   {
    "kind": "video",
    "model": "wan2.7",
+   "secs": 156.9,
+   "secs_n": 1,
    "cost": 0.0664,
    "unit": "per second",
    "cost_per_clip": 0.332,
