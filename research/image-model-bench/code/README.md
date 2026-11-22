@@ -34,3 +34,7 @@ Key lives in ~/secrets/apimart_api_key (mode 600). The key is allowlisted on IPv
 `run3.py`: 6 models x the 4 round-2 prompts again (run B), plus two new prompts: `cine` (ultra-wide wolf plate) and `pair` (the same girl as in `reference-frame-03.jpg`, via `image_urls`). 36 images, 36 completed, $0.9385 (`results3.json`). Scores for both runs: `scores.json`; contact sheets come from `sheets3.py`.
 `film_frames_gen_v2.py` and `film-frames-ledger.json`: the 16 reference-image frames made for the Ghibli film variant.
 Run the scripts next to `bench.py`, with the key in `~/secrets/apimart_api_key`.
+
+## Charts and the video split (2026-11-22)
+`build_charts.py` builds all six charts: the three image charts go to `charts.fragment.txt` here, the three video charts to `../../video-model-bench/code/charts.fragment.txt`. It reads the video runs and scores from `../../video-model-bench/code/` (`video_results.json`, `video_scores.json`) and writes one `models.json` / `models.csv` with image and video rows. Each dot carries `data-model`, `data-family`, `data-x` and `data-y` for the page explorer (`../chart-toggle.js`, shared by both bench pages).
+The video test, clips and prompts live in [../../video-model-bench/code/](../../video-model-bench/code/README.md).

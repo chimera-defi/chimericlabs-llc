@@ -1,0 +1,262 @@
+<!--video 4-->
+<svg viewBox="0 0 900 540" role="img" aria-labelledby="cvt cvd" id="cv"><title id="cvt">Quality against cost per second for 9 video models</title><desc id="cvd">Image-to-video test with two start frames. Frontier models are cheapest or best at their price.</desc>
+<line class="pg" x1="70" x2="876" y1="476.0" y2="476.0"/><text class="pa2" x="60" y="481.0" text-anchor="end">2</text>
+<line class="pg" x1="70" x2="876" y1="400.7" y2="400.7"/><text class="pa2" x="60" y="405.7" text-anchor="end">2.5</text>
+<line class="pg" x1="70" x2="876" y1="325.3" y2="325.3"/><text class="pa2" x="60" y="330.3" text-anchor="end">3</text>
+<line class="pg" x1="70" x2="876" y1="250.0" y2="250.0"/><text class="pa2" x="60" y="255.0" text-anchor="end">3.5</text>
+<line class="pg" x1="70" x2="876" y1="174.7" y2="174.7"/><text class="pa2" x="60" y="179.7" text-anchor="end">4</text>
+<line class="pg" x1="70" x2="876" y1="99.3" y2="99.3"/><text class="pa2" x="60" y="104.3" text-anchor="end">4.5</text>
+<line class="pg" x1="70" x2="876" y1="24.0" y2="24.0"/><text class="pa2" x="60" y="29.0" text-anchor="end">5</text>
+<line class="pg" x1="200.6" x2="200.6" y1="24" y2="476"/><text class="pa2" x="200.6" y="498" text-anchor="middle">$0.02</text>
+<line class="pg" x1="501.6" x2="501.6" y1="24" y2="476"/><text class="pa2" x="501.6" y="498" text-anchor="middle">$0.05</text>
+<line class="pg" x1="729.4" x2="729.4" y1="24" y2="476"/><text class="pa2" x="729.4" y="498" text-anchor="middle">$0.1</text>
+<text class="pa2" x="473.0" y="528" text-anchor="middle">Cost per second of video (log scale)</text><text class="pa2" transform="translate(18 250.0) rotate(-90)" text-anchor="middle">Quality (mean of identity, motion, clean; 0 to 5)</text>
+<polyline class="pf" points="143.3,350.9 160.5,174.7 276.5,149.1 598.8,124.9"/>
+<circle class="pb" cx="143.3" cy="350.9" r="9" tabindex="0" data-model="wan2.6-i2v-flash" data-family="alibaba" data-x="0.0168" data-y="2.83" data-tip="wan2.6-i2v-flash
+$0.0168 per second
+62 s median to finish (2 runs)
+quality 2.83 of 5
+identity 3.5, motion 3.0, clean 2.0
+cheapest; background drifts, train changed shape and colour
+on the frontier" aria-label="wan2.6-i2v-flash, $0.0168 per second, 62 s median to finish (2 runs), quality 2.83 of 5, identity 3.5, motion 3.0, clean 2.0, cheapest; background drifts, train changed shape and colour, on the frontier"/>
+<text class="pl" data-model="wan2.6-i2v-flash" x="157.3" y="355.9" text-anchor="start">wan2.6-i2v-flash</text>
+<circle class="pb" cx="276.5" cy="149.1" r="9" tabindex="0" data-model="MiniMax-Hailuo-2.3-Fast" data-family="minimax" data-x="0.0252" data-y="4.17" data-tip="MiniMax-Hailuo-2.3-Fast
+$0.0252 per second
+62 s median to finish (2 runs)
+quality 4.17 of 5
+identity 5.0, motion 2.5, clean 5.0
+most faithful, clean wolf push-in, little motion
+on the frontier" aria-label="MiniMax-Hailuo-2.3-Fast, $0.0252 per second, 62 s median to finish (2 runs), quality 4.17 of 5, identity 5.0, motion 2.5, clean 5.0, most faithful, clean wolf push-in, little motion, on the frontier"/>
+<text class="pl" data-model="MiniMax-Hailuo-2.3-Fast" x="290.5" y="154.1" text-anchor="start">MiniMax-Hailuo-2.3-Fast</text>
+<circle class="pb" cx="160.5" cy="174.7" r="9" tabindex="0" data-model="veo3.1-fast" data-family="google" data-x="0.0177" data-y="4" data-tip="veo3.1-fast
+$0.0177 per second
+99.2 s median to finish (2 runs)
+quality 4.00 of 5
+identity 4.5, motion 4.0, clean 3.5
+natural blink, crane moves; thin line across the wolf
+on the frontier" aria-label="veo3.1-fast, $0.0177 per second, 99.2 s median to finish (2 runs), quality 4.00 of 5, identity 4.5, motion 4.0, clean 3.5, natural blink, crane moves; thin line across the wolf, on the frontier"/>
+<text class="pl" data-model="veo3.1-fast" x="174.5" y="179.7" text-anchor="start">veo3.1-fast</text>
+<circle class="pb" cx="598.8" cy="124.9" r="9" tabindex="0" data-model="kling-v3 (std)" data-family="kling" data-x="0.0672" data-y="4.33" data-tip="kling-v3 (std)
+$0.0672 per second
+119.7 s median to finish (2 runs)
+quality 4.33 of 5
+identity 4.5, motion 4.5, clean 4.0
+livelier, crane flies, wolf walks forward
+on the frontier" aria-label="kling-v3 (std), $0.0672 per second, 119.7 s median to finish (2 runs), quality 4.33 of 5, identity 4.5, motion 4.5, clean 4.0, livelier, crane flies, wolf walks forward, on the frontier"/>
+<text class="pl" data-model="kling-v3 (std)" x="612.8" y="129.9" text-anchor="start">kling-v3 (std)</text>
+<circle class="pd" cx="802.7" cy="174.7" r="7" tabindex="0" data-model="veo3.1-quality" data-family="google" data-x="0.125" data-y="4" data-tip="veo3.1-quality
+$0.1250 per second
+107.7 s median to finish (1 runs)
+quality 4.00 of 5
+identity 4.5, motion 4.0, clean 3.5
+good but slight background change; 7x the price of fast
+beaten on this chart" aria-label="veo3.1-quality, $0.1250 per second, 107.7 s median to finish (1 runs), quality 4.00 of 5, identity 4.5, motion 4.0, clean 3.5, good but slight background change; 7x the price of fast, beaten on this chart"/>
+<text class="pl2" data-model="veo3.1-quality" x="802.7" y="158.7" text-anchor="middle">veo3.1-quality</text>
+<circle class="pd" cx="678.7" cy="174.7" r="7" tabindex="0" data-model="kling-v4-flash" data-family="kling" data-x="0.0857" data-y="4" data-tip="kling-v4-flash
+$0.0857 per second
+91.1 s median to finish (2 runs)
+quality 4.00 of 5
+identity 4.0, motion 4.5, clean 3.5
+similar to v3 with a slight face and scene shift
+beaten on this chart" aria-label="kling-v4-flash, $0.0857 per second, 91.1 s median to finish (2 runs), quality 4.00 of 5, identity 4.0, motion 4.5, clean 3.5, similar to v3 with a slight face and scene shift, beaten on this chart"/>
+<text class="pl2" data-model="kling-v4-flash" x="664.7" y="179.7" text-anchor="end">kling-v4-flash</text>
+<circle class="pd" cx="592.9" cy="250.0" r="7" tabindex="0" data-model="seedance-2.0" data-family="bytedance" data-x="0.066" data-y="3.5" data-tip="seedance-2.0
+$0.0660 per second
+185.6 s median to finish (2 runs)
+quality 3.50 of 5
+identity 3.0, motion 4.0, clean 3.5
+480p; background swaps, strong push-in
+beaten on this chart" aria-label="seedance-2.0, $0.0660 per second, 185.6 s median to finish (2 runs), quality 3.50 of 5, identity 3.0, motion 4.0, clean 3.5, 480p; background swaps, strong push-in, beaten on this chart"/>
+<text class="pl2" data-model="seedance-2.0" x="606.9" y="255.0" text-anchor="start">seedance-2.0</text>
+<circle class="pd" cx="581.2" cy="224.4" r="7" tabindex="0" data-model="seedance-2.5-flash" data-family="bytedance" data-x="0.0637" data-y="3.67" data-tip="seedance-2.5-flash
+$0.0637 per second
+95.2 s median to finish (2 runs)
+quality 3.67 of 5
+identity 3.0, motion 4.5, clean 3.5
+480p; background drifts, strongest push-in
+beaten on this chart" aria-label="seedance-2.5-flash, $0.0637 per second, 95.2 s median to finish (2 runs), quality 3.67 of 5, identity 3.0, motion 4.5, clean 3.5, 480p; background drifts, strongest push-in, beaten on this chart"/>
+<text class="pl2" data-model="seedance-2.5-flash" x="595.2" y="229.4" text-anchor="start">seedance-2.5-flash</text>
+<circle class="pd" cx="594.8" cy="325.3" r="7" tabindex="0" data-model="wan2.7" data-family="alibaba" data-x="0.0664" data-y="3" data-tip="wan2.7
+$0.0664 per second
+156.9 s median to finish (1 runs)
+quality 3.00 of 5
+identity 2.5, motion 3.0, clean 3.5
+one clip: the boy changed expression, zoom
+beaten on this chart" aria-label="wan2.7, $0.0664 per second, 156.9 s median to finish (1 runs), quality 3.00 of 5, identity 2.5, motion 3.0, clean 3.5, one clip: the boy changed expression, zoom, beaten on this chart"/>
+<text class="pl2" data-model="wan2.7" x="608.8" y="330.3" text-anchor="start">wan2.7</text>
+</svg>
+<!--video speed-->
+<svg viewBox="0 0 900 540" role="img" aria-labelledby="cvst cvsd" id="cvs"><title id="cvst">Quality against seconds per clip</title><desc id="cvsd">Video models: median generation time against quality.</desc>
+<line class="pg" x1="70" x2="876" y1="476.0" y2="476.0"/><text class="pa2" x="60" y="481.0" text-anchor="end">2</text>
+<line class="pg" x1="70" x2="876" y1="400.7" y2="400.7"/><text class="pa2" x="60" y="405.7" text-anchor="end">2.5</text>
+<line class="pg" x1="70" x2="876" y1="325.3" y2="325.3"/><text class="pa2" x="60" y="330.3" text-anchor="end">3</text>
+<line class="pg" x1="70" x2="876" y1="250.0" y2="250.0"/><text class="pa2" x="60" y="255.0" text-anchor="end">3.5</text>
+<line class="pg" x1="70" x2="876" y1="174.7" y2="174.7"/><text class="pa2" x="60" y="179.7" text-anchor="end">4</text>
+<line class="pg" x1="70" x2="876" y1="99.3" y2="99.3"/><text class="pa2" x="60" y="104.3" text-anchor="end">4.5</text>
+<line class="pg" x1="70" x2="876" y1="24.0" y2="24.0"/><text class="pa2" x="60" y="29.0" text-anchor="end">5</text>
+<line class="pg" x1="74.2" x2="74.2" y1="24" y2="476"/><text class="pa2" x="74.2" y="498" text-anchor="middle">50 s</text>
+<line class="pg" x1="250.0" x2="250.0" y1="24" y2="476"/><text class="pa2" x="250.0" y="498" text-anchor="middle">70 s</text>
+<line class="pg" x1="436.3" x2="436.3" y1="24" y2="476"/><text class="pa2" x="436.3" y="498" text-anchor="middle">100 s</text>
+<line class="pg" x1="648.2" x2="648.2" y1="24" y2="476"/><text class="pa2" x="648.2" y="498" text-anchor="middle">150 s</text>
+<line class="pg" x1="798.5" x2="798.5" y1="24" y2="476"/><text class="pa2" x="798.5" y="498" text-anchor="middle">200 s</text>
+<text class="pa2" x="473.0" y="528" text-anchor="middle">Median seconds to finish (log scale)</text><text class="pa2" transform="translate(18 250.0) rotate(-90)" text-anchor="middle">Quality (mean of identity, motion, clean; 0 to 5)</text>
+<polyline class="pf" points="186.6,149.1 530.3,124.9"/>
+<circle class="pb" cx="186.6" cy="149.1" r="9" tabindex="0" data-model="MiniMax-Hailuo-2.3-Fast" data-family="minimax" data-x="62" data-y="4.17" data-tip="MiniMax-Hailuo-2.3-Fast
+$0.0252 per second
+62 s median to finish (2 runs)
+quality 4.17 of 5
+identity 5.0, motion 2.5, clean 5.0
+most faithful, clean wolf push-in, little motion
+on the frontier" aria-label="MiniMax-Hailuo-2.3-Fast, $0.0252 per second, 62 s median to finish (2 runs), quality 4.17 of 5, identity 5.0, motion 2.5, clean 5.0, most faithful, clean wolf push-in, little motion, on the frontier"/>
+<text class="pl" data-model="MiniMax-Hailuo-2.3-Fast" x="200.6" y="154.1" text-anchor="start">MiniMax-Hailuo-2.3-Fast</text>
+<circle class="pb" cx="530.3" cy="124.9" r="9" tabindex="0" data-model="kling-v3 (std)" data-family="kling" data-x="119.7" data-y="4.33" data-tip="kling-v3 (std)
+$0.0672 per second
+119.7 s median to finish (2 runs)
+quality 4.33 of 5
+identity 4.5, motion 4.5, clean 4.0
+livelier, crane flies, wolf walks forward
+on the frontier" aria-label="kling-v3 (std), $0.0672 per second, 119.7 s median to finish (2 runs), quality 4.33 of 5, identity 4.5, motion 4.5, clean 4.0, livelier, crane flies, wolf walks forward, on the frontier"/>
+<text class="pl" data-model="kling-v3 (std)" x="544.3" y="129.9" text-anchor="start">kling-v3 (std)</text>
+<circle class="pd" cx="186.6" cy="350.9" r="7" tabindex="0" data-model="wan2.6-i2v-flash" data-family="alibaba" data-x="62" data-y="2.83" data-tip="wan2.6-i2v-flash
+$0.0168 per second
+62 s median to finish (2 runs)
+quality 2.83 of 5
+identity 3.5, motion 3.0, clean 2.0
+cheapest; background drifts, train changed shape and colour
+beaten on this chart" aria-label="wan2.6-i2v-flash, $0.0168 per second, 62 s median to finish (2 runs), quality 2.83 of 5, identity 3.5, motion 3.0, clean 2.0, cheapest; background drifts, train changed shape and colour, beaten on this chart"/>
+<text class="pl2" data-model="wan2.6-i2v-flash" x="200.6" y="355.9" text-anchor="start">wan2.6-i2v-flash</text>
+<circle class="pd" cx="432.1" cy="174.7" r="7" tabindex="0" data-model="veo3.1-fast" data-family="google" data-x="99.2" data-y="4" data-tip="veo3.1-fast
+$0.0177 per second
+99.2 s median to finish (2 runs)
+quality 4.00 of 5
+identity 4.5, motion 4.0, clean 3.5
+natural blink, crane moves; thin line across the wolf
+beaten on this chart" aria-label="veo3.1-fast, $0.0177 per second, 99.2 s median to finish (2 runs), quality 4.00 of 5, identity 4.5, motion 4.0, clean 3.5, natural blink, crane moves; thin line across the wolf, beaten on this chart"/>
+<text class="pl2" data-model="veo3.1-fast" x="432.1" y="158.7" text-anchor="middle">veo3.1-fast</text>
+<circle class="pd" cx="475.1" cy="174.7" r="7" tabindex="0" data-model="veo3.1-quality" data-family="google" data-x="107.7" data-y="4" data-tip="veo3.1-quality
+$0.1250 per second
+107.7 s median to finish (1 runs)
+quality 4.00 of 5
+identity 4.5, motion 4.0, clean 3.5
+good but slight background change; 7x the price of fast
+beaten on this chart" aria-label="veo3.1-quality, $0.1250 per second, 107.7 s median to finish (1 runs), quality 4.00 of 5, identity 4.5, motion 4.0, clean 3.5, good but slight background change; 7x the price of fast, beaten on this chart"/>
+<text class="pl2" data-model="veo3.1-quality" x="489.1" y="179.7" text-anchor="start">veo3.1-quality</text>
+<circle class="pd" cx="387.6" cy="174.7" r="7" tabindex="0" data-model="kling-v4-flash" data-family="kling" data-x="91.1" data-y="4" data-tip="kling-v4-flash
+$0.0857 per second
+91.1 s median to finish (2 runs)
+quality 4.00 of 5
+identity 4.0, motion 4.5, clean 3.5
+similar to v3 with a slight face and scene shift
+beaten on this chart" aria-label="kling-v4-flash, $0.0857 per second, 91.1 s median to finish (2 runs), quality 4.00 of 5, identity 4.0, motion 4.5, clean 3.5, similar to v3 with a slight face and scene shift, beaten on this chart"/>
+<text class="pl2" data-model="kling-v4-flash" x="373.6" y="179.7" text-anchor="end">kling-v4-flash</text>
+<circle class="pd" cx="759.4" cy="250.0" r="7" tabindex="0" data-model="seedance-2.0" data-family="bytedance" data-x="185.6" data-y="3.5" data-tip="seedance-2.0
+$0.0660 per second
+185.6 s median to finish (2 runs)
+quality 3.50 of 5
+identity 3.0, motion 4.0, clean 3.5
+480p; background swaps, strong push-in
+beaten on this chart" aria-label="seedance-2.0, $0.0660 per second, 185.6 s median to finish (2 runs), quality 3.50 of 5, identity 3.0, motion 4.0, clean 3.5, 480p; background swaps, strong push-in, beaten on this chart"/>
+<text class="pl2" data-model="seedance-2.0" x="773.4" y="255.0" text-anchor="start">seedance-2.0</text>
+<circle class="pd" cx="410.6" cy="224.4" r="7" tabindex="0" data-model="seedance-2.5-flash" data-family="bytedance" data-x="95.2" data-y="3.67" data-tip="seedance-2.5-flash
+$0.0637 per second
+95.2 s median to finish (2 runs)
+quality 3.67 of 5
+identity 3.0, motion 4.5, clean 3.5
+480p; background drifts, strongest push-in
+beaten on this chart" aria-label="seedance-2.5-flash, $0.0637 per second, 95.2 s median to finish (2 runs), quality 3.67 of 5, identity 3.0, motion 4.5, clean 3.5, 480p; background drifts, strongest push-in, beaten on this chart"/>
+<text class="pl2" data-model="seedance-2.5-flash" x="424.6" y="229.4" text-anchor="start">seedance-2.5-flash</text>
+<circle class="pd" cx="671.7" cy="325.3" r="7" tabindex="0" data-model="wan2.7" data-family="alibaba" data-x="156.9" data-y="3" data-tip="wan2.7
+$0.0664 per second
+156.9 s median to finish (1 runs)
+quality 3.00 of 5
+identity 2.5, motion 3.0, clean 3.5
+one clip: the boy changed expression, zoom
+beaten on this chart" aria-label="wan2.7, $0.0664 per second, 156.9 s median to finish (1 runs), quality 3.00 of 5, identity 2.5, motion 3.0, clean 3.5, one clip: the boy changed expression, zoom, beaten on this chart"/>
+<text class="pl2" data-model="wan2.7" x="685.7" y="330.3" text-anchor="start">wan2.7</text>
+</svg>
+<!--video cost speed-->
+<svg viewBox="0 0 900 540" role="img" aria-labelledby="cvct cvcd" id="cvc"><title id="cvct">Cost against seconds per clip</title><desc id="cvcd">Video models: cost per second of video against generation time. Lower left is better.</desc>
+<line class="pg" x1="70" x2="876" y1="425.8" y2="425.8"/><text class="pa2" x="60" y="430.8" text-anchor="end">0.02</text>
+<line class="pg" x1="70" x2="876" y1="265.9" y2="265.9"/><text class="pa2" x="60" y="270.9" text-anchor="end">0.05</text>
+<line class="pg" x1="70" x2="876" y1="145.0" y2="145.0"/><text class="pa2" x="60" y="150.0" text-anchor="end">0.1</text>
+<line class="pg" x1="70" x2="876" y1="24.0" y2="24.0"/><text class="pa2" x="60" y="29.0" text-anchor="end">0.2</text>
+<line class="pg" x1="74.2" x2="74.2" y1="24" y2="476"/><text class="pa2" x="74.2" y="498" text-anchor="middle">50</text>
+<line class="pg" x1="250.0" x2="250.0" y1="24" y2="476"/><text class="pa2" x="250.0" y="498" text-anchor="middle">70</text>
+<line class="pg" x1="436.3" x2="436.3" y1="24" y2="476"/><text class="pa2" x="436.3" y="498" text-anchor="middle">100</text>
+<line class="pg" x1="648.2" x2="648.2" y1="24" y2="476"/><text class="pa2" x="648.2" y="498" text-anchor="middle">150</text>
+<line class="pg" x1="798.5" x2="798.5" y1="24" y2="476"/><text class="pa2" x="798.5" y="498" text-anchor="middle">200</text>
+<text class="pa2" x="473.0" y="528" text-anchor="middle">Median seconds to finish (log scale)</text><text class="pa2" transform="translate(18 250.0) rotate(-90)" text-anchor="middle">Cost per second of video</text>
+<polyline class="pf" points="186.6,456.2"/>
+<circle class="pb" cx="186.6" cy="456.2" r="9" tabindex="0" data-model="wan2.6-i2v-flash" data-family="alibaba" data-x="62" data-y="0.0168" data-tip="wan2.6-i2v-flash
+$0.0168 per second
+62 s median to finish (2 runs)
+quality 2.83 of 5
+identity 3.5, motion 3.0, clean 2.0
+cheapest; background drifts, train changed shape and colour
+on the frontier" aria-label="wan2.6-i2v-flash, $0.0168 per second, 62 s median to finish (2 runs), quality 2.83 of 5, identity 3.5, motion 3.0, clean 2.0, cheapest; background drifts, train changed shape and colour, on the frontier"/>
+<text class="pl" data-model="wan2.6-i2v-flash" x="200.6" y="461.2" text-anchor="start">wan2.6-i2v-flash</text>
+<circle class="pd" cx="186.6" cy="385.5" r="7" tabindex="0" data-model="MiniMax-Hailuo-2.3-Fast" data-family="minimax" data-x="62" data-y="0.0252" data-tip="MiniMax-Hailuo-2.3-Fast
+$0.0252 per second
+62 s median to finish (2 runs)
+quality 4.17 of 5
+identity 5.0, motion 2.5, clean 5.0
+most faithful, clean wolf push-in, little motion
+beaten on this chart" aria-label="MiniMax-Hailuo-2.3-Fast, $0.0252 per second, 62 s median to finish (2 runs), quality 4.17 of 5, identity 5.0, motion 2.5, clean 5.0, most faithful, clean wolf push-in, little motion, beaten on this chart"/>
+<text class="pl2" data-model="MiniMax-Hailuo-2.3-Fast" x="200.6" y="390.5" text-anchor="start">MiniMax-Hailuo-2.3-Fast</text>
+<circle class="pd" cx="432.1" cy="447.1" r="7" tabindex="0" data-model="veo3.1-fast" data-family="google" data-x="99.2" data-y="0.0177" data-tip="veo3.1-fast
+$0.0177 per second
+99.2 s median to finish (2 runs)
+quality 4.00 of 5
+identity 4.5, motion 4.0, clean 3.5
+natural blink, crane moves; thin line across the wolf
+beaten on this chart" aria-label="veo3.1-fast, $0.0177 per second, 99.2 s median to finish (2 runs), quality 4.00 of 5, identity 4.5, motion 4.0, clean 3.5, natural blink, crane moves; thin line across the wolf, beaten on this chart"/>
+<text class="pl2" data-model="veo3.1-fast" x="446.1" y="452.1" text-anchor="start">veo3.1-fast</text>
+<circle class="pd" cx="475.1" cy="106.0" r="7" tabindex="0" data-model="veo3.1-quality" data-family="google" data-x="107.7" data-y="0.125" data-tip="veo3.1-quality
+$0.1250 per second
+107.7 s median to finish (1 runs)
+quality 4.00 of 5
+identity 4.5, motion 4.0, clean 3.5
+good but slight background change; 7x the price of fast
+beaten on this chart" aria-label="veo3.1-quality, $0.1250 per second, 107.7 s median to finish (1 runs), quality 4.00 of 5, identity 4.5, motion 4.0, clean 3.5, good but slight background change; 7x the price of fast, beaten on this chart"/>
+<text class="pl2" data-model="veo3.1-quality" x="489.1" y="111.0" text-anchor="start">veo3.1-quality</text>
+<circle class="pd" cx="530.3" cy="214.3" r="7" tabindex="0" data-model="kling-v3 (std)" data-family="kling" data-x="119.7" data-y="0.0672" data-tip="kling-v3 (std)
+$0.0672 per second
+119.7 s median to finish (2 runs)
+quality 4.33 of 5
+identity 4.5, motion 4.5, clean 4.0
+livelier, crane flies, wolf walks forward
+beaten on this chart" aria-label="kling-v3 (std), $0.0672 per second, 119.7 s median to finish (2 runs), quality 4.33 of 5, identity 4.5, motion 4.5, clean 4.0, livelier, crane flies, wolf walks forward, beaten on this chart"/>
+<text class="pl2" data-model="kling-v3 (std)" x="544.3" y="219.3" text-anchor="start">kling-v3 (std)</text>
+<circle class="pd" cx="387.6" cy="171.9" r="7" tabindex="0" data-model="kling-v4-flash" data-family="kling" data-x="91.1" data-y="0.0857" data-tip="kling-v4-flash
+$0.0857 per second
+91.1 s median to finish (2 runs)
+quality 4.00 of 5
+identity 4.0, motion 4.5, clean 3.5
+similar to v3 with a slight face and scene shift
+beaten on this chart" aria-label="kling-v4-flash, $0.0857 per second, 91.1 s median to finish (2 runs), quality 4.00 of 5, identity 4.0, motion 4.5, clean 3.5, similar to v3 with a slight face and scene shift, beaten on this chart"/>
+<text class="pl2" data-model="kling-v4-flash" x="401.6" y="176.9" text-anchor="start">kling-v4-flash</text>
+<circle class="pd" cx="759.4" cy="217.5" r="7" tabindex="0" data-model="seedance-2.0" data-family="bytedance" data-x="185.6" data-y="0.066" data-tip="seedance-2.0
+$0.0660 per second
+185.6 s median to finish (2 runs)
+quality 3.50 of 5
+identity 3.0, motion 4.0, clean 3.5
+480p; background swaps, strong push-in
+beaten on this chart" aria-label="seedance-2.0, $0.0660 per second, 185.6 s median to finish (2 runs), quality 3.50 of 5, identity 3.0, motion 4.0, clean 3.5, 480p; background swaps, strong push-in, beaten on this chart"/>
+<text class="pl2" data-model="seedance-2.0" x="773.4" y="222.5" text-anchor="start">seedance-2.0</text>
+<circle class="pd" cx="410.6" cy="223.7" r="7" tabindex="0" data-model="seedance-2.5-flash" data-family="bytedance" data-x="95.2" data-y="0.0637" data-tip="seedance-2.5-flash
+$0.0637 per second
+95.2 s median to finish (2 runs)
+quality 3.67 of 5
+identity 3.0, motion 4.5, clean 3.5
+480p; background drifts, strongest push-in
+beaten on this chart" aria-label="seedance-2.5-flash, $0.0637 per second, 95.2 s median to finish (2 runs), quality 3.67 of 5, identity 3.0, motion 4.5, clean 3.5, 480p; background drifts, strongest push-in, beaten on this chart"/>
+<text class="pl2" data-model="seedance-2.5-flash" x="396.6" y="228.7" text-anchor="end">seedance-2.5-flash</text>
+<circle class="pd" cx="671.7" cy="216.4" r="7" tabindex="0" data-model="wan2.7" data-family="alibaba" data-x="156.9" data-y="0.0664" data-tip="wan2.7
+$0.0664 per second
+156.9 s median to finish (1 runs)
+quality 3.00 of 5
+identity 2.5, motion 3.0, clean 3.5
+one clip: the boy changed expression, zoom
+beaten on this chart" aria-label="wan2.7, $0.0664 per second, 156.9 s median to finish (1 runs), quality 3.00 of 5, identity 2.5, motion 3.0, clean 3.5, one clip: the boy changed expression, zoom, beaten on this chart"/>
+<text class="pl2" data-model="wan2.7" x="685.7" y="221.4" text-anchor="start">wan2.7</text>
+</svg>

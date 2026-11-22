@@ -76,6 +76,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://chimericlabs.xyz/research/video-model-bench/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://chimericlabs.xyz/research/ghibli-claude/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
