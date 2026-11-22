@@ -267,6 +267,14 @@
   },
   {
    "set": "cut 10 keyframes",
+   "name": "plate_notrain",
+   "model": "gpt-image-2.6-flare",
+   "image_input": "key_tunnel_small.jpg (the cut 9 tunnel key)",
+   "prompt": "Edit this exact painting. Remove the train completely. Where the train was, show the empty railway track (two steel rails on wooden sleepers and gravel) continuing straight into the dark tunnel mouth, and the dark tunnel interior with a few small warm lamps along the tunnel wall. Keep everything else exactly the same: the same framing and camera, the stone arch with wisteria at the left and top, the stone parapet walls, the sea, the hill town, the cliffs, the clouds, the same hand-painted gouache style, light and colours. No train, no people, no text.",
+   "used": "yes, the plate under the code train in the film"
+  },
+  {
+   "set": "cut 10 keyframes",
    "name": "k1",
    "model": "gpt-image-2.6-flare",
    "image_input": "key_tunnel_small.jpg (the cut 9 tunnel key), train_ref.jpg (the train from it)",
