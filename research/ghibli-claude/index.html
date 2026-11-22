@@ -57,14 +57,22 @@
 <p class="art-lede">We set out to rebuild a 38.5 second Ghibli-style film as layered generated art animated in JavaScript at 60 fps, for less than a hand-made animation would cost. The twist is a giant white wolf, a nod to Princess Mononoke.</p>
 </header>
 
-<p>Eight cuts, best first. Same brief throughout; the original GPT-6.2 Astra film is not hosted here. The last section is a from-scratch attempt with generated video. The image models behind it are compared in <a href="../image-model-bench/">the image model bench</a>.</p>
+<p>The best cut is first. Everything under "Earlier cuts and takes" is older material, newest first, kept for comparison. The original GPT-6.2 Astra film is not hosted here. The image models behind the art are compared in <a href="../image-model-bench/">the image model bench</a>.</p>
 
-<h3>Best: cut 8, the motion and eye pass</h3>
+<h3>Best: cut 9</h3>
+<video class="film" controls preload="none" poster="cut9-poster.jpg" width="1280" height="720">
+<source src="cut9-720p.mp4" type="video/mp4">
+Your browser cannot play this video. <a href="cut9-720p.mp4">Download it (720p, 25 MB).</a>
+</video>
+<p class="figcap">43.8 s. Rebuilt against the original, frame by frame. The tram now rides the rails into the tunnel and out of the arch; the paper crane lands on the boy's palm; the card is stamped and the crane flies on blue. One boy, inside the carriage, in every shot. Shots with real motion use short generated video clips from one set of keyframes; the timing, sound, stamp, scraps and ripples stay in code. Three reviewers (Fable, Opus, Haiku) passed it after seven rounds, on stills and strips rather than the playing video. Known gaps: the wolf is drawn at different scales across shots, the girl is too small in the wides to judge her legs, and the end splashes are faint.</p>
+
+<h2>Earlier cuts and takes</h2>
+<h3>Cut 8, the motion and eye pass</h3>
 <video class="film" controls preload="none" poster="best-poster.jpg" width="1280" height="720">
 <source src="best-720p.mp4" type="video/mp4">
 Your browser cannot play this video. <a href="best-720p.mp4">Download it (720p, 14 MB).</a>
 </video>
-<p class="figcap">42.4 s. Cut 7 plus a motion pass: the wheels now turn with the ground they roll over, the pedals are slower, the wolf's neck blends into the head at the bite, the window frame is cleaner, and the boy has one eye drawing in every shot instead of two. Same audio.</p>
+<p class="figcap">42.4 s. Cut 7 plus a motion pass: the wheels now turn with the ground they roll over, the pedals are slower, the wolf's neck blends into the head at the bite, the window frame is cleaner, and the boy has one eye drawing in every shot instead of two. Same audio. Its tunnel shot was a static plate with a tram.</p>
 
 <h3>Cut 7, the continuity pass</h3>
 <video class="film" controls preload="none" poster="cut7-poster.jpg" width="1280" height="720">
@@ -126,6 +134,7 @@ Your browser cannot play this video. <a href="v3-720p.mp4">Download it (720p, 10
 <tr><th scope="row">Round 1 best, merge</th><td>Sonnet 0.21M plus four builders</td><td>about 2.6 h</td><td>0</td></tr>
 <tr><th scope="row">Round 2 best</th><td>Fable plan 0.14M, twelve Sonnet builders about 1.3M (input plus output, so not comparable to the rows above)</td><td>about 2 h</td><td>0</td></tr>
 <tr><th scope="row">Attempt B, from scratch</th><td>13 ChatGPT keyframes, 13 veo3.1-fast clips ($1.96 API), one assembly script</td><td>about 1 h</td><td>13</td></tr>
+<tr><th scope="row">Cut 9</th><td>Fable lead, Sonnet builders and seven review rounds; $1.09 of API (4 images, 5 veo3.1-fast clips)</td><td>about 4 h</td><td>0</td></tr>
 <tr><th scope="row">Cut 6, 7 and 8</th><td>Cut 8: one Sonnet builder, wheels, neck, eyes. Cut 7: an audit by a Fable reviewer, then six Sonnet builders</td><td>about 3 h</td><td>0</td></tr>
 </tbody>
 </table>
