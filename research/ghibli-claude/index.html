@@ -31,6 +31,7 @@
 .art td, .art th { text-align: left; }
 .outro { margin-top: var(--space-5); }
 </style>
+<style>details.ps{border:1px solid var(--color-divider,#444);border-radius:8px;padding:1rem}details.ps>summary{cursor:pointer;font-weight:600}details.ps>:not(summary){margin-top:1rem}</style>
 </head>
 <body>
 <a class="skip" href="#article">Skip to content</a>
@@ -57,7 +58,7 @@
 <p class="art-lede">We set out to rebuild a 38.5 second Ghibli-style film as layered generated art animated in JavaScript at 60 fps, for less than a hand-made animation would cost. The twist is a giant white wolf, a nod to Princess Mononoke.</p>
 </header>
 
-<p>The best cut is first. Everything under "Earlier cuts and takes" is older material, newest first, kept for comparison. The original GPT-6.2 Astra film is not hosted here. The image models behind the art are compared in <a href="../image-model-bench/">the image model bench</a>.</p>
+<p>The best cut is first. Version 1, 2 and 3 follow, then the cost and method. Every other cut and attempt is in the collapsed postscript at the end, newest first. The original GPT-6.2 Astra film is not hosted here. The image models behind the art are compared in <a href="../image-model-bench/">the image model bench</a>.</p>
 
 <h3>Best: cut 9</h3>
 <video class="film" controls preload="none" poster="cut9-poster.jpg" width="1280" height="720">
@@ -66,42 +67,7 @@ Your browser cannot play this video. <a href="cut9-720p.mp4">Download it (720p, 
 </video>
 <p class="figcap">43.8 s. Rebuilt against the original, frame by frame. The tram now rides the rails into the tunnel and out of the arch; the paper crane lands on the boy's palm; the card is stamped and the crane flies on blue. One boy, inside the carriage, in every shot. Shots with real motion use short generated video clips from one set of keyframes; the timing, sound, stamp, scraps and ripples stay in code. Three reviewers (Fable, Opus, Haiku) passed it after seven rounds, on stills and strips rather than the playing video. Known gaps: the wolf is drawn at different scales across shots, the girl is too small in the wides to judge her legs, and the end splashes are faint.</p>
 
-<h2>Earlier cuts and takes</h2>
-<h3>Cut 8, the motion and eye pass</h3>
-<video class="film" controls preload="none" poster="best-poster.jpg" width="1280" height="720">
-<source src="best-720p.mp4" type="video/mp4">
-Your browser cannot play this video. <a href="best-720p.mp4">Download it (720p, 14 MB).</a>
-</video>
-<p class="figcap">42.4 s. Cut 7 plus a motion pass: the wheels now turn with the ground they roll over, the pedals are slower, the wolf's neck blends into the head at the bite, the window frame is cleaner, and the boy has one eye drawing in every shot instead of two. Same audio. Its tunnel shot was a static plate with a tram.</p>
-
-<h3>Cut 7, the continuity pass</h3>
-<video class="film" controls preload="none" poster="cut7-poster.jpg" width="1280" height="720">
-<source src="cut7-720p.mp4" type="video/mp4">
-Your browser cannot play this video. <a href="cut7-720p.mp4">Download it (720p, 14 MB).</a>
-</video>
-<p class="figcap">42.4 s. An audit of 29 defects, fixed in code. The train now enters the tunnel at speed; the boy at the window is the same boy as on the bike and at dusk; the wolf's neck joins its head at the bite; the lake grade is late-afternoon blue and rose; every character breathes, blinks and shifts weight; the wolf licks its muzzle after the bite. Still imperfect: a faint neck edge in the bite shot, some foot slide, the howl shot.</p>
-
-<h3>Cut 6</h3>
-<video class="film" controls preload="none" poster="cut6-poster.jpg" width="1280" height="720">
-<source src="cut6-720p.mp4" type="video/mp4">
-Your browser cannot play this video. <a href="cut6-720p.mp4">Download it (720p, 14 MB).</a>
-</video>
-<p class="figcap">42.4 s. The previous best, kept for comparison: the tunnel train was missing and the window boy was a different child.</p>
-
-<h3>Round 2: moving bodies</h3>
-<video class="film" controls preload="none" poster="round2-poster.jpg" width="1280" height="720">
-<source src="round2-720p.mp4" type="video/mp4">
-Your browser cannot play this video. <a href="round2-720p.mp4">Download it (720p, 17 MB).</a>
-</video>
-<p class="figcap">42.4 s. Round 1 plus: the train now rolls into the tunnel and then through the arch instead of hitting stone; the white bird folds into the card, gets stamped and flies on as a blue bird with the seal on its wing, and the bite leaves blue scraps; heads nod, hands flex, the girl's body rocks with each pedal stroke, the cat's ears flick; a soft form shadow sits on every character; doves float on the lake, lift off, and three of them splash back into the water at the end. New sounds for the tunnel, the paper fold, the splashes.</p>
-
-<h3>Round 1 best: Fable engine plus our fixes</h3>
-<video class="film" controls preload="none" poster="round1-poster.jpg" width="1280" height="720">
-<source src="round1-720p.mp4" type="video/mp4">
-Your browser cannot play this video. <a href="round1-720p.mp4">Download it (720p, 10 MB).</a>
-</video>
-<p class="figcap">42.4 s. Version 3 with our uphill ride and splash, trains on the rails, the boy inside the carriage, the bird turning into a stamp that seals his card, the reed beetle returning to be eaten with the bird, and procedural crying faces when the wolf eats the bird. The soundtrack is procedural.</p>
-
+<h2>First attempts</h2>
 <h3>Version 1: minimal text prompting</h3>
 <video class="film" controls preload="none" poster="v1-poster.jpg" width="1280" height="720">
 <source src="v1-720p.mp4" type="video/mp4">
@@ -182,24 +148,65 @@ Your browser cannot play this video. <a href="v3-720p.mp4">Download it (720p, 10
 <li>The soundtrack is synthesised in code, not composed.</li>
 </ul>
 
-<h2 id="postscript">Postscript: from scratch with generated art</h2>
+<h2 id="postscript">Postscript: every other cut and attempt</h2>
+<details class="ps">
+<summary>Show the iterative cuts, the Fable-only run and the from-scratch attempts (older, newest first)</summary>
+<h3>Iterative cuts</h3>
+<h4>Cut 8, the motion and eye pass</h4>
+<video class="film" controls preload="none" poster="best-poster.jpg" width="1280" height="720">
+<source src="best-720p.mp4" type="video/mp4">
+Your browser cannot play this video. <a href="best-720p.mp4">Download it (720p, 14 MB).</a>
+</video>
+<p class="figcap">42.4 s. Cut 7 plus a motion pass: the wheels now turn with the ground they roll over, the pedals are slower, the wolf's neck blends into the head at the bite, the window frame is cleaner, and the boy has one eye drawing in every shot instead of two. Same audio. Its tunnel shot was a static plate with a tram.</p>
+
+<h4>Cut 7, the continuity pass</h4>
+<video class="film" controls preload="none" poster="cut7-poster.jpg" width="1280" height="720">
+<source src="cut7-720p.mp4" type="video/mp4">
+Your browser cannot play this video. <a href="cut7-720p.mp4">Download it (720p, 14 MB).</a>
+</video>
+<p class="figcap">42.4 s. An audit of 29 defects, fixed in code. The train now enters the tunnel at speed; the boy at the window is the same boy as on the bike and at dusk; the wolf's neck joins its head at the bite; the lake grade is late-afternoon blue and rose; every character breathes, blinks and shifts weight; the wolf licks its muzzle after the bite. Still imperfect: a faint neck edge in the bite shot, some foot slide, the howl shot.</p>
+
+<h4>Cut 6</h4>
+<video class="film" controls preload="none" poster="cut6-poster.jpg" width="1280" height="720">
+<source src="cut6-720p.mp4" type="video/mp4">
+Your browser cannot play this video. <a href="cut6-720p.mp4">Download it (720p, 14 MB).</a>
+</video>
+<p class="figcap">42.4 s. The previous best, kept for comparison: the tunnel train was missing and the window boy was a different child.</p>
+
+<h4>Round 2: moving bodies</h4>
+<video class="film" controls preload="none" poster="round2-poster.jpg" width="1280" height="720">
+<source src="round2-720p.mp4" type="video/mp4">
+Your browser cannot play this video. <a href="round2-720p.mp4">Download it (720p, 17 MB).</a>
+</video>
+<p class="figcap">42.4 s. Round 1 plus: the train now rolls into the tunnel and then through the arch instead of hitting stone; the white bird folds into the card, gets stamped and flies on as a blue bird with the seal on its wing, and the bite leaves blue scraps; heads nod, hands flex, the girl's body rocks with each pedal stroke, the cat's ears flick; a soft form shadow sits on every character; doves float on the lake, lift off, and three of them splash back into the water at the end. New sounds for the tunnel, the paper fold, the splashes.</p>
+
+<h4>Round 1 best: Fable engine plus our fixes</h4>
+<video class="film" controls preload="none" poster="round1-poster.jpg" width="1280" height="720">
+<source src="round1-720p.mp4" type="video/mp4">
+Your browser cannot play this video. <a href="round1-720p.mp4">Download it (720p, 10 MB).</a>
+</video>
+<p class="figcap">42.4 s. Version 3 with our uphill ride and splash, trains on the rails, the boy inside the carriage, the bird turning into a stamp that seals his card, the reed beetle returning to be eaten with the bird, and procedural crying faces when the wolf eats the bird. The soundtrack is procedural.</p>
+
+<h3>From scratch with generated art</h3>
 <p>Attempt A swapped 16 generated stills (<code>gpt-image-2.6-flare</code>, about $0.57) into cut 6 so the children visibly fear the wolf. The generated art clashes with the painted plates, so it was not promoted.</p>
 <video class="film" controls preload="none" poster="next-poster.jpg" width="1280" height="720">
 <source src="next-720p.mp4" type="video/mp4">
 Your browser cannot play this video. <a href="next-720p.mp4">Download it (720p, 15 MB).</a>
 </video>
-<h3>Attempt B: one generated style, end to end</h3>
+<h4>Attempt B: one generated style, end to end</h4>
 <video class="film" controls preload="none" poster="attemptB2-poster.jpg" width="1280" height="720">
 <source src="attemptB2-720p.mp4" type="video/mp4">
 Your browser cannot play this video. <a href="attemptB2-720p.mp4">Download it (720p, 17 MB).</a>
 </video>
 <p class="figcap">42.4 s, same timeline and audio. All 13 shots were drawn fresh in ChatGPT in one chat, from text descriptions of the three characters, then animated one clip each with <code>veo3.1-fast</code> ($0.14 a clip, $1.96 with one test clip). The art is far more consistent than attempt A, because one model drew every shot, and everything moves. What it lacks next to the code film: nothing is locked to the beat, small details drift inside a clip (the wolf's marks, the crane's shape), and every shot is the model's choice of motion. Hailuo-2.3-Fast, the first choice, returned "service_unavailable" that day.</p>
-<h3>Attempt B, stills only</h3>
+<h4>Attempt B, stills only</h4>
 <video class="film" controls preload="none" poster="attemptB-poster.jpg" width="1280" height="720">
 <source src="attemptB-720p.mp4" type="video/mp4">
 Your browser cannot play this video. <a href="attemptB-720p.mp4">Download it (720p, 13 MB).</a>
 </video>
 <p class="figcap">The same 13 keyframes with slow camera moves only, made first while the API credit was spent. $0 in API calls.</p>
+
+</details>
 
 <h2>Code</h2>
 <p><a href="https://github.com/chimera-defi/ghibli-claude">github.com/chimera-defi/ghibli-claude</a><br><span class="small">Named for who built it: Claude made this, Astra is what we tried to match. The repo is private until published.</span></p>
