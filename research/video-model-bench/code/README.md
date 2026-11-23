@@ -6,7 +6,7 @@ Key: set `APIMART_API_KEY`; `run_video.py` uses the client in `../../image-model
 ## Files
 | file | what it is |
 |---|---|
-| `run_video.py` | the bench script: one image-to-video clip, `run_video.py MODEL boy\|wolf TAG OPTIONS_JSON`; `@IMG` in the options is replaced by the start-frame URL from `in/urls.json` (not in the repo: write public URLs of your own start frames) |
+| `run_video.py` | the bench script: one image-to-video clip, `run_video.py MODEL boy\|wolf TAG OPTIONS_JSON`; `@IMG` in the options is replaced by the start-frame URL from `in/urls.json` (not in the repo: write your own, `{"boy": "<start frame URL>", "wolf": "<start frame URL>"}`, public URLs) |
 | `video_results.json` | one row per clip (model, start frame, cost in USD, seconds to finish, status, file). The clips are in `../video/`, re-encoded at 640 px |
 | `video_scores.json` | identity, motion and clean scores (0 to 5, one reviewer), price per clip, clip length and a note per model |
 | `prompts.json` | every prompt on the page, verbatim: the bench prompts, film attempt B (13 ChatGPT keyframes and 13 veo3.1-fast clips), cut 9 (4 gpt-image-2.6-flare keyframes, 5 veo3.1-fast takes) and the cut 10 first+last frame sets. Image inputs are named, not included |

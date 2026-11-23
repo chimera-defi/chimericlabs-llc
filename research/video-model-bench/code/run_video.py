@@ -34,6 +34,7 @@ def run(model,img,tag,extra,timeout=900):
     return rec
 if __name__=="__main__":
     model,img,tag,extra=sys.argv[1],sys.argv[2],sys.argv[3],json.loads(sys.argv[4])
+    (D/'out').mkdir(exist_ok=True)  # a failed submit still saves its record
     rec=run(model,img,tag,extra)
     json.dump(rec,open(D/f'out/{tag}_{img}.json','w'),indent=1)
     print(json.dumps(rec)[:1500])
