@@ -558,7 +558,7 @@ style 4, emotion_faces 4, text_free 5, edge_alpha 2
 beaten on this chart" aria-label="mai-image-2.6-flash, $0.0154 per image, 15.1 s median to finish (4 runs), quality 3.75 of 5, style 4, emotion_faces 4, text_free 5, edge_alpha 2, beaten on this chart"/>
 <text class="pl2" data-model="mai-image-2.6-flash" x="242.5" y="217.3" text-anchor="start">mai-image-2.6-flash</text>
 </svg>
-<figcaption>Hover a dot for the model, time, cost and scores. Seconds are submit to download, polled every 4 s, queue time included, so each can read up to 4 s high.</figcaption>
+<figcaption>Hover a dot for the model, time, cost and scores. Seconds run from submit until the task finishes, polled every 4 s, queue time included, so each can read up to 4 s high.</figcaption>
 </figure>
 
 <figure class="chart" id="f-cic">
@@ -840,7 +840,7 @@ beaten on this chart" aria-label="ChatGPT Instant, $0.0133 per image (model: $20
 
 <section class="sec" id="updates" aria-labelledby="h-updates">
 <h2 id="h-updates">Update log</h2>
-<ul><li><time datetime="2026-11-21">2026-11-21</time> First published: passes 1 to 3.</li><li><time datetime="2026-11-22">2026-11-22</time> Video results moved to their own page; chart explorer added; fixes from a live check at three widths.</li><li><time datetime="2026-11-22">2026-11-22</time> Pass 4: flux-3-image-klein, mai-image-2.6-flash and gpt-image-1.5 added, $0.25; test-next list added.</li><li><time datetime="2026-11-23">2026-11-23</time> Source and data moved into one postscript; the pass tables moved under All models.</li></ul>
+<ul><li><time datetime="2026-11-21">2026-11-21</time> First published: passes 1 to 3.</li><li><time datetime="2026-11-22">2026-11-22</time> Video results moved to their own page; chart explorer added; fixes from a live check at three widths.</li><li><time datetime="2026-11-22">2026-11-22</time> Pass 4: flux-3-image-klein, mai-image-2.6-flash and gpt-image-1.5 added, $0.25; test-next list added.</li><li><time datetime="2026-11-23">2026-11-23</time> Source and data moved into one postscript; the pass tables moved under All models; the speed caption now says seconds run to the end of the task (the download came after).</li></ul>
 </section>
 
 <section class="sec" id="source" aria-labelledby="h-source">
@@ -848,7 +848,7 @@ beaten on this chart" aria-label="ChatGPT Instant, $0.0133 per image (model: $20
 <details><summary>Where the code and data are, for people and agents</summary>
 <p><a href="https://github.com/chimera-defi/chimericlabs-llc/tree/main/research/image-model-bench/code">The image-model-bench folder on GitHub</a> holds every script and data file behind this page. Its README lists each file in one line.</p>
 <p class="meta">Files: Python scripts, one per pass (bench.py is the shared client), results*.json with one row per request, scores.json, and models.json and models.csv with every scored image and video model; build_charts.py rebuilds the charts on both bench pages from them.</p>
-<p class="meta">Units: cost in US dollars per image, time in seconds from submit to download (polled every 4 s), quality 0 to 5 from one reviewer.</p>
+<p class="meta">Units: cost in US dollars per image, time in seconds from submit until the task finishes (polled every 4 s), quality 0 to 5 from one reviewer.</p>
 <p class="meta">To rerun: set APIMART_API_KEY in the environment (bench.py falls back to a local key file and never prints it), then run a pass from that folder, for example python3 run4.py MODEL 1.00.</p>
 </details>
 </section>
