@@ -212,7 +212,10 @@ def snippet(b, mcp):
             f'{mcp["first"]}..{mcp["last"]}, three MCPs. {mcp["request_failed"]:,} failed; {mcp["transport_failed"]:,} never reached the tool (connection or timeout). Activity, not tokens.</p>')
     fb = fm.get("fable", {}); ob = fm.get("opus-5-5", {})
     real = dict(tf["real_model_of_those_sessions_messages"])
-    real_txt = ", ".join("%s (%s)" % (format(v, ","), {"sonnet-5-5": "Sonnet 5.5", "opus-5-5": "Opus 5.5"}.get(k, k)) for k, v in real.items()) or "no matching transcript"
+    # The page rules allow two numbers per sentence: name the biggest model (each model name carries a number too), fold the rest into words.
+    ranked = sorted(real.items(), key=lambda kv: -kv[1])
+    real_txt = ", ".join("%s (%s)" % (format(v, ","), {"sonnet-5-5": "Sonnet 5.5", "opus-5-5": "Opus 5.5"}.get(k, k)) for k, v in ranked[:1]) or "no matching transcript"
+    if len(ranked) > 1: real_txt += " and more"
     # Short sentences: the page rules allow 15 words and two numbers each. Message totals live in the coverage note.
     find = ('<p id="traffic-finding">Fable ran in %d Claude transcripts. Opus 5.5 ran in %d. %d of the Fable runs (%d%%) were subagents spawned by Claude sessions. '
             '%d%% of those came from sessions whose main model is Opus 5.5. The logs show no Fable run started directly by ChatGPT, Codex or Kepler. '
