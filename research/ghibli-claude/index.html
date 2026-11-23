@@ -63,9 +63,9 @@
 <h3>Best: cut 10</h3>
 <video class="film" controls preload="none" poster="cut10-poster.jpg" width="1280" height="720">
 <source src="cut10-720p.mp4" type="video/mp4">
-Your browser cannot play this video. <a href="cut10-720p.mp4">Download it (720p, 22 MB).</a>
+Your browser cannot play this video. <a href="cut10-720p.mp4">Download it (720p, 26 MB).</a>
 </video>
-<p class="figcap">43.8 s. Cut 9 with one shot rebuilt: the train coming out of the tunnel (10.4 to 13.8 s). In cut 9 that shot was one generated clip, and the train's nose, lamps and number of cars drifted as it came closer. Now the train is drawn in code as one rigid object riding the measured rails over a still painting of the empty scene, so it keeps its shape from the tunnel mouth to the camera. Generated clips pinned by more keyframes were also tried and failed all three probes, inventing a second train or restarting the approach; the code train won a blind review by Fable, Opus and Haiku and cost $0.03. The other shots are the cut 9 renders. Known gaps: the wisteria in that shot is still, the pantograph is cut by the top edge in the last 0.3 s, and the train's paint does not change with the light as it leaves the tunnel. The probes and the review are on the <a href="../video-model-bench/#firstlast">video model bench</a>.</p>
+<p class="figcap">43.8 s. Cut 9 with one shot rebuilt: the train coming out of the tunnel (10.4 to 13.8 s). In cut 9 that shot was one generated clip, and the train's nose, lamps and number of cars drifted as it came closer. Now the train is drawn in code as one rigid object riding the measured rails over a painting of the empty scene, so it keeps its shape from the tunnel mouth to the camera. Generated clips pinned by more keyframes were also tried and failed all three probes, inventing a second train or restarting the approach; the code train won a blind review by Fable, Opus and Haiku and cost $0.03. A polish pass then fixed, in code and with no new generation: the wisteria over the tunnel now sways, the pantograph stays in frame (it was cut by the top edge in the last 0.3 s), and the train's paint goes from cool shade to a warm sun catch as it leaves the tunnel. The same pass shrank the wolf in the window wide back to scale, made the cat's breathing visible in the stamp shot and enlarged the dove splashes at the end. Other shots are the cut 9 renders; the splash fix also touched the lake shot, invisibly (under 0.4/255). Known gaps: the boy's pose jumps at 15.8 s and 37.8 to 38.6 s, with a faint sleeve ghost near 38.0 s, where two generated takes meet; the light change and the sway are subtle at 720p; the pantograph reads pale grey inside the tunnel; and in the cycling shot our girl is small and rides away while the original's girl approaches. The probes and the review are on the <a href="../video-model-bench/#firstlast">video model bench</a>.</p>
 
 <h2>First attempts</h2>
 <h3>Version 1: minimal text prompting</h3>
@@ -101,7 +101,7 @@ Your browser cannot play this video. <a href="v3-720p.mp4">Download it (720p, 10
 <tr><th scope="row">Round 2 best</th><td>Fable plan 0.14M, twelve Sonnet builders about 1.3M (input plus output, so not comparable to the rows above)</td><td>about 2 h</td><td>0</td></tr>
 <tr><th scope="row">Attempt B, from scratch</th><td>13 ChatGPT keyframes, 13 veo3.1-fast clips ($1.96 API), one assembly script</td><td>about 1 h</td><td>13</td></tr>
 <tr><th scope="row">Cut 9</th><td>Fable lead, Sonnet builders and seven review rounds; $1.09 of API (4 images, 5 veo3.1-fast clips)</td><td>about 4 h</td><td>0</td></tr>
-<tr><th scope="row">Cut 10</th><td>Opus lead and a blind strip review by Fable, Opus and Haiku; $0.94 of API (5 images, 4 veo3.1-fast clips), of which only a $0.03 image is in the film</td><td>about 1 h, from the session log</td><td>0</td></tr>
+<tr><th scope="row">Cut 10</th><td>Opus lead and a blind strip review by Fable, Opus and Haiku; $0.94 of API (5 images, 4 veo3.1-fast clips), of which only a $0.03 image is in the film; then a polish pass with no new generation</td><td>about 1.5 h, from the session log</td><td>0</td></tr>
 <tr><th scope="row">Cut 6, 7 and 8</th><td>Cut 8: one Sonnet builder, wheels, neck, eyes. Cut 7: an audit by a Fable reviewer, then six Sonnet builders</td><td>about 3 h</td><td>0</td></tr>
 </tbody>
 </table>
@@ -214,6 +214,19 @@ Your browser cannot play this video. <a href="attemptB-720p.mp4">Download it (72
 </video>
 <p class="figcap">The same 13 keyframes with slow camera moves only, made first while the API credit was spent. $0 in API calls.</p>
 
+</details>
+
+<details class="ps" id="toolkit">
+<summary>Toolkit test: fox on a bridge</summary>
+<video class="film" controls preload="none" poster="fox-poster.jpg" width="1280" height="720">
+<source src="fox-720p.mp4" type="video/mp4">
+Your browser cannot play this video. <a href="fox-720p.mp4">Download it (720p, 5 MB).</a>
+</video>
+<ul>
+<li>The film toolkit built from this project (film-kit, a private repo) made a new 12.5 s film from a cold start: a fresh session with only the kit and a brief.</li>
+<li>Image generation cost $0.09: 11 gpt-image-2 calls at $0.0085 each, one of them a duplicate.</li>
+<li>The session logged 30 friction rows over five rounds; by round 5 each was closed with a toolkit fix, a test or a process rule. One visible gap remains: the front paws differ between the walking and standing poses.</li>
+</ul>
 </details>
 
 <h2>Code</h2>
