@@ -1,20 +1,20 @@
 # Image model bench: source and data
 
-Page: https://chimericlabs.xyz/research/image-model-bench/ . Units: cost in USD per image (from the task result), time in seconds from submit to download (polled every 4 s), quality 0 to 5 from one reviewer.
+Page: https://chimericlabs.xyz/research/image-model-bench/ . Units: cost in USD per image (from the task result), time in seconds from submit until the task finishes (polled every 4 s; the image download comes after), quality 0 to 5 from one reviewer.
 Key: set `APIMART_API_KEY`; `bench.py` falls back to `~/secrets/apimart_api_key`. The key is never printed or stored here. Run every script from this folder.
 
 ## Files
 | file | what it is |
 |---|---|
-| `bench.py` | shared client: submit, poll every 4 s, download, time and cost one image (IPv4 only; the key is allowlisted on IPv4) |
+| `bench.py` | shared client: submit one image request, poll every 4 s until the task finishes, time it (IPv4 only; the key is allowlisted on IPv4); the pass scripts download the image |
 | `run_all.py` | pass 1: 15 models x 3 prompts, writes `results.json` |
 | `run2_prompts.py` | the four pass 2 prompts, also used by passes 3 and 4 |
 | `run2.py` | pass 2: the four prompts, `run2.py MODEL[,MODEL...] CAP_USD`, appends to `results2.json` |
-| `ref.py` | reference test: which models take a style reference image and under which field, writes `ref_results.json` |
+| `ref.py` | reference test: which models accept a style reference image sent as `image_urls`, writes `ref_results.json` |
 | `run3.py` | pass 3: repeat run plus the `cine` and `pair` prompts, `run3.py CAP_USD`, writes `results3.json` |
 | `run4.py` | pass 4: one request at a time under a spend cap, `run4.py MODEL[,MODEL...] CAP [PROMPT,...]`, writes `results4.json` |
 | `sheets3.py` | contact sheets, run 2 against run 3 per prompt |
-| `film_frames_gen_v2.py` | the 16 reference-image stills for the film variant, `film_frames_gen_v2.py KEY[,KEY...] MODEL[,MODEL...]` |
+| `film_frames_gen_v2.py` | the 16 reference-image stills for the film variant, `film_frames_gen_v2.py KEY[,KEY...] MODEL[,MODEL...]`; reads its reference images from the folder set in `R` at the top (not in the repo) |
 | `film-frames-ledger.json` | model, prompt, cost and seconds for each of those stills (the script writes it as `ledger.json`) |
 | `reference-frame-03.jpg` | the girl used as the reference image in the pass 3 `pair` prompt |
 | `chatgpt_images.js` | Playwright script that drives ChatGPT image generation in a Chrome you signed in to yourself (not verified end to end) |
@@ -22,7 +22,7 @@ Key: set `APIMART_API_KEY`; `bench.py` falls back to `~/secrets/apimart_api_key`
 | `results2.json` | pass 2, same shape |
 | `results3.json` | pass 3, same shape |
 | `results4.json` | pass 4, same shape |
-| `ref_results.json` | reference test: model, field, status, cost, error, file |
+| `ref_results.json` | reference test: model, param, status, cost, err, file |
 | `scores.json` | every quality score (0 to 5) with notes; pass 4 reasons in `pass4_note` |
 | `table.md` | pass 1 table: ok of 3, average seconds, average USD per image |
 | `table2.md` | pass 2 table with the style, emotion, text-free and alpha scores |
