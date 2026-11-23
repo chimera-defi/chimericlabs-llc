@@ -12,10 +12,12 @@ def tot(daily, col): return sum(int(r[col]) for r in daily)
 o, n = old['daily'], new['daily']
 d0, d1 = old['data_through'][:10], new['data_through'][:10]
 assert [r['date'] for r in rows] == [r['date'] for r in n], 'daily.csv and data.json disagree'
-zero = [r['date'] for r in o if r['commits_landed'] == '0' and r['date'] > '2026-11-01' and r['date'] <= d0 and r['day_status'] == 'complete']
+zero = [r['date'] for r in o if r['commits_landed'] == '0' and r['date'] > '2026-11-01' and r['date'] <= d0]  # incl. the old partial last day
 fixed = sum(int(r['commits_landed']) for r in n if r['date'] in zero)
 c = lambda x: f'{x/1000:.1f}K' if x >= 1000 else str(x); b = lambda x: f'{x/1e9:.1f}B'
 t0, t1 = tot(o, 'tokens_total'), tot(n, 'tokens_total')
+nz = {r['date'] for r in o} - set(zero)
+delta = sum(int(r['commits_landed']) for r in n if r['date'] in nz) - sum(int(r['commits_landed']) for r in o if r['date'] in nz)  # earlier days, restated
 lines = [
   f"Data now runs to {d1}, from {d0}.",
   f"Landed commits: {c(tot(o,'commits_landed'))} then, {c(tot(n,'commits_landed'))} now.",
@@ -24,5 +26,6 @@ lines = [
 ]
 if zero:
     lines.append(f"The old table showed zero commits for {zero[0]}..{zero[-1]}: its sweep stopped early. Those days hold {c(fixed)} landed commits.")
-json.dump({'lines': lines, 'weekly': {k: wk[k] for k in ('date', 'week_reset', 'percent_used')}}, open(sys.argv[5], 'w'), indent=1)
+if delta: lines.append(f"Earlier days changed by {delta:+d} commits: two repos are gone from this host.")  # explanation checked 2026-11-23 (specforge, questrade-skill); re-check on the next update
+json.dump({'data_through': new['data_through'][:10], 'lines': lines, 'weekly': {k: wk[k] for k in ('date', 'week_reset', 'percent_used')}}, open(sys.argv[5], 'w'), indent=1)
 print('\n'.join(lines))

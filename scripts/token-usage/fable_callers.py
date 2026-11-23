@@ -212,17 +212,17 @@ def snippet(b, mcp):
             f'{mcp["first"]}..{mcp["last"]}, three MCPs. {mcp["request_failed"]:,} failed; {mcp["transport_failed"]:,} never reached the tool (connection or timeout). Activity, not tokens.</p>')
     fb = fm.get("fable", {}); ob = fm.get("opus-5-5", {})
     real = dict(tf["real_model_of_those_sessions_messages"])
-    # The page rules allow two numbers per sentence: name the biggest model (each model name carries a number too), fold the rest into words.
-    ranked = sorted(real.items(), key=lambda kv: -kv[1])
-    real_txt = ", ".join("%s (%s)" % (format(v, ","), {"sonnet-5-5": "Sonnet 5.5", "opus-5-5": "Opus 5.5"}.get(k, k)) for k, v in ranked[:1]) or "no matching transcript"
-    if len(ranked) > 1: real_txt += " and more"
+    # Two numbers per sentence on the page: all messages in those transcripts, then the Fable part (compact, as the page requires).
+    kfmt = lambda v: "%.1fK" % (v / 1000) if v >= 1000 else str(v)
+    real_txt = kfmt(sum(real.values())) if real else "no matching transcript"
+    fable_txt = (", %s from Fable" % kfmt(real["fable"])) if real.get("fable") else ", none from Fable"
     # Short sentences: the page rules allow 15 words and two numbers each. Message totals live in the coverage note.
     find = ('<p id="traffic-finding">Fable ran in %d Claude transcripts. Opus 5.5 ran in %d. %d of the Fable runs (%d%%) were subagents spawned by Claude sessions. '
             '%d%% of those came from sessions whose main model is Opus 5.5. The logs show no Fable run started directly by ChatGPT, Codex or Kepler. '
             'They message Claude sessions over the bus. What those sessions spawn is the visible start. '
             '%s bus messages went to sessions with “fable” in the name. Those transcripts hold %s assistant messages%s.</p>'
             % (fb.get("runs", 0), ob.get("runs", 0), fb.get("subagent_runs", 0),
-               round(100 * fb.get("subagent_runs", 0) / max(fb.get("runs", 1), 1)), round(100 * dict(b["fable_invokers"]).get("Claude opus-5-5 session, via Agent tool", 0) / max(fb.get("subagent_runs", 1), 1)), format(tf["messages"], ","), real_txt, ", none from Fable" if not real.get("fable") else ""))
+               round(100 * fb.get("subagent_runs", 0) / max(fb.get("runs", 1), 1)), round(100 * dict(b["fable_invokers"]).get("Claude opus-5-5 session, via Agent tool", 0) / max(fb.get("subagent_runs", 1), 1)), format(tf["messages"], ","), real_txt, fable_txt))
     cov = ('<p id="traffic-coverage"><small>Coverage: Claude transcripts %s..%s (Fable seen %s..%s); bus messages %s..%s; MCP calls %s..%s. Assistant messages: Fable %s, Opus 5.5 %s. '
            'Not counted: Fable as advisor (no separate transcript), laptop Claude. A bus name containing “fable” does not mean the session ran Fable.</small></p>'
            % (cv["transcripts"]["first"], cv["transcripts"]["last"], cv["transcripts"]["fable_first"], cv["transcripts"]["fable_last"], cv["bus"]["first"], cv["bus"]["last"], cv["mcp"]["first"], cv["mcp"]["last"], format(fb.get("messages", 0), ","), format(ob.get("messages", 0), ",")))

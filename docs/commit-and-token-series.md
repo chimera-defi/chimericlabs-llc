@@ -97,3 +97,7 @@ From June on `commit_log.months` and the daily `commits` agree (June 1,999) beca
 - The `loc` weekly and daily series on the page still come from `loc_sweep.py` (`--all`, on_main flag) and differ from the table.
 - Repos with no main/master ref have no landed commits (two private repos, 365 commits in the old sweep). They show only in `commits_all_refs`.
 - The old sweep recorded the the monorepo main checkout only; record the directory used per repo in the sweep log.
+
+## Update 2026-11-23: past days restated
+The refresh of 23 November re-swept every repo under `~/workspace`. Two repos from the earlier sweeps are no longer on the host (specforge, 259 landed commits before 3 Nov; questrade-skill, 9), so earlier days lost commits (net -121 over past days; 28 and 29 May, the Devin burst above, fell most: 106 to 39 and 134 to 40). The sweep behind the previous update also ended on 3 Nov, so 4 to 9 Nov showed 0 landed commits; they now hold 521. The page's "What changed" line says both. `update_note.py` writes that line; run it by hand with the previous `data.json` at each update (the build drops a note whose date is not the data-through day).
+Known undercount: `commit_sweep.py` classes commits by authors named "Wren", "operator", "ChatGPT" or "cf2-*" as third party (about 140 landed commits since October; 6 on 22 Nov in this repo), so landed counts are a floor.

@@ -1,6 +1,6 @@
 {
   "schema": "token-usage-case-studies-v1",
-  "data_through": "2026-11-23T18:37:53Z",
+  "data_through": "2026-11-23T20:04:36Z",
   "studies": [
     {
       "id": "change",
@@ -21,7 +21,7 @@
       "title": "Compaction cuts context to a tenth",
       "story": "Compaction cut a long session's carried text to a median 10% of its size, and one session did it 140 times in 53 hours.",
       "setup": "When a session's text gets too long, Claude Code summarizes it into a shorter one (compaction) so the work can go on.",
-      "happened": "Across 1,743 compactions still on disk, 339,726,621 tokens became 34,220,862, freeing 305,505,759. The busiest session compacted 140 times, about once every 23 minutes.",
+      "happened": "Across 1,746 compactions still on disk, 340,316,393 tokens became 34,269,134, freeing 306,047,259. The busiest session compacted 140 times, about once every 23 minutes.",
       "number": "Median size after compaction: 9.8% of before.",
       "lesson": "Compaction frees space but does not stop the text growing back.",
       "sources": [
@@ -29,14 +29,14 @@
       ],
       "caveat": "Claude deletes transcripts after about 30 days, so this counts only transcripts still on disk and shrinks with each refresh unless retention is raised. Duplicate records from resumed sessions are removed.",
       "numbers": {
-        "boundaries": 1743,
+        "boundaries": 1746,
         "triggers": {
-          "auto": 1635,
+          "auto": 1638,
           "manual": 108
         },
-        "pre_tokens": 339726621,
-        "post_tokens": 34220862,
-        "freed_tokens": 305505759,
+        "pre_tokens": 340316393,
+        "post_tokens": 34269134,
+        "freed_tokens": 306047259,
         "median_post_pre_pct": 9.75,
         "busiest_count": 140,
         "first_timestamp": "2026-10-02T15:10:05.604Z",
