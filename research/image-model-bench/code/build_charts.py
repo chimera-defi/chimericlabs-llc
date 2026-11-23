@@ -6,14 +6,14 @@ here = os.path.dirname(os.path.abspath(__file__))
 vhere = os.path.join(here, '..', '..', 'video-model-bench', 'code')
 S = json.load(open(os.path.join(here, 'scores.json')))
 R = json.load(open(os.path.join(here, 'results2.json')))
-R3 = json.load(open(os.path.join(here, 'results3.json'))) + json.load(open(os.path.join(here, 'results4.json')))
+R3 = [r for fn in ('results3.json', 'results4.json', 'results5.json') for r in json.load(open(os.path.join(here, fn)))]
 import collections
 cost = collections.defaultdict(list)
 for r in R + R3:
     if r.get('cost'): cost[r['model']].append(r['cost'])
 import statistics
 secs = collections.defaultdict(list)
-for fn in ('results.json', 'results2.json', 'results3.json', 'results4.json'):
+for fn in ('results.json', 'results2.json', 'results3.json', 'results4.json', 'results5.json'):
     for r in json.load(open(os.path.join(here, fn))):
         if r.get('status') == 'completed' and r.get('seconds'): secs[r['model']].append(r['seconds'])
 VR = collections.defaultdict(list)
@@ -99,9 +99,10 @@ def chart(pts, cid, xlab, ylab, xt, ylo, yhi, title, desc, xk='cost', yk='qualit
     o.append('</svg>')
     return '\n'.join(o), len(fr)
 
+fr_img = sorted((p for p in img if p['model'] in frontier2(img, 'cost', 'quality', False)), key=lambda p: (p['cost'], p['model']))
 ic, nf = chart(img, 'ci', 'Cost per image (log scale)', 'Quality (mean of 4 scores, 0 to 5)', [.01, .02, .05, .1], 2, 5,
-               'Quality against cost per image for 13 image models',
-               'Scored models. Frontier: gpt-image-2 at $0.0085 scoring 4.5, then gpt-image-2.6-flare and gpt-image-2.6-sunburst at $0.0265 scoring 5.0 (tied, drawn side by side).')
+               f'Quality against cost per image for {len(img)} image models',
+               'Scored models. Frontier, cheapest first: ' + ', '.join(f"{p['model']} at ${p['cost']:g} scoring {p['quality']:g}" for p in fr_img) + ' (a tie at one price is drawn side by side).')
 vc, nv = chart(vid, 'cv', 'Cost per second of video (log scale)', 'Quality (mean of identity, motion, clean; 0 to 5)', [.02, .05, .1], 2, 5,
                'Quality against cost per second for 9 video models',
                'Image-to-video test with two start frames. Frontier models are cheapest or best at their price.')

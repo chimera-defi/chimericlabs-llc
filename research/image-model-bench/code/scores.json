@@ -1,17 +1,244 @@
 {
  "note": "Round 3 scores, 0 to 5, one reviewer viewing contact sheets sheet3_*.jpg (run A = round 2 image, run B = round 3 repeat). 5 = I would use it as is; props: 5 only when the PNG has real alpha (measured), 2 when the backdrop is drawn. pair and cine have one run.",
  "repeat": {
-  "fear":   {"gpt-image-2.6-flare":[5,5],"gpt-image-2.6-sunburst":[5,5],"gpt-image-2":[4,4],"flux-3-image":[3,3],"seedream-5-0-pro":[3,4]},
-  "wolf":   {"gpt-image-2.6-flare":[5,5],"gpt-image-2.6-sunburst":[5,5],"gpt-image-2":[4,4],"flux-3-image":[3,3],"seedream-5-0-pro":[4,2]},
-  "valley": {"gpt-image-2.6-flare":[5,5],"gpt-image-2.6-sunburst":[5,5],"gpt-image-2":[4,4],"flux-3-image":[4,3],"seedream-5-0-pro":[4,4]},
-  "props":  {"gpt-image-2.6-flare":[5,5],"gpt-image-2.6-sunburst":[5,5],"gpt-image-2":[5,2],"flux-3-image":[2,2],"seedream-5-0-pro":[2,2]}
+  "fear": {
+   "gpt-image-2.6-flare": [
+    5,
+    5
+   ],
+   "gpt-image-2.6-sunburst": [
+    5,
+    5
+   ],
+   "gpt-image-2": [
+    4,
+    4
+   ],
+   "flux-3-image": [
+    3,
+    3
+   ],
+   "seedream-5-0-pro": [
+    3,
+    4
+   ],
+   "flux-3-image-klein": [
+    4,
+    4
+   ]
+  },
+  "wolf": {
+   "gpt-image-2.6-flare": [
+    5,
+    5
+   ],
+   "gpt-image-2.6-sunburst": [
+    5,
+    5
+   ],
+   "gpt-image-2": [
+    4,
+    4
+   ],
+   "flux-3-image": [
+    3,
+    3
+   ],
+   "seedream-5-0-pro": [
+    4,
+    2
+   ],
+   "flux-3-image-klein": [
+    4,
+    4
+   ]
+  },
+  "valley": {
+   "gpt-image-2.6-flare": [
+    5,
+    5
+   ],
+   "gpt-image-2.6-sunburst": [
+    5,
+    5
+   ],
+   "gpt-image-2": [
+    4,
+    4
+   ],
+   "flux-3-image": [
+    4,
+    3
+   ],
+   "seedream-5-0-pro": [
+    4,
+    4
+   ],
+   "flux-3-image-klein": [
+    4,
+    4
+   ]
+  },
+  "props": {
+   "gpt-image-2.6-flare": [
+    5,
+    5
+   ],
+   "gpt-image-2.6-sunburst": [
+    5,
+    5
+   ],
+   "gpt-image-2": [
+    5,
+    2
+   ],
+   "flux-3-image": [
+    2,
+    2
+   ],
+   "seedream-5-0-pro": [
+    2,
+    2
+   ],
+   "flux-3-image-klein": [
+    2,
+    2
+   ]
+  }
  },
  "single": {
-  "cine": {"gpt-image-2.6-flare":5,"gpt-image-2.6-sunburst":5,"gpt-image-2":4,"flux-3-image":3,"seedream-5-0-pro":4,"gemini-3-pro-image-preview":4},
-  "pair": {"gpt-image-2.6-flare":4,"gpt-image-2.6-sunburst":3,"gpt-image-2":3,"flux-3-image":3,"seedream-5-0-pro":4,"gemini-3-pro-image-preview":3}
+  "cine": {
+   "gpt-image-2.6-flare": 5,
+   "gpt-image-2.6-sunburst": 5,
+   "gpt-image-2": 4,
+   "flux-3-image": 3,
+   "seedream-5-0-pro": 4,
+   "gemini-3-pro-image-preview": 4
+  },
+  "pair": {
+   "gpt-image-2.6-flare": 4,
+   "gpt-image-2.6-sunburst": 3,
+   "gpt-image-2": 3,
+   "flux-3-image": 3,
+   "seedream-5-0-pro": 4,
+   "gemini-3-pro-image-preview": 3
+  }
  },
- "pair_notes": {"gpt-image-2.6-sunburst":"copied the reference's gold frame border","gpt-image-2":"copied the reference's gold frame border","gemini-3-pro-image-preview":"copied the reference's gold frame border"},
- "pass2_scores": {"gpt-image-2.6-flare":[5,5,5,5],"gpt-image-2.6-sunburst":[5,5,5,5],"flux-2-max":[3,3,5,2],"flux-kontext-max":[2,2,5,1],"qwen-image-3.0-pro":[4,4,3,2],"kling-v4-image":[4,2,2,2],"flux-3-image":[4,3,5,2],"flux-2-flex":[4,3,5,2],"seedream-5-0-pro":[4,3,5,2],"gpt-image-2.5-flare":[4,4,5,5],"gpt-image-2":[4,4,5,5],"wan2.7-image-pro":[3,3,5,4],"hy-image-v3.5-preview":[3,3,4,3],"flux-3-image-klein":[4,4,5,2],"mai-image-2.6-flash":[4,4,5,2]},
+ "pair_notes": {
+  "gpt-image-2.6-sunburst": "copied the reference's gold frame border",
+  "gpt-image-2": "copied the reference's gold frame border",
+  "gemini-3-pro-image-preview": "copied the reference's gold frame border"
+ },
+ "pass2_scores": {
+  "gpt-image-2.6-flare": [
+   5,
+   5,
+   5,
+   5
+  ],
+  "gpt-image-2.6-sunburst": [
+   5,
+   5,
+   5,
+   5
+  ],
+  "flux-2-max": [
+   3,
+   3,
+   5,
+   2
+  ],
+  "flux-kontext-max": [
+   2,
+   2,
+   5,
+   1
+  ],
+  "qwen-image-3.0-pro": [
+   4,
+   4,
+   3,
+   2
+  ],
+  "kling-v4-image": [
+   4,
+   2,
+   2,
+   2
+  ],
+  "flux-3-image": [
+   4,
+   3,
+   5,
+   2
+  ],
+  "flux-2-flex": [
+   4,
+   3,
+   5,
+   2
+  ],
+  "seedream-5-0-pro": [
+   4,
+   3,
+   5,
+   2
+  ],
+  "gpt-image-2.5-flare": [
+   4,
+   4,
+   5,
+   5
+  ],
+  "gpt-image-2": [
+   4,
+   4,
+   5,
+   5
+  ],
+  "wan2.7-image-pro": [
+   3,
+   3,
+   5,
+   4
+  ],
+  "hy-image-v3.5-preview": [
+   3,
+   3,
+   4,
+   3
+  ],
+  "flux-3-image-klein": [
+   4,
+   4,
+   5,
+   2
+  ],
+  "mai-image-2.6-flash": [
+   4,
+   4,
+   5,
+   2
+  ],
+  "mai-image-2.7-flash": [
+   4,
+   4,
+   5,
+   2
+  ],
+  "z-image-turbo": [
+   3,
+   2,
+   2,
+   2
+  ]
+ },
  "pass4_note": "Pass 4 (2026-11-22, run4.py, results4.json): three models new to the bench on the pass-2 prompts, one run each, scored on the pass-2 columns beside the pass-2 images. flux-3-image-klein and mai-image-2.6-flash draw the backdrop on the props sheet (white or a checkerboard, no alpha channel), so edge_alpha 2. gpt-image-1.5 rejects size 16:9 (ran at 1536x1024) and billed $0.163 for the one props image, so it stopped there unscored; its PNG has real alpha but the cat's eyes are cut out.",
- "pass2_score_columns": ["style","emotion_faces","text_free","edge_alpha"]
+ "pass2_score_columns": [
+  "style",
+  "emotion_faces",
+  "text_free",
+  "edge_alpha"
+ ],
+ "pass5_note": "Pass 5 (2026-11-23, run4.py with RUN4_RESULTS=results5.json, $0.10): the pass-2 prompts, one run each, scored by Wren (Claude Opus 5.5) on the pass-2 columns beside the pass-2 and pass-4 images. flux-3-image-klein is a repeat: its repeat runs are run A = pass 4, run B = pass 5, and its pass-2 columns did not change (4, 4, 5, 2). mai-image-2.7-flash: a polished painted style, worried rather than frightened faces, no text, a drawn checkerboard on props. z-image-turbo: flatter and muddier plates, calm faces on the fear prompt, gibberish text on the tickets, a drawn white backdrop on props. No props PNG from pass 5 has an alpha channel (alpha_results.jsonl)."
 }

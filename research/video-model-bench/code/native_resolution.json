@@ -1,0 +1,133 @@
+{
+ "note": "ffprobe of the 16 original clips as the gateway returned them (before the 640 px page re-encode), 2026-11-23",
+ "clips": [
+  {
+   "model": "MiniMax-Hailuo-2.3-Fast",
+   "img": "boy",
+   "width": 1364,
+   "height": 768,
+   "fps": 24,
+   "seconds": 5.88
+  },
+  {
+   "model": "MiniMax-Hailuo-2.3-Fast",
+   "img": "wolf",
+   "width": 1364,
+   "height": 768,
+   "fps": 24,
+   "seconds": 5.88
+  },
+  {
+   "model": "kling-v3 (std)",
+   "img": "boy",
+   "width": 1280,
+   "height": 720,
+   "fps": 24,
+   "seconds": 5.04
+  },
+  {
+   "model": "kling-v3 (std)",
+   "img": "wolf",
+   "width": 1280,
+   "height": 720,
+   "fps": 24,
+   "seconds": 5.04
+  },
+  {
+   "model": "kling-v4-flash",
+   "img": "boy",
+   "width": 1280,
+   "height": 720,
+   "fps": 24,
+   "seconds": 5.04
+  },
+  {
+   "model": "kling-v4-flash",
+   "img": "wolf",
+   "width": 1280,
+   "height": 720,
+   "fps": 24,
+   "seconds": 5.04
+  },
+  {
+   "model": "seedance-2.0",
+   "img": "boy",
+   "width": 864,
+   "height": 496,
+   "fps": 24,
+   "seconds": 5.04
+  },
+  {
+   "model": "seedance-2.0",
+   "img": "wolf",
+   "width": 864,
+   "height": 496,
+   "fps": 24,
+   "seconds": 5.04
+  },
+  {
+   "model": "seedance-2.5-flash",
+   "img": "boy",
+   "width": 854,
+   "height": 480,
+   "fps": 24,
+   "seconds": 5.04
+  },
+  {
+   "model": "seedance-2.5-flash",
+   "img": "wolf",
+   "width": 854,
+   "height": 480,
+   "fps": 24,
+   "seconds": 5.04
+  },
+  {
+   "model": "veo3.1-fast",
+   "img": "boy",
+   "width": 1280,
+   "height": 720,
+   "fps": 24,
+   "seconds": 7.92
+  },
+  {
+   "model": "veo3.1-fast",
+   "img": "wolf",
+   "width": 1280,
+   "height": 720,
+   "fps": 24,
+   "seconds": 7.92
+  },
+  {
+   "model": "veo3.1-quality",
+   "img": "boy",
+   "width": 1280,
+   "height": 720,
+   "fps": 24,
+   "seconds": 7.92
+  },
+  {
+   "model": "wan2.6-i2v-flash",
+   "img": "boy",
+   "width": 1280,
+   "height": 720,
+   "fps": 30,
+   "seconds": 5.0
+  },
+  {
+   "model": "wan2.6-i2v-flash",
+   "img": "wolf",
+   "width": 1280,
+   "height": 720,
+   "fps": 30,
+   "seconds": 5.0
+  },
+  {
+   "model": "wan2.7",
+   "img": "boy",
+   "width": 1280,
+   "height": 720,
+   "fps": 30,
+   "seconds": 5.0
+  }
+ ]
+}
