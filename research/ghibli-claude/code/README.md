@@ -7,6 +7,11 @@ Local paths were rewritten: `/home/.../workspace/` was dropped (so `ghibli-scrat
 ## Files
 | file | what it is |
 |---|---|
+| `reviews/REVIEW12.md` | cut 12: the blind gate against cut 10 and a hidden re-encoded cut 10 twin (Fable, Opus, Haiku), the control read, what was kept, fixed and left |
+| `reviews/REVIEW11_opus.md`, `REVIEW11_fable.md` | cut 11 from the Opus lead and the Fable lead: checks, blind rounds, spend, and the A/B record of the two runs |
+| `notes/SPEC11_opus.md`, `SPEC11_fable.md` | the cut 11 spec each lead wrote before building |
+| `notes/METRICS11_fable.md` | the Fable lead's cut 11 run: wall time, renders, spend, friction rows |
+| `notes/LESSONS-cut11-ab.md` | the cut 11 A/B lessons, with the operator's neutral blind rank (cut 10, then Opus cut 11, then Fable cut 11) |
 | `notes/NOTES10.md` | cut 10: the code-drawn train, the three tunnel options with costs, the blind review, the polish pass and the open defects |
 | `notes/NOTES9.md` | cut 9: each defect, what changed and the before/after strips |
 | `notes/PLAN9.md` | the cut 9 plan and its done gate |
@@ -24,7 +29,7 @@ Local paths were rewritten: `/home/.../workspace/` was dropped (so `ghibli-scrat
 | `strips/` | cut 10 strips named in `NOTES10.md` (before and after, options A, B and C, cut boundaries, keyframe sheet), downsized to at most 1600 px wide |
 | `strips/polish/` | the cut 10 polish pass strips (old against new, sway map, light, pantograph, wolf scale) |
 
-The cut 9 strips named in `NOTES9.md` (129 MB) and the reference-film strips are not copied. All prompts, including the video bench ones, are also in `../../video-model-bench/code/prompts.json`.
+The cut 11 and cut 12 files cite evidence paths (`review/blind12/`, sheets, takes, `out/`) in the private film folders; those are not copied. The cut 9 strips named in `NOTES9.md` (129 MB) and the reference-film strips are not copied. All prompts, including the video bench ones, are also in `../../video-model-bench/code/prompts.json`.
 
 ## Rerun
 The scripts need the private film toolkit (`film-kit`) or the scratch `api.py` client, so they do not run from this folder alone. The toolkit (`gen10.py`, `genkeysA.py`) reads the key from `GEN_API_KEY`, else `~/secrets/apimart_api_key`; the scratch client (`gen9.py`) reads only that file. Neither prints it. Example: `python3 gen10.py vid TAG "PROMPT" start.png end.png` makes one 8 s veo3.1-fast clip in first+last frame mode.
