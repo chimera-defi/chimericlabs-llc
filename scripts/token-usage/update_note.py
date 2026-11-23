@@ -1,10 +1,16 @@
 #!/usr/bin/env python3 -I
 """Write handoff/update_note.json: the "What changed since the last update" lines (numbers only, from files).
-usage: update_note.py OLD_DATA_JSON NEW_DATA_JSON DAILY_CSV WEEKLY_LIMIT_CSV OUT_JSON
+usage: update_note.py OLD_DATA_JSON NEW_DATA_JSON DAILY_CSV WEEKLY_LIMIT_CSV OUT_JSON [--reason TEXT]
+  --reason TEXT  why earlier days changed (checked by hand); without it the line states the change and no reason
 OLD_DATA_JSON is the previously published data.json (git show origin/main:research/token-usage/data.json).
 Commit and token totals are summed from daily.csv rows (landed = non-merge, on main, copies collapsed); the old totals
 come from the old data.json 'daily' rows, so both sides use one definition."""
 import csv, json, sys
+args = sys.argv[1:]
+reason = ''
+if '--reason' in args:
+    i = args.index('--reason'); reason = args[i + 1]; del args[i:i + 2]
+sys.argv = [sys.argv[0]] + args
 old, new = (json.load(open(p)) for p in sys.argv[1:3])
 rows = list(csv.DictReader(open(sys.argv[3])))
 wk = list(csv.DictReader(open(sys.argv[4])))[-1]
@@ -26,6 +32,6 @@ lines = [
 ]
 if zero:
     lines.append(f"The old table showed zero commits for {zero[0]}..{zero[-1]}: its sweep stopped early. Those days hold {c(fixed)} landed commits.")
-if delta: lines.append(f"Earlier days changed by {delta:+d} commits: two repos are gone from this host.")  # explanation checked 2026-11-23 (specforge, questrade-skill); re-check on the next update
+if delta: lines.append(f"Earlier days changed by {delta:+d} commits" + (f": {reason}." if reason else "."))
 json.dump({'data_through': new['data_through'][:10], 'lines': lines, 'weekly': {k: wk[k] for k in ('date', 'week_reset', 'percent_used')}}, open(sys.argv[5], 'w'), indent=1)
 print('\n'.join(lines))
