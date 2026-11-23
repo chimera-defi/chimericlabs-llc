@@ -1,0 +1,23 @@
+I've read every strip and still. Here is my review.
+
+BLOCKING:
+1. Pointer 8 / story, 29.5–31.5 s: the blue crane doesn't clearly reach the bell, so it reads as though the wolf eats a beetle. At 29.5 a brown winged insect (the beetle from 0–3 s) flies in. At 31.0 a brown-gold winged shape sits on the bell while the pale-blue crane is still low-left by her scarf. At 31.5 the wolf's jaws close on the brown-gold shape. Only afterwards (33.5–35.5) do blue scraps drift past. A first-time viewer could think the wolf ate the beetle. I'm reading this from 2 fps strips with no full-res bell still, so check a full frame at 31.0. Smallest fix: take the beetle out of 29–32 s, or make the blue crane the object that lands on the bell and goes into the jaws at 31.0–31.5.
+2. Cut boundary 33.0→33.5 s (bell→lick): the light jumps. The girl's close-up is in bright midday blue, and the next shot is the same wolf, a second later in the same action, licking under a pink-purple sunset sky. Smallest fix: grade the lick shot to midday to match 33.0, and start dusk at the boy shot (36.0); or play a slow dissolve there so it reads as time passing.
+3. Same girl / morph, 30.5→31.0 s, inside the bell shot (no cut in the cut list): her hair goes from jet black (28.5–30.5) to brown (31.0–33.0) and her face is redrawn. This looks like a join between two generated clips. Smallest fix: colour-match the second half's hair to the first, or regenerate it from the last frame of the first half.
+
+NON-BLOCKING:
+- Lake shot 20.9–24.4: a lavender sky between two blue-midday shots, plus white doves and white paper shapes on the water, make it hard to see which bird is ours. Fewer white birds and a bluer grade would fix both.
+- 16.4: the first frame of the stamp shot shows a blank brass plate; "PAR AVION / N° 27" appears 0.25 s later. Start with the text already there.
+- 16.9→17.15: the white crane becomes the white card in a quarter-second blink. Hold a 0.5 s flatten so the change can be followed.
+- The window-POV shot (24.4–28) has no boy in it. The cap and cat imply him, but one glimpse of his arm or cap would tie it together.
+- Dusk boy (36–38.5): he is still the same boy (cap, curls, collar), but his face is a bit more angular and older than at 13–20 s. It's acceptable.
+- Cat: across all three cat shots the crops shift slightly between frames, but stills can't show whether it is breathing. Check it in motion.
+
+CHECKED AND FINE: the train is on rails throughout; it enters the tunnel at 9.05–9.8 and comes out of the arch at 10.05–13.0. The crane rides the train out and then flies in to land on the boy's palm at 15.15, correctly sized, with no pop. The paper chain reads clearly: ticket in the girl's hand → white crane → card on the plate → stamped at 17.4 → blue card with seal → blue crane at 18.9–19.15 → back in his hand at 19.65. The stamp scene runs about 3 s, with a clean "PAR AVION" sign. The girl's legs pedal and her wheel splashes through the puddle. The wides pan and push. The sad faces, torn blue wing, tears, end splashes and fade are all there.
+
+VS REFERENCE:
+- Tunnel: better. The reference never shows the train entering or leaving a tunnel; cut 9 shows it going in and coming out of the arch, on rails, with the crane riding along.
+- Palm / first crane: equal to slightly better. It's the same framing as the reference, plus the cat-on-cap detail and a closed-eye smile; the landing is as clean as the reference's.
+- Paper→bird: better. There's a real sign and a white→blue card change with a seal, and the stamped bird visibly folds and flies, where the reference only shows a vague plate.
+
+VERDICT: FAIL. Items 2 and 3 show clearly in the strips. Item 1 needs a full-res frame at 31.0 to confirm.

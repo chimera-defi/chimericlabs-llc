@@ -1,0 +1,17 @@
+BLOCKING:
+none. I could not point at a frame that breaks any of the 8 pointers, a cut boundary or the style rule.
+
+NON-BLOCKING:
+1. Lake shot, 21.4-24.6 s (laketrain, full_lake): the train's front faces the camera with its lamps lit, but it moves away from the trackside signal. That is backing away nose-first, even though the camera is pulling back. It stays on the rails, so it doesn't break pointer 1, but a sharp viewer may read it as reversing. Fix: let the train gain on the signal, or turn it to tail-first. This shot's sky is also the biggest style shift in the film (blotchy, posterised clouds against the soft boy shots on either side).
+2. Pose snaps at 15.8 s (pose30 row 2, frames 3-4): the eyes close, the head tilts and the arm dips, all in one frame, just as the crane lands. Background and crane stay put, so it is a cel swap, not a teleport. The 38.0 s cry is the same kind of change and leaves a translucent double of the sleeve for a frame or two (wing strip, 38.0). Fix: 2-3 in-between frames each.
+3. The wolf has three different looks: a round-headed, dog-like runner at 27 s, a sharp profile with bold stripes at 32 s, and a soft fluffy front view at 34.5 s. Fix: give all three the same muzzle and face markings.
+4. A brown beetle sits on the bell from 30.0 to 31.9 s (bite strip) and pulls the eye away from the blue bird the wolf is about to eat. Cut it, or move it off the bell.
+5. Cat breathing: clear only in the window wide (breath row 4). In the three boy shots it moves less than one grid line. The stamp close-up, 16.8-20.0 s, is not evidenced: its outline looks the same at 16.8, 18.3 and 19.8 s at strip scale. Fix: add a breath crop for that shot and raise the amplitude a little everywhere.
+6. At 19.8→20.0 s the blue bird leaves the sill shot upward and is already sitting on his palm in the next frame (cuts row 6). Fine as a cut on the action, but 3-4 frames of it settling would match the white crane's landing.
+
+VS REFERENCE:
+- Tunnel: better. The train visibly rolls into the portal (9.2-10.2 s) and out of the arch (10.4 s) on rails. The white bird follows it in, comes out at 11.45 s and rides the pantograph. The reference has no clear in and out.
+- Palm / first crane: better. It is a long, readable flight (14.05-15.55 s) that lands on the palm at the right size (full_palm). Only the one-frame head snap at 15.8 s is cruder than the reference's held pose.
+- Paper -> bird: better. Every step has real in-between frames: ticket to crane in her hand, white crane to card, stamp, blue card with seal, fold to blue crane, flight. The scene runs 3.2 s under a legible "PAR AVION / Nº 27" plate, where the reference's card change is murky.
+
+VERDICT: PASS

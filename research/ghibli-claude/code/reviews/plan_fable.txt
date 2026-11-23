@@ -1,0 +1,17 @@
+**A. BLOCKING**
+1. **The landing shot is unprobed.** The gate only tested kboy_a, but `boy` (palm/first crane) now uses kboy_b, and row 2 still says "one take feeds both". Fix: probe kboy_b before fan-out and update row 2.
+2. **Dusk boy is gated on identity only.** c8_36.5 has a different carriage (pale square frame, bare plank sill, black void behind him) and a daylight-lit boy on a dusk plate. That is the "dark niche" defect row 2 already lists for 35–37.8. Fix: make K_dusk (edit of kboy_a) the default.
+3. **Tunnel has no gate and no fallback.** K_tun is unprobed, `viaduct3d` is removed, and the zero-spend fallback covers faces only. Entry rests on a tiny train in the ticket wide. Fix: gate K_tun on rails, livery matching the 20 s engine train, and visible entry and exit; name the fallback shot.
+4. **Crane to flat card has no owner.** Row 3 ends with a crane on the palm, row 4 starts "card flat" at 16.6; your rubric makes that jump blocking. Fix: put the set-down and unfold beat in `stamp.js`.
+5. **Stamp sill sits between two generated-carriage shots.** Fix: build its sill, plate and light from the kboy plate.
+6. **A scarf tail alone won't say "girl's hand".** Fix: add her sleeve and the handlebar/bell from the 28 s close-up.
+
+**B.**
+- **Same child: yes.** Cap, band, button, curls, collar, blush and line weight match; the generated iris is smaller and darker, which won't show across the gap.
+- **Inside: yes.** The panelling and curtain behind him and the post behind his head put the camera in the carriage. One caveat: in kboy_a the sill trim crosses in front of his torso, so open on the wide, then go close.
+
+**C.** The code crane on a generated hand. In the probe the fingers curl at 4–5.5 s and veo invents paper. Nothing tracks the palm, the hand can't dip, and a 24 fps plate (per the plan; I couldn't measure it) under 30 fps code will slip. Cheapest mitigation: a hand-keyed palm anchor JSON per clip, a still-hand window, and clip speed 1.25 so one source frame maps to one output frame. The probe landscape also barely scrolls.
+
+**D.** Cut the code push/drift on the boy clip shots. It complicates crane registration and softens an upscaled plate; the wide-to-close cut already gives the move.
+
+VERDICT: REVISE

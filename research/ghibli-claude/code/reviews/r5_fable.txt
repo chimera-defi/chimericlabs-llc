@@ -1,0 +1,35 @@
+BLOCKING:
+1. Pointer 2, 20.0–21.3 s (second boy shot, blue bird on his hand). His top changes from the shots either side.
+   - At 13.8–16.8 s and 36.4–39.2 s the sailor collar is navy with white stripes and the sleeve has a rolled cuff (`c9r5_full_palm.jpg`, `c9r5_full_dusk.jpg`).
+   - At 20.0–21.3 s the collar is white with navy stripes and the sleeve is plain (`c9r5_full_boyb.jpg`).
+   - It shows at thumbnail size in `c9r5_all_b.jpg`: a dark navy shoulder in the 14.0–16.5 row, an all-white top in the 20.0–21.0 row.
+   - Cap, band, button, curls and face all hold, so it reads as a costume flip on the same boy, 3.2 s apart in one scene.
+   - Smallest fix: recolour the collar and cuff across that 1.3 s shot, or regenerate it from the last frame of the first boy shot.
+
+NON-BLOCKING:
+1. 16.8–20.0 s sill insert: the cat and cap are missing, though in the wides the cat's tail touches the PAR AVION plate. Crop tighter or add a breathing flank at the left edge.
+2. 8.2–8.4 s: the ticket becomes the crane as a sparkle swap in about three frames (`c9r5_ticketfold.jpg`), with no fold in-betweens. The bird clearly comes from her hand, but half a second of folding would read better.
+3. 9.3–10.1 s: the train entering the portal is small and on screen under a second. It is visibly swallowed by the arch and never crosses stone, but a viewer following the bird may miss it; hold the wide about 0.5 s longer.
+4. 29.5–31.0 s: the blue bird drops to the bell from ahead of the girl, after flying left to right in the lake and window shots. This is a screen-direction flip.
+5. 31.2–33.0 s: a pale see-through vertical bar sits under the handlebar stem (`c9r5_full_bite.jpg`, bottom centre). Paint it as a solid head tube.
+6. Not verifiable from the supplied strips:
+   - whether the torn wing lands on the palm without a pop (37.5–38.0 s is covered only at 2 fps);
+   - whether the lake train (21.3–24.6 s) moves along the rails or sits still under the zoom-out.
+
+Everything else holds in the frames:
+- Pointer 1: the train is on rails in every shot, goes in at 9.3–10.1 s and comes out through the arch at 10.4–13.8 s with dust and petals.
+- Pointer 3: the crane glides in from the left edge at 14.05 s and settles on the palm at 15.8 s, palm-sized, with no pop.
+- Pointer 4: the chain reads as crane → white card (17.4 s) → stamp (18.05 s) → blue card with seal (18.3–19.0 s) → fold → blue bird → hand → release. The scene runs 3.2 s and the "PAR AVION / N° 27" sign is clean.
+- Pointer 5: the girl is on the path and her knee rises and falls in the 12 fps rows, with a puddle splash.
+- Pointer 6: the cat's back rises and falls and an ear flicks in all four shots it is in; the motion is subtle but present.
+- Pointer 7: every wide drifts, pushes or pulls; the 9.2–10.4 s wide moves least.
+- Pointer 8: the wolf twist, her frown and tears, his tear, the blue stamped bird, the splashes and the end fade are all there.
+- Cuts: no jump in light or bird position at any cut; the day-to-dusk change is covered by the dissolve at 34.0 s.
+- Generated footage: no morphing faces, garbled text or extra people.
+
+VS REFERENCE:
+- Tunnel: better. The reference only passes an arch; cut 9 shows a real in and out on rails with the bird following through. The entry is small, though.
+- Palm / first crane: better. The boy is inside the carriage, the landing is clean and correctly sized, the cat and cap are on the sill and the view scrolls.
+- Paper → bird: better at the sill (longer, legible sign, every step shown). Worse in the girl's hand, where the reference morphs the ticket gradually and cut 9 swaps it in a sparkle.
+
+VERDICT: FAIL — one blocking item, the collar and sleeve flip at 20.0–21.3 s; recolouring that single shot would clear it.

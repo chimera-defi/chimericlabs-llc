@@ -1,0 +1,18 @@
+Read all 25 listed images (3 reference, 22 cut 9). No commands run, no files edited.
+
+BLOCKING:
+1. 26.5 to 27.0 s (all_c, row 2): the white wolf is absent in the 26.5 s frame (cyclist and house only) and is large and fully on screen by 27.0 s. A first-time viewer sees a 0.5 s pop with no entry path. Smallest fix: have it enter from a frame edge or from behind the house over about 0.6 to 1.0 s.
+
+NON-BLOCKING:
+- Cat: c9r4_breath shows small body and ear shifts between 13.82, 14.99 and 14.88 s, but at playback speed it reads close to static. Increase the chest rise so the breath is unmistakable.
+- A wasp or bee hovers by the bell at about 30 to 32.5 s and in the wolf's mouth at the bite. It competes with the bird beat. Move it away from the bell or remove it.
+- Dusk torn wing (full_dusk, 36.5 to 38.5 s): the blue piece on the palm reads as a lump. Make the torn wing shape clearer.
+- End splashes (40 to 42 s): too small to read in the wide. One larger splash would land the beat.
+- Stamp scene (17.5 to 19.0 s): the card is about 60 px wide in the wide. The stamp reads in full_stamp, but a closer insert would help.
+
+VS REFERENCE:
+- Tunnel: equal to slightly better. Train enters the far portal (9.2 to 10.4 s), emerges toward camera through petals (12 to 13.5 s), and a bird rides the catenary. Same beat as ref, with more flying motion.
+- Palm / first crane: equal. Crane arrives from above-left and settles on the palm around 15.8 to 16.5 s with no pop. Same beat as ref at 14.5 to 17 s.
+- Paper to bird: better. Ticket-to-crane fold with sparkles in the palm (8.0 to 9.0 s). White card to stamp to blue card with seal to blue bird reads more clearly than ref at 17.5 to 20.5 s.
+
+VERDICT: FAIL (one blocking finding: wolf pop at 26.5 to 27.0 s).

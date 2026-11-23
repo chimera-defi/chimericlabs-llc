@@ -1,0 +1,153 @@
+{
+ "fps": 60,
+ "w": 1920,
+ "h": 1080,
+ "duration": 43.8,
+ "shots": [
+  {
+   "id": "reed",
+   "start": 0.0,
+   "end": 3.4,
+   "in": {
+    "type": "cut"
+   }
+  },
+  {
+   "id": "ride",
+   "start": 3.4,
+   "end": 7.2,
+   "in": {
+    "type": "cut"
+   }
+  },
+  {
+   "id": "ticket",
+   "start": 7.2,
+   "end": 10.4,
+   "in": {
+    "type": "cut"
+   }
+  },
+  {
+   "id": "tunnel",
+   "start": 10.4,
+   "end": 13.8,
+   "in": {
+    "type": "cut"
+   }
+  },
+  {
+   "id": "boy",
+   "start": 13.8,
+   "end": 16.8,
+   "in": {
+    "type": "cut"
+   }
+  },
+  {
+   "id": "stamp",
+   "start": 16.8,
+   "end": 20.0,
+   "in": {
+    "type": "cut"
+   }
+  },
+  {
+   "id": "boy_b",
+   "start": 20.0,
+   "end": 21.4,
+   "in": {
+    "type": "cut"
+   }
+  },
+  {
+   "id": "lake",
+   "start": 21.4,
+   "end": 24.8,
+   "in": {
+    "type": "cut"
+   }
+  },
+  {
+   "id": "window",
+   "start": 24.8,
+   "end": 29.0,
+   "in": {
+    "type": "cut"
+   }
+  },
+  {
+   "id": "bell",
+   "start": 29.0,
+   "end": 34.0,
+   "in": {
+    "type": "cut"
+   }
+  },
+  {
+   "id": "lick",
+   "start": 34.0,
+   "end": 36.4,
+   "in": {
+    "type": "dissolve",
+    "dur": 0.5
+   }
+  },
+  {
+   "id": "duskboy",
+   "start": 36.4,
+   "end": 39.2,
+   "in": {
+    "type": "cut"
+   }
+  },
+  {
+   "id": "duskwide",
+   "start": 39.2,
+   "end": 43.8,
+   "in": {
+    "type": "cut"
+   }
+  }
+ ],
+ "end_fade": {
+  "start": 42.4,
+  "dur": 1.4
+ },
+ "cues": {
+  "tunnel_in": 9.7,
+  "card_fold": 19.06,
+  "water_takeoff": 22.4,
+  "skim": 23.7,
+  "splash_1": 40.3,
+  "splash_2": 40.8,
+  "splash_3": 41.25,
+  "train_pass": 1.2,
+  "beetle_takeoff": 2.4,
+  "wolf_speck": 6.0,
+  "fold": 8.2,
+  "bird_takeoff_hand": 8.8,
+  "land_palm": 15.667,
+  "stamp_puff": 17.6,
+  "stamp_hit": 18.0,
+  "takeoff_palm": 20.6,
+  "girl_in_window": 25.2,
+  "wolf_in_window": 27.0,
+  "wolf_thud_1": 27.25,
+  "wolf_thud_2": 27.75,
+  "wolf_thud_3": 28.25,
+  "beetle_return": 29.6,
+  "beetle_land": 30.5,
+  "bell_land": 30.8,
+  "wolf_rise": 31.4,
+  "bite": 32.4,
+  "bell_ring": 33.4,
+  "lick": 34.3,
+  "beetle_speck": 34.5,
+  "gulp": 35.5,
+  "wing_land": 38.0,
+  "bell_far": 41.6,
+  "howl": 42.2,
+  "tunnel_out": 10.4
+ }
+}

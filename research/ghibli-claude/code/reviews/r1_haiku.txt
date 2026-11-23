@@ -1,0 +1,21 @@
+BLOCKING:
+1. Pointer 1, 9.5-10.05 s: The train enters a village viaduct arch (c9r1_all_a/c9r1_tunnel), but the next shot at 10.05 shows it already coming out of a different, wisteria-framed portal. Entry and exit don't match, so the viewer sees a location jump. Smallest fix: have the train enter and exit the same portal, or cut the entry shot to the wisteria tunnel.
+2. Pointer 4, 16.9-17.15 s (c9r1_paperbird, c9r1_full_stamp): The white crane stands on the PAR AVION plate at 16.9 s and a flat white card appears under the stamp at 17.15 s. No flatten step is visible, so the bird becomes a card in one frame. Smallest fix: a 6-8 frame tween of the crane squashing into the card, or a visible flutter before the stamp hand comes in.
+3. Pointer 4, 18.65-18.9 s (c9r1_paperbird): The blue card is flat on the plate at 18.65 s and a blue crane stands there at 18.9 s. The fold is a snap. Smallest fix: the same tween in reverse, folding the card into the crane over about 6-8 frames.
+4. Pointer 6, cat (c9r1_cat, first shot, 8 fps): The cat's silhouette, head angle and tail are essentially identical across about 1 s of crops, with no visible rise and fall of the body. It reads as a held sticker. This is a judgment call on a small motion, but the owner's pointer asks for it explicitly. Smallest fix: add a 2-3% body rise and fall, plus an ear or tail twitch, in each cat shot.
+Cut boundary: none other found beyond item 1. The 13.05 s tunnel-to-window cut and the 16.4 s boy-to-stamp cut both carry the bird's position across the cut consistently.
+
+NON-BLOCKING:
+- Pointer 5: the girl's legs are only about 30 px at 8 fps, so I could not confirm pedal cadence with confidence. Check at full rate.
+- Pointer 7: the boy's window shots are almost locked off apart from slow zooms. The wides (bridge, cliff, lake, meadow) carry the flying feel well.
+- Style: the stamp close-up (c9r1_full_stamp) is soft-focus and more photographic than the painted boy shots. It stands out a little.
+- The dusk "torn blue wing" (c9r1_full_dusk) reads as a flat blue fan on the palm, not clearly a torn wing.
+- The bird is on the train roof at 12.5-13.05 s (c9r1_tunnel) but not visibly flying into the tunnel, so the "bird follows the train in" beat is implied, not shown.
+- The wolf and lick hold (33-36 s) runs about 3 s on one close-up; trim it or add more movement.
+
+VS REFERENCE:
+- Tunnel: worse. The reference's train and portal stay continuous, while cut 9 breaks entry/exit (item 1).
+- Palm / first crane: equal to better. The crane comes in from the left, grows smoothly and settles on the palm at about 15.15 s with no pop (c9r1_palm).
+- Paper -> bird: better in legibility (white crane -> card -> stamp -> blue card -> blue crane is complete, and the plate sign reads as "PAR AVION N° 27"), but worse at the two snaps (items 2-3).
+
+VERDICT: FAIL (four blocking items: one cut/jump and two fold snaps, plus the cat-motion check).

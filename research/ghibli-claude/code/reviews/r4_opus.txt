@@ -1,0 +1,29 @@
+BLOCKING:
+1. Cut boundary at 16.8 s: the white crane's drop plays twice. In c9r4_handoff.jpg at 16.6 and 16.7 s, in the boy shot, the crane has already fallen to sill height, about half a bird-height above the brass plate. At 16.8 s the sill close-up opens with the crane cut off in the top-left corner, about three bird-heights above the plate and well to its left. It then flutters down again and lands at about 17.3 s. A viewer sees the bird nearly touch down, jump back up and off to the side, and fall a second time. Smallest fix: cut out of the boy shot at about 16.45 s, while the crane is still just under the palm, and keep the close-up entry. Or keep the cut at 16.8 s and start the close-up with the crane about one bird-height above the plate, as at 17.2 s.
+
+The other pointers held where I could check them. Pointer 6 is unverified in one shot; see note 5.
+- Pointer 1: the train goes into the far portal on rails (9.3–10.2 s), comes out of the near arch on visible rails (10.4–13.5 s), and is on rails on the lake trestle and the end bridge.
+- Pointer 2: it is the same boy in all three boy shots, inside the window, with the red cap, black band, gold button, curls and sailor collar.
+- Pointer 3: the white crane settles onto the palm at 15.3–15.8 s at the right size, with no pop.
+- Pointer 4: the chain reads, and the stamp scene runs 3.2 s with the PAR AVION / Nº 27 plate. The blue bird flying off and appearing in his fingers at 20.0 s is an ellipsis the reference also uses, so it is fine.
+- Pointer 7: the wides drift, push or pan.
+- Pointer 8: the wolf twist, the sad faces (girl 32.6–33.5 s, boy's tear 38–39 s), the blue stamped bird, the splashes (puddle 4.4–5.9 s, lake 21–24 s) and the end fade (43–43.5 s) are all there.
+- I found no garbled text, extra people or style break between neighbouring shots.
+
+NON-BLOCKING:
+1. The wolf goes see-through as it leaves, at 32.45–33.0 s. In c9r4_full_bite.jpg the town shows through its jaw and cheek. Its head also drops about a third of the frame between 32.825 and 32.95 s. It is solid while the teeth close (31.8–32.3 s), which is why this is not blocking. Fix: keep it fully solid and let it leave by moving out of frame, not by fading.
+2. A beetle sits on the bell next to the blue bird at 30.0–32.3 s and goes into the wolf's mouth too. It blurs "the bird lands on her bell". Remove it from this shot.
+3. The wolf's design changes across the 34.0 s dissolve. In the bite it is grey and angular with red stripes; in the lick it is fluffy with painted face markings. Some viewers will read it as a second wolf. Match the two designs.
+4. The crane reaches the far portal at about 9.5 s, ahead of the train, so it does not fly "after" it. Delaying the crane by about 0.3 s would fix this.
+5. Evidence gaps:
+   - The cat's breathing in the boy shots is only a few pixels on the 20 px grid, so it may look still on a phone.
+   - The window wide (24.8–29.0 s) has no locked-camera breath check, so pointer 6 is unverified for that shot.
+   - Pedalling legs are confirmed only in the ride shot (3.4–7.0 s). The girl is too small to judge in the window wide and the dusk wide.
+6. The ticket turns into the crane as a sparkle swap in about 0.17 s (8.17–8.33 s), not a visible fold. Two or three fold in-betweens over about 0.3 s would make "folds" true.
+
+VS REFERENCE:
+- Tunnel: better. The reference never shows the train going in or out; the bird flies alongside on the viaduct (10.5–13 s). Cut 9 shows it going in, coming out on rails, then the crane riding the roof.
+- Palm and first crane: about equal to better. Both land cleanly on an open palm (reference 15.0–15.5 s, cut 9 15.3–15.8 s). Cut 9 adds the closed-eye smile and the cat, but its exit to the sill is worse because of blocking item 1.
+- Paper to bird: better. The reference's stamp is about 2 s on an unclear card. Cut 9 has a readable sign, a white card, the stamp, the blue card with a cream seal, fold in-betweens, and 3.2 s on screen.
+
+VERDICT: FAIL, on one blocking item: the doubled crane drop at the 16.8 s cut. Trimming the boy shot to about 16.45 s should clear it. Recheck pointer 6 in the window wide at the same time.

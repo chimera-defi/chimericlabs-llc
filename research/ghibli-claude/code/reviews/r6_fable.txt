@@ -1,0 +1,33 @@
+All 30 strips and stills are read; here is the review.
+
+BLOCKING: none.
+What I checked for each blocking rule, with the frame:
+- 1 train: it rolls into the far portal at 9.5-10.2 s (c9r6_entry) and its nose is out of the arch at 10.45 s, on rails to 13.45 s (c9r6_tunnel). The lake and dusk trains are on rails too.
+- 2 boy: he is inside at the sill in all three shots, with the same red cap, black band, gold button, curls and sailor collar (c9r6_costume).
+- 3 crane: it enters at the left edge at 14.05 s, descends steadily and is on the palm at 15.55-16.05 s at about palm width (c9r6_palm, full_palm).
+- 4 chain: ticket to crane in the girl's hand; then crane, white card, stamp, blue card with seal held about 0.7 s, fold, blue bird (c9r6_folds, full_stamp). "PAR AVION / No 27" is clean.
+- 5 girl: she is on the path, her legs alternate and she rides through the puddle with a splash (c9r6_legs). This is only checkable in the ride shot; she is too small in the 24.8 s and 39.2 s wides.
+- 6 cat: the body rises against the grid in all four shots (c9r6_breath).
+- 7 camera: every wide moves (c9r6_cam); only the stamp insert is near-static.
+- 8 kept: wolf, bite, girl's tears, boy's tear, blue stamped bird, puddle/lake/dusk splashes and the fade are all there.
+- Cuts: no jump in place, light or bird position that I would call noticeable (c9r6_cuts).
+
+NON-BLOCKING:
+1. At 38.0-38.1 s (c9r6_wing) the boy's sleeve is see-through for two frames while his head drops in one 0.1 s step. That looks like a dissolve between two drawings; his face and cap show single contours, so I did not block. Fix: a hard pose change on the landing frame, or two drawn in-betweens.
+2. At 20.0 s the blue bird leaves the insert top-left at 19.8 s, the sill is empty, and it is already on the palm in the next shot's first frame. It reads as an off-screen hop; starting that shot 4-6 frames earlier with the bird settling would be smoother.
+3. Sill continuity: the 16.8-20.0 s insert has empty sill where the cat and cap sit against the plate (full_palm vs full_stamp). The window frame is also three different designs: dark wood, plain wood, and ornate gold at 24.8 s. Add the cat's haunch at the insert's left edge.
+4. Tunnel: the entry is far and short (the train is about 400 px long at 1080p, for about 1 s). The exit shot opens with the nose already out; 6-8 frames of headlights in the dark arch first would sell it.
+5. Wolf: in the bite (full_bite) it is head and neck only, with lake where the chest should be, soft shading and slash markings. In the lick (34.5-36.0 s) it has crisp lines and swirl markings. It still reads as one wolf, though the red face markings recall a well-known game wolf.
+6. Motion logic:
+   - The lake train faces us with headlights on and shrinks from 22.0 to 24.6 s. It reads as a pull-back like the reference, but could read as reversing.
+   - The day window scenery barely scrolls, while dusk has passing poles; one crosses mid-window at 38.5-38.8 s on the tear beat.
+   - The cat's breath is only about 6 px.
+
+Not resolved by these strips: the boy's pose changes at 15.55→15.80 s and 20.30→20.55 s are sampled at 4 fps, and the cry at 38.2-39.2 s at 2 fps. Check them at full frame rate; a ghosted face there would be blocking.
+
+VS REFERENCE:
+- Tunnel: better. There is a real portal with a clear IN and OUT and the bird emerging from the dark, where the reference only passes under an arch. It loses the reference's ride-alongside camera and its outside glimpse of the boy in the window.
+- Palm / first crane: better. The crane is bigger and clearer, the descent onto the palm is continuous and the boy reacts. The reference's bird is tiny, but it shows the girl through the window.
+- Paper → bird: better. Every fold has in-betweens, the blue card with seal is held, and the sign is legible; the reference shows a bare plate and a quicker swap.
+
+VERDICT: PASS

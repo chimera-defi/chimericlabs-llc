@@ -1,0 +1,30 @@
+BLOCKING:
+1. Cut boundary, 21.4 s and 24.8 s (boy_b → lake → window wide, `c9r3_cuts.jpg` rows 1–2, right half; `c9r3_all_c.jpg` 22.0–25.0). The shots either side have white cumulus on a saturated blue sky. The lake shot has pink-lilac clouds, lavender water and heavier paint texture, then the next shot is blue again. A first-time viewer sees the colour swing to pink and back within 3.4 s, as if the time of day changed twice. Smallest fix: re-grade the lake shot only. Take the magenta out of the clouds and water, whiten the clouds, and match the sky blue and saturation to boy_b and the window wide. No re-animation is needed.
+
+Checked and not blocking:
+- Pointer 1: the train is on rails in every shot. It visibly goes into the far portal (`c9r3_entry.jpg` 9.33–10.17: the tail shortens at the portal) and comes out through the arch on rails (`c9r3_full_tunnel.jpg`). Screen direction stays right-to-left. Nothing slides through stone.
+- Pointer 2: the boy has the same red cap with black band and gold button, sailor collar and curls in all three boy shots. At dusk the hair reads brown and the iris is drawn in more detail, and the sleeve cuff differs between the 14 s and 20 s shots. To me this reads as one boy under sunset light, not a redraw.
+- Pointer 3: the crane lands at 15.55 s, palm-sized, with no pop (`c9r3_palm.jpg`, `c9r3_full_palm.jpg`).
+- Pointer 4: the full chain reads: the crane comes from the girl's hand (7.0–9.0 s), then card, stamp, blue card with a cream seal, the fold (`c9r3_folds.jpg`), the blue bird, and back to his hand. The stamp scene runs 16.8–20.0 s, about 3.2 s, under a "PAR AVION / Nº 27" plate with clean text.
+- Pointer 5: the crank and foot positions change frame to frame, and the puddle splashes (`c9r3_legs.jpg`).
+- Pointer 6: `c9r3_breath.jpg` shows a small rise of about 2–4 px on the back and head against the grid. The window-wide cat rows (`c9r3_cat.jpg` rows 7–10) also change shape. The cat is alive, but only just (see note 1).
+- Pointer 7: the opening rack focus and push, the drift on the path shot, the push on the lake, the pan and push on the window wide (the house moves left and gets bigger), the pull on the end wide, and the pole passing the dusk window all move the camera.
+- Pointer 8: all kept. The wolf eats the bird, both children have sad faces (girl 32.5–33.5 s, boy in tears at dusk), the bird is blue and stamped, the doves splash, and the end fades out at 43–43.5 s.
+- Cuts at 16.8 s and 20.0 s: the bird leaves the palm or sill and arrives at the other end of the cut. The reference does the same at its stamp cut (19.0 → 19.5 s), so these pass.
+- Wolf bite, 31.5–33.0 s: at 31.5 s the wolf is small and low, at 32.0 s it is a large head, and at 33.0 s it is gone. At 2 fps I can't tell whether it rises smoothly or pops. I'm passing it with that caveat, not calling it clean.
+- What stills can't show: smoothness and face morphing between the sampled frames, especially the boy's head turn at 37.5–38.5 s and the wolf's expressions at 34.5–36 s. Someone needs to watch these at full speed once.
+
+NON-BLOCKING:
+1. The cat's breath is about 1 % of its height, so it reads as barely alive. Raise it to 6–8 px and add one clear ear flick per shot.
+2. The train goes into the far portal small and in about 1.2 s. Hold 0.5 s longer or push toward the portal so "goes in" can't be missed.
+3. On the roof at 12.7–13.45 s the crane grows to about a third of the cab width, too big for a bird that later fits a palm. Scale it down about 40 %.
+4. At 30.0–32.0 s a brown beetle hovers by the bell next to the blue bird, and at 32.0 s the wolf's bite seems to take both. Move the beetle away, or drop it from that shot.
+5. In `c9r3_full_bite.jpg` there is a pale haze patch behind the wolf's head (a sky seam at about x 790), and the lake shows through its lower mane. If it isn't meant to look ghostly, tighten the matte.
+6. The bell → lick dissolve jumps from midday to sunset, yet the lick is the moment right after the bite. Grade the lick shot toward day, or let the sunset begin on the dusk boy. Also, the close-up sill plate has text and an oval, but the wide shots show a plain plate. Add faint text to the wide plate.
+
+VS REFERENCE:
+- Tunnel: better. The reference has no tunnel entry or exit at all (the bird just flies beside the train on the viaduct). Cut 9 shows the train go in and come out on rails, with the bird along the way.
+- Palm / first crane: equal. Both land cleanly at the right size. Cut 9 adds the closed-eye smile, the push-in and the cat. The reference ties in the girl, visible cycling past the window, which cut 9 drops.
+- Paper → bird: better. The reference stamps and the bird just appears, and the card stays behind. Cut 9 shows every step: white bird, card, stamp, blue card with the seal, a visible fold, a flight and the return to his hand, under a readable sign.
+
+VERDICT: FAIL. The only blocking finding is the lake shot's colour grade jumping at 21.4 s and 24.8 s. Re-grading that one shot clears it, and everything else holds.

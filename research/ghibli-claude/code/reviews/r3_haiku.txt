@@ -1,0 +1,16 @@
+BLOCKING:
+1. cut boundary 16.55 -> 16.80 s: in the last boy frame (16.55, c9r3_palm) the white crane sits on his palm. The first frame of the sill wide (16.80, c9r3_cuts "boy -> stamp") shows it at the top-left frame edge, and it drops onto the sill by 17.05. The bird jumps across the cut and the drop reads as a teleport. Smallest fix: keep the crane in the boy shot until it visibly leaves the window (about 0.3 s of flight out of frame), or start the wide with the crane entering from the top edge and then drop it onto the sill.
+
+NON-BLOCKING:
+- Cat (pointer 6): the cat frames in c9r3_cat and c9r3_breath are nearly identical, and I could not clearly see breathing at 1x. Enlarge the chest or ear motion, or check with a frame diff before shipping.
+- Blue bird return, 19.8 -> 20.05 s: the bird lifts off the sill and the next shot already has it in his hand. A 0.3 s flight beat would make the return read.
+- First crane flight, 14.0-15.0 s: the bird is a speck, roughly 20-40 px in a 1920 frame. Enlarge it or add a closer insert so the path reads.
+- Wolf face markings (red forehead stripes) resemble a well-known film character. Consider a different mark to keep the twist its own.
+- Dusk pole, 37.5-38.5 s: a blurred column crosses the window and reads as a stray object rather than a passing post.
+
+VS REFERENCE:
+- tunnel: equal. The train enters the far portal (about 9.8-10.0 s), emerges at the near portal (10.45 s), and stays on rails. Same beat as ref 7-14 s.
+- palm / first crane: equal. The crane lands on the palm (about 15.5-16.0 s) with no pop, matching the ref landing.
+- paper -> bird: better. Same beat length (about 17.5-19.8 s), but the blue card has a cream seal and sparkles, and the PAR AVION sign reads clearly.
+
+VERDICT: FAIL (one blocking cut-boundary jump at 16.55-16.80 s). Pointers 1, 2, 4, 5, 7 and 8 hold in the frames I read. Pointer 6 is unconfirmed (see non-blocking note).
