@@ -1,0 +1,35 @@
+BLOCKING:
+1. Pointer 7, lake wide, 21.4–24.8 s. In every c9r2_all_c cell from 22.0 to 24.5, the left wooden pole, the signal mast and the mountain ridge stay at the same x. The camera looks locked for about 3.4 s, so the film's one big open-water wide plays as a postcard: only the train, the crane and the doves move. The 2 fps strips can't resolve drift under about 1%.
+   Fix: add a slow 5–8% push-in or a sideways drift with parallax on the poles across the whole shot.
+
+NON-BLOCKING:
+1. The bird skips its take-off and landing at two cuts.
+   - 16.8 s: the crane is sitting on his palm, and the next frame has it already flying over the sill.
+   - 19.8–20.05 s: it leaves the stamp shot top-left and is instantly standing in his hand.
+   - Fix: add about 0.25 s of take-off at the end of the palm shot and a landing into his hand at the start of boy_b.
+2. The stamp close-up doesn't match the boy shots.
+   - The plate reads "PAR AVION / N° 27", but in the boy shots it is a plain brass bar.
+   - The cat and cap are missing, though they sit just left of that plate.
+   - The right window post has a hard seam at y≈578 (c9r2_full_stamp, x 1770–1840).
+   - The blue card is on screen for only about 0.7 s (18.3–19.0); hold it 0.5 s longer.
+   - In row 1 of c9r2_folds, cells 4→5, the crane pops upright for one frame before it flattens.
+3. Lake shot look.
+   - The lilac-pink cloud grade sits between two bright noon shots (the reference does this too).
+   - The doves look like clip-art next to the painted scene.
+   - White ghost smears sit on the overhead-wire poles (c9r2_full_lake, x≈1060 y 130–340 and x≈1515 y 480–580).
+   - The lit front cab faces the camera while the train moves away, as in the reference, so that's acceptable.
+4. Bite, 32.0–32.5 s: the wolf's jaws hold a white feather and white paper (c9r2_full_bite), but the bird he eats is blue. The beetle on the bell (30.5–31.5 s) is caught in the same snap, so it's unclear what was eaten. The far town is drawn over the wolf's neck. Fix: put blue paper scraps in his mouth and lose the feather.
+5. Dusk, 38.0 s: the torn wing is a flat blue polygon with no texture. It doesn't read as part of the blue crane; give it fold creases and a piece of the seal.
+6. Cat and girl coverage.
+   - The cat does breathe, but the rise is about 5 px on a cat about 150 px tall (c9r2_breath). The window shot (24.8–29.0 s) has no breath evidence at all. An ear flick or a bigger rise would sell it.
+   - The cuts strip doesn't cover the moment the bird leaves the girl's hand (about 8.5–9.0 s, inside the ticket shot), so I couldn't check it.
+   - The path in the cliff wide is empty; a tiny figure on a bike would tie the bird to her.
+
+VS REFERENCE:
+- Tunnel: better. The reference only runs past a stone arch. Cut 9 shows the train go into the far portal (9.45–9.95 s), then come out of the near portal on rails, with dust, petals and the crane riding along. The weak spot is the entry: it is small and lasts only about 0.75 s.
+- Palm / first crane: better. The crane glides in over about 1.5 s at a steady size and lands on his palm at 15.55 s, with no pop. The boy closes his eyes, the camera pushes in slowly, and the cat breathes.
+- Paper → bird: better. The reference stamp is ambiguous. Cut 9 reads clearly over about 3.2 s: white crane → card → stamp → blue card with seal → fold → flight, under a readable PAR AVION sign. It loses points only on the short blue-card hold and the jump into his hand.
+
+Pointers 1–6 and 8 hold. The boy is the same boy in every shot, the train is always on rails, the girl's legs pedal (with a puddle splash), and the text is clean. There are no morphing faces or extra people.
+
+VERDICT: FAIL. The only blocking finding is the locked-off lake wide at 21.4–24.8 s; adding a slow push or drift would make this a PASS.

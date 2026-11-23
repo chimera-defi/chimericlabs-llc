@@ -1,0 +1,40 @@
+You are an independent film reviewer. Read-only: use only the Read tool on the image files listed. Do not run commands or edit files.
+
+A 43.8 s hand-painted-anime short ("cut 9") was built to answer the owner's complaints about earlier cuts. It is inspired by a reference film (38.6 s) but is NOT meant as a one-to-one copy: it should be better where it can and has its own twist (a white wolf that eats the bird, a blue stamped paper bird, splashes). Judge cut 9 as a first-time viewer would, using the reference only as the quality yardstick for the same beats.
+
+Story of cut 9: a girl cycles the coast path; in her hand a ticket folds into a white paper bird, which flies after the train INTO a tunnel; the train comes OUT through the arch; the bird lands on the palm of a boy sitting INSIDE the carriage at an open window (cat asleep on a cap on the sill); on the sill plate the bird flattens into a card, is stamped, turns blue with a cream seal, folds into a blue bird and returns to his hand; he releases it; it crosses the lake to the girl; a white wolf appears, the bird lands on her bell, the wolf eats it (sad faces), licks; at dusk the boy waits with an open palm, only a torn blue wing lands on it, he cries; end wide with splashes and fade.
+
+Owner's pointers that MUST hold (each is blocking if broken):
+1. The train is always on rails; it visibly goes IN to the tunnel and comes OUT through the arch; never slides through stone.
+2. The boy is inside the carriage and is the SAME boy in every shot (red cap with black band and gold button, dark curls, sailor collar).
+3. The first paper bird (white crane) lands ON the boy's palm, right size, no pop or teleport.
+4. Paper -> bird chain reads: bird comes from the girl's hand; white bird -> card on the sill -> stamped -> BLUE card with seal -> folds into a blue bird -> flies. The stamp scene is long enough to read and has a sign.
+5. The girl is on the path and her legs pedal.
+6. The cat breathes / is alive in every shot it is in (not a frozen sticker).
+7. Camera has a flying feel: wides push, pull or pan; not static postcards.
+8. Kept: wolf twist, sad faces when the wolf eats the bird, blue stamped bird, splashes, end fade.
+Also blocking: a cut boundary with a jump in place, light or bird position that a first-time viewer would notice; morphing faces, garbled text or extra people from generated footage; a visibly different drawing style between neighbouring shots that breaks the film.
+Non-blocking: taste notes.
+
+Evidence (JPEG contact strips, timestamps burned in; read every one):
+Reference film:
+- ghibli-scratch/overnight/strips/ref_all.jpg (whole film)
+- ghibli-scratch/overnight/strips/ref_07_14.jpg (tunnel)
+- ghibli-scratch/overnight/strips/ref_14_21.jpg (palm / paper -> bird)
+Cut 9:
+- ghibli-scratch/overnight/strips/c9r3_all_a.jpg, c9r3_all_b.jpg, c9r3_all_c.jpg, c9r3_all_d.jpg (whole film, 2 fps)
+- ghibli-scratch/overnight/strips/c9r3_tunnel.jpg (9.2-14.2 s, 4 fps; the next shot after 10.4 s is the other end of the same tunnel)
+- ghibli-scratch/overnight/strips/c9r3_entry.jpg (8.0-10.6 s, 6 fps: the bird leaves the hand, cut to the wide, the train rolls into the far portal from about 9.2 s to 10.4 s)
+- ghibli-scratch/overnight/strips/c9r3_palm.jpg (13.8-16.8 s, 4 fps)
+- ghibli-scratch/overnight/strips/c9r3_paperbird.jpg (16.8-21.8 s, 4 fps)
+- ghibli-scratch/overnight/strips/c9r3_cuts.jpg (every cut: last frame before | first frame after; bell -> lick at 34.0 s is a 0.5 s dissolve, so its right frame is mid-dissolve)
+- ghibli-scratch/overnight/strips/c9r3_cat.jpg (cat crops at 8 fps: rows are boy 13.8 s, boy_b 20.0 s, window wide 24.8 s, dusk 36.4 s) and c9r3_legs.jpg (girl crops at 8 fps; the bottom three rows are 1:1 pixels at 12 fps, 4.4-5.9 s)
+- ghibli-scratch/overnight/strips/c9r3_breath.jpg (cat with the camera locked: left = breath out, middle = breath in, right = ear flick, one row per boy shot, 20 px grid lines)
+- ghibli-scratch/overnight/strips/c9r3_folds.jpg (15 fps in-betweens: rows 1-2 the white bird flattens into the card, rows 3-4 the blue card folds into the bird)
+- full-resolution stills: ghibli-scratch/overnight/strips/c9r3_full_tunnel.jpg, c9r3_full_palm.jpg, c9r3_full_stamp.jpg, c9r3_full_boyb.jpg, c9r3_full_dusk.jpg, c9r3_full_bite.jpg, c9r3_full_lake.jpg
+
+Answer in at most 45 lines, plain text:
+BLOCKING: numbered list; each item = pointer number or "cut boundary", time in seconds, what a viewer sees, and the smallest fix. Write "none" if there are none. Only list something as blocking if you can point at the frame that shows it.
+NON-BLOCKING: up to 6 short notes.
+VS REFERENCE: one line each for tunnel, palm/first crane, paper->bird: better / equal / worse and why.
+VERDICT: PASS (no blocking findings) or FAIL.

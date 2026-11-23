@@ -1,8 +1,9 @@
 """APIMart image bench: submit, poll, download, time. IPv4 only (key is allowlisted on IPv4)."""
-import json, sys, time, pathlib, socket, requests
+import json, os, sys, time, pathlib, socket, requests
 import urllib3.util.connection as uc
 uc.allowed_gai_family = lambda: socket.AF_INET
-KEY = open(pathlib.Path.home() / "secrets/apimart_api_key").read().strip()
+# Key from the environment first; the local file is the fallback. Never printed.
+KEY = os.environ.get("APIMART_API_KEY") or open(pathlib.Path.home() / "secrets/apimart_api_key").read().strip()
 H = {"Authorization": f"Bearer {KEY}", "Content-Type": "application/json"}
 B = "https://api.apimart.ai"
 OUT = pathlib.Path(__file__).parent / "out"; OUT.mkdir(exist_ok=True)

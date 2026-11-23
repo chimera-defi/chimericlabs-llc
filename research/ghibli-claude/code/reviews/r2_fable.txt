@@ -1,0 +1,35 @@
+BLOCKING
+1. Pointer 4/8 and cut boundary, 28.8–29.7 s (window -> bell). The bird that appears behind the girl's hair reads white/grey, not blue, and only turns blue from about 30.0 s. A viewer sees the white crane come back, or a bird changing colour in flight, just before the wolf eats it.
+   - Frames: c9r2_cuts.jpg, "window -> bell" right frame; c9r2_all_c.jpg at 29.0 and 29.5.
+   - The "stamp -> boy_b" frame in the same strip reads clearly blue at a similar size, so the strip is not washing it out. I judged this at strip scale against a bright cloud.
+   - Smallest fix: use the same blue tint as 20.0–24.5 s from the first frame of the shot, with no brightness or fade ramp.
+
+NON-BLOCKING
+1. Not verifiable from the strips:
+   - Hand -> wide, 8.5–9.0 s: no frame is supplied, and pointer 4's "from her hand" rests on it.
+   - Cat in the window shot, 24.8–28.8 s: no locked-camera pair, and only 3 s of crops.
+   - Cat breath in the boy shots: about 4 px, and the ear tip rises with the back (c9r2_breath.jpg), so it is a whole-sprite stretch. It meets pointer 6 thinly; double it, limit it to the torso, add an ear twitch.
+2. Lake wide, 21.6–24.8 s: the post, hydrangeas and rocks sit in the same place at 22.0 and 24.5, so the camera looks locked for about 3 s. The train recedes lamps-first and reads as reversing. The reference pulls back hard on this beat. Add a slow pull or pan and make the train approach.
+3. Dusk boy, 37.5–38.6 s: I rule it the same boy (cap, band, button, curls and collar all hold).
+   - The face steps from a round profile to an older, more detailed three-quarter drawing (c9r2_full_dusk.jpg vs c9r2_full_boyb.jpg).
+   - In c9r2_cat.jpg, row 13 last frame to row 14 first frame, the cap jumps from near-black to navy and the brass corner shifts. Smooth that step.
+4. Stamp insert: the sill is honey oak with a large lettered plate, while the boy shots have dark mahogany with a small blank strip. There is also a flat brown patch with a stepped edge on the right post (c9r2_full_stamp.jpg, x > 1770, above y ≈ 580). Grade and retouch.
+5. Tunnel wide is only 1.4 s. The train is readable for about 0.6 s (9.45–9.95) and the crane reaches the portal before the train's tail. Start the shot about 0.5 s earlier.
+6. Bite, 32.0–32.5 s: the scraps in the wolf's mouth are mostly white plus a feather, with one blue shard (c9r2_full_bite.jpg). A yellow scrap at 34.5 can read as her scarf. Make the scraps blue.
+
+Pointers that hold on the frames:
+- 1: the train goes in at 9.45–9.95 and comes out through the arch on rails at 10.45–13.45; the lake and end wides are also on rails.
+- 2: the boy is inside the carriage and the same boy in all three shots.
+- 3: the crane glides in smoothly from 14.05 to 15.8 and sits on the palm at the right size.
+- 4: the stamp scene runs 3.2 s, the flatten and fold in-betweens are present, and "PAR AVION / No 27" is clean. The exception is the bird colour above.
+- 5: the legs alternate and she stays on the path.
+- 7: the opening, ride, window and end wides all move; the lake wide is the weak one.
+- 8: wolf, sad faces, tear, splashes and fade are all present.
+- No garbled text, extra people or double-exposed faces found. The day -> dusk change at 34.0 is carried by the dissolve.
+
+VS REFERENCE
+- Tunnel: better on logic, because the train goes in and comes out through an arch on rails, which the reference never shows. Worse on camera energy: the reference tracks along the carriage, while cut 9's exit shot is locked.
+- Palm / first crane: equal to slightly better. The descent is smooth, the crane sits on the palm at the right size, and the boy is clearly inside with the cat on the sill.
+- Paper -> bird: better. The reference has the card simply appear on a blank plate for about 2 s; cut 9 shows flatten, stamp, blue card with seal and fold, with a legible sign, over 3.2 s.
+
+VERDICT: FAIL — one blocking item (bird colour at 28.8–29.7 s), a one-line tint fix. With that fixed it is a PASS on the frames supplied, subject to the three unverified items in note 1.

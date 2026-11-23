@@ -1,0 +1,27 @@
+BLOCKING: none
+
+No frame in the supplied strips shows a broken pointer.
+1. Train: holds. It runs along the viaduct deck into the far portal (9.2-10.2 s), the arch is empty at the cut, and the front comes out through the near arch on rails (10.4 s on, c9r3_full_tunnel). It never crosses stone.
+2. Boy: holds. He is inside at the window in all three shots (13.6, 20.0, 36.4 s) with red cap, black band, gold button, dark curls and sailor collar. See note A.
+3. Palm: holds. The crane enters at the left edge at 14.05 s, flies an even arc and touches down at 15.55 s at about a third of the palm's width, with no pop.
+4. Chain: holds. The ticket becomes a crane in the girl's hand (8.2-8.3 s) and leaves it at 9.0 s. On the sill the white crane lands on the plate, flattens to a card, is stamped, lifts blue with a cream seal (held about 0.7 s), folds and flies. The scene runs 3.2 s and the "PAR AVION / No 27" plate is clean and legible.
+5. Girl: holds. Her wheels are on the path and through the puddle, and her legs alternate in the 12 fps rows.
+6. Cat: holds in the three boy shots (about 6 px rise on the back plus an ear flick in c9r3_breath). It is not verified for the window wide; see note C.
+7. Camera: holds. Rack and pan on the opening, pan on the ride, focus pull from hand to wide, push-in on the palm, pull-back on the lake, pan in the window wide, crane move on the end wide.
+8. Kept: wolf, bite, girl's frown and tears (32.5-33.5 s), boy's tear (38.5 s), blue stamped bird, splashes (puddle, lake, end wide), fade.
+Cuts: no jump in place, light or bird position that I can point at; the bird is carried across every cut. There are no morphing faces, garbled text or extra people.
+
+NON-BLOCKING:
+A. 20.0-21.4 s: the second boy shot has a white collar with navy stripes and a plain sleeve. The palm and dusk shots have a navy collar with white stripes and a rolled sleeve. This is the nearest thing to a blocker; recolour the collar navy.
+B. 16.8-20.0 s: the stamp close-up sill is honey-coloured wood with an engraved plate and no cat or cap. The boy shots show dark mahogany, a blank plate and the cat's tail touching it. Darken the close-up wood or engrave the plate in the boy shots.
+C. Cat breathing is small, and the 24.8-28.8 s window wide has no locked-camera crop, so I cannot confirm it there. Doubling the amplitude would settle it.
+D. 21.4-24.8 s: pink-lavender clouds sit between two noon shots (the reference does the same). The train faces camera but drops back past the signal mast, so it can read as reversing. The splash rings look like clip-art.
+E. 8.2-8.3 s: ticket to crane is a two-frame glow swap, unlike the sill folds, which have in-betweens; add two or three fold frames. The blue bird's release (20.55-20.8 s) is also very quick.
+F. The wolf's lunge (31.5-32.0 s) and its exit by 33.0 s are sampled only at 2 fps, so check them at full rate for a pop. Its red face markings are close to a well-known film and game wolf; markings of its own would make the twist more yours.
+
+VS REFERENCE:
+Tunnel: better. The reference only passes under an arch beside the carriage; cut 9 shows a clear in and out with the bird following, though the reference's travelling camera has more ride energy.
+Palm / first crane: equal. The arc and size are just as clean and cut 9 adds the push-in and cat; the reference's bird flaps more organically than the rigid crane.
+Paper -> bird: better. It is longer (3.2 s against about 2.2 s), has a readable sign where the reference plate is blank, and shows each step from flatten to fold.
+
+VERDICT: PASS. It rests on stills at 2-15 fps: motion between samples and the cat in the window wide are unconfirmed. Fix note A first.

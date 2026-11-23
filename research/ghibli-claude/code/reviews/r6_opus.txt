@@ -1,0 +1,27 @@
+BLOCKING:
+none
+
+NON-BLOCKING:
+1. Torn wing at dusk, 37.4–38.1 s (c9r6_wing.jpg). This is the weakest beat in the film. The wing starts as a fairly large blue blob near the mountains at 37.4, shrinks to a speck, then jumps from a speck at the palm (37.9) to a palm-sized wing (38.0) in about 0.1 s. At 38.0–38.1 the boy's sleeve and collar look see-through, as if two plates are cross-fading. I can't see a doubled face, and I had only thumbnails for 38.0–38.4 (no full-res still), so I'm not calling it blocking. Fix: scale the wing up smoothly over the last ~0.5 s, and change his expression with a hard swap (as the girl's changes at ~32.5 s) instead of a cross-fade.
+2. The cat is missing from the stamp close-up, 16.8–20.0 s. In c9r6_full_palm the cat's tail touches the left end of the PAR AVION plate. In c9r6_full_stamp the sill left of the plate is empty, and the cat is back at 20.0. Fix: add a tail or a bit of fur in the lower-left of the close-up.
+3. The lake wide, 21.4–24.8 s (c9r6_full_lake), is drawn differently from the shots either side of it. The clouds and water look blocky like a mosaic, and the doves and splash rings are flat cut-outs, next to smooth painted shots. It doesn't quite break the film, but it's the most noticeable change in look.
+4. At 28.5 s a huge wolf bounds past the girl, yet from 29.0 s in the bell shot she smiles for about 2.7 s, and she keeps smiling about 0.5 s into the bite (31.95–32.45). Fix: start her frown at about 32.0.
+5. The window wide (24.8 s) has an ornate gold frame, while the boy's own window is plain wood with brass. It reads as a different carriage.
+6. In the closing wide (39–42 s) the wolf runs after the girl on the path, which a first-time viewer may read as a chase rather than a coda. In the bite close-up (c9r6_full_bite) the wolf looks like a flat cut-out: there is a pale halo at top-left and a glassy streak under the handlebar.
+
+Owner's pointers, all hold:
+1. The train is on rails in every shot. It rolls into the far portal at 9.2–10.4 s and comes out of the arch at 10.4–13.5 s, and the bird follows it in and out.
+2. The boy wears the same red cap (black band, gold button), dark curls and sailor collar in all three of his shots (c9r6_costume).
+3. The white crane glides in at 14.0–15.6 s and settles on his palm at the right size; he closes his eyes.
+4. The paper-to-bird chain is complete. The ticket folds into a crane in her hand (8.0–8.8 s), the crane flattens into a card on the plate, it is stamped (17.6–18.3 s) and turns blue with a cream seal (18.3–19.0 s), folds into a blue crane, flies, and is back on his palm at 20.0. The PAR AVION / No 27 plate is the sign.
+5. The girl stays on the path and her legs visibly change position from frame to frame, splashing through the puddle (c9r6_legs).
+6. The cat breathes in all four shots: its back outline shifts a few pixels against the grid in every row of c9r6_breath, and its head and ears move in c9r6_cat.
+7. Every wide has a move (c9r6_cam): a rack focus on the reed, a pan on the ride, a push in the tunnel and window wides, a pull-back on the lake, a pan on the dusk wide.
+8. The wolf twist, the girl's frown and tears, the boy's tear, the blue stamped bird, the splashes (puddle, lake, end) and the end fade at 43–43.5 s are all there.
+
+VS REFERENCE:
+- Tunnel: better. The reference only runs the train and bird past an arch on the viaduct. Cut 9 shows the train going in and coming out on rails, with the bird following, plus petals and steam.
+- Palm / first crane: equal to slightly better. The landing is just as clean, the size is right, and his eyes closing gives it a warmer reaction.
+- Paper to bird: better. The reference leaves the card-to-bird change implied. Cut 9 shows every step on screen (ticket fold, flatten, stamp, blue card, fold, flight) with a readable sign.
+
+VERDICT: PASS

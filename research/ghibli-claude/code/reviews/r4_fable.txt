@@ -1,0 +1,27 @@
+BLOCKING:
+1. Cut boundary, 16.8 s and 20.0 s (in and out of the stamp close-up): the window changes. In the boy shots (c9r4_full_palm, c9r4_full_boyb, c9r4_cuts rows 5-6) the sill is dark glossy mahogany, the frame is brass with round corners, and the plate is small and blank. In the close-up (c9r4_full_stamp) the sill is honey-oak, the frame is square plain wood, and the plate is large and engraved PAR AVION / N° 27. It reads as a different window, twice, on the scene pointer 4 singles out; the reference keeps its wood matched across the same insert. Smallest fix: regrade or repaint the close-up's sill and frame to the mahogany and brass, and put the faint engraving on the plate in the two boy shots. This is the only blocker and it is a judgement call: the bird's direction and the light do match across both cuts.
+
+NON-BLOCKING:
+- Pointer 6 is unproven in the window wide (24.8-29.0 s): c9r4_breath has rows only for the three boy shots, and the c9r4_cat crops are too small to show breathing there. In the three boy shots the back rises a few pixels and the ear flicks, which is alive but subtle.
+- Ticket to crane (8.17 to 8.33 s): the strip shows ticket, glint, then a finished crane under sparkles, with no half-folded frame. The reference has one at 7.5 s. At 6 fps I cannot tell a fold from a pop.
+- The crane sits on the palm for only about 0.6 s (15.8-16.4 s) against about 1.5 s in the reference; hold it 0.5 s longer before it hops off.
+- The wolf also swallows the beetle (31.8-32.3 s), which muddies "eats the bird". The wolf is pale and washed in the bite shot but saturated cel in the lick shot.
+- The lake shot (21.3-24.8 s) has a mottled sky, no snow peaks and darker water between two shots with cumulus and snow peaks, and its splash rings look like stickers on the painted water.
+- The entry wide (9.2-10.4 s) and the tunnel-exit shot are nearly locked. The blue bird fades out rather than flying out of frame at 20.8 s.
+
+Pointers checked:
+- 1 holds: the train is on rails in every shot and comes out through the arch on the track. The "in" half rests on thumbnails, with the train about 15% of frame width for 1.2 s and no full-resolution still.
+- 2 holds: the boy is inside the carriage, with the same red cap, black band, gold button, dark curls and sailor collar at 13.8, 20.0 and 36.4 s.
+- 3 holds: the crane glides in from the window's left edge, lands on the palm at about 15.8 s at the right size, with no pop.
+- 4 holds apart from the blocker: the chain reads from the girl's hand to white bird, white card, stamp, blue card with cream seal, blue bird and release. The stamp scene runs 3.2 s and the sign is clean.
+- 5 holds: the girl is on the path, her legs alternate, and she splashes through the puddle.
+- 7 holds: the opening, ride, lake and dusk wides all move.
+- 8 holds: wolf twist, the girl's frown and tears, the boy's tear, blue stamped bird, splashes and end fade are all there.
+- No morphing faces, garbled text or extra people found; the boy's mouth has one odd shape in a single 14.3 s sample.
+
+VS REFERENCE:
+- Tunnel: better on logic, because the train visibly goes in and comes out through the arch on rails, which the reference never shows head-on. Worse on camera, because the reference flies alongside the carriage.
+- Palm / first crane: equal. The size and approach are right and the boy and cat are cleaner, but the dwell on the palm is shorter.
+- Paper to bird: better in content (longer, a readable sign, blue card with seal, fold in-betweens), worse in set continuity because of the blocker above.
+
+VERDICT: FAIL, on one blocking finding (the stamp close-up's window does not match the boy shots). Everything else passes.

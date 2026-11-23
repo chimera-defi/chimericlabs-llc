@@ -1,0 +1,28 @@
+BLOCKING: none. No frame in the evidence breaks pointers 1-8 or the cut-boundary, generated-footage or style rules.
+
+Two things the evidence does not cover, so they are unconfirmed rather than passed:
+- Pointer 6 in the stamp close-up (16.8-20.0 s), where the cat is largest. The breath and cat strips skip this shot, and the 4-10 fps tiles are too small to show a few-pixel breath. Needs a locked crop like the other four rows.
+- Pointer 5 in the window wide (24.8-29.0 s) and the end wide (39.2 s on). The girl is too small in those frames to see her legs; the legs strip only covers 3.4-7.2 s, where she clearly pedals.
+
+What holds, by pointer:
+1. The train is on rails in every shot. It rolls into the far portal from 9.2 to 10.2 s and comes nose-first out of the arch from 10.4 s, with the mouth hiding the rest; nothing passes through stone.
+2. The boy is inside at the sill in all three shots, with the same red cap, black band, gold button, dark curls and sailor collar (15.9, 20.9, 38.8 s).
+3. The white crane descends on an arc from 14.05 s and lands on the palm at 15.55-15.8 s at the right size, with no pop.
+4. The chain reads end to end, and the stamp scene runs 3.2 s with a clean "PAR AVION / N° 27" plate.
+7. Every shot shows a camera move in the first/last pairs; the stamp close-up has the smallest drift.
+8. Wolf twist, girl's frown and tears (32.5-34.0 s), boy's tear (38.8 s), blue sealed bird, puddle and lake splashes, and the end fade are all there.
+
+NON-BLOCKING:
+1. Lake shot, 21.4-24.8 s: this is a motion error, not taste. The train rolls tail-first: its nose starts level with the signal mast and ends more than a face-width behind it, headlights still facing us. Fix: move the train forward a few sleepers over the shot, or hold it still relative to the mast.
+2. Dusk boy, 38.0 s: his head and shoulders switch from the up-tilted smile to the level sad pose in one or two frames, and a ghost of the sleeve shows at 38.0 s. Fix: 4-6 in-between frames or a short ease; remove the ghost.
+3. Wolf scale: in the window wide (27.0-28.0 s) it is several times the house and about five bike-lengths long; in the end wide it is about two to three. Shrink it in the window wide or enlarge it at the end.
+4. The stamp hand comes from the right while the boy sits with eyes closed (15.8-20.3 s) and his arm out the window, so a viewer may wonder whose hand it is. Have him open his eyes or glance down before the stamp.
+5. Both folds pop in one frame behind sparkles: ticket to white crane at about 8.4 s, blue card to blue crane at about 19.2 s. The cream ticket also turns pure white. Two more in-between frames each would help.
+6. The blue bird leaves the sill shot top-left and is already on the palm at 20.0 s. Let it settle the last few pixels after the cut. Separately, the wolf sinks away like a cut-out at 32.8-33.1 s.
+
+VS REFERENCE:
+- Tunnel: better. The reference only tracks past an arch on the viaduct; cut 9 shows a clear in and out with petals and wheel steam. The reference's side-tracking camera still flies more than cut 9's exit shot.
+- Palm / first crane: equal. Landing and size are as clean as the reference, and the cat and cap add life, but the reference boy watches the bird while cut 9's boy shuts his eyes as it lands.
+- Paper to bird: better. It is longer than the reference's roughly 2.5 s, has a readable sign, and shows a distinct white card, then blue sealed card, then blue bird with the seal on its wing.
+
+VERDICT: PASS (no blocking findings; pointer 6 in the stamp close-up and pointer 5 in the two wides are unconfirmed, not passed).

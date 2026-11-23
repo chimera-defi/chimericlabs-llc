@@ -1,0 +1,19 @@
+You are an independent reviewer (read-only: do not edit or create any file, do not run generators). Review a build PLAN for a 43 s animated short ("Ghibli Claude cut 9") before the build starts. Be concrete and brief; I need blocking problems, not taste.
+
+Read these, in this order:
+1. ghibli-scratch/overnight/BRIEF.md (the operator's brief and unmet pointers)
+2. ghibli-fable2/PLAN9.md (the plan under review)
+3. Images (use the Read tool on each): 
+   ghibli-scratch/overnight/strips/ref_07_14.jpg and ref_14_21.jpg (the ORIGINAL film, the yardstick, 2 fps)
+   ghibli-scratch/overnight/strips/c8_07_14.jpg and c8_14_21.jpg (our cut 8, same windows)
+   ghibli-scratch/overnight/strips/c8_all.jpg (cut 8 whole film)
+   ghibli-scratch/overnight/k9/kboy_a_view.jpg and kboy_b_view.jpg (new generated keyframes for the boy shots)
+   ghibli-scratch/overnight/strips/c9_boy_probe.jpg (veo image-to-video probe from kboy_a)
+   ghibli-scratch/overnight/fr/c8_36.5.jpg (engine dusk boy that the new boy must match)
+
+Answer in at most 350 words:
+A. BLOCKING: anything in the plan that will fail the brief's pointers or acceptance (list, each with the fix you would make).
+B. Does the generated boy (kboy_a / kboy_b / probe) read as the same child as the engine dusk boy, and as INSIDE the carriage? yes/no + why.
+C. Biggest risk the plan underrates, and the cheapest mitigation.
+D. One thing to cut from the plan to save time without hurting acceptance.
+End with a single line: VERDICT: GO or VERDICT: REVISE.

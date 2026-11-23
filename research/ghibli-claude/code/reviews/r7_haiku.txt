@@ -1,0 +1,28 @@
+BLOCKING: none
+
+I read every listed strip and the seven full stills. No frame I could point at breaks a must-hold pointer, and I found no morphing faces, garbled text, extra people or style break that breaks the film.
+
+NON-BLOCKING:
+1. Cat (pointer 6): it does move, but only a few pixels. In c9r7_breath the body outline changes between 13.8 s and 15.0 s, yet the eyes never open and nothing reads at 1x. Fix: a clear 3-4 px rise and fall over about 3 s.
+2. Palm landing (pointer 3, 15.3-15.8 s): in c9r7_palm the bird looks smaller on the hand at 15.55 s than at 16.05 s, roughly 30 px against 45 px in the tile. I can't confirm this at the frame level. Check the 15.2-15.9 s range at 30 fps before calling the size right.
+3. Blue bird return (19.8 to 20.05 s): it sits on the sill plate, then hangs over the boy's palm after the cut with no visible flight across the cut. Fix: about 0.3 s of visible rise into the new framing.
+4. End splashes (39-43 s): the splashes are small and read weakly in c9r7_all_d. Enlarge them or hold the end wide a little longer.
+5. Style: the lake train (c9r7_full_lake, 21-24 s) and the sill plate are slicker and more CG than the painted scenes. The white doves with brown wingtips are a different design from the origami crane and can read as extra birds.
+6. Camera: the boy window shots (13.8-16.8, 20-21.8, 37-38.8 s) are almost locked off. The flying feel comes from the wides, which is acceptable.
+
+VS REFERENCE:
+- Tunnel: equal. Cut 9 adds a second portal and the bird follows the train in, while the reference has one clean entry. The train reads on rails in both.
+- Palm / first crane: equal. Cut 9 has the cat, cap and sill framing and a clean crane sprite, but the landing scale in note 2 is less clean than the reference.
+- Paper to bird: equal. Cut 9 adds a readable flatten-to-card in-between and a clear PAR AVION sign. The stamp lasts about 1 s in both and the blue fold reads in both.
+
+Pointer checks, all passing:
+1. Train goes into the far portal (c9r7_entry, 9.2-10.4 s) and comes out of the near portal (c9r7_tunnel, 10.45-11.7 s), on rails throughout.
+2. Boy has the same red cap with black band, gold button and sailor collar in 15.9, 20.9 and 38.8 s.
+3. Crane lands on the palm (c9r7_palm, 15.5-16.1 s); see note 2 for scale.
+4. Chain reads in order: ticket fold, white bird, flatten to card, stamp, blue card, blue fold, flight.
+5. Girl pedals on the path with visible leg and wheel motion (c9r7_legs).
+6. See note 1.
+7. Wides push and pan, for example the lake pan at 21-25 s.
+8. Wolf twist, wolf bite on the bell (31.9-32.5 s), girl's sad face after the bite, blue bird, puddle splash, and fade to black at 43.5 s are all present.
+
+VERDICT: PASS (no blocking findings). Notes 1-3 are worth fixing before a final render. Note 2 needs a 30 fps check first.

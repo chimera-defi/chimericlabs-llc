@@ -1,0 +1,28 @@
+BLOCKING:
+1. Pointer 7 (camera feel), 24.8-27.7 s, window wide. In c9r5_wolfin the house, bridge, and brass frame sit on the same pixels in every frame; only the cyclist and the wolf move, so it reads as a locked postcard. Smallest fix: a 4-6% slow push-in or a slight pan across 24.8-28.0 s.
+
+NON-BLOCKING:
+- Pointer 6 (cat): the cat is alive, but the breath in c9r5_breath and c9r5_catwin is only about 3-5 px. At 1x it reads close to static. Amplify the breath a little or add a tail or ear twitch.
+- Ticket to crane, 8.2-8.4 s (c9r5_ticketfold): the swap is a sparkle with no visible fold. The reference does the same at about 8.5 s, so this is acceptable.
+- Crane across the 13.45|13.7 cut: it sits on the train roof at 13.2-13.45 and is at the far left of the window view at 14.05. Have it enter from the window's top edge in the direction it was heading.
+- Blue crane across the 19.8|20.05 cut: it is mid-rise over the sill plate at 19.8 and already in the boy's hand at 20.05. Hold about 0.2 s on the sill or match the rise.
+- The far-village tunnel entry (c9r5_entry, 9.2-10.0 s) is small and brief. The train does go in, but it is hard to read at 2 fps. Enlarge it slightly.
+- The wolf close-up at 34.5-36.4 is more finely rendered than the lake and window shots. Taste only.
+
+Checked and passing:
+- Pointer 1: the train stays on rails and comes out of the portal at 10.45 s (c9r5_tunnel).
+- Pointer 2: the same boy in all shots (red cap, black band, gold button, sailor collar).
+- Pointer 3: the white crane arrives from top-left and sits on the open palm at about 16.0-16.6 s (c9r5_palm). Scale is consistent, with no pop.
+- Pointer 4: the white bird lands on the sill plate, the card is stamped at 17.8-18.3 s with the "PAR AVION" sign visible, the card turns blue with a cream seal, and it folds to a blue bird (c9r5_stamp, c9r5_folds).
+- Pointer 5: the girl is on the path and her legs pedal (c9r5_legs).
+- Pointer 8: the wolf bites the bird at 31.2-32.7 s, sad faces follow, the splashes and end fade are present.
+- No garbled text, morphing faces, or extra people found.
+
+VS REFERENCE:
+- Tunnel: equal. Both show the train coming out of a wisteria portal. Cut 9 adds petals and steam; its entry into the far portal is weaker than the reference's.
+- Palm and first crane: equal. Both land the crane on an open palm with the cat asleep on the sill.
+- Paper to bird: equal. Both show the card, the stamp, the blue card, and the fold to a blue bird.
+
+VERDICT: FAIL (one blocking item: pointer 7 on the 24.8-28 s window wide).
+
+Scope: I read all 26 strips and stills. Breath and cut-continuity calls are judged from contact sheets, not full-resolution frames.

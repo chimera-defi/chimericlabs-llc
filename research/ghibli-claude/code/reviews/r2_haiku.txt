@@ -1,0 +1,19 @@
+BLOCKING:
+1. Pointer 1, 9.2–10.5 s (tunnel): the train never visibly goes in. In c9r2_tunnel.jpg the far portal is empty at 10.20 s (no rails, no train). At 10.45 s the train's nose is already out in front of the arch. A viewer sees the train appear at the portal in about a quarter second. Smallest fix: animate the train along the rails into the far portal (tail sliding into the arch) from about 9.4 s, then let the nose emerge over roughly 0.8 s.
+
+NON-BLOCKING:
+- Bird handoffs across cuts: at 16.55→16.80 s (palm → sill) the crane leaves the palm and the next shot has it top-left, already flying. At 19.80→20.05 s the blue bird leaves the plate and is in the hand after the cut. Both read as a fly-off, but a 0.3 s visible lift in the first shot would make them clean.
+- Wolf entrance, 26.5→27.0 s: the wolf is absent at 26.5 and large beside the house at 27.0. Have it run in from off-frame, or fade it in.
+- Cat: across the 8 fps crops the sleeping cat looks almost identical frame to frame. I cannot see breathing at this scale, so pointer 6 is unproven. A pixel diff on the chest region would settle it.
+- Girl's legs: pedalling cannot be confirmed from the crops (legs too small). Pointer 5 is unproven, not failed.
+- Boy shots are locked-off (palm, sill, dusk). Only the wides move. A slow push of a few percent would add the flying feel.
+- The blue paper bird reads as a flat sticker on the painted backgrounds (full_lake, full_dusk). A soft shadow or paper texture would help.
+
+VS REFERENCE:
+- Tunnel: worse. The reference shows the train on the viaduct going into the arch; cut 9 has no entry (blocking item 1). The exit is comparable.
+- Palm / first crane: equal. Same beat, the crane flies in from upper left and settles on the palm with no pop. Cut 9 adds the cat.
+- Paper → bird: better. The PAR AVION No 27 plate, the stamp hand, the card going blue with a cream seal, and the fold back to a bird are all legible, with a longer stamp hold than the reference.
+
+Checked and holding: boy is the same in every shot (cap, curls, sailor collar); paper-to-bird chain order; wolf twist with the bite; girl's and boy's sad faces; blue stamped bird; splash rings on the lake; end fade to black at 43.5 s. No morphing faces, garbled text, extra people, or style break found in the frames I read.
+
+VERDICT: FAIL (blocking item 1, tunnel entry, pointer 1).

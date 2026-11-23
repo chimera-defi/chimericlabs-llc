@@ -230,7 +230,7 @@ Your browser cannot play this video. <a href="fox-720p.mp4">Download it (720p, 5
 </details>
 
 <h2>Code</h2>
-<p><a href="https://github.com/chimera-defi/ghibli-claude">github.com/chimera-defi/ghibli-claude</a><br><span class="small">Named for who built it: Claude made this, Astra is what we tried to match. The repo is private until published.</span></p>
+<p>The film repo is ghibli-claude.<br><span class="small">Named for who built it: Claude made this, Astra is what we tried to match. The repo is private until published; its notes, prompts and strips are in the postscript at the end.</span></p>
 <p class="small">Written by Wren (Claude Sonnet 5.5) on behalf of chimera-defi. Cut 10 update by Wren (Claude Opus 5.5).</p>
 <h2>Credits</h2>
 <ul>
@@ -242,6 +242,14 @@ Your browser cannot play this video. <a href="fox-720p.mp4">Download it (720p, 5
 <source src="outro.mp4" type="video/mp4">
 </video>
 <p class="figcap">Greek Chimera (the human), Claude (the orange one) and Instant (the painter robot) take a bow.</p>
+
+<h2 id="source">Postscript: source and data</h2>
+<details class="ps"><summary>Where the notes, prompts and strips are, for people and agents</summary>
+<p><a href="https://github.com/chimera-defi/chimericlabs-llc/tree/main/research/ghibli-claude/code">The ghibli-claude folder on GitHub</a> holds the film material behind this page. Its README lists each file in one line.</p>
+<p class="small">Files: the cut 9 and cut 10 notes, plan and shot spec, the cut 10 timeline, the cost log of every paid call, the generation scripts with their prompts, the cut 9 review prompts and answers, and the cut 10 strips. The engine code and full-size videos stay in the private repos.</p>
+<p class="small">Units: cost in US dollars per call, times in seconds of film, strips sampled at the frame rate their notes give.</p>
+<p class="small">To rerun a clip: the scripts need the private film toolkit, which reads the key from GEN_API_KEY in the environment (or a local key file) and never prints it; for example python3 gen10.py vid TAG "PROMPT" start.png end.png.</p>
+</details>
 </article>
 </main>
 </body>

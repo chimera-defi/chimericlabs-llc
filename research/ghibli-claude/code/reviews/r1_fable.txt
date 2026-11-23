@@ -1,0 +1,30 @@
+BLOCKING
+1. Cut boundary (light), 20.9 s and 24.4 s. The lake shot (20.9-24.4) has a violet twilight sky, lavender water and lit lamps, but sits between two bright-noon shots (boy at window before, framed window view after). The film reads noon -> dusk -> noon. Frames: c9r1_cuts "boy_b -> lake" and "lake -> window"; c9r1_all_c 22.0-24.0. Fix: regrade the lake shot to the neighbours' midday blue (violet -> blue, lift exposure); no re-animation needed.
+2. Morphing face, about 31.0-31.5 s, inside the bell shot. The girl has smooth jet-black hair and a flat-shaded face until 31.0; from 31.5 to 33.4 her hair is brown and wavy with highlights, and her eyes and face are redrawn. She looks like a different girl. In the same half-second the wolf head is see-through, which looks like a cross-fade between two plates. Frames: c9r1_all_c 31.0 vs 32.5; c9r1_all_d 33.0; c9r1_cuts "window -> bell" right frame vs "bell -> lick" left frame. Fix: regenerate the sad half from the 31.0 frame so hair and face carry over (or mask and darken the hair to black), and make the wolf opaque so it covers the join.
+3. Cut boundary (light), 33.4 s. The girl cries in bright noon; the next frame is the wolf licking in pink sunset light with blue paper bits still falling, so one continuous action jumps hours. Frames: c9r1_cuts "bell -> lick". This is the weakest of the three, because it can read as time passing into the dusk ending. Fix: grade the lick background to late-afternoon warm, or put a 0.4 s dissolve on this cut.
+
+Pointers checked against frames:
+- 1 (train) holds: on the viaduct deck 0.5-3.0, enters the portal 9.05-9.55, exits the arch on rails 10.0-13.4, on the trestle 21-24 and 39-42.
+- 2 (boy) holds: inside the carriage in all three shots, same red cap with black band and gold button, dark curls, sailor collar.
+- 3 (crane on palm) holds: smooth approach 13.65-15.15, lands on the palm, right size, no pop.
+- 4 (paper chain) holds: ticket in the scarf-side hand -> white crane 8.5; sill 16.4-16.9; white card 17.15; stamp 17.4; blue card with seal held 17.9-18.65; blue crane 18.9; on palm 19.65; released 20.4. The sign reads "PAR AVION / No 27" cleanly, and the scene runs 3.2 s.
+- 5 (girl) holds: on the path, leg positions change frame to frame, puddle splash.
+- 6 (cat) is not shown broken: head and back shift between frames in every cat shot, but the movement is small and I cannot measure breathing in the dusk shot from these crops.
+- 7 (camera) holds: rack and pull at the opening, push on the ride, pull-out from the hand, push at the tunnel, pull-back on the lake, pan on the dusk wide.
+- 8 (kept items) holds: wolf, sad girl and crying boy, blue stamped bird, splashes, end fade.
+- No garbled text or extra people seen.
+
+NON-BLOCKING
+- The train entering the tunnel is small and lasts about 0.75 s, with the hand still in frame at 9.05. Hold that wide 0.5-1 s longer.
+- At 11.3-11.55 the crane reappears over the wisteria above the arch, not out of the arch opening (c9r1_full_tunnel). Start it inside the dark mouth.
+- The plate lettering is absent at 16.40 and present at 16.65, and the plate is blank in both boy shots. Show the text from frame one.
+- Both transforms (bird -> card at 16.9-17.15, card -> bird at 18.65-18.9) have no in-between frame at 4 fps. Add 4-6 frames of fold to each.
+- The torn wing at 37.5-38.8 is a flat, unshaded blue shape with no shadow (c9r1_full_dusk) and reads as a sticker; the cranes are also crisper than the paint around them.
+- Wolf: the eating beat is about 1 s, the thing in its jaws at 31.5 looks brown (the beetle) rather than blue, and its size swings from giant (27 s, 31.5 s) to dog-sized (39 s). On the lake, the train shrinks with its headlights facing us and reads as reversing (the reference does the same).
+
+VS REFERENCE
+- Tunnel: better. A real in-and-out through a portal with rails, steam and petals, where the reference only tracks alongside the train; the entry is too brief, though.
+- Palm / first crane: equal to slightly better. The landing is as clean, and the cat and the eyes-closed beat add life; the reference bird is more painterly, and its landscape scrolls more.
+- Paper -> bird: better. It is longer, has a legible sign and a clear white -> blue seal change, and the blue crane carries the seal; the fold in-betweens are as abrupt as the reference's.
+
+VERDICT: FAIL (items 1 and 2 are firm; item 3 is a judgment call)

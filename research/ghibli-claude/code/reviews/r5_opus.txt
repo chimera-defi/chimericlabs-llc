@@ -1,0 +1,27 @@
+BLOCKING:
+1. Pointer 7 (camera), 9.3–13.6 s, tunnel beat. In c9r5_tunnel.jpg the clouds, the portal arch and the left wall sit at the same place in the frame from 10.45 s to 13.45 s. The camera is locked for 3.2 s, and only the train and petals move. The entry wide in c9r5_entry.jpg is also locked from 9.33 s to 10.17 s, after its opening rack-pull. The reference covers the same beat with a tracking shot. A first-time viewer still gets motion from the train coming at the lens, but under the owner's rule this is a static wide. Smallest fix: in post, add a slow 3–5% push-in or a lateral drift to the exit shot (10.4–13.6 s), plus a small push on the entry wide.
+
+All other pointers hold. I checked these frames:
+- P1: train on rails in every shot. It rolls into the far portal (9.2–10.2 s) and comes out of the near portal (10.45 s on), with screen direction kept. The lake and trestle shots have visible rails.
+- P2: the boy has the same red cap with black band and gold button, dark curls and sailor collar in the palm, boy_b and dusk shots.
+- P3: the white crane comes down over about 1.5 s and settles on the palm at 15.8 s, at the right size, with no pop.
+- P4: the chain reads ticket → crane → card → stamp → blue card with cream seal → fold → blue crane → hand. The insert runs about 3 s and has the "PAR AVION / No 27" plate.
+- P5: legs pedal (c9r5_legs.jpg) and splash through the puddle.
+- P6: the cat's outline and ears change in all four cat shots.
+- P8: the twist, sad faces (32.6 s on, tears at 33.5 s), blue bird, splashes and fade all survive.
+- No garbled text, extra people or face morphs found.
+
+NON-BLOCKING:
+1. Sill insert (16.8–20.0 s): in the boy shot the cat and cap sit right next to the plate, but the insert shows bare wood there and a lake behind instead of meadow. Crop tighter or shift right so the sill left of the plate is out of frame. Don't add the cat, or that shot needs its own breathing.
+2. Handoff at 16.8 s: the brief says the crane leaves the palm before the cut, but in c9r5_handoff.jpg it is still sitting on the palm at 16.7 s. It is next seen in the air at the top left of the sill shot. Add 3–4 lift-off frames before the cut.
+3. Ticket fold (8.1–8.9 s): the ticket turns into a full crane in one frame under sparkles. That is a swap, not a fold. One half-folded in-between would fix it.
+4. Lake shot (21.4–24.8 s): the stippled sky and the flat dove stickers with cone-shaped splash marks look pasted onto a painting. The blue crane is outsized next to the rail.
+5. The wolf's look drifts across shots: a soft blur in the window wide, sketchy and see-through at the bite, clean and fluffy with warm light at the lick. The dissolve covers the change of light, not the change in markings. Boy_b also has a plain sleeve and a front-on collar, against the rolled sleeve in the palm and dusk shots. It still reads as the same boy.
+6. At dusk (36.4–39.2 s) the "torn wing" reads as a crumpled blue scrap with the seal on it. A clearer wing outline would land the sad beat harder.
+
+VS REFERENCE:
+- Tunnel: better story, worse camera. Cut 9 shows the train going in and coming out and the bird riding the roof, but its camera is locked where the reference tracks alongside the train.
+- Palm / first crane: equal to slightly better. The crane comes down smoothly and is the right size, and the closed-eye smile and sleeping cat add warmth.
+- Paper → bird: better at the stamp chain, which shows every step with in-between frames, a readable sign and a seal. Slightly worse at the ticket fold, where the reference has a real in-between.
+
+VERDICT: FAIL. Only pointer 7 on the tunnel beat blocks; a post push-in or drift on 9.3–13.6 s should clear it.

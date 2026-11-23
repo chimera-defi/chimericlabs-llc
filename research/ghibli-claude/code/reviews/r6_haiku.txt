@@ -1,0 +1,26 @@
+BLOCKING: none
+
+NON-BLOCKING:
+1. Cut at 19.8 to 20.05 s: the bird rises out of the window-wide frame, and the next shot (boy_b) already has it on the palm. The return flight is hidden by the cut. Smallest fix: 2-3 frames of the bird rising into the palm inside the boy shot. It does not pop.
+2. Tunnel exit, 10.2 to 10.45 s: the far portal (entry strip) cuts to a different, near portal, and the train is already in front of it at 10.45. The in and out both read, but the exit happens off-frame. Optional: one frame of the nose leaving the mouth.
+3. Boy's face drifts: the cap, collar and curls hold in 15.9, 20.9 and 38.8 s (costume strip), but the face at 38.8 s (full_dusk) reads longer, with narrower eyes. Worth checking at 1:1.
+4. Cat breathing is subtle: at 2 fps through the window-wide (24.8 to 27.4 s) it is almost still. breath.jpg shows a few px of change. It is alive, not a frozen sticker, but a stronger chest bob would sell it.
+5. End splashes are weak: duskwide (39 to 43.8 s) shows no clear water splash. Splashes read well only in the lake strip (21 to 24.6 s).
+6. The torn blue wing at 37.4 to 38.8 s reads as a crumpled blob at full size (full_dusk). A dragonfly-like insect near the bell at 30 to 31 s is an extra creature, a taste note.
+
+Pointer checks (all held):
+- P1 train on rails, in and out of tunnels: held (see note 2).
+- P2 same boy: held (see note 3).
+- P3 first crane lands on palm: held. It settles at about 15.8 s, and full_palm shows it on the palm at the right size.
+- P4 paper to bird chain: held. Ticket folds to crane at 8.0 to 8.8 s; white card and stamp at 17.5 to 18.0 s; blue card with cream seal at 18.3 s; folds to blue bird at 19.0 to 19.8 s; a sign plate is in frame throughout.
+- P5 girl pedals: held (legs.jpg, 1:1 crops show wheel and leg motion).
+- P6 cat alive: held, weakly (note 4).
+- P7 camera moves: held. Reed, house, lake and duskwide pan or push. Boy and stamp shots are locked off, which is acceptable.
+- P8 kept: wolf twist, sad faces at 32.6 to 33 s and 38 s, blue stamped bird, splashes (weak at the end, note 5), fade to black at 43.5 s.
+
+VS REFERENCE:
+- Tunnel: equal. Both show the train in and out of a wisteria tunnel with a bird. Cut 9 uses two portals with a cut.
+- Palm / first crane: equal. Both land the crane cleanly on a palm with no pop.
+- Paper to bird: better. The ticket fold, the stamp hold (about 1 s in the ref at 17.5 to 18.5 s, longer here) and the blue card with seal all read more clearly than the reference.
+
+VERDICT: PASS (no blocking findings)
