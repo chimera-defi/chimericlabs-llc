@@ -1,0 +1,128 @@
+{
+ "date": "2026-11-23",
+ "model": "gpt-image-2",
+ "n": 20,
+ "batch_seconds": 34.6,
+ "calls": [
+  {
+   "status": "completed",
+   "seconds": 22.0,
+   "cost": 0.0085,
+   "error": null
+  },
+  {
+   "status": "completed",
+   "seconds": 26.0,
+   "cost": 0.0085,
+   "error": null
+  },
+  {
+   "status": "completed",
+   "seconds": 17.6,
+   "cost": 0.0085,
+   "error": null
+  },
+  {
+   "status": "completed",
+   "seconds": 22.2,
+   "cost": 0.0085,
+   "error": null
+  },
+  {
+   "status": "completed",
+   "seconds": 21.6,
+   "cost": 0.0085,
+   "error": null
+  },
+  {
+   "status": "completed",
+   "seconds": 17.8,
+   "cost": 0.0085,
+   "error": null
+  },
+  {
+   "status": "completed",
+   "seconds": 21.7,
+   "cost": 0.0085,
+   "error": null
+  },
+  {
+   "status": "completed",
+   "seconds": 17.6,
+   "cost": 0.0085,
+   "error": null
+  },
+  {
+   "status": "completed",
+   "seconds": 21.9,
+   "cost": 0.0085,
+   "error": null
+  },
+  {
+   "status": "completed",
+   "seconds": 22.2,
+   "cost": 0.0085,
+   "error": null
+  },
+  {
+   "status": "completed",
+   "seconds": 18.0,
+   "cost": 0.0085,
+   "error": null
+  },
+  {
+   "status": "completed",
+   "seconds": 22.0,
+   "cost": 0.0085,
+   "error": null
+  },
+  {
+   "status": "completed",
+   "seconds": 22.1,
+   "cost": 0.0085,
+   "error": null
+  },
+  {
+   "status": "completed",
+   "seconds": 17.7,
+   "cost": 0.0085,
+   "error": null
+  },
+  {
+   "status": "completed",
+   "seconds": 34.6,
+   "cost": 0.0085,
+   "error": null
+  },
+  {
+   "status": "completed",
+   "seconds": 21.8,
+   "cost": 0.0085,
+   "error": null
+  },
+  {
+   "status": "completed",
+   "seconds": 22.1,
+   "cost": 0.0085,
+   "error": null
+  },
+  {
+   "status": "completed",
+   "seconds": 21.9,
+   "cost": 0.0085,
+   "error": null
+  },
+  {
+   "status": "completed",
+   "seconds": 17.9,
+   "cost": 0.0085,
+   "error": null
+  },
+  {
+   "status": "completed",
+   "seconds": 22.1,
+   "cost": 0.0085,
+   "error": null
+  }
+ ]
+}

@@ -4,8 +4,9 @@ import json, os, sys, time, requests
 from bench import run, OUT, B, H
 from run2_prompts import P
 EX = {"gpt-image-1.5": {"size": "1536x1024"}}  # 1.5 rejects "16:9"; 3:2 is its widest size
-O4 = OUT.parent / "out4"; O4.mkdir(exist_ok=True)
-FN = "results4.json"
+# RUN4_RESULTS / RUN4_OUT give a later pass its own file and folder (pass 5: results5.json).
+O4 = OUT.parent / os.environ.get("RUN4_OUT", "out4"); O4.mkdir(exist_ok=True)
+FN = os.environ.get("RUN4_RESULTS", "results4.json")
 old = json.load(open(FN)) if os.path.exists(FN) else []
 spent = sum(r.get("cost") or 0 for r in old)
 CAP = float(sys.argv[2])

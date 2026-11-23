@@ -327,7 +327,7 @@
    "kind": "image",
    "model": "flux-3-image-klein",
    "secs": 12.9,
-   "secs_n": 4,
+   "secs_n": 8,
    "cost": 0.0072,
    "unit": "per image",
    "quality": 3.75,
@@ -337,7 +337,27 @@
     "text_free": 5,
     "edge_alpha": 2
    },
-   "pass3": null
+   "pass3": {
+    "repeat_runs": [
+     [
+      4,
+      4
+     ],
+     [
+      4,
+      4
+     ],
+     [
+      4,
+      4
+     ],
+     [
+      2,
+      2
+     ]
+    ],
+    "cine_pair": []
+   }
   },
   {
    "kind": "image",
@@ -351,6 +371,38 @@
     "style": 4,
     "emotion_faces": 4,
     "text_free": 5,
+    "edge_alpha": 2
+   },
+   "pass3": null
+  },
+  {
+   "kind": "image",
+   "model": "mai-image-2.7-flash",
+   "secs": 17.2,
+   "secs_n": 7,
+   "cost": 0.0081,
+   "unit": "per image",
+   "quality": 3.75,
+   "detail": {
+    "style": 4,
+    "emotion_faces": 4,
+    "text_free": 5,
+    "edge_alpha": 2
+   },
+   "pass3": null
+  },
+  {
+   "kind": "image",
+   "model": "z-image-turbo",
+   "secs": 4.8,
+   "secs_n": 7,
+   "cost": 0.01,
+   "unit": "per image",
+   "quality": 2.25,
+   "detail": {
+    "style": 3,
+    "emotion_faces": 2,
+    "text_free": 2,
     "edge_alpha": 2
    },
    "pass3": null
