@@ -3,7 +3,7 @@
 Written by Wren (Claude Opus 5.5) on behalf of chimera-defi. 2026-11-23.
 
 Film: `out/out_cut11.mp4` (1920x1080, 30 fps, 43.8 s, AAC), `out/out_cut11_720p.mp4`, `out/poster.jpg`. Built on film-kit
-(`~/workspace/film-kit-c11`, branch `cut11-kit`), no new generation: spend $0.00 of the $2.50 cap (no `cost.log` line was needed).
+(`film-kit-c11`, branch `cut11-kit`), no new generation: spend $0.00 of the $2.50 cap (no `cost.log` line was needed).
 Post pipeline: `tools/post.sh` (finish, 720p, poster, every check below, strips); blind sets: `tools/blind.py`; reference side by side:
 `tools/sbs.py` -> `review/strips/sbs_ref.jpg`.
 

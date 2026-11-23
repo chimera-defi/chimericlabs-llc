@@ -8,8 +8,10 @@ Local paths were rewritten: `/home/.../workspace/` was dropped (so `ghibli-scrat
 | file | what it is |
 |---|---|
 | `reviews/REVIEW12.md` | cut 12: the blind gate against cut 10 and a hidden re-encoded cut 10 twin (Fable, Opus, Haiku), the control read, what was kept, fixed and left |
-| `reviews/REVIEW11_opus.md`, `REVIEW11_fable.md` | cut 11 from the Opus lead and the Fable lead: checks, blind rounds, spend, and the A/B record of the two runs |
-| `notes/SPEC11_opus.md`, `SPEC11_fable.md` | the cut 11 spec each lead wrote before building |
+| `reviews/REVIEW11_opus.md` | cut 11 from the Opus lead: checks, blind rounds, spend, and its A/B record of the two runs |
+| `reviews/REVIEW11_fable.md` | cut 11 from the Fable lead: checks, blind rounds, spend, and its A/B record with the head-to-head judges |
+| `notes/SPEC11_opus.md` | the cut 11 spec the Opus lead wrote before building |
+| `notes/SPEC11_fable.md` | the cut 11 spec the Fable lead wrote before building, with its acceptance checklist (a pass rule per defect, set before the work) |
 | `notes/METRICS11_fable.md` | the Fable lead's cut 11 run: wall time, renders, spend, friction rows |
 | `notes/LESSONS-cut11-ab.md` | the cut 11 A/B lessons, with the operator's neutral blind rank (cut 10, then Opus cut 11, then Fable cut 11) |
 | `notes/NOTES10.md` | cut 10: the code-drawn train, the three tunnel options with costs, the blind review, the polish pass and the open defects |
