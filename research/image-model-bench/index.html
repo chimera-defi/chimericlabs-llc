@@ -157,7 +157,7 @@ details > * + * { margin-top: var(--gap-s); }
 <header class="sec" style="padding-top:0">
 <p class="ds-kicker" style="margin:0">Benchmark &middot; <time datetime="2026-11-21">21 Nov 2026</time> &middot; 6 min read</p>
 <h1>Image model bench: what 25 models cost and where they fail</h1>
-<p class="lede">We needed art for a short film: frightened faces, wide plates and prop sheets with a real transparent background. We ran four passes over image models on one gateway, APIMart, and kept the cost, the time and our verdict for each use.</p>
+<p class="lede">For anyone picking an image model for film art: faces, wide plates and cut-out props.</p>
 </header>
 <aside class="card see" aria-label="See also, top">
 <p class="meta" style="margin:0">See also</p>
@@ -167,7 +167,12 @@ details > * + * { margin-top: var(--gap-s); }
 <section class="sec" id="verdict" aria-labelledby="h-verdict">
 <h2 id="h-verdict">Verdict</h2>
 <div class="card tldr">
-<p>Use <strong class="key">gpt-image-2.6-flare at $0.0265</strong> an image for faces, plates and cut-out props. Use <strong class="key">gpt-image-2 at $0.0085</strong> when cost matters. Only <strong class="key">4 of 15</strong> scored models sit on the cost-quality frontier; the other 11 cost more or score lower. New in pass 4: <strong class="key">flux-3-image-klein at $0.0072</strong> is the cheapest scored model, but it paints a backdrop instead of returning alpha.</p>
+<p>Use <strong class="key">gpt-image-2.6-flare at $0.0265</strong> an image for faces, plates and cut-out props. Use <strong class="key">gpt-image-2 at $0.0085</strong> when cost matters.</p>
+<ul>
+<li>Only <strong class="key">4 of 15</strong> scored models sit on the cost-quality frontier. The other 11 cost more or score lower.</li>
+<li>The cheapest scored model, <strong class="key">flux-3-image-klein at $0.0072</strong>, paints a backdrop instead of returning alpha.</li>
+<li>For one character across a new keyframe set, ChatGPT Instant kept all 13 keyframes consistent.</li>
+</ul>
 <div class="scroll"><table class="table pick"><caption class="meta">Pick this. Measured on this bench, one reviewer; ChatGPT Instant is unscored on the rubric.</caption><thead><tr><th scope="col">When you need</th><th scope="col">Pick</th><th scope="col" class="num">Cost</th><th scope="col" class="num">Median time</th><th scope="col">Measured</th></tr></thead><tbody>
 <tr><th scope="row">A new keyframe set, one character across shots</th><td>ChatGPT Instant</td><td class="num">$20 plan</td><td class="num">70 s, one at a time</td><td>All 13 keyframes kept the same boy, girl and wolf as each other. About $0.013 an image at 50 a day (a model); the daily cap is unmeasured.</td></tr>
 <tr><th scope="row">Keyframes that must match an existing cut</th><td>gpt-image-2.6-flare with frames of the cut as references</td><td class="num">$0.09 to $0.11</td><td class="num">not timed</td><td>Cut 9: the boy and the train match the film. The ChatGPT set above did not match the code-built cut (<a href="../video-model-bench/#cut9">video bench</a>).</td></tr>
@@ -175,13 +180,6 @@ details > * + * { margin-top: var(--gap-s); }
 <tr><th scope="row">Bulk and parallel</th><td>gpt-image-2</td><td class="num">$0.0085</td><td class="num">22.8 s</td><td>4.50 of 5. 20 calls at once finished in 39.5 s. Dropped alpha in 1 of 2 prop runs.</td></tr>
 <tr><th scope="row">Faces, plates and cut-out props</th><td>gpt-image-2.6-flare</td><td class="num">$0.0265</td><td class="num">13.2 s</td><td>5.00 of 5, real alpha in both runs. Also the keyframe model for the veo clips in cut 9.</td></tr>
 </tbody></table></div>
-<ul class="chips">
-<li class="chip u-face"><span class="u">Faces and fear</span><b>gpt-image-2.6-flare</b><span>Score 5 in both runs</span></li>
-<li class="chip u-plate"><span class="u">Wolf and plates</span><b>gpt-image-2.6-flare</b><span>flux-3-image is the painterly second, $0.038</span></li>
-<li class="chip u-prop"><span class="u">Cut-out props</span><b>gpt-image-2.6-flare</b><span>Real alpha in both runs</span></li>
-<li class="chip u-bulk"><span class="u">Cheap bulk</span><b>gpt-image-2</b><span>$0.0085; dropped alpha in 1 of 2 prop runs</span></li>
-<li class="chip u-ref"><span class="u">Same character from a reference</span><b>seedream-5-0-pro or 2.6-flare</b><span>Score 4 of 5</span></li>
-</ul>
 <p class="meta">157 image requests, 141 returned, $4.50. Another $4.90 went on video tests: <a href="#spend">where the $10 went</a>, and the <a href="../video-model-bench/">video model bench</a> for what they showed. One reviewer, small samples.</p>
 </div>
 </section>
@@ -205,6 +203,7 @@ details > * + * { margin-top: var(--gap-s); }
 
 <section class="sec" id="method" aria-labelledby="h-method">
 <h2 id="h-method">Method</h2>
+<p>We needed art for a short film: frightened faces, wide plates and prop sheets with a real transparent background. We ran four passes over image models on one gateway, APIMart, and kept the cost, the time and our verdict for each use.</p>
 <ol class="flow">
 <li class="u-face" style="--c:var(--data-claude)"><b>Prompt</b>Six prompts: fear, wolf, props, valley, cine, pair.</li>
 <li style="--c:var(--data-codex)"><b>Generate</b>25 models, 1K, 16:9, one image per call. Cost and time come from the task result.</li>
