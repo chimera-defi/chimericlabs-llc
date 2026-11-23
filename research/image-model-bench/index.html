@@ -170,8 +170,8 @@ details > * + * { margin-top: var(--gap-s); }
 <p>Use <strong class="key">gpt-image-2.6-flare at $0.0265</strong> an image for faces, plates and cut-out props. Use <strong class="key">gpt-image-2 at $0.0085</strong> when cost matters.</p>
 <ul>
 <li>Only <strong class="key">4 of 15</strong> scored models sit on the cost-quality frontier. The other 11 cost more or score lower.</li>
-<li>The cheapest scored model, <strong class="key">flux-3-image-klein at $0.0072</strong>, paints a backdrop instead of returning alpha.</li>
-<li>For one character across a new keyframe set, ChatGPT Instant kept all 13 keyframes consistent.</li>
+<li>The cheapest scored model, <strong class="key">flux-3-image-klein at $0.0072</strong>, paints a backdrop on cut-out props instead of returning alpha.</li>
+<li>ChatGPT Instant (unscored) kept the same boy, girl and wolf across all 13 new keyframes. It did not match the existing cut.</li>
 </ul>
 <div class="scroll"><table class="table pick"><caption class="meta">Pick this. Measured on this bench, one reviewer; ChatGPT Instant is unscored on the rubric.</caption><thead><tr><th scope="col">When you need</th><th scope="col">Pick</th><th scope="col" class="num">Cost</th><th scope="col" class="num">Median time</th><th scope="col">Measured</th></tr></thead><tbody>
 <tr><th scope="row">A new keyframe set, one character across shots</th><td>ChatGPT Instant</td><td class="num">$20 plan</td><td class="num">70 s, one at a time</td><td>All 13 keyframes kept the same boy, girl and wolf as each other. About $0.013 an image at 50 a day (a model); the daily cap is unmeasured.</td></tr>
