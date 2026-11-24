@@ -5,6 +5,7 @@ Writes tokens_daily.csv, weekly_limit.csv, burn_daily.csv and the tokens/weekly_
 Commit series (commits_daily.csv, commits_monthly.csv, projects.json, before_ai.json) belong to the building page's export; meta.json section "commits".
 tokens_daily.csv: date,source,model,input,cache_write,cache_read,output,total; source = main | subagent | advisor (Claude) | codex | unattributed.
  advisor = Fable advisor calls (usage.iterations in transcripts), added to claude_daily_dim.csv by the acquisition refresh; every page total includes them.
+ Codex per-model rows start 18 Oct 2026 and use event dates; the daily table uses session dates. A `codex,gap` row (total only) holds days before the split and, from 18 Oct, a signed date-shift so each day ties.
  `unattributed` rows hold days the per-model files lack (recovered or ledger-only days): total only, so every day sums to the daily table."""
 import csv, datetime as dt, json, sys
 from collections import defaultdict
@@ -29,7 +30,7 @@ for d, s, m, *v, t in out: have['claude' if s in ('main', 'subagent', 'advisor')
 for r in rd(TU / 'daily.csv'):   # days or amounts the model files lack: keep the daily table whole, say so in the source column
     for actor in ('claude', 'codex'):
         gap = int(r['tokens_' + actor]) - have[actor, r['date']]
-        if gap > 0: out.append((r['date'], 'unattributed' if actor == 'claude' else 'codex', '-' if actor == 'claude' else 'gap', 0, 0, 0, 0, gap))
+        if gap > 0 or (gap < 0 and actor == 'codex'): out.append((r['date'], 'unattributed' if actor == 'claude' else 'codex', '-' if actor == 'claude' else 'gap', 0, 0, 0, 0, gap))
 out.sort()
 D.mkdir(exist_ok=True)
 with open(D / 'tokens_daily.csv', 'w', newline='') as f:

@@ -1,6 +1,6 @@
 {
   "schema": "token-usage-v5",
-  "updated": "2026-11-23",
+  "updated": "2026-11-24",
   "all_branch_commits": 15691,
   "row_fields": [
     "date",
@@ -1073,11 +1073,11 @@
     [
       "2026-08-24",
       "claude_transcripts:unattributed",
-      230,
-      64180,
+      457703,
+      77674,
       390996,
       16132227,
-      112
+      115
     ],
     [
       "2026-08-24",
@@ -1216,6 +1216,15 @@
       488749,
       13889932,
       151
+    ],
+    [
+      "2026-09-08",
+      "claude_transcripts:advisor",
+      589966,
+      3138,
+      0,
+      0,
+      3
     ],
     [
       "2026-09-08",
@@ -3379,6 +3388,15 @@
     ],
     [
       "2026-10-29",
+      "claude_transcripts:advisor",
+      203823,
+      20102,
+      0,
+      0,
+      2
+    ],
+    [
+      "2026-10-29",
       "claude_transcripts:claude-desktop",
       192,
       52682,
@@ -4474,6 +4492,15 @@
     ],
     [
       "2026-11-17",
+      "claude_transcripts:advisor",
+      12634304,
+      1160539,
+      0,
+      0,
+      113
+    ],
+    [
+      "2026-11-17",
       "claude_transcripts:claude-desktop",
       2621,
       1230135,
@@ -4546,6 +4573,15 @@
     ],
     [
       "2026-11-18",
+      "claude_transcripts:advisor",
+      11613663,
+      1052727,
+      0,
+      0,
+      114
+    ],
+    [
+      "2026-11-18",
       "claude_transcripts:claude-desktop",
       2020,
       660126,
@@ -4610,6 +4646,15 @@
     ],
     [
       "2026-11-19",
+      "claude_transcripts:advisor",
+      4921223,
+      372118,
+      0,
+      0,
+      41
+    ],
+    [
+      "2026-11-19",
       "claude_transcripts:claude-desktop",
       2036,
       630540,
@@ -4671,6 +4716,15 @@
       21102464,
       null,
       21705615
+    ],
+    [
+      "2026-11-20",
+      "claude_transcripts:advisor",
+      6115897,
+      459735,
+      0,
+      0,
+      54
     ],
     [
       "2026-11-20",
@@ -4747,6 +4801,15 @@
     ],
     [
       "2026-11-21",
+      "claude_transcripts:advisor",
+      2675010,
+      215940,
+      0,
+      0,
+      26
+    ],
+    [
+      "2026-11-21",
       "claude_transcripts:claude-desktop",
       908,
       250215,
@@ -4817,6 +4880,15 @@
       4906368,
       null,
       5255879
+    ],
+    [
+      "2026-11-22",
+      "claude_transcripts:advisor",
+      11343965,
+      884101,
+      0,
+      0,
+      90
     ],
     [
       "2026-11-22",
@@ -4893,57 +4965,66 @@
     ],
     [
       "2026-11-23",
+      "claude_transcripts:advisor",
+      8575726,
+      608416,
+      0,
+      0,
+      78
+    ],
+    [
+      "2026-11-23",
       "claude_transcripts:claude-desktop",
-      318,
-      89036,
-      1632731,
-      18228661,
-      136
+      460,
+      129665,
+      2436953,
+      26531662,
+      200
     ],
     [
       "2026-11-23",
       "claude_transcripts:claude-desktop:sidechain",
-      94,
-      25466,
-      226073,
-      3284099,
-      47
+      150,
+      35242,
+      331099,
+      5676585,
+      75
     ],
     [
       "2026-11-23",
       "claude_transcripts:cli",
-      5296,
-      1891747,
-      9797098,
-      301809022,
-      2409
+      6842,
+      2424553,
+      12026700,
+      389420337,
+      3127
     ],
     [
       "2026-11-23",
       "claude_transcripts:cli:sidechain",
-      2742,
-      1242315,
-      6286449,
-      113644973,
-      1217
+      3130,
+      1460323,
+      7444144,
+      126120399,
+      1386
     ],
     [
       "2026-11-23",
       "claude_transcripts:sdk-cli",
-      346,
-      135957,
-      1567974,
-      11360145,
-      143
+      674,
+      264744,
+      2169855,
+      25804474,
+      292
     ],
     [
       "2026-11-23",
       "claude_transcripts:sdk-cli:sidechain",
-      20,
-      16589,
-      97648,
-      523144,
-      7
+      108,
+      81776,
+      397360,
+      3009267,
+      49
     ],
     [
       "2026-11-23",
@@ -4956,6 +5037,79 @@
     ],
     [
       "2026-11-23",
+      "codex_corrected",
+      null,
+      null,
+      null,
+      null,
+      null,
+      0
+    ],
+    [
+      "2026-11-24",
+      "claude_transcripts:advisor",
+      4605570,
+      387313,
+      0,
+      0,
+      45
+    ],
+    [
+      "2026-11-24",
+      "claude_transcripts:claude-desktop",
+      700,
+      186178,
+      1506250,
+      43955224,
+      307
+    ],
+    [
+      "2026-11-24",
+      "claude_transcripts:claude-desktop:sidechain",
+      2364,
+      1158701,
+      8234133,
+      111640452,
+      1161
+    ],
+    [
+      "2026-11-24",
+      "claude_transcripts:cli",
+      3084,
+      1224050,
+      4565328,
+      173994470,
+      1457
+    ],
+    [
+      "2026-11-24",
+      "claude_transcripts:cli:sidechain",
+      1204,
+      712939,
+      2803393,
+      50561907,
+      586
+    ],
+    [
+      "2026-11-24",
+      "claude_transcripts:sdk-cli",
+      196,
+      49136,
+      452883,
+      5838155,
+      90
+    ],
+    [
+      "2026-11-24",
+      "claude_transcripts:unattributed",
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      "2026-11-24",
       "codex_corrected",
       null,
       null,
@@ -4983,6 +5137,15 @@
       390996,
       16132227,
       112
+    ],
+    [
+      "2026-08-24",
+      "claude_transcripts:advisor",
+      457473,
+      13494,
+      0,
+      0,
+      3
     ]
   ],
   "groups": [
@@ -5040,7 +5203,7 @@
       "cache_read": null,
       "output": null,
       "unassigned": null,
-      "total": 32817418589
+      "total": 33427132138
     },
     "codex": {
       "fresh_input": null,
@@ -5052,11 +5215,11 @@
     }
   },
   "claude_ledger_composition": {
-    "fresh_input": 1297027,
-    "cache_write": 1065023507,
-    "cache_read": 28384447610,
-    "output": 225547298,
-    "total": 29676315442,
+    "fresh_input": 65043743,
+    "cache_write": 1087783632,
+    "cache_read": 28898150498,
+    "output": 235051118,
+    "total": 30286028991,
     "unassigned": 0
   },
   "claude_audit_composition": {
@@ -5069,7 +5232,7 @@
   },
   "claude_measured": {
     "from": "2026-07-10",
-    "through": "2026-11-23",
+    "through": "2026-11-24",
     "note": "raw (fresh+cache write+cache read+output), per day max of the 2026-10-29 audit and the ledger, 2026-07-10..data_through; excludes anything before 2026-07-10 (not on disk) and the 2026-06..09 gaps; NOT lifetime. Ledger alone undercounts 2026-09-11..30 by ~3.1B because transcripts for those days were pruned after the audit.",
     "early_recovery": 709248815
   },
@@ -5321,7 +5484,7 @@
     [
       "2026-10-29",
       "0",
-      "4634412.875"
+      "4938745.875"
     ],
     [
       "2026-10-30",
@@ -5416,37 +5579,42 @@
     [
       "2026-11-17",
       "0",
-      "103364588.375"
+      "121801587.375"
     ],
     [
       "2026-11-18",
       "0",
-      "99264884.075"
+      "116142182.075"
     ],
     [
       "2026-11-19",
       "0",
-      "75407569.600"
+      "82189382.600"
     ],
     [
       "2026-11-20",
       "0",
-      "72975307.700"
+      "81389879.700"
     ],
     [
       "2026-11-21",
       "0",
-      "39954397.075"
+      "43709107.075"
     ],
     [
       "2026-11-22",
       "0",
-      "94218581.300"
+      "109983051.300"
     ],
     [
       "2026-11-23",
       "0",
-      "52745583.350"
+      "79032391.850"
+    ],
+    [
+      "2026-11-24",
+      "0",
+      "54806941.950"
     ]
   ],
   "fable_window": {
@@ -5480,22 +5648,22 @@
     "claude_from": "2026-09-07",
     "token_start": "2026-05-24",
     "split_start": "2026-10-18",
-    "claude_through": "2026-11-23",
-    "corrected_codex_through": "2026-11-23"
+    "claude_through": "2026-11-24",
+    "corrected_codex_through": "2026-11-24"
   },
   "sources": {
     "source-1": "fbe74cca7d3eafe7d17d42d3b75a2b9d6e16032f6985c071f4bd83c12574bbc4",
-    "source-2": "fc74eba1b8fff05353f1cc25e98818992154464ee54fd037239d349a8bb92f50",
+    "source-2": "466e0a67389482fcc0dd3eb63bb262a55be536f18007511246a5825c10905dc2",
     "source-3": "3a550a23d40ae492432e764be93154ac7fa9f28db0f8a0d3d1aaac3e0f6c63aa",
-    "source-4": "ac24553546134a65f75601355a50862a03ffd4d9187cc204e1e1f7f9c221a3ae",
+    "source-4": "f70ef049c98cc3735de06d99d9082d711b54d434c3bed622d3d0ca8bf16e6754",
     "source-5": "9951a41b3ea317c312c13d4319af3296f1bc20bdb05dbfea8eeb0d1a21fd8212",
-    "source-6": "6f45dfcab6e8698795a458b944eb182743d415274c95ce4a42d246134e5863f3",
-    "source-7": "bcf6607b82792c5f96adfd47cf438fac6e2fc41cd2bca92f48114ecfbc89cc8f",
-    "source-8": "ea2afa31db9dc42249ad7ca685124d0be42c82de5acf8d6909315edb7d908959",
+    "source-6": "f4a3bf13e3e94fe233d4a49fd2b2971d05194895a38ada7c4b5dad19ab65e765",
+    "source-7": "73c788025b423d02ccbf8701556d2e45d2f3a7ef2223cddf808c07f8cf55b7ee",
+    "source-8": "d78640af234e3e2a355b7a5ac3286d54ba2ab644fb5b96d6d42baa1f3ca8bac3",
     "source-9": "5279a620101026d5dc52b718fe870b472330b134de1b67e987961cdeefdb7019",
-    "source-10": "c7479df98c3a29fecccc5debf404671598e23e4569267ff33cc49fe71baef533",
-    "source-11": "1e6471593d5b2495009e82e83f8fbafe6db2ae5ad572433fa50303544c79ac70",
-    "source-12": "68315dd56c14c668f89fe45895f3c809382311bf4835b690feae4836cc0f2503",
+    "source-10": "4318c1d6235bae919acb0772063104c0baff7d8af79baaea911c2f33d5525420",
+    "source-11": "d06c797c1cfa036dfb87a7f37270a8db9d92d07415b27baa7ab0525dfa34c1bb",
+    "source-12": "d552a4e5655675a2700e350a6892fc8a7170a3329e16b318e834470da4873d07",
     "source-13": "f9ffc0ee562dad632406ab53d6752974f0f7ffc94db9db232be203723c7211ac",
     "source-14": "d78f79f2e8c4335e9f5b306837cfa526ccaaa671ca806a4b837d78212a0cfe4f",
     "source-15": "96033e967ab4154f25906d7478cba61e4680f9e6d78c9474325ff6d1f0fd6995",
@@ -5506,17 +5674,17 @@
     "source-20": "280235fc20c0cfa6540b82cdf93617b70fcceeb613f37001850df27dbef01ecb",
     "source-21": "64461910b3f11512232ae849fc218a698ad8b6cf3a5abd28a2680c467ca40f44",
     "source-22": "644903bd6382ed4b894b46024c6e14751d280252784e20d3cd030d305dfcfe74",
-    "source-23": "1f467372d3dcc791de1aa7b5d2292e420d5c15ce0934c1f674fd320da915756a",
-    "source-24": "2dfacaaabfaec9be4cb5190f28e58ff94d1e6533eaf1fa0967623862dcbcd8d4",
+    "source-23": "7dd00617a06e5566ae52166a77dfd83bac7650e04f300f835097b6370498c32c",
+    "source-24": "7627490092fb4352d00920b1b14f0b8403732a5d15c1d439303c617198442e87",
     "source-25": "55e6f01e7b2c9450b7a9e70f233c7c8471b12f6a2cb5b42d0883de773eaadc7a",
-    "source-26": "887fae180a05de24afe6c25ba8394d397038570990b07a4524c4190d34696e44",
-    "source-27": "42ec9b2d2dec055257b4bf3ac97a29e58737a319fd280cbde294a851095d55f8",
+    "source-26": "5ab93d47d81623fd408bd23fc0c11c33ed5531284ad35d1f9af6fd5c1a2c587a",
+    "source-27": "8db77dceb08fcc1d1797d502dd3cb3b6688aa259fe68196f5a38e523b44ac147",
     "source-28": "a8c21fda504d89f04c60866c122592dd9cbd082eea3251c5eab5ecda4802433a",
     "source-29": "01cd0ac449d4efff69be43af1c652798f3d27f062a26a3dee490362742a85065",
-    "source-30": "3e24150186770f5c9dafb7f98fd77f647f2d36fca7acc9b0cf7a7b3629139195",
-    "source-31": "4cc5c560fccf691cc76b38eb00400a3512232985bf8f372198eee98ba026d788",
-    "source-32": "c7d59d7a5df03d51eed02dd3c1b88bc1999ea72c561b6364815a7c6a7869aed3",
-    "source-33": "114dc482e7c472bc9afc854662380ec0f46291804b7f84f59f7faba04062231c",
+    "source-30": "f404b37aab4605b5fbb50003c6858fc2b390a6d948b6edabb47bd92cd0f9779e",
+    "source-31": "405b7e9399ebf9dfbd4331aebd79346689f029d257f723f99e3a8342698e3178",
+    "source-32": "ff4a16407c999a5fb1c0fe4ef625816706d05aea559bc1dc094585cb1db8ec30",
+    "source-33": "8e73edc6800dd5789fef01243db6d113276c1054b0bacce7159ed9306164015f",
     "source-34": "2e8438d750ff716c4923286b08ee6b75ba04f6a9f004da8d7ff30142b2ce39f6",
     "source-35": "38774aeace09945f275c60258df739a62cdcde67a2120bf716e8f5f920767757",
     "source-36": "6531d7518aa7dee39eb06e7a3339608e9803790e04acf586c118c881d109152f",
@@ -5524,7 +5692,7 @@
     "source-38": "51a25e87156d4215b9c596534b81cc2480907ddd730dda8bb8be80fed3f8dcbd"
   },
   "bus_activity": {
-    "through": "2026-11-23",
+    "through": "2026-11-24",
     "coverage": {
       "bus_start": "2026-08-25",
       "first_claude": "2026-09-04",
@@ -9281,13 +9449,13 @@
         "2026-11-23",
         "received",
         "chatgpt",
-        7
+        12
       ],
       [
         "2026-11-23",
         "received",
         "claude",
-        53
+        95
       ],
       [
         "2026-11-23",
@@ -9299,25 +9467,55 @@
         "2026-11-23",
         "sent",
         "automation",
-        2
+        7
       ],
       [
         "2026-11-23",
         "sent",
         "chatgpt",
-        4
+        11
       ],
       [
         "2026-11-23",
         "sent",
         "claude",
-        25
+        50
       ],
       [
         "2026-11-23",
         "sent",
         "other",
-        31
+        41
+      ],
+      [
+        "2026-11-24",
+        "received",
+        "chatgpt",
+        2
+      ],
+      [
+        "2026-11-24",
+        "received",
+        "claude",
+        26
+      ],
+      [
+        "2026-11-24",
+        "sent",
+        "automation",
+        1
+      ],
+      [
+        "2026-11-24",
+        "sent",
+        "claude",
+        9
+      ],
+      [
+        "2026-11-24",
+        "sent",
+        "other",
+        18
       ]
     ]
   },
@@ -9335,15 +9533,19 @@
     "entrypoint": [
       [
         "cli",
-        19617739162
+        19955832323
       ],
       [
         "desktop",
-        7444225767
+        7622565107
       ],
       [
         "sdk-cli",
-        2607675530
+        2632042335
+      ],
+      [
+        "advisor",
+        68914243
       ],
       [
         "unknown",
@@ -9353,33 +9555,33 @@
     "actor": [
       [
         "Main",
-        18374961511
+        18790349996
       ],
       [
         "Subagent",
-        11301353931
+        11495678995
       ]
     ],
     "model": [
       [
         "opus-5-5",
-        13580157368
+        13788614354
       ],
       [
         "sonnet-5-5",
-        7456765457
+        7759210335
       ],
       [
         "sonnet-5",
-        5278587786
+        5278627921
       ],
       [
         "haiku-5-5",
-        1492002791
+        1511592151
       ],
       [
         "fable-5-2",
-        1246816321
+        1324934440
       ],
       [
         "fable-5-1",
@@ -9387,7 +9589,7 @@
       ],
       [
         "opus-5",
-        85997257
+        87061328
       ],
       [
         "sonnet-4-5-20250929",
@@ -9408,12 +9610,12 @@
     ],
     "project": [
       [
-        "Other projects (443)",
-        15076156959
+        "Other projects (460)",
+        15501081543
       ],
       [
         "Session tooling",
-        7017220192
+        7195559532
       ],
       [
         "Orchestrator",
@@ -9421,7 +9623,7 @@
       ],
       [
         "30 projects, grouped (topic withheld)",
-        1541028855
+        1545394520
       ],
       [
         "Chief of staff",
@@ -9429,7 +9631,7 @@
       ],
       [
         "MCP tooling",
-        906074928
+        908158888
       ],
       [
         "Bus follower",
@@ -9445,35 +9647,35 @@
       ]
     ]
   },
-  "who_total": 29676315442,
+  "who_total": 30286028991,
   "range_summaries": {
     "all": [
-      18374961511,
-      11301353931,
+      18790349996,
+      11495678995,
       28245169629,
       3850351962
     ],
     "90": [
-      18358300713,
-      11301353931,
-      8682060724,
+      18773218231,
+      11495678995,
+      8634330202,
       3141103147
     ],
     "30": [
-      11358612713,
-      3361562932,
-      3033869302,
+      10983171323,
+      3390776043,
+      2573505521,
       0
     ],
     "7": [
-      3299471480,
-      1310025929,
-      58094351,
+      3361519705,
+      1321456115,
+      56948872,
       0
     ],
     "since": [
-      18358300713,
-      11301353931,
+      18773218231,
+      11495678995,
       7050572536,
       3141103147
     ]
@@ -9554,7 +9756,8 @@
     "2026-11-15",
     "2026-11-17",
     "2026-11-22",
-    "2026-11-23"
+    "2026-11-23",
+    "2026-11-24"
   ],
   "claude_gap_summary": [
     "Missing transcripts: default cleanup suspected, not proven.",
@@ -9584,7 +9787,7 @@
     {
       "name": "Task runs",
       "tag": "SUBSET",
-      "raw": 319356652,
+      "raw": 291881159,
       "source": "server_task_runs_daily.csv"
     }
   ],
@@ -9612,12 +9815,30 @@
         ],
         [
           "2026-08",
+          "advisor",
+          3,
+          470967,
+          0,
+          0,
+          0.0
+        ],
+        [
+          "2026-08",
           "claude-desktop",
           112,
           64410,
           390996,
           16132227,
           97.3
+        ],
+        [
+          "2026-09",
+          "advisor",
+          3,
+          593104,
+          0,
+          0,
+          0.0
         ],
         [
           "2026-09",
@@ -9636,6 +9857,15 @@
           97636780,
           6250514252,
           98.2
+        ],
+        [
+          "2026-10",
+          "advisor",
+          2,
+          223925,
+          0,
+          0,
+          0.0
         ],
         [
           "2026-10",
@@ -9675,29 +9905,38 @@
         ],
         [
           "2026-11",
+          "advisor",
+          561,
+          67626247,
+          0,
+          0,
+          0.0
+        ],
+        [
+          "2026-11",
           "claude-desktop",
-          33466,
-          30341018,
-          189588644,
-          4324727047,
-          95.2
+          35026,
+          31739564,
+          200238275,
+          4491018210,
+          95.1
         ],
         [
           "2026-11",
           "cli",
-          54135,
-          49230743,
-          225653358,
-          5797824885,
+          57066,
+          51924768,
+          236409376,
+          6122468003,
           95.5
         ],
         [
           "2026-11",
           "sdk-cli",
-          18554,
-          34520324,
-          118122013,
-          1489523025,
+          18835,
+          34764046,
+          119476489,
+          1512291632,
           90.7
         ],
         [
@@ -9738,24 +9977,24 @@
         ],
         [
           "2026-08-24",
-          112,
-          64410,
+          115,
+          535377,
           390996,
           16132227,
           0,
           0,
-          100,
+          97,
           0
         ],
         [
           "2026-09-07",
-          513,
-          373357,
+          516,
+          966461,
           1769252,
           81009395,
           17,
           0,
-          100,
+          99,
           0
         ],
         [
@@ -9826,8 +10065,8 @@
         ],
         [
           "2026-10-26",
-          18930,
-          15761653,
+          18932,
+          15985578,
           85042562,
           2177226440,
           18,
@@ -9859,25 +10098,25 @@
         ],
         [
           "2026-11-16",
-          41554,
-          37649281,
+          41992,
+          91098503,
           209557573,
           4362290555,
           28,
-          57,
-          25,
+          56,
+          24,
           18
         ],
         [
           "2026-11-23",
-          3963,
-          3409926,
-          19607973,
-          448850044,
-          27,
-          92,
-          5,
-          3
+          8858,
+          21923244,
+          42368098,
+          962552932,
+          31,
+          75,
+          20,
+          4
         ]
       ]
     },
@@ -10241,21 +10480,21 @@
         [
           "2026-10-19",
           "claude",
-          5,
-          1,
-          90,
-          2111839,
-          36063,
-          1.88
+          2,
+          0,
+          20,
+          309808,
+          8665,
+          0.41
         ],
         [
           "2026-10-19",
           "codex",
-          13,
-          5,
-          34485267,
-          33448832,
-          152018,
+          4,
+          2,
+          1576941,
+          1428096,
+          20208,
           0.0
         ],
         [
@@ -10337,6 +10576,16 @@
           8324608,
           32243,
           0.0
+        ],
+        [
+          "2026-11-23",
+          "claude",
+          2,
+          0,
+          132,
+          7321244,
+          72766,
+          7.15
         ]
       ]
     },
@@ -10377,49 +10626,49 @@
         ],
         [
           "2026-11",
-          767,
-          591,
+          774,
+          598,
           35,
-          913,
-          1662
+          919,
+          1717
         ]
       ]
     }
   ],
-  "data_through": "2026-11-23 20:04:36 UTC",
-  "partial_today": "2026-11-23",
+  "data_through": "2026-11-24 07:21:15 UTC",
+  "partial_today": "2026-11-24",
   "recent_coverage": {
     "Claude": {
-      "2026-11-22": true,
-      "2026-11-23": true
+      "2026-11-23": true,
+      "2026-11-24": true
     },
     "Codex": {
-      "2026-11-22": true,
-      "2026-11-23": true
+      "2026-11-23": true,
+      "2026-11-24": true
     }
   },
   "last7": {
-    "data_through": "2026-11-23T20:04:36Z",
-    "window": "2026-11-16..2026-11-22 (last 7 complete UTC days)",
-    "partial_today": "2026-11-23",
+    "data_through": "2026-11-24T07:21:15Z",
+    "window": "2026-11-17..2026-11-23 (last 7 complete UTC days)",
+    "partial_today": "2026-11-24",
     "claude": {
-      "fresh_input": 88117,
-      "output": 37561164,
-      "cache_write": 209557573,
-      "cache_read": 4362290555,
-      "weighted": 453276384,
+      "fresh_input": 57968029,
+      "output": 41782709,
+      "cache_write": 206355413,
+      "cache_read": 4376869669,
+      "weighted": 511980809,
       "weighting": "input+cache_write+output+cache_read*0.05 (opus/sonnet-5.5; 0.025 fable; 0.1 other)",
-      "raw": 4609497409
+      "raw": 4682975820
     },
     "codex": {
       "fresh_input": 4069484,
-      "cached_input": 53704711,
+      "cached_input": 52559232,
       "output": 320156,
-      "total_own": 58094351,
+      "total_own": 56948872,
       "weighted": "NOT_ESTABLISHED (no published Codex cache weights)"
     },
-    "start": "2026-11-16",
-    "end": "2026-11-22"
+    "start": "2026-11-17",
+    "end": "2026-11-23"
   },
   "other_sources": [
     {
@@ -10462,77 +10711,13 @@
   "mcp_callers": [],
   "last7_rows": [
     [
-      "2026-11-16",
-      "claude_transcripts:claude-desktop",
-      2190,
-      794194,
-      6688730,
-      136251965,
-      950
-    ],
-    [
-      "2026-11-16",
-      "claude_transcripts:claude-desktop:sidechain",
-      840,
-      575773,
-      2756404,
-      29667280,
-      402
-    ],
-    [
-      "2026-11-16",
-      "claude_transcripts:cli",
-      4474,
-      1546663,
-      8952906,
-      260265821,
-      2057
-    ],
-    [
-      "2026-11-16",
-      "claude_transcripts:cli:sidechain",
-      1902,
-      1247654,
-      5218397,
-      89013276,
-      916
-    ],
-    [
-      "2026-11-16",
-      "claude_transcripts:sdk-cli",
-      1634,
-      684888,
-      4101853,
-      42506740,
-      766
-    ],
-    [
-      "2026-11-16",
-      "claude_transcripts:sdk-cli:sidechain",
-      200,
-      79162,
-      289981,
-      4278528,
-      99
-    ],
-    [
-      "2026-11-16",
-      "claude_transcripts:unattributed",
+      "2026-11-17",
+      "claude_transcripts:advisor",
+      12634304,
+      1160539,
       0,
       0,
-      0,
-      0,
-      1
-    ],
-    [
-      "2026-11-16",
-      "codex_corrected",
-      0,
-      0,
-      0,
-      0,
-      null,
-      1145479
+      113
     ],
     [
       "2026-11-17",
@@ -10608,6 +10793,15 @@
     ],
     [
       "2026-11-18",
+      "claude_transcripts:advisor",
+      11613663,
+      1052727,
+      0,
+      0,
+      114
+    ],
+    [
+      "2026-11-18",
       "claude_transcripts:claude-desktop",
       2020,
       660126,
@@ -10672,6 +10866,15 @@
     ],
     [
       "2026-11-19",
+      "claude_transcripts:advisor",
+      4921223,
+      372118,
+      0,
+      0,
+      41
+    ],
+    [
+      "2026-11-19",
       "claude_transcripts:claude-desktop",
       2036,
       630540,
@@ -10733,6 +10936,15 @@
       21102464,
       null,
       21705615
+    ],
+    [
+      "2026-11-20",
+      "claude_transcripts:advisor",
+      6115897,
+      459735,
+      0,
+      0,
+      54
     ],
     [
       "2026-11-20",
@@ -10809,6 +11021,15 @@
     ],
     [
       "2026-11-21",
+      "claude_transcripts:advisor",
+      2675010,
+      215940,
+      0,
+      0,
+      26
+    ],
+    [
+      "2026-11-21",
       "claude_transcripts:claude-desktop",
       908,
       250215,
@@ -10882,6 +11103,15 @@
     ],
     [
       "2026-11-22",
+      "claude_transcripts:advisor",
+      11343965,
+      884101,
+      0,
+      0,
+      90
+    ],
+    [
+      "2026-11-22",
       "claude_transcripts:claude-desktop",
       1074,
       267385,
@@ -10945,6 +11175,88 @@
     ],
     [
       "2026-11-22",
+      "codex_corrected",
+      null,
+      null,
+      null,
+      null,
+      null,
+      0
+    ],
+    [
+      "2026-11-23",
+      "claude_transcripts:advisor",
+      8575726,
+      608416,
+      0,
+      0,
+      78
+    ],
+    [
+      "2026-11-23",
+      "claude_transcripts:claude-desktop",
+      460,
+      129665,
+      2436953,
+      26531662,
+      200
+    ],
+    [
+      "2026-11-23",
+      "claude_transcripts:claude-desktop:sidechain",
+      150,
+      35242,
+      331099,
+      5676585,
+      75
+    ],
+    [
+      "2026-11-23",
+      "claude_transcripts:cli",
+      6842,
+      2424553,
+      12026700,
+      389420337,
+      3127
+    ],
+    [
+      "2026-11-23",
+      "claude_transcripts:cli:sidechain",
+      3130,
+      1460323,
+      7444144,
+      126120399,
+      1386
+    ],
+    [
+      "2026-11-23",
+      "claude_transcripts:sdk-cli",
+      674,
+      264744,
+      2169855,
+      25804474,
+      292
+    ],
+    [
+      "2026-11-23",
+      "claude_transcripts:sdk-cli:sidechain",
+      108,
+      81776,
+      397360,
+      3009267,
+      49
+    ],
+    [
+      "2026-11-23",
+      "claude_transcripts:unattributed",
+      0,
+      0,
+      0,
+      0,
+      4
+    ],
+    [
+      "2026-11-23",
       "codex_corrected",
       null,
       null,
@@ -11945,11 +12257,11 @@
     [
       "2026-08-24",
       "claude_transcripts:unattributed",
-      230,
-      64180,
+      457703,
+      77674,
       390996,
       16132227,
-      112
+      115
     ],
     [
       "2026-08-24",
@@ -12098,6 +12410,15 @@
       null,
       null,
       0
+    ],
+    [
+      "2026-09-08",
+      "claude_transcripts:advisor",
+      589966,
+      3138,
+      0,
+      0,
+      3
     ],
     [
       "2026-09-08",
@@ -14311,6 +14632,15 @@
     ],
     [
       "2026-10-29",
+      "claude_transcripts:advisor",
+      203823,
+      20102,
+      0,
+      0,
+      2
+    ],
+    [
+      "2026-10-29",
       "claude_transcripts:claude-desktop",
       192,
       52682,
@@ -15284,6 +15614,15 @@
     ],
     [
       "2026-11-17",
+      "claude_transcripts:advisor",
+      12634304,
+      1160539,
+      0,
+      0,
+      113
+    ],
+    [
+      "2026-11-17",
       "claude_transcripts:claude-desktop",
       2621,
       1230135,
@@ -15356,6 +15695,15 @@
     ],
     [
       "2026-11-18",
+      "claude_transcripts:advisor",
+      11613663,
+      1052727,
+      0,
+      0,
+      114
+    ],
+    [
+      "2026-11-18",
       "claude_transcripts:claude-desktop",
       2020,
       660126,
@@ -15410,6 +15758,15 @@
     ],
     [
       "2026-11-19",
+      "claude_transcripts:advisor",
+      4921223,
+      372118,
+      0,
+      0,
+      41
+    ],
+    [
+      "2026-11-19",
       "claude_transcripts:claude-desktop",
       2036,
       630540,
@@ -15461,6 +15818,15 @@
       0,
       0,
       1
+    ],
+    [
+      "2026-11-20",
+      "claude_transcripts:advisor",
+      6115897,
+      459735,
+      0,
+      0,
+      54
     ],
     [
       "2026-11-20",
@@ -15527,6 +15893,15 @@
     ],
     [
       "2026-11-21",
+      "claude_transcripts:advisor",
+      2675010,
+      215940,
+      0,
+      0,
+      26
+    ],
+    [
+      "2026-11-21",
       "claude_transcripts:claude-desktop",
       908,
       250215,
@@ -15587,6 +15962,15 @@
       0,
       0,
       20
+    ],
+    [
+      "2026-11-22",
+      "claude_transcripts:advisor",
+      11343965,
+      884101,
+      0,
+      0,
+      90
     ],
     [
       "2026-11-22",
@@ -15653,57 +16037,66 @@
     ],
     [
       "2026-11-23",
+      "claude_transcripts:advisor",
+      8575726,
+      608416,
+      0,
+      0,
+      78
+    ],
+    [
+      "2026-11-23",
       "claude_transcripts:claude-desktop",
-      318,
-      89036,
-      1632731,
-      18228661,
-      136
+      460,
+      129665,
+      2436953,
+      26531662,
+      200
     ],
     [
       "2026-11-23",
       "claude_transcripts:claude-desktop:sidechain",
-      94,
-      25466,
-      226073,
-      3284099,
-      47
+      150,
+      35242,
+      331099,
+      5676585,
+      75
     ],
     [
       "2026-11-23",
       "claude_transcripts:cli",
-      5296,
-      1891747,
-      9797098,
-      301809022,
-      2409
+      6842,
+      2424553,
+      12026700,
+      389420337,
+      3127
     ],
     [
       "2026-11-23",
       "claude_transcripts:cli:sidechain",
-      2742,
-      1242315,
-      6286449,
-      113644973,
-      1217
+      3130,
+      1460323,
+      7444144,
+      126120399,
+      1386
     ],
     [
       "2026-11-23",
       "claude_transcripts:sdk-cli",
-      346,
-      135957,
-      1567974,
-      11360145,
-      143
+      674,
+      264744,
+      2169855,
+      25804474,
+      292
     ],
     [
       "2026-11-23",
       "claude_transcripts:sdk-cli:sidechain",
-      20,
-      16589,
-      97648,
-      523144,
-      7
+      108,
+      81776,
+      397360,
+      3009267,
+      49
     ],
     [
       "2026-11-23",
@@ -15713,6 +16106,69 @@
       0,
       0,
       4
+    ],
+    [
+      "2026-11-24",
+      "claude_transcripts:advisor",
+      4605570,
+      387313,
+      0,
+      0,
+      45
+    ],
+    [
+      "2026-11-24",
+      "claude_transcripts:claude-desktop",
+      700,
+      186178,
+      1506250,
+      43955224,
+      307
+    ],
+    [
+      "2026-11-24",
+      "claude_transcripts:claude-desktop:sidechain",
+      2364,
+      1158701,
+      8234133,
+      111640452,
+      1161
+    ],
+    [
+      "2026-11-24",
+      "claude_transcripts:cli",
+      3084,
+      1224050,
+      4565328,
+      173994470,
+      1457
+    ],
+    [
+      "2026-11-24",
+      "claude_transcripts:cli:sidechain",
+      1204,
+      712939,
+      2803393,
+      50561907,
+      586
+    ],
+    [
+      "2026-11-24",
+      "claude_transcripts:sdk-cli",
+      196,
+      49136,
+      452883,
+      5838155,
+      90
+    ],
+    [
+      "2026-11-24",
+      "claude_transcripts:unattributed",
+      0,
+      0,
+      0,
+      0,
+      1
     ]
   ],
   "composition_as_first_measured": {
@@ -15722,7 +16178,7 @@
       "cache_read": null,
       "output": null,
       "unassigned": null,
-      "total": 32817418589
+      "total": 33427132138
     },
     "codex": {
       "fresh_input": 5583035694,
@@ -15735,38 +16191,38 @@
   },
   "ranges_as_first_measured": {
     "all": [
-      18374961511,
-      11301353931,
+      18790349996,
+      11495678995,
       263994077611,
       3850351962
     ],
     "90": [
-      18358300713,
-      11301353931,
-      10789490436,
+      18773218231,
+      11495678995,
+      10617088610,
       3141103147
     ],
     "30": [
-      11358612713,
-      3361562932,
-      1488673197,
+      10983171323,
+      3390776043,
+      960355238,
       0
     ],
     "7": [
-      3299471480,
-      1310025929,
+      3361519705,
+      1321456115,
       0,
       0
     ],
     "since": [
-      18358300713,
-      11301353931,
+      18773218231,
+      11495678995,
       6929426675,
       3141103147
     ],
     "exclude": [
-      18374961511,
-      11301353931,
+      18790349996,
+      11495678995,
       12119357910,
       3850351962
     ]
@@ -16698,23 +17154,23 @@
       {
         "week_start": "2026-05-18",
         "actor": "all",
-        "added": 5364,
-        "removed": 659,
-        "lines_touched": 6023
+        "added": 10176,
+        "removed": 1236,
+        "lines_touched": 11412
       },
       {
         "week_start": "2026-05-25",
         "actor": "all",
-        "added": 31748,
-        "removed": 4263,
-        "lines_touched": 36011
+        "added": 64122,
+        "removed": 13437,
+        "lines_touched": 77559
       },
       {
         "week_start": "2026-06-01",
         "actor": "all",
-        "added": 6513,
-        "removed": 1276,
-        "lines_touched": 7789
+        "added": 14067,
+        "removed": 1427,
+        "lines_touched": 15494
       },
       {
         "week_start": "2026-06-08",
@@ -16803,9 +17259,9 @@
       {
         "week_start": "2026-08-31",
         "actor": "all",
-        "added": 156332,
-        "removed": 6516,
-        "lines_touched": 162848
+        "added": 156586,
+        "removed": 6740,
+        "lines_touched": 163326
       },
       {
         "week_start": "2026-09-07",
@@ -16824,9 +17280,9 @@
       {
         "week_start": "2026-09-21",
         "actor": "all",
-        "added": 109568,
-        "removed": 10562,
-        "lines_touched": 120130
+        "added": 109598,
+        "removed": 10766,
+        "lines_touched": 120364
       },
       {
         "week_start": "2026-09-28",
@@ -16887,9 +17343,9 @@
       {
         "week_start": "2026-11-23",
         "actor": "all",
-        "added": 8356,
-        "removed": 1769,
-        "lines_touched": 10125
+        "added": 14061,
+        "removed": 2573,
+        "lines_touched": 16634
       }
     ],
     "daily": [
@@ -18534,9 +18990,9 @@
       {
         "date": "2026-05-23",
         "actor": "all",
-        "added": 309,
-        "removed": 338,
-        "lines_touched": 647
+        "added": 5121,
+        "removed": 915,
+        "lines_touched": 6036
       },
       {
         "date": "2026-05-24",
@@ -18548,9 +19004,9 @@
       {
         "date": "2026-05-25",
         "actor": "all",
-        "added": 555,
-        "removed": 337,
-        "lines_touched": 892
+        "added": 9687,
+        "removed": 2957,
+        "lines_touched": 12644
       },
       {
         "date": "2026-05-26",
@@ -18562,30 +19018,30 @@
       {
         "date": "2026-05-27",
         "actor": "all",
-        "added": 2746,
-        "removed": 540,
-        "lines_touched": 3286
+        "added": 3233,
+        "removed": 1222,
+        "lines_touched": 4455
       },
       {
         "date": "2026-05-28",
         "actor": "all",
-        "added": 8167,
-        "removed": 1270,
-        "lines_touched": 9437
+        "added": 12957,
+        "removed": 2086,
+        "lines_touched": 15043
       },
       {
         "date": "2026-05-29",
         "actor": "all",
-        "added": 13870,
-        "removed": 284,
-        "lines_touched": 14154
+        "added": 25254,
+        "removed": 5064,
+        "lines_touched": 30318
       },
       {
         "date": "2026-05-30",
         "actor": "all",
-        "added": 4767,
-        "removed": 1682,
-        "lines_touched": 6449
+        "added": 11348,
+        "removed": 1958,
+        "lines_touched": 13306
       },
       {
         "date": "2026-05-31",
@@ -18597,9 +19053,9 @@
       {
         "date": "2026-06-01",
         "actor": "all",
-        "added": 2008,
-        "removed": 1066,
-        "lines_touched": 3074
+        "added": 9411,
+        "removed": 1142,
+        "lines_touched": 10553
       },
       {
         "date": "2026-06-02",
@@ -18625,9 +19081,9 @@
       {
         "date": "2026-06-05",
         "actor": "all",
-        "added": 2939,
-        "removed": 101,
-        "lines_touched": 3040
+        "added": 3090,
+        "removed": 176,
+        "lines_touched": 3266
       },
       {
         "date": "2026-06-06",
@@ -19255,9 +19711,9 @@
       {
         "date": "2026-09-03",
         "actor": "all",
-        "added": 12704,
-        "removed": 776,
-        "lines_touched": 13480
+        "added": 12958,
+        "removed": 1000,
+        "lines_touched": 13958
       },
       {
         "date": "2026-09-04",
@@ -19402,9 +19858,9 @@
       {
         "date": "2026-09-24",
         "actor": "all",
-        "added": 17405,
-        "removed": 854,
-        "lines_touched": 18259
+        "added": 17435,
+        "removed": 1058,
+        "lines_touched": 18493
       },
       {
         "date": "2026-09-25",
@@ -19822,9 +20278,16 @@
       {
         "date": "2026-11-23",
         "actor": "all",
-        "added": 8356,
-        "removed": 1769,
-        "lines_touched": 10125
+        "added": 10258,
+        "removed": 2202,
+        "lines_touched": 12460
+      },
+      {
+        "date": "2026-11-24",
+        "actor": "all",
+        "added": 3803,
+        "removed": 371,
+        "lines_touched": 4174
       }
     ]
   },
@@ -24829,8 +25292,8 @@
       "commits_landed_claude_codex": "0",
       "commits_landed_other": "0",
       "commits_landed_human": "0",
-      "commits_all_refs": "5",
-      "commits_merge": "5",
+      "commits_all_refs": "6",
+      "commits_merge": "6",
       "code_added": "0",
       "code_removed": "0",
       "code_touched": "0",
@@ -25352,19 +25815,19 @@
     {
       "date": "2026-05-23",
       "day_status": "complete",
-      "commits_landed": "3",
+      "commits_landed": "4",
       "commits_landed_claude": "0",
       "commits_landed_codex": "3",
       "commits_landed_claude_codex": "0",
       "commits_landed_other": "0",
-      "commits_landed_human": "0",
-      "commits_all_refs": "7",
+      "commits_landed_human": "1",
+      "commits_all_refs": "8",
       "commits_merge": "3",
-      "code_added": "309",
-      "code_removed": "338",
-      "code_touched": "647",
-      "all_added_raw": "499",
-      "all_removed_raw": "338",
+      "code_added": "5121",
+      "code_removed": "915",
+      "code_touched": "6036",
+      "all_added_raw": "5383",
+      "all_removed_raw": "925",
       "tokens_claude": "0",
       "tokens_codex": "0",
       "tokens_other": "0",
@@ -25398,19 +25861,19 @@
     {
       "date": "2026-05-25",
       "day_status": "complete",
-      "commits_landed": "7",
-      "commits_landed_claude": "0",
-      "commits_landed_codex": "6",
-      "commits_landed_claude_codex": "0",
+      "commits_landed": "26",
+      "commits_landed_claude": "14",
+      "commits_landed_codex": "10",
+      "commits_landed_claude_codex": "1",
       "commits_landed_other": "0",
       "commits_landed_human": "1",
-      "commits_all_refs": "14",
-      "commits_merge": "1",
-      "code_added": "555",
-      "code_removed": "337",
-      "code_touched": "892",
-      "all_added_raw": "799",
-      "all_removed_raw": "439",
+      "commits_all_refs": "44",
+      "commits_merge": "3",
+      "code_added": "9687",
+      "code_removed": "2957",
+      "code_touched": "12644",
+      "all_added_raw": "73812",
+      "all_removed_raw": "9676",
       "tokens_claude": "15003792",
       "tokens_codex": "2643966",
       "tokens_other": "0",
@@ -25444,19 +25907,19 @@
     {
       "date": "2026-05-27",
       "day_status": "complete",
-      "commits_landed": "28",
+      "commits_landed": "29",
       "commits_landed_claude": "0",
       "commits_landed_codex": "0",
       "commits_landed_claude_codex": "0",
       "commits_landed_other": "0",
-      "commits_landed_human": "28",
-      "commits_all_refs": "29",
+      "commits_landed_human": "29",
+      "commits_all_refs": "31",
       "commits_merge": "0",
-      "code_added": "2746",
-      "code_removed": "540",
-      "code_touched": "3286",
-      "all_added_raw": "8183",
-      "all_removed_raw": "1376",
+      "code_added": "3233",
+      "code_removed": "1222",
+      "code_touched": "4455",
+      "all_added_raw": "8785",
+      "all_removed_raw": "2075",
       "tokens_claude": "49027041",
       "tokens_codex": "0",
       "tokens_other": "0",
@@ -25467,19 +25930,19 @@
     {
       "date": "2026-05-28",
       "day_status": "complete",
-      "commits_landed": "39",
+      "commits_landed": "106",
       "commits_landed_claude": "0",
       "commits_landed_codex": "0",
       "commits_landed_claude_codex": "0",
-      "commits_landed_other": "0",
-      "commits_landed_human": "39",
-      "commits_all_refs": "39",
-      "commits_merge": "0",
-      "code_added": "8167",
-      "code_removed": "1270",
-      "code_touched": "9437",
-      "all_added_raw": "10976",
-      "all_removed_raw": "1503",
+      "commits_landed_other": "65",
+      "commits_landed_human": "41",
+      "commits_all_refs": "114",
+      "commits_merge": "8",
+      "code_added": "12957",
+      "code_removed": "2086",
+      "code_touched": "15043",
+      "all_added_raw": "22482",
+      "all_removed_raw": "5133",
       "tokens_claude": "83991522",
       "tokens_codex": "0",
       "tokens_other": "0",
@@ -25490,19 +25953,19 @@
     {
       "date": "2026-05-29",
       "day_status": "complete",
-      "commits_landed": "40",
+      "commits_landed": "134",
       "commits_landed_claude": "4",
       "commits_landed_codex": "4",
       "commits_landed_claude_codex": "0",
-      "commits_landed_other": "2",
+      "commits_landed_other": "96",
       "commits_landed_human": "30",
-      "commits_all_refs": "75",
-      "commits_merge": "8",
-      "code_added": "13870",
-      "code_removed": "284",
-      "code_touched": "14154",
-      "all_added_raw": "35439",
-      "all_removed_raw": "3562",
+      "commits_all_refs": "203",
+      "commits_merge": "42",
+      "code_added": "25254",
+      "code_removed": "5064",
+      "code_touched": "30318",
+      "all_added_raw": "52076",
+      "all_removed_raw": "13373",
       "tokens_claude": "154964449",
       "tokens_codex": "0",
       "tokens_other": "0",
@@ -25513,19 +25976,19 @@
     {
       "date": "2026-05-30",
       "day_status": "complete",
-      "commits_landed": "65",
+      "commits_landed": "76",
       "commits_landed_claude": "8",
       "commits_landed_codex": "0",
       "commits_landed_claude_codex": "0",
-      "commits_landed_other": "19",
-      "commits_landed_human": "38",
-      "commits_all_refs": "104",
-      "commits_merge": "12",
-      "code_added": "4767",
-      "code_removed": "1682",
-      "code_touched": "6449",
-      "all_added_raw": "19927",
-      "all_removed_raw": "3662",
+      "commits_landed_other": "29",
+      "commits_landed_human": "39",
+      "commits_all_refs": "116",
+      "commits_merge": "13",
+      "code_added": "11348",
+      "code_removed": "1958",
+      "code_touched": "13306",
+      "all_added_raw": "26857",
+      "all_removed_raw": "4115",
       "tokens_claude": "151810610",
       "tokens_codex": "0",
       "tokens_other": "0",
@@ -25559,19 +26022,19 @@
     {
       "date": "2026-06-01",
       "day_status": "complete",
-      "commits_landed": "42",
+      "commits_landed": "63",
       "commits_landed_claude": "0",
       "commits_landed_codex": "1",
       "commits_landed_claude_codex": "0",
-      "commits_landed_other": "1",
+      "commits_landed_other": "22",
       "commits_landed_human": "40",
-      "commits_all_refs": "72",
-      "commits_merge": "3",
-      "code_added": "2008",
-      "code_removed": "1066",
-      "code_touched": "3074",
-      "all_added_raw": "17438",
-      "all_removed_raw": "14046",
+      "commits_all_refs": "94",
+      "commits_merge": "4",
+      "code_added": "9411",
+      "code_removed": "1142",
+      "code_touched": "10553",
+      "all_added_raw": "29251",
+      "all_removed_raw": "14272",
       "tokens_claude": "39298643",
       "tokens_codex": "54708818",
       "tokens_other": "0",
@@ -25651,19 +26114,19 @@
     {
       "date": "2026-06-05",
       "day_status": "complete",
-      "commits_landed": "45",
+      "commits_landed": "46",
       "commits_landed_claude": "1",
-      "commits_landed_codex": "2",
+      "commits_landed_codex": "3",
       "commits_landed_claude_codex": "0",
       "commits_landed_other": "3",
       "commits_landed_human": "39",
-      "commits_all_refs": "51",
-      "commits_merge": "0",
-      "code_added": "2939",
-      "code_removed": "101",
-      "code_touched": "3040",
-      "all_added_raw": "6557",
-      "all_removed_raw": "371",
+      "commits_all_refs": "53",
+      "commits_merge": "1",
+      "code_added": "3090",
+      "code_removed": "176",
+      "code_touched": "3266",
+      "all_added_raw": "7322",
+      "all_removed_raw": "563",
       "tokens_claude": "17614009",
       "tokens_codex": "125970834",
       "tokens_other": "0",
@@ -25680,12 +26143,12 @@
       "commits_landed_claude_codex": "0",
       "commits_landed_other": "0",
       "commits_landed_human": "5",
-      "commits_all_refs": "31",
+      "commits_all_refs": "32",
       "commits_merge": "0",
       "code_added": "0",
       "code_removed": "0",
       "code_touched": "0",
-      "all_added_raw": "4052",
+      "all_added_raw": "4065",
       "all_removed_raw": "1930",
       "tokens_claude": "0",
       "tokens_codex": "17491514",
@@ -25697,19 +26160,19 @@
     {
       "date": "2026-06-07",
       "day_status": "complete",
-      "commits_landed": "32",
-      "commits_landed_claude": "9",
+      "commits_landed": "35",
+      "commits_landed_claude": "10",
       "commits_landed_codex": "0",
       "commits_landed_claude_codex": "0",
       "commits_landed_other": "0",
-      "commits_landed_human": "23",
-      "commits_all_refs": "54",
+      "commits_landed_human": "25",
+      "commits_all_refs": "57",
       "commits_merge": "0",
       "code_added": "0",
       "code_removed": "0",
       "code_touched": "0",
-      "all_added_raw": "5544",
-      "all_removed_raw": "8642",
+      "all_added_raw": "5570",
+      "all_removed_raw": "8643",
       "tokens_claude": "2585237",
       "tokens_codex": "15917241",
       "tokens_other": "0",
@@ -25720,19 +26183,19 @@
     {
       "date": "2026-06-08",
       "day_status": "complete",
-      "commits_landed": "45",
+      "commits_landed": "49",
       "commits_landed_claude": "8",
       "commits_landed_codex": "0",
       "commits_landed_claude_codex": "0",
       "commits_landed_other": "0",
-      "commits_landed_human": "37",
-      "commits_all_refs": "80",
+      "commits_landed_human": "41",
+      "commits_all_refs": "84",
       "commits_merge": "2",
       "code_added": "789",
       "code_removed": "1201",
       "code_touched": "1990",
-      "all_added_raw": "5717",
-      "all_removed_raw": "2085",
+      "all_added_raw": "5742",
+      "all_removed_raw": "2089",
       "tokens_claude": "54426733",
       "tokens_codex": "52364949",
       "tokens_other": "0",
@@ -25743,19 +26206,19 @@
     {
       "date": "2026-06-09",
       "day_status": "complete",
-      "commits_landed": "81",
-      "commits_landed_claude": "21",
+      "commits_landed": "88",
+      "commits_landed_claude": "22",
       "commits_landed_codex": "0",
       "commits_landed_claude_codex": "0",
       "commits_landed_other": "0",
-      "commits_landed_human": "60",
-      "commits_all_refs": "92",
+      "commits_landed_human": "66",
+      "commits_all_refs": "99",
       "commits_merge": "0",
       "code_added": "1622",
       "code_removed": "84",
       "code_touched": "1706",
-      "all_added_raw": "7309",
-      "all_removed_raw": "355",
+      "all_added_raw": "7321",
+      "all_removed_raw": "367",
       "tokens_claude": "63172625",
       "tokens_codex": "20563881",
       "tokens_other": "0",
@@ -25766,19 +26229,19 @@
     {
       "date": "2026-06-10",
       "day_status": "complete",
-      "commits_landed": "49",
-      "commits_landed_claude": "33",
+      "commits_landed": "53",
+      "commits_landed_claude": "36",
       "commits_landed_codex": "0",
       "commits_landed_claude_codex": "0",
       "commits_landed_other": "1",
-      "commits_landed_human": "15",
-      "commits_all_refs": "66",
+      "commits_landed_human": "16",
+      "commits_all_refs": "70",
       "commits_merge": "2",
       "code_added": "3",
       "code_removed": "80",
       "code_touched": "83",
-      "all_added_raw": "1291",
-      "all_removed_raw": "1353",
+      "all_added_raw": "1304",
+      "all_removed_raw": "1360",
       "tokens_claude": "0",
       "tokens_codex": "10866388",
       "tokens_other": "0",
@@ -25789,19 +26252,19 @@
     {
       "date": "2026-06-11",
       "day_status": "complete",
-      "commits_landed": "30",
-      "commits_landed_claude": "30",
+      "commits_landed": "34",
+      "commits_landed_claude": "34",
       "commits_landed_codex": "0",
       "commits_landed_claude_codex": "0",
       "commits_landed_other": "0",
       "commits_landed_human": "0",
-      "commits_all_refs": "52",
+      "commits_all_refs": "56",
       "commits_merge": "1",
       "code_added": "388",
       "code_removed": "0",
       "code_touched": "388",
-      "all_added_raw": "1766",
-      "all_removed_raw": "780",
+      "all_added_raw": "1770",
+      "all_removed_raw": "784",
       "tokens_claude": "0",
       "tokens_codex": "104151494",
       "tokens_other": "0",
@@ -25812,19 +26275,19 @@
     {
       "date": "2026-06-12",
       "day_status": "complete",
-      "commits_landed": "45",
-      "commits_landed_claude": "27",
+      "commits_landed": "50",
+      "commits_landed_claude": "30",
       "commits_landed_codex": "1",
       "commits_landed_claude_codex": "0",
       "commits_landed_other": "0",
-      "commits_landed_human": "17",
-      "commits_all_refs": "90",
+      "commits_landed_human": "19",
+      "commits_all_refs": "95",
       "commits_merge": "0",
       "code_added": "5",
       "code_removed": "0",
       "code_touched": "5",
-      "all_added_raw": "19534",
-      "all_removed_raw": "2555",
+      "all_added_raw": "19539",
+      "all_removed_raw": "2560",
       "tokens_claude": "0",
       "tokens_codex": "72356041",
       "tokens_other": "0",
@@ -25835,19 +26298,19 @@
     {
       "date": "2026-06-13",
       "day_status": "complete",
-      "commits_landed": "20",
-      "commits_landed_claude": "14",
+      "commits_landed": "23",
+      "commits_landed_claude": "16",
       "commits_landed_codex": "0",
       "commits_landed_claude_codex": "0",
       "commits_landed_other": "0",
-      "commits_landed_human": "6",
-      "commits_all_refs": "30",
+      "commits_landed_human": "7",
+      "commits_all_refs": "33",
       "commits_merge": "1",
       "code_added": "0",
       "code_removed": "0",
       "code_touched": "0",
-      "all_added_raw": "872",
-      "all_removed_raw": "1832",
+      "all_added_raw": "875",
+      "all_removed_raw": "1835",
       "tokens_claude": "0",
       "tokens_codex": "5924566",
       "tokens_other": "0",
@@ -26134,19 +26597,19 @@
     {
       "date": "2026-06-26",
       "day_status": "complete",
-      "commits_landed": "15",
-      "commits_landed_claude": "8",
+      "commits_landed": "17",
+      "commits_landed_claude": "9",
       "commits_landed_codex": "0",
       "commits_landed_claude_codex": "5",
       "commits_landed_other": "0",
-      "commits_landed_human": "2",
-      "commits_all_refs": "24",
+      "commits_landed_human": "3",
+      "commits_all_refs": "29",
       "commits_merge": "1",
       "code_added": "498",
       "code_removed": "114",
       "code_touched": "612",
-      "all_added_raw": "2103",
-      "all_removed_raw": "796",
+      "all_added_raw": "2195",
+      "all_removed_raw": "851",
       "tokens_claude": "0",
       "tokens_codex": "4252036",
       "tokens_other": "0",
@@ -26370,13 +26833,13 @@
       "commits_landed_claude_codex": "50",
       "commits_landed_other": "0",
       "commits_landed_human": "0",
-      "commits_all_refs": "96",
+      "commits_all_refs": "98",
       "commits_merge": "1",
       "code_added": "4531",
       "code_removed": "134",
       "code_touched": "4665",
-      "all_added_raw": "20278",
-      "all_removed_raw": "723",
+      "all_added_raw": "20287",
+      "all_removed_raw": "2376",
       "tokens_claude": "0",
       "tokens_codex": "265119978",
       "tokens_other": "0",
@@ -26692,13 +27155,13 @@
       "commits_landed_claude_codex": "1",
       "commits_landed_other": "0",
       "commits_landed_human": "0",
-      "commits_all_refs": "15",
+      "commits_all_refs": "16",
       "commits_merge": "3",
       "code_added": "324",
       "code_removed": "0",
       "code_touched": "324",
-      "all_added_raw": "486",
-      "all_removed_raw": "21",
+      "all_added_raw": "779",
+      "all_removed_raw": "124",
       "tokens_claude": "0",
       "tokens_codex": "0",
       "tokens_other": "0",
@@ -27175,13 +27638,13 @@
       "commits_landed_claude_codex": "30",
       "commits_landed_other": "0",
       "commits_landed_human": "0",
-      "commits_all_refs": "49",
+      "commits_all_refs": "52",
       "commits_merge": "0",
       "code_added": "5849",
       "code_removed": "669",
       "code_touched": "6518",
-      "all_added_raw": "34025",
-      "all_removed_raw": "7787",
+      "all_added_raw": "34370",
+      "all_removed_raw": "8071",
       "tokens_claude": "0",
       "tokens_codex": "8552650",
       "tokens_other": "0",
@@ -27313,13 +27776,13 @@
       "commits_landed_claude_codex": "0",
       "commits_landed_other": "0",
       "commits_landed_human": "0",
-      "commits_all_refs": "25",
+      "commits_all_refs": "27",
       "commits_merge": "0",
       "code_added": "2194",
       "code_removed": "12",
       "code_touched": "2206",
-      "all_added_raw": "6740",
-      "all_removed_raw": "200",
+      "all_added_raw": "6742",
+      "all_removed_raw": "1850",
       "tokens_claude": "0",
       "tokens_codex": "1191268100",
       "tokens_other": "0",
@@ -27504,10 +27967,10 @@
       "code_touched": "7652",
       "all_added_raw": "16254",
       "all_removed_raw": "3980",
-      "tokens_claude": "16587633",
+      "tokens_claude": "17058600",
       "tokens_codex": "25303801",
       "tokens_other": "0",
-      "tokens_total": "41891434",
+      "tokens_total": "42362401",
       "claude_token_status": "measured",
       "codex_token_status": "measured"
     },
@@ -27658,13 +28121,13 @@
       "commits_landed_claude_codex": "3",
       "commits_landed_other": "0",
       "commits_landed_human": "0",
-      "commits_all_refs": "89",
+      "commits_all_refs": "94",
       "commits_merge": "1",
       "code_added": "77722",
       "code_removed": "118",
       "code_touched": "77840",
-      "all_added_raw": "928137",
-      "all_removed_raw": "446",
+      "all_added_raw": "928503",
+      "all_removed_raw": "749",
       "tokens_claude": "0",
       "tokens_codex": "83527995",
       "tokens_other": "0",
@@ -27721,19 +28184,19 @@
     {
       "date": "2026-09-03",
       "day_status": "complete",
-      "commits_landed": "78",
-      "commits_landed_claude": "31",
+      "commits_landed": "87",
+      "commits_landed_claude": "33",
       "commits_landed_codex": "0",
       "commits_landed_claude_codex": "20",
-      "commits_landed_other": "0",
-      "commits_landed_human": "27",
-      "commits_all_refs": "95",
+      "commits_landed_other": "1",
+      "commits_landed_human": "33",
+      "commits_all_refs": "105",
       "commits_merge": "0",
-      "code_added": "12704",
-      "code_removed": "776",
-      "code_touched": "13480",
-      "all_added_raw": "47644",
-      "all_removed_raw": "3782",
+      "code_added": "12958",
+      "code_removed": "1000",
+      "code_touched": "13958",
+      "all_added_raw": "48286",
+      "all_removed_raw": "5975",
       "tokens_claude": "0",
       "tokens_codex": "0",
       "tokens_other": "0",
@@ -27849,10 +28312,10 @@
       "code_touched": "10922",
       "all_added_raw": "32394",
       "all_removed_raw": "2717",
-      "tokens_claude": "32038207",
+      "tokens_claude": "32631311",
       "tokens_codex": "31530769",
       "tokens_other": "0",
-      "tokens_total": "63568976",
+      "tokens_total": "64162080",
       "claude_token_status": "measured",
       "codex_token_status": "measured"
     },
@@ -27905,18 +28368,18 @@
     {
       "date": "2026-09-11",
       "day_status": "complete",
-      "commits_landed": "115",
+      "commits_landed": "116",
       "commits_landed_claude": "10",
-      "commits_landed_codex": "29",
+      "commits_landed_codex": "30",
       "commits_landed_claude_codex": "76",
       "commits_landed_other": "0",
       "commits_landed_human": "0",
-      "commits_all_refs": "202",
+      "commits_all_refs": "203",
       "commits_merge": "0",
       "code_added": "29820",
       "code_removed": "4944",
       "code_touched": "34764",
-      "all_added_raw": "253441",
+      "all_added_raw": "253661",
       "all_removed_raw": "46452",
       "tokens_claude": "133247210",
       "tokens_codex": "0",
@@ -27934,13 +28397,13 @@
       "commits_landed_claude_codex": "160",
       "commits_landed_other": "0",
       "commits_landed_human": "2",
-      "commits_all_refs": "295",
+      "commits_all_refs": "298",
       "commits_merge": "0",
       "code_added": "39110",
       "code_removed": "3545",
       "code_touched": "42655",
-      "all_added_raw": "354971",
-      "all_removed_raw": "8662",
+      "all_added_raw": "355022",
+      "all_removed_raw": "8675",
       "tokens_claude": "16576602",
       "tokens_codex": "8189942",
       "tokens_other": "0",
@@ -27957,13 +28420,13 @@
       "commits_landed_claude_codex": "2",
       "commits_landed_other": "0",
       "commits_landed_human": "0",
-      "commits_all_refs": "41",
+      "commits_all_refs": "43",
       "commits_merge": "6",
       "code_added": "5128",
       "code_removed": "276",
       "code_touched": "5404",
       "all_added_raw": "16278",
-      "all_removed_raw": "1609",
+      "all_removed_raw": "1743",
       "tokens_claude": "6864237",
       "tokens_codex": "64065784",
       "tokens_other": "0",
@@ -28072,13 +28535,13 @@
       "commits_landed_claude_codex": "1",
       "commits_landed_other": "0",
       "commits_landed_human": "0",
-      "commits_all_refs": "43",
+      "commits_all_refs": "44",
       "commits_merge": "2",
       "code_added": "6182",
       "code_removed": "121",
       "code_touched": "6303",
       "all_added_raw": "148291",
-      "all_removed_raw": "616",
+      "all_removed_raw": "807",
       "tokens_claude": "6933507",
       "tokens_codex": "125757643",
       "tokens_other": "0",
@@ -28135,19 +28598,19 @@
     {
       "date": "2026-09-21",
       "day_status": "complete",
-      "commits_landed": "76",
-      "commits_landed_claude": "4",
+      "commits_landed": "79",
+      "commits_landed_claude": "7",
       "commits_landed_codex": "67",
       "commits_landed_claude_codex": "5",
       "commits_landed_other": "0",
       "commits_landed_human": "0",
-      "commits_all_refs": "102",
+      "commits_all_refs": "105",
       "commits_merge": "3",
       "code_added": "7855",
       "code_removed": "218",
       "code_touched": "8073",
-      "all_added_raw": "22798",
-      "all_removed_raw": "2073",
+      "all_added_raw": "22899",
+      "all_removed_raw": "2083",
       "tokens_claude": "10255290",
       "tokens_codex": "88232768",
       "tokens_other": "0",
@@ -28204,19 +28667,19 @@
     {
       "date": "2026-09-24",
       "day_status": "complete",
-      "commits_landed": "143",
-      "commits_landed_claude": "34",
+      "commits_landed": "146",
+      "commits_landed_claude": "37",
       "commits_landed_codex": "39",
       "commits_landed_claude_codex": "63",
       "commits_landed_other": "1",
       "commits_landed_human": "6",
-      "commits_all_refs": "210",
+      "commits_all_refs": "213",
       "commits_merge": "12",
-      "code_added": "17405",
-      "code_removed": "854",
-      "code_touched": "18259",
-      "all_added_raw": "64946",
-      "all_removed_raw": "7020",
+      "code_added": "17435",
+      "code_removed": "1058",
+      "code_touched": "18493",
+      "all_added_raw": "64997",
+      "all_removed_raw": "7358",
       "tokens_claude": "939439021",
       "tokens_codex": "126260153",
       "tokens_other": "0",
@@ -28227,19 +28690,19 @@
     {
       "date": "2026-09-25",
       "day_status": "complete",
-      "commits_landed": "32",
+      "commits_landed": "33",
       "commits_landed_claude": "2",
       "commits_landed_codex": "0",
       "commits_landed_claude_codex": "20",
       "commits_landed_other": "0",
-      "commits_landed_human": "10",
-      "commits_all_refs": "42",
+      "commits_landed_human": "11",
+      "commits_all_refs": "43",
       "commits_merge": "6",
       "code_added": "7622",
       "code_removed": "718",
       "code_touched": "8340",
-      "all_added_raw": "12243",
-      "all_removed_raw": "1126",
+      "all_added_raw": "12336",
+      "all_removed_raw": "1158",
       "tokens_claude": "70208038",
       "tokens_codex": "26966874",
       "tokens_other": "0",
@@ -28342,19 +28805,19 @@
     {
       "date": "2026-09-30",
       "day_status": "complete",
-      "commits_landed": "66",
+      "commits_landed": "67",
       "commits_landed_claude": "8",
       "commits_landed_codex": "33",
       "commits_landed_claude_codex": "23",
       "commits_landed_other": "1",
-      "commits_landed_human": "1",
-      "commits_all_refs": "104",
+      "commits_landed_human": "2",
+      "commits_all_refs": "106",
       "commits_merge": "13",
       "code_added": "13584",
       "code_removed": "1589",
       "code_touched": "15173",
-      "all_added_raw": "155424",
-      "all_removed_raw": "3961",
+      "all_added_raw": "155482",
+      "all_removed_raw": "3977",
       "tokens_claude": "147691775",
       "tokens_codex": "43990913",
       "tokens_other": "0",
@@ -28417,13 +28880,13 @@
       "commits_landed_claude_codex": "6",
       "commits_landed_other": "0",
       "commits_landed_human": "0",
-      "commits_all_refs": "35",
+      "commits_all_refs": "36",
       "commits_merge": "1",
       "code_added": "2715",
       "code_removed": "130",
       "code_touched": "2845",
-      "all_added_raw": "9683",
-      "all_removed_raw": "1705",
+      "all_added_raw": "9689",
+      "all_removed_raw": "1708",
       "tokens_claude": "597977607",
       "tokens_codex": "117107553",
       "tokens_other": "0",
@@ -28486,13 +28949,13 @@
       "commits_landed_claude_codex": "7",
       "commits_landed_other": "0",
       "commits_landed_human": "6",
-      "commits_all_refs": "62",
+      "commits_all_refs": "63",
       "commits_merge": "10",
       "code_added": "8690",
       "code_removed": "1358",
       "code_touched": "10048",
-      "all_added_raw": "14372",
-      "all_removed_raw": "47702",
+      "all_added_raw": "14375",
+      "all_removed_raw": "47705",
       "tokens_claude": "132806648",
       "tokens_codex": "50804409",
       "tokens_other": "0",
@@ -28555,13 +29018,13 @@
       "commits_landed_claude_codex": "38",
       "commits_landed_other": "0",
       "commits_landed_human": "1",
-      "commits_all_refs": "492",
+      "commits_all_refs": "494",
       "commits_merge": "84",
       "code_added": "32595",
       "code_removed": "14296",
       "code_touched": "46891",
       "all_added_raw": "943507",
-      "all_removed_raw": "86696",
+      "all_removed_raw": "87255",
       "tokens_claude": "623734992",
       "tokens_codex": "560864034",
       "tokens_other": "0",
@@ -28693,13 +29156,13 @@
       "commits_landed_claude_codex": "49",
       "commits_landed_other": "1",
       "commits_landed_human": "1",
-      "commits_all_refs": "139",
+      "commits_all_refs": "141",
       "commits_merge": "26",
       "code_added": "11028",
       "code_removed": "485",
       "code_touched": "11513",
-      "all_added_raw": "35876",
-      "all_removed_raw": "6183",
+      "all_added_raw": "35881",
+      "all_removed_raw": "6187",
       "tokens_claude": "477712199",
       "tokens_codex": "149194888",
       "tokens_other": "0",
@@ -28871,19 +29334,19 @@
     {
       "date": "2026-10-23",
       "day_status": "complete",
-      "commits_landed": "78",
+      "commits_landed": "80",
       "commits_landed_claude": "62",
       "commits_landed_codex": "1",
       "commits_landed_claude_codex": "11",
       "commits_landed_other": "0",
-      "commits_landed_human": "4",
-      "commits_all_refs": "110",
+      "commits_landed_human": "6",
+      "commits_all_refs": "112",
       "commits_merge": "21",
       "code_added": "5966",
       "code_removed": "605",
       "code_touched": "6571",
-      "all_added_raw": "55395",
-      "all_removed_raw": "1705",
+      "all_added_raw": "55718",
+      "all_removed_raw": "1714",
       "tokens_claude": "360041489",
       "tokens_codex": "33389211",
       "tokens_other": "0",
@@ -28894,19 +29357,19 @@
     {
       "date": "2026-10-24",
       "day_status": "complete",
-      "commits_landed": "105",
+      "commits_landed": "106",
       "commits_landed_claude": "100",
       "commits_landed_codex": "3",
       "commits_landed_claude_codex": "1",
       "commits_landed_other": "0",
-      "commits_landed_human": "1",
-      "commits_all_refs": "139",
+      "commits_landed_human": "2",
+      "commits_all_refs": "140",
       "commits_merge": "27",
       "code_added": "12202",
       "code_removed": "3601",
       "code_touched": "15803",
-      "all_added_raw": "156515",
-      "all_removed_raw": "13102",
+      "all_added_raw": "156724",
+      "all_removed_raw": "13186",
       "tokens_claude": "467834372",
       "tokens_codex": "201872763",
       "tokens_other": "0",
@@ -29022,10 +29485,10 @@
       "code_touched": "2584",
       "all_added_raw": "2616",
       "all_removed_raw": "464",
-      "tokens_claude": "48524254",
+      "tokens_claude": "48748179",
       "tokens_codex": "26130529",
       "tokens_other": "0",
-      "tokens_total": "74654783",
+      "tokens_total": "74878708",
       "claude_token_status": "measured",
       "codex_token_status": "measured"
     },
@@ -29459,10 +29922,10 @@
       "code_touched": "13541",
       "all_added_raw": "250595",
       "all_removed_raw": "4667",
-      "tokens_claude": "832664764",
+      "tokens_claude": "846459607",
       "tokens_codex": "0",
       "tokens_other": "0",
-      "tokens_total": "832664764",
+      "tokens_total": "846459607",
       "claude_token_status": "measured",
       "codex_token_status": "unmeasured"
     },
@@ -29482,10 +29945,10 @@
       "code_touched": "20473",
       "all_added_raw": "21421",
       "all_removed_raw": "7771",
-      "tokens_claude": "809949152",
+      "tokens_claude": "822615542",
       "tokens_codex": "2580467",
       "tokens_other": "0",
-      "tokens_total": "812529619",
+      "tokens_total": "825196009",
       "claude_token_status": "measured",
       "codex_token_status": "measured"
     },
@@ -29505,10 +29968,10 @@
       "code_touched": "20157",
       "all_added_raw": "23837",
       "all_removed_raw": "4712",
-      "tokens_claude": "501308191",
+      "tokens_claude": "506601532",
       "tokens_codex": "21705615",
       "tokens_other": "0",
-      "tokens_total": "523013806",
+      "tokens_total": "528307147",
       "claude_token_status": "measured",
       "codex_token_status": "measured"
     },
@@ -29528,10 +29991,10 @@
       "code_touched": "9392",
       "all_added_raw": "14625",
       "all_removed_raw": "1382",
-      "tokens_claude": "650632684",
+      "tokens_claude": "657208316",
       "tokens_codex": "27406911",
       "tokens_other": "0",
-      "tokens_total": "678039595",
+      "tokens_total": "684615227",
       "claude_token_status": "measured",
       "codex_token_status": "measured"
     },
@@ -29551,10 +30014,10 @@
       "code_touched": "4875",
       "all_added_raw": "25549",
       "all_removed_raw": "47981",
-      "tokens_claude": "354993685",
+      "tokens_claude": "357884635",
       "tokens_codex": "5255879",
       "tokens_other": "0",
-      "tokens_total": "360249564",
+      "tokens_total": "363140514",
       "claude_token_status": "measured",
       "codex_token_status": "measured"
     },
@@ -29574,33 +30037,56 @@
       "code_touched": "17727",
       "all_added_raw": "65438",
       "all_removed_raw": "11595",
-      "tokens_claude": "865017478",
+      "tokens_claude": "877245544",
       "tokens_codex": "0",
       "tokens_other": "0",
-      "tokens_total": "865017478",
+      "tokens_total": "877245544",
       "claude_token_status": "measured",
       "codex_token_status": "measured"
     },
     {
       "date": "2026-11-23",
-      "day_status": "partial",
-      "commits_landed": "75",
-      "commits_landed_claude": "75",
+      "day_status": "complete",
+      "commits_landed": "102",
+      "commits_landed_claude": "102",
       "commits_landed_codex": "0",
       "commits_landed_claude_codex": "0",
       "commits_landed_other": "0",
       "commits_landed_human": "0",
-      "commits_all_refs": "107",
-      "commits_merge": "29",
-      "code_added": "8356",
-      "code_removed": "1769",
-      "code_touched": "10125",
-      "all_added_raw": "23818",
-      "all_removed_raw": "2837",
-      "tokens_claude": "471867943",
+      "commits_all_refs": "149",
+      "commits_merge": "42",
+      "code_added": "10258",
+      "code_removed": "2202",
+      "code_touched": "12460",
+      "all_added_raw": "117555",
+      "all_removed_raw": "11585",
+      "tokens_claude": "614960644",
       "tokens_codex": "0",
       "tokens_other": "0",
-      "tokens_total": "471867943",
+      "tokens_total": "614960644",
+      "claude_token_status": "measured",
+      "codex_token_status": "measured"
+    },
+    {
+      "date": "2026-11-24",
+      "day_status": "partial",
+      "commits_landed": "42",
+      "commits_landed_claude": "42",
+      "commits_landed_codex": "0",
+      "commits_landed_claude_codex": "0",
+      "commits_landed_other": "0",
+      "commits_landed_human": "0",
+      "commits_all_refs": "68",
+      "commits_merge": "15",
+      "code_added": "3803",
+      "code_removed": "371",
+      "code_touched": "4174",
+      "all_added_raw": "130470",
+      "all_removed_raw": "725",
+      "tokens_claude": "411883630",
+      "tokens_codex": "0",
+      "tokens_other": "0",
+      "tokens_total": "411883630",
       "claude_token_status": "measured",
       "codex_token_status": "measured"
     }
@@ -31714,12 +32200,12 @@
     },
     {
       "date": "2026-05-23",
-      "human": 0,
+      "human": 1,
       "claude": 0,
       "codex": 3,
       "claude_codex": 0,
       "other": 0,
-      "total": 3
+      "total": 4
     },
     {
       "date": "2026-05-24",
@@ -31733,11 +32219,11 @@
     {
       "date": "2026-05-25",
       "human": 1,
-      "claude": 0,
-      "codex": 6,
-      "claude_codex": 0,
+      "claude": 14,
+      "codex": 10,
+      "claude_codex": 1,
       "other": 0,
-      "total": 7
+      "total": 26
     },
     {
       "date": "2026-05-26",
@@ -31750,21 +32236,21 @@
     },
     {
       "date": "2026-05-27",
-      "human": 28,
+      "human": 29,
       "claude": 0,
       "codex": 0,
       "claude_codex": 0,
       "other": 0,
-      "total": 28
+      "total": 29
     },
     {
       "date": "2026-05-28",
-      "human": 39,
+      "human": 41,
       "claude": 0,
       "codex": 0,
       "claude_codex": 0,
-      "other": 0,
-      "total": 39
+      "other": 65,
+      "total": 106
     },
     {
       "date": "2026-05-29",
@@ -31772,17 +32258,17 @@
       "claude": 4,
       "codex": 4,
       "claude_codex": 0,
-      "other": 2,
-      "total": 40
+      "other": 96,
+      "total": 134
     },
     {
       "date": "2026-05-30",
-      "human": 38,
+      "human": 39,
       "claude": 8,
       "codex": 0,
       "claude_codex": 0,
-      "other": 19,
-      "total": 65
+      "other": 29,
+      "total": 76
     },
     {
       "date": "2026-05-31",
@@ -31799,8 +32285,8 @@
       "claude": 0,
       "codex": 1,
       "claude_codex": 0,
-      "other": 1,
-      "total": 42
+      "other": 22,
+      "total": 63
     },
     {
       "date": "2026-06-02",
@@ -31833,10 +32319,10 @@
       "date": "2026-06-05",
       "human": 39,
       "claude": 1,
-      "codex": 2,
+      "codex": 3,
       "claude_codex": 0,
       "other": 3,
-      "total": 45
+      "total": 46
     },
     {
       "date": "2026-06-06",
@@ -31849,66 +32335,66 @@
     },
     {
       "date": "2026-06-07",
-      "human": 23,
-      "claude": 9,
+      "human": 25,
+      "claude": 10,
       "codex": 0,
       "claude_codex": 0,
       "other": 0,
-      "total": 32
+      "total": 35
     },
     {
       "date": "2026-06-08",
-      "human": 37,
+      "human": 41,
       "claude": 8,
       "codex": 0,
       "claude_codex": 0,
       "other": 0,
-      "total": 45
+      "total": 49
     },
     {
       "date": "2026-06-09",
-      "human": 60,
-      "claude": 21,
+      "human": 66,
+      "claude": 22,
       "codex": 0,
       "claude_codex": 0,
       "other": 0,
-      "total": 81
+      "total": 88
     },
     {
       "date": "2026-06-10",
-      "human": 15,
-      "claude": 33,
+      "human": 16,
+      "claude": 36,
       "codex": 0,
       "claude_codex": 0,
       "other": 1,
-      "total": 49
+      "total": 53
     },
     {
       "date": "2026-06-11",
       "human": 0,
-      "claude": 30,
+      "claude": 34,
       "codex": 0,
       "claude_codex": 0,
       "other": 0,
-      "total": 30
+      "total": 34
     },
     {
       "date": "2026-06-12",
-      "human": 17,
-      "claude": 27,
+      "human": 19,
+      "claude": 30,
       "codex": 1,
       "claude_codex": 0,
       "other": 0,
-      "total": 45
+      "total": 50
     },
     {
       "date": "2026-06-13",
-      "human": 6,
-      "claude": 14,
+      "human": 7,
+      "claude": 16,
       "codex": 0,
       "claude_codex": 0,
       "other": 0,
-      "total": 20
+      "total": 23
     },
     {
       "date": "2026-06-14",
@@ -32020,12 +32506,12 @@
     },
     {
       "date": "2026-06-26",
-      "human": 2,
-      "claude": 8,
+      "human": 3,
+      "claude": 9,
       "codex": 0,
       "claude_codex": 5,
       "other": 0,
-      "total": 15
+      "total": 17
     },
     {
       "date": "2026-06-27",
@@ -32641,12 +33127,12 @@
     },
     {
       "date": "2026-09-03",
-      "human": 27,
-      "claude": 31,
+      "human": 33,
+      "claude": 33,
       "codex": 0,
       "claude_codex": 20,
-      "other": 0,
-      "total": 78
+      "other": 1,
+      "total": 87
     },
     {
       "date": "2026-09-04",
@@ -32715,10 +33201,10 @@
       "date": "2026-09-11",
       "human": 0,
       "claude": 10,
-      "codex": 29,
+      "codex": 30,
       "claude_codex": 76,
       "other": 0,
-      "total": 115
+      "total": 116
     },
     {
       "date": "2026-09-12",
@@ -32804,11 +33290,11 @@
     {
       "date": "2026-09-21",
       "human": 0,
-      "claude": 4,
+      "claude": 7,
       "codex": 67,
       "claude_codex": 5,
       "other": 0,
-      "total": 76
+      "total": 79
     },
     {
       "date": "2026-09-22",
@@ -32831,20 +33317,20 @@
     {
       "date": "2026-09-24",
       "human": 6,
-      "claude": 34,
+      "claude": 37,
       "codex": 39,
       "claude_codex": 63,
       "other": 1,
-      "total": 143
+      "total": 146
     },
     {
       "date": "2026-09-25",
-      "human": 10,
+      "human": 11,
       "claude": 2,
       "codex": 0,
       "claude_codex": 20,
       "other": 0,
-      "total": 32
+      "total": 33
     },
     {
       "date": "2026-09-26",
@@ -32884,12 +33370,12 @@
     },
     {
       "date": "2026-09-30",
-      "human": 1,
+      "human": 2,
       "claude": 8,
       "codex": 33,
       "claude_codex": 23,
       "other": 1,
-      "total": 66
+      "total": 67
     },
     {
       "date": "2026-10-01",
@@ -33091,21 +33577,21 @@
     },
     {
       "date": "2026-10-23",
-      "human": 4,
+      "human": 6,
       "claude": 62,
       "codex": 1,
       "claude_codex": 11,
       "other": 0,
-      "total": 78
+      "total": 80
     },
     {
       "date": "2026-10-24",
-      "human": 1,
+      "human": 2,
       "claude": 100,
       "codex": 3,
       "claude_codex": 1,
       "other": 0,
-      "total": 105
+      "total": 106
     },
     {
       "date": "2026-10-25",
@@ -33371,11 +33857,20 @@
     {
       "date": "2026-11-23",
       "human": 0,
-      "claude": 75,
+      "claude": 102,
       "codex": 0,
       "claude_codex": 0,
       "other": 0,
-      "total": 75
+      "total": 102
+    },
+    {
+      "date": "2026-11-24",
+      "human": 0,
+      "claude": 42,
+      "codex": 0,
+      "claude_codex": 0,
+      "other": 0,
+      "total": 42
     }
   ],
   "commit_log": {
@@ -33452,22 +33947,22 @@
       },
       {
         "date": "2026-05-01",
-        "human": 146,
-        "claude": 14,
-        "codex": 83,
-        "claude_codex": 0,
-        "other": 21,
-        "total": 264,
+        "human": 151,
+        "claude": 28,
+        "codex": 87,
+        "claude_codex": 1,
+        "other": 190,
+        "total": 457,
         "days": 31
       },
       {
         "date": "2026-06-01",
-        "human": 299,
-        "claude": 235,
-        "codex": 272,
+        "human": 316,
+        "claude": 250,
+        "codex": 273,
         "claude_codex": 254,
-        "other": 13,
-        "total": 1073,
+        "other": 34,
+        "total": 1127,
         "days": 30
       },
       {
@@ -33492,33 +33987,33 @@
       },
       {
         "date": "2026-09-01",
-        "human": 78,
-        "claude": 250,
-        "codex": 1055,
+        "human": 86,
+        "claude": 258,
+        "codex": 1056,
         "claude_codex": 925,
-        "other": 2,
-        "total": 2310,
+        "other": 3,
+        "total": 2328,
         "days": 30
       },
       {
         "date": "2026-10-01",
-        "human": 100,
+        "human": 103,
         "claude": 941,
         "codex": 456,
         "claude_codex": 625,
         "other": 51,
-        "total": 2173,
+        "total": 2176,
         "days": 31
       },
       {
         "date": "2026-11-01",
         "human": 120,
-        "claude": 2040,
+        "claude": 2109,
         "codex": 34,
         "claude_codex": 49,
         "other": 76,
-        "total": 2319,
-        "days": 23
+        "total": 2388,
+        "days": 24
       }
     ],
     "events": [
@@ -33534,12 +34029,12 @@
   },
   "mcp": {
     "summary": {
-      "calls_completed": 184067,
-      "request_failed": 2175,
+      "calls_completed": 184142,
+      "request_failed": 2180,
       "transport_failed": 9441,
-      "tools": 64,
+      "tools": 65,
       "first": "2026-08-24",
-      "last": "2026-11-23"
+      "last": "2026-11-24"
     },
     "coverage": [
       [
@@ -33571,7 +34066,7 @@
   "commit_association": {
     "claude": {
       "commits": 1566,
-      "raw": 10946757001
+      "raw": 10946980926
     },
     "codex": {
       "commits": 1081,
@@ -33630,14 +34125,14 @@
   "public": true,
   "traffic": {
     "schema": 1,
-    "built": "2026-11-23",
+    "built": "2026-11-24",
     "coverage": {
       "transcripts": {
-        "files": 7031,
+        "files": 7203,
         "first": "2026-09-23",
-        "last": "2026-11-23",
+        "last": "2026-11-24",
         "fable_first": "2026-09-24",
-        "fable_last": "2026-11-23",
+        "fable_last": "2026-11-24",
         "gaps": [
           "Advisor-tool calls are not separate transcripts, so Fable-as-advisor is not counted.",
           "Only transcripts mirrored from this host; laptop Claude not included.",
@@ -33646,38 +34141,38 @@
       },
       "bus": {
         "first": "2026-08-25",
-        "last": "2026-11-23",
-        "messages": 16116
+        "last": "2026-11-24",
+        "messages": 16191
       },
       "mcp": {
         "first": "2026-08-24",
-        "last": "2026-11-23"
+        "last": "2026-11-24"
       }
     },
     "invocations_by_model": {
       "opus-5-5": {
-        "runs": 954,
-        "messages": 205101,
-        "subagent_runs": 449,
-        "main_sessions": 505
+        "runs": 975,
+        "messages": 208595,
+        "subagent_runs": 458,
+        "main_sessions": 517
       },
       "sonnet-5-5": {
-        "runs": 2340,
-        "messages": 131900,
-        "subagent_runs": 1483,
-        "main_sessions": 857
+        "runs": 2452,
+        "messages": 137039,
+        "subagent_runs": 1579,
+        "main_sessions": 873
       },
       "fable": {
-        "runs": 642,
-        "messages": 38332,
-        "subagent_runs": 569,
+        "runs": 644,
+        "messages": 38538,
+        "subagent_runs": 571,
         "main_sessions": 73
       }
     },
     "fable_invokers": [
       [
         "Claude opus-5-5 session, via Agent tool",
-        389
+        391
       ],
       [
         "Claude sonnet-5-5 session, via Agent tool",
@@ -33707,7 +34202,7 @@
     "fable_paths": [
       [
         "Agent tool (subagent)",
-        569
+        571
       ],
       [
         "desktop session",
@@ -33729,7 +34224,7 @@
     "fable_subagent_types": [
       [
         "reviewer subagent",
-        476
+        478
       ],
       [
         "model override on general-purpose",
@@ -33797,28 +34292,28 @@
       ],
       [
         "2026-11-23",
-        12,
-        24,
-        30
+        14,
+        45,
+        142
       ]
     ],
     "bus": {
       "sent": [
         [
           "ChatGPT",
-          3915
+          3922
         ],
         [
           "Claude sessions",
-          2744
+          2751
         ],
         [
           "Other",
-          2456
+          2512
         ],
         [
           "Agent Host",
-          2349
+          2351
         ],
         [
           "Scheduled jobs",
@@ -33846,25 +34341,25 @@
         ],
         [
           "Orchestrator agent",
-          63
+          66
         ]
       ],
       "received": [
         [
           "ChatGPT",
-          6444
+          6451
         ],
         [
           "Claude sessions",
-          3074
+          3082
         ],
         [
           "Claude launchers",
-          2681
+          2715
         ],
         [
           "Other",
-          1930
+          1956
         ],
         [
           "ChatGPT/Codex research roles",
@@ -33893,12 +34388,12 @@
       ]
     },
     "bus_to_fable_named": {
-      "messages": 1154,
+      "messages": 1162,
       "recipients": 9,
       "by_sender": [
         [
           "ChatGPT",
-          628
+          629
         ],
         [
           "Claude sessions",
@@ -33910,7 +34405,7 @@
         ],
         [
           "Other",
-          109
+          116
         ],
         [
           "Codex",
@@ -33922,7 +34417,7 @@
         ]
       ],
       "first": "2026-09-16",
-      "last": "2026-11-23",
+      "last": "2026-11-24",
       "real_model_of_those_sessions_messages": [
         [
           "sonnet-5-5",
@@ -33940,7 +34435,7 @@
     },
     "other_paths": {
       "bus_posts_naming_fable_model": 1,
-      "mcp_coordination_post_calls": 5759,
+      "mcp_coordination_post_calls": 5766,
       "launch_commands_naming_fable": {
         "claude": 8
       }
