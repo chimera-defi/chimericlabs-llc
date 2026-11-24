@@ -1,0 +1,162 @@
+{
+ "before_ai": {
+  "commits": 614,
+  "from": "2021",
+  "github_2026": 5433,
+  "github_2026_months": 10,
+  "github_2026_span": "January to October 2026",
+  "months": 48,
+  "pulled": "2026-11-03",
+  "to": "2024"
+ },
+ "data_through": "2026-11-24",
+ "donut": [
+  {
+   "colour": "var(--data-1)",
+   "label": "Claudefolio",
+   "n": 8917
+  },
+  {
+   "colour": "var(--data-2)",
+   "label": "eth2-quickstart",
+   "n": 1333
+  },
+  {
+   "colour": "var(--data-3)",
+   "label": "Experiments monorepo",
+   "n": 1039
+  },
+  {
+   "colour": "var(--data-4)",
+   "label": "crss",
+   "n": 897
+  },
+  {
+   "colour": "var(--data-5)",
+   "label": "Agent skills",
+   "n": 776
+  },
+  {
+   "colour": "var(--data-6)",
+   "label": "SharedStake",
+   "n": 622
+  },
+  {
+   "colour": "var(--data-7)",
+   "label": "Intelex",
+   "n": 494
+  },
+  {
+   "colour": "var(--data-8)",
+   "label": "Wallet Radar",
+   "n": 488
+  },
+  {
+   "colour": "var(--data-9)",
+   "label": "DispatchBench",
+   "n": 471
+  },
+  {
+   "colour": "var(--data-10)",
+   "label": "This site",
+   "n": 435
+  },
+  {
+   "colour": "var(--data-effort-medium)",
+   "label": "Other public",
+   "n": 168
+  },
+  {
+   "colour": "var(--data-effort-low)",
+   "label": "Other private work",
+   "n": 2788
+  }
+ ],
+ "months": [
+  {
+   "days": 31,
+   "days_in_month": 31,
+   "month": "2025-10",
+   "n": 378
+  },
+  {
+   "days": 30,
+   "days_in_month": 30,
+   "month": "2025-11",
+   "n": 163
+  },
+  {
+   "days": 31,
+   "days_in_month": 31,
+   "month": "2025-12",
+   "n": 296
+  },
+  {
+   "days": 31,
+   "days_in_month": 31,
+   "month": "2026-01",
+   "n": 145
+  },
+  {
+   "days": 28,
+   "days_in_month": 28,
+   "month": "2026-02",
+   "n": 578
+  },
+  {
+   "days": 31,
+   "days_in_month": 31,
+   "month": "2026-03",
+   "n": 263
+  },
+  {
+   "days": 30,
+   "days_in_month": 30,
+   "month": "2026-04",
+   "n": 335
+  },
+  {
+   "days": 31,
+   "days_in_month": 31,
+   "month": "2026-05",
+   "n": 449
+  },
+  {
+   "days": 30,
+   "days_in_month": 30,
+   "month": "2026-06",
+   "n": 1550
+  },
+  {
+   "days": 31,
+   "days_in_month": 31,
+   "month": "2026-07",
+   "n": 1423
+  },
+  {
+   "days": 31,
+   "days_in_month": 31,
+   "month": "2026-08",
+   "n": 2123
+  },
+  {
+   "days": 30,
+   "days_in_month": 30,
+   "month": "2026-09",
+   "n": 3512
+  },
+  {
+   "days": 31,
+   "days_in_month": 31,
+   "month": "2026-10",
+   "n": 3526
+  },
+  {
+   "days": 24,
+   "days_in_month": 30,
+   "month": "2026-11",
+   "n": 3687
+  }
+ ],
+ "total": 18428
+}

@@ -1,0 +1,1142 @@
+date,project,commits_landed,commits_all_refs
+2025-10-01,SharedStake,2,6
+2025-10-02,eth2-quickstart,0,2
+2025-10-03,SharedStake,0,8
+2025-10-04,SharedStake,1,3
+2025-10-05,SharedStake,0,1
+2025-10-06,SharedStake,0,10
+2025-10-07,SharedStake,11,21
+2025-10-08,SharedStake,24,73
+2025-10-09,SharedStake,2,7
+2025-10-10,eth2-quickstart,0,6
+2025-10-11,SharedStake,3,4
+2025-10-11,eth2-quickstart,0,7
+2025-10-12,SharedStake,0,2
+2025-10-13,SharedStake,0,11
+2025-10-13,eth2-quickstart,1,4
+2025-10-14,SharedStake,0,1
+2025-10-14,eth2-quickstart,1,8
+2025-10-15,SharedStake,0,1
+2025-10-15,eth2-quickstart,1,3
+2025-10-16,SharedStake,0,1
+2025-10-16,eth2-quickstart,2,25
+2025-10-17,eth2-quickstart,0,2
+2025-10-18,eth2-quickstart,1,1
+2025-10-19,eth2-quickstart,1,5
+2025-10-20,eth2-quickstart,0,11
+2025-10-21,eth2-quickstart,5,39
+2025-10-22,eth2-quickstart,2,17
+2025-10-23,eth2-quickstart,1,5
+2025-10-24,eth2-quickstart,0,14
+2025-10-25,eth2-quickstart,0,4
+2025-10-26,eth2-quickstart,0,4
+2025-10-27,eth2-quickstart,1,11
+2025-10-28,eth2-quickstart,0,1
+2025-10-29,eth2-quickstart,7,33
+2025-10-30,SharedStake,4,10
+2025-10-30,eth2-quickstart,1,9
+2025-10-31,SharedStake,5,8
+2025-11-02,SharedStake,7,12
+2025-11-03,SharedStake,6,8
+2025-11-04,SharedStake,1,1
+2025-11-08,SharedStake,1,2
+2025-11-09,SharedStake,1,12
+2025-11-14,SharedStake,1,7
+2025-11-15,SharedStake,2,5
+2025-11-16,SharedStake,2,3
+2025-11-18,SharedStake,0,3
+2025-11-18,eth2-quickstart,0,2
+2025-11-20,eth2-quickstart,1,1
+2025-11-24,Experiments monorepo,3,11
+2025-11-25,Experiments monorepo,6,17
+2025-11-25,Wallet Radar,1,1
+2025-11-25,eth2-quickstart,4,12
+2025-11-26,Experiments monorepo,5,20
+2025-11-26,Wallet Radar,1,1
+2025-11-27,Experiments monorepo,1,2
+2025-11-27,eth2-quickstart,1,9
+2025-11-28,Experiments monorepo,1,9
+2025-11-28,Wallet Radar,1,1
+2025-11-28,eth2-quickstart,0,9
+2025-11-29,Experiments monorepo,2,5
+2025-11-29,Wallet Radar,2,2
+2025-11-29,eth2-quickstart,0,4
+2025-11-30,eth2-quickstart,1,4
+2025-12-01,Experiments monorepo,1,17
+2025-12-01,eth2-quickstart,1,4
+2025-12-02,Experiments monorepo,0,4
+2025-12-03,Experiments monorepo,1,8
+2025-12-03,Wallet Radar,1,1
+2025-12-04,eth2-quickstart,0,1
+2025-12-05,Experiments monorepo,1,15
+2025-12-05,Wallet Radar,1,1
+2025-12-05,eth2-quickstart,1,2
+2025-12-06,Experiments monorepo,3,6
+2025-12-06,SharedStake,1,1
+2025-12-06,Wallet Radar,1,1
+2025-12-07,Experiments monorepo,4,12
+2025-12-07,Wallet Radar,1,1
+2025-12-08,Experiments monorepo,1,5
+2025-12-08,Wallet Radar,1,1
+2025-12-08,eth2-quickstart,0,1
+2025-12-09,eth2-quickstart,1,1
+2025-12-10,Experiments monorepo,1,1
+2025-12-10,Wallet Radar,1,1
+2025-12-10,eth2-quickstart,0,3
+2025-12-11,Experiments monorepo,9,17
+2025-12-11,Wallet Radar,8,8
+2025-12-11,eth2-quickstart,1,2
+2025-12-12,Experiments monorepo,4,5
+2025-12-12,Wallet Radar,3,3
+2025-12-13,Experiments monorepo,3,6
+2025-12-13,Wallet Radar,3,3
+2025-12-14,Experiments monorepo,1,4
+2025-12-14,Wallet Radar,1,1
+2025-12-15,Experiments monorepo,2,2
+2025-12-15,Wallet Radar,2,2
+2025-12-16,Experiments monorepo,2,4
+2025-12-16,Wallet Radar,2,2
+2025-12-17,Experiments monorepo,7,7
+2025-12-17,Wallet Radar,5,5
+2025-12-18,Experiments monorepo,1,1
+2025-12-18,SharedStake,1,1
+2025-12-18,Wallet Radar,1,1
+2025-12-19,Experiments monorepo,1,1
+2025-12-19,Wallet Radar,1,1
+2025-12-20,Experiments monorepo,0,1
+2025-12-21,Experiments monorepo,3,3
+2025-12-21,Wallet Radar,2,2
+2025-12-22,Experiments monorepo,1,1
+2025-12-22,Wallet Radar,1,1
+2025-12-24,Experiments monorepo,2,3
+2025-12-25,Experiments monorepo,4,7
+2025-12-25,Wallet Radar,2,2
+2025-12-26,Experiments monorepo,3,10
+2025-12-26,Wallet Radar,1,1
+2025-12-27,Experiments monorepo,10,35
+2025-12-27,Wallet Radar,1,1
+2025-12-27,eth2-quickstart,0,1
+2025-12-28,Experiments monorepo,2,4
+2025-12-28,eth2-quickstart,1,8
+2025-12-29,Experiments monorepo,0,1
+2025-12-29,SharedStake,0,3
+2025-12-30,Experiments monorepo,7,15
+2025-12-30,SharedStake,0,1
+2025-12-30,Wallet Radar,4,4
+2025-12-31,Experiments monorepo,3,12
+2025-12-31,Wallet Radar,2,2
+2025-12-31,eth2-quickstart,3,15
+2026-01-01,Experiments monorepo,0,8
+2026-01-01,eth2-quickstart,1,4
+2026-01-02,Experiments monorepo,0,2
+2026-01-03,Experiments monorepo,1,1
+2026-01-03,Wallet Radar,1,1
+2026-01-04,Experiments monorepo,3,7
+2026-01-04,Wallet Radar,2,2
+2026-01-05,Experiments monorepo,1,2
+2026-01-05,Wallet Radar,1,1
+2026-01-07,Experiments monorepo,3,3
+2026-01-07,Wallet Radar,3,3
+2026-01-08,Experiments monorepo,1,1
+2026-01-09,Experiments monorepo,1,1
+2026-01-10,Experiments monorepo,6,11
+2026-01-10,Wallet Radar,3,3
+2026-01-11,Experiments monorepo,2,2
+2026-01-11,Wallet Radar,2,2
+2026-01-12,Experiments monorepo,1,1
+2026-01-12,Wallet Radar,1,1
+2026-01-13,Experiments monorepo,2,2
+2026-01-13,Wallet Radar,2,2
+2026-01-13,eth2-quickstart,0,2
+2026-01-14,Experiments monorepo,0,1
+2026-01-14,eth2-quickstart,1,2
+2026-01-15,Experiments monorepo,1,10
+2026-01-15,SharedStake,1,1
+2026-01-15,Wallet Radar,1,1
+2026-01-16,Experiments monorepo,1,1
+2026-01-16,SharedStake,1,3
+2026-01-16,Wallet Radar,1,1
+2026-01-17,Other public,0,2
+2026-01-19,Experiments monorepo,3,3
+2026-01-19,Wallet Radar,3,3
+2026-01-20,Experiments monorepo,2,2
+2026-01-20,Wallet Radar,2,2
+2026-01-21,Experiments monorepo,2,2
+2026-01-22,Experiments monorepo,4,4
+2026-01-22,Wallet Radar,2,2
+2026-01-24,Experiments monorepo,3,5
+2026-01-25,Experiments monorepo,1,14
+2026-01-26,Experiments monorepo,2,5
+2026-01-27,Experiments monorepo,2,5
+2026-01-27,Wallet Radar,1,1
+2026-01-28,Experiments monorepo,0,2
+2026-01-29,Experiments monorepo,1,3
+2026-01-29,SharedStake,1,1
+2026-01-30,Experiments monorepo,4,6
+2026-01-30,Wallet Radar,1,1
+2026-02-01,Experiments monorepo,6,6
+2026-02-01,Wallet Radar,1,1
+2026-02-03,Experiments monorepo,4,20
+2026-02-03,Wallet Radar,3,3
+2026-02-05,Experiments monorepo,2,3
+2026-02-06,Experiments monorepo,2,4
+2026-02-06,Wallet Radar,2,2
+2026-02-07,Experiments monorepo,1,10
+2026-02-07,Wallet Radar,1,1
+2026-02-08,Experiments monorepo,3,25
+2026-02-08,SharedStake,2,2
+2026-02-08,Wallet Radar,1,1
+2026-02-09,Experiments monorepo,1,24
+2026-02-09,eth2-quickstart,0,5
+2026-02-10,Experiments monorepo,1,7
+2026-02-10,eth2-quickstart,1,5
+2026-02-11,Experiments monorepo,3,7
+2026-02-11,SharedStake,0,4
+2026-02-11,eth2-quickstart,1,9
+2026-02-12,Experiments monorepo,0,1
+2026-02-12,Other public,0,1
+2026-02-12,eth2-quickstart,1,6
+2026-02-13,Experiments monorepo,1,55
+2026-02-13,SharedStake,0,1
+2026-02-13,eth2-quickstart,2,34
+2026-02-14,Experiments monorepo,3,9
+2026-02-14,Wallet Radar,2,2
+2026-02-14,eth2-quickstart,0,49
+2026-02-15,Experiments monorepo,0,3
+2026-02-15,eth2-quickstart,1,8
+2026-02-16,Experiments monorepo,1,2
+2026-02-16,eth2-quickstart,6,65
+2026-02-17,eth2-quickstart,0,1
+2026-02-19,Experiments monorepo,1,8
+2026-02-19,eth2-quickstart,1,25
+2026-02-20,Other public,0,1
+2026-02-20,eth2-quickstart,2,10
+2026-02-21,Experiments monorepo,0,2
+2026-02-22,Experiments monorepo,3,5
+2026-02-22,Wallet Radar,1,1
+2026-02-22,eth2-quickstart,0,8
+2026-02-23,Experiments monorepo,0,28
+2026-02-23,eth2-quickstart,0,40
+2026-02-24,Experiments monorepo,5,26
+2026-02-24,eth2-quickstart,0,6
+2026-02-25,Experiments monorepo,14,24
+2026-02-25,eth2-quickstart,1,5
+2026-02-26,Experiments monorepo,6,12
+2026-02-27,Experiments monorepo,0,1
+2026-03-02,eth2-quickstart,1,1
+2026-03-03,eth2-quickstart,1,1
+2026-03-04,Experiments monorepo,0,2
+2026-03-04,eth2-quickstart,3,3
+2026-03-05,Experiments monorepo,14,22
+2026-03-05,eth2-quickstart,4,4
+2026-03-06,Experiments monorepo,14,25
+2026-03-06,eth2-quickstart,3,3
+2026-03-07,Experiments monorepo,3,6
+2026-03-08,Experiments monorepo,2,3
+2026-03-09,Experiments monorepo,3,3
+2026-03-10,Experiments monorepo,12,18
+2026-03-10,eth2-quickstart,2,2
+2026-03-11,Experiments monorepo,2,2
+2026-03-11,eth2-quickstart,1,1
+2026-03-13,Experiments monorepo,27,32
+2026-03-13,eth2-quickstart,3,3
+2026-03-15,Experiments monorepo,0,2
+2026-03-18,Experiments monorepo,4,4
+2026-03-19,Experiments monorepo,1,1
+2026-03-20,Agent skills,1,1
+2026-03-21,Agent skills,0,3
+2026-03-22,eth2-quickstart,1,1
+2026-03-23,Agent skills,1,4
+2026-03-23,Experiments monorepo,8,9
+2026-03-23,Wallet Radar,1,1
+2026-03-24,Experiments monorepo,18,26
+2026-03-25,Experiments monorepo,4,4
+2026-03-26,Experiments monorepo,55,56
+2026-03-26,eth2-quickstart,1,1
+2026-03-27,Agent skills,1,1
+2026-03-27,Experiments monorepo,11,11
+2026-03-28,Agent skills,0,2
+2026-03-28,Experiments monorepo,1,1
+2026-03-29,Experiments monorepo,1,3
+2026-03-31,Agent skills,1,1
+2026-04-01,Agent skills,1,3
+2026-04-01,eth2-quickstart,0,1
+2026-04-02,Experiments monorepo,0,2
+2026-04-02,eth2-quickstart,1,2
+2026-04-03,Experiments monorepo,4,8
+2026-04-03,Intelex,3,5
+2026-04-04,Intelex,44,68
+2026-04-05,Experiments monorepo,0,1
+2026-04-05,Intelex,20,34
+2026-04-06,Other private work,1,1
+2026-04-07,Experiments monorepo,2,4
+2026-04-07,Other public,0,2
+2026-04-07,eth2-quickstart,0,1
+2026-04-08,Agent skills,3,5
+2026-04-08,Experiments monorepo,1,1
+2026-04-08,Wallet Radar,1,1
+2026-04-08,eth2-quickstart,4,12
+2026-04-09,Agent skills,2,2
+2026-04-09,Experiments monorepo,13,13
+2026-04-09,Other public,1,1
+2026-04-09,Wallet Radar,13,13
+2026-04-09,eth2-quickstart,0,1
+2026-04-10,Agent skills,3,3
+2026-04-10,eth2-quickstart,0,1
+2026-04-11,Agent skills,0,1
+2026-04-11,Experiments monorepo,5,5
+2026-04-11,Other public,1,2
+2026-04-11,Wallet Radar,5,5
+2026-04-11,eth2-quickstart,1,1
+2026-04-13,Agent skills,4,7
+2026-04-13,Experiments monorepo,1,2
+2026-04-13,Wallet Radar,1,1
+2026-04-13,eth2-quickstart,1,4
+2026-04-14,Experiments monorepo,8,8
+2026-04-14,Wallet Radar,8,8
+2026-04-17,Experiments monorepo,2,6
+2026-04-17,Wallet Radar,0,2
+2026-04-18,Agent skills,3,3
+2026-04-18,Experiments monorepo,6,11
+2026-04-18,Other public,0,2
+2026-04-18,Wallet Radar,6,6
+2026-04-18,eth2-quickstart,1,9
+2026-04-19,Agent skills,1,1
+2026-04-19,Experiments monorepo,4,5
+2026-04-19,Wallet Radar,4,4
+2026-04-19,eth2-quickstart,1,5
+2026-04-20,Experiments monorepo,1,2
+2026-04-20,Other public,0,1
+2026-04-20,Wallet Radar,1,1
+2026-04-20,eth2-quickstart,0,2
+2026-04-21,Experiments monorepo,2,4
+2026-04-21,Wallet Radar,1,1
+2026-04-21,eth2-quickstart,0,2
+2026-04-22,Experiments monorepo,1,2
+2026-04-22,Wallet Radar,0,2
+2026-04-22,eth2-quickstart,1,1
+2026-04-23,Experiments monorepo,2,2
+2026-04-23,Other public,0,4
+2026-04-24,Experiments monorepo,0,1
+2026-04-24,Other public,0,8
+2026-04-24,SharedStake,1,1
+2026-04-25,Other public,0,3
+2026-04-26,Agent skills,3,3
+2026-04-27,Other public,0,2
+2026-04-28,Other public,0,2
+2026-04-29,SharedStake,0,1
+2026-04-29,Wallet Radar,1,1
+2026-04-29,eth2-quickstart,1,1
+2026-04-30,Agent skills,0,1
+2026-04-30,Intelex,0,1
+2026-04-30,This site,0,1
+2026-04-30,Wallet Radar,0,1
+2026-04-30,eth2-quickstart,0,1
+2026-05-01,SharedStake,1,1
+2026-05-06,Agent skills,4,6
+2026-05-06,Experiments monorepo,0,1
+2026-05-06,SharedStake,0,3
+2026-05-06,eth2-quickstart,0,1
+2026-05-07,Agent skills,0,4
+2026-05-07,Experiments monorepo,0,1
+2026-05-07,Intelex,0,1
+2026-05-07,SharedStake,0,2
+2026-05-08,Agent skills,0,3
+2026-05-08,Experiments monorepo,0,1
+2026-05-08,SharedStake,7,10
+2026-05-11,SharedStake,5,9
+2026-05-12,SharedStake,6,11
+2026-05-13,SharedStake,3,5
+2026-05-14,SharedStake,1,3
+2026-05-15,SharedStake,2,4
+2026-05-16,Agent skills,1,1
+2026-05-16,SharedStake,4,8
+2026-05-18,Agent skills,5,7
+2026-05-18,SharedStake,13,18
+2026-05-19,SharedStake,2,3
+2026-05-20,Agent skills,2,5
+2026-05-20,SharedStake,2,2
+2026-05-21,Experiments monorepo,0,4
+2026-05-21,SharedStake,0,1
+2026-05-21,eth2-quickstart,0,1
+2026-05-22,Agent skills,1,1
+2026-05-22,Experiments monorepo,1,2
+2026-05-22,SharedStake,8,10
+2026-05-22,eth2-quickstart,2,2
+2026-05-23,Other public,0,1
+2026-05-23,eth2-quickstart,3,6
+2026-05-24,Agent skills,1,1
+2026-05-24,Experiments monorepo,0,1
+2026-05-24,SharedStake,1,4
+2026-05-25,Experiments monorepo,1,1
+2026-05-25,Other public,0,1
+2026-05-25,SharedStake,4,8
+2026-05-25,This site,2,3
+2026-05-25,Wallet Radar,0,1
+2026-05-26,Intelex,2,2
+2026-05-27,Intelex,28,29
+2026-05-28,Agent skills,1,1
+2026-05-28,Intelex,38,38
+2026-05-29,Intelex,31,62
+2026-05-29,SharedStake,9,13
+2026-05-30,Agent skills,0,3
+2026-05-30,Experiments monorepo,0,1
+2026-05-30,Intelex,36,68
+2026-05-30,Other public,0,1
+2026-05-30,SharedStake,24,25
+2026-05-30,This site,2,2
+2026-05-30,Wallet Radar,0,1
+2026-05-30,eth2-quickstart,3,3
+2026-05-31,Agent skills,5,13
+2026-05-31,Intelex,2,3
+2026-05-31,Other public,0,1
+2026-05-31,SharedStake,1,25
+2026-06-01,Agent skills,1,6
+2026-06-01,Intelex,37,42
+2026-06-01,Other public,0,2
+2026-06-01,SharedStake,0,15
+2026-06-01,This site,1,2
+2026-06-01,Wallet Radar,3,5
+2026-06-02,Agent skills,13,25
+2026-06-02,Intelex,4,5
+2026-06-02,SharedStake,0,9
+2026-06-02,Wallet Radar,1,1
+2026-06-03,Agent skills,5,8
+2026-06-03,Intelex,3,4
+2026-06-03,Other private work,2,2
+2026-06-03,SharedStake,0,9
+2026-06-03,Wallet Radar,2,3
+2026-06-03,eth2-quickstart,3,5
+2026-06-04,Agent skills,5,13
+2026-06-04,Intelex,1,5
+2026-06-04,Other private work,0,1
+2026-06-04,Other public,0,5
+2026-06-04,SharedStake,3,11
+2026-06-04,Wallet Radar,1,1
+2026-06-04,eth2-quickstart,4,11
+2026-06-05,Agent skills,19,20
+2026-06-05,Experiments monorepo,2,2
+2026-06-05,Intelex,11,11
+2026-06-05,Other private work,1,1
+2026-06-05,Other public,0,4
+2026-06-05,SharedStake,6,7
+2026-06-05,Wallet Radar,3,3
+2026-06-05,eth2-quickstart,3,3
+2026-06-06,Agent skills,0,4
+2026-06-06,Experiments monorepo,0,2
+2026-06-06,Intelex,1,2
+2026-06-06,Other private work,0,3
+2026-06-06,Other public,0,3
+2026-06-06,SharedStake,2,10
+2026-06-06,This site,0,1
+2026-06-06,Wallet Radar,2,5
+2026-06-06,eth2-quickstart,0,1
+2026-06-07,Agent skills,10,10
+2026-06-07,Experiments monorepo,0,2
+2026-06-07,Intelex,6,7
+2026-06-07,Other private work,1,1
+2026-06-07,Other public,0,3
+2026-06-07,SharedStake,3,15
+2026-06-07,This site,3,3
+2026-06-07,Wallet Radar,3,3
+2026-06-07,eth2-quickstart,6,10
+2026-06-08,Agent skills,12,12
+2026-06-08,Experiments monorepo,4,18
+2026-06-08,Intelex,7,8
+2026-06-08,Other private work,0,2
+2026-06-08,Other public,0,4
+2026-06-08,SharedStake,6,20
+2026-06-08,This site,3,3
+2026-06-08,Wallet Radar,3,3
+2026-06-08,crss,2,2
+2026-06-08,eth2-quickstart,8,8
+2026-06-09,Agent skills,31,31
+2026-06-09,Intelex,7,8
+2026-06-09,Other public,0,10
+2026-06-09,SharedStake,7,7
+2026-06-09,This site,7,7
+2026-06-09,Wallet Radar,10,10
+2026-06-09,eth2-quickstart,19,19
+2026-06-10,Agent skills,19,20
+2026-06-10,Experiments monorepo,1,4
+2026-06-10,Intelex,9,10
+2026-06-10,Other private work,1,1
+2026-06-10,Other public,0,6
+2026-06-10,SharedStake,7,13
+2026-06-10,This site,5,5
+2026-06-10,Wallet Radar,4,4
+2026-06-10,eth2-quickstart,3,3
+2026-06-11,Agent skills,14,17
+2026-06-11,Experiments monorepo,0,3
+2026-06-11,Intelex,4,4
+2026-06-11,Other public,0,4
+2026-06-11,SharedStake,3,14
+2026-06-11,This site,1,1
+2026-06-11,Wallet Radar,4,4
+2026-06-11,eth2-quickstart,4,5
+2026-06-12,Agent skills,20,22
+2026-06-12,Claudefolio,1,1
+2026-06-12,Experiments monorepo,0,1
+2026-06-12,Intelex,7,9
+2026-06-12,Other public,0,7
+2026-06-12,SharedStake,5,38
+2026-06-12,This site,1,1
+2026-06-12,Wallet Radar,6,6
+2026-06-12,eth2-quickstart,5,5
+2026-06-13,Agent skills,9,9
+2026-06-13,Intelex,4,4
+2026-06-13,Other public,0,3
+2026-06-13,SharedStake,1,8
+2026-06-13,This site,1,1
+2026-06-13,Wallet Radar,3,3
+2026-06-13,eth2-quickstart,2,2
+2026-06-14,Agent skills,16,17
+2026-06-14,Claudefolio,37,40
+2026-06-14,Wallet Radar,1,1
+2026-06-14,crss,3,3
+2026-06-15,Claudefolio,19,25
+2026-06-15,Experiments monorepo,0,2
+2026-06-15,Intelex,0,1
+2026-06-15,Wallet Radar,2,2
+2026-06-16,Agent skills,6,6
+2026-06-16,Claudefolio,57,64
+2026-06-16,Intelex,1,1
+2026-06-16,Other public,0,3
+2026-06-16,SharedStake,0,7
+2026-06-16,Wallet Radar,1,1
+2026-06-16,crss,1,1
+2026-06-16,eth2-quickstart,7,10
+2026-06-17,Claudefolio,96,110
+2026-06-18,Agent skills,3,24
+2026-06-18,Claudefolio,72,86
+2026-06-19,Agent skills,0,3
+2026-06-19,Claudefolio,30,32
+2026-06-19,Intelex,0,1
+2026-06-19,Other public,0,1
+2026-06-19,SharedStake,0,1
+2026-06-20,Agent skills,4,5
+2026-06-20,Claudefolio,77,80
+2026-06-20,Other private work,1,1
+2026-06-20,crss,1,1
+2026-06-21,Agent skills,44,46
+2026-06-21,Claudefolio,4,4
+2026-06-21,Experiments monorepo,0,1
+2026-06-22,Claudefolio,2,2
+2026-06-22,eth2-quickstart,0,15
+2026-06-23,Claudefolio,35,41
+2026-06-23,eth2-quickstart,0,20
+2026-06-24,eth2-quickstart,0,1
+2026-06-25,eth2-quickstart,0,2
+2026-06-26,Agent skills,3,6
+2026-06-26,Claudefolio,5,6
+2026-06-26,Intelex,3,4
+2026-06-26,Other public,0,1
+2026-06-26,SharedStake,0,1
+2026-06-26,This site,0,1
+2026-06-26,Wallet Radar,3,3
+2026-06-26,eth2-quickstart,1,2
+2026-06-27,Agent skills,0,3
+2026-06-27,Claudefolio,10,10
+2026-06-27,Other public,0,3
+2026-06-28,Claudefolio,2,2
+2026-06-28,eth2-quickstart,0,2
+2026-06-29,Claudefolio,29,31
+2026-06-29,SharedStake,0,4
+2026-06-29,eth2-quickstart,0,8
+2026-06-30,Agent skills,6,8
+2026-06-30,Claudefolio,49,51
+2026-06-30,SharedStake,0,1
+2026-06-30,Wallet Radar,1,1
+2026-06-30,eth2-quickstart,0,5
+2026-07-01,Agent skills,12,26
+2026-07-01,Claudefolio,49,57
+2026-07-01,SharedStake,1,3
+2026-07-01,crss,1,2
+2026-07-01,eth2-quickstart,1,21
+2026-07-02,Agent skills,2,3
+2026-07-02,Claudefolio,14,17
+2026-07-02,eth2-quickstart,0,2
+2026-07-03,Claudefolio,20,21
+2026-07-03,eth2-quickstart,0,2
+2026-07-04,Agent skills,0,1
+2026-07-04,Claudefolio,8,10
+2026-07-04,eth2-quickstart,0,2
+2026-07-05,Agent skills,3,4
+2026-07-05,Claudefolio,16,17
+2026-07-05,Other private work,0,2
+2026-07-05,eth2-quickstart,0,4
+2026-07-06,Claudefolio,53,68
+2026-07-06,Intelex,0,1
+2026-07-06,Other public,0,1
+2026-07-06,Wallet Radar,1,1
+2026-07-06,crss,2,3
+2026-07-06,eth2-quickstart,0,22
+2026-07-07,Agent skills,1,1
+2026-07-07,Claudefolio,32,33
+2026-07-07,Intelex,0,1
+2026-07-07,eth2-quickstart,0,9
+2026-07-08,Agent skills,2,3
+2026-07-08,Claudefolio,10,14
+2026-07-08,eth2-quickstart,0,6
+2026-07-09,Claudefolio,27,48
+2026-07-09,Wallet Radar,5,16
+2026-07-09,eth2-quickstart,0,12
+2026-07-10,Agent skills,1,2
+2026-07-10,Claudefolio,9,26
+2026-07-10,Other public,0,1
+2026-07-10,eth2-quickstart,0,8
+2026-07-11,Agent skills,0,2
+2026-07-11,Claudefolio,51,63
+2026-07-11,Other public,0,1
+2026-07-11,crss,7,8
+2026-07-11,eth2-quickstart,0,5
+2026-07-12,Claudefolio,31,43
+2026-07-12,eth2-quickstart,1,3
+2026-07-13,Claudefolio,7,11
+2026-07-13,Intelex,0,2
+2026-07-13,Other public,0,1
+2026-07-13,SharedStake,0,3
+2026-07-13,eth2-quickstart,1,4
+2026-07-14,Claudefolio,16,25
+2026-07-14,Intelex,0,1
+2026-07-14,eth2-quickstart,5,12
+2026-07-15,Claudefolio,10,11
+2026-07-15,Other public,0,1
+2026-07-15,Wallet Radar,0,3
+2026-07-15,crss,6,6
+2026-07-15,eth2-quickstart,2,3
+2026-07-16,Agent skills,1,1
+2026-07-16,Claudefolio,55,60
+2026-07-16,Other public,0,2
+2026-07-16,crss,5,7
+2026-07-17,Claudefolio,30,41
+2026-07-18,Claudefolio,13,15
+2026-07-18,eth2-quickstart,0,14
+2026-07-19,Claudefolio,88,128
+2026-07-19,eth2-quickstart,5,20
+2026-07-20,Claudefolio,1,1
+2026-07-20,eth2-quickstart,0,14
+2026-07-21,Agent skills,1,1
+2026-07-21,Claudefolio,10,10
+2026-07-21,Other public,0,1
+2026-07-21,eth2-quickstart,0,9
+2026-07-22,Claudefolio,19,19
+2026-07-22,Intelex,0,3
+2026-07-22,eth2-quickstart,0,11
+2026-07-23,Agent skills,1,1
+2026-07-23,Claudefolio,3,3
+2026-07-24,Agent skills,1,1
+2026-07-24,Claudefolio,3,3
+2026-07-24,eth2-quickstart,0,1
+2026-07-25,Agent skills,2,3
+2026-07-25,Claudefolio,45,50
+2026-07-25,Intelex,0,1
+2026-07-25,Other public,0,2
+2026-07-25,SharedStake,0,1
+2026-07-25,eth2-quickstart,1,7
+2026-07-26,Claudefolio,67,88
+2026-07-26,eth2-quickstart,2,14
+2026-07-27,Claudefolio,3,3
+2026-07-27,Intelex,0,1
+2026-07-27,Other public,0,2
+2026-07-28,Agent skills,0,1
+2026-07-28,Claudefolio,22,39
+2026-07-28,eth2-quickstart,0,12
+2026-07-29,Claudefolio,48,60
+2026-07-29,Intelex,0,2
+2026-07-29,crss,1,2
+2026-07-29,eth2-quickstart,6,34
+2026-07-30,Agent skills,1,1
+2026-07-30,Claudefolio,28,30
+2026-07-30,Other public,0,3
+2026-07-30,crss,0,2
+2026-07-30,eth2-quickstart,2,6
+2026-07-31,Claudefolio,4,11
+2026-07-31,Other public,0,1
+2026-07-31,crss,2,2
+2026-07-31,eth2-quickstart,1,1
+2026-08-01,Agent skills,1,1
+2026-08-01,Claudefolio,7,7
+2026-08-01,crss,1,1
+2026-08-01,eth2-quickstart,2,7
+2026-08-02,Claudefolio,4,22
+2026-08-02,crss,1,1
+2026-08-02,eth2-quickstart,0,4
+2026-08-03,Claudefolio,18,44
+2026-08-03,SharedStake,0,2
+2026-08-03,crss,1,1
+2026-08-03,eth2-quickstart,0,3
+2026-08-04,Claudefolio,14,34
+2026-08-04,crss,0,8
+2026-08-04,eth2-quickstart,3,33
+2026-08-05,Claudefolio,40,48
+2026-08-05,eth2-quickstart,0,2
+2026-08-06,Claudefolio,33,36
+2026-08-06,Other public,0,2
+2026-08-06,crss,0,2
+2026-08-06,eth2-quickstart,3,4
+2026-08-07,Claudefolio,3,8
+2026-08-08,Agent skills,3,14
+2026-08-08,Claudefolio,15,66
+2026-08-08,crss,3,4
+2026-08-09,Claudefolio,41,74
+2026-08-09,crss,2,2
+2026-08-09,eth2-quickstart,13,28
+2026-08-10,Claudefolio,30,34
+2026-08-10,Intelex,0,2
+2026-08-10,crss,2,3
+2026-08-10,eth2-quickstart,5,10
+2026-08-11,Agent skills,0,1
+2026-08-11,Claudefolio,65,93
+2026-08-11,crss,3,4
+2026-08-11,eth2-quickstart,0,2
+2026-08-12,Claudefolio,54,85
+2026-08-12,Intelex,0,3
+2026-08-12,Other public,0,4
+2026-08-12,crss,3,3
+2026-08-12,eth2-quickstart,2,6
+2026-08-13,Claudefolio,9,11
+2026-08-13,Other public,0,1
+2026-08-13,crss,1,1
+2026-08-14,Claudefolio,2,3
+2026-08-14,crss,2,2
+2026-08-14,eth2-quickstart,1,2
+2026-08-15,Agent skills,2,6
+2026-08-15,Claudefolio,37,51
+2026-08-15,Other public,0,2
+2026-08-15,crss,2,2
+2026-08-16,Claudefolio,12,23
+2026-08-16,SharedStake,0,1
+2026-08-16,crss,1,1
+2026-08-17,Agent skills,4,6
+2026-08-17,Claudefolio,46,51
+2026-08-17,Intelex,0,2
+2026-08-17,Other public,0,3
+2026-08-17,crss,4,4
+2026-08-17,eth2-quickstart,1,4
+2026-08-18,Claudefolio,38,45
+2026-08-18,crss,1,1
+2026-08-19,Agent skills,1,1
+2026-08-19,Claudefolio,10,20
+2026-08-19,Experiments monorepo,1,1
+2026-08-19,Intelex,0,3
+2026-08-19,Wallet Radar,5,5
+2026-08-19,crss,2,26
+2026-08-20,Agent skills,2,3
+2026-08-20,Claudefolio,19,22
+2026-08-20,Intelex,0,1
+2026-08-20,Other public,0,2
+2026-08-20,crss,1,1
+2026-08-21,Claudefolio,27,34
+2026-08-21,Other public,0,1
+2026-08-21,crss,3,4
+2026-08-22,Claudefolio,9,23
+2026-08-22,Other private work,59,67
+2026-08-23,Claudefolio,2,2
+2026-08-23,Other private work,34,104
+2026-08-23,crss,1,1
+2026-08-24,Claudefolio,25,28
+2026-08-24,Other private work,46,85
+2026-08-24,Other public,0,1
+2026-08-24,crss,5,9
+2026-08-25,Agent skills,0,2
+2026-08-25,Claudefolio,29,34
+2026-08-25,Other private work,39,76
+2026-08-25,crss,1,2
+2026-08-26,Agent skills,4,4
+2026-08-26,Claudefolio,25,29
+2026-08-26,Other private work,3,3
+2026-08-26,crss,8,16
+2026-08-27,Agent skills,2,2
+2026-08-27,Claudefolio,35,37
+2026-08-27,Other private work,55,128
+2026-08-27,Other public,0,3
+2026-08-27,Wallet Radar,2,2
+2026-08-27,crss,4,8
+2026-08-28,Claudefolio,15,15
+2026-08-28,Other private work,0,22
+2026-08-28,Wallet Radar,1,1
+2026-08-28,crss,0,2
+2026-08-29,Agent skills,0,1
+2026-08-29,Claudefolio,103,107
+2026-08-29,Other private work,34,58
+2026-08-29,crss,0,1
+2026-08-29,eth2-quickstart,1,5
+2026-08-30,Agent skills,0,2
+2026-08-30,Claudefolio,50,51
+2026-08-30,Intelex,0,2
+2026-08-30,Other private work,18,41
+2026-08-30,Other public,0,3
+2026-08-30,eth2-quickstart,3,3
+2026-08-31,Claudefolio,49,49
+2026-08-31,Intelex,0,3
+2026-08-31,Other private work,12,35
+2026-08-31,crss,0,2
+2026-09-01,Claudefolio,70,83
+2026-09-01,Other private work,33,136
+2026-09-01,crss,0,4
+2026-09-02,Claudefolio,15,17
+2026-09-02,Intelex,0,2
+2026-09-02,Other private work,4,40
+2026-09-02,SharedStake,0,1
+2026-09-02,crss,6,15
+2026-09-03,Agent skills,25,28
+2026-09-03,Claudefolio,20,20
+2026-09-03,Intelex,14,14
+2026-09-03,Other private work,2,12
+2026-09-03,Other public,10,10
+2026-09-03,SharedStake,4,4
+2026-09-03,Wallet Radar,1,1
+2026-09-03,crss,2,6
+2026-09-04,Agent skills,3,6
+2026-09-04,Claudefolio,52,125
+2026-09-04,Experiments monorepo,5,6
+2026-09-04,Other private work,14,45
+2026-09-04,Wallet Radar,0,2
+2026-09-05,Agent skills,0,4
+2026-09-05,Claudefolio,56,68
+2026-09-05,Other private work,24,98
+2026-09-06,Agent skills,0,2
+2026-09-06,Claudefolio,4,4
+2026-09-06,Other private work,8,9
+2026-09-06,crss,0,2
+2026-09-07,Claudefolio,1,5
+2026-09-07,Other private work,31,39
+2026-09-07,Other public,0,1
+2026-09-07,crss,0,2
+2026-09-08,Agent skills,0,1
+2026-09-08,Claudefolio,48,91
+2026-09-08,Other private work,12,23
+2026-09-09,Claudefolio,68,72
+2026-09-09,Other private work,12,14
+2026-09-09,Wallet Radar,0,2
+2026-09-09,eth2-quickstart,0,3
+2026-09-10,Agent skills,0,1
+2026-09-10,Claudefolio,57,58
+2026-09-10,Other private work,6,9
+2026-09-10,Wallet Radar,0,2
+2026-09-10,crss,0,2
+2026-09-10,eth2-quickstart,2,6
+2026-09-11,Agent skills,0,1
+2026-09-11,Claudefolio,99,99
+2026-09-11,Other private work,6,6
+2026-09-11,crss,5,14
+2026-09-11,eth2-quickstart,5,82
+2026-09-12,Agent skills,2,13
+2026-09-12,Claudefolio,192,234
+2026-09-12,crss,15,37
+2026-09-12,eth2-quickstart,2,11
+2026-09-13,Claudefolio,26,26
+2026-09-13,SharedStake,0,1
+2026-09-13,This site,8,14
+2026-09-14,eth2-quickstart,1,2
+2026-09-15,Claudefolio,88,101
+2026-09-15,Other private work,14,19
+2026-09-15,crss,0,4
+2026-09-16,Claudefolio,47,53
+2026-09-16,Other private work,20,24
+2026-09-17,Agent skills,0,4
+2026-09-17,Claudefolio,90,105
+2026-09-17,Other public,0,2
+2026-09-17,eth2-quickstart,2,7
+2026-09-18,Claudefolio,25,35
+2026-09-18,Other private work,2,7
+2026-09-18,Wallet Radar,0,1
+2026-09-19,Agent skills,0,2
+2026-09-19,Claudefolio,59,122
+2026-09-19,Other public,0,1
+2026-09-20,Claudefolio,51,98
+2026-09-20,SharedStake,0,2
+2026-09-21,Claudefolio,66,83
+2026-09-21,Other private work,10,12
+2026-09-21,Wallet Radar,0,1
+2026-09-21,crss,0,6
+2026-09-22,Agent skills,0,2
+2026-09-22,Claudefolio,50,50
+2026-09-22,Other private work,1,2
+2026-09-22,crss,6,15
+2026-09-23,Claudefolio,70,85
+2026-09-23,Other private work,1,2
+2026-09-23,Other public,0,4
+2026-09-23,crss,1,8
+2026-09-24,Agent skills,11,14
+2026-09-24,Claudefolio,98,141
+2026-09-24,Experiments monorepo,8,8
+2026-09-24,Intelex,7,12
+2026-09-24,Other private work,2,4
+2026-09-24,Other public,3,3
+2026-09-24,Wallet Radar,4,4
+2026-09-24,crss,10,24
+2026-09-25,Claudefolio,20,22
+2026-09-25,Other private work,10,16
+2026-09-25,crss,2,4
+2026-09-26,Agent skills,0,3
+2026-09-26,Claudefolio,130,154
+2026-09-26,Other private work,20,24
+2026-09-26,crss,6,15
+2026-09-27,Claudefolio,98,114
+2026-09-27,Other private work,1,1
+2026-09-28,Agent skills,4,13
+2026-09-28,Claudefolio,196,219
+2026-09-28,Other private work,4,9
+2026-09-28,crss,8,24
+2026-09-29,Claudefolio,26,35
+2026-09-29,Other private work,1,34
+2026-09-29,Other public,0,2
+2026-09-29,SharedStake,0,3
+2026-09-29,crss,2,14
+2026-09-30,Claudefolio,47,56
+2026-09-30,Other private work,11,26
+2026-09-30,Wallet Radar,0,1
+2026-09-30,crss,8,21
+2026-10-01,Agent skills,5,6
+2026-10-01,Claudefolio,28,47
+2026-10-01,Intelex,0,1
+2026-10-01,Other private work,15,41
+2026-10-01,Other public,2,5
+2026-10-01,SharedStake,0,1
+2026-10-01,Wallet Radar,2,2
+2026-10-01,crss,10,33
+2026-10-02,Agent skills,0,3
+2026-10-02,Claudefolio,53,96
+2026-10-02,Other private work,19,49
+2026-10-02,Other public,1,2
+2026-10-02,SharedStake,0,2
+2026-10-02,crss,5,17
+2026-10-03,Agent skills,0,2
+2026-10-03,Claudefolio,11,23
+2026-10-03,Other private work,2,3
+2026-10-03,Wallet Radar,0,1
+2026-10-03,crss,6,6
+2026-10-04,Agent skills,2,6
+2026-10-04,Claudefolio,82,90
+2026-10-04,Other private work,1,8
+2026-10-04,Wallet Radar,0,1
+2026-10-04,crss,35,41
+2026-10-05,Agent skills,1,3
+2026-10-05,Claudefolio,3,13
+2026-10-05,Other private work,9,17
+2026-10-05,Other public,1,1
+2026-10-05,crss,7,23
+2026-10-06,Agent skills,0,1
+2026-10-06,Claudefolio,12,12
+2026-10-06,Other private work,33,43
+2026-10-06,crss,2,6
+2026-10-07,Claudefolio,8,19
+2026-10-07,Other private work,2,2
+2026-10-07,crss,5,12
+2026-10-07,eth2-quickstart,0,6
+2026-10-08,Agent skills,0,18
+2026-10-08,Claudefolio,98,105
+2026-10-08,Other private work,9,16
+2026-10-08,crss,0,2
+2026-10-08,eth2-quickstart,0,6
+2026-10-09,Agent skills,9,22
+2026-10-09,Claudefolio,216,459
+2026-10-09,Other private work,3,5
+2026-10-09,crss,2,3
+2026-10-09,eth2-quickstart,3,3
+2026-10-10,Agent skills,0,1
+2026-10-10,Claudefolio,104,122
+2026-10-10,Experiments monorepo,1,2
+2026-10-10,Other private work,12,20
+2026-10-10,Wallet Radar,23,49
+2026-10-10,crss,3,7
+2026-10-11,Agent skills,5,6
+2026-10-11,Claudefolio,38,42
+2026-10-11,Wallet Radar,2,2
+2026-10-11,crss,5,15
+2026-10-11,eth2-quickstart,1,3
+2026-10-12,Agent skills,1,4
+2026-10-12,Claudefolio,44,49
+2026-10-12,Other private work,6,6
+2026-10-13,Agent skills,0,2
+2026-10-13,Claudefolio,1,1
+2026-10-13,crss,0,2
+2026-10-14,Claudefolio,36,40
+2026-10-14,crss,2,4
+2026-10-15,Claudefolio,56,76
+2026-10-15,Other private work,16,22
+2026-10-15,Wallet Radar,4,21
+2026-10-15,crss,9,20
+2026-10-16,Claudefolio,40,67
+2026-10-16,Other private work,2,2
+2026-10-16,Wallet Radar,7,18
+2026-10-17,Claudefolio,106,122
+2026-10-17,Other private work,31,34
+2026-10-17,Wallet Radar,22,76
+2026-10-17,crss,4,9
+2026-10-17,eth2-quickstart,5,17
+2026-10-18,Claudefolio,20,23
+2026-10-18,Other private work,11,12
+2026-10-18,Wallet Radar,5,18
+2026-10-18,crss,1,3
+2026-10-19,Other private work,1,3
+2026-10-19,Wallet Radar,0,2
+2026-10-19,crss,1,3
+2026-10-20,Claudefolio,1,1
+2026-10-20,crss,0,2
+2026-10-21,Claudefolio,26,37
+2026-10-21,Other private work,16,18
+2026-10-21,This site,11,11
+2026-10-21,Wallet Radar,0,1
+2026-10-21,crss,2,6
+2026-10-22,Claudefolio,35,43
+2026-10-22,DispatchBench,26,37
+2026-10-22,Other private work,7,13
+2026-10-22,This site,3,5
+2026-10-22,Wallet Radar,0,1
+2026-10-22,crss,12,32
+2026-10-23,Agent skills,12,13
+2026-10-23,Claudefolio,37,50
+2026-10-23,DispatchBench,20,27
+2026-10-23,Other private work,3,3
+2026-10-23,crss,6,17
+2026-10-24,Agent skills,4,4
+2026-10-24,Claudefolio,26,31
+2026-10-24,DispatchBench,71,94
+2026-10-24,Other private work,1,2
+2026-10-24,crss,3,8
+2026-10-25,Agent skills,6,17
+2026-10-25,Claudefolio,90,115
+2026-10-25,DispatchBench,41,54
+2026-10-25,Other private work,75,124
+2026-10-25,This site,1,1
+2026-10-25,crss,8,30
+2026-10-25,eth2-quickstart,1,3
+2026-10-26,Claudefolio,6,9
+2026-10-26,DispatchBench,6,14
+2026-10-26,Other private work,25,28
+2026-10-26,This site,15,26
+2026-10-26,Wallet Radar,0,1
+2026-10-26,crss,2,8
+2026-10-26,eth2-quickstart,1,1
+2026-10-27,Agent skills,0,3
+2026-10-27,Claudefolio,9,10
+2026-10-27,DispatchBench,7,14
+2026-10-27,crss,0,4
+2026-10-28,Agent skills,3,9
+2026-10-28,Claudefolio,58,67
+2026-10-28,DispatchBench,32,84
+2026-10-28,Other private work,2,2
+2026-10-28,This site,5,11
+2026-10-28,crss,11,46
+2026-10-29,Claudefolio,10,18
+2026-10-30,Agent skills,5,9
+2026-10-30,Claudefolio,79,104
+2026-10-30,Other private work,7,10
+2026-10-30,Wallet Radar,2,2
+2026-10-30,crss,3,7
+2026-10-31,Agent skills,1,6
+2026-10-31,Claudefolio,6,7
+2026-10-31,Experiments monorepo,1,3
+2026-10-31,Other private work,2,10
+2026-10-31,This site,4,5
+2026-11-01,Agent skills,2,6
+2026-11-01,Claudefolio,15,24
+2026-11-01,DispatchBench,10,28
+2026-11-01,Other private work,21,28
+2026-11-01,Other public,0,1
+2026-11-01,This site,51,84
+2026-11-01,crss,6,26
+2026-11-01,eth2-quickstart,1,4
+2026-11-02,Agent skills,2,6
+2026-11-02,Claudefolio,47,59
+2026-11-02,DispatchBench,21,55
+2026-11-02,Experiments monorepo,0,1
+2026-11-02,SharedStake,0,1
+2026-11-02,This site,6,11
+2026-11-02,Wallet Radar,2,2
+2026-11-02,crss,2,7
+2026-11-03,Agent skills,1,2
+2026-11-03,Claudefolio,43,55
+2026-11-03,DispatchBench,4,4
+2026-11-03,Other private work,7,7
+2026-11-03,This site,33,67
+2026-11-04,Claudefolio,129,160
+2026-11-04,This site,13,22
+2026-11-05,Agent skills,0,1
+2026-11-05,Claudefolio,26,27
+2026-11-05,Wallet Radar,1,1
+2026-11-06,Agent skills,0,1
+2026-11-06,Claudefolio,44,47
+2026-11-06,Other private work,0,2
+2026-11-07,Claudefolio,80,95
+2026-11-07,crss,9,30
+2026-11-08,Agent skills,13,30
+2026-11-08,Claudefolio,65,75
+2026-11-08,DispatchBench,7,24
+2026-11-08,Experiments monorepo,1,2
+2026-11-08,Other private work,29,41
+2026-11-08,SharedStake,1,1
+2026-11-08,crss,21,38
+2026-11-08,eth2-quickstart,1,2
+2026-11-09,Claudefolio,51,73
+2026-11-09,Experiments monorepo,2,5
+2026-11-09,Other private work,14,25
+2026-11-09,Other public,0,2
+2026-11-09,SharedStake,0,1
+2026-11-09,This site,2,3
+2026-11-09,Wallet Radar,9,17
+2026-11-09,crss,3,5
+2026-11-10,Claudefolio,46,66
+2026-11-10,Other private work,2,4
+2026-11-11,Claudefolio,199,323
+2026-11-11,Other private work,40,65
+2026-11-11,Wallet Radar,3,5
+2026-11-11,crss,3,4
+2026-11-12,Claudefolio,84,136
+2026-11-12,Other private work,2,5
+2026-11-12,Other public,0,1
+2026-11-12,crss,1,1
+2026-11-13,Agent skills,0,2
+2026-11-13,Claudefolio,39,62
+2026-11-13,Other private work,34,44
+2026-11-14,Claudefolio,26,42
+2026-11-14,DispatchBench,7,11
+2026-11-14,Other private work,37,61
+2026-11-14,This site,6,15
+2026-11-14,crss,2,3
+2026-11-15,Claudefolio,52,82
+2026-11-15,Other private work,49,83
+2026-11-15,Other public,0,1
+2026-11-15,This site,17,30
+2026-11-15,crss,11,17
+2026-11-16,Claudefolio,55,80
+2026-11-16,Other private work,5,13
+2026-11-16,Wallet Radar,2,2
+2026-11-16,crss,10,15
+2026-11-17,Agent skills,1,2
+2026-11-17,Claudefolio,101,159
+2026-11-17,Other private work,45,71
+2026-11-17,Wallet Radar,1,1
+2026-11-17,crss,7,10
+2026-11-18,Agent skills,0,2
+2026-11-18,Claudefolio,20,27
+2026-11-18,Other private work,127,174
+2026-11-18,crss,2,3
+2026-11-19,Claudefolio,35,49
+2026-11-19,Other private work,60,102
+2026-11-19,Wallet Radar,8,19
+2026-11-20,Claudefolio,15,22
+2026-11-20,Other private work,52,74
+2026-11-20,This site,7,11
+2026-11-20,Wallet Radar,2,6
+2026-11-21,Claudefolio,23,28
+2026-11-21,Other private work,20,24
+2026-11-21,This site,18,36
+2026-11-21,Wallet Radar,2,3
+2026-11-21,eth2-quickstart,6,6
+2026-11-22,Claudefolio,68,101
+2026-11-22,DispatchBench,6,9
+2026-11-22,Other private work,73,121
+2026-11-22,This site,12,27
+2026-11-22,eth2-quickstart,6,12
+2026-11-23,Claudefolio,11,19
+2026-11-23,DispatchBench,8,12
+2026-11-23,Other private work,63,89
+2026-11-23,This site,17,25
+2026-11-23,crss,3,4
+2026-11-24,Claudefolio,25,37
+2026-11-24,DispatchBench,3,4
+2026-11-24,Other private work,11,17

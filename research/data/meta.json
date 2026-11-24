@@ -1,0 +1,8 @@
+{
+ "commits": {
+  "generated_at": "2026-11-24T06:08:20Z",
+  "method": "UTC author date; outside authors out; commits_landed = non-merge on main/master, copies of one change collapsed; commits_all_refs = every commit on a branch, remote or tag, merges included; private repos fold into Other private work",
+  "rows": 1141,
+  "source": "scripts/token-usage/commit_sweep.py"
+ }
+}

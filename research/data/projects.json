@@ -1,0 +1,139 @@
+{
+ "carried": [
+  {
+   "as_of": "2026-11-03",
+   "commits_all_refs": 345,
+   "first": "2026-04-30",
+   "label": "SpecForge",
+   "last": "2026-10-09",
+   "reason": "the clone is no longer on this host, so a fresh sweep cannot count it"
+  }
+ ],
+ "data_through": "2026-11-24",
+ "projects": [
+  {
+   "commits_all_refs": 8917,
+   "commits_landed": 6690,
+   "first": "2026-06-12",
+   "label": "Claudefolio",
+   "last": "2026-11-24",
+   "repos": {}
+  },
+  {
+   "commits_all_refs": 2788,
+   "commits_landed": 1557,
+   "first": "2026-04-06",
+   "label": "Other private work",
+   "last": "2026-11-24",
+   "repos": {}
+  },
+  {
+   "commits_all_refs": 1333,
+   "commits_landed": 259,
+   "first": "2022-08-23",
+   "label": "eth2-quickstart",
+   "last": "2026-11-22",
+   "repos": {
+    "chimera-defi/eth2-quickstart": 1333
+   }
+  },
+  {
+   "commits_all_refs": 1039,
+   "commits_landed": 459,
+   "first": "2025-11-24",
+   "label": "Experiments monorepo",
+   "last": "2026-11-09",
+   "repos": {
+    "chimera-defi/Etc-mono-repo": 1039
+   }
+  },
+  {
+   "commits_all_refs": 897,
+   "commits_landed": 378,
+   "first": "2026-06-08",
+   "label": "crss",
+   "last": "2026-11-23",
+   "repos": {
+    "chimera-defi/claude-remote-session-skill": 897
+   }
+  },
+  {
+   "commits_all_refs": 776,
+   "commits_landed": 449,
+   "first": "2026-03-20",
+   "label": "Agent skills",
+   "last": "2026-11-18",
+   "repos": {
+    "chimera-defi/delegate-skill": 61,
+    "chimera-defi/devin-delegate": 155,
+    "chimera-defi/grok-delegate": 15,
+    "chimera-defi/kimi-delegate-skill": 125,
+    "chimera-defi/token-reduce-skill": 420
+   }
+  },
+  {
+   "commits_all_refs": 622,
+   "commits_landed": 223,
+   "first": "2021-05-04",
+   "label": "SharedStake",
+   "last": "2026-11-09",
+   "repos": {
+    "SharedStake/SharedStake-ui": 467,
+    "chimera-defi/SharedDeposit": 155
+   }
+  },
+  {
+   "commits_all_refs": 494,
+   "commits_landed": 330,
+   "first": "2026-04-03",
+   "label": "Intelex",
+   "last": "2026-10-01",
+   "repos": {
+    "chimera-defi/ethglobal-cannes-2026-intelligence-exchange": 494
+   }
+  },
+  {
+   "commits_all_refs": 488,
+   "commits_landed": 298,
+   "first": "2025-11-25",
+   "label": "Wallet Radar",
+   "last": "2026-11-21",
+   "repos": {
+    "chimera-defi/walletradar": 488
+   }
+  },
+  {
+   "commits_all_refs": 471,
+   "commits_landed": 269,
+   "first": "2026-10-22",
+   "label": "DispatchBench",
+   "last": "2026-11-24",
+   "repos": {
+    "chimera-defi/dispatchbench": 471
+   }
+  },
+  {
+   "commits_all_refs": 435,
+   "commits_landed": 255,
+   "first": "2026-03-30",
+   "label": "This site",
+   "last": "2026-11-23",
+   "repos": {
+    "chimera-defi/chimericlabs-llc": 435
+   }
+  },
+  {
+   "commits_all_refs": 168,
+   "commits_landed": 19,
+   "first": "2026-01-17",
+   "label": "Other public",
+   "last": "2026-11-15",
+   "repos": {
+    "chimera-defi/gbrain": 33,
+    "chimera-defi/openclaw-autoresearch": 121,
+    "chimera-defi/takopi": 14
+   }
+  }
+ ],
+ "since": "2025-10-01"
+}
