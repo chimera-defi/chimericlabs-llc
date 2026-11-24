@@ -1,10 +1,10 @@
 #!/bin/bash
 # One command: re-run the read-only profit sweep, rebuild data.json and the trading-bot page.
-# usage: scripts/data/refresh_trading_bot.sh [ONCHAIN_DIR]   (default: ~/workspace/mev-bot-0x51c728-explained/onchain)
+# usage: scripts/data/refresh_trading_bot.sh [ONCHAIN_DIR]   (the private research repo's onchain folder; required)
 # END=<block> moves the sweep's last block; it must be 26,416,999 + n x 7,200 (multiday.py checks). Old windows are kept, so a refresh fetches only new days.
 # Read-only RPC and explorer calls. Sends no transaction and touches no wallet.
 set -euo pipefail
-ON="${1:-$HOME/workspace/mev-bot-0x51c728-explained/onchain}"
+ON="${1:?usage: refresh_trading_bot.sh ONCHAIN_DIR}"
 REPO="$(cd "$(dirname "$0")/../.." && pwd)"
 cd "$ON"
 python3 multiday.py fetch     # resumable; skips windows marked done

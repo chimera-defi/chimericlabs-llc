@@ -6,9 +6,9 @@
   "source": "scripts/token-usage/commit_sweep.py"
  },
  "trading_bot": {
-  "generated_at": "2026-11-24T12:19:06Z",
-  "method": "One window = 7,200 blocks (about one day) after the first. Net = value change of every token the bot moved, priced 5 minutes after each trade, day trend removed, minus builder tips and gas of the bot and of the firm's other contracts. Ranges: bootstrap of days (4,000 resamples, seed 1).",
+  "generated_at": "2026-11-24T12:27:34Z",
+  "method": "One window = 7,200 blocks (about one day) after the first. Net = value change of every token the bot moved, priced 5 minutes after each trade, day trend removed, minus builder tips and gas of the bot and of the firm's other contracts. Ranges: bootstrap of days (100,000 resamples, seed 1).",
   "rows": 23,
-  "source": "scripts/data/trading_bot_export.py (reads mev-bot-0x51c728-explained/onchain)"
+  "source": "scripts/data/trading_bot_export.py (reads the private research onchain sweep)"
  }
 }

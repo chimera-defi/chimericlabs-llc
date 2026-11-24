@@ -1,7 +1,7 @@
 {
- "generated_at": "2026-11-24T12:19:06+00:00",
+ "generated_at": "2026-11-24T12:27:34+00:00",
  "meta": {
-  "generated_at": "2026-11-24T12:19:06+00:00",
+  "generated_at": "2026-11-24T12:27:34+00:00",
   "updated": "24 Nov 2026",
   "rows": 23,
   "first": "2026-11-01",
@@ -9,8 +9,8 @@
   "last_block": 26481799,
   "window_blocks": 7200,
   "source": "Ethereum logs and transactions via public RPC and Blockscout (read-only); prices from DefiLlama 5-minute charts; Binance ETHUSDT klines for the one-fill check",
-  "scripts": "mev-bot-0x51c728-explained/onchain/multiday.py, family.py, flows.py, topfill.py; then scripts/data/trading_bot_export.py",
-  "method": "One window = 7,200 blocks (about one day) after the first. Net = value change of every token the bot moved, priced 5 minutes after each trade, day trend removed, minus builder tips and gas of the bot and of the firm's other contracts. Ranges: bootstrap of days (4,000 resamples, seed 1)."
+  "scripts": "the private research scripts multiday.py, family.py, flows.py, topfill.py; then scripts/data/trading_bot_export.py",
+  "method": "One window = 7,200 blocks (about one day) after the first. Net = value change of every token the bot moved, priced 5 minutes after each trade, day trend removed, minus builder tips and gas of the bot and of the firm's other contracts. Ranges: bootstrap of days (100,000 resamples, seed 1)."
  },
  "sets": {
   "latest": {
@@ -24,8 +24,8 @@
     "up": 5,
     "total": 382376,
     "ci95": [
-     -23691,
-     87747
+     -23284,
+     86902
     ]
    },
    "all_ex": {
@@ -35,8 +35,8 @@
     "up": 5,
     "total": 382376,
     "ci95": [
-     -23691,
-     87747
+     -23284,
+     86902
     ]
    },
    "own": {
@@ -46,8 +46,8 @@
     "up": 1,
     "total": -377607,
     "ci95": [
-     -39326,
-     -12586
+     -39334,
+     -13137
     ]
    },
    "family": {
@@ -57,8 +57,8 @@
     "up": 7,
     "total": 92997,
     "ci95": [
-     -5396,
-     21810
+     -5526,
+     21904
     ]
    },
    "family_cost": {
@@ -68,8 +68,8 @@
     "up": 14,
     "total": 337587,
     "ci95": [
-     16333,
-     33877
+     16389,
+     33927
     ]
    },
    "outside": {
@@ -79,8 +79,8 @@
     "up": 11,
     "total": 666983,
     "ci95": [
-     7656,
-     96220
+     7852,
+     98621
     ]
    },
    "outside_ex": {
@@ -90,8 +90,8 @@
     "up": 11,
     "total": 666983,
     "ci95": [
-     7656,
-     96220
+     7852,
+     98621
     ]
    },
    "has_fill": false
@@ -107,8 +107,8 @@
     "up": 11,
     "total": 815875,
     "ci95": [
-     -3205,
-     81463
+     -4111,
+     80402
     ]
    },
    "all_ex": {
@@ -118,8 +118,8 @@
     "up": 10,
     "total": 457551,
     "ci95": [
-     -15148,
-     60726
+     -15417,
+     60377
     ]
    },
    "own": {
@@ -129,8 +129,8 @@
     "up": 1,
     "total": -632742,
     "ci95": [
-     -37124,
-     -18112
+     -36865,
+     -17783
     ]
    },
    "family": {
@@ -140,8 +140,8 @@
     "up": 13,
     "total": 122989,
     "ci95": [
-     -4562,
-     16386
+     -4585,
+     16258
     ]
    },
    "family_cost": {
@@ -151,8 +151,8 @@
     "up": 23,
     "total": 478707,
     "ci95": [
-     14690,
-     28144
+     14743,
+     27984
     ]
    },
    "outside": {
@@ -162,8 +162,8 @@
     "up": 18,
     "total": 1325626,
     "ci95": [
-     20089,
-     105943
+     19400,
+     104880
     ]
    },
    "outside_ex": {
@@ -173,11 +173,12 @@
     "up": 18,
     "total": 967302,
     "ci95": [
-     14462,
-     76401
+     14089,
+     76488
     ]
    },
-   "has_fill": true
+   "has_fill": true,
+   "top3_share": 96
   }
  },
  "rows": [
@@ -656,8 +657,26 @@
   "points": 15,
   "years": 3.2
  },
+ "horizons": {
+  "m0": {
+   "mean": -144746,
+   "ci95": [
+    -202069,
+    -98217
+   ],
+   "up": 1
+  },
+  "m60": {
+   "mean": 106617,
+   "ci95": [
+    15603,
+    217229
+   ],
+   "up": 11
+  }
+ },
  "studied_day": {
-  "label": "15 Nov",
+  "label": "14 Nov",
   "trades": 25315,
   "volume_usd": 467609739,
   "curves": [
