@@ -29,6 +29,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Building page numbers match research/data
+        run: python3 scripts/build_building_page.py --check
+
       - name: Prepare site artifact
         run: |
           mkdir -p _site
