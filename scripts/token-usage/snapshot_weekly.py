@@ -13,7 +13,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 COLS = ["date", "week_reset", "percent_used", "fable_percent",
-        "split_claude_code", "split_chats", "split_cowork", "split_other"]
+        "split_claude_code", "split_chats", "split_cowork", "split_other", "sampled_at"]
 ROW = re.compile(r"Current week \((all models|Fable)\): (\d+)% used · resets (\w{3}) (\d{1,2}), (\d{1,2})(?::(\d\d))?(am|pm) \(([\w/+-]+)\)")
 MONTHS = {m: i for i, m in enumerate("Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split(), 1)}
 
@@ -31,7 +31,7 @@ def read_usage(now):
     if reset < local - dt.timedelta(days=1):   # the line carries no year: a reset that already passed means next year
         reset = reset.replace(year=reset.year + 1)
     fable = found.get("Fable")
-    return {"week_reset": reset.isoformat(), "percent_used": m.group(2), "fable_percent": fable.group(2) if fable else ""}
+    return {"sampled_at": now.replace(microsecond=0).isoformat(), "week_reset": reset.isoformat(), "percent_used": m.group(2), "fable_percent": fable.group(2) if fable else ""}
 
 
 def load(path):

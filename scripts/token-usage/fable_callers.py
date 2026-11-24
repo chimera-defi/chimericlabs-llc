@@ -13,13 +13,24 @@ Method:
    the transcript of such a session is checked for its real model (`named_fable_sessions`).
  - Launch paths other than the Agent tool (CLI flag, session-send, bus post, Agent Host MCP call) are counted from command text in
    Claude and Codex logs only where a command or bus summary names Fable as the model; zero is reported as zero with the window."""
-import html, os, sys, json, glob, re, sqlite3, collections, datetime
+import subprocess, html, os, sys, json, glob, re, sqlite3, collections, datetime
 
 TR = os.environ.get("CLAUDE_TRANSCRIPTS", "/home/agents/agent-memory/agents/claude/private/live/claude-projects")
 DB = os.environ.get("BUS_DB", "/home/agents/agent-host-chat-control/state/state.sqlite")
 CX = os.environ.get("CODEX_SESSIONS", os.path.expanduser("~/.codex/sessions"))
 ENTRY = {"cli": "CLI session", "claude-desktop": "desktop session", "sdk-cli": "headless claude -p"}
 SUBTYPE = {"reviewer": "reviewer subagent", "fable-reviewer": "reviewer subagent", "gpt-relay": "other subagent"}
+
+
+
+def opn(f):
+    """Lines of a transcript path ending .jsonl; since 2026-11-23 older ones exist only as .jsonl.zst, so fall back to that."""
+    if os.path.exists(f): return open(f, errors="ignore")
+    return iter(subprocess.run(["zstd", "-dc", "-q", f + ".zst"], capture_output=True).stdout.decode("utf8", "replace").splitlines())
+
+
+def jsonl_glob(pattern):
+    return sorted({g[:-4] if g.endswith(".zst") else g for g in glob.glob(pattern, recursive=True) + glob.glob(pattern + ".zst", recursive=True)})
 
 
 def fam(model):
@@ -32,7 +43,7 @@ def fam(model):
 
 def scan_file(f):
     counts = collections.Counter(); ep = None; win = {}
-    for l in open(f, errors="ignore"):
+    for l in opn(f):
         if '"assistant"' not in l: continue
         try: d = json.loads(l)
         except Exception: continue
@@ -49,7 +60,7 @@ def scan_file(f):
 
 def transcripts():
     runs = []; main_model = {}
-    files = glob.glob(TR + "/**/*.jsonl", recursive=True)
+    files = jsonl_glob(TR + "/**/*.jsonl")
     for f in files:
         counts, ep, win = scan_file(f)
         if not counts: continue
@@ -127,7 +138,7 @@ def named_fable_models(names):
     for n in names:
         tail = n.replace("claude-", "", 1)
         for d in glob.glob(TR + "/*%s*" % tail):
-            for f in glob.glob(d + "/*.jsonl"):
+            for f in jsonl_glob(d + "/*.jsonl"):
                 counts, _, _ = scan_file(f)
                 for k, v in counts.items(): out[k] += v
     return out
@@ -170,8 +181,8 @@ def launch_commands():
     """Shell commands that start Claude with Fable as the model, by log source."""
     res = collections.Counter()
     for src, root in (("claude", TR), ("codex", CX)):
-        for f in glob.glob(root + "/**/*.jsonl", recursive=True):
-            for l in open(f, errors="ignore"):
+        for f in jsonl_glob(root + "/**/*.jsonl"):
+            for l in opn(f):
                 if "fable" not in l: continue
                 try: d = json.loads(l)
                 except Exception: continue
