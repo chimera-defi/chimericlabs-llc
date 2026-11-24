@@ -1,0 +1,725 @@
+{
+ "generated_at": "2026-11-24T12:27:34+00:00",
+ "meta": {
+  "generated_at": "2026-11-24T12:27:34+00:00",
+  "updated": "24 Nov 2026",
+  "rows": 23,
+  "first": "2026-11-01",
+  "last": "2026-11-23",
+  "last_block": 26481799,
+  "window_blocks": 7200,
+  "source": "Ethereum logs and transactions via public RPC and Blockscout (read-only); prices from DefiLlama 5-minute charts; Binance ETHUSDT klines for the one-fill check",
+  "scripts": "the private research scripts multiday.py, family.py, flows.py, topfill.py; then scripts/data/trading_bot_export.py",
+  "method": "One window = 7,200 blocks (about one day) after the first. Net = value change of every token the bot moved, priced 5 minutes after each trade, day trend removed, minus builder tips and gas of the bot and of the firm's other contracts. Ranges: bootstrap of days (100,000 resamples, seed 1)."
+ },
+ "sets": {
+  "latest": {
+   "days": 14,
+   "first": "10 Nov",
+   "last": "23 Nov",
+   "all": {
+    "n": 14,
+    "mean": 27313,
+    "median": -14226,
+    "up": 5,
+    "total": 382376,
+    "ci95": [
+     -23284,
+     86902
+    ]
+   },
+   "all_ex": {
+    "n": 14,
+    "mean": 27313,
+    "median": -14226,
+    "up": 5,
+    "total": 382376,
+    "ci95": [
+     -23284,
+     86902
+    ]
+   },
+   "own": {
+    "n": 14,
+    "mean": -26972,
+    "median": -24190,
+    "up": 1,
+    "total": -377607,
+    "ci95": [
+     -39334,
+     -13137
+    ]
+   },
+   "family": {
+    "n": 14,
+    "mean": 6643,
+    "median": -1912,
+    "up": 7,
+    "total": 92997,
+    "ci95": [
+     -5526,
+     21904
+    ]
+   },
+   "family_cost": {
+    "n": 14,
+    "mean": 24113,
+    "median": 20128,
+    "up": 14,
+    "total": 337587,
+    "ci95": [
+     16389,
+     33927
+    ]
+   },
+   "outside": {
+    "n": 14,
+    "mean": 47642,
+    "median": 9474,
+    "up": 11,
+    "total": 666983,
+    "ci95": [
+     7852,
+     98621
+    ]
+   },
+   "outside_ex": {
+    "n": 14,
+    "mean": 47642,
+    "median": 9474,
+    "up": 11,
+    "total": 666983,
+    "ci95": [
+     7852,
+     98621
+    ]
+   },
+   "has_fill": false
+  },
+  "all": {
+   "days": 23,
+   "first": "1 Nov",
+   "last": "23 Nov",
+   "all": {
+    "n": 23,
+    "mean": 35473,
+    "median": -2139,
+    "up": 11,
+    "total": 815875,
+    "ci95": [
+     -4111,
+     80402
+    ]
+   },
+   "all_ex": {
+    "n": 23,
+    "mean": 19894,
+    "median": -11575,
+    "up": 10,
+    "total": 457551,
+    "ci95": [
+     -15417,
+     60377
+    ]
+   },
+   "own": {
+    "n": 23,
+    "mean": -27511,
+    "median": -24903,
+    "up": 1,
+    "total": -632742,
+    "ci95": [
+     -36865,
+     -17783
+    ]
+   },
+   "family": {
+    "n": 23,
+    "mean": 5347,
+    "median": 926,
+    "up": 13,
+    "total": 122989,
+    "ci95": [
+     -4585,
+     16258
+    ]
+   },
+   "family_cost": {
+    "n": 23,
+    "mean": 20813,
+    "median": 15855,
+    "up": 23,
+    "total": 478707,
+    "ci95": [
+     14743,
+     27984
+    ]
+   },
+   "outside": {
+    "n": 23,
+    "mean": 57636,
+    "median": 12453,
+    "up": 18,
+    "total": 1325626,
+    "ci95": [
+     19400,
+     104880
+    ]
+   },
+   "outside_ex": {
+    "n": 23,
+    "mean": 42057,
+    "median": 12453,
+    "up": 18,
+    "total": 967302,
+    "ci95": [
+     14089,
+     76488
+    ]
+   },
+   "has_fill": true,
+   "top3_share": 96
+  }
+ },
+ "rows": [
+  {
+   "day": "1 Nov",
+   "start_utc": "2026-11-01 00:02",
+   "blocks": [
+    26316200,
+    26323399
+   ],
+   "all": 3544,
+   "own": -8309,
+   "family": 3232,
+   "outside": 8620,
+   "trades": 10260,
+   "volume_usd": 70886197,
+   "family_cost": 4298,
+   "top_size": 1885047,
+   "all_ex": 3544,
+   "outside_ex": 8620,
+   "is_fill_day": false
+  },
+  {
+   "day": "2 Nov",
+   "start_utc": "2026-11-02 00:07",
+   "blocks": [
+    26323400,
+    26330599
+   ],
+   "all": 40343,
+   "own": -25367,
+   "family": 42461,
+   "outside": 23250,
+   "trades": 13876,
+   "volume_usd": 187496215,
+   "family_cost": 6797,
+   "top_size": 4991256,
+   "all_ex": 40343,
+   "outside_ex": 23250,
+   "is_fill_day": false
+  },
+  {
+   "day": "3 Nov",
+   "start_utc": "2026-11-03 00:12",
+   "blocks": [
+    26330600,
+    26337799
+   ],
+   "all": -19171,
+   "own": -30653,
+   "family": -10484,
+   "outside": 21966,
+   "trades": 15723,
+   "volume_usd": 127110312,
+   "family_cost": 10632,
+   "top_size": 830568,
+   "all_ex": -19171,
+   "outside_ex": 21966,
+   "is_fill_day": false
+  },
+  {
+   "day": "4 Nov",
+   "start_utc": "2026-11-04 00:15",
+   "blocks": [
+    26337800,
+    26344999
+   ],
+   "all": 273469,
+   "own": -71648,
+   "family": -48714,
+   "outside": 393831,
+   "trades": 26951,
+   "volume_usd": 343129082,
+   "family_cost": 41468,
+   "top_size": 24100249,
+   "all_ex": -84855,
+   "outside_ex": 35507,
+   "is_fill_day": true
+  },
+  {
+   "day": "5 Nov",
+   "start_utc": "2026-11-05 00:20",
+   "blocks": [
+    26345000,
+    26352199
+   ],
+   "all": 170111,
+   "own": -27286,
+   "family": 10064,
+   "outside": 187333,
+   "trades": 24883,
+   "volume_usd": 361766925,
+   "family_cost": 39132,
+   "top_size": 1973140,
+   "all_ex": 170111,
+   "outside_ex": 187333,
+   "is_fill_day": false
+  },
+  {
+   "day": "6 Nov",
+   "start_utc": "2026-11-06 00:24",
+   "blocks": [
+    26352200,
+    26359399
+   ],
+   "all": -17449,
+   "own": -31496,
+   "family": 14090,
+   "outside": -43,
+   "trades": 22607,
+   "volume_usd": 197803232,
+   "family_cost": 11181,
+   "top_size": 3665095,
+   "all_ex": -17449,
+   "outside_ex": -43,
+   "is_fill_day": false
+  },
+  {
+   "day": "7 Nov",
+   "start_utc": "2026-11-07 00:29",
+   "blocks": [
+    26359400,
+    26366599
+   ],
+   "all": 9606,
+   "own": -1717,
+   "family": -4877,
+   "outside": 16199,
+   "trades": 9261,
+   "volume_usd": 57974480,
+   "family_cost": 2927,
+   "top_size": 935392,
+   "all_ex": 9606,
+   "outside_ex": 16199,
+   "is_fill_day": false
+  },
+  {
+   "day": "8 Nov",
+   "start_utc": "2026-11-08 00:36",
+   "blocks": [
+    26366600,
+    26373799
+   ],
+   "all": 26225,
+   "own": -9572,
+   "family": 23345,
+   "outside": 12453,
+   "trades": 10391,
+   "volume_usd": 134166189,
+   "family_cost": 11839,
+   "top_size": 77470,
+   "all_ex": 26225,
+   "outside_ex": 12453,
+   "is_fill_day": false
+  },
+  {
+   "day": "9 Nov",
+   "start_utc": "2026-11-09 00:39",
+   "blocks": [
+    26373800,
+    26380999
+   ],
+   "all": -53179,
+   "own": -49087,
+   "family": 875,
+   "outside": -4966,
+   "trades": 23128,
+   "volume_usd": 278003537,
+   "family_cost": 12846,
+   "top_size": 2149096,
+   "all_ex": -53179,
+   "outside_ex": -4966,
+   "is_fill_day": false
+  },
+  {
+   "day": "10 Nov",
+   "start_utc": "2026-11-10 00:44",
+   "blocks": [
+    26381000,
+    26388199
+   ],
+   "all": -88239,
+   "own": -60238,
+   "family": -13782,
+   "outside": -14219,
+   "trades": 21197,
+   "volume_usd": 332791684,
+   "family_cost": 33696,
+   "top_size": 1904569,
+   "all_ex": -88239,
+   "outside_ex": -14219,
+   "is_fill_day": false
+  },
+  {
+   "day": "11 Nov",
+   "start_utc": "2026-11-11 00:49",
+   "blocks": [
+    26388200,
+    26395399
+   ],
+   "all": -11575,
+   "own": -20980,
+   "family": 1511,
+   "outside": 7894,
+   "trades": 19097,
+   "volume_usd": 224656236,
+   "family_cost": 15855,
+   "top_size": 250838,
+   "all_ex": -11575,
+   "outside_ex": 7894,
+   "is_fill_day": false
+  },
+  {
+   "day": "12 Nov",
+   "start_utc": "2026-11-12 00:53",
+   "blocks": [
+    26395400,
+    26402599
+   ],
+   "all": -39347,
+   "own": -54909,
+   "family": 1425,
+   "outside": 14137,
+   "trades": 18636,
+   "volume_usd": 270185488,
+   "family_cost": 16142,
+   "top_size": 2488803,
+   "all_ex": -39347,
+   "outside_ex": 14137,
+   "is_fill_day": false
+  },
+  {
+   "day": "13 Nov",
+   "start_utc": "2026-11-13 00:58",
+   "blocks": [
+    26402600,
+    26409799
+   ],
+   "all": 63138,
+   "own": -43556,
+   "family": 72769,
+   "outside": 33924,
+   "trades": 24575,
+   "volume_usd": 512269010,
+   "family_cost": 74703,
+   "top_size": 1052327,
+   "all_ex": 63138,
+   "outside_ex": 33924,
+   "is_fill_day": false
+  },
+  {
+   "day": "14 Nov",
+   "start_utc": "2026-11-14 01:01",
+   "blocks": [
+    26409800,
+    26416999
+   ],
+   "all": 40619,
+   "own": -23076,
+   "family": -17934,
+   "outside": 81630,
+   "trades": 25315,
+   "volume_usd": 467609739,
+   "family_cost": 39878,
+   "top_size": 1024430,
+   "all_ex": 40619,
+   "outside_ex": 81630,
+   "is_fill_day": false
+  },
+  {
+   "day": "15 Nov",
+   "start_utc": "2026-11-15 01:06",
+   "blocks": [
+    26417000,
+    26424199
+   ],
+   "all": -47595,
+   "own": -24704,
+   "family": -6220,
+   "outside": -16671,
+   "trades": 22417,
+   "volume_usd": 257199636,
+   "family_cost": 20371,
+   "top_size": 1000931,
+   "all_ex": -47595,
+   "outside_ex": -16671,
+   "is_fill_day": false
+  },
+  {
+   "day": "16 Nov",
+   "start_utc": "2026-11-16 01:09",
+   "blocks": [
+    26424200,
+    26431399
+   ],
+   "all": -84368,
+   "own": -45909,
+   "family": -17565,
+   "outside": -20894,
+   "trades": 19495,
+   "volume_usd": 184038788,
+   "family_cost": 12232,
+   "top_size": 75131,
+   "all_ex": -84368,
+   "outside_ex": -20894,
+   "is_fill_day": false
+  },
+  {
+   "day": "17 Nov",
+   "start_utc": "2026-11-17 01:12",
+   "blocks": [
+    26431400,
+    26438599
+   ],
+   "all": -24907,
+   "own": -23676,
+   "family": -4967,
+   "outside": 3736,
+   "trades": 18014,
+   "volume_usd": 158227119,
+   "family_cost": 9793,
+   "top_size": 752137,
+   "all_ex": -24907,
+   "outside_ex": 3736,
+   "is_fill_day": false
+  },
+  {
+   "day": "18 Nov",
+   "start_utc": "2026-11-18 01:18",
+   "blocks": [
+    26438600,
+    26445799
+   ],
+   "all": -20010,
+   "own": -24903,
+   "family": -5527,
+   "outside": 10420,
+   "trades": 17951,
+   "volume_usd": 147816161,
+   "family_cost": 8339,
+   "top_size": 710845,
+   "all_ex": -20010,
+   "outside_ex": 10420,
+   "is_fill_day": false
+  },
+  {
+   "day": "19 Nov",
+   "start_utc": "2026-11-19 01:20",
+   "blocks": [
+    26445800,
+    26452999
+   ],
+   "all": -16877,
+   "own": -20658,
+   "family": -4750,
+   "outside": 8529,
+   "trades": 18668,
+   "volume_usd": 163498549,
+   "family_cost": 19885,
+   "top_size": 1816401,
+   "all_ex": -16877,
+   "outside_ex": 8529,
+   "is_fill_day": false
+  },
+  {
+   "day": "20 Nov",
+   "start_utc": "2026-11-20 01:24",
+   "blocks": [
+    26453000,
+    26460199
+   ],
+   "all": 241341,
+   "own": -59958,
+   "family": 10547,
+   "outside": 290753,
+   "trades": 23044,
+   "volume_usd": 401969854,
+   "family_cost": 27622,
+   "top_size": 10043291,
+   "all_ex": 241341,
+   "outside_ex": 290753,
+   "is_fill_day": false
+  },
+  {
+   "day": "21 Nov",
+   "start_utc": "2026-11-21 01:30",
+   "blocks": [
+    26460200,
+    26467399
+   ],
+   "all": 269256,
+   "own": -1739,
+   "family": 62524,
+   "outside": 208471,
+   "trades": 16491,
+   "volume_usd": 203610842,
+   "family_cost": 30452,
+   "top_size": 7368773,
+   "all_ex": 269256,
+   "outside_ex": 208471,
+   "is_fill_day": false
+  },
+  {
+   "day": "22 Nov",
+   "start_utc": "2026-11-22 01:35",
+   "blocks": [
+    26467400,
+    26474599
+   ],
+   "all": -2139,
+   "own": -10920,
+   "family": 926,
+   "outside": 7854,
+   "trades": 11038,
+   "volume_usd": 88025047,
+   "family_cost": 7041,
+   "top_size": 397587,
+   "all_ex": -2139,
+   "outside_ex": 7854,
+   "is_fill_day": false
+  },
+  {
+   "day": "23 Nov",
+   "start_utc": "2026-11-23 01:39",
+   "blocks": [
+    26474600,
+    26481799
+   ],
+   "all": 103079,
+   "own": 37619,
+   "family": 14040,
+   "outside": 51419,
+   "trades": 15466,
+   "volume_usd": 189914601,
+   "family_cost": 21578,
+   "top_size": 1824225,
+   "all_ex": 103079,
+   "outside_ex": 51419,
+   "is_fill_day": false
+  }
+ ],
+ "fill": {
+  "window": 19,
+  "day_utc": [
+   "2026-11-04 00:15",
+   "2026-11-05 00:20"
+  ],
+  "hash": "0xf5ff0c7106886a61fddb7a03ab7da7b3ae50cd4ba62e1f418b7a07f98434a3eb",
+  "time_utc": "2026-11-04T14:49:23.000000Z",
+  "route": "other outside",
+  "size_usd": 24100249,
+  "bot_weth": -10125.529,
+  "bot_stable": 24378308,
+  "price_paid": 2407.61,
+  "binance_h0": 2371.18,
+  "binance_h300": 2375.94,
+  "gain_binance_h0": 368857,
+  "gain_binance_h300": 320660,
+  "gain_defillama_h0_detrended": 501037,
+  "gain_defillama_h300_detrended": 358324,
+  "aave_liquidation": true,
+  "caller_is_contract": true,
+  "net_total_without_it": 457551,
+  "days": 23,
+  "gain_share": 0.44,
+  "label_day": "4 Nov",
+  "day_all": 273469,
+  "day_ex": -84855
+ },
+ "lifetime": {
+  "deployed": "16 Aug 2023",
+  "first_label": "Sep 2023",
+  "first_usd": 8101548,
+  "last_label": "15 Nov 2026",
+  "last_usd": 73217235,
+  "points": 15,
+  "years": 3.2
+ },
+ "horizons": {
+  "m0": {
+   "mean": -144746,
+   "ci95": [
+    -202069,
+    -98217
+   ],
+   "up": 1
+  },
+  "m60": {
+   "mean": 106617,
+   "ci95": [
+    15603,
+    217229
+   ],
+   "up": 11
+  }
+ },
+ "studied_day": {
+  "label": "14 Nov",
+  "trades": 25315,
+  "volume_usd": 467609739,
+  "curves": [
+   {
+    "min": 0,
+    "all": -230303,
+    "lo": -342070,
+    "hi": -138826,
+    "own": -188079,
+    "with_trend": -230303
+   },
+   {
+    "min": 5,
+    "all": 40597,
+    "lo": -48261,
+    "hi": 128369,
+    "own": -23076,
+    "with_trend": 53881
+   },
+   {
+    "min": 15,
+    "all": 17219,
+    "lo": -159190,
+    "hi": 201616,
+    "own": -46113,
+    "with_trend": 57075
+   },
+   {
+    "min": 30,
+    "all": 17007,
+    "lo": -223788,
+    "hi": 309012,
+    "own": -27590,
+    "with_trend": 96647
+   },
+   {
+    "min": 60,
+    "all": 44997,
+    "lo": -373266,
+    "hi": 552126,
+    "own": -25632,
+    "with_trend": 203964
+   }
+  ]
+ }
+}
