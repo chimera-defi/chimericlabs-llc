@@ -67,7 +67,7 @@
 <h3>Best: cut 14</h3>
 <video class="film" controls preload="none" poster="cut14-poster.jpg" width="1280" height="720">
 <source src="cut14-720p.mp4" type="video/mp4">
-Your browser cannot play this video. <a href="cut14-720p.mp4">Download it (720p, 27 MB)</a> or <a href="cut14-1080p.mp4">the 1080p file (67 MB)</a>.
+Your browser cannot play this video. <a href="cut14-720p.mp4">Download it (720p, 27 MB).</a>
 </video>
 <p class="figcap">Cut 14, 43.8 s.</p>
 <p class="small">Download: <a href="cut14-1080p.mp4">1080p (67 MB)</a> &middot; <a href="cut14-720p.mp4">720p (27 MB)</a></p>
@@ -257,7 +257,7 @@ Your browser cannot play this video. <a href="fox-720p.mp4">Download it (720p, 5
 </details>
 
 <h2>Code</h2>
-<p>The film's engine, shots and final files are in <a href="https://github.com/chimera-defi/ghibli-claude-engine" target="_blank" rel="noreferrer">chimera-defi/ghibli-claude-engine</a>.</p>
+<p>The film's engine, shots and final files are in <a href="https://github.com/chimera-defi/ghibli-claude-engine" target="_blank" rel="noreferrer">chimera-defi/ghibli-claude-engine</a>.<br><span class="small">Named for who built it: Claude made this, Astra is what we tried to match. The repo is private until published; the notes, prompts and strips of the earlier cuts are linked from <a href="#source">Postscript: source and data</a> at the end.</span></p>
 <p class="small">Written by Wren (Claude Sonnet 5.5) on behalf of chimera-defi. Cut 10, cut 12 and cut 14 updates by Wren (Claude Opus 5.5).</p>
 <h2>Credits</h2>
 <ul>
@@ -272,9 +272,10 @@ Your browser cannot play this video. <a href="fox-720p.mp4">Download it (720p, 5
 
 <h2 id="source">Postscript: source and data</h2>
 <details class="ps"><summary>Where the source is, for people and agents</summary>
-<p><a href="https://github.com/chimera-defi/ghibli-claude-engine" target="_blank" rel="noreferrer">chimera-defi/ghibli-claude-engine</a> holds the engine code, the shot files, the notes and reviews, and the full-size film (a release asset).</p>
+<p><a href="https://github.com/chimera-defi/ghibli-claude-engine" target="_blank" rel="noreferrer">chimera-defi/ghibli-claude-engine</a> holds the engine code, the shot files, the notes and reviews, and the full-size cut 14 film (release cut14). It is private until published.</p>
+<p class="small">The <a href="code/README.md">code folder on this site</a> holds the film material behind the earlier cuts; its README lists each file in one line. Files: the cut 9 and cut 10 notes, plan and shot spec, the cut 10 timeline, the cost log of every paid call, the generation scripts with their prompts, the cut 9 review prompts and answers, the cut 10 strips, both leads' cut 11 specs, reviews and A/B numbers, and the cut 12 review.</p>
 <p class="small">Units: cost in US dollars per call, times in seconds of film, strips sampled at the frame rate their notes give.</p>
-<p class="small">Generation scripts read the key from GEN_API_KEY in the environment (or a local key file) and never print it.</p>
+<p class="small">To rerun a clip: the cut 10 scripts need the film toolkit, which reads the key from GEN_API_KEY in the environment (or a local key file) and never prints it; the cut 9 script reads only the local key file; for example python3 gen10.py vid TAG "PROMPT" start.png end.png.</p>
 </details>
 </article>
 </main>
