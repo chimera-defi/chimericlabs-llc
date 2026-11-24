@@ -19,9 +19,8 @@ MAP = HOME + "/claude-usage-audit/dashboard-v5-20261031/handoff/commits_by_proje
 ALIASES = HOME + "/.config/chimericlabs/building-aliases.json"
 
 
-# Public projects with no checkout on this host now: last counted figure, shown on the card, left out of every total.
-CARRIED = [{"label": "SpecForge", "first": "2026-04-30", "last": "2026-10-09", "commits_all_refs": 345, "as_of": "2026-11-03",
-            "reason": "the clone is no longer on this host, so a fresh sweep cannot count it"}]
+# Public projects with no checkout on this host: last counted figure, shown on the card, left out of every total.
+CARRIED = []
 
 
 def label_of(project, info, aliases):
