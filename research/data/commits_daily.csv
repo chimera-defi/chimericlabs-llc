@@ -329,6 +329,7 @@ date,project,commits_landed,commits_all_refs
 2026-04-29,eth2-quickstart,1,1
 2026-04-30,Agent skills,0,1
 2026-04-30,Intelex,0,1
+2026-04-30,SpecForge,0,1
 2026-04-30,This site,0,1
 2026-04-30,Wallet Radar,0,1
 2026-04-30,eth2-quickstart,0,1
@@ -364,6 +365,7 @@ date,project,commits_landed,commits_all_refs
 2026-05-22,SharedStake,8,10
 2026-05-22,eth2-quickstart,2,2
 2026-05-23,Other public,0,1
+2026-05-23,SpecForge,1,1
 2026-05-23,eth2-quickstart,3,6
 2026-05-24,Agent skills,1,1
 2026-05-24,Experiments monorepo,0,1
@@ -371,19 +373,24 @@ date,project,commits_landed,commits_all_refs
 2026-05-25,Experiments monorepo,1,1
 2026-05-25,Other public,0,1
 2026-05-25,SharedStake,4,8
+2026-05-25,SpecForge,19,30
 2026-05-25,This site,2,3
 2026-05-25,Wallet Radar,0,1
 2026-05-26,Intelex,2,2
 2026-05-27,Intelex,28,29
+2026-05-27,SpecForge,1,2
 2026-05-28,Agent skills,1,1
 2026-05-28,Intelex,38,38
+2026-05-28,SpecForge,67,75
 2026-05-29,Intelex,31,62
 2026-05-29,SharedStake,9,13
+2026-05-29,SpecForge,94,128
 2026-05-30,Agent skills,0,3
 2026-05-30,Experiments monorepo,0,1
 2026-05-30,Intelex,36,68
 2026-05-30,Other public,0,1
 2026-05-30,SharedStake,24,25
+2026-05-30,SpecForge,11,12
 2026-05-30,This site,2,2
 2026-05-30,Wallet Radar,0,1
 2026-05-30,eth2-quickstart,3,3
@@ -395,6 +402,7 @@ date,project,commits_landed,commits_all_refs
 2026-06-01,Intelex,37,42
 2026-06-01,Other public,0,2
 2026-06-01,SharedStake,0,15
+2026-06-01,SpecForge,21,22
 2026-06-01,This site,1,2
 2026-06-01,Wallet Radar,3,5
 2026-06-02,Agent skills,13,25
@@ -420,6 +428,7 @@ date,project,commits_landed,commits_all_refs
 2026-06-05,Other private work,1,1
 2026-06-05,Other public,0,4
 2026-06-05,SharedStake,6,7
+2026-06-05,SpecForge,1,2
 2026-06-05,Wallet Radar,3,3
 2026-06-05,eth2-quickstart,3,3
 2026-06-06,Agent skills,0,4
@@ -428,6 +437,7 @@ date,project,commits_landed,commits_all_refs
 2026-06-06,Other private work,0,3
 2026-06-06,Other public,0,3
 2026-06-06,SharedStake,2,10
+2026-06-06,SpecForge,0,1
 2026-06-06,This site,0,1
 2026-06-06,Wallet Radar,2,5
 2026-06-06,eth2-quickstart,0,1
@@ -437,6 +447,7 @@ date,project,commits_landed,commits_all_refs
 2026-06-07,Other private work,1,1
 2026-06-07,Other public,0,3
 2026-06-07,SharedStake,3,15
+2026-06-07,SpecForge,3,3
 2026-06-07,This site,3,3
 2026-06-07,Wallet Radar,3,3
 2026-06-07,eth2-quickstart,6,10
@@ -446,6 +457,7 @@ date,project,commits_landed,commits_all_refs
 2026-06-08,Other private work,0,2
 2026-06-08,Other public,0,4
 2026-06-08,SharedStake,6,20
+2026-06-08,SpecForge,4,4
 2026-06-08,This site,3,3
 2026-06-08,Wallet Radar,3,3
 2026-06-08,crss,2,2
@@ -454,6 +466,7 @@ date,project,commits_landed,commits_all_refs
 2026-06-09,Intelex,7,8
 2026-06-09,Other public,0,10
 2026-06-09,SharedStake,7,7
+2026-06-09,SpecForge,7,7
 2026-06-09,This site,7,7
 2026-06-09,Wallet Radar,10,10
 2026-06-09,eth2-quickstart,19,19
@@ -463,6 +476,7 @@ date,project,commits_landed,commits_all_refs
 2026-06-10,Other private work,1,1
 2026-06-10,Other public,0,6
 2026-06-10,SharedStake,7,13
+2026-06-10,SpecForge,4,4
 2026-06-10,This site,5,5
 2026-06-10,Wallet Radar,4,4
 2026-06-10,eth2-quickstart,3,3
@@ -471,6 +485,7 @@ date,project,commits_landed,commits_all_refs
 2026-06-11,Intelex,4,4
 2026-06-11,Other public,0,4
 2026-06-11,SharedStake,3,14
+2026-06-11,SpecForge,4,4
 2026-06-11,This site,1,1
 2026-06-11,Wallet Radar,4,4
 2026-06-11,eth2-quickstart,4,5
@@ -480,6 +495,7 @@ date,project,commits_landed,commits_all_refs
 2026-06-12,Intelex,7,9
 2026-06-12,Other public,0,7
 2026-06-12,SharedStake,5,38
+2026-06-12,SpecForge,5,5
 2026-06-12,This site,1,1
 2026-06-12,Wallet Radar,6,6
 2026-06-12,eth2-quickstart,5,5
@@ -487,6 +503,7 @@ date,project,commits_landed,commits_all_refs
 2026-06-13,Intelex,4,4
 2026-06-13,Other public,0,3
 2026-06-13,SharedStake,1,8
+2026-06-13,SpecForge,3,3
 2026-06-13,This site,1,1
 2026-06-13,Wallet Radar,3,3
 2026-06-13,eth2-quickstart,2,2
@@ -532,6 +549,7 @@ date,project,commits_landed,commits_all_refs
 2026-06-26,Intelex,3,4
 2026-06-26,Other public,0,1
 2026-06-26,SharedStake,0,1
+2026-06-26,SpecForge,2,5
 2026-06-26,This site,0,1
 2026-06-26,Wallet Radar,3,3
 2026-06-26,eth2-quickstart,1,2
@@ -568,6 +586,7 @@ date,project,commits_landed,commits_all_refs
 2026-07-06,Claudefolio,53,68
 2026-07-06,Intelex,0,1
 2026-07-06,Other public,0,1
+2026-07-06,SpecForge,0,2
 2026-07-06,Wallet Radar,1,1
 2026-07-06,crss,2,3
 2026-07-06,eth2-quickstart,0,22
@@ -615,6 +634,7 @@ date,project,commits_landed,commits_all_refs
 2026-07-19,Claudefolio,88,128
 2026-07-19,eth2-quickstart,5,20
 2026-07-20,Claudefolio,1,1
+2026-07-20,SpecForge,0,1
 2026-07-20,eth2-quickstart,0,14
 2026-07-21,Agent skills,1,1
 2026-07-21,Claudefolio,10,10
@@ -684,6 +704,7 @@ date,project,commits_landed,commits_all_refs
 2026-08-09,eth2-quickstart,13,28
 2026-08-10,Claudefolio,30,34
 2026-08-10,Intelex,0,2
+2026-08-10,SpecForge,0,3
 2026-08-10,crss,2,3
 2026-08-10,eth2-quickstart,5,10
 2026-08-11,Agent skills,0,1
@@ -707,6 +728,7 @@ date,project,commits_landed,commits_all_refs
 2026-08-15,crss,2,2
 2026-08-16,Claudefolio,12,23
 2026-08-16,SharedStake,0,1
+2026-08-16,SpecForge,0,2
 2026-08-16,crss,1,1
 2026-08-17,Agent skills,4,6
 2026-08-17,Claudefolio,46,51
@@ -771,6 +793,7 @@ date,project,commits_landed,commits_all_refs
 2026-08-31,Claudefolio,49,49
 2026-08-31,Intelex,0,3
 2026-08-31,Other private work,12,35
+2026-08-31,SpecForge,0,5
 2026-08-31,crss,0,2
 2026-09-01,Claudefolio,70,83
 2026-09-01,Other private work,33,136
@@ -786,6 +809,7 @@ date,project,commits_landed,commits_all_refs
 2026-09-03,Other private work,2,12
 2026-09-03,Other public,10,10
 2026-09-03,SharedStake,4,4
+2026-09-03,SpecForge,9,10
 2026-09-03,Wallet Radar,1,1
 2026-09-03,crss,2,6
 2026-09-04,Agent skills,3,6
@@ -819,15 +843,17 @@ date,project,commits_landed,commits_all_refs
 2026-09-10,eth2-quickstart,2,6
 2026-09-11,Agent skills,0,1
 2026-09-11,Claudefolio,99,99
-2026-09-11,Other private work,6,6
+2026-09-11,Other private work,7,7
 2026-09-11,crss,5,14
 2026-09-11,eth2-quickstart,5,82
 2026-09-12,Agent skills,2,13
 2026-09-12,Claudefolio,192,234
+2026-09-12,SpecForge,0,3
 2026-09-12,crss,15,37
 2026-09-12,eth2-quickstart,2,11
 2026-09-13,Claudefolio,26,26
 2026-09-13,SharedStake,0,1
+2026-09-13,SpecForge,0,2
 2026-09-13,This site,8,14
 2026-09-14,eth2-quickstart,1,2
 2026-09-15,Claudefolio,88,101
@@ -841,6 +867,7 @@ date,project,commits_landed,commits_all_refs
 2026-09-17,eth2-quickstart,2,7
 2026-09-18,Claudefolio,25,35
 2026-09-18,Other private work,2,7
+2026-09-18,SpecForge,0,1
 2026-09-18,Wallet Radar,0,1
 2026-09-19,Agent skills,0,2
 2026-09-19,Claudefolio,59,122
@@ -848,7 +875,7 @@ date,project,commits_landed,commits_all_refs
 2026-09-20,Claudefolio,51,98
 2026-09-20,SharedStake,0,2
 2026-09-21,Claudefolio,66,83
-2026-09-21,Other private work,10,12
+2026-09-21,Other private work,13,15
 2026-09-21,Wallet Radar,0,1
 2026-09-21,crss,0,6
 2026-09-22,Agent skills,0,2
@@ -865,10 +892,11 @@ date,project,commits_landed,commits_all_refs
 2026-09-24,Intelex,7,12
 2026-09-24,Other private work,2,4
 2026-09-24,Other public,3,3
+2026-09-24,SpecForge,3,3
 2026-09-24,Wallet Radar,4,4
 2026-09-24,crss,10,24
 2026-09-25,Claudefolio,20,22
-2026-09-25,Other private work,10,16
+2026-09-25,Other private work,11,17
 2026-09-25,crss,2,4
 2026-09-26,Agent skills,0,3
 2026-09-26,Claudefolio,130,154
@@ -886,7 +914,7 @@ date,project,commits_landed,commits_all_refs
 2026-09-29,SharedStake,0,3
 2026-09-29,crss,2,14
 2026-09-30,Claudefolio,47,56
-2026-09-30,Other private work,11,26
+2026-09-30,Other private work,12,28
 2026-09-30,Wallet Radar,0,1
 2026-09-30,crss,8,21
 2026-10-01,Agent skills,5,6
@@ -906,6 +934,7 @@ date,project,commits_landed,commits_all_refs
 2026-10-03,Agent skills,0,2
 2026-10-03,Claudefolio,11,23
 2026-10-03,Other private work,2,3
+2026-10-03,SpecForge,0,1
 2026-10-03,Wallet Radar,0,1
 2026-10-03,crss,6,6
 2026-10-04,Agent skills,2,6
@@ -921,6 +950,7 @@ date,project,commits_landed,commits_all_refs
 2026-10-06,Agent skills,0,1
 2026-10-06,Claudefolio,12,12
 2026-10-06,Other private work,33,43
+2026-10-06,SpecForge,0,1
 2026-10-06,crss,2,6
 2026-10-07,Claudefolio,8,19
 2026-10-07,Other private work,2,2
@@ -934,6 +964,7 @@ date,project,commits_landed,commits_all_refs
 2026-10-09,Agent skills,9,22
 2026-10-09,Claudefolio,216,459
 2026-10-09,Other private work,3,5
+2026-10-09,SpecForge,0,2
 2026-10-09,crss,2,3
 2026-10-09,eth2-quickstart,3,3
 2026-10-10,Agent skills,0,1
@@ -957,6 +988,7 @@ date,project,commits_landed,commits_all_refs
 2026-10-14,crss,2,4
 2026-10-15,Claudefolio,56,76
 2026-10-15,Other private work,16,22
+2026-10-15,SpecForge,0,2
 2026-10-15,Wallet Radar,4,21
 2026-10-15,crss,9,20
 2026-10-16,Claudefolio,40,67
@@ -990,12 +1022,12 @@ date,project,commits_landed,commits_all_refs
 2026-10-23,Agent skills,12,13
 2026-10-23,Claudefolio,37,50
 2026-10-23,DispatchBench,20,27
-2026-10-23,Other private work,3,3
+2026-10-23,Other private work,5,5
 2026-10-23,crss,6,17
 2026-10-24,Agent skills,4,4
 2026-10-24,Claudefolio,26,31
 2026-10-24,DispatchBench,71,94
-2026-10-24,Other private work,1,2
+2026-10-24,Other private work,2,3
 2026-10-24,crss,3,8
 2026-10-25,Agent skills,6,17
 2026-10-25,Claudefolio,90,115
@@ -1137,6 +1169,7 @@ date,project,commits_landed,commits_all_refs
 2026-11-23,Other private work,63,89
 2026-11-23,This site,17,25
 2026-11-23,crss,3,4
-2026-11-24,Claudefolio,25,37
+2026-11-24,Claudefolio,25,41
 2026-11-24,DispatchBench,3,4
-2026-11-24,Other private work,11,17
+2026-11-24,Other private work,11,19
+2026-11-24,This site,3,4
