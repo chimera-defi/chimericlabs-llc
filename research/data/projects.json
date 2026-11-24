@@ -1,18 +1,9 @@
 {
- "carried": [
-  {
-   "as_of": "2026-11-03",
-   "commits_all_refs": 345,
-   "first": "2026-04-30",
-   "label": "SpecForge",
-   "last": "2026-10-09",
-   "reason": "the clone is no longer on this host, so a fresh sweep cannot count it"
-  }
- ],
+ "carried": [],
  "data_through": "2026-11-24",
  "projects": [
   {
-   "commits_all_refs": 8917,
+   "commits_all_refs": 8921,
    "commits_landed": 6690,
    "first": "2026-06-12",
    "label": "Claudefolio",
@@ -20,8 +11,8 @@
    "repos": {}
   },
   {
-   "commits_all_refs": 2788,
-   "commits_landed": 1557,
+   "commits_all_refs": 2800,
+   "commits_landed": 1566,
    "first": "2026-04-06",
    "label": "Other private work",
    "last": "2026-11-24",
@@ -113,13 +104,23 @@
    }
   },
   {
-   "commits_all_refs": 435,
-   "commits_landed": 255,
+   "commits_all_refs": 439,
+   "commits_landed": 258,
    "first": "2026-03-30",
    "label": "This site",
-   "last": "2026-11-23",
+   "last": "2026-11-24",
    "repos": {
-    "chimera-defi/chimericlabs-llc": 435
+    "chimera-defi/chimericlabs-llc": 439
+   }
+  },
+  {
+   "commits_all_refs": 347,
+   "commits_landed": 259,
+   "first": "2026-04-30",
+   "label": "SpecForge",
+   "last": "2026-10-15",
+   "repos": {
+    "chimera-defi/specforge": 347
    }
   },
   {

@@ -14,7 +14,7 @@
   {
    "colour": "var(--data-1)",
    "label": "Claudefolio",
-   "n": 8917
+   "n": 8921
   },
   {
    "colour": "var(--data-2)",
@@ -59,7 +59,12 @@
   {
    "colour": "var(--data-10)",
    "label": "This site",
-   "n": 435
+   "n": 439
+  },
+  {
+   "colour": "var(--data-11)",
+   "label": "SpecForge",
+   "n": 347
   },
   {
    "colour": "var(--data-effort-medium)",
@@ -69,7 +74,7 @@
   {
    "colour": "var(--data-effort-low)",
    "label": "Other private work",
-   "n": 2788
+   "n": 2800
   }
  ],
  "months": [
@@ -113,50 +118,50 @@
    "days": 30,
    "days_in_month": 30,
    "month": "2026-04",
-   "n": 335
+   "n": 336
   },
   {
    "days": 31,
    "days_in_month": 31,
    "month": "2026-05",
-   "n": 449
+   "n": 697
   },
   {
    "days": 30,
    "days_in_month": 30,
    "month": "2026-06",
-   "n": 1550
+   "n": 1610
   },
   {
    "days": 31,
    "days_in_month": 31,
    "month": "2026-07",
-   "n": 1423
+   "n": 1426
   },
   {
    "days": 31,
    "days_in_month": 31,
    "month": "2026-08",
-   "n": 2123
+   "n": 2133
   },
   {
    "days": 30,
    "days_in_month": 30,
    "month": "2026-09",
-   "n": 3512
+   "n": 3538
   },
   {
    "days": 31,
    "days_in_month": 31,
    "month": "2026-10",
-   "n": 3526
+   "n": 3535
   },
   {
    "days": 24,
    "days_in_month": 30,
    "month": "2026-11",
-   "n": 3687
+   "n": 3697
   }
  ],
- "total": 18428
+ "total": 18795
 }
