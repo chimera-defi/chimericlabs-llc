@@ -25,6 +25,13 @@
     t.textContent = str;
     return t;
   }
+  var PAL = ["#e07a5f", "#3d9bd1", "#7cb518", "#d4a017", "#9b6bd1", "#2ec4b6", "#d1558a", "#8d99ae", "#f4a261", "#5b8c5a", "#b0b0c0", "#6c6f85"];
+  function colour(c, i) {  // keep the page's own --data-N when it defines it, else a fixed palette
+    var m = /^var\((--data-(\d+))\)$/.exec(c);
+    if (m) return "var(" + m[1] + ", " + PAL[(+m[2] - 1) % 12] + ")";
+    var o = /^var\((--[\w-]+)\)$/.exec(c);
+    return o ? "var(" + o[1] + ", " + (/low/.test(o[1]) ? "#6c6f85" : "#b0b0c0") + ")" : c;
+  }
   function fmt(n) { return n.toLocaleString("en-US"); }
 
   function donut(host, d) {
@@ -41,7 +48,7 @@
       var len = Math.max(Math.round(1000 * cum / total) - a - 3, 1);
       var c = el("circle", { cx: 100, cy: 100, r: 70, fill: "none", "stroke-width": 36, pathLength: 1000,
         "stroke-dasharray": len + " " + (1000 - len), "stroke-dashoffset": -a }, g);
-      c.style.stroke = sl.colour;
+      c.style.stroke = colour(sl.colour);
     });
     text(s, 100, 96, fmt(total), "middle", 22).setAttribute("font-weight", "700");
     text(s, 100, 118, "commits", "middle", 11);
@@ -50,9 +57,9 @@
     d.donut.forEach(function (sl, i) {
       var li = document.createElement("li");
       li.style.cssText = "display:grid;grid-template-columns:1rem 1fr auto;gap:.5rem;align-items:center";
-      li.innerHTML = '<i style="width:1rem;height:1rem;border-radius:2px;background:' + sl.colour + '"></i><span></span><span style="opacity:.75;font-variant-numeric:tabular-nums"></span>';
+      li.innerHTML = '<i style="width:1rem;height:1rem;border-radius:2px;background:' + colour(sl.colour) + '"></i><span></span><span style="opacity:.75;font-variant-numeric:tabular-nums"></span>';
       li.children[1].textContent = sl.label;
-      li.children[2].textContent = fmt(sl.n) + " · " + pct[i] + "%";
+      li.children[2].textContent = fmt(sl.n) + " \u00b7 " + pct[i] + "%";
       ol.appendChild(li);
     });
     wrap.appendChild(ol);
@@ -68,7 +75,7 @@
     var note = last.days < last.days_in_month ? " The last month is partial (" + last.days + " of " + last.days_in_month + " days)." : "";
     var s = svg(host, "0 0 " + W + " " + H, "Commits per month, " + MON[+m[0].month.slice(5) - 1] + " " + m[0].month.slice(0, 4) +
       " to " + MON[+last.month.slice(5) - 1] + " " + last.month.slice(0, 4) + ", from " + fmt(m[0].n) + " to " + fmt(last.n) +
-      ". A dashed line at about " + Math.round(base) + " a month marks the " + b.from + "–" + b.to + " average before AI agents." + note);
+      ". A dashed line at about " + Math.round(base) + " a month marks the " + b.from + "\u2013" + b.to + " average before AI agents." + note);
     for (var t = 0; t <= top; t += 1000) {
       var gl = el("line", { x1: L, x2: W - R, y1: y(t), y2: y(t) }, s);
       gl.style.cssText = "stroke:var(--color-divider,#8884);stroke-width:1";
@@ -79,14 +86,14 @@
       var r = el("rect", { x: bx, y: y(x.n), width: slot * 0.7, height: y(0) - y(x.n) }, s);
       r.style.cssText = "fill:var(--data-1,#c44);" + (part ? "fill-opacity:.55;stroke:var(--data-1,#c44);stroke-width:1.5;stroke-dasharray:4 3" : "");
       el("title", {}, r).textContent = MON[+x.month.slice(5) - 1] + " " + x.month.slice(0, 4) + ": " + fmt(x.n) + " commits" + (part ? " (partial: " + x.days + " of " + x.days_in_month + " days)" : "");
-      if (i % 3 === 0) text(s, bx + slot * 0.35, H - 8, MON[+x.month.slice(5) - 1] + " ’" + x.month.slice(2, 4), "middle", 10).setAttribute("opacity", ".75");
+      if (i % 3 === 0) text(s, bx + slot * 0.35, H - 8, MON[+x.month.slice(5) - 1] + " \u2019" + x.month.slice(2, 4), "middle", 10).setAttribute("opacity", ".75");
     });
     var bl = el("line", { x1: L, x2: W - R, y1: y(base), y2: y(base) }, s);
     bl.style.cssText = "stroke:var(--ds-muted,#888);stroke-width:2;stroke-dasharray:6 4";
-    text(s, W - R + 4, y(base) - 4, "≈" + Math.round(base) + "/mo", "start", 10);
+    text(s, W - R + 4, y(base) - 4, "\u2248" + Math.round(base) + "/mo", "start", 10);
     var cap = document.createElement("p");
     cap.style.cssText = "margin:.5rem 0 0;font-size:.9em;opacity:.8";
-    cap.textContent = "Dashed line: before AI agents (" + b.from + "–" + b.to + ", this GitHub account), about " + Math.round(base) + " commits a month." +
+    cap.textContent = "Dashed line: before AI agents (" + b.from + "\u2013" + b.to + ", this GitHub account), about " + Math.round(base) + " commits a month." +
       (note ? " " + MON[+last.month.slice(5) - 1] + " is partial (lighter bar)." : "");
     host.appendChild(cap);
   }
