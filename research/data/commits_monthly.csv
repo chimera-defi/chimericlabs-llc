@@ -29,6 +29,7 @@ month,project,commits_landed,commits_all_refs,days
 2026-04,Other private work,1,1,30
 2026-04,Other public,2,27,30
 2026-04,SharedStake,1,2,30
+2026-04,SpecForge,0,1,30
 2026-04,This site,0,1,30
 2026-04,Wallet Radar,41,46,30
 2026-04,eth2-quickstart,11,44,30
@@ -37,6 +38,7 @@ month,project,commits_landed,commits_all_refs,days
 2026-05,Intelex,137,203,31
 2026-05,Other public,0,4,31
 2026-05,SharedStake,93,165,31
+2026-05,SpecForge,193,248,31
 2026-05,This site,4,5,31
 2026-05,Wallet Radar,0,2,31
 2026-05,eth2-quickstart,8,13,31
@@ -47,6 +49,7 @@ month,project,commits_landed,commits_all_refs,days
 2026-06,Other private work,6,12,30
 2026-06,Other public,0,59,30
 2026-06,SharedStake,43,190,30
+2026-06,SpecForge,54,60,30
 2026-06,This site,22,25,30
 2026-06,Wallet Radar,53,59,30
 2026-06,crss,7,7,30
@@ -57,6 +60,7 @@ month,project,commits_landed,commits_all_refs,days
 2026-07,Other private work,0,2,31
 2026-07,Other public,0,16,31
 2026-07,SharedStake,1,7,31
+2026-07,SpecForge,0,3,31
 2026-07,Wallet Radar,6,20,31
 2026-07,crss,24,32,31
 2026-07,eth2-quickstart,27,258,31
@@ -67,6 +71,7 @@ month,project,commits_landed,commits_all_refs,days
 2026-08,Other private work,300,619,31
 2026-08,Other public,0,22,31
 2026-08,SharedStake,0,3,31
+2026-08,SpecForge,0,10,31
 2026-08,Wallet Radar,8,8,31
 2026-08,crss,52,112,31
 2026-08,eth2-quickstart,34,113,31
@@ -74,9 +79,10 @@ month,project,commits_landed,commits_all_refs,days
 2026-09,Claudefolio,1869,2375,30
 2026-09,Experiments monorepo,13,14,30
 2026-09,Intelex,21,28,30
-2026-09,Other private work,249,611,30
+2026-09,Other private work,255,618,30
 2026-09,Other public,13,23,30
 2026-09,SharedStake,4,11,30
+2026-09,SpecForge,12,19,30
 2026-09,This site,8,14,30
 2026-09,Wallet Radar,5,14,30
 2026-09,crss,71,217,30
@@ -86,21 +92,22 @@ month,project,commits_landed,commits_all_refs,days
 2026-10,DispatchBench,203,324,31
 2026-10,Experiments monorepo,2,5,31
 2026-10,Intelex,0,1,31
-2026-10,Other private work,310,493,31
+2026-10,Other private work,313,496,31
 2026-10,Other public,4,8,31
 2026-10,SharedStake,0,3,31
+2026-10,SpecForge,0,6,31
 2026-10,This site,39,59,31
 2026-10,Wallet Radar,67,195,31
 2026-10,crss,144,366,31
 2026-10,eth2-quickstart,11,39,31
 2026-11,Agent skills,19,52,24
-2026-11,Claudefolio,1299,1848,24
+2026-11,Claudefolio,1299,1852,24
 2026-11,DispatchBench,66,147,24
 2026-11,Experiments monorepo,3,8,24
-2026-11,Other private work,691,1050,24
+2026-11,Other private work,691,1052,24
 2026-11,Other public,0,5,24
 2026-11,SharedStake,1,3,24
-2026-11,This site,182,331,24
+2026-11,This site,185,335,24
 2026-11,Wallet Radar,30,56,24
 2026-11,crss,80,163,24
 2026-11,eth2-quickstart,14,24,24
