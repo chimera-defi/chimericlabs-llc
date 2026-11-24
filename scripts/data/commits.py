@@ -11,7 +11,7 @@ not know is private. Only display labels are written: private repos fold into "O
 before_ai.json and the "commits" section of meta.json. Python 3 standard library only."""
 import argparse, csv, datetime, json, os, sys
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
-from build_building_page import GROUPS, BEFORE_AI, FIRST_COMMIT_FIXES, OTHER_PUBLIC, OTHER_PRIVATE, assign_group
+from build_building_page import GROUPS, BEFORE_AI, FIRST_COMMIT_FIXES, OTHER_PUBLIC, OTHER_PRIVATE
 
 SINCE = "2025-10-01"
 HOME = os.path.expanduser("~")
@@ -25,9 +25,13 @@ CARRIED = [{"label": "SpecForge", "first": "2026-04-30", "last": "2026-10-09", "
 
 
 def label_of(project, info, aliases):
-    row = {"visibility": info.get("visibility", "private"), "github_repo": info.get("github_repo", ""), "project": project}
-    key, label, _ = assign_group(row, aliases)
-    return label
+    """Display label. A directory the map does not know, or a private one without an alias, is Other private work."""
+    if info.get("visibility") == "public":
+        for _, label, repos in GROUPS:
+            if info.get("github_repo") in repos:
+                return label
+        return OTHER_PUBLIC[1]
+    return aliases.get(project, OTHER_PRIVATE[1])
 
 
 def export(unified, out_dir, map_csv=MAP, aliases_path=ALIASES, through=None):

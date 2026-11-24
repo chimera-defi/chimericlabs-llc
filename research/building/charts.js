@@ -30,12 +30,12 @@
     var m = /^var\((--data-(\d+))\)$/.exec(c);
     if (m) return "var(" + m[1] + ", " + PAL[(+m[2] - 1) % 12] + ")";
     var o = /^var\((--[\w-]+)\)$/.exec(c);
-    return o ? "var(" + o[1] + ", " + (/low/.test(o[1]) ? "#6c6f85" : "#b0b0c0") + ")" : c;
+    return o ? "var(" + o[1] + ", " + (/low/.test(o[1]) ? "#6c6f85" : "#b0b0c0") + ")" : "#888";
   }
   function fmt(n) { return n.toLocaleString("en-US"); }
 
   function donut(host, d) {
-    var total = d.total, pct = d.donut.map(function (s) { return (100 * s.n / total).toFixed(1); });
+    var total = d.total || 1, pct = d.donut.map(function (s) { return (100 * s.n / total).toFixed(1); });
     var top = d.donut.slice().sort(function (a, b) { return b.n - a.n; }).slice(0, 3).map(function (s) {
       return s.label + " " + (100 * s.n / total).toFixed(1) + "%"; });
     var wrap = document.createElement("div");
@@ -57,7 +57,8 @@
     d.donut.forEach(function (sl, i) {
       var li = document.createElement("li");
       li.style.cssText = "display:grid;grid-template-columns:1rem 1fr auto;gap:.5rem;align-items:center";
-      li.innerHTML = '<i style="width:1rem;height:1rem;border-radius:2px;background:' + colour(sl.colour) + '"></i><span></span><span style="opacity:.75;font-variant-numeric:tabular-nums"></span>';
+      li.innerHTML = '<i aria-hidden="true" style="width:1rem;height:1rem;border-radius:2px"></i><span></span><span style="opacity:.75;font-variant-numeric:tabular-nums"></span>';
+      li.firstChild.style.background = colour(sl.colour);
       li.children[1].textContent = sl.label;
       li.children[2].textContent = fmt(sl.n) + " \u00b7 " + pct[i] + "%";
       ol.appendChild(li);
@@ -104,7 +105,7 @@
       if (ids.bars) { var b = document.getElementById(ids.bars); b.textContent = ""; bars(b, d); }
     },
     load: function (url, ids) {
-      return fetch(url).then(function (r) { return r.json(); }).then(function (d) { window.ChimericCharts.render(d, ids); });
+      return fetch(url).then(function (r) { if (!r.ok) throw new Error("charts-data " + r.status); return r.json(); }).then(function (d) { window.ChimericCharts.render(d, ids); });
     }
   };
 })();

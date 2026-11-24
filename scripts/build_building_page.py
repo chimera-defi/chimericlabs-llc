@@ -120,7 +120,7 @@ def build_groups(projects, carried=()):
     return groups
 
 
-def monthly_series(path, through):
+def monthly_series(path):
     """[(month, commits, days_counted, days_in_month)] from commits_monthly.csv, all projects summed."""
     tot, days = {}, {}
     with open(path, encoding="utf-8", newline="") as fh:
@@ -257,7 +257,7 @@ def monthly_html(months, before_ai):
         '</svg>',
         '<p class="article-legend"><span><i class="swatch-bars" aria-hidden="true"></i>Commits that month</span>'
         f'<span><i class="swatch-base" aria-hidden="true"></i>Before AI agents ({before_ai["from"]}–{before_ai["to"]}, this GitHub account): about {base:.0f} commits a month</span></p>',
-        *([f'<figcaption>{names[int(last[0][5:]) - 1]} {last[0][:4]} is partial: {last[1]:,} commits in {last[2]} of {last[3]} days (lighter bar).</figcaption>'] if last[2] < last[3] else []),
+        *([f'<figcaption>{names[int(last[0][5:]) - 1]} {last[0][:4]} is partial: {last[1]:,} commits in {last[2]} of {last[3]} days, the last of them only part of a day (lighter bar).</figcaption>'] if last[2] < last[3] else []),
         '</figure>',
     ])
 
@@ -318,7 +318,7 @@ def main():
     ])
     slices = donut_slices(groups, total)
     donut_figure, donut_css = donut_html(slices, total, data_through)
-    months = monthly_series(os.path.join(args.data, "commits_monthly.csv"), data_through)
+    months = monthly_series(os.path.join(args.data, "commits_monthly.csv"))
     monthly_figure = monthly_html(months, before_ai)
 
     def meta(g):
@@ -332,7 +332,7 @@ def main():
     for key in named_keys + ["claudefolio"]:
         g = groups.get(key)
         if g is None:
-            sys.exit(f"no card group {key}: alias file must map the Claudefolio directory to the label Claudefolio")
+            sys.exit(f"no card group {key}: research/data/projects.json has no row labelled Claudefolio")
         if key == "skills":
             c = skill_counts(g)
             card_meta[key] = (f'<p class="ds-meta">{g["first"]} → {g["last"]} · {g["n"]:,} commits since Oct 2025 '
@@ -358,7 +358,7 @@ def main():
     ])
     method = "\n".join([
         f"<li>Commits: every commit on any branch, remote or tag of every git repo on this server, one per commit across clones, from 2025-10-01 to {data_through}. Commits by outside authors are left out. Merge commits and pull-request branch commits both count. The same sweep feeds the token study.</li>",
-        f"<li>Restated on 2026-11-24: the 3 November page said 16,792 commits through 3 November; the same dates now count {at_nov3:,}. The old sweep read every ref, including 646 pre-rewrite backup refs in the experiments monorepo (about 1,210 commits more than its branches hold) and other non-branch refs. It also counted SpecForge's 345, whose clone is no longer on this server, so its card shows the last count and the total leaves it out.</li>",
+        f"<li>Restated on 2026-11-24: the 3 November page said 16,792 commits through 3 November; the same dates now count {at_nov3:,}. The old sweep read every ref, including 646 pre-rewrite backup refs in the experiments monorepo (about 1,210 commits more than its branches hold) and other non-branch refs. It also counted SpecForge's 345, whose clone is no longer on this server, so its card shows the last count and the total leaves it out. Counts that rose on the same dates (This site 201 to 266, Claudefolio +2, other private work +3) come from counting each commit once across clones and branches; the +65 for this site was not traced further.</li>",
         "<li>Claude tokens: local session logs, deduplicated per message, taking the larger of the 2026-10-29 audit and the daily ledger for each day. The totals above come from the token usage study (research/token-usage), over the dates where both tools are measured.</li>",
         "<li>Codex tokens: every local session log, counting only each session's own use, not the history it inherited from a parent session.</li>",
         "<li>Not counted: ChatGPT chat usage, which has no token meter we can read, and small Grok, Devin and Kimi runs.</li>",
@@ -374,7 +374,8 @@ def main():
     text = fill(text, "monthly", monthly_figure)
     for key, line in card_meta.items():
         text = fill(text, f"card-meta-{key}", line)
-    text = fill(text, "tokens", tokens)
+    if not args.check:  # token cards follow the token study's own refresh; a check must not block the deploy over them
+        text = fill(text, "tokens", tokens)
     text = fill(text, "method", "\n" + method + "\n")
     text = fill(text, "snapshot", f"<li>One snapshot in time: {data_through}.</li>")
 
