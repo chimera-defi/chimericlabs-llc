@@ -576,19 +576,19 @@
   {
    "kind": "video",
    "model": "veo3.1-lite (Flow, Plus plan)",
-   "secs": 92.0,
-   "secs_n": 1,
+   "secs": 74.0,
+   "secs_n": 2,
    "cost": 0.0316,
    "unit": "per second",
    "cost_per_clip": 0.25,
    "seconds": 7.9,
-   "quality": 3.83,
+   "quality": 3.5,
    "detail": {
     "identity": 4.5,
-    "motion": 3.0,
-    "clean": 4.0
+    "motion": 2.5,
+    "clean": 3.5
    },
-   "note": "10 Flow credits at $0.025 each (plan credits, not an API bill); boy only; 92 s or less to finish (10 s polls); style and face held, subtle motion, small Veo watermark"
+   "note": "10 Flow credits per clip at $0.025 each (plan credits, not an API bill); boy and wolf, 92 s and 56 s or less to finish (10 s polls); style and face held; boy subtle motion; wolf drifts wider instead of pushing in, thin streaks; small Veo watermark"
   }
  ]
 }
