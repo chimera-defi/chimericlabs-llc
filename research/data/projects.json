@@ -11,10 +11,10 @@
    "repos": {}
   },
   {
-   "commits_all_refs": 2891,
-   "commits_landed": 1642,
-   "first": "2026-04-06",
-   "label": "Other private work",
+   "commits_all_refs": 1600,
+   "commits_landed": 908,
+   "first": "2026-08-22",
+   "label": "Trading tools",
    "last": "2026-11-25",
    "repos": {}
   },
@@ -27,6 +27,14 @@
    "repos": {
     "chimera-defi/eth2-quickstart": 1333
    }
+  },
+  {
+   "commits_all_refs": 1291,
+   "commits_landed": 734,
+   "first": "2026-04-06",
+   "label": "Other private work",
+   "last": "2026-11-25",
+   "repos": {}
   },
   {
    "commits_all_refs": 1039,

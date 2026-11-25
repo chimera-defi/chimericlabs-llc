@@ -2,7 +2,7 @@
 # One command: refetch the source data, rebuild the token-usage page, check it, copy it into this repo.
 # usage: scripts/token-usage/refresh.sh [--quick]
 #   --quick  reuse the commit, line-count, model and campaign sweeps from the last full run (skips ~20 min); token data is always refetched
-# env: TOKEN_USAGE_SRC  generator checkout (default ~/claude-usage-audit); it is not part of this repo
+# env: TOKEN_USAGE_SRC  working folder (default ~/claude-usage-audit): sweeps, ledgers, handoff data and the generator (a local git repo) live there
 set -euo pipefail
 REPO="$(cd "$(dirname "$0")/../.." && pwd)"
 SRC="${TOKEN_USAGE_SRC:-$HOME/claude-usage-audit}"
@@ -10,6 +10,9 @@ ACQ="$SRC/dashboard-v3-20261031"      # acquisition tree: refresh.sh, sweeps, le
 PAGE="$SRC/dashboard-v5-20261031"     # generator: build_v5.py, check_v5.py, handoff/ (sole input), public/ (output)
 QUICK=0; [ "${1:-}" = "--quick" ] && QUICK=1
 for d in "$ACQ" "$PAGE"; do [ -d "$d" ] || { echo "missing $d (set TOKEN_USAGE_SRC)"; exit 1; }; done
+# The generator is a local git repo in $PAGE (kept out of this public repo: its redaction rules name withheld projects). Build only committed code, and say which.
+git -C "$PAGE" diff --quiet HEAD -- build_v5.py check_v5.py public_leak_scan.py site_shell.py codex_daily.py || { echo "generator has uncommitted edits: commit them in $PAGE first"; exit 1; }
+echo "generator commit: $(git -C "$PAGE" rev-parse --short HEAD)"
 
 echo "== 1/6 tokens: usage-audit, Claude csvs, Codex sessions, ledger, MCP, storage"
 ( cd "$ACQ" && TOKEN_REPO="$REPO" ./refresh.sh )
@@ -28,7 +31,7 @@ python3 -I "$REPO/scripts/token-usage/sync_handoff.py" "$ACQ" "$PAGE/handoff"
 ( cd "$ACQ" && python3 -I headline_refresh.py "$PAGE/handoff" )
 python3 -I "$REPO/scripts/token-usage/snapshot_weekly.py" --csv "$REPO/research/token-usage/weekly_limit.csv" --sync-from "${WEEKLY_LIMIT_STATE:-$HOME/.local/state/chimericlabs-llc/weekly_limit.csv}"
 cp "$REPO/research/token-usage/weekly_limit.csv" "$PAGE/handoff/weekly_limit.csv"   # the page draws it
-cp "$REPO/research/building/charts-data.json" "$PAGE/handoff/project_commits.json"   # the page draws the project breakdown from the building page data
+python3 -I "$REPO/scripts/token-usage/project_donut.py" "$PAGE/handoff/project_donut.html"   # the building page's donut, same data file
 python3 -I "$REPO/scripts/token-usage/last7.py" "$PAGE/handoff"
 python3 -I "$REPO/scripts/token-usage/case_studies.py" "$PAGE/handoff"   # section 9 snippet + data, from the same cutoff
 cp "$REPO/research/token-usage/case_studies.html" "$PAGE/handoff/case_studies.html"   # the script writes into the repo; the build reads handoff/

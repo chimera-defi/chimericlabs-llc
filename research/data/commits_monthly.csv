@@ -68,10 +68,11 @@ month,project,commits_landed,commits_all_refs,days
 2026-08,Claudefolio,866,1186,31
 2026-08,Experiments monorepo,1,1,31
 2026-08,Intelex,0,16,31
-2026-08,Other private work,300,619,31
+2026-08,Other private work,4,108,31
 2026-08,Other public,0,22,31
 2026-08,SharedStake,0,3,31
 2026-08,SpecForge,0,10,31
+2026-08,Trading tools,296,511,31
 2026-08,Wallet Radar,8,8,31
 2026-08,crss,52,112,31
 2026-08,eth2-quickstart,34,113,31
@@ -79,11 +80,12 @@ month,project,commits_landed,commits_all_refs,days
 2026-09,Claudefolio,1869,2375,30
 2026-09,Experiments monorepo,13,14,30
 2026-09,Intelex,21,28,30
-2026-09,Other private work,255,618,30
+2026-09,Other private work,22,118,30
 2026-09,Other public,13,23,30
 2026-09,SharedStake,4,11,30
 2026-09,SpecForge,12,19,30
 2026-09,This site,8,14,30
+2026-09,Trading tools,233,500,30
 2026-09,Wallet Radar,5,14,30
 2026-09,crss,71,217,30
 2026-09,eth2-quickstart,12,111,30
@@ -92,11 +94,12 @@ month,project,commits_landed,commits_all_refs,days
 2026-10,DispatchBench,203,324,31
 2026-10,Experiments monorepo,2,5,31
 2026-10,Intelex,0,1,31
-2026-10,Other private work,313,496,31
+2026-10,Other private work,59,96,31
 2026-10,Other public,4,8,31
 2026-10,SharedStake,0,3,31
 2026-10,SpecForge,0,6,31
 2026-10,This site,39,59,31
+2026-10,Trading tools,254,400,31
 2026-10,Wallet Radar,67,195,31
 2026-10,crss,144,366,31
 2026-10,eth2-quickstart,11,39,31
@@ -104,10 +107,11 @@ month,project,commits_landed,commits_all_refs,days
 2026-11,Claudefolio,1323,1883,25
 2026-11,DispatchBench,68,150,25
 2026-11,Experiments monorepo,3,8,25
-2026-11,Other private work,767,1143,25
+2026-11,Other private work,642,954,25
 2026-11,Other public,0,5,25
 2026-11,SharedStake,1,3,25
 2026-11,This site,193,353,25
+2026-11,Trading tools,125,189,25
 2026-11,Wallet Radar,30,56,25
 2026-11,crss,80,163,25
 2026-11,eth2-quickstart,14,24,25

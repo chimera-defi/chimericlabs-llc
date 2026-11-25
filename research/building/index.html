@@ -79,7 +79,7 @@ details > :not(summary) { margin-top: var(--space-6); }
 section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
 :root {
   --data-5: var(--data-sol); --data-6: var(--data-sonnet); --data-7: color-mix(in srgb, var(--data-grok) 45%, var(--data-claude)); --data-8: color-mix(in srgb, var(--data-sonnet) 50%, var(--data-pipeline));
-  --data-9: var(--data-effort-high); --data-10: var(--data-luna); --data-11: var(--data-frontier); --data-12: var(--data-beaten);
+  --data-9: #6cbf84; /* mid-tone: the near-white effort colour vanished on the light theme */ --data-10: #2a8f9c; /* teal: the pale luna blue was 1.6:1 on the light theme */ --data-11: var(--data-frontier); --data-12: #d9b95c; /* opaque: the beaten colour is 7% alpha and vanished as a slice */
 }
 .donut-wrap { display: grid; gap: var(--space-8); grid-template-columns: 1fr; justify-items: center; }
 .article-donut svg { width: min(100%, calc(var(--space-8) * 9)); }
@@ -110,8 +110,9 @@ section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
 .slice-9 { stroke: var(--data-9); } .slice-bg-9 { background: var(--data-9); }
 .slice-10 { stroke: var(--data-10); } .slice-bg-10 { background: var(--data-10); }
 .slice-11 { stroke: var(--data-11); } .slice-bg-11 { background: var(--data-11); }
-.slice-12 { stroke: var(--data-effort-medium); } .slice-bg-12 { background: var(--data-effort-medium); }
-.slice-13 { stroke: var(--data-effort-low); } .slice-bg-13 { background: var(--data-effort-low); }
+.slice-12 { stroke: var(--data-12); } .slice-bg-12 { background: var(--data-12); }
+.slice-13 { stroke: var(--data-effort-medium); } .slice-bg-13 { background: var(--data-effort-medium); }
+.slice-14 { stroke: var(--data-effort-low); } .slice-bg-14 { background: var(--data-effort-low); }
 /* /gen:donut-css */
 @media (max-width: 700px) {
   .article-chart .chart-desktop { display: none; }
@@ -152,42 +153,44 @@ section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
       <!-- gen:donut --><figure class="article-chart article-donut">
 <h3>Commits by project since October 2025</h3>
 <div class="donut-wrap">
-<svg viewBox="0 0 200 200" role="img" aria-label="Commits by project since October 2025, 18,938 in all. Largest: Claudefolio 47.3%, Other private work 15.3%, eth2-quickstart 7.0%." xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 200 200" role="img" aria-label="Commits by project since October 2025, 18,938 in all. Largest: Claudefolio 47.3%, Trading tools 8.5%, Staking tools 7.0%." xmlns="http://www.w3.org/2000/svg">
 <g transform="rotate(-90 100 100)">
 <circle cx="100" cy="100" r="70" fill="none" stroke-width="36" class="slice slice-1" pathLength="1000" stroke-dasharray="470 530" stroke-dashoffset="0"></circle>
-<circle cx="100" cy="100" r="70" fill="none" stroke-width="36" class="slice slice-2" pathLength="1000" stroke-dasharray="67 933" stroke-dashoffset="-473"></circle>
-<circle cx="100" cy="100" r="70" fill="none" stroke-width="36" class="slice slice-3" pathLength="1000" stroke-dasharray="52 948" stroke-dashoffset="-543"></circle>
-<circle cx="100" cy="100" r="70" fill="none" stroke-width="36" class="slice slice-4" pathLength="1000" stroke-dasharray="44 956" stroke-dashoffset="-598"></circle>
-<circle cx="100" cy="100" r="70" fill="none" stroke-width="36" class="slice slice-5" pathLength="1000" stroke-dasharray="38 962" stroke-dashoffset="-645"></circle>
-<circle cx="100" cy="100" r="70" fill="none" stroke-width="36" class="slice slice-6" pathLength="1000" stroke-dasharray="30 970" stroke-dashoffset="-686"></circle>
-<circle cx="100" cy="100" r="70" fill="none" stroke-width="36" class="slice slice-7" pathLength="1000" stroke-dasharray="23 977" stroke-dashoffset="-719"></circle>
-<circle cx="100" cy="100" r="70" fill="none" stroke-width="36" class="slice slice-8" pathLength="1000" stroke-dasharray="23 977" stroke-dashoffset="-745"></circle>
-<circle cx="100" cy="100" r="70" fill="none" stroke-width="36" class="slice slice-9" pathLength="1000" stroke-dasharray="22 978" stroke-dashoffset="-771"></circle>
-<circle cx="100" cy="100" r="70" fill="none" stroke-width="36" class="slice slice-10" pathLength="1000" stroke-dasharray="21 979" stroke-dashoffset="-796"></circle>
-<circle cx="100" cy="100" r="70" fill="none" stroke-width="36" class="slice slice-11" pathLength="1000" stroke-dasharray="15 985" stroke-dashoffset="-820"></circle>
-<circle cx="100" cy="100" r="70" fill="none" stroke-width="36" class="slice slice-12" pathLength="1000" stroke-dasharray="6 994" stroke-dashoffset="-838"></circle>
-<circle cx="100" cy="100" r="70" fill="none" stroke-width="36" class="slice slice-13" pathLength="1000" stroke-dasharray="150 850" stroke-dashoffset="-847"></circle>
+<circle cx="100" cy="100" r="70" fill="none" stroke-width="36" class="slice slice-2" pathLength="1000" stroke-dasharray="81 919" stroke-dashoffset="-473"></circle>
+<circle cx="100" cy="100" r="70" fill="none" stroke-width="36" class="slice slice-3" pathLength="1000" stroke-dasharray="68 932" stroke-dashoffset="-557"></circle>
+<circle cx="100" cy="100" r="70" fill="none" stroke-width="36" class="slice slice-4" pathLength="1000" stroke-dasharray="51 949" stroke-dashoffset="-628"></circle>
+<circle cx="100" cy="100" r="70" fill="none" stroke-width="36" class="slice slice-5" pathLength="1000" stroke-dasharray="45 955" stroke-dashoffset="-682"></circle>
+<circle cx="100" cy="100" r="70" fill="none" stroke-width="36" class="slice slice-6" pathLength="1000" stroke-dasharray="38 962" stroke-dashoffset="-730"></circle>
+<circle cx="100" cy="100" r="70" fill="none" stroke-width="36" class="slice slice-7" pathLength="1000" stroke-dasharray="30 970" stroke-dashoffset="-771"></circle>
+<circle cx="100" cy="100" r="70" fill="none" stroke-width="36" class="slice slice-8" pathLength="1000" stroke-dasharray="23 977" stroke-dashoffset="-804"></circle>
+<circle cx="100" cy="100" r="70" fill="none" stroke-width="36" class="slice slice-9" pathLength="1000" stroke-dasharray="22 978" stroke-dashoffset="-830"></circle>
+<circle cx="100" cy="100" r="70" fill="none" stroke-width="36" class="slice slice-10" pathLength="1000" stroke-dasharray="23 977" stroke-dashoffset="-855"></circle>
+<circle cx="100" cy="100" r="70" fill="none" stroke-width="36" class="slice slice-11" pathLength="1000" stroke-dasharray="21 979" stroke-dashoffset="-881"></circle>
+<circle cx="100" cy="100" r="70" fill="none" stroke-width="36" class="slice slice-12" pathLength="1000" stroke-dasharray="15 985" stroke-dashoffset="-905"></circle>
+<circle cx="100" cy="100" r="70" fill="none" stroke-width="36" class="slice slice-13" pathLength="1000" stroke-dasharray="6 994" stroke-dashoffset="-923"></circle>
+<circle cx="100" cy="100" r="70" fill="none" stroke-width="36" class="slice slice-14" pathLength="1000" stroke-dasharray="65 935" stroke-dashoffset="-932"></circle>
 </g>
 <text x="100" y="96" text-anchor="middle" class="donut-total">18,938</text>
 <text x="100" y="118" text-anchor="middle" class="chart-small">commits</text>
 </svg>
 <ol class="donut-legend">
 <li><i class="swatch slice-bg-1" aria-hidden="true"></i><span>Claudefolio</span><span class="donut-n">8,952 · 47.3%</span></li>
-<li><i class="swatch slice-bg-2" aria-hidden="true"></i><span>eth2-quickstart</span><span class="donut-n">1,333 · 7.0%</span></li>
-<li><i class="swatch slice-bg-3" aria-hidden="true"></i><span>Experiments monorepo</span><span class="donut-n">1,039 · 5.5%</span></li>
-<li><i class="swatch slice-bg-4" aria-hidden="true"></i><span>crss</span><span class="donut-n">897 · 4.7%</span></li>
-<li><i class="swatch slice-bg-5" aria-hidden="true"></i><span>Agent skills</span><span class="donut-n">776 · 4.1%</span></li>
-<li><i class="swatch slice-bg-6" aria-hidden="true"></i><span>SharedStake</span><span class="donut-n">622 · 3.3%</span></li>
-<li><i class="swatch slice-bg-7" aria-hidden="true"></i><span>Intelex</span><span class="donut-n">494 · 2.6%</span></li>
-<li><i class="swatch slice-bg-8" aria-hidden="true"></i><span>Wallet Radar</span><span class="donut-n">488 · 2.6%</span></li>
-<li><i class="swatch slice-bg-9" aria-hidden="true"></i><span>DispatchBench</span><span class="donut-n">474 · 2.5%</span></li>
-<li><i class="swatch slice-bg-10" aria-hidden="true"></i><span>This site</span><span class="donut-n">457 · 2.4%</span></li>
-<li><i class="swatch slice-bg-11" aria-hidden="true"></i><span>SpecForge</span><span class="donut-n">347 · 1.8%</span></li>
-<li><i class="swatch slice-bg-12" aria-hidden="true"></i><span>Other public</span><span class="donut-n">168 · 0.9%</span></li>
-<li><i class="swatch slice-bg-13" aria-hidden="true"></i><span>Other private work</span><span class="donut-n">2,891 · 15.3%</span></li>
+<li><i class="swatch slice-bg-2" aria-hidden="true"></i><span>Trading tools</span><span class="donut-n">1,600 · 8.5%</span></li>
+<li><i class="swatch slice-bg-3" aria-hidden="true"></i><span>Staking tools</span><span class="donut-n">1,333 · 7.0%</span></li>
+<li><i class="swatch slice-bg-4" aria-hidden="true"></i><span>Experiments monorepo</span><span class="donut-n">1,039 · 5.5%</span></li>
+<li><i class="swatch slice-bg-5" aria-hidden="true"></i><span>crss</span><span class="donut-n">897 · 4.7%</span></li>
+<li><i class="swatch slice-bg-6" aria-hidden="true"></i><span>Agent skills</span><span class="donut-n">776 · 4.1%</span></li>
+<li><i class="swatch slice-bg-7" aria-hidden="true"></i><span>SharedStake</span><span class="donut-n">622 · 3.3%</span></li>
+<li><i class="swatch slice-bg-8" aria-hidden="true"></i><span>Intelex</span><span class="donut-n">494 · 2.6%</span></li>
+<li><i class="swatch slice-bg-9" aria-hidden="true"></i><span>Wallet Radar</span><span class="donut-n">488 · 2.6%</span></li>
+<li><i class="swatch slice-bg-10" aria-hidden="true"></i><span>DispatchBench</span><span class="donut-n">474 · 2.5%</span></li>
+<li><i class="swatch slice-bg-11" aria-hidden="true"></i><span>This site</span><span class="donut-n">457 · 2.4%</span></li>
+<li><i class="swatch slice-bg-12" aria-hidden="true"></i><span>SpecForge</span><span class="donut-n">347 · 1.8%</span></li>
+<li><i class="swatch slice-bg-13" aria-hidden="true"></i><span>Other public</span><span class="donut-n">168 · 0.9%</span></li>
+<li><i class="swatch slice-bg-14" aria-hidden="true"></i><span>Other private work</span><span class="donut-n">1,291 · 6.8%</span></li>
 </ol>
 </div>
-<figcaption>Data through 2026-11-25. Private repos are not named; their commits are in “Other private work”.</figcaption>
+<figcaption>Data through 2026-11-25. Private repos are not named; they sit in “Trading tools” or “Other private work”.</figcaption>
 </figure><!-- /gen:donut -->
       <!-- gen:monthly --><figure class="article-chart article-bars">
 <h3>Commits per month, against the before-AI baseline</h3>

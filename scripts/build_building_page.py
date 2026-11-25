@@ -55,6 +55,8 @@ SKILL_MEMBERS = [
     ("Grok", "chimera-defi/grok-delegate"),
 ]
 
+# Donut label overrides, shared by the building page and the token page so the two cannot differ. The token page's public leak scan refuses the eth2 repo name.
+DONUT_LABELS = {"eth2": "Staking tools"}
 FOLD_BELOW_PCT = 1.5
 OTHER_PUBLIC = ("other-public", "Other public")
 OTHER_PRIVATE = ("other-private", "Other private work")
@@ -151,7 +153,7 @@ def donut_slices(groups, total):
             kept.append(g)
     kept += aliased
     kept.sort(key=lambda g: (-g["n"], g["label"]))
-    slices = [dict(g, colour=None) for g in kept]
+    slices = [dict(g, colour=None, label=DONUT_LABELS.get(g["key"], g["label"])) for g in kept]
     other_pub = groups[OTHER_PUBLIC[0]]["n"] + folded
     if other_pub:
         slices.append({"key": OTHER_PUBLIC[0], "label": OTHER_PUBLIC[1], "n": other_pub, "colour": "var(--data-effort-medium)"})
@@ -214,7 +216,7 @@ def donut_html(slices, total, data_through):
         *legend,
         '</ol>',
         '</div>',
-        f'<figcaption>Data through {data_through}. Private repos are not named; their commits are in “Other private work”.</figcaption>',
+        f'<figcaption>Data through {data_through}. Private repos are not named; they sit in “Trading tools” or “Other private work”.</figcaption>',
         '</figure>',
     ])
     return figure, "\n".join(css)
