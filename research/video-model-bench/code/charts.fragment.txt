@@ -84,14 +84,14 @@ identity 2.5, motion 3.0, clean 3.5
 one clip: the boy changed expression, zoom
 beaten on this chart" aria-label="wan2.7, $0.0664 per second, 156.9 s median to finish (1 runs), quality 3.00 of 5, identity 2.5, motion 3.0, clean 3.5, one clip: the boy changed expression, zoom, beaten on this chart"/>
 <text class="pl2" data-model="wan2.7" x="608.8" y="330.3" text-anchor="start">wan2.7</text>
-<circle class="pd" cx="350.9" cy="200.3" r="7" tabindex="0" data-model="veo3.1-lite (Flow, Plus plan)" data-family="google" data-x="0.0316" data-y="3.83" data-tip="veo3.1-lite (Flow, Plus plan)
+<circle class="pd" cx="350.9" cy="250.0" r="7" tabindex="0" data-model="veo3.1-lite (Flow, Plus plan)" data-family="google" data-x="0.0316" data-y="3.5" data-tip="veo3.1-lite (Flow, Plus plan)
 $0.0316 per second
-92 s median to finish (1 runs)
-quality 3.83 of 5
-identity 4.5, motion 3.0, clean 4.0
-10 Flow credits at $0.025 each (plan credits, not an API bill); boy only; 92 s or less to finish (10 s polls); style and face held, subtle motion, small Veo watermark
-beaten on this chart" aria-label="veo3.1-lite (Flow, Plus plan), $0.0316 per second, 92 s median to finish (1 runs), quality 3.83 of 5, identity 4.5, motion 3.0, clean 4.0, 10 Flow credits at $0.025 each (plan credits, not an API bill); boy only; 92 s or less to finish (10 s polls); style and face held, subtle motion, small Veo watermark, beaten on this chart"/>
-<text class="pl2" data-model="veo3.1-lite (Flow, Plus plan)" x="364.9" y="205.3" text-anchor="start">veo3.1-lite (Flow, Plus plan)</text>
+74 s median to finish (2 runs)
+quality 3.50 of 5
+identity 4.5, motion 2.5, clean 3.5
+10 Flow credits per clip at $0.025 each (plan credits, not an API bill); boy and wolf, 92 s and 56 s or less to finish (10 s polls); style and face held; boy subtle motion; wolf drifts wider instead of pushing in, thin streaks; small Veo watermark
+beaten on this chart" aria-label="veo3.1-lite (Flow, Plus plan), $0.0316 per second, 74 s median to finish (2 runs), quality 3.50 of 5, identity 4.5, motion 2.5, clean 3.5, 10 Flow credits per clip at $0.025 each (plan credits, not an API bill); boy and wolf, 92 s and 56 s or less to finish (10 s polls); style and face held; boy subtle motion; wolf drifts wider instead of pushing in, thin streaks; small Veo watermark, beaten on this chart"/>
+<text class="pl2" data-model="veo3.1-lite (Flow, Plus plan)" x="364.9" y="255.0" text-anchor="start">veo3.1-lite (Flow, Plus plan)</text>
 </svg>
 <!--video speed-->
 <svg viewBox="0 0 900 540" role="img" aria-labelledby="cvst cvsd" id="cvs"><title id="cvst">Quality against seconds per clip</title><desc id="cvsd">Video models: median generation time against quality.</desc>
@@ -181,14 +181,14 @@ identity 2.5, motion 3.0, clean 3.5
 one clip: the boy changed expression, zoom
 beaten on this chart" aria-label="wan2.7, $0.0664 per second, 156.9 s median to finish (1 runs), quality 3.00 of 5, identity 2.5, motion 3.0, clean 3.5, one clip: the boy changed expression, zoom, beaten on this chart"/>
 <text class="pl2" data-model="wan2.7" x="685.7" y="330.3" text-anchor="start">wan2.7</text>
-<circle class="pd" cx="392.8" cy="200.3" r="7" tabindex="0" data-model="veo3.1-lite (Flow, Plus plan)" data-family="google" data-x="92" data-y="3.83" data-tip="veo3.1-lite (Flow, Plus plan)
+<circle class="pd" cx="279.0" cy="250.0" r="7" tabindex="0" data-model="veo3.1-lite (Flow, Plus plan)" data-family="google" data-x="74" data-y="3.5" data-tip="veo3.1-lite (Flow, Plus plan)
 $0.0316 per second
-92 s median to finish (1 runs)
-quality 3.83 of 5
-identity 4.5, motion 3.0, clean 4.0
-10 Flow credits at $0.025 each (plan credits, not an API bill); boy only; 92 s or less to finish (10 s polls); style and face held, subtle motion, small Veo watermark
-beaten on this chart" aria-label="veo3.1-lite (Flow, Plus plan), $0.0316 per second, 92 s median to finish (1 runs), quality 3.83 of 5, identity 4.5, motion 3.0, clean 4.0, 10 Flow credits at $0.025 each (plan credits, not an API bill); boy only; 92 s or less to finish (10 s polls); style and face held, subtle motion, small Veo watermark, beaten on this chart"/>
-<text class="pl2" data-model="veo3.1-lite (Flow, Plus plan)" x="406.8" y="205.3" text-anchor="start">veo3.1-lite (Flow, Plus plan)</text>
+74 s median to finish (2 runs)
+quality 3.50 of 5
+identity 4.5, motion 2.5, clean 3.5
+10 Flow credits per clip at $0.025 each (plan credits, not an API bill); boy and wolf, 92 s and 56 s or less to finish (10 s polls); style and face held; boy subtle motion; wolf drifts wider instead of pushing in, thin streaks; small Veo watermark
+beaten on this chart" aria-label="veo3.1-lite (Flow, Plus plan), $0.0316 per second, 74 s median to finish (2 runs), quality 3.50 of 5, identity 4.5, motion 2.5, clean 3.5, 10 Flow credits per clip at $0.025 each (plan credits, not an API bill); boy and wolf, 92 s and 56 s or less to finish (10 s polls); style and face held; boy subtle motion; wolf drifts wider instead of pushing in, thin streaks; small Veo watermark, beaten on this chart"/>
+<text class="pl2" data-model="veo3.1-lite (Flow, Plus plan)" x="293.0" y="255.0" text-anchor="start">veo3.1-lite (Flow, Plus plan)</text>
 </svg>
 <!--video cost speed-->
 <svg viewBox="0 0 900 540" role="img" aria-labelledby="cvct cvcd" id="cvc"><title id="cvct">Cost against seconds per clip</title><desc id="cvcd">Video models: cost per second of video against generation time. Lower left is better.</desc>
@@ -275,12 +275,12 @@ identity 2.5, motion 3.0, clean 3.5
 one clip: the boy changed expression, zoom
 beaten on this chart" aria-label="wan2.7, $0.0664 per second, 156.9 s median to finish (1 runs), quality 3.00 of 5, identity 2.5, motion 3.0, clean 3.5, one clip: the boy changed expression, zoom, beaten on this chart"/>
 <text class="pl2" data-model="wan2.7" x="685.7" y="221.4" text-anchor="start">wan2.7</text>
-<circle class="pd" cx="392.8" cy="346.0" r="7" tabindex="0" data-model="veo3.1-lite (Flow, Plus plan)" data-family="google" data-x="92" data-y="0.0316" data-tip="veo3.1-lite (Flow, Plus plan)
+<circle class="pd" cx="279.0" cy="346.0" r="7" tabindex="0" data-model="veo3.1-lite (Flow, Plus plan)" data-family="google" data-x="74" data-y="0.0316" data-tip="veo3.1-lite (Flow, Plus plan)
 $0.0316 per second
-92 s median to finish (1 runs)
-quality 3.83 of 5
-identity 4.5, motion 3.0, clean 4.0
-10 Flow credits at $0.025 each (plan credits, not an API bill); boy only; 92 s or less to finish (10 s polls); style and face held, subtle motion, small Veo watermark
-beaten on this chart" aria-label="veo3.1-lite (Flow, Plus plan), $0.0316 per second, 92 s median to finish (1 runs), quality 3.83 of 5, identity 4.5, motion 3.0, clean 4.0, 10 Flow credits at $0.025 each (plan credits, not an API bill); boy only; 92 s or less to finish (10 s polls); style and face held, subtle motion, small Veo watermark, beaten on this chart"/>
-<text class="pl2" data-model="veo3.1-lite (Flow, Plus plan)" x="406.8" y="351.0" text-anchor="start">veo3.1-lite (Flow, Plus plan)</text>
+74 s median to finish (2 runs)
+quality 3.50 of 5
+identity 4.5, motion 2.5, clean 3.5
+10 Flow credits per clip at $0.025 each (plan credits, not an API bill); boy and wolf, 92 s and 56 s or less to finish (10 s polls); style and face held; boy subtle motion; wolf drifts wider instead of pushing in, thin streaks; small Veo watermark
+beaten on this chart" aria-label="veo3.1-lite (Flow, Plus plan), $0.0316 per second, 74 s median to finish (2 runs), quality 3.50 of 5, identity 4.5, motion 2.5, clean 3.5, 10 Flow credits per clip at $0.025 each (plan credits, not an API bill); boy and wolf, 92 s and 56 s or less to finish (10 s polls); style and face held; boy subtle motion; wolf drifts wider instead of pushing in, thin streaks; small Veo watermark, beaten on this chart"/>
+<text class="pl2" data-model="veo3.1-lite (Flow, Plus plan)" x="293.0" y="351.0" text-anchor="start">veo3.1-lite (Flow, Plus plan)</text>
 </svg>

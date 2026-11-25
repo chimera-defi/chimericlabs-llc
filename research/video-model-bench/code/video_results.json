@@ -134,5 +134,13 @@
   "latency_s": 92.0,
   "status": "completed",
   "file": "out/flow_boy.mp4"
+ },
+ {
+  "model": "veo3.1-lite-flow",
+  "img": "wolf",
+  "cost_usd": 0.25,
+  "latency_s": 56.0,
+  "status": "completed",
+  "file": "out/flow_wolf.mp4"
  }
 ]
