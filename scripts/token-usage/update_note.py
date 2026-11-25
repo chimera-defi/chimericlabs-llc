@@ -26,7 +26,8 @@ notes['gaps'] += [
   f"Tokens, Claude + Codex, with recovered days: {b(t0)} then, {b(t1)} now.",
   f"Recovered days in that total: {b(sum(int(r['tokens_claude']) for r in rows if r['claude_token_status'] == 'recovered'))}. Headline tiles leave them out.",
 ]
-notes['changes'].append(f"Weekly limit: {wk['percent_used']}% used on {wk['date']}.")
+read = dt.datetime.fromisoformat(wk['sampled_at']).astimezone(dt.timezone.utc).strftime('%Y-%m-%d %H:%M UTC') if wk.get('sampled_at') else wk['date']   # the reading time, so the number is not mistaken for end of day
+notes['changes'].append(f"Weekly limit: {wk['percent_used']}% used, read {read}.")
 if wk.get('sampled_at'):
     now, reset = dt.datetime.fromisoformat(wk['sampled_at']), dt.datetime.fromisoformat(wk['week_reset'])
     gone = 1 - (reset - now) / dt.timedelta(days=7)
