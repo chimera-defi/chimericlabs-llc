@@ -1,0 +1,10 @@
+date,text
+2026-11-23,Restated: 4 to 9 Nov held no commits until the sweep was rerun.
+2026-11-24,Burn cuts applied: launchers on Sonnet medium and builder subagents on Sonnet.
+2026-11-24,Idle sessions are now compacted before a wake. The change is merged.
+2026-11-24,"Advisor test: the limit stayed flat, so it cannot tell. The advisor stays on."
+2026-11-25,"Restated: two repos archived on 8 Nov are counted again, from the archive."
+2026-11-25,"Early-November commits: the old page said 16.8K, now 15.6K."
+2026-11-25,"Cause: 646 backup refs in the monorepo held about 1.2K extra commits."
+2026-11-25,"Two repos had no clone for a while; both came back from an archive."
+2026-11-25,"Unexplained: this site's count rose by 65 commits."

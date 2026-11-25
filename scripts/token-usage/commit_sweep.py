@@ -25,7 +25,8 @@ import re
 import subprocess
 import sys
 
-ROOTS = ["/home/agents/workspace", "/home/agents/.sessions", "/home/agents/worktrees"]
+# restored/ holds repos archived on 2026-11-08 (extracted from the archive tgz) so their commits stay in the series
+ROOTS = ["/home/agents/workspace", "/home/agents/.sessions", "/home/agents/worktrees", "/home/agents/claude-usage-audit/restored"]
 CATS = ["src", "test", "doc", "cfg", "other", "noise"]
 BULK_FILES = 100  # a commit touching more files than this is an import or mass move; excluded from the code basis
 

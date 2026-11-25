@@ -1,21 +1,21 @@
 {
  "carried": [],
- "data_through": "2026-11-24",
+ "data_through": "2026-11-25",
  "projects": [
   {
-   "commits_all_refs": 8921,
-   "commits_landed": 6690,
+   "commits_all_refs": 8952,
+   "commits_landed": 6714,
    "first": "2026-06-12",
    "label": "Claudefolio",
-   "last": "2026-11-24",
+   "last": "2026-11-25",
    "repos": {}
   },
   {
-   "commits_all_refs": 2800,
-   "commits_landed": 1566,
+   "commits_all_refs": 2891,
+   "commits_landed": 1642,
    "first": "2026-04-06",
    "label": "Other private work",
-   "last": "2026-11-24",
+   "last": "2026-11-25",
    "repos": {}
   },
   {
@@ -94,23 +94,23 @@
    }
   },
   {
-   "commits_all_refs": 471,
-   "commits_landed": 269,
+   "commits_all_refs": 474,
+   "commits_landed": 271,
    "first": "2026-10-22",
    "label": "DispatchBench",
-   "last": "2026-11-24",
+   "last": "2026-11-25",
    "repos": {
-    "chimera-defi/dispatchbench": 471
+    "chimera-defi/dispatchbench": 474
    }
   },
   {
-   "commits_all_refs": 439,
-   "commits_landed": 258,
+   "commits_all_refs": 457,
+   "commits_landed": 266,
    "first": "2026-03-30",
    "label": "This site",
-   "last": "2026-11-24",
+   "last": "2026-11-25",
    "repos": {
-    "chimera-defi/chimericlabs-llc": 439
+    "chimera-defi/chimericlabs-llc": 457
    }
   },
   {

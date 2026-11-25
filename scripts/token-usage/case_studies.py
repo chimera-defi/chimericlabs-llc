@@ -1,6 +1,6 @@
 #!/usr/bin/env python3 -I
 """Build case studies from local benchmark results and handoff data."""
-import csv, html, json, os, sys
+import subprocess, csv, html, json, os, sys
 from collections import Counter, defaultdict
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
@@ -42,11 +42,13 @@ def main():
     studies = [study('change', 'A change to session instructions', paras[0], '', paras[1]+'\n\n'+paras[2], paras[3], '', ['Codex rollout counters and Claude session transcripts for the change'], paras[4]+'\n\n'+paras[5], {})]
     if not PROJECTS.is_dir(): raise FileNotFoundError('CLAUDE_PROJECTS directory is missing')
     boundaries = defaultdict(list); seen = set()
-    files = list(PROJECTS.glob('*/*.jsonl'))
+    files = sorted({Path(str(g)[:-4]) if str(g).endswith('.zst') else g for g in [*PROJECTS.glob('*/*.jsonl'), *PROJECTS.glob('*/*.jsonl.zst')]})   # old transcripts are .zst
     if not files: raise ValueError('no Claude project transcripts found')
     for path in files:
-        with path.open() as f:
-            for line in f:
+        zst = Path(str(path) + '.zst')
+        text = path.read_text(errors='ignore') if path.exists() else subprocess.run(['zstd', '-dc', '-q', str(zst)], capture_output=True).stdout.decode('utf8', 'replace')
+        if True:
+            for line in text.splitlines():
                 if 'compactMetadata' not in line: continue
                 obj = json.loads(line); meta = obj.get('compactMetadata'); stamp = obj.get('timestamp')
                 if not isinstance(meta, dict) or not stamp or datetime.fromisoformat(stamp.replace('Z', '+00:00')) > cutoff: continue

@@ -1,0 +1,10 @@
+[Unit]
+Description=Daily research/data refresh
+
+[Timer]
+# Install like the weekly snapshot timer: copy both files to ~/.config/systemd/user/, daemon-reload, enable --now. Needs the worktree named in the service.
+OnCalendar=*-*-* 00:30:00 UTC
+Persistent=true
+
+[Install]
+WantedBy=timers.target

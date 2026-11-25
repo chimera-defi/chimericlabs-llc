@@ -1,0 +1,10 @@
+[Unit]
+Description=Refresh research/data (token and commit series), run its checks; writes files only, never pushes or deploys
+
+[Service]
+Type=oneshot
+Environment=PATH=%h/.local/bin:%h/.npm-global/bin:/usr/local/bin:/usr/bin:/bin
+# Run in a worktree of chimericlabs-llc on a refresh branch; a session reviews the diff and opens the PR. Exit 1 = a check failed: read the journal.
+# Full run (the commit sweep included): a --quick run would fill new days with zero commits. flock: never alongside a manual refresh.
+ExecStart=/usr/bin/flock -n %t/token-usage-refresh.lock /bin/bash %h/workspace/chimericlabs-data-refresh/scripts/token-usage/refresh.sh
+TimeoutStartSec=7200

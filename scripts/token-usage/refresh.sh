@@ -12,7 +12,7 @@ QUICK=0; [ "${1:-}" = "--quick" ] && QUICK=1
 for d in "$ACQ" "$PAGE"; do [ -d "$d" ] || { echo "missing $d (set TOKEN_USAGE_SRC)"; exit 1; }; done
 
 echo "== 1/6 tokens: usage-audit, Claude csvs, Codex sessions, ledger, MCP, storage"
-( cd "$ACQ" && ./refresh.sh )
+( cd "$ACQ" && TOKEN_REPO="$REPO" ./refresh.sh )
 if [ "$QUICK" = 0 ]; then
   echo "== 2/6 commits and lines of code (sweeps every git repo under ~/workspace; ~20 min)"
   ( cd "$ACQ/commits" && python3 -I commit_sweep.py && python3 -I commit_scope.py )
@@ -26,6 +26,9 @@ echo "== 4/6 Codex daily split, then copy datasets into handoff/ and rebuild the
 ( cd "$ACQ" && python3 -I analysis/codex_daily_split.py 2026-10-18 )
 python3 -I "$REPO/scripts/token-usage/sync_handoff.py" "$ACQ" "$PAGE/handoff"
 ( cd "$ACQ" && python3 -I headline_refresh.py "$PAGE/handoff" )
+python3 -I "$REPO/scripts/token-usage/snapshot_weekly.py" --csv "$REPO/research/token-usage/weekly_limit.csv" --sync-from "${WEEKLY_LIMIT_STATE:-$HOME/.local/state/chimericlabs-llc/weekly_limit.csv}"
+cp "$REPO/research/token-usage/weekly_limit.csv" "$PAGE/handoff/weekly_limit.csv"   # the page draws it
+cp "$REPO/research/building/charts-data.json" "$PAGE/handoff/project_commits.json"   # the page draws the project breakdown from the building page data
 python3 -I "$REPO/scripts/token-usage/last7.py" "$PAGE/handoff"
 python3 -I "$REPO/scripts/token-usage/case_studies.py" "$PAGE/handoff"   # section 9 snippet + data, from the same cutoff
 cp "$REPO/research/token-usage/case_studies.html" "$PAGE/handoff/case_studies.html"   # the script writes into the repo; the build reads handoff/
@@ -34,6 +37,9 @@ if [ "$QUICK" = 0 ] || [ ! -f "$ACQ/commits/commits_unified.csv" ]; then
   python3 -I "$REPO/scripts/token-usage/commit_sweep.py" "$ACQ/commits/commits_unified.csv"
 fi
 python3 -I "$REPO/scripts/token-usage/build_daily.py" "$ACQ/commits/commits_unified.csv" "$REPO/research/token-usage/data.json" "$PAGE/handoff/daily.csv"
+git -C "$REPO" show refs/remotes/origin/main:research/token-usage/data.json > "$PAGE/handoff/.old_data.json"   # the note says what changed since the page now live
+python3 -I "$REPO/scripts/token-usage/update_note.py" "$PAGE/handoff/.old_data.json" "$PAGE/public/data.json" "$PAGE/handoff/daily.csv" "$REPO/research/token-usage/weekly_limit.csv" "$PAGE/handoff/update_note.json" "$REPO/research/data/changelog.csv" "$PAGE/handoff/claude_daily_dim.csv"
+rm -f "$PAGE/handoff/.old_data.json"
 echo "== 5/6 build twice (traffic needs the first build's MCP totals), verify, leak scan"
 ( cd "$PAGE" && python3 -I build_v5.py && python3 -I build_v5.py --public )
 # tokens in the daily table must come from this build's data.json, so build the table again and rebuild
@@ -64,6 +70,8 @@ python3 -I "$REPO/scripts/token-usage/nonadditive_daily.py" "$PAGE/handoff" "$RE
 echo "== 6c/6 daily table into the repo, then validate it against data.json (one commit definition)"
 cp "$PAGE/handoff/daily.csv" "$PAGE/handoff/monthly.csv" "$REPO/research/token-usage/"
 python3 -I "$REPO/scripts/token-usage/validate_daily.py" "$REPO/research/token-usage/daily.csv" "$REPO/research/token-usage/data.json"
-echo "== 6d weekly limit: merge the daily timer's state CSV into the repo and take today's reading if the timer has not"
-python3 -I "$REPO/scripts/token-usage/snapshot_weekly.py" --csv "$REPO/research/token-usage/weekly_limit.csv" --sync-from "${WEEKLY_LIMIT_STATE:-$HOME/.local/state/chimericlabs-llc/weekly_limit.csv}"
+echo "== 7 research/data/: the shared series every page reads (export, building's commit series, checks)"
+python3 -I "$REPO/scripts/data/export.py" "$PAGE/handoff"
+python3 -I "$REPO/scripts/data/commits.py" "$ACQ/commits/commits_unified.csv" "$REPO/research/data" --through "$(cut -c1-10 "$ACQ/data_through.txt")"   # building page's series, same sweep
+python3 -I "$REPO/scripts/data/check_data.py" --fresh
 echo "DONE: data through $(cat "$ACQ/data_through.txt"). Review 'git diff --stat' and open a PR; do not push to main."
