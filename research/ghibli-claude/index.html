@@ -81,7 +81,7 @@ Your browser cannot play this video. <a href="cut14-720p.mp4">Download it (720p,
 
 
 <h2>What it cost</h2>
-<p><strong>$9.91 of API in all, and 18.6% of a week's Claude use on our host.</strong> The film itself took $4.78 of the API spend; the model probes behind the two bench pages took the other $5.13. ChatGPT Instant images and Claude tokens ran on flat plans, $20 and $200 a month (prices as stated by the operator). On a plan an extra image or token costs $0 until the plan's limit; past the limit the job stops until it resets. Video has no plan route in our setup, so video is API price only.</p>
+<p><strong>$9.95 of API in all, and 18.6% of a week's Claude use on our host.</strong> The film itself took $4.82 of the API spend; the model probes behind the two bench pages took the other $5.13. ChatGPT Instant images and Claude tokens ran on flat plans, $20 and $200 a month (prices as stated by the operator). On a plan an extra image or token costs $0 until the plan's limit; past the limit the job stops until it resets. Video has no plan route in our setup, so video is API price only.</p>
 <h3>API spend by model</h3>
 <div class="tablewrap">
 <table>
@@ -89,9 +89,9 @@ Your browser cannot play this video. <a href="cut14-720p.mp4">Download it (720p,
 <thead><tr><th>Model</th><th>Kind</th><th class="num">Calls</th><th class="num">API price per asset</th><th>Effective price on a plan</th><th class="num">Subtotal</th><th>Used for</th></tr></thead>
 <tbody>
 <tr><th scope="row"><code>veo3.1-fast</code></th><td>video</td><td class="num">26</td><td class="num">$0.14</td><td>none: video is API only</td><td class="num">$3.64</td><td>attempt B 13, cut 9 5, cut 10 4, cut 11 Fable lead 1, compositor test 1, video bench 2</td></tr>
-<tr><th scope="row"><code>gpt-image-2.6-flare</code></th><td>image</td><td class="num">15</td><td class="num">$0.03 to $0.11</td><td>API only as run</td><td class="num">$1.26</td><td>attempt B style sheet and 3 test keys 4, cut 9 4, cut 10 5, cut 14 2</td></tr>
+<tr><th scope="row"><code>gpt-image-2.6-flare</code></th><td>image</td><td class="num">16</td><td class="num">$0.03 to $0.11</td><td>API only as run</td><td class="num">$1.29</td><td>attempt B style sheet and 3 test keys 4, cut 9 4, cut 10 5, cut 14 2, cut 15 1</td></tr>
 <tr><th scope="row"><code>gpt-image-2.6-sunburst</code></th><td>image</td><td class="num">1</td><td class="num">$0.026</td><td>API only as run</td><td class="num">$0.03</td><td>cut 14</td></tr>
-<tr><th scope="row"><code>gpt-image-2</code></th><td>image</td><td class="num">20</td><td class="num">$0.0085</td><td>API only as run</td><td class="num">$0.17</td><td>fox toolkit test 11, image probe 4, cut 11 Fable lead 3, toolkit tests 2</td></tr>
+<tr><th scope="row"><code>gpt-image-2</code></th><td>image</td><td class="num">21</td><td class="num">$0.0085</td><td>API only as run</td><td class="num">$0.18</td><td>fox toolkit test 11, image probe 4, cut 11 Fable lead 3, toolkit tests 2, cut 15 1</td></tr>
 <tr><th scope="row"><code>seedream-5-5</code></th><td>image</td><td class="num">4</td><td class="num">$0.028</td><td>API only as run</td><td class="num">$0.11</td><td>image probe</td></tr>
 <tr><th scope="row"><code>gemini-3-pro-image-preview</code></th><td>image</td><td class="num">4</td><td class="num">$0.02</td><td>API only as run</td><td class="num">$0.08</td><td>image probe</td></tr>
 <tr><th scope="row"><code>veo3.1-quality</code></th><td>video</td><td class="num">1</td><td class="num">$1.00</td><td>none: video is API only</td><td class="num">$1.00</td><td>video bench</td></tr>
@@ -103,13 +103,13 @@ Your browser cannot play this video. <a href="cut14-720p.mp4">Download it (720p,
 <tr><th scope="row"><code>MiniMax-Hailuo-2.3-Fast</code></th><td>video</td><td class="num">2</td><td class="num">$0.15</td><td>none: video is API only</td><td class="num">$0.30</td><td>video bench</td></tr>
 <tr><th scope="row"><code>wan2.6-i2v-flash</code></th><td>video</td><td class="num">2</td><td class="num">$0.08</td><td>none: video is API only</td><td class="num">$0.17</td><td>video bench</td></tr>
 <tr><th scope="row">ChatGPT Instant</th><td>image</td><td class="num">97</td><td class="num">not sold on the API</td><td>$0 until the plan cap; about 70 s each in a browser, one at a time</td><td class="num">$0</td><td>v1 8, v2 71, attempt B 13, cut 13 wolf heads 2, outro 3 (image files kept; rejected takes were not logged)</td></tr>
-<tr><th scope="row">Total</th><td>44 images and 40 videos on the API</td><td class="num">84</td><td class="num"></td><td></td><td class="num">$9.91</td><td>film $4.78, bench probes $5.13</td></tr>
+<tr><th scope="row">Total</th><td>46 images and 40 videos on the API</td><td class="num">86</td><td class="num"></td><td></td><td class="num">$9.95</td><td>film $4.82, bench probes $5.13</td></tr>
 </tbody>
 </table>
 </div>
 <ul>
 <li>Not charged: <code>hailuo-2.3-fast</code> returned "service_unavailable" once, and one flare and one sunburst call timed out; each was retried.</li>
-<li>A <a href="../image-model-bench/#recheck">frontier recheck</a> on 25 Nov kept gpt-image-2 ($0.0085 an image) and veo3.1-fast ($0.14 a clip) as the defaults. Cut 15's first round made no new art; it is now reopened to remake some with the recheck's picks. The recheck spend is not in this total.</li>
+<li>A <a href="../image-model-bench/#recheck">frontier recheck</a> on 25 Nov kept gpt-image-2 ($0.0085 an image) and veo3.1-fast ($0.14 a clip) as the defaults. Cut 15's second round used the recheck's picks for its two new images. The recheck spend is not in this total.</li>
 <li>Not in the total: attempt A's 16 flare stills (about $0.57) are in no cost log.</li>
 </ul>
 <h3>Cost by cut</h3>
@@ -128,6 +128,7 @@ Your browser cannot play this video. <a href="cut14-720p.mp4">Download it (720p,
 <tr><th scope="row">Cut 10</th><td>Opus lead, a blind strip review by Fable, Opus and Haiku, then a polish pass with no new generation</td><td>about 1.5 h, from the session log</td><td class="num">$0.94</td><td class="num">0</td></tr>
 <tr><th scope="row">Cut 11, Opus and Fable leads (not published)</th><td>Opus lead, 3 renders; Fable lead, 4 renders</td><td>about 2 h (Opus) and about 3 h (Fable)</td><td class="num">$0 and $0.17</td><td class="num">0</td></tr>
 <tr><th scope="row">Cut 14</th><td>Opus lead on cut 12, three full-size fault passes, a blind review by Opus, Sonnet, Haiku and Fable</td><td>not logged</td><td class="num">$0.10</td><td class="num">2, cut 13's wolf heads</td></tr>
+<tr><th scope="row">Cut 15 (not shipped)</th><td>Opus lead on cut 14, two blind reviews by Opus, Sonnet and Haiku, one full-size fault pass</td><td>not logged</td><td class="num">$0.04</td><td class="num">0</td></tr>
 <tr><th scope="row">Cut 12</th><td>Opus lead on cut 10, a blind review by Fable, Opus and Haiku</td><td>not logged; its commits span about 36 min</td><td class="num">$0</td><td class="num">0</td></tr>
 <tr><th scope="row">Cut 6, 7 and 8</th><td>Cut 8: one Sonnet builder, wheels, neck, eyes. Cut 7: an audit by a Fable reviewer, then six Sonnet builders</td><td>about 3 h</td><td class="num">$0</td><td class="num">0</td></tr>
 </tbody>
@@ -135,7 +136,7 @@ Your browser cannot play this video. <a href="cut14-720p.mp4">Download it (720p,
 </div>
 <ul>
 <li>Images came from ChatGPT Instant ($20 plan), driven through the operator's Chrome, about a minute or two each, $0 each on the plan. The plan's image limit was reached before the final fixes, and image work stopped there.</li>
-<li>The cut rows add to $4.54. The other $0.24 of the film's $4.78 went on toolkit tests: one compositor test clip and 13 gpt-image-2 test images, the fox among them.</li>
+<li>The cut rows add to $4.58. The other $0.24 of the film's $4.82 went on toolkit tests: one compositor test clip and 13 gpt-image-2 test images, the fox among them.</li>
 <li>The v2 time includes the review rounds. The best cut's time includes my critique pass, which is why it is not shorter.</li>
 <li>No Astra figure to compare. The Astra film was not ours to cost.</li>
 </ul>
@@ -155,7 +156,7 @@ Your browser cannot play this video. <a href="cut14-720p.mp4">Download it (720p,
 </tbody>
 </table>
 </div>
-<p class="small">The share is of all Claude use on our host that week, weighted by usage-audit, not of the plan's weekly limit, which the tool does not report. The weights count input and cache reads as well as output, so a share does not follow output tokens alone. The toolkit row is not part of the film total. On the $200 plan these tokens cost $0 each until the weekly limit; past it the work stops. The API price column says not counted because usage-audit gives no dollar figure. Counted on 25 Nov, while cut 15 was still running. The sessions that wrote this page are not included.</p>
+<p class="small">The share is of all Claude use on our host that week, weighted by usage-audit, not of the plan's weekly limit, which the tool does not report. The weights count input and cache reads as well as output, so a share does not follow output tokens alone. The toolkit row is not part of the film total. On the $200 plan these tokens cost $0 each until the weekly limit; past it the work stops. The API price column says not counted because usage-audit gives no dollar figure. Counted on 25 Nov, while cut 15 was still running, so cut 15's second round is not in it. The sessions that wrote this page are not included.</p>
 <h3>Opus vs Fable, same brief</h3>
 <p>For cut 11, an Opus lead and a Fable lead rebuilt the cut 10 film from the same brief, at the same time, on our film toolkit. The operator's neutral blind ranking put cut 10 first, the Opus cut 11 second and the Fable cut 11 third. The Fable cut had the richest beats and a fidelity score of 8, but more visible defects: a flat wolf head layered into the bike, an off-model boy at dusk and a see-through wolf. It spent $0.17 of API against $0, and took about 3 h against 2 h. It also gated itself more strictly: it wrote a pass limit for each check before the work and reported three checks as failed. Head to head, neither lead won clearly: an Opus judge put the Opus cut first on three of four criteria, and a Haiku judge put the Fable cut first on all four, by what it called a small motion edge.</p>
 
@@ -176,7 +177,7 @@ Your browser cannot play this video. <a href="cut14-720p.mp4">Download it (720p,
 </figure>
 
 <h2 id="camera">Slow camera moves on stills</h2>
-<p>Attempt B's stills-only version (13 keyframes, no generated motion) showed that slow camera moves over a still look great. Cut 15 added eased camera moves like these to four shots; it is still in review (<a href="#cut15">below</a>).</p>
+<p>Attempt B's stills-only version (13 keyframes, no generated motion) showed that slow camera moves over a still look great. Cut 15 added eased camera moves like these to four shots; it did not pass review (<a href="#cut15">below</a>).</p>
 <video class="film" controls preload="none" poster="attemptB-poster.jpg" width="1280" height="720">
 <source src="attemptB-720p.mp4" type="video/mp4">
 Your browser cannot play this video. <a href="attemptB-720p.mp4">Download it (720p, 13 MB).</a>
@@ -184,13 +185,16 @@ Your browser cannot play this video. <a href="attemptB-720p.mp4">Download it (72
 <p class="figcap">Attempt B, stills only, 42.4 s.</p>
 <p>The same 13 keyframes with slow camera moves only, made first while the API credit was spent. The keyframes came from ChatGPT Instant, so $0 in API calls.</p>
 
-<h2 id="cut15">Cut 15: into the tunnel, in review</h2>
-<p><strong>Cut 14 is the shipped cut until cut 15 passes.</strong> In cut 15's first round, on 25 Nov, it fixed the tunnel entry but lost its blind review and added two faults of its own. Cut 15 is now reopened: a second round remakes some of its art with the frontier recheck's picks. It is judged again against cut 14 under the same rule (it ships only if it wins the blind review and a full-size side by side finds it no worse), now with 1:1 crop sheets of the changed areas. This section will carry the second round's result.</p>
+<h2 id="cut15">Cut 15: into the tunnel, not shipped</h2>
+<p><strong>Cut 14 stays the final cut.</strong> Cut 15 fixed the tunnel entry but lost both of its blind reviews on 25 Nov. The rule was the same each time: it ships only if it wins the blind review and a full-size side by side finds it no worse than cut 14. The second review was the last one allowed, so the work stopped there.</p>
 <ul>
 <li>What changed: the train goes into the tunnel, cut at the portal with a matte taken from the plate and a dark interior. The rails are measured from the plate; the two contacts the audit found over 1.5 px (2.23 and 1.84 px) are fixed. Attempt B's eased camera moves are on the stamp, window, bell and lick shots.</li>
 <li>First round, blind review: cut 15 against cut 14 and a hidden copy of cut 14, 57 sheets per judge. Cut 15 came first for none of the three judges. Opus scored all three 27 and could not tell them apart. Sonnet gave cut 15 26 and the copy 27; Haiku 24 and 28. The copy is the same picture as cut 14, so those gaps are judge noise.</li>
 <li>First round, full-size side by side, 15 moments: cut 15 is better at the 3 tunnel-entry moments, the same at 10, and worse at 2. The train runs over the far wisteria at 9.5 s, and a window post shows at the left edge at 18.6 s.</li>
-<li>Lesson: a real one-second fix can lose a whole-film review. Review a local fix with sheets dense on its moment.</li>
+<li>Second round: two new images, the tunnel mouth's inside (<code>gpt-image-2</code>, $0.0085, used) and a train side with a real cut-out (<code>gpt-image-2.6-flare</code>, $0.031, not used: no visible gain in the shot). $0.04 of the $15 set aside was spent, with one full render.</li>
+<li>Second round, blind review: the same three versions on a new seed, plus five crop sheets of the changed areas at full size. Opus scored cut 15 above both others on 1 of 4 criteria (faithfulness to the reference) and named it its overall pick, but its total was 27, the same as the copy, and the rule counts scores. Haiku: first on none, 23 against the copy's 26. Sonnet: first on none, 22 against 28, last on every criterion. Fable was not asked, since the rule had already failed.</li>
+<li>What the judges saw at full size: they credited the deeper, darker tunnel mouth (Opus: the train "reads as coming out of a real tunnel"; in the copy the tunnel is "a flat, evenly lit yellow tube"). They faulted a seam at a car joint where the rear cars meet the wisteria, 9.4 to 9.8 s, which we confirmed at full size, and Sonnet saw the cars in the tunnel as "see-through shapes".</li>
+<li>Lesson: a real one-second fix can lose a whole-film review. Review a local fix with sheets dense on its moment, and make sure the fix adds no seam of its own.</li>
 </ul>
 <figure class="shots pair" aria-label="The tunnel entry in cut 14 and cut 15, frame strips from 8.4 to 10.4 seconds">
 <figure><img src="cut15-entry-before.jpg" width="1200" height="1056" loading="lazy" alt="Frame strip of the tunnel entry from 8.4 to 10.4 seconds in cut 14: the train fades beside the tunnel mouth"><figcaption class="figcap">Cut 14, 8.4 to 10.4 s.</figcaption></figure>
@@ -341,7 +345,7 @@ Your browser cannot play this video. <a href="fox-720p.mp4">Download it (720p, 5
 
 <h2>Code</h2>
 <p>The film's engine, shots and final files are in the repo named in <a href="#source">Postscript: source and data</a>.<br><span class="small">Named for who built it: Claude made this, Astra is what we tried to match. The repo is private until published; the notes, prompts and strips of the earlier cuts are linked from <a href="#source">Postscript: source and data</a> at the end.</span></p>
-<p class="small">Written by Wren (Claude Sonnet 5.5) on behalf of chimera-defi. Cut 10, cut 12 and cut 14 updates, the cost tables, plan prices and the cut 15 first-round result, by Wren (Claude Opus 5.5).</p>
+<p class="small">Written by Wren (Claude Sonnet 5.5) on behalf of chimera-defi. Cut 10, cut 12 and cut 14 updates, the cost tables, plan prices and the cut 15 result, by Wren (Claude Opus 5.5).</p>
 <h2>Credits</h2>
 <ul>
 <li>Original film and idea: GPT-6.2 Astra, shared by <a href="https://x.com/reach_vb/status/2123663632190021985" target="_blank" rel="noreferrer">@reach_vb on X</a>. We recreated it; it is not hosted here.</li>
