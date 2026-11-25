@@ -20,7 +20,7 @@ def tot(daily, col): return sum(int(r[col]) for r in daily)
 c = lambda x: f'{x/1000:.1f}K' if x >= 1000 else str(x); b = lambda x: f'{x/1e9:.1f}B'
 t0, t1 = tot(o, 'tokens_total'), tot(n, 'tokens_total')
 notes = {'commits': [], 'changes': [], 'gaps': []}   # each line goes to the page section it belongs to
-notes['commits'].append(f"Landed commits: {c(tot(o,'commits_landed'))} then, {c(tot(n,'commits_landed'))} now.")
+notes['commits'].append(f"Landed commits, on the main branch only: {c(tot(o,'commits_landed'))} then, {c(tot(n,'commits_landed'))} now.")
 notes['changes'].append(f"Data now runs to {d1}, from {d0}.")
 notes['gaps'] += [
   f"Tokens, Claude + Codex, with recovered days: {b(t0)} then, {b(t1)} now.",

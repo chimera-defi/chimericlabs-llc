@@ -4,7 +4,7 @@ date,section,text
 2026-11-24,changes,Idle sessions are now compacted before a wake. The change is merged.
 2026-11-24,changes,"Advisor test: the limit stayed flat, so it cannot tell. The advisor stays on."
 2026-11-25,commits,"Restated: two repos archived on 8 Nov are counted again, from the archive."
-2026-11-25,commits,"Early-November commits: the old page said 16.8K, now 15.6K."
+2026-11-25,commits,"Early-November commits counted across every branch: the old page said 16.8K, now 15.6K."
 2026-11-25,commits,Cause: 646 backup refs in the monorepo held about 1.2K extra commits.
 2026-11-25,commits,Two repos had no clone for a while; both came back from an archive.
 2026-11-25,commits,Unexplained: this site's count rose by 65 commits.

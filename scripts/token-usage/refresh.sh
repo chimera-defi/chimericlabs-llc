@@ -2,7 +2,7 @@
 # One command: refetch the source data, rebuild the token-usage page, check it, copy it into this repo.
 # usage: scripts/token-usage/refresh.sh [--quick]
 #   --quick  reuse the commit, line-count, model and campaign sweeps from the last full run (skips ~20 min); token data is always refetched
-# env: TOKEN_USAGE_SRC  generator checkout (default ~/claude-usage-audit); it is not part of this repo
+# env: TOKEN_USAGE_SRC  working folder (default ~/claude-usage-audit): sweeps, ledgers, handoff data and the generator (a local git repo) live there
 set -euo pipefail
 REPO="$(cd "$(dirname "$0")/../.." && pwd)"
 SRC="${TOKEN_USAGE_SRC:-$HOME/claude-usage-audit}"
@@ -10,6 +10,9 @@ ACQ="$SRC/dashboard-v3-20261031"      # acquisition tree: refresh.sh, sweeps, le
 PAGE="$SRC/dashboard-v5-20261031"     # generator: build_v5.py, check_v5.py, handoff/ (sole input), public/ (output)
 QUICK=0; [ "${1:-}" = "--quick" ] && QUICK=1
 for d in "$ACQ" "$PAGE"; do [ -d "$d" ] || { echo "missing $d (set TOKEN_USAGE_SRC)"; exit 1; }; done
+# The generator is a local git repo in $PAGE (kept out of this public repo: its redaction rules name withheld projects). Build only committed code, and say which.
+git -C "$PAGE" diff --quiet HEAD -- build_v5.py check_v5.py public_leak_scan.py site_shell.py codex_daily.py || { echo "generator has uncommitted edits: commit them in $PAGE first"; exit 1; }
+echo "generator commit: $(git -C "$PAGE" rev-parse --short HEAD)"
 
 echo "== 1/6 tokens: usage-audit, Claude csvs, Codex sessions, ledger, MCP, storage"
 ( cd "$ACQ" && TOKEN_REPO="$REPO" ./refresh.sh )
