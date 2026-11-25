@@ -14,7 +14,7 @@
   {
    "colour": "var(--data-1)",
    "label": "Claudefolio",
-   "n": 8952
+   "n": 8967
   },
   {
    "colour": "var(--data-2)",
@@ -48,23 +48,23 @@
   },
   {
    "colour": "var(--data-8)",
+   "label": "This site",
+   "n": 507
+  },
+  {
+   "colour": "var(--data-9)",
+   "label": "DispatchBench",
+   "n": 494
+  },
+  {
+   "colour": "var(--data-10)",
    "label": "Intelex",
    "n": 494
   },
   {
-   "colour": "var(--data-9)",
+   "colour": "var(--data-11)",
    "label": "Wallet Radar",
    "n": 488
-  },
-  {
-   "colour": "var(--data-10)",
-   "label": "DispatchBench",
-   "n": 474
-  },
-  {
-   "colour": "var(--data-11)",
-   "label": "This site",
-   "n": 457
   },
   {
    "colour": "var(--data-12)",
@@ -79,7 +79,7 @@
   {
    "colour": "var(--data-effort-low)",
    "label": "Other private work",
-   "n": 1291
+   "n": 1312
   }
  ],
  "months": [
@@ -165,8 +165,8 @@
    "days": 25,
    "days_in_month": 30,
    "month": "2026-11",
-   "n": 3840
+   "n": 3946
   }
  ],
- "total": 18938
+ "total": 19044
 }
