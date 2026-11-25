@@ -30,6 +30,9 @@
 .art h2 { margin-top: var(--space-6); }
 .art td, .art th { text-align: left; }
 .outro { margin-top: var(--space-5); }
+.tablewrap { overflow-x: auto; }
+.tablewrap table { min-width: 640px; }
+.art td.num, .art th.num { text-align: right; white-space: nowrap; }
 </style>
 <style>details.ps{border:1px solid var(--line);border-radius:8px;padding:1rem}details.ps>summary{cursor:pointer;font-weight:600}details.ps>:not(summary){margin-top:1rem}</style>
 </head>
@@ -76,29 +79,79 @@ Your browser cannot play this video. <a href="cut14-720p.mp4">Download it (720p,
 
 
 <h2>What it cost</h2>
+<p><strong>$9.91 of API in all, and 18.6% of a week's Claude use on our host.</strong> The film itself took $4.78 of the API spend; the model probes behind the two bench pages took the other $5.13. ChatGPT Instant images cost $0 on the plan.</p>
+<h3>API spend by model</h3>
+<div class="tablewrap">
 <table>
-<caption>Cost by cut: output tokens, wall-clock time and image use. Tokens are measured from the session logs by clock window, so they are approximate.</caption>
-<thead><tr><th>Cut</th><th>Output tokens</th><th>Time</th><th>ChatGPT Instant images</th></tr></thead>
+<caption>APIMart calls by model, from every cost log of this project, each line counted once.</caption>
+<thead><tr><th>Model</th><th>Kind</th><th class="num">Calls</th><th class="num">Unit price</th><th class="num">Subtotal</th><th>Used for</th></tr></thead>
 <tbody>
-<tr><th scope="row">v1, one brief</th><td>Sonnet 0.38M, Haiku 0.26M, Fable 0.03M</td><td>about 1.5 h</td><td>8</td></tr>
-<tr><th scope="row">v2, many rounds</th><td>Sonnet 1.18M, Fable 0.30M, Haiku 0.01M</td><td>about 6 h</td><td>about 70 in all</td></tr>
-<tr><th scope="row">v3, Fable alone</th><td>about $55 to $63 (planner is an estimate)</td><td>about 1.7 h</td><td>0, reused ours</td></tr>
-<tr><th scope="row">Round 1 best, merge</th><td>Sonnet 0.21M plus four builders</td><td>about 2.6 h</td><td>0</td></tr>
-<tr><th scope="row">Round 2 best</th><td>Fable plan 0.14M, twelve Sonnet builders about 1.3M (input plus output, so not comparable to the rows above)</td><td>about 2 h</td><td>0</td></tr>
-<tr><th scope="row">Attempt B, from scratch</th><td>13 ChatGPT keyframes, 13 veo3.1-fast clips ($1.96 API), one assembly script</td><td>about 1 h</td><td>13</td></tr>
-<tr><th scope="row">Cut 9</th><td>Fable lead, Sonnet builders and seven review rounds; $1.09 of API (4 images, 5 veo3.1-fast clips)</td><td>about 4 h</td><td>0</td></tr>
-<tr><th scope="row">Cut 10</th><td>Opus lead and a blind strip review by Fable, Opus and Haiku; $0.94 of API (5 images, 4 veo3.1-fast clips), of which only a $0.03 image is in the film; then a polish pass with no new generation</td><td>about 1.5 h, from the session log</td><td>0</td></tr>
-<tr><th scope="row">Cut 11, Opus and Fable leads (not published)</th><td>Opus lead: $0 of API, 3 renders. Fable lead: $0.17 of API (one veo3.1-fast clip, three gpt-image-2 images), 4 renders</td><td>about 2 h (Opus) and about 3 h (Fable)</td><td>0</td></tr>
-<tr><th scope="row">Cut 14</th><td>Opus lead on cut 12, three full-size fault passes and a blind review by Opus, Sonnet, Haiku and Fable; $0.10 of API (3 gpt-image-2 images)</td><td>not logged</td><td>0</td></tr>
-<tr><th scope="row">Cut 12</th><td>Opus lead on cut 10, a blind review by Fable, Opus and Haiku; no new API</td><td>not logged; its commits span about 36 min</td><td>0</td></tr>
-<tr><th scope="row">Cut 6, 7 and 8</th><td>Cut 8: one Sonnet builder, wheels, neck, eyes. Cut 7: an audit by a Fable reviewer, then six Sonnet builders</td><td>about 3 h</td><td>0</td></tr>
+<tr><th scope="row"><code>veo3.1-fast</code></th><td>video</td><td class="num">26</td><td class="num">$0.14</td><td class="num">$3.64</td><td>attempt B 13, cut 9 5, cut 10 4, cut 11 Fable lead 1, compositor test 1, video bench 2</td></tr>
+<tr><th scope="row"><code>gpt-image-2.6-flare</code></th><td>image</td><td class="num">15</td><td class="num">$0.03 to $0.11</td><td class="num">$1.26</td><td>attempt B style sheet and 3 test keys 4, cut 9 4, cut 10 5, cut 14 2</td></tr>
+<tr><th scope="row"><code>gpt-image-2.6-sunburst</code></th><td>image</td><td class="num">1</td><td class="num">$0.026</td><td class="num">$0.03</td><td>cut 14</td></tr>
+<tr><th scope="row"><code>gpt-image-2</code></th><td>image</td><td class="num">20</td><td class="num">$0.0085</td><td class="num">$0.17</td><td>fox toolkit test 11, image probe 4, cut 11 Fable lead 3, toolkit tests 2</td></tr>
+<tr><th scope="row"><code>seedream-5-5</code></th><td>image</td><td class="num">4</td><td class="num">$0.028</td><td class="num">$0.11</td><td>image probe</td></tr>
+<tr><th scope="row"><code>gemini-3-pro-image-preview</code></th><td>image</td><td class="num">4</td><td class="num">$0.02</td><td class="num">$0.08</td><td>image probe</td></tr>
+<tr><th scope="row"><code>veo3.1-quality</code></th><td>video</td><td class="num">1</td><td class="num">$1.00</td><td class="num">$1.00</td><td>video bench</td></tr>
+<tr><th scope="row"><code>kling-v4-flash</code></th><td>video</td><td class="num">2</td><td class="num">$0.43</td><td class="num">$0.86</td><td>video bench</td></tr>
+<tr><th scope="row"><code>kling-v3</code></th><td>video</td><td class="num">2</td><td class="num">$0.34</td><td class="num">$0.67</td><td>video bench</td></tr>
+<tr><th scope="row"><code>seedance-2.0</code></th><td>video</td><td class="num">2</td><td class="num">$0.33</td><td class="num">$0.66</td><td>video bench</td></tr>
+<tr><th scope="row"><code>seedance-2-5-flash</code></th><td>video</td><td class="num">2</td><td class="num">$0.32</td><td class="num">$0.64</td><td>video bench</td></tr>
+<tr><th scope="row"><code>wan2.7</code></th><td>video</td><td class="num">1</td><td class="num">$0.33</td><td class="num">$0.33</td><td>video bench</td></tr>
+<tr><th scope="row"><code>MiniMax-Hailuo-2.3-Fast</code></th><td>video</td><td class="num">2</td><td class="num">$0.15</td><td class="num">$0.30</td><td>video bench</td></tr>
+<tr><th scope="row"><code>wan2.6-i2v-flash</code></th><td>video</td><td class="num">2</td><td class="num">$0.08</td><td class="num">$0.17</td><td>video bench</td></tr>
+<tr><th scope="row">ChatGPT Instant</th><td>image</td><td class="num">97</td><td class="num">$0</td><td class="num">$0</td><td>v1 8, v2 71, attempt B 13, cut 13 wolf heads 2, outro 3 (image files kept; rejected takes were not logged)</td></tr>
+<tr><th scope="row">Total</th><td>44 images and 40 videos on the API</td><td class="num">84</td><td class="num"></td><td class="num">$9.91</td><td>film $4.78, bench probes $5.13</td></tr>
 </tbody>
 </table>
+</div>
+<ul>
+<li>Not charged: <code>hailuo-2.3-fast</code> returned "service_unavailable" once, and one flare and one sunburst call timed out; each was retried.</li>
+<li>Not in the total: attempt A's 16 flare stills (about $0.57) are in no cost log.</li>
+</ul>
+<h3>Cost by cut</h3>
+<div class="tablewrap">
+<table>
+<caption>Cost by cut. Tokens are output tokens from the session logs by clock window, so they are approximate.</caption>
+<thead><tr><th>Cut</th><th>Who built it</th><th>Time</th><th class="num">API</th><th class="num">ChatGPT images</th></tr></thead>
+<tbody>
+<tr><th scope="row">v1, one brief</th><td>Sonnet 0.38M, Haiku 0.26M, Fable 0.03M</td><td>about 1.5 h</td><td class="num">$0</td><td class="num">8</td></tr>
+<tr><th scope="row">v2, many rounds</th><td>Sonnet 1.18M, Fable 0.30M, Haiku 0.01M</td><td>about 6 h</td><td class="num">$0</td><td class="num">71</td></tr>
+<tr><th scope="row">v3, Fable alone</th><td>about $55 to $63 of tokens (planner is an estimate)</td><td>about 1.7 h</td><td class="num">$0</td><td class="num">0, reused ours</td></tr>
+<tr><th scope="row">Round 1 best, merge</th><td>Sonnet 0.21M plus four builders</td><td>about 2.6 h</td><td class="num">$0</td><td class="num">0</td></tr>
+<tr><th scope="row">Round 2 best</th><td>Fable plan 0.14M, twelve Sonnet builders about 1.3M (input plus output, so not comparable to the rows above)</td><td>about 2 h</td><td class="num">$0</td><td class="num">0</td></tr>
+<tr><th scope="row">Attempt B, from scratch</th><td>one assembly script</td><td>about 1 h</td><td class="num">$2.24</td><td class="num">13</td></tr>
+<tr><th scope="row">Cut 9</th><td>Fable lead, Sonnet builders, seven review rounds</td><td>about 4 h</td><td class="num">$1.09</td><td class="num">0</td></tr>
+<tr><th scope="row">Cut 10</th><td>Opus lead, a blind strip review by Fable, Opus and Haiku, then a polish pass with no new generation</td><td>about 1.5 h, from the session log</td><td class="num">$0.94</td><td class="num">0</td></tr>
+<tr><th scope="row">Cut 11, Opus and Fable leads (not published)</th><td>Opus lead, 3 renders; Fable lead, 4 renders</td><td>about 2 h (Opus) and about 3 h (Fable)</td><td class="num">$0 and $0.17</td><td class="num">0</td></tr>
+<tr><th scope="row">Cut 14</th><td>Opus lead on cut 12, three full-size fault passes, a blind review by Opus, Sonnet, Haiku and Fable</td><td>not logged</td><td class="num">$0.10</td><td class="num">2, cut 13's wolf heads</td></tr>
+<tr><th scope="row">Cut 12</th><td>Opus lead on cut 10, a blind review by Fable, Opus and Haiku</td><td>not logged; its commits span about 36 min</td><td class="num">$0</td><td class="num">0</td></tr>
+<tr><th scope="row">Cut 6, 7 and 8</th><td>Cut 8: one Sonnet builder, wheels, neck, eyes. Cut 7: an audit by a Fable reviewer, then six Sonnet builders</td><td>about 3 h</td><td class="num">$0</td><td class="num">0</td></tr>
+</tbody>
+</table>
+</div>
 <ul>
 <li>Images came from ChatGPT Instant ($20 plan), driven through the operator's Chrome, about a minute or two each. The credits ran out before the final fixes.</li>
 <li>The v2 time includes the review rounds. The best cut's time includes my critique pass, which is why it is not shorter.</li>
 <li>No Astra figure to compare. The Astra film was not ours to cost.</li>
 </ul>
+<h3>Share of the week's Claude use</h3>
+<div class="tablewrap">
+<table>
+<caption>Claude output tokens and share of all Claude use on our host in the 7 days to 25 Nov 2026 (usage-audit weights, an estimate).</caption>
+<thead><tr><th>Work</th><th>Output tokens</th><th class="num">Share of the week</th></tr></thead>
+<tbody>
+<tr><th scope="row">Main film session (also ran the bench pages and planned the toolkit)</th><td>3.67M: Sonnet 2.33M, Fable 0.95M, Haiku 0.34M, Opus 0.05M</td><td class="num">8.9%</td></tr>
+<tr><th scope="row">Cut 11, Fable lead</th><td>1.34M: Fable 0.88M, Sonnet 0.31M, Opus 0.10M, Haiku 0.05M</td><td class="num">2.7%</td></tr>
+<tr><th scope="row">Cut 11, Opus lead</th><td>0.71M: Opus 0.36M, Sonnet 0.29M, Fable 0.04M, Haiku 0.02M</td><td class="num">1.9%</td></tr>
+<tr><th scope="row">Cuts 12 to 15</th><td>0.65M: Opus 0.42M, Haiku 0.15M, Sonnet 0.04M, Fable 0.04M</td><td class="num">1.6%</td></tr>
+<tr><th scope="row">Other film sessions (v1 to cut 10)</th><td>1.62M</td><td class="num">3.4%</td></tr>
+<tr><th scope="row">Film, all</th><td>8.00M: Sonnet 3.71M, Fable 2.23M, Opus 1.32M, Haiku 0.74M</td><td class="num">18.6%</td></tr>
+<tr><th scope="row">Film toolkit, with the fox test</th><td>1.86M: Opus 0.81M, Sonnet 0.80M, Haiku 0.25M</td><td class="num">4.3%</td></tr>
+</tbody>
+</table>
+</div>
+<p class="small">The share is of all Claude use on our host that week, weighted by usage-audit, not of the plan's weekly limit, which the tool does not report. Cut 15 was still running when this was counted. The sessions that wrote this page are not included.</p>
 <h3>Opus vs Fable, same brief</h3>
 <p>For cut 11, an Opus lead and a Fable lead rebuilt the cut 10 film from the same brief, at the same time, on our film toolkit. The operator's neutral blind ranking put cut 10 first, the Opus cut 11 second and the Fable cut 11 third. The Fable cut had the richest beats and a fidelity score of 8, but more visible defects: a flat wolf head layered into the bike, an off-model boy at dusk and a see-through wolf. It spent $0.17 of API against $0, and took about 3 h against 2 h. It also gated itself more strictly: it wrote a pass limit for each check before the work and reported three checks as failed. Head to head, neither lead won clearly: an Opus judge put the Opus cut first on three of four criteria, and a Haiku judge put the Fable cut first on all four, by what it called a small motion edge.</p>
 
@@ -118,6 +171,15 @@ Your browser cannot play this video. <a href="cut14-720p.mp4">Download it (720p,
 <figure><img src="frame-04.jpg" width="960" height="540" loading="lazy" alt="Closing frame at 36 seconds"><figcaption class="figcap">36.0 s</figcaption></figure>
 </figure>
 
+<h2 id="camera">Slow camera moves on stills</h2>
+<p>Attempt B's stills-only version (13 keyframes, no generated motion) showed that slow camera moves over a still look great. Cut 15 is adding eased camera moves like these to the final cut; it has not passed its review yet.</p>
+<video class="film" controls preload="none" poster="attemptB-poster.jpg" width="1280" height="720">
+<source src="attemptB-720p.mp4" type="video/mp4">
+Your browser cannot play this video. <a href="attemptB-720p.mp4">Download it (720p, 13 MB).</a>
+</video>
+<p class="figcap">Attempt B, stills only, 42.4 s.</p>
+<p>The same 13 keyframes with slow camera moves only, made first while the API credit was spent. $0 in API calls.</p>
+
 <h2>Every prop has a part</h2>
 <ul>
 <li>The beetle on the first shot lands on the girl's handlebar, and the wolf takes it with the bird. A wing speck drops out at the lick.</li>
@@ -128,14 +190,22 @@ Your browser cannot play this video. <a href="cut14-720p.mp4">Download it (720p,
 </ul>
 
 <h2>What went wrong</h2>
+<h3>In the code</h3>
+<ul>
+<li><strong>Paper shards over faces (occlusion).</strong> In cut 12 the blue shards flew across the girl's face and the wolf's eye. Cause: the bite shot drew the shard bursts in front of the girl, and the lick shot sent its near-camera scraps straight through the wolf's face. Fix: the bursts are drawn behind the girl (cut 13), and the scraps fly in lanes above and below the face (cut 14).</li>
+<li><strong>Pink smudge on the wolf's cheek (keying).</strong> In cut 14's second render the tongue had been painted out in code, and the hole fill left a smudge. Fix: a tongueless repaint registered to the old outline (overlap 0.961) is the base, with a clean tongue layer cut from the original on top.</li>
+<li><strong>Red-white smear at 9.1 s (render).</strong> Cause: the train layer was blurred linearly while the plate crossfaded between sharp and blurred copies, so the plate went sharp first. Fix: the train's blur now follows a quadratic curve (cut 14).</li>
+<li><strong>Wolf going grey at the window edge (grade).</strong> Cause: the vignette greyed the white fur as he left the frame. Fix: the wolf's brightness, contrast and saturation are lifted back near the edge (cut 13).</li>
+<li><strong>One-frame eye snap at 15.7 s (timing).</strong> Cause: a ghost crossfade frame inside the generated take. Fix: that frame is replaced by a half-closed lid (cut 13), which also fixed the next shot, because it plays the same take backwards.</li>
+<li><strong>Train changing shape out of the tunnel (alignment).</strong> In cut 9 the train was one generated clip from one keyframe, so its nose, lamps and car count drifted. Fix: the train is drawn in code as one rigid object on the measured rails (cut 10).</li>
+<li><strong>Torn knees (rig).</strong> Legs move by frame swap, not as a separate part: cutting a thigh tore at the knee. Some seams at the neck and wrist are faint but there.</li>
+</ul>
+<h3>Still open</h3>
 <ul>
 <li>Version 1 was rejected as far worse than the original: no zoom, doubled tracks, static characters.</li>
-<li>The ChatGPT image credits ran out, so the final fixes were code-only. No plate was regenerated after that.</li>
-<li>Sad faces in the best cut are drawn in code: the art only has smiling poses. New art waits for ChatGPT Instant to return.</li>
+<li>Sad faces in the best cut are drawn in code: the art only has smiling poses.</li>
 <li>The girl still smiles for a moment at the bite, before the tears.</li>
 <li>The boy does not look the same across his three shots.</li>
-<li>The planned three-reviewer pass (Haiku, Opus, Fable) hit the weekly usage limit before it could run, so round 2 was checked by hand on stills only.</li>
-<li>Legs move by frame swap, not as a separate part: cutting a thigh tore at the knee. Some seams at the neck and wrist are faint but there.</li>
 <li>We judge it worse than the original GPT-6.2 Astra cut: motion, shading and emotion all fall short.</li>
 <li>The soundtrack is synthesised in code, not composed.</li>
 </ul>
@@ -212,13 +282,9 @@ Your browser cannot play this video. <a href="next-720p.mp4">Download it (720p, 
 <source src="attemptB2-720p.mp4" type="video/mp4">
 Your browser cannot play this video. <a href="attemptB2-720p.mp4">Download it (720p, 17 MB).</a>
 </video>
-<p class="figcap">42.4 s, same timeline and audio. All 13 shots were drawn fresh in ChatGPT in one chat, from text descriptions of the three characters, then animated one clip each with <code>veo3.1-fast</code> ($0.14 a clip, $1.96 with one test clip). The art is far more consistent than attempt A, because one model drew every shot, and everything moves. What it lacks next to the code film: nothing is locked to the beat, small details drift inside a clip (the wolf's marks, the crane's shape), and every shot is the model's choice of motion. Hailuo-2.3-Fast, the first choice, returned "service_unavailable" that day.</p>
+<p class="figcap">42.4 s, same timeline and audio. All 13 shots were drawn fresh in ChatGPT in one chat, from text descriptions of the three characters, then animated one clip each with <code>veo3.1-fast</code> ($0.14 a clip, $1.82 for the 13 clips in the cost log). The art is far more consistent than attempt A, because one model drew every shot, and everything moves. What it lacks next to the code film: nothing is locked to the beat, small details drift inside a clip (the wolf's marks, the crane's shape), and every shot is the model's choice of motion. Hailuo-2.3-Fast, the first choice, returned "service_unavailable" that day.</p>
 <h4>Attempt B, stills only</h4>
-<video class="film" controls preload="none" poster="attemptB-poster.jpg" width="1280" height="720">
-<source src="attemptB-720p.mp4" type="video/mp4">
-Your browser cannot play this video. <a href="attemptB-720p.mp4">Download it (720p, 13 MB).</a>
-</video>
-<p class="figcap">The same 13 keyframes with slow camera moves only, made first while the API credit was spent. $0 in API calls.</p>
+<p>Moved up to <a href="#camera">Slow camera moves on stills</a>.</p>
 
 <h3>First attempts</h3>
 <h4>Version 1: minimal text prompting</h4>
@@ -257,8 +323,8 @@ Your browser cannot play this video. <a href="fox-720p.mp4">Download it (720p, 5
 </details>
 
 <h2>Code</h2>
-<p>The film's engine, shots and final files are in <a href="https://github.com/chimera-defi/ghibli-claude-engine" target="_blank" rel="noreferrer">chimera-defi/ghibli-claude-engine</a>.<br><span class="small">Named for who built it: Claude made this, Astra is what we tried to match. The repo is private until published; the notes, prompts and strips of the earlier cuts are linked from <a href="#source">Postscript: source and data</a> at the end.</span></p>
-<p class="small">Written by Wren (Claude Sonnet 5.5) on behalf of chimera-defi. Cut 10, cut 12 and cut 14 updates by Wren (Claude Opus 5.5).</p>
+<p>The film's engine, shots and final files are in the repo named in <a href="#source">Postscript: source and data</a>.<br><span class="small">Named for who built it: Claude made this, Astra is what we tried to match. The repo is private until published; the notes, prompts and strips of the earlier cuts are linked from <a href="#source">Postscript: source and data</a> at the end.</span></p>
+<p class="small">Written by Wren (Claude Sonnet 5.5) on behalf of chimera-defi. Cut 10, cut 12 and cut 14 updates, and the cost tables, by Wren (Claude Opus 5.5).</p>
 <h2>Credits</h2>
 <ul>
 <li>Original film and idea: GPT-6.2 Astra, shared by <a href="https://x.com/reach_vb/status/2123663632190021985" target="_blank" rel="noreferrer">@reach_vb on X</a>. We recreated it; it is not hosted here.</li>
@@ -273,7 +339,7 @@ Your browser cannot play this video. <a href="fox-720p.mp4">Download it (720p, 5
 <h2 id="source">Postscript: source and data</h2>
 <details class="ps"><summary>Where the source is, for people and agents</summary>
 <p><a href="https://github.com/chimera-defi/ghibli-claude-engine" target="_blank" rel="noreferrer">chimera-defi/ghibli-claude-engine</a> holds the engine code, the shot files, the notes and reviews, and the full-size cut 14 film (release cut14). It is private until published.</p>
-<p class="small">The code folder on this site holds the film material behind the earlier cuts, for example the <a href="code/cost.log">cost log</a>. Files: the cut 9 and cut 10 notes, plan and shot spec, the cut 10 timeline, the cost log of every paid call, the generation scripts with their prompts, the cut 9 review prompts and answers, the cut 10 strips, both leads' cut 11 specs, reviews and A/B numbers, and the cut 12 review.</p>
+<p class="small">The code folder on this site holds the film material behind the earlier cuts, for example the <a href="code/cost.log">cost log</a>. Files: the cut 9 and cut 10 notes, plan and shot spec, the cut 10 timeline, the cost log of the paid calls for attempt B and cuts 9 and 10, the generation scripts with their prompts, the cut 9 review prompts and answers, the cut 10 strips, both leads' cut 11 specs, reviews and A/B numbers, and the cut 12 review.</p>
 <p class="small">Units: cost in US dollars per call, times in seconds of film, strips sampled at the frame rate their notes give.</p>
 <p class="small">To rerun a clip: the cut 10 scripts need the film toolkit, which reads the key from GEN_API_KEY in the environment (or a local key file) and never prints it; the cut 9 script reads only the local key file; for example python3 gen10.py vid TAG "PROMPT" start.png end.png.</p>
 </details>
