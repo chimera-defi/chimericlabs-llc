@@ -1,14 +1,39 @@
 {
+ "advisor": {
+  "first": "2026-08-24",
+  "generated_at": "2026-11-25T01:28:27+00:00",
+  "last": "2026-11-25",
+  "method": "A floor: transcripts the host has deleted are missing; compressed .zst transcripts are read. One row per unique message id and request id. Weighted at full input price, cache read at 0.05.",
+  "rows": 12,
+  "source": "advisor_message rows in usage.iterations of Claude transcripts still on disk"
+ },
  "commits": {
-  "generated_at": "2026-11-24T06:38:04Z",
+  "generated_at": "2026-11-25T01:28:27Z",
   "method": "UTC author date; outside authors out; commits_landed = non-merge on main/master, copies of one change collapsed; commits_all_refs = every commit on a branch, remote or tag, merges included; private repos fold into Other private work",
-  "rows": 1174,
+  "rows": 1178,
   "source": "scripts/token-usage/commit_sweep.py"
+ },
+ "generated_at": "2026-11-25T01:28:27+00:00",
+ "tokens": {
+  "first": "2026-05-24",
+  "generated_at": "2026-11-25T01:28:27+00:00",
+  "last": "2026-11-25",
+  "method": "Claude weighted = input + cache write + output + cache read x 0.05. Subagent = sidechain transcripts. unattributed = Claude tokens in the daily table that the per-model files lack: recovered days (totals only) and a few measured days where the per-model files are short (23 to 30 Sep 2026). Codex own tokens, parent history not counted. Advisor (source=advisor) is included in every Claude total.",
+  "rows": 712,
+  "source": "usage-audit per-model csvs (Claude), Codex session logs, daily table"
  },
  "trading_bot": {
   "generated_at": "2026-11-24T12:27:34Z",
   "method": "One window = 7,200 blocks (about one day) after the first. Net = value change of every token the bot moved, priced 5 minutes after each trade, day trend removed, minus builder tips and gas of the bot and of the firm's other contracts. Ranges: bootstrap of days (100,000 resamples, seed 1).",
   "rows": 23,
   "source": "scripts/data/trading_bot_export.py (reads the private research onchain sweep)"
+ },
+ "weekly_limit": {
+  "first": "2026-11-04",
+  "generated_at": "2026-11-25T01:28:27+00:00",
+  "last": "2026-11-25",
+  "method": "Integer percent used of the weekly limit, all models and Fable. Pace = percent used / share of the week elapsed at sampled_at.",
+  "rows": 22,
+  "source": "claude -p /usage, one sample a day (sampled_at is blank before 24 Nov 2026)"
  }
 }

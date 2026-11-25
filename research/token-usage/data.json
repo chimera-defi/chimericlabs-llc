@@ -1,6 +1,6 @@
 {
   "schema": "token-usage-v5",
-  "updated": "2026-11-24",
+  "updated": "2026-11-25",
   "all_branch_commits": 15691,
   "row_fields": [
     "date",
@@ -5048,56 +5048,65 @@
     [
       "2026-11-24",
       "claude_transcripts:advisor",
-      4605570,
-      387313,
+      10394732,
+      727801,
       0,
       0,
-      45
+      94
     ],
     [
       "2026-11-24",
       "claude_transcripts:claude-desktop",
-      700,
-      186178,
-      1506250,
-      43955224,
-      307
+      1206,
+      359490,
+      2970788,
+      75469446,
+      521
     ],
     [
       "2026-11-24",
       "claude_transcripts:claude-desktop:sidechain",
-      2364,
-      1158701,
-      8234133,
-      111640452,
-      1161
+      6532,
+      2972668,
+      19070916,
+      340010148,
+      3207
     ],
     [
       "2026-11-24",
       "claude_transcripts:cli",
-      3084,
-      1224050,
-      4565328,
-      173994470,
-      1457
+      5932,
+      1999645,
+      8755291,
+      340740750,
+      2787
     ],
     [
       "2026-11-24",
       "claude_transcripts:cli:sidechain",
-      1204,
-      712939,
-      2803393,
-      50561907,
-      586
+      2672,
+      1453534,
+      6638188,
+      96675339,
+      1256
     ],
     [
       "2026-11-24",
       "claude_transcripts:sdk-cli",
-      196,
-      49136,
-      452883,
-      5838155,
-      90
+      476,
+      121200,
+      1486252,
+      15495957,
+      214
+    ],
+    [
+      "2026-11-24",
+      "claude_transcripts:sdk-cli:sidechain",
+      226,
+      98535,
+      681577,
+      6642088,
+      110
     ],
     [
       "2026-11-24",
@@ -5106,10 +5115,92 @@
       0,
       0,
       0,
-      1
+      2
     ],
     [
       "2026-11-24",
+      "codex_corrected",
+      null,
+      null,
+      null,
+      null,
+      null,
+      0
+    ],
+    [
+      "2026-11-25",
+      "claude_transcripts:advisor",
+      845715,
+      83398,
+      0,
+      0,
+      10
+    ],
+    [
+      "2026-11-25",
+      "claude_transcripts:claude-desktop",
+      22,
+      8107,
+      27577,
+      1423134,
+      9
+    ],
+    [
+      "2026-11-25",
+      "claude_transcripts:claude-desktop:sidechain",
+      66,
+      35969,
+      209949,
+      3999950,
+      33
+    ],
+    [
+      "2026-11-25",
+      "claude_transcripts:cli",
+      960,
+      336838,
+      1294019,
+      51850915,
+      461
+    ],
+    [
+      "2026-11-25",
+      "claude_transcripts:cli:sidechain",
+      456,
+      331796,
+      980553,
+      18476693,
+      220
+    ],
+    [
+      "2026-11-25",
+      "claude_transcripts:sdk-cli",
+      118,
+      22208,
+      112729,
+      5363039,
+      54
+    ],
+    [
+      "2026-11-25",
+      "claude_transcripts:sdk-cli:sidechain",
+      124,
+      55244,
+      252416,
+      4032267,
+      62
+    ],
+    [
+      "2026-11-25",
+      "claude_transcripts:unattributed",
+      0,
+      0,
+      0,
+      0,
+      3
+    ],
+    [
+      "2026-11-25",
       "codex_corrected",
       null,
       null,
@@ -5203,7 +5294,7 @@
       "cache_read": null,
       "output": null,
       "unassigned": null,
-      "total": 33427132138
+      "total": 34037774159
     },
     "codex": {
       "fresh_input": null,
@@ -5215,11 +5306,11 @@
     }
   },
   "claude_ledger_composition": {
-    "fresh_input": 65043743,
-    "cache_write": 1087783632,
-    "cache_read": 28898150498,
-    "output": 235051118,
-    "total": 30286028991,
+    "fresh_input": 71689862,
+    "cache_write": 1112701900,
+    "cache_read": 29472340016,
+    "output": 239939234,
+    "total": 30896671012,
     "unassigned": 0
   },
   "claude_audit_composition": {
@@ -5232,7 +5323,7 @@
   },
   "claude_measured": {
     "from": "2026-07-10",
-    "through": "2026-11-24",
+    "through": "2026-11-25",
     "note": "raw (fresh+cache write+cache read+output), per day max of the 2026-10-29 audit and the ledger, 2026-07-10..data_through; excludes anything before 2026-07-10 (not on disk) and the 2026-06..09 gaps; NOT lifetime. Ledger alone undercounts 2026-09-11..30 by ~3.1B because transcripts for those days were pruned after the audit.",
     "early_recovery": 709248815
   },
@@ -5614,7 +5705,12 @@
     [
       "2026-11-24",
       "0",
-      "54806941.950"
+      "120455749.200"
+    ],
+    [
+      "2026-11-25",
+      "0",
+      "10940464.700"
     ]
   ],
   "fable_window": {
@@ -5648,22 +5744,22 @@
     "claude_from": "2026-09-07",
     "token_start": "2026-05-24",
     "split_start": "2026-10-18",
-    "claude_through": "2026-11-24",
-    "corrected_codex_through": "2026-11-24"
+    "claude_through": "2026-11-25",
+    "corrected_codex_through": "2026-11-25"
   },
   "sources": {
     "source-1": "fbe74cca7d3eafe7d17d42d3b75a2b9d6e16032f6985c071f4bd83c12574bbc4",
-    "source-2": "466e0a67389482fcc0dd3eb63bb262a55be536f18007511246a5825c10905dc2",
+    "source-2": "370de70090a17315e6ccf09bc2976dc7d056d3644d6e5847680c6014a110f486",
     "source-3": "3a550a23d40ae492432e764be93154ac7fa9f28db0f8a0d3d1aaac3e0f6c63aa",
-    "source-4": "f70ef049c98cc3735de06d99d9082d711b54d434c3bed622d3d0ca8bf16e6754",
+    "source-4": "e4b47f556db364f3eaef4340ea2db6be633ae7ce57cdf469f421362fede6cf25",
     "source-5": "9951a41b3ea317c312c13d4319af3296f1bc20bdb05dbfea8eeb0d1a21fd8212",
-    "source-6": "f4a3bf13e3e94fe233d4a49fd2b2971d05194895a38ada7c4b5dad19ab65e765",
-    "source-7": "73c788025b423d02ccbf8701556d2e45d2f3a7ef2223cddf808c07f8cf55b7ee",
-    "source-8": "d78640af234e3e2a355b7a5ac3286d54ba2ab644fb5b96d6d42baa1f3ca8bac3",
+    "source-6": "11a120e6be0d3342a8d2d35a1c6f1a659a726fefe27aa7f6d3e74440b41dde60",
+    "source-7": "f7194e6b5ba7aec241e8c1591e882a97a3c2e1c168b2f0819ea19793fee0060f",
+    "source-8": "bd3db70b2a23096605ef0c69c87f7aa5c115b2524becd000e48cb249e713f147",
     "source-9": "5279a620101026d5dc52b718fe870b472330b134de1b67e987961cdeefdb7019",
-    "source-10": "4318c1d6235bae919acb0772063104c0baff7d8af79baaea911c2f33d5525420",
-    "source-11": "d06c797c1cfa036dfb87a7f37270a8db9d92d07415b27baa7ab0525dfa34c1bb",
-    "source-12": "d552a4e5655675a2700e350a6892fc8a7170a3329e16b318e834470da4873d07",
+    "source-10": "c994ee6ea81e362ee549f6c826a8125798b5edb208793f1b545f2bc5abd39253",
+    "source-11": "2fcdb67d5753dcf5e7fb36e18cb89ec8a1174c7448d07555ffee211eb7b0ac51",
+    "source-12": "9f2330435ccf77345222faf88d240f698ad336605c159d2ffa42c1cef0bcbe71",
     "source-13": "f9ffc0ee562dad632406ab53d6752974f0f7ffc94db9db232be203723c7211ac",
     "source-14": "d78f79f2e8c4335e9f5b306837cfa526ccaaa671ca806a4b837d78212a0cfe4f",
     "source-15": "96033e967ab4154f25906d7478cba61e4680f9e6d78c9474325ff6d1f0fd6995",
@@ -5672,18 +5768,18 @@
     "source-18": "0ac22fbc853051b1dc1194000c23259eb2c4824cb1e58183b47430cbe5ecf9fa",
     "source-19": "a2994395b11c8fa0f1976c1406e17897e2e2e108d7de61c54ee9a7c0566da38f",
     "source-20": "280235fc20c0cfa6540b82cdf93617b70fcceeb613f37001850df27dbef01ecb",
-    "source-21": "64461910b3f11512232ae849fc218a698ad8b6cf3a5abd28a2680c467ca40f44",
+    "source-21": "05354caaf764a53dc7fccccdea7b11fd647cfbc970cf6dac44d183006730c836",
     "source-22": "644903bd6382ed4b894b46024c6e14751d280252784e20d3cd030d305dfcfe74",
     "source-23": "7dd00617a06e5566ae52166a77dfd83bac7650e04f300f835097b6370498c32c",
-    "source-24": "7627490092fb4352d00920b1b14f0b8403732a5d15c1d439303c617198442e87",
+    "source-24": "e19aad42c4361b80a4f0f80aee2016229ba98ce43860efb4b60b991182072bba",
     "source-25": "55e6f01e7b2c9450b7a9e70f233c7c8471b12f6a2cb5b42d0883de773eaadc7a",
-    "source-26": "5ab93d47d81623fd408bd23fc0c11c33ed5531284ad35d1f9af6fd5c1a2c587a",
-    "source-27": "8db77dceb08fcc1d1797d502dd3cb3b6688aa259fe68196f5a38e523b44ac147",
+    "source-26": "4e2e78e2cc84f0373922433f9fa0575589454cf8d2524ca4898e336de42471f7",
+    "source-27": "76e73d70faafeea244c5c50f5c2da639bb40cf9f944ef3701f8357daf0db31cb",
     "source-28": "a8c21fda504d89f04c60866c122592dd9cbd082eea3251c5eab5ecda4802433a",
     "source-29": "01cd0ac449d4efff69be43af1c652798f3d27f062a26a3dee490362742a85065",
-    "source-30": "f404b37aab4605b5fbb50003c6858fc2b390a6d948b6edabb47bd92cd0f9779e",
-    "source-31": "405b7e9399ebf9dfbd4331aebd79346689f029d257f723f99e3a8342698e3178",
-    "source-32": "ff4a16407c999a5fb1c0fe4ef625816706d05aea559bc1dc094585cb1db8ec30",
+    "source-30": "9f2b87df0d7c0a55ebe8cc6558b19b00e485540205e1c9fc77dee84a759bc04c",
+    "source-31": "86adb4f23b00ee51d9344a83cd44463d7b2fbf9cffb7ada221bc34c25faf8c3a",
+    "source-32": "80576a686015b9302906a33d10836fdb502561990833974bfde7361a1bf77716",
     "source-33": "8e73edc6800dd5789fef01243db6d113276c1054b0bacce7159ed9306164015f",
     "source-34": "2e8438d750ff716c4923286b08ee6b75ba04f6a9f004da8d7ff30142b2ce39f6",
     "source-35": "38774aeace09945f275c60258df739a62cdcde67a2120bf716e8f5f920767757",
@@ -5692,7 +5788,7 @@
     "source-38": "51a25e87156d4215b9c596534b81cc2480907ddd730dda8bb8be80fed3f8dcbd"
   },
   "bus_activity": {
-    "through": "2026-11-24",
+    "through": "2026-11-25",
     "coverage": {
       "bus_start": "2026-08-25",
       "first_claude": "2026-09-04",
@@ -9491,31 +9587,61 @@
         "2026-11-24",
         "received",
         "chatgpt",
-        2
+        10
       ],
       [
         "2026-11-24",
         "received",
         "claude",
-        26
+        75
       ],
       [
         "2026-11-24",
         "sent",
         "automation",
-        1
+        2
+      ],
+      [
+        "2026-11-24",
+        "sent",
+        "chatgpt",
+        7
       ],
       [
         "2026-11-24",
         "sent",
         "claude",
-        9
+        50
       ],
       [
         "2026-11-24",
         "sent",
         "other",
-        18
+        26
+      ],
+      [
+        "2026-11-25",
+        "received",
+        "claude",
+        7
+      ],
+      [
+        "2026-11-25",
+        "sent",
+        "automation",
+        1
+      ],
+      [
+        "2026-11-25",
+        "sent",
+        "claude",
+        1
+      ],
+      [
+        "2026-11-25",
+        "sent",
+        "other",
+        5
       ]
     ]
   },
@@ -9533,19 +9659,19 @@
     "entrypoint": [
       [
         "cli",
-        19955832323
+        20251509529
       ],
       [
         "desktop",
-        7622565107
+        7902447073
       ],
       [
         "sdk-cli",
-        2632042335
+        2660066421
       ],
       [
         "advisor",
-        68914243
+        75973006
       ],
       [
         "unknown",
@@ -9555,21 +9681,21 @@
     "actor": [
       [
         "Main",
-        18790349996
+        19073479204
       ],
       [
         "Subagent",
-        11495678995
+        11823191808
       ]
     ],
     "model": [
       [
         "opus-5-5",
-        13788614354
+        14055446494
       ],
       [
         "sonnet-5-5",
-        7759210335
+        8083559790
       ],
       [
         "sonnet-5",
@@ -9577,11 +9703,11 @@
       ],
       [
         "haiku-5-5",
-        1511592151
+        1522015003
       ],
       [
         "fable-5-2",
-        1324934440
+        1333972014
       ],
       [
         "fable-5-1",
@@ -9610,12 +9736,12 @@
     ],
     "project": [
       [
-        "Other projects (460)",
-        15501081543
+        "Other projects (466)",
+        15818820821
       ],
       [
         "Session tooling",
-        7195559532
+        7484619862
       ],
       [
         "Orchestrator",
@@ -9631,7 +9757,7 @@
       ],
       [
         "MCP tooling",
-        908158888
+        912001301
       ],
       [
         "Bus follower",
@@ -9647,35 +9773,35 @@
       ]
     ]
   },
-  "who_total": 30286028991,
+  "who_total": 30896671012,
   "range_summaries": {
     "all": [
-      18790349996,
-      11495678995,
+      19073479204,
+      11823191808,
       28245169629,
       3850351962
     ],
     "90": [
-      18773218231,
-      11495678995,
-      8634330202,
+      19056347439,
+      11823191808,
+      8489495862,
       3141103147
     ],
     "30": [
-      10983171323,
-      3390776043,
-      2573505521,
+      11087641076,
+      3694094262,
+      2369593590,
       0
     ],
     "7": [
-      3361519705,
-      1321456115,
+      3162615116,
+      1606682486,
       56948872,
       0
     ],
     "since": [
-      18773218231,
-      11495678995,
+      19056347439,
+      11823191808,
       7050572536,
       3141103147
     ]
@@ -9757,7 +9883,8 @@
     "2026-11-17",
     "2026-11-22",
     "2026-11-23",
-    "2026-11-24"
+    "2026-11-24",
+    "2026-11-25"
   ],
   "claude_gap_summary": [
     "Missing transcripts: default cleanup suspected, not proven.",
@@ -9906,8 +10033,8 @@
         [
           "2026-11",
           "advisor",
-          561,
-          67626247,
+          620,
+          74685010,
           0,
           0,
           0.0
@@ -9915,29 +10042,29 @@
         [
           "2026-11",
           "claude-desktop",
-          35026,
-          31739564,
-          200238275,
-          4491018210,
+          37328,
+          33775681,
+          212777122,
+          4756325212,
           95.1
         ],
         [
           "2026-11",
           "cli",
-          57066,
-          51924768,
-          236409376,
-          6122468003,
+          59751,
+          54115324,
+          246708706,
+          6405655323,
           95.5
         ],
         [
           "2026-11",
           "sdk-cli",
-          18835,
-          34764046,
-          119476489,
-          1512291632,
-          90.7
+          19185,
+          35012845,
+          121556580,
+          1537986828,
+          90.8
         ],
         [
           "2026-11",
@@ -10109,13 +10236,13 @@
         ],
         [
           "2026-11-23",
-          8858,
-          21923244,
-          42368098,
-          962552932,
-          31,
-          75,
-          20,
+          14254,
+          33457479,
+          67286366,
+          1536742450,
+          40,
+          65,
+          29,
           4
         ]
       ]
@@ -10626,39 +10753,39 @@
         ],
         [
           "2026-11",
-          774,
-          598,
+          781,
+          612,
           35,
-          919,
-          1717
+          921,
+          1758
         ]
       ]
     }
   ],
-  "data_through": "2026-11-24 07:21:15 UTC",
-  "partial_today": "2026-11-24",
+  "data_through": "2026-11-25 00:39:57 UTC",
+  "partial_today": "2026-11-25",
   "recent_coverage": {
     "Claude": {
-      "2026-11-23": true,
-      "2026-11-24": true
+      "2026-11-24": true,
+      "2026-11-25": true
     },
     "Codex": {
-      "2026-11-23": true,
-      "2026-11-24": true
+      "2026-11-24": true,
+      "2026-11-25": true
     }
   },
   "last7": {
-    "data_through": "2026-11-24T07:21:15Z",
-    "window": "2026-11-17..2026-11-23 (last 7 complete UTC days)",
-    "partial_today": "2026-11-24",
+    "data_through": "2026-11-25T00:39:57Z",
+    "window": "2026-11-18..2026-11-24 (last 7 complete UTC days)",
+    "partial_today": "2026-11-25",
     "claude": {
-      "fresh_input": 57968029,
-      "output": 41782709,
-      "cache_write": 206355413,
-      "cache_read": 4376869669,
-      "weighted": 511980809,
+      "fresh_input": 55730746,
+      "output": 41370361,
+      "cache_write": 206950433,
+      "cache_read": 4465246062,
+      "weighted": 517881267,
       "weighting": "input+cache_write+output+cache_read*0.05 (opus/sonnet-5.5; 0.025 fable; 0.1 other)",
-      "raw": 4682975820
+      "raw": 4769297602
     },
     "codex": {
       "fresh_input": 4069484,
@@ -10667,8 +10794,8 @@
       "total_own": 56948872,
       "weighted": "NOT_ESTABLISHED (no published Codex cache weights)"
     },
-    "start": "2026-11-17",
-    "end": "2026-11-23"
+    "start": "2026-11-18",
+    "end": "2026-11-24"
   },
   "other_sources": [
     {
@@ -10710,87 +10837,6 @@
   ],
   "mcp_callers": [],
   "last7_rows": [
-    [
-      "2026-11-17",
-      "claude_transcripts:advisor",
-      12634304,
-      1160539,
-      0,
-      0,
-      113
-    ],
-    [
-      "2026-11-17",
-      "claude_transcripts:claude-desktop",
-      2621,
-      1230135,
-      9061783,
-      165828985,
-      1168
-    ],
-    [
-      "2026-11-17",
-      "claude_transcripts:claude-desktop:sidechain",
-      1638,
-      909786,
-      4966368,
-      74697073,
-      787
-    ],
-    [
-      "2026-11-17",
-      "claude_transcripts:cli",
-      6274,
-      2325009,
-      12214220,
-      394690580,
-      2894
-    ],
-    [
-      "2026-11-17",
-      "claude_transcripts:cli:sidechain",
-      2556,
-      1472176,
-      7175240,
-      98243917,
-      1222
-    ],
-    [
-      "2026-11-17",
-      "claude_transcripts:sdk-cli",
-      1568,
-      973460,
-      5279352,
-      51602937,
-      737
-    ],
-    [
-      "2026-11-17",
-      "claude_transcripts:sdk-cli:sidechain",
-      92,
-      54901,
-      252250,
-      1250055,
-      44
-    ],
-    [
-      "2026-11-17",
-      "claude_transcripts:unattributed",
-      0,
-      0,
-      0,
-      0,
-      13
-    ],
-    [
-      "2026-11-17",
-      "claude_transcripts:unknown",
-      6,
-      19215,
-      58779,
-      343788,
-      3
-    ],
     [
       "2026-11-18",
       "claude_transcripts:advisor",
@@ -11257,6 +11303,88 @@
     ],
     [
       "2026-11-23",
+      "codex_corrected",
+      null,
+      null,
+      null,
+      null,
+      null,
+      0
+    ],
+    [
+      "2026-11-24",
+      "claude_transcripts:advisor",
+      10394732,
+      727801,
+      0,
+      0,
+      94
+    ],
+    [
+      "2026-11-24",
+      "claude_transcripts:claude-desktop",
+      1206,
+      359490,
+      2970788,
+      75469446,
+      521
+    ],
+    [
+      "2026-11-24",
+      "claude_transcripts:claude-desktop:sidechain",
+      6532,
+      2972668,
+      19070916,
+      340010148,
+      3207
+    ],
+    [
+      "2026-11-24",
+      "claude_transcripts:cli",
+      5932,
+      1999645,
+      8755291,
+      340740750,
+      2787
+    ],
+    [
+      "2026-11-24",
+      "claude_transcripts:cli:sidechain",
+      2672,
+      1453534,
+      6638188,
+      96675339,
+      1256
+    ],
+    [
+      "2026-11-24",
+      "claude_transcripts:sdk-cli",
+      476,
+      121200,
+      1486252,
+      15495957,
+      214
+    ],
+    [
+      "2026-11-24",
+      "claude_transcripts:sdk-cli:sidechain",
+      226,
+      98535,
+      681577,
+      6642088,
+      110
+    ],
+    [
+      "2026-11-24",
+      "claude_transcripts:unattributed",
+      0,
+      0,
+      0,
+      0,
+      2
+    ],
+    [
+      "2026-11-24",
       "codex_corrected",
       null,
       null,
@@ -16110,56 +16238,65 @@
     [
       "2026-11-24",
       "claude_transcripts:advisor",
-      4605570,
-      387313,
+      10394732,
+      727801,
       0,
       0,
-      45
+      94
     ],
     [
       "2026-11-24",
       "claude_transcripts:claude-desktop",
-      700,
-      186178,
-      1506250,
-      43955224,
-      307
+      1206,
+      359490,
+      2970788,
+      75469446,
+      521
     ],
     [
       "2026-11-24",
       "claude_transcripts:claude-desktop:sidechain",
-      2364,
-      1158701,
-      8234133,
-      111640452,
-      1161
+      6532,
+      2972668,
+      19070916,
+      340010148,
+      3207
     ],
     [
       "2026-11-24",
       "claude_transcripts:cli",
-      3084,
-      1224050,
-      4565328,
-      173994470,
-      1457
+      5932,
+      1999645,
+      8755291,
+      340740750,
+      2787
     ],
     [
       "2026-11-24",
       "claude_transcripts:cli:sidechain",
-      1204,
-      712939,
-      2803393,
-      50561907,
-      586
+      2672,
+      1453534,
+      6638188,
+      96675339,
+      1256
     ],
     [
       "2026-11-24",
       "claude_transcripts:sdk-cli",
-      196,
-      49136,
-      452883,
-      5838155,
-      90
+      476,
+      121200,
+      1486252,
+      15495957,
+      214
+    ],
+    [
+      "2026-11-24",
+      "claude_transcripts:sdk-cli:sidechain",
+      226,
+      98535,
+      681577,
+      6642088,
+      110
     ],
     [
       "2026-11-24",
@@ -16168,7 +16305,79 @@
       0,
       0,
       0,
-      1
+      2
+    ],
+    [
+      "2026-11-25",
+      "claude_transcripts:advisor",
+      845715,
+      83398,
+      0,
+      0,
+      10
+    ],
+    [
+      "2026-11-25",
+      "claude_transcripts:claude-desktop",
+      22,
+      8107,
+      27577,
+      1423134,
+      9
+    ],
+    [
+      "2026-11-25",
+      "claude_transcripts:claude-desktop:sidechain",
+      66,
+      35969,
+      209949,
+      3999950,
+      33
+    ],
+    [
+      "2026-11-25",
+      "claude_transcripts:cli",
+      960,
+      336838,
+      1294019,
+      51850915,
+      461
+    ],
+    [
+      "2026-11-25",
+      "claude_transcripts:cli:sidechain",
+      456,
+      331796,
+      980553,
+      18476693,
+      220
+    ],
+    [
+      "2026-11-25",
+      "claude_transcripts:sdk-cli",
+      118,
+      22208,
+      112729,
+      5363039,
+      54
+    ],
+    [
+      "2026-11-25",
+      "claude_transcripts:sdk-cli:sidechain",
+      124,
+      55244,
+      252416,
+      4032267,
+      62
+    ],
+    [
+      "2026-11-25",
+      "claude_transcripts:unattributed",
+      0,
+      0,
+      0,
+      0,
+      3
     ]
   ],
   "composition_as_first_measured": {
@@ -16178,7 +16387,7 @@
       "cache_read": null,
       "output": null,
       "unassigned": null,
-      "total": 33427132138
+      "total": 34037774159
     },
     "codex": {
       "fresh_input": 5583035694,
@@ -16191,38 +16400,38 @@
   },
   "ranges_as_first_measured": {
     "all": [
-      18790349996,
-      11495678995,
+      19073479204,
+      11823191808,
       263994077611,
       3850351962
     ],
     "90": [
-      18773218231,
-      11495678995,
-      10617088610,
+      19056347439,
+      11823191808,
+      10394654795,
       3141103147
     ],
     "30": [
-      10983171323,
-      3390776043,
-      960355238,
+      11087641076,
+      3694094262,
+      848011657,
       0
     ],
     "7": [
-      3361519705,
-      1321456115,
+      3162615116,
+      1606682486,
       0,
       0
     ],
     "since": [
-      18773218231,
-      11495678995,
+      19056347439,
+      11823191808,
       6929426675,
       3141103147
     ],
     "exclude": [
-      18790349996,
-      11495678995,
+      19073479204,
+      11823191808,
       12119357910,
       3850351962
     ]
@@ -17343,9 +17552,9 @@
       {
         "week_start": "2026-11-23",
         "actor": "all",
-        "added": 14061,
-        "removed": 2573,
-        "lines_touched": 16634
+        "added": 23608,
+        "removed": 3335,
+        "lines_touched": 26943
       }
     ],
     "daily": [
@@ -20278,16 +20487,23 @@
       {
         "date": "2026-11-23",
         "actor": "all",
-        "added": 10258,
-        "removed": 2202,
-        "lines_touched": 12460
+        "added": 10452,
+        "removed": 2234,
+        "lines_touched": 12686
       },
       {
         "date": "2026-11-24",
         "actor": "all",
-        "added": 3803,
-        "removed": 371,
-        "lines_touched": 4174
+        "added": 11950,
+        "removed": 1056,
+        "lines_touched": 13006
+      },
+      {
+        "date": "2026-11-25",
+        "actor": "all",
+        "added": 1206,
+        "removed": 45,
+        "lines_touched": 1251
       }
     ]
   },
@@ -30047,17 +30263,17 @@
     {
       "date": "2026-11-23",
       "day_status": "complete",
-      "commits_landed": "102",
-      "commits_landed_claude": "102",
+      "commits_landed": "104",
+      "commits_landed_claude": "104",
       "commits_landed_codex": "0",
       "commits_landed_claude_codex": "0",
       "commits_landed_other": "0",
       "commits_landed_human": "0",
       "commits_all_refs": "149",
       "commits_merge": "42",
-      "code_added": "10258",
-      "code_removed": "2202",
-      "code_touched": "12460",
+      "code_added": "10452",
+      "code_removed": "2234",
+      "code_touched": "12686",
       "all_added_raw": "117555",
       "all_removed_raw": "11585",
       "tokens_claude": "614960644",
@@ -30069,24 +30285,47 @@
     },
     {
       "date": "2026-11-24",
-      "day_status": "partial",
-      "commits_landed": "42",
-      "commits_landed_claude": "42",
+      "day_status": "complete",
+      "commits_landed": "137",
+      "commits_landed_claude": "137",
       "commits_landed_codex": "0",
       "commits_landed_claude_codex": "0",
       "commits_landed_other": "0",
       "commits_landed_human": "0",
-      "commits_all_refs": "68",
-      "commits_merge": "15",
-      "code_added": "3803",
-      "code_removed": "371",
-      "code_touched": "4174",
-      "all_added_raw": "130470",
-      "all_removed_raw": "725",
-      "tokens_claude": "411883630",
+      "commits_all_refs": "186",
+      "commits_merge": "44",
+      "code_added": "11950",
+      "code_removed": "1056",
+      "code_touched": "13006",
+      "all_added_raw": "146500",
+      "all_removed_raw": "3028",
+      "tokens_claude": "932781389",
       "tokens_codex": "0",
       "tokens_other": "0",
-      "tokens_total": "411883630",
+      "tokens_total": "932781389",
+      "claude_token_status": "measured",
+      "codex_token_status": "measured"
+    },
+    {
+      "date": "2026-11-25",
+      "day_status": "partial",
+      "commits_landed": "13",
+      "commits_landed_claude": "13",
+      "commits_landed_codex": "0",
+      "commits_landed_claude_codex": "0",
+      "commits_landed_other": "0",
+      "commits_landed_human": "0",
+      "commits_all_refs": "25",
+      "commits_merge": "7",
+      "code_added": "1206",
+      "code_removed": "45",
+      "code_touched": "1251",
+      "all_added_raw": "3353",
+      "all_removed_raw": "467",
+      "tokens_claude": "89744262",
+      "tokens_codex": "0",
+      "tokens_other": "0",
+      "tokens_total": "89744262",
       "claude_token_status": "measured",
       "codex_token_status": "measured"
     }
@@ -33857,20 +34096,29 @@
     {
       "date": "2026-11-23",
       "human": 0,
-      "claude": 102,
+      "claude": 104,
       "codex": 0,
       "claude_codex": 0,
       "other": 0,
-      "total": 102
+      "total": 104
     },
     {
       "date": "2026-11-24",
       "human": 0,
-      "claude": 42,
+      "claude": 137,
       "codex": 0,
       "claude_codex": 0,
       "other": 0,
-      "total": 42
+      "total": 137
+    },
+    {
+      "date": "2026-11-25",
+      "human": 0,
+      "claude": 13,
+      "codex": 0,
+      "claude_codex": 0,
+      "other": 0,
+      "total": 13
     }
   ],
   "commit_log": {
@@ -34008,12 +34256,12 @@
       {
         "date": "2026-11-01",
         "human": 120,
-        "claude": 2109,
+        "claude": 2219,
         "codex": 34,
         "claude_codex": 49,
         "other": 76,
-        "total": 2388,
-        "days": 24
+        "total": 2498,
+        "days": 25
       }
     ],
     "events": [
@@ -34029,12 +34277,12 @@
   },
   "mcp": {
     "summary": {
-      "calls_completed": 184142,
-      "request_failed": 2180,
+      "calls_completed": 184258,
+      "request_failed": 2185,
       "transport_failed": 9441,
       "tools": 65,
       "first": "2026-08-24",
-      "last": "2026-11-24"
+      "last": "2026-11-25"
     },
     "coverage": [
       [
@@ -34125,14 +34373,14 @@
   "public": true,
   "traffic": {
     "schema": 1,
-    "built": "2026-11-24",
+    "built": "2026-11-25",
     "coverage": {
       "transcripts": {
-        "files": 7203,
+        "files": 7421,
         "first": "2026-09-23",
-        "last": "2026-11-24",
+        "last": "2026-11-25",
         "fable_first": "2026-09-24",
-        "fable_last": "2026-11-24",
+        "fable_last": "2026-11-25",
         "gaps": [
           "Advisor-tool calls are not separate transcripts, so Fable-as-advisor is not counted.",
           "Only transcripts mirrored from this host; laptop Claude not included.",
@@ -34141,42 +34389,42 @@
       },
       "bus": {
         "first": "2026-08-25",
-        "last": "2026-11-24",
-        "messages": 16191
+        "last": "2026-11-25",
+        "messages": 16258
       },
       "mcp": {
         "first": "2026-08-24",
-        "last": "2026-11-24"
+        "last": "2026-11-25"
       }
     },
     "invocations_by_model": {
       "opus-5-5": {
-        "runs": 975,
-        "messages": 208595,
-        "subagent_runs": 458,
-        "main_sessions": 517
+        "runs": 1019,
+        "messages": 214025,
+        "subagent_runs": 488,
+        "main_sessions": 531
       },
       "sonnet-5-5": {
-        "runs": 2452,
-        "messages": 137039,
-        "subagent_runs": 1579,
-        "main_sessions": 873
+        "runs": 2573,
+        "messages": 143923,
+        "subagent_runs": 1693,
+        "main_sessions": 880
       },
       "fable": {
-        "runs": 644,
-        "messages": 38538,
-        "subagent_runs": 571,
-        "main_sessions": 73
+        "runs": 648,
+        "messages": 38681,
+        "subagent_runs": 573,
+        "main_sessions": 75
       }
     },
     "fable_invokers": [
       [
         "Claude opus-5-5 session, via Agent tool",
-        391
+        392
       ],
       [
         "Claude sonnet-5-5 session, via Agent tool",
-        171
+        172
       ],
       [
         "Claude desktop session started on Fable",
@@ -34184,7 +34432,7 @@
       ],
       [
         "Claude headless claude -p started on Fable",
-        23
+        25
       ],
       [
         "Claude fable session, via Agent tool",
@@ -34202,7 +34450,7 @@
     "fable_paths": [
       [
         "Agent tool (subagent)",
-        571
+        573
       ],
       [
         "desktop session",
@@ -34210,7 +34458,7 @@
       ],
       [
         "headless claude -p",
-        23
+        25
       ],
       [
         "CLI session",
@@ -34224,7 +34472,7 @@
     "fable_subagent_types": [
       [
         "reviewer subagent",
-        478
+        480
       ],
       [
         "model override on general-purpose",
@@ -34292,24 +34540,24 @@
       ],
       [
         "2026-11-23",
-        14,
-        45,
-        142
+        18,
+        89,
+        263
       ]
     ],
     "bus": {
       "sent": [
         [
           "ChatGPT",
-          3922
+          3929
         ],
         [
           "Claude sessions",
-          2751
+          2764
         ],
         [
           "Other",
-          2512
+          2555
         ],
         [
           "Agent Host",
@@ -34325,7 +34573,7 @@
         ],
         [
           "Claude launchers",
-          627
+          628
         ],
         [
           "Another consumer",
@@ -34341,25 +34589,25 @@
         ],
         [
           "Orchestrator agent",
-          66
+          69
         ]
       ],
       "received": [
         [
           "ChatGPT",
-          6451
+          6459
         ],
         [
           "Claude sessions",
-          3082
+          3086
         ],
         [
           "Claude launchers",
-          2715
+          2747
         ],
         [
           "Other",
-          1956
+          1979
         ],
         [
           "ChatGPT/Codex research roles",
@@ -34388,24 +34636,24 @@
       ]
     },
     "bus_to_fable_named": {
-      "messages": 1162,
+      "messages": 1175,
       "recipients": 9,
       "by_sender": [
         [
           "ChatGPT",
-          629
+          631
         ],
         [
           "Claude sessions",
           165
         ],
         [
-          "Bus followers",
-          117
+          "Other",
+          127
         ],
         [
-          "Other",
-          116
+          "Bus followers",
+          117
         ],
         [
           "Codex",
@@ -34429,13 +34677,13 @@
         ],
         [
           "fable",
-          233
+          275
         ]
       ]
     },
     "other_paths": {
       "bus_posts_naming_fable_model": 1,
-      "mcp_coordination_post_calls": 5766,
+      "mcp_coordination_post_calls": 5773,
       "launch_commands_naming_fable": {
         "claude": 8
       }

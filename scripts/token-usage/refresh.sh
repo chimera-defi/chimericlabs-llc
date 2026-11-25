@@ -37,6 +37,9 @@ if [ "$QUICK" = 0 ] || [ ! -f "$ACQ/commits/commits_unified.csv" ]; then
   python3 -I "$REPO/scripts/token-usage/commit_sweep.py" "$ACQ/commits/commits_unified.csv"
 fi
 python3 -I "$REPO/scripts/token-usage/build_daily.py" "$ACQ/commits/commits_unified.csv" "$REPO/research/token-usage/data.json" "$PAGE/handoff/daily.csv"
+git -C "$REPO" show refs/remotes/origin/main:research/token-usage/data.json > "$PAGE/handoff/.old_data.json"   # the note says what changed since the page now live
+python3 -I "$REPO/scripts/token-usage/update_note.py" "$PAGE/handoff/.old_data.json" "$PAGE/public/data.json" "$PAGE/handoff/daily.csv" "$REPO/research/token-usage/weekly_limit.csv" "$PAGE/handoff/update_note.json" "$REPO/research/data/changelog.csv" "$PAGE/handoff/claude_daily_dim.csv"
+rm -f "$PAGE/handoff/.old_data.json"
 echo "== 5/6 build twice (traffic needs the first build's MCP totals), verify, leak scan"
 ( cd "$PAGE" && python3 -I build_v5.py && python3 -I build_v5.py --public )
 # tokens in the daily table must come from this build's data.json, so build the table again and rebuild
