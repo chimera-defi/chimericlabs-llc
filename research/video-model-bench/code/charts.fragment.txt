@@ -1,5 +1,5 @@
 <!--video 4-->
-<svg viewBox="0 0 900 540" role="img" aria-labelledby="cvt cvd" id="cv"><title id="cvt">Quality against cost per second for 9 video models</title><desc id="cvd">Image-to-video test with two start frames. Frontier models are cheapest or best at their price.</desc>
+<svg viewBox="0 0 900 540" role="img" aria-labelledby="cvt cvd" id="cv"><title id="cvt">Quality against cost per second for 10 video models</title><desc id="cvd">Image-to-video test with two start frames. Frontier models are cheapest or best at their price.</desc>
 <line class="pg" x1="70" x2="876" y1="476.0" y2="476.0"/><text class="pa2" x="60" y="481.0" text-anchor="end">2</text>
 <line class="pg" x1="70" x2="876" y1="400.7" y2="400.7"/><text class="pa2" x="60" y="405.7" text-anchor="end">2.5</text>
 <line class="pg" x1="70" x2="876" y1="325.3" y2="325.3"/><text class="pa2" x="60" y="330.3" text-anchor="end">3</text>
@@ -89,8 +89,8 @@ $0.0316 per second
 92 s median to finish (1 runs)
 quality 3.83 of 5
 identity 4.5, motion 3.0, clean 4.0
-10 Flow credits at $0.025 each; boy only; style and face held, subtle motion, small Veo watermark
-beaten on this chart" aria-label="veo3.1-lite (Flow, Plus plan), $0.0316 per second, 92 s median to finish (1 runs), quality 3.83 of 5, identity 4.5, motion 3.0, clean 4.0, 10 Flow credits at $0.025 each; boy only; style and face held, subtle motion, small Veo watermark, beaten on this chart"/>
+10 Flow credits at $0.025 each (plan credits, not an API bill); boy only; 92 s or less to finish (10 s polls); style and face held, subtle motion, small Veo watermark
+beaten on this chart" aria-label="veo3.1-lite (Flow, Plus plan), $0.0316 per second, 92 s median to finish (1 runs), quality 3.83 of 5, identity 4.5, motion 3.0, clean 4.0, 10 Flow credits at $0.025 each (plan credits, not an API bill); boy only; 92 s or less to finish (10 s polls); style and face held, subtle motion, small Veo watermark, beaten on this chart"/>
 <text class="pl2" data-model="veo3.1-lite (Flow, Plus plan)" x="364.9" y="205.3" text-anchor="start">veo3.1-lite (Flow, Plus plan)</text>
 </svg>
 <!--video speed-->
@@ -186,8 +186,8 @@ $0.0316 per second
 92 s median to finish (1 runs)
 quality 3.83 of 5
 identity 4.5, motion 3.0, clean 4.0
-10 Flow credits at $0.025 each; boy only; style and face held, subtle motion, small Veo watermark
-beaten on this chart" aria-label="veo3.1-lite (Flow, Plus plan), $0.0316 per second, 92 s median to finish (1 runs), quality 3.83 of 5, identity 4.5, motion 3.0, clean 4.0, 10 Flow credits at $0.025 each; boy only; style and face held, subtle motion, small Veo watermark, beaten on this chart"/>
+10 Flow credits at $0.025 each (plan credits, not an API bill); boy only; 92 s or less to finish (10 s polls); style and face held, subtle motion, small Veo watermark
+beaten on this chart" aria-label="veo3.1-lite (Flow, Plus plan), $0.0316 per second, 92 s median to finish (1 runs), quality 3.83 of 5, identity 4.5, motion 3.0, clean 4.0, 10 Flow credits at $0.025 each (plan credits, not an API bill); boy only; 92 s or less to finish (10 s polls); style and face held, subtle motion, small Veo watermark, beaten on this chart"/>
 <text class="pl2" data-model="veo3.1-lite (Flow, Plus plan)" x="406.8" y="205.3" text-anchor="start">veo3.1-lite (Flow, Plus plan)</text>
 </svg>
 <!--video cost speed-->
@@ -280,7 +280,7 @@ $0.0316 per second
 92 s median to finish (1 runs)
 quality 3.83 of 5
 identity 4.5, motion 3.0, clean 4.0
-10 Flow credits at $0.025 each; boy only; style and face held, subtle motion, small Veo watermark
-beaten on this chart" aria-label="veo3.1-lite (Flow, Plus plan), $0.0316 per second, 92 s median to finish (1 runs), quality 3.83 of 5, identity 4.5, motion 3.0, clean 4.0, 10 Flow credits at $0.025 each; boy only; style and face held, subtle motion, small Veo watermark, beaten on this chart"/>
+10 Flow credits at $0.025 each (plan credits, not an API bill); boy only; 92 s or less to finish (10 s polls); style and face held, subtle motion, small Veo watermark
+beaten on this chart" aria-label="veo3.1-lite (Flow, Plus plan), $0.0316 per second, 92 s median to finish (1 runs), quality 3.83 of 5, identity 4.5, motion 3.0, clean 4.0, 10 Flow credits at $0.025 each (plan credits, not an API bill); boy only; 92 s or less to finish (10 s polls); style and face held, subtle motion, small Veo watermark, beaten on this chart"/>
 <text class="pl2" data-model="veo3.1-lite (Flow, Plus plan)" x="406.8" y="351.0" text-anchor="start">veo3.1-lite (Flow, Plus plan)</text>
 </svg>

@@ -104,7 +104,7 @@ ic, nf = chart(img, 'ci', 'Cost per image (log scale)', 'Quality (mean of 4 scor
                f'Quality against cost per image for {len(img)} image models',
                'Scored models. Frontier, cheapest first: ' + ', '.join(f"{p['model']} at ${p['cost']:g} scoring {p['quality']:g}" for p in fr_img) + ' (a tie at one price is drawn side by side).')
 vc, nv = chart(vid, 'cv', 'Cost per second of video (log scale)', 'Quality (mean of identity, motion, clean; 0 to 5)', [.02, .05, .1], 2, 5,
-               'Quality against cost per second for 9 video models',
+               f'Quality against cost per second for {len(vid)} video models',
                'Image-to-video test with two start frames. Frontier models are cheapest or best at their price.')
 sec_t = lambda t: f'{t:g} s'
 isq, n1 = chart(img, 'cis', 'Median seconds to finish (log scale)', 'Quality (mean of 4 scores, 0 to 5)', [10, 20, 40, 60], 2, 5,
