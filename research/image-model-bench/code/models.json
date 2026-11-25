@@ -572,6 +572,23 @@
     "clean": 3.5
    },
    "note": "one clip: the boy changed expression, zoom"
+  },
+  {
+   "kind": "video",
+   "model": "veo3.1-lite (Flow, Plus plan)",
+   "secs": 92.0,
+   "secs_n": 1,
+   "cost": 0.0316,
+   "unit": "per second",
+   "cost_per_clip": 0.25,
+   "seconds": 7.9,
+   "quality": 3.83,
+   "detail": {
+    "identity": 4.5,
+    "motion": 3.0,
+    "clean": 4.0
+   },
+   "note": "10 Flow credits at $0.025 each; boy only; style and face held, subtle motion, small Veo watermark"
   }
  ]
 }
