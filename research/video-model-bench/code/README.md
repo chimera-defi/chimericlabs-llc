@@ -1,6 +1,6 @@
 # Video model bench: source and data
 
-Page: https://chimericlabs.xyz/research/video-model-bench/ . Units: cost in USD per clip (from the task result), time in seconds from submit to finished clip (polled every 8 s; the Flow clip: 10 s polls in a browser), scores 0 to 5 from one reviewer.
+Page: https://chimericlabs.xyz/research/video-model-bench/ . Units: cost in USD per clip (from the task result), time in seconds from submit to finished clip (polled every 8 s; the Flow clips: 10 s polls in a browser), scores 0 to 5 from one reviewer.
 Key: set `APIMART_API_KEY`; `run_video.py` uses the client in `../../image-model-bench/code/bench.py`, which falls back to `~/secrets/apimart_api_key`. The key is never printed or stored here.
 
 ## Files
