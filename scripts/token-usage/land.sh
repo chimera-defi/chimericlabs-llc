@@ -11,6 +11,7 @@ git -C "$MAIN" worktree add -q -B "$BR" "$WT" refs/remotes/origin/main
 cd "$WT"
 bash scripts/token-usage/refresh.sh                       # a full run: --quick would fill new days with zero commits
 python3 scripts/data/check_data.py --fresh
+python3 scripts/build_building_page.py            # regenerate: it follows research/data
 python3 scripts/build_building_page.py --check
 git add -A
 [ -n "$(git status --porcelain)" ] || { echo "nothing changed"; exit 0; }
