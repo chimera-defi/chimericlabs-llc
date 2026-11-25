@@ -72,7 +72,7 @@ else:
     if abs(int(m.group(1)) - want) > want * 0.01: fail(f'token page 7-day Claude {m.group(1)} != data {want} (input+output, {lo}..{hi})')
 
 wkl = rd(D / 'weekly_limit.csv')[-1]
-read = dt.datetime.fromisoformat(wkl['sampled_at']).astimezone(dt.timezone.utc).strftime('%Y-%m-%d %H:%M UTC') if wkl.get('sampled_at') else wkl['date']
+read = dt.datetime.fromisoformat(wkl['sampled_at']).astimezone(dt.timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC') if wkl.get('sampled_at') else wkl['date']
 if f'{wkl["percent_used"]}% used, read {read}' not in page: fail(f'token page weekly limit does not show the last sample with its reading time ({wkl["percent_used"]}%, read {read})')
 
 # 3b. events: one file, every row sourced, every plan row cited by URL, every chart-range model or policy event named on the page (tooling rows show on the private build only), partial day marked
