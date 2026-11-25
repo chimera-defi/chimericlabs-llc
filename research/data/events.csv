@@ -8,7 +8,7 @@ date,label,kind,source
 2026-07-19,Claude weekly bonus ends,plan,https://support.claude.com/en/articles/15424964-claude-fable-models-on-your-plan
 2026-07-25,Codex gpt-5.6-luna first used,model,raw: codex_session_files.csv (first session start)
 2026-08-24,Opus 5 first appears,model,raw: claude_daily_dim.csv (first day with tokens)
-2026-08-24,Plus 5-hour window restored,plan,https://9to5mac.com/2026/08/24/openai-restores-5-hour-codex-and-work-limits-for-chatgpt-plus-users/
+2026-08-25,Plus 5-hour window restored,plan,https://9to5mac.com/2026/08/24/openai-restores-5-hour-codex-and-work-limits-for-chatgpt-plus-users/
 2026-08-26,Agent Host framework starts,tooling,unsourced: carried from the previous page; no raw source on record
 2026-09-05,Codex gpt-5.6-terra last used,model,raw: codex_session_files.csv (last session end)
 2026-09-09,Codex gpt-5.6-sol last used,model,raw: codex_session_files.csv (last session end)
