@@ -57,6 +57,10 @@ jobs:
         with:
           path: _site
 
+      - name: Wait for the artifact to be listed
+        # The 353 MB artifact is finalized but the run's artifact list is empty for a moment; deploy-pages looks it up once, at once.
+        run: sleep 45
+
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
