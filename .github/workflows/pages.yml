@@ -58,7 +58,7 @@ jobs:
           path: _site
 
       - name: Wait for the artifact to be listed
-        # The 353 MB artifact is finalized but the run's artifact list is empty for a moment; deploy-pages looks it up once, at once.
+        # Observed 2026-11-25: Deploy reported 'Found 0 artifact(s)' about 1 s after the 353 MB artifact was finalized, and the artifact was listed afterwards. A pause is the minimal workaround (a poll would need actions: read).
         run: sleep 45
 
       - name: Deploy
