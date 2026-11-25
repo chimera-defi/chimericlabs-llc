@@ -20,7 +20,7 @@ Details: across all 3 tasks the Claude session used about 7.2M tokens, mostly re
 <p class="story">Compaction cut a long session&#x27;s carried text to a median 10% of its size, and one session did it 140 times in 53 hours.</p>
 <details><summary>Details and sources</summary>
 <p>When a session&#x27;s text gets too long, Claude Code summarizes it into a shorter one (compaction) so the work can go on.</p>
-<p>Across 1,785 compactions still on disk, 347,492,161 tokens became 34,928,632, freeing 312,563,529. The busiest session compacted 140 times, about once every 23 minutes.</p>
+<p>Across 1,805 compactions still on disk, 351,351,177 tokens became 35,358,647, freeing 315,992,530. The busiest session compacted 140 times, about once every 23 minutes.</p>
 <p>Median size after compaction: 9.7% of before.</p>
 <p>Compaction frees space but does not stop the text growing back.</p>
 <p>Claude deletes transcripts after about 30 days, so this counts only transcripts still on disk and shrinks with each refresh unless retention is raised. Duplicate records from resumed sessions are removed.</p>
@@ -99,6 +99,6 @@ Details: across all 3 tasks the Claude session used about 7.2M tokens, mostly re
 </article>
 <details><summary>Quick facts</summary><ul>
 <li>Haiku&#x27;s share of Claude raw tokens by week: 10.3% (2026-10-26), 26.7% (2026-11-02), 4.1% (2026-11-09), 2.9% (2026-11-16). Opus raw tokens fell 27% between the last two complete weeks (1,890,187,444 to 2,408,324,649). Which model a session used is not logged, so the cause is not established.</li>
-<li>In 2026-11-17..2026-11-23 (last 7 complete UTC days), Claude read 105 cached tokens for each token it wrote; Codex read 164.</li>
+<li>In 2026-11-18..2026-11-24 (last 7 complete UTC days), Claude read 108 cached tokens for each token it wrote; Codex read 164.</li>
 </ul></details>
 </section>

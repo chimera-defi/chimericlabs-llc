@@ -29,7 +29,8 @@ lines = [
 if wk.get('sampled_at'):
     now, reset = dt.datetime.fromisoformat(wk['sampled_at']), dt.datetime.fromisoformat(wk['week_reset'])
     gone = 1 - (reset - now) / dt.timedelta(days=7)
-    lines.append(f"Week gone: {gone*100:.0f}%. Pace: {int(wk['percent_used'])/100/gone:.1f}x the limit's.")
+    if 0.05 <= gone <= 1:   # just after a reset the ratio is noise; a stale reset date is a bug, so say nothing rather than a wrong pace
+        lines.append(f"Week gone: {gone*100:.0f}%. Pace: {int(wk['percent_used'])/100/gone:.1f}x the limit's.")
 if adv:
     a = sum(int(r['input']) + int(r['output']) for r in adv if r['date'] > (dt.date.fromisoformat(d1) - dt.timedelta(days=8)).isoformat() and r['date'] < d1)
     lines.append(f"Advisor tokens, input plus output, last 7 days: {a/1e6:.1f}M. Now in every total.")

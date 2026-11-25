@@ -4,4 +4,4 @@ date,text
 2026-11-24,Burn cuts applied: launchers on Sonnet medium and builder subagents on Sonnet.
 2026-11-24,Idle sessions are now compacted before a wake. The change is merged.
 2026-11-24,"Advisor test: the limit stayed flat, so it cannot tell. The advisor stays on."
-2026-11-24,Pace was about 1.7x the limit on 23 Nov. Source: the burn report.
+2026-11-25,"Restated: two repos archived on 8 Nov are counted again, from the archive."

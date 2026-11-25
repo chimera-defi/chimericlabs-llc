@@ -47,7 +47,9 @@ def main():
     rows = {r["date"]: r for r in load(a.csv)}
     if a.sync_from:
         for r in load(a.sync_from):
-            rows[r["date"]] = r   # the timer's late-day reading beats an earlier refresh reading
+            cur = rows.get(r["date"])   # the later reading wins; a row with a timestamp beats one without
+            if not cur or (r.get("sampled_at") or "") >= (cur.get("sampled_at") or ""):
+                rows[r["date"]] = {**cur, **{k: v for k, v in r.items() if v}} if cur and not r.get("sampled_at") else r
     today = now.date().isoformat()
     if today not in rows:
         rows[today] = {"date": today, **read_usage(now)}

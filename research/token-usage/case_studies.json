@@ -1,6 +1,6 @@
 {
   "schema": "token-usage-case-studies-v1",
-  "data_through": "2026-11-24T07:21:15Z",
+  "data_through": "2026-11-25T00:07:27Z",
   "studies": [
     {
       "id": "change",
@@ -21,7 +21,7 @@
       "title": "Compaction cuts context to a tenth",
       "story": "Compaction cut a long session's carried text to a median 10% of its size, and one session did it 140 times in 53 hours.",
       "setup": "When a session's text gets too long, Claude Code summarizes it into a shorter one (compaction) so the work can go on.",
-      "happened": "Across 1,785 compactions still on disk, 347,492,161 tokens became 34,928,632, freeing 312,563,529. The busiest session compacted 140 times, about once every 23 minutes.",
+      "happened": "Across 1,805 compactions still on disk, 351,351,177 tokens became 35,358,647, freeing 315,992,530. The busiest session compacted 140 times, about once every 23 minutes.",
       "number": "Median size after compaction: 9.7% of before.",
       "lesson": "Compaction frees space but does not stop the text growing back.",
       "sources": [
@@ -29,15 +29,15 @@
       ],
       "caveat": "Claude deletes transcripts after about 30 days, so this counts only transcripts still on disk and shrinks with each refresh unless retention is raised. Duplicate records from resumed sessions are removed.",
       "numbers": {
-        "boundaries": 1785,
+        "boundaries": 1805,
         "triggers": {
-          "auto": 1666,
-          "manual": 119
+          "auto": 1682,
+          "manual": 123
         },
-        "pre_tokens": 347492161,
-        "post_tokens": 34928632,
-        "freed_tokens": 312563529,
-        "median_post_pre_pct": 9.66,
+        "pre_tokens": 351351177,
+        "post_tokens": 35358647,
+        "freed_tokens": 315992530,
+        "median_post_pre_pct": 9.67,
         "busiest_count": 140,
         "first_timestamp": "2026-10-02T15:10:05.604Z",
         "last_timestamp": "2026-10-04T20:03:55.633Z",
@@ -273,11 +273,11 @@
     },
     {
       "id": "ratio",
-      "text": "In 2026-11-17..2026-11-23 (last 7 complete UTC days), Claude read 105 cached tokens for each token it wrote; Codex read 164.",
+      "text": "In 2026-11-18..2026-11-24 (last 7 complete UTC days), Claude read 108 cached tokens for each token it wrote; Codex read 164.",
       "numbers": {
-        "claude_ratio": 104.8,
+        "claude_ratio": 107.9,
         "codex_ratio": 164.2,
-        "window": "2026-11-17..2026-11-23 (last 7 complete UTC days)"
+        "window": "2026-11-18..2026-11-24 (last 7 complete UTC days)"
       },
       "sources": [
         "Handoff last7.json"

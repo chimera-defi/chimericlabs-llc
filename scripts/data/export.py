@@ -53,7 +53,7 @@ meta_p = D / 'meta.json'
 meta = json.load(open(meta_p)) if meta_p.exists() else {}
 meta['generated_at'] = now
 meta['tokens'] = dict(generated_at=now, rows=len(out), first=out[0][0], last=out[-1][0], source='usage-audit per-model csvs (Claude), Codex session logs, daily table',
-    method='Claude weighted = input + cache write + output + cache read x 0.05. Subagent = sidechain transcripts. unattributed = recovered days with totals only. Codex own tokens, parent history not counted. Advisor (source=advisor) is included in every Claude total.')
+    method='Claude weighted = input + cache write + output + cache read x 0.05. Subagent = sidechain transcripts. unattributed = Claude tokens in the daily table that the per-model files lack: recovered days (totals only) and a few measured days where the per-model files are short (23 to 30 Sep 2026). Codex own tokens, parent history not counted. Advisor (source=advisor) is included in every Claude total.')
 meta['advisor'] = dict(generated_at=now, rows=len(adv), first=adv[0][0] if adv else '', last=adv[-1][0] if adv else '', source='advisor_message rows in usage.iterations of Claude transcripts still on disk',
     method='A floor: transcripts the host has deleted are missing; compressed .zst transcripts are read. One row per unique message id and request id. Weighted at full input price, cache read at 0.05.')
 meta['weekly_limit'] = dict(generated_at=now, rows=len(wk), first=wk[0]['date'], last=wk[-1]['date'], source='claude -p /usage, one sample a day (sampled_at is blank before 24 Nov 2026)',

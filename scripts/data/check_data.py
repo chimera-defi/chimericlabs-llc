@@ -40,9 +40,18 @@ if not adv: fail('no advisor rows in the last 30 days: the acquisition step that
 
 # 2. no series drops: compare with the committed version on origin/main
 log = rd(D / 'changelog.csv') if (D / 'changelog.csv').exists() else []
-def stated(day): return any(r['date'] >= day and 'restated' in r['text'].lower() for r in log)
+LAST = max(daily)   # a restatement excuses an older day only when it is entered on this refresh's data-through day
+def stated(day): return any(r['date'] >= LAST and r['date'] >= day and 'restated' in r['text'].lower() for r in log)
+def base_ref():   # the commit before this one (CI checks out the pushed commit, so origin/main would be this very data); the host checkout has no parent to compare, so it uses origin/main
+    for ref in ('HEAD^1', 'refs/remotes/origin/main'):
+        if subprocess.run(['git', 'rev-parse', '--verify', '-q', ref + '^{commit}'], cwd=REPO, capture_output=True).returncode == 0 \
+           and subprocess.run(['git', 'rev-parse', ref], cwd=REPO, capture_output=True, text=True).stdout != subprocess.run(['git', 'rev-parse', 'HEAD'], cwd=REPO, capture_output=True, text=True).stdout:
+            return ref
+BASE = base_ref()
+if not BASE: print('note: no earlier commit to compare with (shallow checkout); drop check skipped') if '--fresh' not in sys.argv else fail('no base commit for the drop check')
 def old(path):
-    p = subprocess.run(['git', 'show', 'refs/remotes/origin/main:' + path], cwd=REPO, capture_output=True, text=True)
+    if not BASE: return []
+    p = subprocess.run(['git', 'show', BASE + ':' + path], cwd=REPO, capture_output=True, text=True)
     return list(csv.DictReader(p.stdout.splitlines())) if p.returncode == 0 and p.stdout else []
 for fname, key, col in (('tokens_daily.csv', 'date', 'total'), ('commits_daily.csv', 'date', 'commits_landed')):
     if not (D / fname).exists(): continue
@@ -55,11 +64,15 @@ for fname, key, col in (('tokens_daily.csv', 'date', 'total'), ('commits_daily.c
 
 # 3. pages agree with the data: every data-exact count on the token page's last-7-days block must come from the series
 page = (TU / 'index.html').read_text()
-m = re.search(r'last7-values">Claude <span[^>]*data-exact="(\d+)"', page)
-if m:
+m = re.search(r'last7-values">Fresh input \+ output, with advisor · Claude <span[^>]*data-exact="(\d+)"', page)
+if not m: fail('token page 7-day Claude figure not found (label changed? update this check)')
+else:
     lo, hi = sorted(tok_d for tok_d in daily)[-8], sorted(daily)[-2]   # last 7 complete days
     want = sum(int(r['input']) + int(r['output']) for r in rd(D / 'tokens_daily.csv') if r['source'] in ('main', 'subagent', 'advisor') and lo <= r['date'] <= hi)
     if abs(int(m.group(1)) - want) > want * 0.01: fail(f'token page 7-day Claude {m.group(1)} != data {want} (input+output, {lo}..{hi})')
+
+wkl = rd(D / 'weekly_limit.csv')[-1]
+if f'{wkl["percent_used"]}% used on {wkl["date"]}' not in page: fail(f'token page weekly limit does not show the last sample ({wkl["percent_used"]}% on {wkl["date"]})')
 
 # 4. host mode: freshness
 if '--fresh' in sys.argv:

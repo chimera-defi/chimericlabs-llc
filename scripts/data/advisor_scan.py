@@ -13,9 +13,8 @@ SINCE = sys.argv[2] if len(sys.argv) > 2 else '2026-07-01'
 
 def scan(path):
     out = []
-    try: f = subprocess.Popen(['zstd', '-dc', path], stdout=subprocess.PIPE).stdout if path.endswith('.zst') else open(path, 'rb')   # old transcripts are compressed
-    except OSError: return out
-    for line in f:
+    proc = subprocess.Popen(['zstd', '-dc', path], stdout=subprocess.PIPE) if path.endswith('.zst') else None   # old transcripts are compressed; no zstd = loud failure, not an undercount
+    for line in (proc.stdout if proc else open(path, 'rb')):
         if b'advisor_message' not in line: continue
         try: d = json.loads(line)
         except Exception: continue
@@ -25,6 +24,7 @@ def scan(path):
                 cc = it.get('cache_creation_input_tokens', 0) or 0
                 out.append(((m.get('id') or '') + '|' + (d.get('requestId') or '') + f'#{i}', ts[:10], it.get('model', '?'),
                             it.get('input_tokens', 0) or 0, cc, it.get('cache_read_input_tokens', 0) or 0, it.get('output_tokens', 0) or 0))
+    if proc and proc.wait() != 0: raise SystemExit(f'zstd failed on a transcript (exit {proc.returncode})')
     return out
 
 
