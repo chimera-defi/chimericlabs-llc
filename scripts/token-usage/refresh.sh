@@ -28,7 +28,7 @@ python3 -I "$REPO/scripts/token-usage/sync_handoff.py" "$ACQ" "$PAGE/handoff"
 ( cd "$ACQ" && python3 -I headline_refresh.py "$PAGE/handoff" )
 python3 -I "$REPO/scripts/token-usage/snapshot_weekly.py" --csv "$REPO/research/token-usage/weekly_limit.csv" --sync-from "${WEEKLY_LIMIT_STATE:-$HOME/.local/state/chimericlabs-llc/weekly_limit.csv}"
 cp "$REPO/research/token-usage/weekly_limit.csv" "$PAGE/handoff/weekly_limit.csv"   # the page draws it
-cp "$REPO/research/building/charts-data.json" "$PAGE/handoff/project_commits.json"   # the page draws the project breakdown from the building page data
+python3 -I "$REPO/scripts/token-usage/project_donut.py" "$PAGE/handoff/project_donut.html"   # the building page's donut, same data file
 python3 -I "$REPO/scripts/token-usage/last7.py" "$PAGE/handoff"
 python3 -I "$REPO/scripts/token-usage/case_studies.py" "$PAGE/handoff"   # section 9 snippet + data, from the same cutoff
 cp "$REPO/research/token-usage/case_studies.html" "$PAGE/handoff/case_studies.html"   # the script writes into the repo; the build reads handoff/
