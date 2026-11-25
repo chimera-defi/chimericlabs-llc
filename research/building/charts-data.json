@@ -9,12 +9,12 @@
   "pulled": "2026-11-03",
   "to": "2024"
  },
- "data_through": "2026-11-24",
+ "data_through": "2026-11-25",
  "donut": [
   {
    "colour": "var(--data-1)",
    "label": "Claudefolio",
-   "n": 8921
+   "n": 8952
   },
   {
    "colour": "var(--data-2)",
@@ -54,12 +54,12 @@
   {
    "colour": "var(--data-9)",
    "label": "DispatchBench",
-   "n": 471
+   "n": 474
   },
   {
    "colour": "var(--data-10)",
    "label": "This site",
-   "n": 439
+   "n": 457
   },
   {
    "colour": "var(--data-11)",
@@ -74,7 +74,7 @@
   {
    "colour": "var(--data-effort-low)",
    "label": "Other private work",
-   "n": 2800
+   "n": 2891
   }
  ],
  "months": [
@@ -157,11 +157,11 @@
    "n": 3535
   },
   {
-   "days": 24,
+   "days": 25,
    "days_in_month": 30,
    "month": "2026-11",
-   "n": 3697
+   "n": 3840
   }
  ],
- "total": 18795
+ "total": 18938
 }
