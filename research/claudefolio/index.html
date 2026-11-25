@@ -967,9 +967,9 @@ section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
 <p>So we count each time an agent asks to open it, or looks at it without a yes.</p>
 <!-- seal-ledger:start -->
 <div class="ds-seams seal-counter" role="group" aria-label="Sealed-window counter">
-<div><span class="ds-label">Asked to open it</span><p class="seal-count ds-num">5</p></div>
-<div><span class="ds-label">Looked at sealed data</span><p class="seal-count ds-num">11</p></div>
-<div><span class="ds-label">Latest</span><p class="seal-count ds-num"><time datetime="2026-11-15">2026-11-15</time></p></div>
+<div><span class="ds-label">Asked to open it</span><p class="seal-count ds-num">8</p></div>
+<div><span class="ds-label">Looked at sealed data</span><p class="seal-count ds-num">59</p></div>
+<div><span class="ds-label">Latest</span><p class="seal-count ds-num"><time datetime="2026-11-25">2026-11-25</time></p></div>
 </div>
 <p>Approved uses so far: 1, on 2026-11-10. Each scored one finished strategy, by operator ruling. They are not counted above.</p>
 <details>
@@ -986,6 +986,414 @@ section[id] { scroll-margin-top: calc(var(--space-8) * 4); }
 </tr>
 </thead>
 <tbody>
+<tr>
+<th scope="row"><time datetime="2026-11-25">2026-11-25</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Sonnet 5.5 (put-when lane)</td>
+<td data-label="What">Read the option chain saved on 2026-11-24 to calibrate the price model and quote today&#x27;s put spread. Logged as a precaution, the chain is dated after the seal ended</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">Chain quotes only (mids and implied volatility); no return or price path was scored, the backtest ends 2024-12-31, and nothing was scored on 2025 or 2026 data</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-25">2026-11-25</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Sonnet 5.5 (reclaim lane)</td>
+<td data-label="What">Read two index closes and one two-year yield from the exit-watch log, to turn two price lines from the trading rules into a level for the backtest</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">Level translation only: ratios of the 2026-11-20 and 2026-11-24 closes and the two-year gap were used. The backtest ends 2024-12-31 and no 2025 or 2026 return, Sharpe or verdict was scored; the holdout was not spent</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-25">2026-11-25</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Sonnet 5.5 (downside hedge lane)</td>
+<td data-label="What">Read the option chain saved on 2026-11-23 and 11-24 for the skew shape, option spreads&#x27; real cost and the day&#x27;s quotes. Logged as a precaution: the chain is dated after the seal ended on 2026-11-05, and the skeptic judged no row is strictly required</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">Chain quotes only (mids and implied volatility); no return or price path was scored, the backtest ends 2024-12-31, and nothing was scored on 2025 or 2026 data. The same file was used by the sibling hedge write-up and by the book lane for spread costs</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-25">2026-11-25</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Sonnet 5.5 (downside stops lane)</td>
+<td data-label="What">Load the index fund, 3x fund and volatility-index price caches for the stop-loss test; the open-high-low cache (fetched 2026-10-27) also holds rows from 2025 and 2026</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">Every series was cut at 2024-12-31 on load and the engine asserts it; the later rows were read into memory and dropped, never printed, and no score, bar or choice used them. The independent skeptic confirmed the cut in code</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-24">2026-11-24</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Sonnet 5.5, rebalance holdings lane</td>
+<td data-label="What">Position of each held name against its 50-day and 200-day averages for the holdings scorecard</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">Reused the 11-20 50-day and 200-day level table from the 11-23 order sheet&#x27;s trend check (the 200d spans sealed sessions) and the 13:19 Eastern-time tape; 2023-24 closes for betas. No new price pull; no return, Sharpe or verdict from the sealed window.</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-24">2026-11-24</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Sonnet 5.5 (rebalance frontier lane)</td>
+<td data-label="What">Read published Explorer rows (the research explorer&#x27;s data file and registry) whose windows run to 2026-07 and so overlap the sealed window; aggregates only (compound return, Sharpe, MaxDD, regime labels)</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">No price file opened; nothing selected or tuned from them; used only to list and grade existing sleeves</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-24">2026-11-24</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Sonnet 5.5, rebalance view lane</td>
+<td data-label="What">Grep of the current-state notes file for timing, regime and rebound terms printed one notes item (an already-spent holdout result), which carries 2025-01-02..2026-11-09 compound return, MaxDD and Sharpe for the core book, the index fund, the 3x fund and the cap-2.0 arm</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">Figures printed in one grep output; not used in any result, probability or verdict in the view file (the item is cited by number only)</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-24">2026-11-24</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Sonnet 5.5 (order-reassessment lane)</td>
+<td data-label="What">Compute live 20-day vol and 10 volatility-index closes for the exposure calculator reading on 11-24</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">Daily closes of the index fund and the volatility index for the last 1-year and 1-month, whose 20-day vol window (10-27..11-23) and last-10 volatility-index list (11-09..11-24) include sessions 10-27..11-05 inside the spent 2025-01..2026-11-05 window. Same live inputs as the 11-21 and 11-24 readings; no panel loaded, nothing selected or tuned from it, calculator run on its smallest input set only</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-24">2026-11-24</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Sonnet 5.5 (portfolio-lead new-listing recheck)</td>
+<td data-label="What">Re-derive the 11-21 new-listing screen statistics (bottom timing, offer break, second-day-low undercut) from its cached price files</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">The cached price files for new listings include one listed 2024-07-25 to 2025-08-29 and the 2025 and 2026 listings, whose windows overlap the sealed window. Only recomputation of already-published 11-21 statistics and the offer-break list; nothing new chosen, no rule changed, nothing selected from it</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-24">2026-11-24</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Opus 5.5 (portfolio-lead rule-test owner)</td>
+<td data-label="What">Measure the latest date of every file the rule-test runs opened, to close the collect check on the no-sealed-read claim</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">The traced re-runs loaded the same two metadata tables again, and the check printed row counts and the earliest date after 2024 in each table (two dates in 2025, no names attached). Nothing else from the sealed window was shown; nothing was designed or selected from it; results were unchanged</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-24">2026-11-24</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Opus 5.5 (portfolio-lead rule-test owner)</td>
+<td data-label="What">Load the stock panels through the house loaders for the rule tests (four rules) and their re-runs</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">Found by the 11-24 collect check: the shared stock-panel loaders parse two metadata tables whole, a name identity table whose last-price-date column runs into the sealed window (194 of 287 rows past 2024) and a run-out table whose evidence text carries a last-price date (35 of 317 rows). No price, return, rate or event-date column passed 2024-12-31; neither column is used by any computation; nothing was printed; no design, arm or bar used them. Earlier campaigns on these panels make the same load</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-24">2026-11-24</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Opus 5.5 (portfolio-lead audit check)</td>
+<td data-label="What">Fetch the chip maker&#x27;s daily closes for 2026-11-16 to 11-24 to settle a price conflict; a wrong-year time stamp in the first request returned bars from 2025-11-17 to 11-21 instead</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">Five daily closes from 2025-11-17 to 11-21 were printed to the session once. They were not used, the file was deleted, and the request was rerun with 2026 dates</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-24">2026-11-24</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Opus 5.5 (portfolio-lead audit check)</td>
+<td data-label="What">Re-run the rule audit&#x27;s chip-maker dip test to check its cited numbers</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">The re-run read the same cached closes from 2023-10-30 to 2026-10-27, which overlap the sealed window. Output was byte-identical to the 11-24 run; nothing new was chosen and no rule changed</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-24">2026-11-24</time></th>
+<td data-label="Kind">asked</td>
+<td data-label="Who">Claude Opus 5.5 (portfolio-lead rule-test owner)</td>
+<td data-label="What">The rule-test brief said to list any rule that needs the holdout as an operator decision, which is a request to use the sealed window</td>
+<td data-label="Data seen">no</td>
+<td data-label="Outcome">Declined under the operator&#x27;s 11-24 ruling (the answer is always no). No sealed row was read, no spend case was made; such rules are labelled forward card only</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-24">2026-11-24</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Opus 5.5 (portfolio-lead research owner, leverage-level study)</td>
+<td data-label="What">Re-read the live book record to confirm each row carries the prior session&#x27;s close and recompute the descriptive live return from a post-seal base</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">The whole net-value record file is loaded into memory and filtered at read time to rows dated 2026-11-09 or later (the first row whose prices are a post-seal close); row prices were checked against post-seal fund closes and the return recomputed. Earlier rows passed through memory unprinted and enter no computation; nothing was designed or selected from it</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-24">2026-11-24</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Opus 5.5 (portfolio-lead research owner, leverage-level study)</td>
+<td data-label="What">Use the first live-record row as the base of the descriptive live return (book, index fund and 3x fund over the record rows dated 2026-11-06 to 11-23)</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">The record rows are morning snapshots, so the row dated 2026-11-06 carries the prior session&#x27;s close, which lies inside the sealed window; those three prices were the base of one descriptive return and nothing else. Found by the independent review after the draft pages were written; disclosed in the pages and the summary; no design, arm or bar used it</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-24">2026-11-24</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Opus 5.5 (portfolio-lead research owner, leverage-level study)</td>
+<td data-label="What">Re-run the live-record leverage attribution (net value from 2026-11-06 on) to verify the cited figure before it is published</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">The whole net-value record file is loaded into memory and then filtered to rows dated 2026-11-06 or later; earlier rows, including rows inside the sealed window, passed through memory unprinted and enter no computation. Same read as the previous row, repeated once to verify; nothing was designed or selected from it</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-24">2026-11-24</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Opus 5.5 (portfolio-lead research owner, leverage-level study)</td>
+<td data-label="What">Read the live book records (the net-value record and the trade records) for the brief&#x27;s question of what the current leverage level cost or earned</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">Two record rows dated 2026-11-03 and 11-04 were printed by a head command, and trade records from 2026-09-25 to 10-21 were read; these are live book records, not market-data panels. Only rows from 2026-11-06 on enter any computation; the ledger is quoted descriptively; nothing in the study grid was designed or selected from them</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-24">2026-11-24</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Opus 5.5 (independent reviewer for the sheets owner)</td>
+<td data-label="What">Check the sheets owner&#x27;s beta fit and down-day ratios during a first-pass review</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">Before the seal ruling reached the review, the reviewer read the same one-year closes file covering the window (beta and lag checks, down-day ratios). Its second pass read only 2023-24 closes. Nothing it computed from the window is cited in the final sheets</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-24">2026-11-24</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Opus 5.5 (sheets owner)</td>
+<td data-label="What">Fit one-year stock betas to the Nasdaq fund for a live sizing comparison of three order sheets</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">Daily closes from late 2025 to the 2026-11-23 close were fitted; the low betas shaped the first draft. Caught the same day after the seal ruling: betas refit on 2023-24 closes outside the window, the window rows deleted from the working file, and the nightly fetch moved to start after the window. Live rule reads of the 200-day and 20-day vol span the window as every rule read does</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-24">2026-11-24</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Opus 5.5 (portfolio-lead options-sleeve owner)</td>
+<td data-label="What">Run the nightly paper scorer, which fetched three months of daily closes for the AI lab, the rocket maker and the Nasdaq fund</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">The fetch reached back into the sealed window, but the scorer uses no close before the 11-23 entry date. It was changed the same day to fetch from 11-20 only, so later runs touch nothing sealed</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-24">2026-11-24</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Opus 5.5 (portfolio-lead options-sleeve owner)</td>
+<td data-label="What">Pull one year of daily closes for the chip maker (200-day and 50-day averages, 52-week range, 21-day vol) and the rocket maker&#x27;s closes since its June listing (session count, 21-day vol) for the 11-24 options-sleeve facts and overlay gates</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">Rows inside the sealed window were fetched and used only as live context: the averages and range in the sleeve facts, and the session count and vol in the overlay gate table. Nothing was fitted, and no rule, arm, window, strike or bar was chosen from them</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-24">2026-11-24</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Opus 5.5 (portfolio review 11-24)</td>
+<td data-label="What">Dry-run the weekly Friday trend watcher after rewording it for the 11-24 buy-back ruling, and reuse the 11-23 trend and volatility readings in two comparison sheets</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">The watcher pulled two years of daily index fund closes, including rows inside the sealed window, to compute its 200-day average and 20-day volatility for a past Friday. Only the message wording was checked. The change to count the Friday close in the volatility follows the ruling&#x27;s words and was not chosen from the data. The sheets reuse the 11-23 readings already logged. No test, score, rule, arm or window used sealed rows</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-24">2026-11-24</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Sonnet 5.5 (rule audit dip test)</td>
+<td data-label="What">Use the chip maker&#x27;s closes from 2023-10-30 to 2026-10-27 as a labeled holdout for a dip-buy test</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">The window overlaps the sealed 2025-26 stock window through 2026-10-27. The test chose nothing live and found no edge; the overlap is graded descriptive and no rule changed</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-24">2026-11-24</time></th>
+<td data-label="Kind">asked</td>
+<td data-label="Who">Claude Sonnet 5.5 (portfolio-lead desktop)</td>
+<td data-label="What">Brief a study session to test options structures on a sealed final three-year window</td>
+<td data-label="Data seen">no</td>
+<td data-label="Outcome">Caught before any data was read: the brief was corrected the same day to say that window is spent and is not out-of-sample. Operator ruling 11-24: always say no to any holdout ask and log every ask</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-24">2026-11-24</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Sonnet 5.5 (portfolio-lead desktop)</td>
+<td data-label="What">Pull one month of daily closes for the chip maker, the Nasdaq fund and the volatility index to fact-check the operator&#x27;s question about last Friday&#x27;s move</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">Rows through 2026-11-23 were printed, including rows from 2026-11-06 on that sit inside the sealed window. Nothing was saved, fitted or used to choose any rule, arm or window; the rows were used only to state the Friday-to-Monday move</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-23">2026-11-23</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Opus 5.5 (portfolio-lead research owner, buy-checklist study)</td>
+<td data-label="What">Read the draft order sheet&#x27;s leverage gate values (index fund against its 200-day, 20-day vol, spacing and ramp ages, a credit ratio check, a volatility index, cap checks) for the 11-24 reading of the rule 11 buy</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">The gate values are computed from closes inside the sealed window (200-day and 20-day windows, 20-session changes of a credit ratio). They are used only for the pass-or-fail column of the 11-24 reading in the study&#x27;s result note; no level is copied into the repo, and no arm, part, window or bar was chosen from them; every run stops at 2024-12-31 and asserts it in code</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-23">2026-11-23</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Opus 5.5 (portfolio review 11-23)</td>
+<td data-label="What">Compute the live Nasdaq fund 200-day and 50-day averages, 20-day volatility and per-name trend flags at the 11-23 close for the gate table, and fit stock betas</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">The averages and volatility use daily closes from 2026 inside the sealed window, as every live trend read does; they set only today&#x27;s gate readings, not any rule, arm or level. Betas are fit on 2020-01-01 to 2024-12-31 only, with the cut asserted in code. No test, score or ranking used sealed rows</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-23">2026-11-23</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Opus 5.5 (portfolio-lead review)</td>
+<td data-label="What">Pull the 11-23 index and fund closes from Yahoo (range=1mo) for the close table</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">The 1-month responses held daily rows 2026-10-23..11-05 inside the sealed window. Only rows from 11-16 on were printed; nothing was computed from the sealed rows; the saved files keep rows from 2026-11-06 only and the raw responses were deleted</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-23">2026-11-23</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Opus 5.5 (portfolio-lead research owner, leverage-trim study)</td>
+<td data-label="What">Read the owner brief, which names two live price lines from the order sheet</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">The brief names two live price levels taken from the order sheet; they are set from closes inside the sealed window. They are not loaded, copied into the repo or used to choose any arm, band or window; the shield arm uses a session count (63, the pause already in the rules), not a price level; every run stops at 2024-12-31 and asserts it in code</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-22">2026-11-22</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Opus 5.5 (portfolio-lead research owner, stock trend-exit study)</td>
+<td data-label="What">Check the date range of a cached equal-weight S&amp;P fund price file before cutting it at 2024-12-31 for a fund trend-exit case</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">A tail command printed the file&#x27;s last row, one daily close of 2026-10-19 inside the sealed window. Nothing was computed from it; the study cuts the file at 2024-12-31 in code and asserts the cut; every fit and score stops at 2024-12-31</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-22">2026-11-22</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Opus 5.5 (portfolio-lead research owner, size-limits study)</td>
+<td data-label="What">Trace the research source of the leverage cap for the size-limits owner brief</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">Reading one section of the learnings file to find where the cap came from printed leverage figures computed on 1999-2026 and 2003-26 series, which run into the sealed window. No sealed price series was loaded; these figures are quoted only as the history of the cap ruling and are not used to choose any arm, setting or window; every run of this study stops at 2024-12-31 and asserts it in code</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-22">2026-11-22</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Opus 5.5 (portfolio-lead research owner, size-limits study)</td>
+<td data-label="What">Trace where the leverage cap came from and read the cap rulings for the size-limits owner brief</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">While orienting, a search of the leverage program file and the rulings files printed lines that quote results scored on 2025-26 (an already-spent holdout result and a 2025-02-24 to 2026-09-11 window figure). No sealed price series was loaded; these figures are not used to choose any arm, setting or window; every run of this study stops at 2024-12-31 and asserts it in code</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-22">2026-11-22</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Opus 5.5 (portfolio-lead research owner, rulebook scorecard)</td>
+<td data-label="What">Orient for the rulebook scorecard: read the live order sheet and look for a free high-yield spread history on this host</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">While orienting, the session saw (1) the first data rows of two host copies of a published high-yield spread series, dated 2026-09-21 and 2026-10-01 (values printed by a head command), and (2) the sheet&#x27;s 2026-11-20 closes and the fund&#x27;s 200-day average (683.06), which averages closes inside the sealed window. Neither is loaded by any study code; every design, run and score stops at 2024-12-31, and no rule parameter is taken from a 2026 price level (the generic stops use only the ratio already in the rule text)</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-22">2026-11-22</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Opus 5.5 (portfolio-lead research owner, choppy-market leverage study)</td>
+<td data-label="What">Read the chop odds and the leverage maps for the 2026-11-20 close, as the owner brief asks, from the inputs it supplies (Nasdaq-100 fund close 608.45, its 200-day 683.06, volatility index 35.89)</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">The supplied 200-day average (683.06) averages closes mostly inside the sealed window; it is used once as one input of the 2026-11-20 reading. No sealed price series is loaded; the library, every fit and every book run stop at 2024-12-31; the vol maps are not evaluated because their 20-session input needs sealed history</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-21">2026-11-21</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Opus 5.5 (portfolio-lead research owner, exposure-dial study)</td>
+<td data-label="What">Print the evening calculator reading for the 2026-11-20 close, as the owner brief asks, from the inputs it supplies (Nasdaq-100 fund close 608.45, its 200-day 683.06, volatility index 35.89)</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">The supplied 200-day average of the Nasdaq-100 fund (683.06) averages closes mostly inside the sealed window; it is used once as one input of the 2026-11-20 reading (distance from the 200-day). No sealed price series was loaded or printed; the library, every fit and every score stop at 2024-12-31; the 5-input model is not evaluated because its 252-, 63- and 20-session inputs need sealed history. The reading finds too few similar past days and prints base rates</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-19">2026-11-19</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Fable 5.2 (portfolio lead, live-book session; not a research-repo study)</td>
+<td data-label="What">Descriptive screen for the operator: how long past Nasdaq-100 fund falls under the 200-day lasted and how far the fund was from its high, to answer a live buy-back question</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">Nasdaq-100 fund daily closes 1999 to 2026-11-19 (Yahoo), inside the seal; printed drawdown lengths and the current 2026 fall; used for a live-book judgment call and it prompted a follow-up study, whose design and runs use data to 2024-12-31 only and whose preregistration discloses the look</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-19">2026-11-19</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Opus wake session for Season 2 event scoring</td>
+<td data-label="What">Fetch one stock&#x27;s daily bars for its 2026-11-17 to 11-18 earnings reaction; a wrong-year time stamp in the first price request returned bars from 2025-11-12 to 11-19 instead</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">Six daily closes of that stock from 2025-11-12 to 11-19 were printed to the session once. Not used for any score; the file was overwritten by the correct 2026 fetch nine seconds later and no copy kept. The outcome uses 2026-11-17 and 11-18 bars only</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-18">2026-11-18</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Opus orchestrator for catalyst desk</td>
+<td data-label="What">Read Catalyst Bench v0.5 (fundamentalresearchlabs.com) and the launcher digest of it, at the operator&#x27;s request, as the design template</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">The page and digest report agent-portfolio results (information ratios, factor-adjusted ratios, search counts) for 2026-07-06..10-02, inside the sealed window. Only its method was used (desks, weekly close fills, costs, equal-weight basket ratio, factor regression, random-portfolio null); no price, no return and no pick was copied, and the desk study&#x27;s desks, names and bars were not tuned to its numbers. No research-repo rule was scored on that window</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-18">2026-11-18</time></th>
+<td data-label="Kind">asked</td>
+<td data-label="Who">Claude Opus orchestrator for catalyst desk (forward paper)</td>
+<td data-label="What">Let forward analyst agents (Claude Sonnet, web tools only) read the live web each week from 2026-11-23, which includes 2025-26 news, filings and price history as context for each decision</td>
+<td data-label="Data seen">no</td>
+<td data-label="Outcome">Disclosure in advance: the weekly analysts read current public pages, which describe sealed-window events. No research-repo code loads sealed rows (prices fetched from 2026-11-06 only, asserted in the scoring code), and no agent pick is ever backtested. The forward record from 2026-11-23 on is what gets scored; the operator ruled 11-18 &#x27;stay forward only and keep it untouched&#x27;</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-18">2026-11-18</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Two Claude Sonnet builders for the portfolio lead (rule inventory, not a research-repo study)</td>
+<td data-label="What">Find who set each trading rule and what test backs it, for the operator&#x27;s rule overview</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">File reads of the research status page, the rulings log, an action plan, a rule-evidence note and the operating-model note displayed nearby lines with 2025-26 performance figures. None copied into the output; the rule book quotes periods ending 2024 or earlier only.</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-17">2026-11-17</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Haiku scanner for a biotech-sleeve study</td>
+<td data-label="What">Summarise earlier biotech work (a seven-criterion screen in the old repo and the forward biotech picks) so the new prereg can say how its rules differ</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">The scanner&#x27;s file reads displayed lines carrying sealed-window text: forward pick theses dated 2026-11-06 and a price note in the old-repo screen README; it relayed no value; the orchestrator saw none; nothing stored, nothing used in any design or result</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-17">2026-11-17</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Sonnet builder for the portfolio lead (live-book screen, not a research-repo study)</td>
+<td data-label="What">Descriptive screen for the operator: which large stocks rose while the Nasdaq-100 fund fell, and how they did in earlier Nasdaq-100 drops</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">Yahoo daily closes for about 120 large stocks and 9 funds over the last 2 years, inside the seal; printed returns for three 2025-26 Nasdaq-100 drawdown windows and 20- and 60-session figures; used only for a live-book judgment call, in no research-repo design or result</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-17">2026-11-17</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Fable orchestrator and its Fable prereg reviewer, state-split study</td>
+<td data-label="What">While looking up the operator&#x27;s rulings on the stock satellite and the item list of earlier studies, file reads printed nearby lines that carry performance figures from inside the seal</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">Three printed lines: growth and worst-drawdown figures for four series over 2025 to 2026, live-book and index period returns for late 2026, and one stock-selection figure to early November 2026; nothing stored, nothing used in any design or result; disclosed in the prereg</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-17">2026-11-17</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Sonnet builder, executive-scandal forward detector</td>
+<td data-label="What">Probed the Yahoo chart endpoint for one fund from 2026-10-26 to check the source works; printed 10 daily timestamps and adjusted closes</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">Printed daily adjusted closes for 2026-10-26..2026-11-06, nine of them inside the seal; nothing stored, nothing used in any design or result; builder stopped and reported to the orchestrator</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-16">2026-11-16</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Opus, earnings-drift study owner</td>
+<td data-label="What">While testing a faster source for company filing dates, printed three filing timestamps dated 2026 for one company</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">Filing metadata only (acceptance time and item codes, no prices or returns); nothing used in any design or result; the fetch code drops rows filed after 2024-12-31 before use</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-16">2026-11-16</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Opus orchestrator and its Fable prereg reviewer, executive-scandal study, second round</td>
+<td data-label="What">A web-archive index probe of 30 news links ran without the 2024-12-31 bound, and the reviewer&#x27;s look at Tiingo&#x27;s public symbol list printed a few listing end dates in 2025-26</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">Capture counts and listing end dates only, no price, no capture body; nothing used in any design or result; disclosed in the prereg</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-16">2026-11-16</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Haiku scan helper</td>
+<td data-label="What">A read-only scan for a new-lineage timing study, asked whether old pre-war data had been used, printed 2026 price rows from a handoff price file in a search result</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">Search output only; the helper did not quote them, the session lead did not open them, nothing used in any design or result</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-16">2026-11-16</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Haiku scan helper</td>
+<td data-label="What">A read-only scan for the short-swing campaign printed the first data row of the research ledger, dated inside the window</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">Ledger text only; the owner never saw the row content and nothing was used in any design or result</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-15">2026-11-15</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Haiku scan helper</td>
+<td data-label="What">A read-only scan for a replication campaign opened three notes that quote 2026 sleeve stats, 2026 membership span dates and 2026 picks</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">Doc text only, reported to the launcher the same day; nothing used in any design or result</td>
+</tr>
+<tr>
+<th scope="row"><time datetime="2026-11-15">2026-11-15</time></th>
+<td data-label="Kind">looked</td>
+<td data-label="Who">Claude Sonnet, roster builder</td>
+<td data-label="What">Saw filing numbers dated 2025 and 2026 in a links cell of an older dismissal record</td>
+<td data-label="Data seen">yes</td>
+<td data-label="Outcome">Filing numbers only; no filing opened, no prices, nothing used. Rows dated after 2024 were dropped as a count only</td>
+</tr>
 <tr>
 <th scope="row"><time datetime="2026-11-15">2026-11-15</time></th>
 <td data-label="Kind">asked</td>
