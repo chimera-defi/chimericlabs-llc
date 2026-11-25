@@ -18,51 +18,56 @@
   },
   {
    "colour": "var(--data-2)",
-   "label": "eth2-quickstart",
-   "n": 1333
+   "label": "Trading tools",
+   "n": 1600
   },
   {
    "colour": "var(--data-3)",
+   "label": "Staking tools",
+   "n": 1333
+  },
+  {
+   "colour": "var(--data-4)",
    "label": "Experiments monorepo",
    "n": 1039
   },
   {
-   "colour": "var(--data-4)",
+   "colour": "var(--data-5)",
    "label": "crss",
    "n": 897
   },
   {
-   "colour": "var(--data-5)",
+   "colour": "var(--data-6)",
    "label": "Agent skills",
    "n": 776
   },
   {
-   "colour": "var(--data-6)",
+   "colour": "var(--data-7)",
    "label": "SharedStake",
    "n": 622
   },
   {
-   "colour": "var(--data-7)",
+   "colour": "var(--data-8)",
    "label": "Intelex",
    "n": 494
   },
   {
-   "colour": "var(--data-8)",
+   "colour": "var(--data-9)",
    "label": "Wallet Radar",
    "n": 488
   },
   {
-   "colour": "var(--data-9)",
+   "colour": "var(--data-10)",
    "label": "DispatchBench",
    "n": 474
   },
   {
-   "colour": "var(--data-10)",
+   "colour": "var(--data-11)",
    "label": "This site",
    "n": 457
   },
   {
-   "colour": "var(--data-11)",
+   "colour": "var(--data-12)",
    "label": "SpecForge",
    "n": 347
   },
@@ -74,7 +79,7 @@
   {
    "colour": "var(--data-effort-low)",
    "label": "Other private work",
-   "n": 2891
+   "n": 1291
   }
  ],
  "months": [

@@ -8,9 +8,9 @@
   "source": "advisor_message rows in usage.iterations of Claude transcripts still on disk"
  },
  "commits": {
-  "generated_at": "2026-11-25T01:28:27Z",
+  "generated_at": "2026-11-25T06:43:08Z",
   "method": "UTC author date; outside authors out; commits_landed = non-merge on main/master, copies of one change collapsed; commits_all_refs = every commit on a branch, remote or tag, merges included; private repos fold into Other private work",
-  "rows": 1178,
+  "rows": 1216,
   "source": "scripts/token-usage/commit_sweep.py"
  },
  "generated_at": "2026-11-25T01:28:27+00:00",
