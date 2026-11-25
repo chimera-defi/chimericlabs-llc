@@ -83,6 +83,16 @@
    "motion": 3.0,
    "clean": 3.5,
    "note": "one clip: the boy changed expression, zoom"
+  },
+  {
+   "model": "veo3.1-lite (Flow, Plus plan)",
+   "usd_per_clip": 0.25,
+   "clip_seconds": 7.9,
+   "identity": 4.5,
+   "motion": 3.0,
+   "clean": 4.0,
+   "note": "10 Flow credits at $0.025 each (plan credits, not an API bill); boy only; 92 s or less to finish (10 s polls); style and face held, subtle motion, small Veo watermark",
+   "results_name": "veo3.1-lite-flow"
   }
  ]
 }
