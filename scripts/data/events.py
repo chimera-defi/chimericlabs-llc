@@ -23,7 +23,7 @@ codex = defaultdict(lambda: ['9', '', 0])
 for r in rd(H / 'codex_session_files.csv'):
     if r['first_ts']:
         a = codex[r['model']]; a[0] = min(a[0], r['first_ts'][:10]); a[1] = max(a[1], r['last_ts'][:10]); a[2] += 1
-end = max(a[1] for a in codex.values())
+end = max(a[1] for a in codex.values()); start = min(a[0] for a in codex.values())   # a model already in use on the first data day has no known start
 
 rows = []
 for m, d in claude_first.items():
@@ -31,7 +31,7 @@ for m, d in claude_first.items():
         rows.append((d, nice(m) + ' first appears', 'model', 'raw: claude_daily_dim.csv (first day with tokens)'))
 for m, (a, b, n) in codex.items():
     if n >= 200:
-        rows.append((a, f'Codex {m} first used', 'model', 'raw: codex_session_files.csv (first session start)'))
+        if a != start: rows.append((a, f'Codex {m} first used', 'model', 'raw: codex_session_files.csv (first session start)'))
         if (dt.date.fromisoformat(end) - dt.date.fromisoformat(b)).days > 7:
             rows.append((b, f'Codex {m} last used', 'model', 'raw: codex_session_files.csv (last session end)'))
 keep = [(r['date'], r['label'], r['kind'], r['source']) for r in rd(OUT) if not r['source'].startswith('raw:')] if OUT.exists() else []

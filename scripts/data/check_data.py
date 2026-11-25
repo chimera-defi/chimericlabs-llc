@@ -74,6 +74,15 @@ else:
 wkl = rd(D / 'weekly_limit.csv')[-1]
 if f'{wkl["percent_used"]}% used on {wkl["date"]}' not in page: fail(f'token page weekly limit does not show the last sample ({wkl["percent_used"]}% on {wkl["date"]})')
 
+# 3b. events: one file, every row sourced, every plan row cited by URL, every chart-range event named on the page, partial day marked
+ev = rd(D / 'events.csv')
+for r in ev:
+    if not r['source']: fail(f'events.csv row without a source: {r["label"]}')
+    if r['kind'] == 'plan' and not r['source'].startswith('https://'): fail(f'plan row needs a source URL: {r["label"]}')
+    if r['date'] > LAST: fail(f'event dated after the data: {r["date"]} {r["label"]}')
+    if r['date'] >= '2026-05-24' and r['label'] not in page.replace('&amp;', '&'): fail(f'event not on the token page: {r["date"]} {r["label"]}')
+if 'so far' not in page: fail('token page does not mark the partial day "so far"')
+
 # 4. host mode: freshness
 if '--fresh' in sys.argv:
     today = dt.datetime.now(dt.timezone.utc).date()
