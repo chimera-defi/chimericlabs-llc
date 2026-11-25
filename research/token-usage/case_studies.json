@@ -1,6 +1,6 @@
 {
   "schema": "token-usage-case-studies-v1",
-  "data_through": "2026-11-25T00:39:57Z",
+  "data_through": "2026-11-25T12:37:18Z",
   "studies": [
     {
       "id": "change",
@@ -21,23 +21,23 @@
       "title": "Compaction cuts context to a tenth",
       "story": "Compaction cut a long session's carried text to a median 10% of its size, and one session did it 140 times in 53 hours.",
       "setup": "When a session's text gets too long, Claude Code summarizes it into a shorter one (compaction) so the work can go on.",
-      "happened": "Across 1,807 compactions still on disk, 351,608,218 tokens became 35,385,685, freeing 316,222,533. The busiest session compacted 140 times, about once every 23 minutes.",
-      "number": "Median size after compaction: 9.7% of before.",
+      "happened": "Across 1,825 compactions still on disk, 355,065,429 tokens became 35,708,862, freeing 319,356,567. The busiest session compacted 140 times, about once every 23 minutes.",
+      "number": "Median size after compaction: 9.6% of before.",
       "lesson": "Compaction frees space but does not stop the text growing back.",
       "sources": [
         "Claude session transcripts (compaction records)"
       ],
       "caveat": "Claude deletes transcripts after about 30 days, so this counts only transcripts still on disk and shrinks with each refresh unless retention is raised. Duplicate records from resumed sessions are removed.",
       "numbers": {
-        "boundaries": 1807,
+        "boundaries": 1825,
         "triggers": {
-          "auto": 1683,
-          "manual": 124
+          "auto": 1697,
+          "manual": 128
         },
-        "pre_tokens": 351608218,
-        "post_tokens": 35385685,
-        "freed_tokens": 316222533,
-        "median_post_pre_pct": 9.67,
+        "pre_tokens": 355065429,
+        "post_tokens": 35708862,
+        "freed_tokens": 319356567,
+        "median_post_pre_pct": 9.64,
         "busiest_count": 140,
         "first_timestamp": "2026-10-02T15:10:05.604Z",
         "last_timestamp": "2026-10-04T20:03:55.633Z",
@@ -243,29 +243,29 @@
   "facts": [
     {
       "id": "haiku_share",
-      "text": "Haiku's share of Claude raw tokens by week: 10.3% (2026-10-26), 26.7% (2026-11-02), 4.1% (2026-11-09), 2.9% (2026-11-16). Opus raw tokens fell 27% between the last two complete weeks (1,890,187,444 to 2,408,324,649). Which model a session used is not logged, so the cause is not established.",
+      "text": "Haiku's share of Claude raw tokens by week: 1.1% (2026-10-26), 21.2% (2026-11-02), 1.9% (2026-11-09), 2.6% (2026-11-16). Opus raw tokens fell 36% between the last two complete weeks (1,759,275,163 to 2,393,319,982). Which model a session used is not logged, so the cause is not established.",
       "numbers": {
         "weeks": [
           {
             "week_start": "2026-10-26",
-            "haiku_pct": 10.28
+            "haiku_pct": 1.14
           },
           {
             "week_start": "2026-11-02",
-            "haiku_pct": 26.69
+            "haiku_pct": 21.21
           },
           {
             "week_start": "2026-11-09",
-            "haiku_pct": 4.06
+            "haiku_pct": 1.93
           },
           {
             "week_start": "2026-11-16",
-            "haiku_pct": 2.85
+            "haiku_pct": 2.63
           }
         ],
-        "opus_previous": 1890187444,
-        "opus_latest": 2408324649,
-        "opus_change": 518137205
+        "opus_previous": 1759275163,
+        "opus_latest": 2393319982,
+        "opus_change": 634044819
       },
       "sources": [
         "Handoff claude_model_weekly.csv"
