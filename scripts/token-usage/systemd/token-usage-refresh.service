@@ -4,7 +4,8 @@ Description=Daily data refresh: refreshes research/data, runs the checks, opens 
 [Service]
 Type=oneshot
 Environment=PATH=%h/.local/bin:%h/.npm-global/bin:/usr/local/bin:/usr/bin:/bin
+# Before enabling: clone origin/main to %h/workspace/chimericlabs-data-refresh-src (a pinned copy; not a working checkout).
 # land.sh works in its own worktree and refuses non-data files. NOT enabled until the operator approves: merging deploys the live site.
 # Full run (the commit sweep included): a --quick run would fill new days with zero commits. flock: never alongside a manual refresh.
-ExecStart=/usr/bin/flock -n %t/token-usage-refresh.lock /bin/bash %h/workspace/chimericlabs-llc/scripts/token-usage/land.sh
+ExecStart=/usr/bin/flock -n %t/token-usage-refresh.lock /bin/bash %h/workspace/chimericlabs-data-refresh-src/scripts/token-usage/land.sh
 TimeoutStartSec=7200

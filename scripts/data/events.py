@@ -1,7 +1,7 @@
 #!/usr/bin/env python3 -I
 """Write research/data/events.csv (date,label,kind,source): the only event list the Tokens over Time chart reads.
-usage: events.py HANDOFF_DIR      (run from refresh.sh after export.py). No network, no model calls.
-Rows with source 'raw: ...' are DERIVED every run: first day each Claude model has tokens in claude_daily_dim.csv (>= 1M own tokens),
+usage: events.py HANDOFF_DIR      (refresh.sh step 4d, before the build). No network, no model calls.
+Rows with source 'raw: ...' are DERIVED every run: first day each Claude model has tokens in claude_daily_dim.csv (only models whose total reaches 1M own tokens),
 and first/last day each Codex model appears in codex_session_files.csv (>= 200 session files). 'last' is dropped if the model is still in use.
 Every other row (kind tooling | policy | plan) is kept as is: the source column holds a URL, or 'unsourced: ...' when none is on record.
 A plan-price row needs a URL; the check fails the run otherwise."""
