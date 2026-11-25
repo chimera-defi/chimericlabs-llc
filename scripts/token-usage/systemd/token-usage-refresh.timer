@@ -2,7 +2,7 @@
 Description=Daily research/data refresh
 
 [Timer]
-# Install like the weekly snapshot timer: copy both files to ~/.config/systemd/user/, daemon-reload, enable --now. Needs the worktree named in the service.
+# Install like the weekly snapshot timer: copy both files to ~/.config/systemd/user/, daemon-reload, enable --now. Needs the pinned clone named in the service; land.sh owns ~/workspace/chimericlabs-data-refresh and recreates it each run.
 OnCalendar=*-*-* 00:30:00 UTC
 Persistent=true
 

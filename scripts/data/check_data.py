@@ -1,7 +1,7 @@
 #!/usr/bin/env python3 -I
 """Checks on research/data/. Exit 1 with every failure listed. Two modes:
   check_data.py          CI mode: files only (repo checkout). Series reconcile with the pages' daily table, no day vanishes, pages agree with the data.
-  check_data.py --fresh  host mode: also fails when the data is older than 2 days or ends before yesterday (needs the host's clock, so not for CI).
+  check_data.py --fresh  host mode: also fails when the data is older than 2 days or ends before yesterday, or the weekly-limit reading is over 36 hours old or has no time (needs the host's clock, so not for CI).
 A series that drops a day or shrinks by more than 1% needs an entry in research/data/changelog.csv dated that day with the word 'restated'."""
 import csv, datetime as dt, json, re, subprocess, sys
 from collections import defaultdict
@@ -72,7 +72,17 @@ else:
     if abs(int(m.group(1)) - want) > want * 0.01: fail(f'token page 7-day Claude {m.group(1)} != data {want} (input+output, {lo}..{hi})')
 
 wkl = rd(D / 'weekly_limit.csv')[-1]
-if f'{wkl["percent_used"]}% used on {wkl["date"]}' not in page: fail(f'token page weekly limit does not show the last sample ({wkl["percent_used"]}% on {wkl["date"]})')
+read = dt.datetime.fromisoformat(wkl['sampled_at']).astimezone(dt.timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC') if wkl.get('sampled_at') else wkl['date']
+if f'{wkl["percent_used"]}% used, read {read}' not in page: fail(f'token page weekly limit does not show the last sample with its reading time ({wkl["percent_used"]}%, read {read})')
+
+# 3b. events: one file, every row sourced, every plan row cited by URL, every chart-range model or policy event named on the page (tooling rows show on the private build only), partial day marked
+ev = rd(D / 'events.csv')
+for r in ev:
+    if not r['source']: fail(f'events.csv row without a source: {r["label"]}')
+    if r['kind'] == 'plan' and not r['source'].startswith('https://'): fail(f'plan row needs a source URL: {r["label"]}')
+    if r['date'] > LAST: fail(f'event dated after the data: {r["date"]} {r["label"]}')
+    if r['kind'] != 'tooling' and r['date'] >= '2026-05-24' and r['label'] not in page.replace('&amp;', '&'): fail(f'event not on the token page: {r["date"]} {r["label"]}')
+if 'so far' not in page: fail('token page does not mark the partial day "so far"')
 
 # 4. host mode: freshness
 if '--fresh' in sys.argv:
@@ -82,5 +92,8 @@ if '--fresh' in sys.argv:
     if dt.datetime.now(dt.timezone.utc) - gen > dt.timedelta(days=2): fail(f'meta.generated_at {gen:%F} is over 2 days old')
     wk = rd(D / 'weekly_limit.csv')[-1]
     if wk['date'] < str(today - dt.timedelta(days=1)): fail(f'weekly limit last sample {wk["date"]}, today is {today}')
+    if not wk.get('sampled_at'): fail(f'weekly limit sample {wk["date"]} has no sampled_at: the page cannot stamp its reading time')
+    elif dt.datetime.now(dt.timezone.utc) - dt.datetime.fromisoformat(wk['sampled_at']) > dt.timedelta(hours=36): fail(f'weekly limit reading {wk["sampled_at"]} is over 36 hours old (is the snapshot timer running?)')
+    if rd(D / 'events.csv') and max(r['date'] for r in rd(D / 'events.csv')) > str(today): fail('events.csv has a row dated in the future')
 if bad: print('\n'.join('FAIL ' + b for b in bad)); sys.exit(1)
 print('data checks ok')
