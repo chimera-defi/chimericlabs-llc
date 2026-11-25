@@ -216,7 +216,7 @@ def donut_html(slices, total, data_through):
         *legend,
         '</ol>',
         '</div>',
-        f'<figcaption>Data through {data_through}. Private repos are not named; their commits are in “Other private work”.</figcaption>',
+        f'<figcaption>Data through {data_through}. Private repos are not named; they sit in “Trading tools” or “Other private work”.</figcaption>',
         '</figure>',
     ])
     return figure, "\n".join(css)
