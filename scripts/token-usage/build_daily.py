@@ -148,8 +148,8 @@ def main():
     with open(data_json, encoding="utf-8") as fh:
         data = json.load(fh)
     start = HISTORY_START
-    # the data_through day is still filling; after a UTC midnight the new build runs one day past the last published data.json, so the table must too
-    last = max(data["partial_today"], datetime.datetime.now(datetime.timezone.utc).date().isoformat())
+    # the data_through day is still filling; after a UTC midnight the new build runs one day past the last published data.json, so the table must too (refresh.sh passes today's UTC date in DAILY_THROUGH)
+    last = max(data["partial_today"], os.environ.get("DAILY_THROUGH", ""))
     table = load_commits(commits_csv, start, last)
     load_tokens(data, table)
     with open(out_csv, "w", encoding="utf-8", newline="") as fh:

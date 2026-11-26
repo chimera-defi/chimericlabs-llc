@@ -39,7 +39,7 @@ echo "== 4b consolidated daily table: one commit sweep, then rows for every UTC 
 if [ "$QUICK" = 0 ] || [ ! -f "$ACQ/commits/commits_unified.csv" ]; then
   python3 -I "$REPO/scripts/token-usage/commit_sweep.py" "$ACQ/commits/commits_unified.csv"
 fi
-python3 -I "$REPO/scripts/token-usage/build_daily.py" "$ACQ/commits/commits_unified.csv" "$REPO/research/token-usage/data.json" "$PAGE/handoff/daily.csv"
+DAILY_THROUGH="$(date -u +%F)" python3 -I "$REPO/scripts/token-usage/build_daily.py" "$ACQ/commits/commits_unified.csv" "$REPO/research/token-usage/data.json" "$PAGE/handoff/daily.csv"
 git -C "$REPO" show refs/remotes/origin/main:research/token-usage/data.json > "$PAGE/handoff/.old_data.json"   # the note says what changed since the page now live
 python3 -I "$REPO/scripts/token-usage/update_note.py" "$PAGE/handoff/.old_data.json" "$PAGE/public/data.json" "$PAGE/handoff/daily.csv" "$REPO/research/token-usage/weekly_limit.csv" "$PAGE/handoff/update_note.json" "$REPO/research/data/changelog.csv" "$PAGE/handoff/claude_daily_dim.csv"
 rm -f "$PAGE/handoff/.old_data.json"
