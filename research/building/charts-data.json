@@ -14,7 +14,7 @@
   {
    "colour": "var(--data-1)",
    "label": "Claudefolio",
-   "n": 9054
+   "n": 9058
   },
   {
    "colour": "var(--data-2)",
@@ -39,7 +39,7 @@
   {
    "colour": "var(--data-6)",
    "label": "Agent skills",
-   "n": 780
+   "n": 782
   },
   {
    "colour": "var(--data-7)",
@@ -49,7 +49,7 @@
   {
    "colour": "var(--data-8)",
    "label": "This site",
-   "n": 522
+   "n": 530
   },
   {
    "colour": "var(--data-9)",
@@ -79,7 +79,7 @@
   {
    "colour": "var(--data-effort-low)",
    "label": "Other private work",
-   "n": 1364
+   "n": 1408
   }
  ],
  "months": [
@@ -165,8 +165,8 @@
    "days": 26,
    "days_in_month": 30,
    "month": "2026-11",
-   "n": 4116
+   "n": 4174
   }
  ],
- "total": 19214
+ "total": 19272
 }
