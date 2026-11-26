@@ -9,17 +9,17 @@
   "pulled": "2026-11-03",
   "to": "2024"
  },
- "data_through": "2026-11-25",
+ "data_through": "2026-11-26",
  "donut": [
   {
    "colour": "var(--data-1)",
    "label": "Claudefolio",
-   "n": 8967
+   "n": 9054
   },
   {
    "colour": "var(--data-2)",
    "label": "Trading tools",
-   "n": 1600
+   "n": 1603
   },
   {
    "colour": "var(--data-3)",
@@ -39,7 +39,7 @@
   {
    "colour": "var(--data-6)",
    "label": "Agent skills",
-   "n": 776
+   "n": 780
   },
   {
    "colour": "var(--data-7)",
@@ -49,12 +49,12 @@
   {
    "colour": "var(--data-8)",
    "label": "This site",
-   "n": 507
+   "n": 522
   },
   {
    "colour": "var(--data-9)",
    "label": "DispatchBench",
-   "n": 494
+   "n": 503
   },
   {
    "colour": "var(--data-10)",
@@ -79,7 +79,7 @@
   {
    "colour": "var(--data-effort-low)",
    "label": "Other private work",
-   "n": 1312
+   "n": 1364
   }
  ],
  "months": [
@@ -162,11 +162,11 @@
    "n": 3535
   },
   {
-   "days": 25,
+   "days": 26,
    "days_in_month": 30,
    "month": "2026-11",
-   "n": 3946
+   "n": 4116
   }
  ],
- "total": 19044
+ "total": 19214
 }

@@ -1,21 +1,29 @@
 {
  "carried": [],
- "data_through": "2026-11-25",
+ "data_through": "2026-11-26",
  "projects": [
   {
-   "commits_all_refs": 8967,
-   "commits_landed": 6723,
+   "commits_all_refs": 9054,
+   "commits_landed": 6776,
    "first": "2026-06-12",
    "label": "Claudefolio",
    "last": "2026-11-25",
    "repos": {}
   },
   {
-   "commits_all_refs": 1600,
-   "commits_landed": 908,
+   "commits_all_refs": 1603,
+   "commits_landed": 910,
    "first": "2026-08-22",
    "label": "Trading tools",
    "last": "2026-11-25",
+   "repos": {}
+  },
+  {
+   "commits_all_refs": 1364,
+   "commits_landed": 768,
+   "first": "2026-04-06",
+   "label": "Other private work",
+   "last": "2026-11-26",
    "repos": {}
   },
   {
@@ -27,14 +35,6 @@
    "repos": {
     "chimera-defi/eth2-quickstart": 1333
    }
-  },
-  {
-   "commits_all_refs": 1312,
-   "commits_landed": 741,
-   "first": "2026-04-06",
-   "label": "Other private work",
-   "last": "2026-11-25",
-   "repos": {}
   },
   {
    "commits_all_refs": 1039,
@@ -57,13 +57,13 @@
    }
   },
   {
-   "commits_all_refs": 776,
-   "commits_landed": 449,
+   "commits_all_refs": 780,
+   "commits_landed": 452,
    "first": "2026-03-20",
    "label": "Agent skills",
-   "last": "2026-11-18",
+   "last": "2026-11-26",
    "repos": {
-    "chimera-defi/delegate-skill": 61,
+    "chimera-defi/delegate-skill": 65,
     "chimera-defi/devin-delegate": 155,
     "chimera-defi/grok-delegate": 15,
     "chimera-defi/kimi-delegate-skill": 125,
@@ -82,23 +82,23 @@
    }
   },
   {
-   "commits_all_refs": 507,
-   "commits_landed": 302,
+   "commits_all_refs": 522,
+   "commits_landed": 312,
    "first": "2026-03-30",
    "label": "This site",
    "last": "2026-11-25",
    "repos": {
-    "chimera-defi/chimericlabs-llc": 507
+    "chimera-defi/chimericlabs-llc": 522
    }
   },
   {
-   "commits_all_refs": 494,
+   "commits_all_refs": 503,
    "commits_landed": 284,
    "first": "2026-10-22",
    "label": "DispatchBench",
    "last": "2026-11-25",
    "repos": {
-    "chimera-defi/dispatchbench": 494
+    "chimera-defi/dispatchbench": 503
    }
   },
   {
