@@ -21,7 +21,7 @@ c = lambda x: f'{x/1000:.1f}K' if x >= 1000 else str(x); b = lambda x: f'{x/1e9:
 t0, t1 = tot(o, 'tokens_total'), tot(n, 'tokens_total')
 notes = {'commits': [], 'changes': [], 'gaps': []}   # each line goes to the page section it belongs to
 notes['commits'].append(f"Landed commits, on the main branch only: {c(tot(o,'commits_landed'))} then, {c(tot(n,'commits_landed'))} now.")
-notes['changes'].append(f"Data now runs to {d1}, from {d0}.")
+if d1 != d0: notes['changes'].append(f"Data now runs to {d1}, from {d0}.")   # same day: nothing to say; the page already shows the data date
 notes['gaps'] += [
   f"Tokens, Claude + Codex, with recovered days: {b(t0)} then, {b(t1)} now.",
   f"Recovered days in that total: {b(sum(int(r['tokens_claude']) for r in rows if r['claude_token_status'] == 'recovered'))}. Headline tiles leave them out.",
