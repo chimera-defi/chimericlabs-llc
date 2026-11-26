@@ -3,11 +3,11 @@
  "data_through": "2026-11-26",
  "projects": [
   {
-   "commits_all_refs": 9054,
-   "commits_landed": 6776,
+   "commits_all_refs": 9058,
+   "commits_landed": 6779,
    "first": "2026-06-12",
    "label": "Claudefolio",
-   "last": "2026-11-25",
+   "last": "2026-11-26",
    "repos": {}
   },
   {
@@ -19,8 +19,8 @@
    "repos": {}
   },
   {
-   "commits_all_refs": 1364,
-   "commits_landed": 768,
+   "commits_all_refs": 1408,
+   "commits_landed": 787,
    "first": "2026-04-06",
    "label": "Other private work",
    "last": "2026-11-26",
@@ -57,13 +57,13 @@
    }
   },
   {
-   "commits_all_refs": 780,
-   "commits_landed": 452,
+   "commits_all_refs": 782,
+   "commits_landed": 453,
    "first": "2026-03-20",
    "label": "Agent skills",
    "last": "2026-11-26",
    "repos": {
-    "chimera-defi/delegate-skill": 65,
+    "chimera-defi/delegate-skill": 67,
     "chimera-defi/devin-delegate": 155,
     "chimera-defi/grok-delegate": 15,
     "chimera-defi/kimi-delegate-skill": 125,
@@ -82,13 +82,13 @@
    }
   },
   {
-   "commits_all_refs": 522,
-   "commits_landed": 312,
+   "commits_all_refs": 530,
+   "commits_landed": 316,
    "first": "2026-03-30",
    "label": "This site",
-   "last": "2026-11-25",
+   "last": "2026-11-26",
    "repos": {
-    "chimera-defi/chimericlabs-llc": 522
+    "chimera-defi/chimericlabs-llc": 530
    }
   },
   {
