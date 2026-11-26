@@ -9,7 +9,8 @@ Environment=PATH=%h/.local/bin:%h/.npm-global/bin:/usr/local/bin:/usr/bin:/bin
 # Full run (the commit sweep included): a --quick run would fill new days with zero commits. flock: never alongside a manual refresh.
 ExecStartPre=/usr/bin/git -C %h/workspace/chimericlabs-data-refresh-src pull --ff-only
 ExecStart=/usr/bin/flock -n %t/token-usage-refresh.lock /bin/bash %h/workspace/chimericlabs-data-refresh-src/scripts/token-usage/land.sh
-TimeoutStartSec=14400   # full run plus all checks took 2h05m on 2026-11-26; 7200 killed it inside check_v5
+# Full run plus all checks took 2h05m on 2026-11-26; 7200 killed it inside check_v5.
+TimeoutStartSec=14400
 # Two audit scripts hold a week of transcripts in memory (11G and 10G, measured 2026-11-25; the 14:11 run peaked at 22.7G with file cache). Cap so the host keeps its RAM; MemoryHigh reclaims cache first, MemoryMax stops the job.
 MemoryHigh=12G
 MemoryMax=16G
