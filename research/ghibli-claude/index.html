@@ -36,6 +36,7 @@
 .tablewrap table { min-width: 640px; }
 .art td.num, .art th.num { text-align: right; white-space: nowrap; }
 </style>
+<style>.art-toc ol{list-style:none;display:flex;flex-wrap:wrap;gap:var(--space-2) var(--space-3);padding:0;margin:var(--space-4) 0}.art-toc a{color:var(--ink-2)}.art-toc a:hover{color:var(--ink)}</style>
 <style>details.ps{border:1px solid var(--line);border-radius:8px;padding:1rem}details.ps>summary{cursor:pointer;font-weight:600}details.ps>:not(summary){margin-top:1rem}</style>
 </head>
 <body>
@@ -76,18 +77,12 @@ Your browser cannot play this video. <a href="cut14-720p.mp4">Download it (720p,
 </video>
 <p class="figcap">Cut 14, 43.8 s.</p>
 <p class="small">Download: <a href="cut14-1080p.mp4">1080p (67 MB)</a> &middot; <a href="cut14-720p.mp4">720p (27 MB)</a></p>
-<h3 id="cut18">Newest: cut 18, not blind-reviewed</h3>
-<video class="film" controls preload="none" poster="cut18-poster.jpg" width="1280" height="720">
-<source src="cut18-720p.mp4" type="video/mp4">
-Your browser cannot play this video. <a href="cut18-720p.mp4">Download it (720p, 27 MB).</a>
-</video>
-<p class="figcap">Cut 18, 43.8 s.</p>
-<p>Cut 18 is cut 14 with four shots changed in code: where the train passes behind the wisteria at 9.4 to 9.8 s (a seam), the parapet rail in the first shot, the rail in the last shot and the stamp's card and seal. It added no API spend. It has not been through the blind review, so cut 14 stays the best cut above. Rendered on 27 Nov: 1,314 frames at 30 fps, the same as cut 14.</p>
 <p>We set out to rebuild a 38.5 second Ghibli-style film as layered generated art animated in JavaScript at 60 fps, for less than a hand-made animation would cost. The twist is a giant white wolf, a nod to Princess Mononoke.</p>
-<p>The best cut and the newest cut are above; the cost and method follow. Every other published cut and attempt, down to the first three versions, is in the collapsed postscript at the end, newest first. The original GPT-6.2 Astra film is not hosted here. The image models behind the art are compared in <a href="../image-model-bench/">the image model bench</a>, and the video models behind the veo clips in <a href="../video-model-bench/">the video model bench</a>.</p>
+<p>The best cut is above; the cost and method follow. Every other published cut and attempt, down to the first three versions, is in the collapsed postscript at the end, newest first. The original GPT-6.2 Astra film is not hosted here. The image models behind the art are compared in <a href="../image-model-bench/">the image model bench</a>, and the video models behind the veo clips in <a href="../video-model-bench/">the video model bench</a>.</p>
 
+<nav class="art-toc" aria-label="On this page"><ol><li><a href="#cost">What it cost</a></li><li><a href="#built">How it was built</a></li><li><a href="#props">Every prop has a part</a></li><li><a href="#wrong">What went wrong</a></li><li><a href="#postscript">Every other cut</a></li><li><a href="#code">Code</a></li><li><a href="#credits">Credits</a></li><li><a href="#source">Source and data</a></li></ol></nav>
 
-<h2>What it cost</h2>
+<h2 id="cost">What it cost</h2>
 <p><strong>$9.95 of API in all, and 18.6% of a week's Claude use on our host.</strong> The film itself took $4.82 of the API spend; the model probes behind the two bench pages took the other $5.13. ChatGPT Instant images and Claude tokens ran on flat plans, $20 and $200 a month (prices as stated by the operator). On a plan an extra image or token costs $0 until the plan's limit; past the limit the job stops until it resets. Video has no plan route in our setup, so video is API price only.</p>
 <h3>API spend by model</h3>
 <div class="tablewrap">
@@ -170,7 +165,7 @@ Your browser cannot play this video. <a href="cut18-720p.mp4">Download it (720p,
 <h3>Opus vs Fable, same brief</h3>
 <p>For cut 11, an Opus lead and a Fable lead rebuilt the cut 10 film from the same brief, at the same time, on our film toolkit. The operator's neutral blind ranking put cut 10 first, the Opus cut 11 second and the Fable cut 11 third. The Fable cut had the richest beats and a fidelity score of 8, but more visible defects: a flat wolf head layered into the bike, an off-model boy at dusk and a see-through wolf. It spent $0.17 of API against $0, and took about 3 h against 2 h. It also gated itself more strictly: it wrote a pass limit for each check before the work and reported three checks as failed. Head to head, neither lead won clearly: an Opus judge put the Opus cut first on three of four criteria, and a Haiku judge put the Fable cut first on all four, by what it called a small motion edge.</p>
 
-<h2>How it was built</h2>
+<h2 id="built">How it was built</h2>
 <ul>
 <li>About 70 plates and sprites came from ChatGPT Instant on a $20 plan, until the image credits ran out.</li>
 <li>A deterministic canvas engine of about 130 lines draws them: the same inputs give the same frame, every time.</li>
@@ -186,8 +181,8 @@ Your browser cannot play this video. <a href="cut18-720p.mp4">Download it (720p,
 <figure><img src="frame-04.jpg" width="960" height="540" loading="lazy" alt="Closing frame at 36 seconds"><figcaption class="figcap">36.0 s</figcaption></figure>
 </figure>
 
-<h2 id="camera">Slow camera moves on stills</h2>
-<p>Attempt B's stills-only version (13 keyframes, no generated motion) showed that slow camera moves over a still look great. Cut 15 added eased camera moves like these to four shots; it did not pass review (<a href="#cut15">below</a>).</p>
+<h3 id="camera">Slow camera moves on stills</h3>
+<p>Attempt B's stills-only version (13 keyframes, no generated motion) showed that slow camera moves over a still look great. Cut 15 added eased camera moves like these to four shots; it did not pass review (<a href="#cut15">in the postscript</a>).</p>
 <video class="film" controls preload="none" poster="attemptB-poster.jpg" width="1280" height="720">
 <source src="attemptB-720p.mp4" type="video/mp4">
 Your browser cannot play this video. <a href="attemptB-720p.mp4">Download it (720p, 13 MB).</a>
@@ -195,23 +190,7 @@ Your browser cannot play this video. <a href="attemptB-720p.mp4">Download it (72
 <p class="figcap">Attempt B, stills only, 42.4 s.</p>
 <p>The same 13 keyframes with slow camera moves only, made first while the API credit was spent. The keyframes came from ChatGPT Instant, so $0 in API calls.</p>
 
-<h2 id="cut15">Cut 15: into the tunnel, not shipped</h2>
-<p><strong>Cut 14 stays the final cut.</strong> Cut 15 fixed the tunnel entry but lost both of its blind reviews on 25 Nov. The rule was the same each time: it ships only if it wins the blind review and a full-size side by side finds it no worse than cut 14. The second review was the last one allowed, so the work stopped there.</p>
-<ul>
-<li>What changed: the train goes into the tunnel, cut at the portal with a matte taken from the plate and a dark interior. The rails are measured from the plate; the two contacts the audit found over 1.5 px (2.23 and 1.84 px) are fixed. Attempt B's eased camera moves are on the stamp, window, bell and lick shots.</li>
-<li>First round, blind review: cut 15 against cut 14 and a hidden copy of cut 14, 57 sheets per judge. Cut 15 came first for none of the three judges. Opus scored all three 27 and could not tell them apart. Sonnet gave cut 15 26 and the copy 27; Haiku 24 and 28. The copy is the same picture as cut 14, so those gaps are judge noise.</li>
-<li>First round, full-size side by side, 15 moments: cut 15 is better at the 3 tunnel-entry moments, the same at 10, and worse at 2. The train runs over the far wisteria at 9.5 s, and a window post shows at the left edge at 18.6 s.</li>
-<li>Second round: two new images, the tunnel mouth's inside (<code>gpt-image-2</code>, $0.0085, used) and a train side with a real cut-out (<code>gpt-image-2.6-flare</code>, $0.031, not used: no visible gain in the shot). $0.04 of the $15 set aside was spent, with one full render.</li>
-<li>Second round, blind review: the same three versions on a new seed, plus five crop sheets of the changed areas at full size. Opus scored cut 15 above both others on 1 of 4 criteria (faithfulness to the reference) and named it its overall pick, but its total was 27, the same as the copy, and the rule counts scores. Haiku: above both others on none, 23 against the copy's 26. Sonnet: above both others on none, 22 against 28, last on every criterion. Fable was not asked, since the rule had already failed.</li>
-<li>What the judges saw at full size: they credited the deeper, darker tunnel mouth (Opus: the train "reads as coming out of a real tunnel"; in the copy the tunnel is "a flat, evenly lit yellow tube"). They faulted a seam at a car joint where the rear cars meet the wisteria, 9.4 to 9.8 s, which we confirmed at full size, and Sonnet saw the cars in the tunnel as "see-through shapes".</li>
-<li>Lesson: a real one-second fix can lose a whole-film review. Review a local fix with sheets dense on its moment, and make sure the fix adds no seam of its own.</li>
-</ul>
-<figure class="shots pair" aria-label="The tunnel entry in cut 14 and cut 15, frame strips from 8.4 to 10.4 seconds">
-<figure><img src="cut15-entry-before.jpg" width="1200" height="1056" loading="lazy" alt="Frame strip of the tunnel entry from 8.4 to 10.4 seconds in cut 14: the train fades beside the tunnel mouth"><figcaption class="figcap">Cut 14, 8.4 to 10.4 s.</figcaption></figure>
-<figure><img src="cut15-entry-after.jpg" width="1200" height="1056" loading="lazy" alt="Frame strip of the same seconds in cut 15: the train runs into the dark tunnel mouth"><figcaption class="figcap">Cut 15 first round, 8.4 to 10.4 s.</figcaption></figure>
-</figure>
-
-<h2>Every prop has a part</h2>
+<h2 id="props">Every prop has a part</h2>
 <ul>
 <li>The beetle on the first shot lands on the girl's handlebar, and the wolf takes it with the bird. A wing speck drops out at the lick.</li>
 <li>The swallows are the first sign of the wolf: they scatter as it lands at the window.</li>
@@ -220,7 +199,7 @@ Your browser cannot play this video. <a href="attemptB-720p.mp4">Download it (72
 <li>Clouds, grass and motes are mood only. The full list is in the repo.</li>
 </ul>
 
-<h2>What went wrong</h2>
+<h2 id="wrong">What went wrong</h2>
 <h3>In the code</h3>
 <ul>
 <li><strong>Paper shards over faces (occlusion).</strong> In cut 12 the blue shards flew across the girl's face and the wolf's eye. Cause: the bite shot drew the shard bursts in front of the girl, and the lick shot sent its near-camera scraps straight through the wolf's face. Fix: the bursts are drawn behind the girl (cut 13), and the scraps fly in lanes above and below the face (cut 14).</li>
@@ -245,6 +224,29 @@ Your browser cannot play this video. <a href="attemptB-720p.mp4">Download it (72
 <details class="ps">
 <summary>Show the iterative cuts, the from-scratch attempts and versions 1 to 3 (older, newest first)</summary>
 <h3>Iterative cuts</h3>
+<h4 id="cut18">Cut 18, not blind-reviewed</h4>
+<p><strong>Not shipped: on 27 Nov the operator judged cut 18 no better than cut 14, so cut 14 stays the master.</strong></p>
+<video class="film" controls preload="none" poster="cut18-poster.jpg" width="1280" height="720">
+<source src="cut18-720p.mp4" type="video/mp4">
+Your browser cannot play this video. <a href="cut18-720p.mp4">Download it (720p, 27 MB).</a>
+</video>
+<p class="figcap">Cut 18, 43.8 s.</p>
+<p>Cut 18 is cut 14 with four shots changed in code: where the train passes behind the wisteria at 9.4 to 9.8 s (a seam), the parapet rail in the first shot, the rail in the last shot and the stamp's card and seal. It added no API spend. It has not been through the blind review, so cut 14 stays the best cut at the top. Rendered on 27 Nov: 1,314 frames at 30 fps, the same as cut 14.</p>
+<h4 id="cut15">Cut 15: into the tunnel, not shipped</h4>
+<p><strong>Cut 14 stays the final cut.</strong> Cut 15 fixed the tunnel entry but lost both of its blind reviews on 25 Nov. The rule was the same each time: it ships only if it wins the blind review and a full-size side by side finds it no worse than cut 14. The second review was the last one allowed, so the work stopped there.</p>
+<ul>
+<li>What changed: the train goes into the tunnel, cut at the portal with a matte taken from the plate and a dark interior. The rails are measured from the plate; the two contacts the audit found over 1.5 px (2.23 and 1.84 px) are fixed. Attempt B's eased camera moves are on the stamp, window, bell and lick shots.</li>
+<li>First round, blind review: cut 15 against cut 14 and a hidden copy of cut 14, 57 sheets per judge. Cut 15 came first for none of the three judges. Opus scored all three 27 and could not tell them apart. Sonnet gave cut 15 26 and the copy 27; Haiku 24 and 28. The copy is the same picture as cut 14, so those gaps are judge noise.</li>
+<li>First round, full-size side by side, 15 moments: cut 15 is better at the 3 tunnel-entry moments, the same at 10, and worse at 2. The train runs over the far wisteria at 9.5 s, and a window post shows at the left edge at 18.6 s.</li>
+<li>Second round: two new images, the tunnel mouth's inside (<code>gpt-image-2</code>, $0.0085, used) and a train side with a real cut-out (<code>gpt-image-2.6-flare</code>, $0.031, not used: no visible gain in the shot). $0.04 of the $15 set aside was spent, with one full render.</li>
+<li>Second round, blind review: the same three versions on a new seed, plus five crop sheets of the changed areas at full size. Opus scored cut 15 above both others on 1 of 4 criteria (faithfulness to the reference) and named it its overall pick, but its total was 27, the same as the copy, and the rule counts scores. Haiku: above both others on none, 23 against the copy's 26. Sonnet: above both others on none, 22 against 28, last on every criterion. Fable was not asked, since the rule had already failed.</li>
+<li>What the judges saw at full size: they credited the deeper, darker tunnel mouth (Opus: the train "reads as coming out of a real tunnel"; in the copy the tunnel is "a flat, evenly lit yellow tube"). They faulted a seam at a car joint where the rear cars meet the wisteria, 9.4 to 9.8 s, which we confirmed at full size, and Sonnet saw the cars in the tunnel as "see-through shapes".</li>
+<li>Lesson: a real one-second fix can lose a whole-film review. Review a local fix with sheets dense on its moment, and make sure the fix adds no seam of its own.</li>
+</ul>
+<figure class="shots pair" aria-label="The tunnel entry in cut 14 and cut 15, frame strips from 8.4 to 10.4 seconds">
+<figure><img src="cut15-entry-before.jpg" width="1200" height="1056" loading="lazy" alt="Frame strip of the tunnel entry from 8.4 to 10.4 seconds in cut 14: the train fades beside the tunnel mouth"><figcaption class="figcap">Cut 14, 8.4 to 10.4 s.</figcaption></figure>
+<figure><img src="cut15-entry-after.jpg" width="1200" height="1056" loading="lazy" alt="Frame strip of the same seconds in cut 15: the train runs into the dark tunnel mouth"><figcaption class="figcap">Cut 15 first round, 8.4 to 10.4 s.</figcaption></figure>
+</figure>
 <h4>Cut 12</h4>
 <video class="film" controls preload="none" poster="cut12-poster.jpg" width="1280" height="720">
 <source src="cut12-720p.mp4" type="video/mp4">
@@ -353,10 +355,10 @@ Your browser cannot play this video. <a href="fox-720p.mp4">Download it (720p, 5
 </ul>
 </details>
 
-<h2>Code</h2>
+<h2 id="code">Code</h2>
 <p>The film's engine, shots and final files are in the repo named in <a href="#source">Postscript: source and data</a>.<br><span class="small">Named for who built it: Claude made this, Astra is what we tried to match. The repo is private until published; the notes, prompts and strips of the earlier cuts are linked from <a href="#source">Postscript: source and data</a> at the end.</span></p>
 <p class="small">Written by Wren (Claude Sonnet 5.5) on behalf of chimera-defi. Cut 10, cut 12 and cut 14 updates, the cost tables, plan prices, the cut 15 result and the cut 18 section, by Wren (Claude Opus 5.5).</p>
-<h2>Credits</h2>
+<h2 id="credits">Credits</h2>
 <ul>
 <li>Original film and idea: GPT-6.2 Astra, shared by <a href="https://x.com/reach_vb/status/2123663632190021985" target="_blank" rel="noreferrer">@reach_vb on X</a>. We recreated it; it is not hosted here.</li>
 <li>Code, builds and reviews: Claude (Sonnet 5.5, Opus 5.5, Haiku 5.5, Fable 5.2).</li>
