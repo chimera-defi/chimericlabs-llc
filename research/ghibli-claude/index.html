@@ -95,7 +95,7 @@ Your browser cannot play this video. <a href="cut18-720p.mp4">Download it (720p,
 <caption>APIMart calls by model, from every cost log of this project, each line counted once. The 70 s is the median measured on the image model bench.</caption>
 <thead><tr><th>Model</th><th>Kind</th><th class="num">Calls</th><th class="num">API price per asset</th><th>Effective price on a plan</th><th class="num">Subtotal</th><th>Used for</th></tr></thead>
 <tbody>
-<tr><th scope="row"><code>veo3.1-fast</code></th><td>video</td><td class="num">26</td><td class="num">$0.14</td><td>none: video is API only</td><td class="num">$3.64</td><td>attempt B 13, cut 9 5, cut 10 4, cut 11 Fable lead 1, compositor test 1, video bench 2</td></tr>
+<tr><th scope="row"><code>veo3.1-fast</code></th><td>video</td><td class="num">26</td><td class="num">$0.14 as billed for these 26 clips (all made by 25 Nov); $0.60 since 26 Nov</td><td>none: video is API only</td><td class="num">$3.64</td><td>attempt B 13, cut 9 5, cut 10 4, cut 11 Fable lead 1, compositor test 1, video bench 2</td></tr>
 <tr><th scope="row"><code>gpt-image-2.6-flare</code></th><td>image</td><td class="num">16</td><td class="num">$0.03 to $0.11</td><td>API only as run</td><td class="num">$1.29</td><td>attempt B style sheet and 3 test keys 4, cut 9 4, cut 10 5, cut 14 2, cut 15 1</td></tr>
 <tr><th scope="row"><code>gpt-image-2.6-sunburst</code></th><td>image</td><td class="num">1</td><td class="num">$0.026</td><td>API only as run</td><td class="num">$0.03</td><td>cut 14</td></tr>
 <tr><th scope="row"><code>gpt-image-2</code></th><td>image</td><td class="num">21</td><td class="num">$0.0085</td><td>API only as run</td><td class="num">$0.18</td><td>fox toolkit test 11, image probe 4, cut 11 Fable lead 3, toolkit tests 2, cut 15 1</td></tr>
@@ -117,6 +117,8 @@ Your browser cannot play this video. <a href="cut18-720p.mp4">Download it (720p,
 <ul>
 <li>Not charged: <code>hailuo-2.3-fast</code> returned "service_unavailable" once, and one flare and one sunburst call timed out; each was retried.</li>
 <li>A <a href="../image-model-bench/#recheck">frontier recheck</a> on 25 Nov, blind-scored by three judges, kept gpt-image-2 ($0.0085 an image) and veo3.1-fast ($0.14 a clip) as the defaults. Seedance 2.5 made more usable clips than veo, but each usable clip cost 3.11 times as much, over the 3x limit set before the scores were seen. Its 147 image and video calls cost $21.95, not in this total. Cut 15's second round made its two new images with gpt-image-2 and flare.</li>
+<li>Veo price change: ApiMart billed $0.14 for a veo3.1-fast 8 s clip on 25 Nov (settled task records), and $0.60 for the same model and length on 26 Nov and again on 27 Nov, including one probe on 27 Nov that used the 25 Nov request (duration 8, 16:9). So the price rose; the request was not the cause. The totals above keep the prices billed when each clip was made; cost fields are ApiMart's own, from each task.</li>
+<li>Not in the total: two toolkit test films after the cut 15 work (26 Nov) and a price probe (27 Nov), billed at the new price: one-shot 3, $1.98 (3 veo clips, 21 images); one-shot 4, $3.34 (5 veo clips, 40 images); and the price probe, $0.60. Together $5.92.</li>
 <li>Not in the total: attempt A's 16 flare stills (about $0.57) are in no cost log.</li>
 </ul>
 <h3>Cost by cut</h3>
