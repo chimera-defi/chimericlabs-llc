@@ -21,7 +21,11 @@
   },
   {
    "model": "veo3.1-fast",
-   "usd_per_clip": 0.14,
+   "usd_per_clip": 0.6,
+   "usd_per_clip_history": [
+    {"usd": 0.14, "billed": "2026-11-25", "tasks": ["task_01M88C47PSHPT5MPVA5A3QYR7G", "task_01M88E13B4K0YGQNXVZ76XQ03Y"]},
+    {"usd": 0.6, "billed": "2026-11-26 and 2026-11-27", "tasks": ["task_01M8ATC2DA5E7V1PKDHAMBSXKR", "task_01M8D87QMDQ68VNMBYAAYZPM8A"]}
+   ],
    "clip_seconds": 7.9,
    "identity": 4.5,
    "motion": 4.0,
@@ -35,7 +39,7 @@
    "identity": 4.5,
    "motion": 4.0,
    "clean": 3.5,
-   "note": "good but slight background change; 7x the price of fast"
+   "note": "good but slight background change; 7x the price of fast at the 25 Nov price, 1.67x at $0.60 (26-27 Nov)"
   },
   {
    "model": "kling-v3 (std)",

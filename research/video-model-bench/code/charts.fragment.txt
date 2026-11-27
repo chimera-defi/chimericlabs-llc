@@ -1,4 +1,4 @@
-<!--video 4-->
+<!--video 3-->
 <svg viewBox="0 0 900 540" role="img" aria-labelledby="cvt cvd" id="cv"><title id="cvt">Quality against cost per second for 10 video models</title><desc id="cvd">Image-to-video test with two start frames. Frontier models are cheapest or best at their price.</desc>
 <line class="pg" x1="70" x2="876" y1="476.0" y2="476.0"/><text class="pa2" x="60" y="481.0" text-anchor="end">2</text>
 <line class="pg" x1="70" x2="876" y1="400.7" y2="400.7"/><text class="pa2" x="60" y="405.7" text-anchor="end">2.5</text>
@@ -11,7 +11,7 @@
 <line class="pg" x1="501.6" x2="501.6" y1="24" y2="476"/><text class="pa2" x="501.6" y="498" text-anchor="middle">$0.05</text>
 <line class="pg" x1="729.4" x2="729.4" y1="24" y2="476"/><text class="pa2" x="729.4" y="498" text-anchor="middle">$0.1</text>
 <text class="pa2" x="473.0" y="528" text-anchor="middle">Cost per second of video (log scale)</text><text class="pa2" transform="translate(18 250.0) rotate(-90)" text-anchor="middle">Quality (mean of identity, motion, clean; 0 to 5)</text>
-<polyline class="pf" points="143.3,350.9 160.5,174.7 276.5,149.1 598.8,124.9"/>
+<polyline class="pf" points="143.3,350.9 276.5,149.1 598.8,124.9"/>
 <circle class="pb" cx="143.3" cy="350.9" r="9" tabindex="0" data-model="wan2.6-i2v-flash" data-family="alibaba" data-x="0.0168" data-y="2.83" data-tip="wan2.6-i2v-flash
 $0.0168 per second
 62 s median to finish (2 runs)
@@ -28,14 +28,6 @@ identity 5.0, motion 2.5, clean 5.0
 most faithful, clean wolf push-in, little motion
 on the frontier" aria-label="MiniMax-Hailuo-2.3-Fast, $0.0252 per second, 62 s median to finish (2 runs), quality 4.17 of 5, identity 5.0, motion 2.5, clean 5.0, most faithful, clean wolf push-in, little motion, on the frontier"/>
 <text class="pl" data-model="MiniMax-Hailuo-2.3-Fast" x="290.5" y="154.1" text-anchor="start">MiniMax-Hailuo-2.3-Fast</text>
-<circle class="pb" cx="160.5" cy="174.7" r="9" tabindex="0" data-model="veo3.1-fast" data-family="google" data-x="0.0177" data-y="4" data-tip="veo3.1-fast
-$0.0177 per second
-99.2 s median to finish (2 runs)
-quality 4.00 of 5
-identity 4.5, motion 4.0, clean 3.5
-natural blink, crane moves; thin line across the wolf
-on the frontier" aria-label="veo3.1-fast, $0.0177 per second, 99.2 s median to finish (2 runs), quality 4.00 of 5, identity 4.5, motion 4.0, clean 3.5, natural blink, crane moves; thin line across the wolf, on the frontier"/>
-<text class="pl" data-model="veo3.1-fast" x="174.5" y="179.7" text-anchor="start">veo3.1-fast</text>
 <circle class="pb" cx="598.8" cy="124.9" r="9" tabindex="0" data-model="kling-v3 (std)" data-family="kling" data-x="0.0672" data-y="4.33" data-tip="kling-v3 (std)
 $0.0672 per second
 119.7 s median to finish (2 runs)
@@ -44,13 +36,21 @@ identity 4.5, motion 4.5, clean 4.0
 livelier, crane flies, wolf walks forward
 on the frontier" aria-label="kling-v3 (std), $0.0672 per second, 119.7 s median to finish (2 runs), quality 4.33 of 5, identity 4.5, motion 4.5, clean 4.0, livelier, crane flies, wolf walks forward, on the frontier"/>
 <text class="pl" data-model="kling-v3 (std)" x="612.8" y="129.9" text-anchor="start">kling-v3 (std)</text>
+<circle class="pd" cx="638.8" cy="174.7" r="7" tabindex="0" data-model="veo3.1-fast" data-family="google" data-x="0.0759" data-y="4" data-tip="veo3.1-fast
+$0.0759 per second
+99.2 s median to finish (2 runs)
+quality 4.00 of 5
+identity 4.5, motion 4.0, clean 3.5
+natural blink, crane moves; thin line across the wolf
+beaten on this chart" aria-label="veo3.1-fast, $0.0759 per second, 99.2 s median to finish (2 runs), quality 4.00 of 5, identity 4.5, motion 4.0, clean 3.5, natural blink, crane moves; thin line across the wolf, beaten on this chart"/>
+<text class="pl2" data-model="veo3.1-fast" x="624.8" y="179.7" text-anchor="end">veo3.1-fast</text>
 <circle class="pd" cx="802.7" cy="174.7" r="7" tabindex="0" data-model="veo3.1-quality" data-family="google" data-x="0.125" data-y="4" data-tip="veo3.1-quality
 $0.1250 per second
 107.7 s median to finish (1 runs)
 quality 4.00 of 5
 identity 4.5, motion 4.0, clean 3.5
-good but slight background change; 7x the price of fast
-beaten on this chart" aria-label="veo3.1-quality, $0.1250 per second, 107.7 s median to finish (1 runs), quality 4.00 of 5, identity 4.5, motion 4.0, clean 3.5, good but slight background change; 7x the price of fast, beaten on this chart"/>
+good but slight background change; 7x the price of fast at the 25 Nov price, 1.67x at $0.60 (26-27 Nov)
+beaten on this chart" aria-label="veo3.1-quality, $0.1250 per second, 107.7 s median to finish (1 runs), quality 4.00 of 5, identity 4.5, motion 4.0, clean 3.5, good but slight background change; 7x the price of fast at the 25 Nov price, 1.67x at $0.60 (26-27 Nov), beaten on this chart"/>
 <text class="pl2" data-model="veo3.1-quality" x="802.7" y="158.7" text-anchor="middle">veo3.1-quality</text>
 <circle class="pd" cx="678.7" cy="174.7" r="7" tabindex="0" data-model="kling-v4-flash" data-family="kling" data-x="0.0857" data-y="4" data-tip="kling-v4-flash
 $0.0857 per second
@@ -59,7 +59,7 @@ quality 4.00 of 5
 identity 4.0, motion 4.5, clean 3.5
 similar to v3 with a slight face and scene shift
 beaten on this chart" aria-label="kling-v4-flash, $0.0857 per second, 91.1 s median to finish (2 runs), quality 4.00 of 5, identity 4.0, motion 4.5, clean 3.5, similar to v3 with a slight face and scene shift, beaten on this chart"/>
-<text class="pl2" data-model="kling-v4-flash" x="664.7" y="179.7" text-anchor="end">kling-v4-flash</text>
+<text class="pl2" data-model="kling-v4-flash" x="678.7" y="158.7" text-anchor="middle">kling-v4-flash</text>
 <circle class="pd" cx="592.9" cy="250.0" r="7" tabindex="0" data-model="seedance-2.0" data-family="bytedance" data-x="0.066" data-y="3.5" data-tip="seedance-2.0
 $0.0660 per second
 185.6 s median to finish (2 runs)
@@ -134,20 +134,20 @@ cheapest; background drifts, train changed shape and colour
 beaten on this chart" aria-label="wan2.6-i2v-flash, $0.0168 per second, 62 s median to finish (2 runs), quality 2.83 of 5, identity 3.5, motion 3.0, clean 2.0, cheapest; background drifts, train changed shape and colour, beaten on this chart"/>
 <text class="pl2" data-model="wan2.6-i2v-flash" x="200.6" y="355.9" text-anchor="start">wan2.6-i2v-flash</text>
 <circle class="pd" cx="432.1" cy="174.7" r="7" tabindex="0" data-model="veo3.1-fast" data-family="google" data-x="99.2" data-y="4" data-tip="veo3.1-fast
-$0.0177 per second
+$0.0759 per second
 99.2 s median to finish (2 runs)
 quality 4.00 of 5
 identity 4.5, motion 4.0, clean 3.5
 natural blink, crane moves; thin line across the wolf
-beaten on this chart" aria-label="veo3.1-fast, $0.0177 per second, 99.2 s median to finish (2 runs), quality 4.00 of 5, identity 4.5, motion 4.0, clean 3.5, natural blink, crane moves; thin line across the wolf, beaten on this chart"/>
+beaten on this chart" aria-label="veo3.1-fast, $0.0759 per second, 99.2 s median to finish (2 runs), quality 4.00 of 5, identity 4.5, motion 4.0, clean 3.5, natural blink, crane moves; thin line across the wolf, beaten on this chart"/>
 <text class="pl2" data-model="veo3.1-fast" x="432.1" y="158.7" text-anchor="middle">veo3.1-fast</text>
 <circle class="pd" cx="475.1" cy="174.7" r="7" tabindex="0" data-model="veo3.1-quality" data-family="google" data-x="107.7" data-y="4" data-tip="veo3.1-quality
 $0.1250 per second
 107.7 s median to finish (1 runs)
 quality 4.00 of 5
 identity 4.5, motion 4.0, clean 3.5
-good but slight background change; 7x the price of fast
-beaten on this chart" aria-label="veo3.1-quality, $0.1250 per second, 107.7 s median to finish (1 runs), quality 4.00 of 5, identity 4.5, motion 4.0, clean 3.5, good but slight background change; 7x the price of fast, beaten on this chart"/>
+good but slight background change; 7x the price of fast at the 25 Nov price, 1.67x at $0.60 (26-27 Nov)
+beaten on this chart" aria-label="veo3.1-quality, $0.1250 per second, 107.7 s median to finish (1 runs), quality 4.00 of 5, identity 4.5, motion 4.0, clean 3.5, good but slight background change; 7x the price of fast at the 25 Nov price, 1.67x at $0.60 (26-27 Nov), beaten on this chart"/>
 <text class="pl2" data-model="veo3.1-quality" x="489.1" y="179.7" text-anchor="start">veo3.1-quality</text>
 <circle class="pd" cx="387.6" cy="174.7" r="7" tabindex="0" data-model="kling-v4-flash" data-family="kling" data-x="91.1" data-y="4" data-tip="kling-v4-flash
 $0.0857 per second
@@ -219,21 +219,21 @@ identity 5.0, motion 2.5, clean 5.0
 most faithful, clean wolf push-in, little motion
 beaten on this chart" aria-label="MiniMax-Hailuo-2.3-Fast, $0.0252 per second, 62 s median to finish (2 runs), quality 4.17 of 5, identity 5.0, motion 2.5, clean 5.0, most faithful, clean wolf push-in, little motion, beaten on this chart"/>
 <text class="pl2" data-model="MiniMax-Hailuo-2.3-Fast" x="200.6" y="390.5" text-anchor="start">MiniMax-Hailuo-2.3-Fast</text>
-<circle class="pd" cx="432.1" cy="447.1" r="7" tabindex="0" data-model="veo3.1-fast" data-family="google" data-x="99.2" data-y="0.0177" data-tip="veo3.1-fast
-$0.0177 per second
+<circle class="pd" cx="432.1" cy="193.1" r="7" tabindex="0" data-model="veo3.1-fast" data-family="google" data-x="99.2" data-y="0.0759" data-tip="veo3.1-fast
+$0.0759 per second
 99.2 s median to finish (2 runs)
 quality 4.00 of 5
 identity 4.5, motion 4.0, clean 3.5
 natural blink, crane moves; thin line across the wolf
-beaten on this chart" aria-label="veo3.1-fast, $0.0177 per second, 99.2 s median to finish (2 runs), quality 4.00 of 5, identity 4.5, motion 4.0, clean 3.5, natural blink, crane moves; thin line across the wolf, beaten on this chart"/>
-<text class="pl2" data-model="veo3.1-fast" x="446.1" y="452.1" text-anchor="start">veo3.1-fast</text>
+beaten on this chart" aria-label="veo3.1-fast, $0.0759 per second, 99.2 s median to finish (2 runs), quality 4.00 of 5, identity 4.5, motion 4.0, clean 3.5, natural blink, crane moves; thin line across the wolf, beaten on this chart"/>
+<text class="pl2" data-model="veo3.1-fast" x="446.1" y="198.1" text-anchor="start">veo3.1-fast</text>
 <circle class="pd" cx="475.1" cy="106.0" r="7" tabindex="0" data-model="veo3.1-quality" data-family="google" data-x="107.7" data-y="0.125" data-tip="veo3.1-quality
 $0.1250 per second
 107.7 s median to finish (1 runs)
 quality 4.00 of 5
 identity 4.5, motion 4.0, clean 3.5
-good but slight background change; 7x the price of fast
-beaten on this chart" aria-label="veo3.1-quality, $0.1250 per second, 107.7 s median to finish (1 runs), quality 4.00 of 5, identity 4.5, motion 4.0, clean 3.5, good but slight background change; 7x the price of fast, beaten on this chart"/>
+good but slight background change; 7x the price of fast at the 25 Nov price, 1.67x at $0.60 (26-27 Nov)
+beaten on this chart" aria-label="veo3.1-quality, $0.1250 per second, 107.7 s median to finish (1 runs), quality 4.00 of 5, identity 4.5, motion 4.0, clean 3.5, good but slight background change; 7x the price of fast at the 25 Nov price, 1.67x at $0.60 (26-27 Nov), beaten on this chart"/>
 <text class="pl2" data-model="veo3.1-quality" x="489.1" y="111.0" text-anchor="start">veo3.1-quality</text>
 <circle class="pd" cx="530.3" cy="214.3" r="7" tabindex="0" data-model="kling-v3 (std)" data-family="kling" data-x="119.7" data-y="0.0672" data-tip="kling-v3 (std)
 $0.0672 per second

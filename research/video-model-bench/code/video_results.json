@@ -85,7 +85,8 @@
   "cost_usd": 0.14,
   "latency_s": 132.2,
   "status": "completed",
-  "file": "out/veo31f_boy.mp4"
+  "file": "out/veo31f_boy.mp4",
+  "price_note": "cost_usd is what this clip was billed; veo3.1-fast 8 s was billed 0.6 on 2026-11-26 and 2026-11-27 (see video_scores.json usd_per_clip_history)"
  },
  {
   "model": "veo3.1-fast",
@@ -93,7 +94,8 @@
   "cost_usd": 0.14,
   "latency_s": 66.2,
   "status": "completed",
-  "file": "out/veo31f_wolf.mp4"
+  "file": "out/veo31f_wolf.mp4",
+  "price_note": "cost_usd is what this clip was billed; veo3.1-fast 8 s was billed 0.6 on 2026-11-26 and 2026-11-27 (see video_scores.json usd_per_clip_history)"
  },
  {
   "model": "veo3.1-quality",

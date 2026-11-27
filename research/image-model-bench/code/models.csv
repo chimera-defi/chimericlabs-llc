@@ -19,7 +19,7 @@ image,z-image-turbo,0.01,per image,2.25,4.8,7,"{""style"": 3, ""emotion_faces"":
 image,ChatGPT Instant,0.0133,per image (model: $20 / (50 per day x 30)),,70.0,13,{}
 video,wan2.6-i2v-flash,0.0168,per second,2.83,62.0,2,"{""identity"": 3.5, ""motion"": 3.0, ""clean"": 2.0}"
 video,MiniMax-Hailuo-2.3-Fast,0.0252,per second,4.17,62.0,2,"{""identity"": 5.0, ""motion"": 2.5, ""clean"": 5.0}"
-video,veo3.1-fast,0.0177,per second,4.0,99.2,2,"{""identity"": 4.5, ""motion"": 4.0, ""clean"": 3.5}"
+video,veo3.1-fast,0.0759,per second,4.0,99.2,2,"{""identity"": 4.5, ""motion"": 4.0, ""clean"": 3.5}"
 video,veo3.1-quality,0.125,per second,4.0,107.7,1,"{""identity"": 4.5, ""motion"": 4.0, ""clean"": 3.5}"
 video,kling-v3 (std),0.0672,per second,4.33,119.7,2,"{""identity"": 4.5, ""motion"": 4.5, ""clean"": 4.0}"
 video,kling-v4-flash,0.0857,per second,4.0,91.1,2,"{""identity"": 4.0, ""motion"": 4.5, ""clean"": 3.5}"
