@@ -459,9 +459,9 @@
    "model": "veo3.1-fast",
    "secs": 99.2,
    "secs_n": 2,
-   "cost": 0.0177,
+   "cost": 0.0759,
    "unit": "per second",
-   "cost_per_clip": 0.14,
+   "cost_per_clip": 0.6,
    "seconds": 7.9,
    "quality": 4.0,
    "detail": {
