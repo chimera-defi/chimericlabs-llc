@@ -15,12 +15,15 @@ log = list(csv.DictReader(open(args[5])))
 adv = [r for r in csv.DictReader(open(args[6])) if r['entrypoint'] == 'advisor'] if len(args) > 6 else []
 o, n = old['daily'], new['daily']
 d0, d1 = old['data_through'][:10], new['data_through'][:10]
-assert [r['date'] for r in rows] == [r['date'] for r in n], 'daily.csv and data.json disagree'
+# daily.csv runs to today's UTC date (DAILY_THROUGH) while this runs before the build, so data.json can lag by the days since the last build:
+# the shared days must match exactly; days after data.json's last one are allowed, and carry commits only (tokens come with the build)
+dn = [r['date'] for r in n]
+assert [r['date'] for r in rows][:len(dn)] == dn and all(r['date'] > dn[-1] for r in rows[len(dn):]), 'daily.csv and data.json disagree'
 def tot(daily, col): return sum(int(r[col]) for r in daily)
 c = lambda x: f'{x/1000:.1f}K' if x >= 1000 else str(x); b = lambda x: f'{x/1e9:.1f}B'
 t0, t1 = tot(o, 'tokens_total'), tot(n, 'tokens_total')
 notes = {'commits': [], 'changes': [], 'gaps': []}   # each line goes to the page section it belongs to
-notes['commits'].append(f"Landed commits, on the main branch only: {c(tot(o,'commits_landed'))} then, {c(tot(n,'commits_landed'))} now.")
+notes['commits'].append(f"Landed commits, on the main branch only: {c(tot(o,'commits_landed'))} then, {c(tot(rows,'commits_landed'))} now.")
 if d1 != d0: notes['changes'].append(f"Data now runs to {d1}, from {d0}.")   # same day: nothing to say; the page already shows the data date
 notes['gaps'] += [
   f"Tokens, Claude + Codex, with recovered days: {b(t0)} then, {b(t1)} now.",
